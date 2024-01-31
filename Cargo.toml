@@ -1,0 +1,9 @@
+[package]
+name = "bevy_mod_edit"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+bevy = "0.12.0"
+bevy_mesh_terrain = { path = "../bevy_mesh_terrain" }
