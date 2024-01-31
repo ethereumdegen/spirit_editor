@@ -16,6 +16,8 @@ fn main() {
           
         .add_systems(Startup, setup) 
         
+        .add_systems(Update, update_brush_paint ) 
+        
         .add_systems(Update, update_camera_look ) 
         .add_systems(Update, update_camera_move ) 
         
@@ -77,6 +79,52 @@ fn setup(
 }
 
 
+
+ 
+fn update_brush_paint(
+    mut event_reader:   EventReader<MouseMotion>  ,
+    mouse_input:  Res< Input<MouseButton> > ,
+    mut query: Query<(&mut Transform, &Camera3d)>,
+    
+    
+){
+     
+     
+     if !mouse_input.pressed(MouseButton::Left) {
+        return;
+    }
+    
+    //if tool is paintbrush ... (conditional check)
+     
+      
+      // Accumulate mouse delta
+    let mut delta: Vec2 = Vec2::ZERO;
+    for event in event_reader.iter() {
+        delta += event.delta;
+    }
+
+    // Apply to each camera with the CameraTag
+    /*for (mut transform, _) in query.iter_mut() {
+       // let rotation = transform.rotation;
+      
+        let (mut yaw, mut pitch, _roll) = transform.rotation.to_euler(EulerRot::YXZ);
+       
+        yaw -= delta.x / 180.0   * MOUSE_SENSITIVITY  ;
+        pitch -= delta.y / 180.0   * MOUSE_SENSITIVITY;
+        pitch = pitch .clamp(-std::f32::consts::PI / 2.0, std::f32::consts::PI / 2.0) ;
+   
+        transform.rotation = Quat::from_euler(EulerRot::YXZ, yaw, pitch, 0.0);
+       
+    }*/
+    
+    //cast a ray out of my mouse cursor into 3d and try to collide w the terrain collision mesh ! 
+    
+    println!("painting w brush ");
+    
+    
+    //ultimately should emit an event ... ? 
+    
+}
  
  
 fn update_camera_look(
@@ -88,7 +136,7 @@ fn update_camera_look(
 ){
     const MOUSE_SENSITIVITY: f32 = 2.0;
      
-     if !mouse_input.pressed(MouseButton::Left) {
+     if !mouse_input.pressed(MouseButton::Right) {
         return;
     }
     
