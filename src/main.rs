@@ -10,7 +10,18 @@ use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData,
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins) 
+        
+         
+          .add_plugins(DefaultPlugins
+            .set(WindowPlugin {
+                primary_window: Some(Window {
+                    title: "Terrain Edit".to_string(),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            })
+        )
+         
          
         .add_plugins( TerrainMeshPlugin::default() )
           
