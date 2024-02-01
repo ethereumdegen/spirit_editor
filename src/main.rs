@@ -6,6 +6,7 @@ use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData,
 
 
 
+use bevy_mod_raycast::prelude::*;
 
 
 fn main() {
@@ -14,21 +15,27 @@ fn main() {
          
           .add_plugins(DefaultPlugins
             .set(WindowPlugin {
-                primary_window: Some(Window {
+                primary_window: Some(Window { 
+                    present_mode:  bevy::window::PresentMode::AutoNoVsync, //improves latency
+
                     title: "Terrain Edit".to_string(),
                     ..Default::default()
                 }),
                 ..Default::default()
             })
         )
-         
+
+        .add_plugins(DefaultRaycastingPlugin)
          
         .add_plugins( TerrainMeshPlugin::default() )
           
         .add_systems(Startup, setup) 
+
+        //move to brushes and tools lib 
+        .add_systems(Update, update_brush_paint )
+        .add_systems(Update, raycast)
         
-        .add_systems(Update, update_brush_paint ) 
-        
+        //move to camera lib 
         .add_systems(Update, update_camera_look ) 
         .add_systems(Update, update_camera_move ) 
         
@@ -90,12 +97,21 @@ fn setup(
 }
 
 
+fn raycast(cursor_ray: Res<CursorRay>, mut raycast: Raycast, mut gizmos: Gizmos) {
+   
+}
 
  
 fn update_brush_paint(
-    mut event_reader:   EventReader<MouseMotion>  ,
-    mouse_input:  Res< Input<MouseButton> > ,
-    mut query: Query<(&mut Transform, &Camera3d)>,
+  //  mut event_reader:   EventReader<MouseMotion>  ,
+    mouse_input:  Res< Input<MouseButton> > , //detect mouse click 
+    
+    
+    cursor_ray: Res<CursorRay>, 
+    mut raycast: Raycast,
+    
+    
+    mut query: Query<(&mut Transform, &Camera3d)>,  //do we need this ? 
     
     
 ){
@@ -108,11 +124,53 @@ fn update_brush_paint(
     //if tool is paintbrush ... (conditional check)
      
       
-      // Accumulate mouse delta
-    let mut delta: Vec2 = Vec2::ZERO;
-    for event in event_reader.iter() {
-        delta += event.delta;
+    
+   
+    if let Some(cursor_ray) = **cursor_ray {
+       
+     
+      //  println!("raycast {:?}", raycast.into()); 
+      
+      
+        if let Some((entity,intersection_data)) = raycast.cast_ray(cursor_ray, &default() ).first(){
+            
+          
+             
+             let hit_point = intersection_data.position();
+             
+             //need to take the current X and Y 
+                println!("hit_point {:?}", hit_point);
+             
+            
+        }
+
+          
+           
+        /*
+
+         for i in 0..MAX_BOUNCES {
+        if let Some((_, hit)) = raycast.cast_ray(ray, &RaycastSettings::default()).first() {
+            let bright = 1.0 + 10.0 * (1.0 - i as f32 / MAX_BOUNCES as f32);
+            intersections.push((hit.position(), color * bright));
+            gizmos.sphere(hit.position(), Quat::IDENTITY, 0.005, color * bright * 2.0);
+            let ray_dir = ray.direction();
+            // reflect the ray
+            let proj = (ray_dir.dot(hit.normal()) / hit.normal().dot(hit.normal())) * hit.normal();
+            ray.set_direction(ray_dir - 2.0 * proj);
+            ray.set_origin(hit.position() + ray.direction() * 1e-6);
+        } else {
+            break;
+        }
     }
+    
+        */
+        
+        
+        
+        
+    }
+    
+    
 
     // Apply to each camera with the CameraTag
     /*for (mut transform, _) in query.iter_mut() {
