@@ -2,7 +2,7 @@
 
 use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::{EditTerrainEvent, debug_tool_edits}};
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::{EditTerrainEvent}};
 
 use bevy_mesh_terrain::edit::EditingTool;
 
@@ -40,7 +40,7 @@ fn main() {
         .add_systems(Update, update_camera_look ) 
         .add_systems(Update, update_camera_move ) 
         
-        .add_systems(Update, debug_tool_edits )
+     
         
         .run();
 }
