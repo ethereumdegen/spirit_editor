@@ -2,8 +2,9 @@
 
 use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}};
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::EditTerrainEvent};
 
+use bevy_mesh_terrain::edit::EditingTool;
 
 
 use bevy_mod_raycast::prelude::*;
@@ -104,6 +105,8 @@ fn raycast(cursor_ray: Res<CursorRay>, mut raycast: Raycast, mut gizmos: Gizmos)
  
 fn update_brush_paint(
   //  mut event_reader:   EventReader<MouseMotion>  ,
+   
+    
     mouse_input:  Res< Input<MouseButton> > , //detect mouse click 
     
     
@@ -111,9 +114,9 @@ fn update_brush_paint(
     mut raycast: Raycast,
     
     
-    mut query: Query<(&mut Transform, &Camera3d)>,  //do we need this ? 
+   // mut query: Query<(&mut Transform, &Camera3d)>,  //do we need this ? 
     
-    
+     mut event_writer: EventWriter<EditTerrainEvent>,
 ){
      
      
@@ -132,14 +135,27 @@ fn update_brush_paint(
       //  println!("raycast {:?}", raycast.into()); 
       
       
-        if let Some((entity,intersection_data)) = raycast.cast_ray(cursor_ray, &default() ).first(){
+        if let Some((intersection_entity,intersection_data)) = raycast.cast_ray(cursor_ray, &default() ).first(){
             
           
              
-             let hit_point = intersection_data.position();
+            let hit_point = intersection_data.position();
              
              //need to take the current X and Y 
-                println!("hit_point {:?}", hit_point);
+            println!("hit_point {:?}", hit_point);
+             
+             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
+            let hit_coordinates = Vec2::new(hit_point.x, hit_point.z);
+            
+            //need to pass the entity and hit coords to the terrain plugin so it can edit stuff there 
+             //maybe we use an event for this 
+             
+            event_writer.send(EditTerrainEvent {
+                entity: intersection_entity.clone(), 
+                tool:EditingTool::setHeightMap(25,25.0), 
+                coordinates:hit_coordinates
+            });
+            
              
             
         }
