@@ -2,7 +2,7 @@
 
 use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::EditTerrainEvent};
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::{EditTerrainEvent, debug_tool_edits}};
 
 use bevy_mesh_terrain::edit::EditingTool;
 
@@ -34,11 +34,13 @@ fn main() {
 
         //move to brushes and tools lib 
         .add_systems(Update, update_brush_paint )
-        .add_systems(Update, raycast)
+        
         
         //move to camera lib 
         .add_systems(Update, update_camera_look ) 
         .add_systems(Update, update_camera_move ) 
+        
+        .add_systems(Update, debug_tool_edits )
         
         .run();
 }
@@ -98,25 +100,16 @@ fn setup(
 }
 
 
-fn raycast(cursor_ray: Res<CursorRay>, mut raycast: Raycast, mut gizmos: Gizmos) {
-   
-}
+ 
 
  
-fn update_brush_paint(
-  //  mut event_reader:   EventReader<MouseMotion>  ,
-   
-    
+fn update_brush_paint( 
     mouse_input:  Res< Input<MouseButton> > , //detect mouse click 
-    
-    
+        
     cursor_ray: Res<CursorRay>, 
-    mut raycast: Raycast,
-    
-    
-   // mut query: Query<(&mut Transform, &Camera3d)>,  //do we need this ? 
-    
-     mut event_writer: EventWriter<EditTerrainEvent>,
+    mut raycast: Raycast,    
+      
+    mut event_writer: EventWriter<EditTerrainEvent>,
 ){
      
      
@@ -126,88 +119,38 @@ fn update_brush_paint(
     
     //if tool is paintbrush ... (conditional check)
      
-      
+     //make me dynamic or whatever 
+    let tool = EditingTool::SetHeightMap(25,25.0);
     
    
     if let Some(cursor_ray) = **cursor_ray {
        
-     
-      //  println!("raycast {:?}", raycast.into()); 
+      
       
       
         if let Some((intersection_entity,intersection_data)) = raycast.cast_ray(cursor_ray, &default() ).first(){
             
-          
-             
+                       
             let hit_point = intersection_data.position();
-             
-             //need to take the current X and Y 
-            println!("hit_point {:?}", hit_point);
+                         
              
              //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
             let hit_coordinates = Vec2::new(hit_point.x, hit_point.z);
             
-            //need to pass the entity and hit coords to the terrain plugin so it can edit stuff there 
-             //maybe we use an event for this 
-             
+            //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there 
+          
             event_writer.send(EditTerrainEvent {
                 entity: intersection_entity.clone(), 
-                tool:EditingTool::setHeightMap(25,25.0), 
+                tool, 
                 coordinates:hit_coordinates
-            });
-            
+            });            
              
             
-        }
-
-          
-           
-        /*
-
-         for i in 0..MAX_BOUNCES {
-        if let Some((_, hit)) = raycast.cast_ray(ray, &RaycastSettings::default()).first() {
-            let bright = 1.0 + 10.0 * (1.0 - i as f32 / MAX_BOUNCES as f32);
-            intersections.push((hit.position(), color * bright));
-            gizmos.sphere(hit.position(), Quat::IDENTITY, 0.005, color * bright * 2.0);
-            let ray_dir = ray.direction();
-            // reflect the ray
-            let proj = (ray_dir.dot(hit.normal()) / hit.normal().dot(hit.normal())) * hit.normal();
-            ray.set_direction(ray_dir - 2.0 * proj);
-            ray.set_origin(hit.position() + ray.direction() * 1e-6);
-        } else {
-            break;
-        }
-    }
-    
-        */
-        
-        
-        
+        } 
         
     }
     
-    
-
-    // Apply to each camera with the CameraTag
-    /*for (mut transform, _) in query.iter_mut() {
-       // let rotation = transform.rotation;
-      
-        let (mut yaw, mut pitch, _roll) = transform.rotation.to_euler(EulerRot::YXZ);
-       
-        yaw -= delta.x / 180.0   * MOUSE_SENSITIVITY  ;
-        pitch -= delta.y / 180.0   * MOUSE_SENSITIVITY;
-        pitch = pitch .clamp(-std::f32::consts::PI / 2.0, std::f32::consts::PI / 2.0) ;
-   
-        transform.rotation = Quat::from_euler(EulerRot::YXZ, yaw, pitch, 0.0);
-       
-    }*/
-    
-    //cast a ray out of my mouse cursor into 3d and try to collide w the terrain collision mesh ! 
-    
-    println!("painting w brush ");
-    
-    
-    //ultimately should emit an event ... ? 
+     
     
 }
  
