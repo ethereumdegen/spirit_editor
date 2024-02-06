@@ -110,7 +110,7 @@ fn update_brush_paint(
     //if tool is paintbrush ... (conditional check)
      
      //make me dynamic or whatever 
-    let tool = EditingTool::SetHeightMap(25,25.0);
+    let tool = EditingTool::SetHeightMap(125,25.0);
     
    
     if let Some(cursor_ray) = **cursor_ray {
