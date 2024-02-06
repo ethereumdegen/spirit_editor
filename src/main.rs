@@ -2,8 +2,8 @@
 
 use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{TerrainConfig, TerrainData, TerrainViewer}, edit::{EditTerrainEvent}};
-
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent}};
+ use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::edit::EditingTool;
 
 
@@ -47,33 +47,23 @@ fn main() {
 
 /// set up a simple 3D scene
 fn setup(
-    mut commands: Commands,
-    
-   
-    asset_server: Res<AssetServer> 
+    mut commands: Commands 
+     
+   // asset_server: Res<AssetServer> 
 ) {
     
-    
-    let array_texture: Handle<Image> = asset_server.load("terrain/textures/array_texture_lg_2.png");
-    let height_map: Handle<Image> = asset_server.load("terrain/source/height.png"); 
-    let splat_texture: Handle<Image> = asset_server.load("terrain/textures/splat_texture.png");
      
-    
-    
-   
-    commands.spawn(VisibilityBundle::default() ) 
-    .insert( TransformBundle::default() )
+  
+     
+     commands.spawn(SpatialBundle::default() )  
     .insert(
-        TerrainConfig::default()
-        .set_render_distance( 1500.0 )
-        )
+        TerrainConfig::load_from_file("assets/terrain/default_terrain/terrain_config.ron").unwrap() 
+        ) 
     .insert(
-        TerrainData::default()
-        .add_height_map_image(   height_map  ) 
-        .add_array_texture_image(array_texture, 8) 
-        .add_splat_texture_image( splat_texture )
+        TerrainData::new()  
     ); 
-    
+     
+     
      
     commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight::default(),
