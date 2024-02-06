@@ -780,22 +780,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_mikktspace"
-version = "0.12.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ec4962977a746d870170532fc92759e04d3dbcae8b7b82e7ca3bb83b1d75277"
-dependencies = [
- "glam",
-]
-
-[[package]]
-name = "bevy_mod_edit"
+name = "bevy_mesh_terrain_editor"
 version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy_mesh_terrain",
  "bevy_mod_picking",
  "bevy_mod_raycast",
+]
+
+[[package]]
+name = "bevy_mikktspace"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ec4962977a746d870170532fc92759e04d3dbcae8b7b82e7ca3bb83b1d75277"
+dependencies = [
+ "glam",
 ]
 
 [[package]]

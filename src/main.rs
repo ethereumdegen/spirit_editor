@@ -19,7 +19,7 @@ fn main() {
                 primary_window: Some(Window { 
                     present_mode:  bevy::window::PresentMode::AutoNoVsync, //improves latency
 
-                    title: "Terrain Edit".to_string(),
+                    title: "Mesh Terrain Editor".to_string(),
                     ..Default::default()
                 }),
                 ..Default::default()
