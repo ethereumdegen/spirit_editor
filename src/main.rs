@@ -2,7 +2,7 @@
 
 use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent}};
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent, TerrainCommandEvent}};
  use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::edit::EditingTool;
 
@@ -34,6 +34,7 @@ fn main() {
 
         //move to brushes and tools lib 
         .add_systems(Update, update_brush_paint )
+        .add_systems(Update, update_commands)
         
         
         //move to camera lib 
@@ -91,6 +92,26 @@ fn setup(
 
 
  
+fn update_commands ( 
+    key_input:  Res< Input<KeyCode> > , //detect mouse click 
+         
+      
+      mut edit_event_writer: EventWriter<EditTerrainEvent>,
+     mut command_event_writer: EventWriter<TerrainCommandEvent>,
+){
+  
+        if key_input.pressed(KeyCode::ControlLeft) || key_input.pressed(KeyCode::ControlRight) {
+        if key_input.just_pressed(KeyCode::S) {
+            
+               println!("saving chunks !");
+               
+             command_event_writer.send(
+                 TerrainCommandEvent::SaveAllChunks(true,true)
+                 
+             )
+        }}
+     
+}
 
  
 fn update_brush_paint( 
@@ -99,7 +120,8 @@ fn update_brush_paint(
     cursor_ray: Res<CursorRay>, 
     mut raycast: Raycast,    
       
-    mut event_writer: EventWriter<EditTerrainEvent>,
+    mut edit_event_writer: EventWriter<EditTerrainEvent>,
+     mut command_event_writer: EventWriter<TerrainCommandEvent>,
 ){
      
      
@@ -131,12 +153,13 @@ fn update_brush_paint(
             
             //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there 
           
-            event_writer.send(EditTerrainEvent {
+           edit_event_writer.send(EditTerrainEvent {
                 entity: intersection_entity.clone(), 
                 tool, 
                 coordinates:hit_coordinates
             });            
              
+          
             
         } 
         
