@@ -106,7 +106,7 @@ fn update_commands (
                println!("saving chunks !");
                
              command_event_writer.send(
-                 TerrainCommandEvent::SaveAllChunks(true,true)
+                 TerrainCommandEvent::SaveAllChunks(true,true,true)
                  
              )
         }}
