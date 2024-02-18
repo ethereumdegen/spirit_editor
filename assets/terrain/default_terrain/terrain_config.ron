@@ -8,14 +8,14 @@ TerrainConfig(
     height_scale: 0.0004,
     attach_collision_data: true,
     
-    texture_image_sections: 8,
+    texture_image_sections: 32,
     // Assuming the addition of fields for paths to the height and splat folders
     
      
     
      height_folder_path: "terrain/default_terrain/height", 
      splat_folder_path: "terrain/default_terrain/splat", 
-     diffuse_folder_path: "terrain/default_terrain/diffuse/array_texture.png", 
+     diffuse_folder_path: "terrain/default_terrain/diffuse/array_texture_lg.png", 
        collider_data_folder_path: "terrain/default_terrain/collision",  
      
 )
