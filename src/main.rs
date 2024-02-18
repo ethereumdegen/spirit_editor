@@ -83,6 +83,7 @@ fn setup(
      
     commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight::default(),
+        transform: Transform::from_xyz(4.0, 800.0, 4.0),
         ..default()
     });
     // light
