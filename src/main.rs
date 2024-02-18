@@ -6,6 +6,7 @@ use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewe
  use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::edit::EditingTool;
 
+ 
 
 use bevy_mod_raycast::prelude::*;
 
@@ -79,10 +80,17 @@ fn setup(
         TerrainData::new()  
     ); 
      
-     
+    commands.insert_resource(AmbientLight {
+        color: Color::WHITE,
+        brightness: 0.06,
+    });
      
     commands.spawn(DirectionalLightBundle {
-        directional_light: DirectionalLight::default(),
+        directional_light: DirectionalLight {
+            shadows_enabled: true,
+          //  illuminance: light_consts::lux::OVERCAST_DAY,
+            ..default()
+        },
         transform: Transform::from_xyz(4.0, 800.0, 4.0),
         ..default()
     });

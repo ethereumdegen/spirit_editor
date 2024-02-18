@@ -3,7 +3,7 @@
  
  
  #import bevy_pbr::{
-    forward_io::{VertexOutput, FragmentOutput},
+    forward_io::{VertexInput, VertexOutput, FragmentOutput},
     pbr_functions::alpha_discard,
     pbr_fragment::pbr_input_from_standard_material,
       pbr_functions::{apply_pbr_lighting, main_pass_post_lighting_processing},
@@ -78,7 +78,30 @@ var alpha_mask_texture: texture_2d<f32>;
 @group(1) @binding(26)
 var alpha_mask_sampler: sampler;
  
+/*
+// Assume a struct for the vertex input
+struct VertexInput {
+    @location(0) position: vec3<f32>,  // Vertex position
+    @location(1) uv: vec2<f32>,        // UV coordinates
+    @location(2) normal: vec3<f32>,
+};
 
+
+
+@vertex
+fn vertex_main(in: VertexInput) -> VertexOutput {
+    var output: VertexOutput;
+
+    // Transform vertex position to clip space
+   output.position = vec4( in.position , 1.0) ;
+ 
+    output.uv = in.uv;
+ output.normal = in.normal;  // Directly pass normals (transform if needed)
+
+    // If you have normals or other per-vertex data to pass to the fragment shader, process them here
+
+    return output;
+}*/
 
 //should consider adding vertex painting to this .. need another binding of course.. performs a color shift 
 
@@ -129,6 +152,8 @@ fn fragment(
     
     // apply lighting
     pbr_out.color = apply_pbr_lighting(pbr_input);
+
+
     // we can optionally modify the lit color before post-processing is applied
     // out.color = out.color;
     // apply in-shader post processing (fog, alpha-premultiply, and also tonemapping, debanding if the camera is non-hdr)
