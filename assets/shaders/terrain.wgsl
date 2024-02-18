@@ -95,8 +95,7 @@ fn fragment(
     
     // seems to be working !! yay ! makes our splat texture encompass all of the chunks 
     let splat_uv = chunk_uniforms.chunk_uv.xy + mesh.uv * (chunk_uniforms.chunk_uv.zw - chunk_uniforms.chunk_uv.xy);
-
-        //the splat texture NEEDS TO BE sRGB 8 bit depth float.
+    
     let splat_values = textureSample(splat_map_texture, splat_map_sampler, splat_uv );
     let alpha_mask_value = textureSample(alpha_mask_texture, alpha_mask_sampler, splat_uv );  //comes from height map atm but COULD come from splat map now 
     

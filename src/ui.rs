@@ -18,27 +18,27 @@ pub fn editor_ui_plugin(app: &mut App){
 }
 
 
-#[derive(Default, Resource)]
+#[derive(Default, Resource,Clone)]
 pub struct LinearPixelColor {
-    r:u8,
-    g:u8,
-    b:u8,
-    a:u8
-
-
+    pub r:u16,
+    pub g:u16,
+    pub b:u16,
+    pub a:u16 
 }
 
 
 
-#[derive(Default, Resource)]
-pub struct EditorToolsState {
-    //name: String,
-     tool_radius:u32,
-     tool_mode: ToolMode,
-     color: LinearPixelColor
+#[derive(Default, Resource,Clone)]
+pub struct EditorToolsState { 
+     
+     pub tool_mode: ToolMode,
+     pub brush_radius:u32,
+     pub color: LinearPixelColor
+
+     //brush mode 
 }
 
-#[derive(Eq,PartialEq,Debug,Default)]
+#[derive(Eq,PartialEq,Debug,Default,Clone)]
 pub enum ToolMode { 
     #[default]
     Height,
@@ -75,6 +75,14 @@ fn editor_tools(
              )
         }
 
+        if ui.button("Save Splat and Height").clicked() {
+            command_event_writer.send(
+                TerrainCommandEvent::SaveAllChunks(true,true,false)
+                
+            )
+        }
+
+
         ui.spacing();
         ui.separator();
 
@@ -106,7 +114,7 @@ fn editor_tools(
         ui.spacing();
         ui.separator();
 
-        ui.add(egui::Slider::new(&mut tools_state.tool_radius, 0..=100).text("tool_radius"));
+        ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
 
         match tools_state.tool_mode {
 
@@ -117,7 +125,7 @@ fn editor_tools(
 
             },
             ToolMode::Height => {
-                ui.add(egui::Slider::new(&mut tools_state.color.r, 0..=255).text("Height (R_Channel)"));
+                ui.add(egui::Slider::new(&mut tools_state.color.r, 0..=65535).text("Height (R_Channel)"));
                 
             }
 
