@@ -9,6 +9,19 @@ use bevy_mesh_terrain::edit::EditingTool;
 
 use bevy_mod_raycast::prelude::*;
 
+mod ui;
+mod camera;
+mod tools;
+mod commands;
+
+use crate::camera::{update_camera_look,update_camera_move};
+
+use crate::tools::{update_brush_paint };
+
+use crate::commands::{update_commands };
+use crate::ui::{  editor_ui_plugin };
+
+use seldom_fn_plugin::FnPluginExt;
 
 fn main() {
     App::new()
@@ -29,6 +42,8 @@ fn main() {
         .add_plugins(DefaultRaycastingPlugin)
          
         .add_plugins( TerrainMeshPlugin::default() )
+        .fn_plugin(editor_ui_plugin)
+
           
         .add_systems(Startup, setup) 
 
@@ -92,150 +107,5 @@ fn setup(
 
 
  
-fn update_commands ( 
-    key_input:  Res< Input<KeyCode> > , //detect mouse click 
-         
-      
-      mut edit_event_writer: EventWriter<EditTerrainEvent>,
-     mut command_event_writer: EventWriter<TerrainCommandEvent>,
-){
-  
-        if key_input.pressed(KeyCode::ControlLeft) || key_input.pressed(KeyCode::ControlRight) {
-        if key_input.just_pressed(KeyCode::S) {
-            
-               println!("saving chunks !");
-               
-             command_event_writer.send(
-                 TerrainCommandEvent::SaveAllChunks(true,true,true)
-                 
-             )
-        }}
-     
-}
-
- 
-fn update_brush_paint( 
-    mouse_input:  Res< Input<MouseButton> > , //detect mouse click 
-        
-    cursor_ray: Res<CursorRay>, 
-    mut raycast: Raycast,    
-      
-    mut edit_event_writer: EventWriter<EditTerrainEvent>,
-     mut command_event_writer: EventWriter<TerrainCommandEvent>,
-){
-     
-     
-     if !mouse_input.pressed(MouseButton::Left) {
-        return;
-    }
-    
-    //if tool is paintbrush ... (conditional check)
-     
-     //make me dynamic or whatever 
-   let tool = EditingTool::SetHeightMap(125,25.0, false);
-    
-    // let tool = EditingTool::SetSplatMap(5,1,0,25.0,false);
-    
-   
-    if let Some(cursor_ray) = **cursor_ray {
-       
-      
-      
-      
-        if let Some((intersection_entity,intersection_data)) = raycast.cast_ray(cursor_ray, &default() ).first(){
-            
-                       
-            let hit_point = intersection_data.position();
-                         
-             
-             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
-            let hit_coordinates = Vec2::new(hit_point.x, hit_point.z);
-            
-            //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there 
-          
-           edit_event_writer.send(EditTerrainEvent {
-                entity: intersection_entity.clone(), 
-                tool, 
-                coordinates:hit_coordinates
-            });            
-             
-          
-            
-        } 
-        
-    }
-    
-     
-    
-}
  
  
-fn update_camera_look(
-    mut event_reader:   EventReader<MouseMotion>  ,
-    mouse_input:  Res< Input<MouseButton> > ,
-    mut query: Query<(&mut Transform, &Camera3d)>,
-    
-    
-){
-    const MOUSE_SENSITIVITY: f32 = 2.0;
-     
-     if !mouse_input.pressed(MouseButton::Right) {
-        return;
-    }
-    
-      
-      // Accumulate mouse delta
-    let mut delta: Vec2 = Vec2::ZERO;
-    for event in event_reader.iter() {
-        delta += event.delta;
-    }
-
-    // Apply to each camera with the CameraTag
-    for (mut transform, _) in query.iter_mut() {
-       // let rotation = transform.rotation;
-      
-        let (mut yaw, mut pitch, _roll) = transform.rotation.to_euler(EulerRot::YXZ);
-       
-        yaw -= delta.x / 180.0   * MOUSE_SENSITIVITY  ;
-        pitch -= delta.y / 180.0   * MOUSE_SENSITIVITY;
-        pitch = pitch .clamp(-std::f32::consts::PI / 2.0, std::f32::consts::PI / 2.0) ;
-   
-        transform.rotation = Quat::from_euler(EulerRot::YXZ, yaw, pitch, 0.0);
-       
-    }
-    
-}
-
-
-fn update_camera_move(
-   
-    keyboard_input: Res<Input<KeyCode>>,
-    mut query: Query<(&mut Transform, &Camera3d)>,
-    
-    
-){
-      const MOVE_SPEED: f32 = 10.0; // You can adjust this value as needed
-     
-     
-     
-  
-    // Apply to each camera with the CameraTag
-    for (mut transform, _) in query.iter_mut() {
-       
-      
-           // Move the camera forward if W is pressed
-        if keyboard_input.pressed(KeyCode::W) {
-            let forward = transform.forward();
-            transform.translation += forward * MOVE_SPEED;
-        }
-         
-          if keyboard_input.pressed(KeyCode::S) {
-            let forward = transform.forward() ;
-            transform.translation -= forward * MOVE_SPEED;
-        }
-         
-        
-       
-    }
-    
-}
