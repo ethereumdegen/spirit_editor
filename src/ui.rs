@@ -3,7 +3,7 @@ use bevy_egui::{egui, EguiContext, EguiPlugin};
 use bevy_egui::EguiContexts;
 
 
-use bevy_mesh_terrain::edit::TerrainCommandEvent;
+use bevy_mesh_terrain::edit::{TerrainCommandEvent, BrushType};
  
 use std::fmt::{self, Formatter, Display};
 
@@ -32,11 +32,27 @@ pub struct LinearPixelColor {
 pub struct EditorToolsState { 
      
      pub tool_mode: ToolMode,
+     pub brush_type: BrushType,
      pub brush_radius:u32,
+     pub brush_hardness:u32,
      pub color: LinearPixelColor
 
      //brush mode 
 }
+ /*
+impl Default for EditorToolsState{
+    
+    fn default() -> Self{
+        Self{
+            
+            brush_radius: 50,
+            brush_hardness: 100,
+            ..default()
+        }   
+        }
+    }
+    */
+ 
 
 #[derive(Eq,PartialEq,Debug,Default,Clone)]
 pub enum ToolMode { 
@@ -45,6 +61,8 @@ pub enum ToolMode {
     Splat 
 }
 const TOOL_MODES: [ToolMode; 2] = [ToolMode::Height, ToolMode::Splat];
+
+const BRUSH_TYPES: [BrushType; 3] = [BrushType::SetExact, BrushType::Smooth, BrushType::Noise];
 
 impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
@@ -57,6 +75,9 @@ impl Display for ToolMode {
     }
 }
 
+ 
+
+ 
  
 fn editor_tools(
     mut tools_state: ResMut<EditorToolsState>,
@@ -115,6 +136,7 @@ fn editor_tools(
         ui.separator();
 
         ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+         ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
 
         match tools_state.tool_mode {
 
@@ -125,6 +147,20 @@ fn editor_tools(
 
             },
             ToolMode::Height => {
+                
+                egui::ComboBox::new("brush_type", "")
+                .selected_text(tools_state.brush_type.to_string())
+                .show_ui(ui, |ui| {
+                    for brush_type in BRUSH_TYPES.into_iter() {
+                        if ui
+                            .selectable_label(tools_state.brush_type == brush_type, brush_type.to_string())
+                            .clicked()
+                        {
+                            tools_state.brush_type = brush_type;
+                        }
+                    }
+                });
+                
                 ui.add(egui::Slider::new(&mut tools_state.color.r, 0..=65535).text("Height (R_Channel)"));
                 
             }

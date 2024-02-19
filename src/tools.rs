@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent, TerrainCommandEvent}};
+use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent, TerrainCommandEvent, BrushType}};
  use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::edit::EditingTool;
 use crate::ui::{EditorToolsState,ToolMode};
@@ -9,6 +9,35 @@ use crate::ui::{EditorToolsState,ToolMode};
 
 
 use bevy_mod_raycast::prelude::*;
+
+struct EditingToolData {
+    
+editing_tool: EditingTool,
+brush_type: BrushType,
+brush_radius: f32 ,
+ brush_hardness: f32
+}
+
+
+impl From<EditorToolsState> for EditingToolData {
+  
+  
+  
+    fn from(state: EditorToolsState) -> Self {
+        
+        
+        let editing_tool = EditingTool::from(state.clone());
+        
+        Self {
+            editing_tool,
+            brush_radius: state.brush_radius as f32,
+            brush_type: state.brush_type ,
+            brush_hardness: (state.brush_hardness as f32) / 100.0
+        }
+    }
+
+}
+
 
 
 impl From<EditorToolsState> for EditingTool {
@@ -18,14 +47,12 @@ impl From<EditorToolsState> for EditingTool {
     fn from(state: EditorToolsState) -> Self {
         match state.tool_mode {
             ToolMode::Height => EditingTool::SetHeightMap{
-                height: state.color.r,
-                radius: state.brush_radius as f32  
+                height: state.color.r  
             },
             ToolMode::Splat => EditingTool::SetSplatMap{
                 r: state.color.r as u8,
                 g: state.color.g as u8,
-                b: state.color.b as u8,
-                radius: state.brush_radius as f32  
+                b: state.color.b as u8  
             } 
         }
     }
@@ -40,7 +67,7 @@ pub fn update_brush_paint(
     mut raycast: Raycast,    
       
     mut edit_event_writer: EventWriter<EditTerrainEvent>,
-     mut command_event_writer: EventWriter<TerrainCommandEvent>,
+     // command_event_writer: EventWriter<TerrainCommandEvent>,
 
      editor_tools_state: Res<EditorToolsState>
 ){
@@ -55,10 +82,12 @@ pub fn update_brush_paint(
      //make me dynamic or whatever 
   // let tool = EditingTool::SetHeightMap(125,25.0, false);
 
+ 
+  let tool_data:EditingToolData  = (*editor_tools_state).clone().into();
 
-  let tool = (*editor_tools_state).clone().into();
-
-
+    let radius = tool_data.brush_radius;
+     let brush_hardness = tool_data.brush_hardness;
+    let brush_type = tool_data.brush_type;
 
 
     
@@ -83,8 +112,11 @@ pub fn update_brush_paint(
           
            edit_event_writer.send(EditTerrainEvent {
                 entity: intersection_entity.clone(), 
-                tool, 
-                coordinates:hit_coordinates
+                tool: tool_data.editing_tool, 
+                brush_type,
+                brush_hardness,
+                coordinates:hit_coordinates,
+                radius
             });            
              
           

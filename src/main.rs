@@ -82,7 +82,7 @@ fn setup(
      
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: 0.06,
+        brightness: 0.02,
     });
      
     commands.spawn(DirectionalLightBundle {
@@ -91,17 +91,17 @@ fn setup(
           //  illuminance: light_consts::lux::OVERCAST_DAY,
             ..default()
         },
-        transform: Transform::from_xyz(4.0, 800.0, 4.0),
+        transform: Transform::from_xyz(4.0, 800.0, 34.0),
         ..default()
     });
     // light
     commands.spawn(PointLightBundle {
         point_light: PointLight {
-            intensity: 1500.0,
+            intensity: 500.0,
             shadows_enabled: true,
             ..default()
         },
-        transform: Transform::from_xyz(4.0, 800.0, 4.0),
+        transform: Transform::from_xyz(4.0, 800.0, 34.0),
         ..default()
     });
     // camera
