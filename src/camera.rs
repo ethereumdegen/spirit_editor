@@ -17,15 +17,16 @@ pub fn update_camera_look(
 ){
     const MOUSE_SENSITIVITY: f32 = 2.0;
      
-     if !mouse_input.pressed(MouseButton::Right) {
-        return;
-    }
+    
     
       
       // Accumulate mouse delta
     let mut delta: Vec2 = Vec2::ZERO;
     for event in event_reader.iter() {
         delta += event.delta;
+    }
+    if !mouse_input.pressed(MouseButton::Right) {
+        return;
     }
 
     // Apply to each camera with the CameraTag
