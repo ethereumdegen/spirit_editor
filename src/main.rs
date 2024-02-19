@@ -1,99 +1,75 @@
- 
-
-use bevy::prelude::*;
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewer}, edit::{EditTerrainEvent, TerrainCommandEvent}};
- use bevy_mesh_terrain::terrain_config::TerrainConfig;
+use bevy::prelude::*;
 use bevy_mesh_terrain::edit::EditingTool;
+use bevy_mesh_terrain::terrain_config::TerrainConfig;
+use bevy_mesh_terrain::{
+    edit::{EditTerrainEvent, TerrainCommandEvent},
+    terrain::{TerrainData, TerrainViewer},
+    TerrainMeshPlugin,
+};
 
 use bevy::pbr::ShadowFilteringMethod;
 
-
 use bevy_mod_raycast::prelude::*;
 
-mod ui;
 mod camera;
-mod tools;
 mod commands;
+mod tools;
+mod ui;
 
-use crate::camera::{update_camera_look,update_camera_move};
+use crate::camera::{update_camera_look, update_camera_move};
 
-use crate::tools::{update_brush_paint };
+use crate::tools::update_brush_paint;
 
-use crate::commands::{update_commands };
-use crate::ui::{  editor_ui_plugin };
+use crate::commands::update_commands;
+use crate::ui::editor_ui_plugin;
 
 use seldom_fn_plugin::FnPluginExt;
 
 fn main() {
     App::new()
-        
-         
-          .add_plugins(DefaultPlugins
-            .set(WindowPlugin {
-                primary_window: Some(Window { 
-                    present_mode:  bevy::window::PresentMode::AutoNoVsync, //improves latency
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                present_mode: bevy::window::PresentMode::AutoNoVsync, //improves latency
 
-                    title: "Mesh Terrain Editor".to_string(),
-                    ..Default::default()
-                }),
+                title: "Mesh Terrain Editor".to_string(),
                 ..Default::default()
-            })
-        )
-
+            }),
+            ..Default::default()
+        }))
         .add_plugins(DefaultRaycastingPlugin)
-         
-        .add_plugins( TerrainMeshPlugin::default() )
+        .add_plugins(TerrainMeshPlugin::default())
         .fn_plugin(editor_ui_plugin)
-
-          
-        .add_systems(Startup, setup) 
-
-        //move to brushes and tools lib 
-        .add_systems(Update, update_brush_paint )
+        .add_systems(Startup, setup)
+        //move to brushes and tools lib
+        .add_systems(Update, update_brush_paint)
         .add_systems(Update, update_commands)
-        
-        
-        //move to camera lib 
-        .add_systems(Update, update_camera_look ) 
-        .add_systems(Update, update_camera_move ) 
-        
-     
-        
+        //move to camera lib
+        .add_systems(Update, update_camera_look)
+        .add_systems(Update, update_camera_move)
         .run();
 }
 
 /// set up a simple 3D scene
-fn setup(
-    mut commands: Commands 
-     
-   // asset_server: Res<AssetServer> 
+fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
 ) {
-    
-     
-  
-     
-     commands.spawn(SpatialBundle::default() )  
-    .insert(
-        TerrainConfig::load_from_file("assets/terrain/default_terrain/terrain_config.ron").unwrap() 
-        ) 
-    .insert(
-        TerrainData::new()  
-    ); 
-     
-
+    commands
+        .spawn(SpatialBundle::default())
+        .insert(
+            TerrainConfig::load_from_file("assets/terrain/default_terrain/terrain_config.ron")
+                .unwrap(),
+        )
+        .insert(TerrainData::new());
 
     commands.spawn(DirectionalLightBundle {
-        directional_light: DirectionalLight{
-
-
+        directional_light: DirectionalLight {
             shadow_depth_bias: 0.5,
             shadow_normal_bias: 0.5,
-            
+
             color: Color::WHITE,
             ..default()
         },
-        
+
         ..default()
     });
     // light
@@ -112,12 +88,11 @@ fn setup(
         ..default()
     });
 
-
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
         brightness: 0.62,
     });
- 
+
     // camera
     commands
         .spawn(Camera3dBundle {
@@ -126,14 +101,5 @@ fn setup(
             ..default()
         })
         .insert(TerrainViewer::default())
-        .insert(  ShadowFilteringMethod::Jimenez14 )
-        
-        ;
-
-     
+        .insert(ShadowFilteringMethod::Jimenez14);
 }
-
-
- 
- 
- 
