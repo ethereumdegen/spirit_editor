@@ -6,7 +6,8 @@ use bevy_mesh_terrain::{TerrainMeshPlugin, terrain::{  TerrainData, TerrainViewe
  use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::edit::EditingTool;
 
- 
+use bevy::pbr::ShadowFilteringMethod;
+
 
 use bevy_mod_raycast::prelude::*;
 
@@ -80,6 +81,56 @@ fn setup(
         TerrainData::new()  
     ); 
      
+
+
+    commands.spawn(DirectionalLightBundle {
+        directional_light: DirectionalLight{
+
+
+            shadow_depth_bias: 0.5,
+            shadow_normal_bias: 0.5,
+            
+            color: Color::WHITE,
+            ..default()
+        },
+        
+        ..default()
+    });
+    // light
+    commands.spawn(PointLightBundle {
+        point_light: PointLight {
+            intensity: 1500.0,
+            shadows_enabled: true,
+
+            shadow_depth_bias: 0.5,
+            shadow_normal_bias: 0.5,
+
+            color: Color::WHITE,
+            ..default()
+        },
+        transform: Transform::from_xyz(4.0, 800.0, 4.0),
+        ..default()
+    });
+
+
+    commands.insert_resource(AmbientLight {
+        color: Color::WHITE,
+        brightness: 0.12,
+    });
+ 
+    // camera
+    commands
+        .spawn(Camera3dBundle {
+            transform: Transform::from_xyz(20.0, 162.5, 20.0)
+                .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
+            ..default()
+        })
+        .insert(TerrainViewer::default())
+        .insert(  ShadowFilteringMethod::Jimenez14 )
+        
+        ;
+
+    /*
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
         brightness: 0.02,
@@ -97,11 +148,11 @@ fn setup(
     // light
     commands.spawn(PointLightBundle {
         point_light: PointLight {
-            intensity: 500.0,
+            intensity: 1500.0,
             shadows_enabled: true,
             ..default()
         },
-        transform: Transform::from_xyz(4.0, 800.0, 34.0),
+        transform: Transform::from_xyz(40.0, 80.0, 34.0),
         ..default()
     });
     // camera
@@ -111,7 +162,7 @@ fn setup(
     })
     .insert(TerrainViewer::default());
     
-   
+   */
 }
 
 
