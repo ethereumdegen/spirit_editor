@@ -115,7 +115,7 @@ fn setup(
 
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: 0.12,
+        brightness: 0.62,
     });
  
     // camera
@@ -130,39 +130,7 @@ fn setup(
         
         ;
 
-    /*
-    commands.insert_resource(AmbientLight {
-        color: Color::WHITE,
-        brightness: 0.02,
-    });
      
-    commands.spawn(DirectionalLightBundle {
-        directional_light: DirectionalLight {
-            shadows_enabled: true,
-          //  illuminance: light_consts::lux::OVERCAST_DAY,
-            ..default()
-        },
-        transform: Transform::from_xyz(4.0, 800.0, 34.0),
-        ..default()
-    });
-    // light
-    commands.spawn(PointLightBundle {
-        point_light: PointLight {
-            intensity: 1500.0,
-            shadows_enabled: true,
-            ..default()
-        },
-        transform: Transform::from_xyz(40.0, 80.0, 34.0),
-        ..default()
-    });
-    // camera
-    commands.spawn(Camera3dBundle {
-        transform: Transform::from_xyz(20.0, 162.5, 20.0).looking_at(Vec3::new(900.0,0.0,900.0), Vec3::Y),
-        ..default()
-    })
-    .insert(TerrainViewer::default());
-    
-   */
 }
 
 
