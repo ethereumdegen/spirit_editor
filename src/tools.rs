@@ -10,6 +10,10 @@ use bevy_mesh_terrain::{
     TerrainMeshPlugin,
 };
 
+use bevy_egui::EguiContexts;
+
+
+
 use bevy_mod_raycast::prelude::*;
 
 struct EditingToolData {
@@ -56,10 +60,19 @@ pub fn update_brush_paint(
     mut edit_event_writer: EventWriter<EditTerrainEvent>,
     // command_event_writer: EventWriter<TerrainCommandEvent>,
     editor_tools_state: Res<EditorToolsState>,
+
+
+    mut contexts: EguiContexts,
 ) {
     if !mouse_input.pressed(MouseButton::Left) {
         return;
     }
+
+    let egui_ctx = contexts.ctx_mut();
+    if egui_ctx.is_pointer_over_area() {
+        return;
+    }
+
 
     //if tool is paintbrush ... (conditional check)
 
