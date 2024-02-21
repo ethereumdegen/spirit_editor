@@ -1,5 +1,11 @@
 ## Bevy Mesh Terrain Editor 
 
+
+
+![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/9e32f8a0-e513-4ee0-8b4b-3e4d73ab8608)
+
+
+
 Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone application 
 
 
