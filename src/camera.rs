@@ -13,7 +13,7 @@ use bevy_mod_raycast::prelude::*;
 
 pub fn update_camera_look(
     mut event_reader: EventReader<MouseMotion>,
-    mouse_input: Res<Input<MouseButton>>,
+    mouse_input: Res<ButtonInput<MouseButton>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
 ) {
     const MOUSE_SENSITIVITY: f32 = 2.0;
@@ -42,7 +42,7 @@ pub fn update_camera_look(
 }
 
 pub fn update_camera_move(
-    keyboard_input: Res<Input<KeyCode>>,
+    keyboard_input: Res<ButtonInput<KeyCode>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
 ) {
     const MOVE_SPEED: f32 = 10.0; // You can adjust this value as needed
@@ -50,12 +50,12 @@ pub fn update_camera_move(
     // Apply to each camera with the CameraTag
     for (mut transform, _) in query.iter_mut() {
         // Move the camera forward if W is pressed
-        if keyboard_input.pressed(KeyCode::W) {
+        if keyboard_input.pressed(KeyCode::KeyW) {
             let forward = transform.forward();
             transform.translation += forward * MOVE_SPEED;
         }
 
-        if keyboard_input.pressed(KeyCode::S) {
+        if keyboard_input.pressed(KeyCode::KeyS) {
             let forward = transform.forward();
             transform.translation -= forward * MOVE_SPEED;
         }
