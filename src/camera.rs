@@ -20,7 +20,7 @@ pub fn update_camera_look(
 
     // Accumulate mouse delta
     let mut delta: Vec2 = Vec2::ZERO;
-    for event in event_reader.iter() {
+    for event in event_reader.read() {
         delta += event.delta;
     }
     if !mouse_input.pressed(MouseButton::Right) {

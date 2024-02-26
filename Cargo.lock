@@ -794,14 +794,15 @@ dependencies = [
 
 [[package]]
 name = "bevy_egui"
-version = "0.24.0"
+version = "0.25.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c90c01202dbcebc03315a01ea71553b35e1f20b0da6b1cc8c2605344032a3d96"
+checksum = "b84bfb8d4104a1467910cf2090bc6a6d394ebde39c0dbc02397b45aa9ef88e80"
 dependencies = [
  "arboard",
- "bevy 0.12.1",
+ "bevy 0.13.0",
  "egui",
  "thread_local",
+ "web-sys",
  "webbrowser",
 ]
 
@@ -945,7 +946,7 @@ dependencies = [
  "bevy_pbr 0.13.0",
  "bevy_reflect 0.13.0",
  "bevy_render 0.13.0",
- "bevy_scene 0.13.0",
+ "bevy_scene",
  "bevy_tasks 0.13.0",
  "bevy_transform 0.13.0",
  "bevy_utils 0.13.0",
@@ -1023,7 +1024,6 @@ checksum = "f124bece9831afd80897815231072d51bfe3ac58c6bb58eca8880963b6d0487c"
 dependencies = [
  "bevy_a11y 0.12.1",
  "bevy_app 0.12.1",
- "bevy_asset 0.12.1",
  "bevy_core 0.12.1",
  "bevy_derive 0.12.1",
  "bevy_diagnostic 0.12.1",
@@ -1034,8 +1034,6 @@ dependencies = [
  "bevy_math 0.12.1",
  "bevy_ptr 0.12.1",
  "bevy_reflect 0.12.1",
- "bevy_render 0.12.1",
- "bevy_scene 0.12.1",
  "bevy_tasks 0.12.1",
  "bevy_time 0.12.1",
  "bevy_transform 0.12.1",
@@ -1070,7 +1068,7 @@ dependencies = [
  "bevy_ptr 0.13.0",
  "bevy_reflect 0.13.0",
  "bevy_render 0.13.0",
- "bevy_scene 0.13.0",
+ "bevy_scene",
  "bevy_sprite 0.13.0",
  "bevy_tasks 0.13.0",
  "bevy_text 0.13.0",
@@ -1187,7 +1185,7 @@ dependencies = [
  "bevy_egui",
  "bevy_mesh_terrain",
  "bevy_mod_picking",
- "bevy_mod_raycast",
+ "bevy_mod_raycast 0.17.0",
  "seldom_fn_plugin",
 ]
 
@@ -1253,6 +1251,27 @@ dependencies = [
  "bevy_transform 0.12.1",
  "bevy_utils 0.12.1",
  "bevy_window 0.12.1",
+ "crossbeam-channel",
+]
+
+[[package]]
+name = "bevy_mod_raycast"
+version = "0.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9ca646aeaab4a170e1f3e8284b925e2f990eb18616e95d7826c873c8e26ee945"
+dependencies = [
+ "bevy_app 0.13.0",
+ "bevy_asset 0.13.0",
+ "bevy_derive 0.13.0",
+ "bevy_ecs 0.13.0",
+ "bevy_gizmos 0.13.0",
+ "bevy_math 0.13.0",
+ "bevy_reflect 0.13.0",
+ "bevy_render 0.13.0",
+ "bevy_sprite 0.13.0",
+ "bevy_transform 0.13.0",
+ "bevy_utils 0.13.0",
+ "bevy_window 0.13.0",
  "crossbeam-channel",
 ]
 
@@ -1392,7 +1411,7 @@ checksum = "0a2b76420a1e6d9c0fdd4f35056ffb2cfaa052d102d5b1951f517d9fd36b25ab"
 dependencies = [
  "bevy_app 0.12.1",
  "bevy_ecs 0.12.1",
- "bevy_mod_raycast",
+ "bevy_mod_raycast 0.16.0",
  "bevy_picking_core",
  "bevy_reflect 0.12.1",
  "bevy_render 0.12.1",
@@ -1634,27 +1653,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.48",
-]
-
-[[package]]
-name = "bevy_scene"
-version = "0.12.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7df078b5e406e37c8a1c6ba0d652bf105fde713ce3c3efda7263fe27467eee5"
-dependencies = [
- "bevy_app 0.12.1",
- "bevy_asset 0.12.1",
- "bevy_derive 0.12.1",
- "bevy_ecs 0.12.1",
- "bevy_hierarchy 0.12.1",
- "bevy_reflect 0.12.1",
- "bevy_render 0.12.1",
- "bevy_transform 0.12.1",
- "bevy_utils 0.12.1",
- "ron",
- "serde",
- "thiserror",
- "uuid",
 ]
 
 [[package]]
@@ -2681,18 +2679,18 @@ checksum = "9ea835d29036a4087793836fa931b08837ad5e957da9e23886b29586fb9b6650"
 
 [[package]]
 name = "ecolor"
-version = "0.24.1"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4b7637fc2e74d17e52931bac90ff4fc061ac776ada9c7fa272f24cdca5991972"
+checksum = "03cfe80b1890e1a8cdbffc6044d6872e814aaf6011835a2a5e2db0e5c5c4ef4e"
 dependencies = [
  "bytemuck",
 ]
 
 [[package]]
 name = "egui"
-version = "0.24.1"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c55bcb864b764eb889515a38b8924757657a250738ad15126637ee2df291ee6b"
+checksum = "180f595432a5b615fc6b74afef3955249b86cfea72607b40740a4cd60d5297d0"
 dependencies = [
  "ahash",
  "epaint",
@@ -2707,9 +2705,9 @@ checksum = "a26ae43d7bcc3b814de94796a5e736d4029efb0ee900c12e2d54c993ad1a1e07"
 
 [[package]]
 name = "emath"
-version = "0.24.1"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a045c6c0b44b35e98513fc1e9d183ab42881ac27caccb9fa345465601f56cce4"
+checksum = "6916301ecf80448f786cdf3eb51d9dbdd831538732229d49119e2d4312eaaf09"
 dependencies = [
  "bytemuck",
 ]
@@ -2780,9 +2778,9 @@ dependencies = [
 
 [[package]]
 name = "epaint"
-version = "0.24.1"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d1b9e000d21bab9b535ce78f9f7745be28b3f777f6c7223936561c5c7fefab8"
+checksum = "77b9fdf617dd7f58b0c8e6e9e4a1281f730cde0831d40547da446b2bb76a47af"
 dependencies = [
  "ab_glyph",
  "ahash",
@@ -4823,11 +4821,11 @@ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
 name = "seldom_fn_plugin"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c9243595906f96e24fad2c31aea29a560aaf82e86c051836e5708bf9d300048e"
+checksum = "00fd8740b7ae942148d215d90a323d164f899bc54dea43f1492b162d2295b439"
 dependencies = [
- "bevy 0.12.1",
+ "bevy 0.13.0",
 ]
 
 [[package]]
