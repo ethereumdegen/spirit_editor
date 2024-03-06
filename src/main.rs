@@ -48,8 +48,8 @@ fn main() {
         .add_systems(Update, update_commands)
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
-      //  .add_systems(Update, update_camera_look)
-      //  .add_systems(Update, update_camera_move)
+        .add_systems(Update, update_camera_look)
+        .add_systems(Update, update_camera_move)
         .run();
 }
 

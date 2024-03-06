@@ -12,7 +12,7 @@ pub fn editor_ui_plugin(app: &mut App) {
 
        .add_plugins(EditorPlugin::default())
         .insert_resource(editor_controls())
-        .add_systems(Startup, set_cam3d_controls)
+        .add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
         ;
 }
 
@@ -32,10 +32,13 @@ fn editor_controls() -> EditorControls {
     editor_controls
 }
 
-fn set_cam3d_controls(
+fn disable_cam3d_controls(
     mut query: Query<&mut  camera_3d_free::FlycamControls>,
 ) {
     let mut controls = query.single_mut();
-    controls.key_up = KeyCode::KeyQ;
-    controls.key_down = KeyCode::KeyE;
+    //controls.key_up = KeyCode::KeyQ;
+    //controls.key_down = KeyCode::KeyE;
+
+    controls.enable_movement = false;
+    controls.enable_look = false; 
 }

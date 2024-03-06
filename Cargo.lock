@@ -834,9 +834,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2afbbc82539725daf424abafebdd8b0fcda4176711acff083730e6713f280f6e"
+version = "0.8.1"
 dependencies = [
  "bevy 0.13.0",
  "bevy_editor_pls_core",
@@ -847,9 +845,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls_core"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6551ad00eb28c009463465958c3a01e890f89ccb74567d85e574e37eec56822e"
+version = "0.8.1"
 dependencies = [
  "bevy 0.13.0",
  "bevy-inspector-egui",
@@ -859,9 +855,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls_default_windows"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "22b46eb2c726264f328804d2435b5e49995509914e23e3eeb49846677977e9fa"
+version = "0.8.1"
 dependencies = [
  "bevy 0.13.0",
  "bevy-inspector-egui",
