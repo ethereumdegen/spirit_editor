@@ -12,16 +12,16 @@ use bevy_mesh_terrain::{
 use bevy_mod_raycast::prelude::*;
 
 pub fn update_commands(
-    key_input: Res<Input<KeyCode>>, //detect mouse click
+    key_input: Res<ButtonInput<KeyCode>>, //detect mouse click
 
     mut edit_event_writer: EventWriter<EditTerrainEvent>,
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
 ) {
     if key_input.pressed(KeyCode::ControlLeft) || key_input.pressed(KeyCode::ControlRight) {
-        if key_input.just_pressed(KeyCode::S) {
+        if key_input.just_pressed(KeyCode::KeyS) {
             println!("saving chunks !");
 
-            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true))
+            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
         }
     }
 }

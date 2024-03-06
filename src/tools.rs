@@ -52,7 +52,7 @@ impl From<EditorToolsState> for EditingTool {
 }
 
 pub fn update_brush_paint(
-    mouse_input: Res<Input<MouseButton>>, //detect mouse click
+    mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
     cursor_ray: Res<CursorRay>,
     mut raycast: Raycast,

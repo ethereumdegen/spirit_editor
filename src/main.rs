@@ -16,6 +16,7 @@ mod camera;
 mod commands;
 mod tools;
 mod ui;
+mod editor_pls;
 
 use crate::camera::{update_camera_look, update_camera_move};
 
@@ -23,6 +24,7 @@ use crate::tools::update_brush_paint;
 
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
+
 
 use seldom_fn_plugin::FnPluginExt;
 
@@ -45,8 +47,9 @@ fn main() {
         .add_systems(Update, update_brush_paint)
         .add_systems(Update, update_commands)
         //move to camera lib
-        .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move)
+        .add_plugins(editor_pls::editor_ui_plugin)
+      //  .add_systems(Update, update_camera_look)
+      //  .add_systems(Update, update_camera_move)
         .run();
 }
 
@@ -90,7 +93,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
 
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: 0.62,
+        brightness: 20.62,
     });
 
     // camera

@@ -3,7 +3,7 @@
  
  
  #import bevy_pbr::{
-    forward_io::{VertexInput, VertexOutput, FragmentOutput},
+    forward_io::{VertexOutput, FragmentOutput},
     pbr_functions::alpha_discard,
     pbr_fragment::pbr_input_from_standard_material,
       pbr_functions::{apply_pbr_lighting, main_pass_post_lighting_processing},
@@ -54,11 +54,11 @@ var occlusion_texture: texture_2d<f32>;
 var occlusion_sampler: sampler;
 
 
-@group(1) @binding(20)
+@group(2) @binding(20)
 var<uniform> chunk_uniforms: ChunkMaterialUniforms;
-@group(1) @binding(21)
+@group(2) @binding(21)
 var base_color_texture: texture_2d_array<f32>;
-@group(1) @binding(22)
+@group(2) @binding(22)
 var base_color_sampler: sampler;
 
 
@@ -66,42 +66,19 @@ var base_color_sampler: sampler;
 //R tells us the terrain_layer_index 0 per pixel
 //G tells us the terrain_layer_index 1 per pixel
 //B is 0-255 mapped to 0 to 100% telling us how much of R to render versus how much of G to render 
-@group(1) @binding(23)
+@group(2) @binding(23)
  var splat_map_texture: texture_2d<f32>; 
 //var splat_map_texture: texture_2d_array<f32>; //these are control maps and there will be 4 
-@group(1) @binding(24)
+@group(2) @binding(24)
 var splat_map_sampler: sampler;
 
 //works similar to splat mask  -- we use a separate tex for this for NOW to make collision mesh building far easier (only need height map and not splat)
-@group(1) @binding(25)
+@group(2) @binding(25)
 var alpha_mask_texture: texture_2d<f32>; 
-@group(1) @binding(26)
+@group(2) @binding(26)
 var alpha_mask_sampler: sampler;
  
-/*
-// Assume a struct for the vertex input
-struct VertexInput {
-    @location(0) position: vec3<f32>,  // Vertex position
-    @location(1) uv: vec2<f32>,        // UV coordinates
-    @location(2) normal: vec3<f32>,
-};
 
-
-
-@vertex
-fn vertex_main(in: VertexInput) -> VertexOutput {
-    var output: VertexOutput;
-
-    // Transform vertex position to clip space
-   output.position = vec4( in.position , 1.0) ;
- 
-    output.uv = in.uv;
- output.normal = in.normal;  // Directly pass normals (transform if needed)
-
-    // If you have normals or other per-vertex data to pass to the fragment shader, process them here
-
-    return output;
-}*/
 
 //should consider adding vertex painting to this .. need another binding of course.. performs a color shift 
 
@@ -112,7 +89,7 @@ fn fragment(
 ) -> @location(0) vec4<f32> {
     
    
-   // let tiled_uv = material.color_texture_expansion_factor*mesh.uv;  //cannot get this binding to work !? 
+    //let tiled_uv = chunk_uniforms.color_texture_expansion_factor*mesh.uv;  //cannot get this binding to work !? 
     let tiled_uv = 8.0*mesh.uv;
     
     
@@ -152,8 +129,6 @@ fn fragment(
     
     // apply lighting
     pbr_out.color = apply_pbr_lighting(pbr_input);
-
-
     // we can optionally modify the lit color before post-processing is applied
     // out.color = out.color;
     // apply in-shader post processing (fog, alpha-premultiply, and also tonemapping, debanding if the camera is non-hdr)

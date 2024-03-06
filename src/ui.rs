@@ -72,11 +72,11 @@ fn editor_tools(
 ) {
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
         if ui.button("Save All Chunks (Ctrl+S)").clicked() {
-            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true))
+            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
         }
 
         if ui.button("Save Splat and Height").clicked() {
-            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, false))
+            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, false));
         }
 
         ui.spacing();

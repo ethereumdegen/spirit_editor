@@ -1,18 +1,20 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.2.0"
+version = "0.13.1"
 edition = "2021"
 
 
 [dependencies]
-bevy = "0.12.0"
-bevy_egui = "0.24.0"
-bevy_mesh_terrain = { path = "../bevy_mesh_terrain" }
+bevy = "0.13.0"
+bevy_egui = "0.25.0"
+bevy_mesh_terrain = "0.13.0"
 
 
 bevy_mod_picking = {version="0.17.0", features=["backend_raycast",  "highlight","selection"]}
-bevy_mod_raycast = "0.16.0"
-seldom_fn_plugin = "0.5.0"
+bevy_mod_raycast = "0.17.0"
+seldom_fn_plugin = "0.6.0"
+
+bevy_editor_pls =  { path = "../bevy_editor_pls" }
 
 [[example]]
 name = "raycasting"
