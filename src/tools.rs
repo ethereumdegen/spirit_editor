@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 
+use crate::editor_pls::bevy_pls_editor_is_active;
 use crate::ui::{EditorToolsState, ToolMode};
 use bevy::input::mouse::MouseMotion;
 use bevy_mesh_terrain::edit::EditingTool;
@@ -11,10 +12,26 @@ use bevy_mesh_terrain::{
 };
 
 use bevy_egui::EguiContexts;
+ 
+
 
 
 
 use bevy_mod_raycast::prelude::*;
+
+
+
+
+pub fn brush_tools_plugin(app: &mut App) {
+    app
+
+        .add_systems(Update, update_brush_paint.run_if(not(bevy_pls_editor_is_active ))  )
+
+        ;
+
+
+}
+
 
 struct EditingToolData {
     editing_tool: EditingTool,
@@ -51,7 +68,9 @@ impl From<EditorToolsState> for EditingTool {
     }
 }
 
-pub fn update_brush_paint(
+ 
+
+ fn update_brush_paint(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
     cursor_ray: Res<CursorRay>,

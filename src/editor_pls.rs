@@ -6,13 +6,18 @@ use bevy_editor_pls::EditorPlugin;
 use bevy_editor_pls::controls;
 //use bevy_editor_pls_default_windows::hierarchy::picking::EditorRayCastSource;
 
+use bevy_editor_pls::editor;
+
 
 pub fn editor_ui_plugin(app: &mut App) {
     app
 
-       .add_plugins(EditorPlugin::default())
+       .add_plugins(EditorPlugin{
+            enable_camera_controls: false, 
+          ..default()
+       })
         .insert_resource(editor_controls())
-        .add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
+        //.add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
         ;
 }
 
@@ -20,6 +25,7 @@ pub fn editor_ui_plugin(app: &mut App) {
 fn editor_controls() -> EditorControls {
     let mut editor_controls = EditorControls::default_bindings();
     editor_controls.unbind(controls::Action::PlayPauseEditor);
+
 
     editor_controls.insert(
         controls::Action::PlayPauseEditor,
@@ -31,14 +37,13 @@ fn editor_controls() -> EditorControls {
 
     editor_controls
 }
+ 
 
-fn disable_cam3d_controls(
-    mut query: Query<&mut  camera_3d_free::FlycamControls>,
-) {
-    let mut controls = query.single_mut();
-    //controls.key_up = KeyCode::KeyQ;
-    //controls.key_down = KeyCode::KeyE;
 
-    controls.enable_movement = false;
-    controls.enable_look = false; 
+
+pub fn bevy_pls_editor_is_active(
+       pls_editor_resource: Res<editor::Editor> ,
+       ) -> bool {
+
+         pls_editor_resource.active()  
 }

@@ -18,9 +18,9 @@ mod tools;
 mod ui;
 mod editor_pls;
 
-use crate::camera::{update_camera_look, update_camera_move};
+use crate::camera::camera_plugin;
 
-use crate::tools::update_brush_paint;
+use crate::tools::brush_tools_plugin;
 
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
@@ -41,15 +41,16 @@ fn main() {
         }))
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
+        .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
+         .fn_plugin(camera_plugin)
         .add_systems(Startup, setup)
         //move to brushes and tools lib
-        .add_systems(Update, update_brush_paint)
+        
         .add_systems(Update, update_commands)
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
-        .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move)
+       
         .run();
 }
 

@@ -11,6 +11,22 @@ use bevy_mesh_terrain::{
 
 use bevy_mod_raycast::prelude::*;
 
+
+
+
+
+pub fn camera_plugin(app: &mut App) {
+    app
+ 
+
+        .add_systems(Update, update_camera_look)
+        .add_systems(Update, update_camera_move)
+
+        ;
+}
+
+
+
 pub fn update_camera_look(
     mut event_reader: EventReader<MouseMotion>,
     mouse_input: Res<ButtonInput<MouseButton>>,
