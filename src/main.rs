@@ -69,6 +69,9 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
             shadow_depth_bias: 0.5,
             shadow_normal_bias: 0.5,
 
+             illuminance: light_consts::lux::OVERCAST_DAY,
+              shadows_enabled: true,
+
             color: Color::WHITE,
             ..default()
         },
@@ -76,7 +79,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         ..default()
     });
     // light
-    commands.spawn(PointLightBundle {
+   /* commands.spawn(PointLightBundle {
         point_light: PointLight {
             intensity: 1500.0,
             shadows_enabled: true,
@@ -90,10 +93,10 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         transform: Transform::from_xyz(4.0, 800.0, 4.0),
         ..default()
     });
-
+*/
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: 20.62,
+        brightness: light_consts::lux::OVERCAST_DAY,
     });
 
     // camera

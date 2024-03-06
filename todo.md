@@ -6,6 +6,6 @@
 
 ## Immediate todo 
 
-- mod editor PLS so that i can turn off the camera controls 
-- mod editor PLS so that the terrain tools are part of the sidebar 
+-  mod my editor so my terrain tools disappear and do not work when i am in the PLS editor mode 
+ 
 - mod editor PLS so there is a tab at the bottom that lets me drag and drop manifested doodads to the terrain . 
