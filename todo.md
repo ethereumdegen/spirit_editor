@@ -9,17 +9,14 @@ BUGS
 
 
 ## Immediate todo 
-  - add a btn to spawn a zone with a particular name
+  - 
+- make the placement tools work , populate the placement window 
+- write code for exporting zone , loading a zone 
 
-- add a btn to export a zone while it is selected in the hierarchy 
-
-
-- when a zone is the active zone, doodads placed will be placed as children of it . 
-
+ 
 
 
-
-- in terrain crate, give name component to my terrain and chunk 
+- ** in terrain crate, give name component to my terrain and chunk 
 
 
 
