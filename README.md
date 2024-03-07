@@ -21,3 +21,10 @@ Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone applica
 - When painting, the system supports up to 255 textures. However, you have to  be very careful how you blend them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
 
 
+
+
+
+
+## Doodad Manifest 
+
+ - Create a file at assets/doodad_manifest.manifest.ron  and build your doodad definitions in there 

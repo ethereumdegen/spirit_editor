@@ -1,0 +1,12 @@
+  (
+    doodad_definitions: [
+        (
+            name: "Tree",
+            model_path: "path/to/tree/model.obj",
+        ),
+        (
+            name: "Rock",
+            model_path: "path/to/rock/model.obj",
+        )
+        ]
+  )
