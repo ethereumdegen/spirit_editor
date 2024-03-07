@@ -903,6 +903,8 @@ dependencies = [
  "indexmap 2.2.1",
  "opener",
  "pretty-type-name",
+ "ron",
+ "serde",
 ]
 
 [[package]]
