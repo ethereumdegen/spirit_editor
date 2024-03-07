@@ -20,7 +20,10 @@ pub fn editor_ui_plugin(app: &mut App) {
         .insert_resource(editor_controls())
 
 
-          .add_plugins(CustomWindowsPlugin {} ) ;
+          .add_plugins(CustomWindowsPlugin {} ) 
+
+         // .add_sytems( Update, set_terrain_as_unpickable )
+          ;
 
         //.add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
         ;
