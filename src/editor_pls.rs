@@ -1,11 +1,14 @@
 use bevy::prelude::*;
 
 use bevy_editor_pls::controls::EditorControls; 
+use bevy_editor_pls::default_windows::doodads::picking::PreventEditorSelection;
 use bevy_editor_pls::EditorPlugin;
 use bevy_editor_pls::controls;
 //use bevy_editor_pls_default_windows::hierarchy::picking::EditorRayCastSource;
 
 use bevy_editor_pls::editor;
+use bevy_mesh_terrain::chunk::Chunk;
+use bevy_mesh_terrain::chunk::TerrainChunkMesh;
 
 
 pub fn editor_ui_plugin(app: &mut App) {
@@ -20,7 +23,7 @@ pub fn editor_ui_plugin(app: &mut App) {
 
          
 
-         // .add_sytems( Update, set_terrain_as_unpickable )
+         .add_systems( Update, set_terrain_as_unpickable )
           ;
 
         //.add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
@@ -52,4 +55,19 @@ pub fn bevy_pls_editor_is_active(
        ) -> bool {
 
          pls_editor_resource.active()  
+}
+
+fn set_terrain_as_unpickable(
+
+    mut commands: Commands,
+
+    terrain_chunks_query: Query<Entity,( With<Chunk>, Without<PreventEditorSelection>)>
+    ){
+
+    for chunk  in terrain_chunks_query.iter(){
+        println!("insert unpickable ");
+        commands.entity(chunk).insert(   PreventEditorSelection {} );
+    }
+
+ 
 }
