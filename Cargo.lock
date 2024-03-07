@@ -1303,10 +1303,12 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.1"
+version = "0.13.2"
 dependencies = [
  "bevy 0.13.0",
  "bevy_editor_pls",
+ "bevy_editor_pls_core",
+ "bevy_editor_pls_default_windows",
  "bevy_egui",
  "bevy_mesh_terrain",
  "bevy_mod_picking 0.17.0",
@@ -3031,9 +3033,9 @@ dependencies = [
 
 [[package]]
 name = "egui_dock"
-version = "0.11.2"
+version = "0.11.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d14beb118bc4d114bb875f14d1d437736be7010939cedf60c9ee002d7d02d09f"
+checksum = "66abdc4b3040c20462deb534b8221ffaea72dc95522330b38daa23dd67b35e53"
 dependencies = [
  "duplicate",
  "egui",
