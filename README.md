@@ -10,8 +10,9 @@ Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone applica
 
 
 
-### How to use 
+## How to use 
 
+ 
 
 
 ### Tips and tricks 
@@ -25,6 +26,16 @@ Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone applica
 
 
 
-## Doodad Manifest 
+### Placing Doodads 
 
  - Create a file at assets/doodad_manifest.manifest.ron  and build your doodad definitions in there 
+
+
+
+### Zones 
+
+- Using the Zones window, you can spawn a zone entity.  Right click on this zone entity in the hierarchy to set it as the primary zone.  When a zone is primary, placed doodads will become children of the zone
+
+
+- Right click on the zone entity in the hierarchy to save the zone to a file.  You can use the zone window to load zone files back in later.  
+

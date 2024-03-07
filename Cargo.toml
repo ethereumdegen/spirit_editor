@@ -15,6 +15,7 @@ bevy_mod_raycast = "0.17.0"
 seldom_fn_plugin = "0.6.0"
 
 
+# https://github.com/ethereumdegen/bevy_editor_pls
 bevy_editor_pls =  { path = "../bevy_editor_pls/crates/bevy_editor_pls", features =["default_windows"] }
 
 
