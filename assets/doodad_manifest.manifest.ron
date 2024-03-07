@@ -1,7 +1,7 @@
   (
     doodad_definitions: [
         (
-            name: "birch_yellow",
+            name: "birch_yellow_1",
             model_path: "models/doodads/birch_yellow.glb",
         ) ,
         (
