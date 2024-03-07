@@ -1,4 +1,8 @@
 use bevy::input::mouse::MouseMotion;
+
+use std::f32::consts::PI;
+
+
 use bevy::prelude::*;
 use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
 use bevy::render::RenderPlugin;
@@ -94,6 +98,12 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
               shadows_enabled: true,
 
             color: Color::WHITE,
+            ..default()
+        },
+
+         transform: Transform {
+            translation: Vec3::new(0.0, 2.0, 0.0),
+            rotation: Quat::from_rotation_x(-PI / 4.),
             ..default()
         },
 
