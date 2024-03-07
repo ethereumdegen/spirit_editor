@@ -1,12 +1,14 @@
   (
     doodad_definitions: [
         (
-            name: "Tree",
-            model_path: "path/to/tree/model.obj",
-        ),
+            name: "birch_yellow",
+            model_path: "models/doodads/birch_yellow.glb",
+        ) ,
         (
-            name: "Rock",
-            model_path: "path/to/rock/model.obj",
-        )
-        ]
+            name: "bonfire",
+            model_path: "models/doodads/bonfire.glb",
+        ) 
+    ]
   )
+
+ 

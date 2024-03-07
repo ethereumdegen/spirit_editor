@@ -4,6 +4,14 @@
 
 
 
+
+BUGS
+
+- clicking on a doodad should select it ... ? 
+
+
+
+
 ## Immediate todo 
  
  

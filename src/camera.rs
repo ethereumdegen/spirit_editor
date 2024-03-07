@@ -11,6 +11,8 @@ use bevy_mesh_terrain::{
 
 use bevy_mod_raycast::prelude::*;
 
+use crate::editor_pls::bevy_pls_editor_is_active;
+
 
 
 
@@ -19,8 +21,8 @@ pub fn camera_plugin(app: &mut App) {
     app
  
 
-        .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move)
+        .add_systems(Update, update_camera_look )
+        .add_systems(Update, update_camera_move   )
 
         ;
 }

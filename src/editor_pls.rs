@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 
 use bevy_editor_pls::controls::EditorControls;
+use bevy_editor_pls::custom_windows::CustomWindowsPlugin;
 use bevy_editor_pls::default_windows::cameras::camera_3d_free;
 use bevy_editor_pls::EditorPlugin;
 use bevy_editor_pls::controls;
@@ -13,10 +14,14 @@ pub fn editor_ui_plugin(app: &mut App) {
     app
 
        .add_plugins(EditorPlugin{
-            enable_camera_controls: false, 
+            enable_camera_controls: true, 
           ..default()
        })
         .insert_resource(editor_controls())
+
+
+          .add_plugins(CustomWindowsPlugin {} ) ;
+
         //.add_systems(Startup, disable_cam3d_controls) //we handle camera controls on our own 
         ;
 }

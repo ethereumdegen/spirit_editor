@@ -1,5 +1,7 @@
 use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
+use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
+use bevy::render::RenderPlugin;
 use bevy_mesh_terrain::edit::EditingTool;
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
@@ -28,7 +30,20 @@ use crate::ui::editor_ui_plugin;
 
 use seldom_fn_plugin::FnPluginExt;
 
+
+
+
+
+
+
+
 fn main() {
+
+
+
+ let mut wgpu_settings = WgpuSettings::default();
+    wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
+
     App::new()
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
@@ -38,7 +53,14 @@ fn main() {
                 ..Default::default()
             }),
             ..Default::default()
+        })
+       
+
+        .set(RenderPlugin {
+            render_creation: RenderCreation::Automatic(wgpu_settings),
+            ..default()
         }))
+
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
         .fn_plugin(brush_tools_plugin)
@@ -101,6 +123,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
     });
 
     // camera
+    
     commands
         .spawn(Camera3dBundle {
             transform: Transform::from_xyz(20.0, 162.5, 20.0)
@@ -109,4 +132,5 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         })
         .insert(TerrainViewer::default())
         .insert(ShadowFilteringMethod::Jimenez14);
+         
 }
