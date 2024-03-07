@@ -1,8 +1,7 @@
 use bevy::prelude::*;
 
 use bevy_editor_pls::controls::EditorControls;
-use bevy_editor_pls::custom_windows::CustomWindowsPlugin;
-use bevy_editor_pls::default_windows::cameras::camera_3d_free;
+use bevy_editor_pls::custom_windows::CustomWindowsPlugin; 
 use bevy_editor_pls::EditorPlugin;
 use bevy_editor_pls::controls;
 //use bevy_editor_pls_default_windows::hierarchy::picking::EditorRayCastSource;
@@ -20,7 +19,7 @@ pub fn editor_ui_plugin(app: &mut App) {
         .insert_resource(editor_controls())
 
 
-          .add_plugins(CustomWindowsPlugin {} ) 
+         
 
          // .add_sytems( Update, set_terrain_as_unpickable )
           ;
