@@ -1,7 +1,6 @@
 use bevy::prelude::*;
 
-use bevy_editor_pls::controls::EditorControls;
-use bevy_editor_pls::custom_windows::CustomWindowsPlugin; 
+use bevy_editor_pls::controls::EditorControls; 
 use bevy_editor_pls::EditorPlugin;
 use bevy_editor_pls::controls;
 //use bevy_editor_pls_default_windows::hierarchy::picking::EditorRayCastSource;

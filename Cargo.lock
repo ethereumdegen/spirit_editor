@@ -851,7 +851,6 @@ version = "0.8.1"
 dependencies = [
  "bevy 0.13.0",
  "bevy_editor_pls_core",
- "bevy_editor_pls_custom_windows",
  "bevy_editor_pls_default_windows",
  "bevy_mod_raycast 0.17.0",
  "egui",
@@ -869,7 +868,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_editor_pls_custom_windows"
+name = "bevy_editor_pls_default_windows"
 version = "0.8.1"
 dependencies = [
  "anyhow",
@@ -878,27 +877,10 @@ dependencies = [
  "bevy-inspector-egui",
  "bevy_common_assets",
  "bevy_editor_pls_core",
- "bevy_editor_pls_default_windows",
  "bevy_mod_debugdump",
  "bevy_mod_picking 0.18.1",
  "bevy_mod_raycast 0.17.0",
  "bevy_mod_sysfail 7.0.0",
- "egui-gizmo",
- "indexmap 2.2.1",
- "opener",
- "pretty-type-name",
- "ron",
- "serde",
-]
-
-[[package]]
-name = "bevy_editor_pls_default_windows"
-version = "0.8.1"
-dependencies = [
- "bevy 0.13.0",
- "bevy-inspector-egui",
- "bevy_editor_pls_core",
- "bevy_mod_debugdump",
  "egui-gizmo",
  "indexmap 2.2.1",
  "opener",
