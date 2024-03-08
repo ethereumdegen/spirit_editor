@@ -107,6 +107,8 @@ fn attach_models_to_doodads(
 	            ;
 
 
+
+          //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor 
 		   match (&doodad_component.definition.model).clone() {
 
 				RenderableType::GltfModel(model_name) =>  {

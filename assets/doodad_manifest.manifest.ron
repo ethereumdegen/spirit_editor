@@ -13,9 +13,9 @@
         (
             name: "player_spawn",
             model: CubeShape( (color: Rgba(
-                                        red: 0.2,
-                                        green: 0.3,
-                                        blue: 0.2,
+                                        red: 0.8,
+                                        green: 0.2,
+                                        blue: 0.8,
                                         alpha: 1.0
                                     ))),
             initial_custom_props: Some({ "my_prop": Float(1.0) })
