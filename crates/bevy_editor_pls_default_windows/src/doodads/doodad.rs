@@ -83,6 +83,9 @@ fn attach_models_to_doodads(
       models: Res<Assets<Gltf>>,
      gltf_assets: Res<LoadedGltfAssets>,
 
+      mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+
 	){
   #[cfg(feature = "tracing")]
     let _span = info_span!("add_model_to_doodads").entered();
@@ -104,37 +107,43 @@ fn attach_models_to_doodads(
 	            ;
 
 
-			let model_name:Option<String> = match (&doodad_component.definition.model).clone() {
+		   match (&doodad_component.definition.model).clone() {
 
-				RenderableType::GltfModel(model_name) => Some(model_name)
+				RenderableType::GltfModel(model_name) =>  {
 
-			};
+ 
 
-			if let Some(model_name) = model_name {
-
-
-
-			        let model_handle = gltf_assets
+					 let model_handle = gltf_assets
 			           .gltf_models
 			            .get(model_name.as_str())
 			            .context(format!(" no doodad model registered at "))?;
 
 			        let loaded_model = models
 			            .get(model_handle)
-			            .context(format!("Could not load model handle for {}", model_name))?;
-
+			            .context(format!("Could not load model handle for {}", model_name))?; 
 
 			        	 
 			          commands
 			            .entity(new_doodad_entity)
 			            .insert(
 			                loaded_model.named_scenes["Scene"].clone(), //add the scene.. the mesh   but we assume the transform is alrdy there
-			            )
-			            
-			            .id();
+			            )  ;
 
 
-	            }
+
+				} 
+				RenderableType::CubeShape(cube_shape_def) =>  {
+						  commands
+			            .entity(new_doodad_entity)
+			            .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0) ) )
+			            .insert(materials.add( cube_shape_def.color.clone() )) 
+			            	 ;
+
+
+				}
+
+			};
+ 
 	           
 
 		}

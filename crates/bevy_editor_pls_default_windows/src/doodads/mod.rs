@@ -239,15 +239,19 @@ fn load_doodad_models(
 
                         for doodad_definition in &manifest.doodad_definitions {
 
-                                let model_path = match &doodad_definition.model{
-                                    RenderableType::GltfModel(model_path) => model_path
+                                let model_path_to_load = match &doodad_definition.model{
+                                    RenderableType::GltfModel(model_path) => Some(model_path),
+                                    _ => None //other types dont need to have stuff preloaded 
                                 };
 
-                                let gltf_model_handle:Handle<Gltf> = asset_server.load( model_path   ) ;
+                                if let Some(model_path) = model_path_to_load {
+                                    let gltf_model_handle:Handle<Gltf> = asset_server.load( model_path   ) ;
 
-                                loaded_gltf_resource.gltf_models.insert(model_path.clone(), gltf_model_handle); 
+                                    loaded_gltf_resource.gltf_models.insert(model_path.clone(), gltf_model_handle); 
 
-                                println!("loaded gltf {:?}", model_path);
+                                    println!("loaded gltf {:?}", model_path);
+                                }
+                               
 
                         }
 
@@ -370,14 +374,24 @@ pub fn handle_place_doodad_events(
     
     doodad_tool_resource: Res<DoodadToolState>,
  
-   // mut contexts: EguiContexts,
+ 
+ mut contexts: EguiContexts,
 
         editor: Res<Editor>
 ) {
-
-
+ 
+   
+ 
+       //we can tell if we are clicking in viewport 
+       let egui_ctx = contexts.ctx_mut(); 
   
 
+        let pointer_pos = egui_ctx.input(|input| input.pointer.interact_pos());
+        let clicking_in_viewport = pointer_pos.map_or(false, |pos|  editor.is_in_viewport(pos));
+
+        if !clicking_in_viewport {
+            return
+        }
 
  
 

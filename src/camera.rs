@@ -63,19 +63,25 @@ pub fn update_camera_move(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
 ) {
-    const MOVE_SPEED: f32 = 10.0; // You can adjust this value as needed
+    const MOVE_SPEED: f32 = 2.5; // You can adjust this value as needed
+
+
+    let boost_multiplier = match keyboard_input.pressed(KeyCode::ShiftLeft) {
+          true => 4.0,
+          false => 1.0 
+        };
 
     // Apply to each camera with the CameraTag
     for (mut transform, _) in query.iter_mut() {
         // Move the camera forward if W is pressed
         if keyboard_input.pressed(KeyCode::KeyW) {
             let forward = transform.forward();
-            transform.translation += forward * MOVE_SPEED;
+            transform.translation += forward * MOVE_SPEED * boost_multiplier;
         }
 
         if keyboard_input.pressed(KeyCode::KeyS) {
             let forward = transform.forward();
-            transform.translation -= forward * MOVE_SPEED;
+            transform.translation -= forward * MOVE_SPEED * boost_multiplier;
         }
     }
 }

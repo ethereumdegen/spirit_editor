@@ -51,9 +51,19 @@ impl DoodadManifest {
 #[derive(Clone, Debug , Serialize, Deserialize )]
 pub enum RenderableType {
 
-    GltfModel(String) //the path 
+    GltfModel(String) ,//the path 
+    CubeShape(CubeShapeDefinition)
 
 }
+
+#[derive(Clone, Debug , Serialize, Deserialize )]
+pub struct CubeShapeDefinition {
+
+   pub color: Color
+
+}
+
+
 
 #[derive(Component,Clone, Debug , Serialize, Deserialize )]
 pub struct DoodadDefinition{

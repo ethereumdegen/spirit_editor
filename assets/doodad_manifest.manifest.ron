@@ -3,10 +3,21 @@
         (
             name: "birch_yellow_1",
             model: GltfModel("models/doodads/birch_yellow.glb"),
-        ) ,
+        ),
         (
             name: "bonfire",
             model: GltfModel("models/doodads/bonfire.glb"),
+            initial_custom_props: Some({ "my_prop": Float(1.0) })
+        ),
+
+        (
+            name: "player_spawn",
+            model: CubeShape( (color: Rgba(
+                                        red: 0.2,
+                                        green: 0.3,
+                                        blue: 0.2,
+                                        alpha: 1.0
+                                    ))),
             initial_custom_props: Some({ "my_prop": Float(1.0) })
         ) 
     ]
