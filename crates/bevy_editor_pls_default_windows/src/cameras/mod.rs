@@ -1,4 +1,3 @@
- 
 use crate::scenes::NotInScene;
 
 use bevy::render::camera::RenderTarget;
@@ -43,7 +42,7 @@ pub struct CameraWindow;
 
 #[derive(Clone, Copy, PartialEq, Default)]
 pub enum EditorCamKind {
-   // D2PanZoom,
+    // D2PanZoom,
     D3Free,
     #[default]
     D3PanOrbit,
@@ -52,7 +51,7 @@ pub enum EditorCamKind {
 impl EditorCamKind {
     fn name(self) -> &'static str {
         match self {
-         //   EditorCamKind::D2PanZoom => "2D (Pan/Zoom)",
+            //   EditorCamKind::D2PanZoom => "2D (Pan/Zoom)",
             EditorCamKind::D3Free => "3D (Free)",
             EditorCamKind::D3PanOrbit => "3D (Pan/Orbit)",
         }
@@ -60,7 +59,7 @@ impl EditorCamKind {
 
     fn all() -> [EditorCamKind; 2] {
         [
-           // EditorCamKind::D2PanZoom,
+            // EditorCamKind::D2PanZoom,
             EditorCamKind::D3Free,
             EditorCamKind::D3PanOrbit,
         ]
@@ -90,21 +89,15 @@ impl EditorWindow for CameraWindow {
     }
 
     fn viewport_toolbar_ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
-       let state = cx.state_mut::<CameraWindow>().unwrap();
-      
+        let state = cx.state_mut::<CameraWindow>().unwrap();
+
         ui.checkbox(&mut state.show_ui, "UI");
     }
 
     fn app_setup(app: &mut App) {
         app.init_resource::<PreviouslyActiveCameras>();
 
-        app
-             
-           .add_systems(PreUpdate, configure_camera_custom)
-         //   .add_systems(PreUpdate, focus_selected)
-              //.add_systems(Update, initial_camera_setup)
-              ;
-       // app.add_systems(PreStartup, spawn_editor_cameras);
+        app.add_systems(PreUpdate, configure_camera_custom);
 
         app.add_systems(
             PostUpdate,
@@ -113,7 +106,7 @@ impl EditorWindow for CameraWindow {
                 .before(bevy::render::camera::CameraUpdateSystem),
         );
     }
-} 
+}
 
 fn cameras_ui(ui: &mut egui::Ui, world: &mut World) {
     // let cameras = active_cameras.all_sorted();
@@ -143,28 +136,23 @@ fn cameras_ui(ui: &mut egui::Ui, world: &mut World) {
         });
     }
 }
- 
- 
 
 fn configure_camera_custom(
     mut commands: Commands,
 
     mut cam_query: Query<(Entity, &mut Camera), Without<ActiveEditorCamera>>,
 
-  editor: Res<Editor>
-
-    ){
-
-    let Some((cam_entity , mut camera_config)) = cam_query.get_single_mut().ok() else {return};
+    editor: Res<Editor>,
+) {
+    let Some((cam_entity, mut camera_config)) = cam_query.get_single_mut().ok() else {
+        return;
+    };
 
     let render_layers = RenderLayers::default().with(EDITOR_RENDER_LAYER);
 
     let target = RenderTarget::Window(WindowRef::Entity(editor.window()));
 
     camera_config.target = target.clone();
-
- 
-
 
     commands.entity(cam_entity)
     .insert( ActiveEditorCamera {} )
@@ -178,9 +166,7 @@ fn configure_camera_custom(
 
 
     ;
-
 }
-
 
 #[derive(Resource, Default)]
 struct PreviouslyActiveCameras(HashSet<Entity>);
@@ -221,8 +207,6 @@ fn toggle_editor_cam(
         }
     }
 }
-
-  
 
 fn set_main_pass_viewport(
     egui_settings: Res<bevy_inspector_egui::bevy_egui::EguiSettings>,

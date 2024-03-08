@@ -13,21 +13,10 @@ use bevy_mod_raycast::prelude::*;
 
 use crate::editor_pls::bevy_pls_editor_is_active;
 
-
-
-
-
 pub fn camera_plugin(app: &mut App) {
-    app
- 
-
-        .add_systems(Update, update_camera_look )
-        .add_systems(Update, update_camera_move   )
-
-        ;
+    app.add_systems(Update, update_camera_look)
+        .add_systems(Update, update_camera_move);
 }
-
-
 
 pub fn update_camera_look(
     mut event_reader: EventReader<MouseMotion>,
@@ -65,11 +54,10 @@ pub fn update_camera_move(
 ) {
     const MOVE_SPEED: f32 = 2.5; // You can adjust this value as needed
 
-
     let boost_multiplier = match keyboard_input.pressed(KeyCode::ShiftLeft) {
-          true => 4.0,
-          false => 1.0 
-        };
+        true => 4.0,
+        false => 1.0,
+    };
 
     // Apply to each camera with the CameraTag
     for (mut transform, _) in query.iter_mut() {

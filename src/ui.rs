@@ -12,7 +12,7 @@ use crate::editor_pls::bevy_pls_editor_is_active;
 pub fn editor_ui_plugin(app: &mut App) {
     app.init_resource::<EditorToolsState>()
         .add_plugins(EguiPlugin)
-        .add_systems(Update, editor_tools.run_if( not( bevy_pls_editor_is_active ) )  );
+        .add_systems(Update, editor_tools.run_if(not(bevy_pls_editor_is_active)));
 }
 
 #[derive(Default, Resource, Clone)]
@@ -66,23 +66,13 @@ impl Display for ToolMode {
     }
 }
 
-
-
 fn editor_tools(
-
- 
-
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
 
     mut contexts: EguiContexts,
 ) {
-
-
- 
-
-
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
         if ui.button("Save All Chunks (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));

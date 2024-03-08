@@ -66,16 +66,12 @@ impl EditorWindow for HierarchyWindow {
     fn app_setup(app: &mut bevy::prelude::App) {
         // picking::setup(app);
         app.add_systems(PostUpdate, clear_removed_entites)
-         .add_systems(Update, clear_selection);
+            .add_systems(Update, clear_selection);
 
         // .add_system(handle_events);
 
         app.sub_app_mut(RenderApp)
-            .add_systems(ExtractSchedule, extract_wireframe_for_selected)
-           
-
-
-            ;
+            .add_systems(ExtractSchedule, extract_wireframe_for_selected);
     }
 }
 
@@ -167,12 +163,7 @@ impl<'a> Hierarchy<'a> {
             type_registry: self.type_registry,
             selected,
             context_menu: Some(&mut |ui, entity, world, rename_info| {
-
-
-                let entity_is_zone = world.entity(entity).get::<ZoneComponent>().is_some() ;
-
-
-
+                let entity_is_zone = world.entity(entity).get::<ZoneComponent>().is_some();
 
                 if ui.button("Despawn").clicked() {
                     despawn_recursive = Some(entity);
@@ -193,15 +184,14 @@ impl<'a> Hierarchy<'a> {
                 }
 
                 if entity_is_zone {
-                       if ui.button("Set as primary zone").clicked() {
-                          world.send_event::<ZoneEvent>( ZoneEvent::SetZoneAsPrimary( entity ).into()  ) ;
-                             ui.close_menu();
-                        }
-                        if ui.button("Save zone file").clicked() {
-                             world.send_event::<ZoneEvent>( ZoneEvent::SaveZoneToFile( entity ).into()  ) ;
-                             ui.close_menu();
-                            
-                        }
+                    if ui.button("Set as primary zone").clicked() {
+                        world.send_event::<ZoneEvent>(ZoneEvent::SetZoneAsPrimary(entity).into());
+                        ui.close_menu();
+                    }
+                    if ui.button("Save zone file").clicked() {
+                        world.send_event::<ZoneEvent>(ZoneEvent::SaveZoneToFile(entity).into());
+                        ui.close_menu();
+                    }
                 }
 
                 if let Some(add_state) = self.add_state {
@@ -290,24 +280,16 @@ fn rename_entity_ui(ui: &mut egui::Ui, rename_info: &mut RenameInfo, world: &mut
     TextEdit::store_state(ui.ctx(), id, edit_state);
 }
 
-
- 
- pub fn clear_selection(
+pub fn clear_selection(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
-      mut editor: ResMut<Editor>,  
+    mut editor: ResMut<Editor>,
 ) {
-
-   
     let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
- 
-    
 
-    if !mouse_input. pressed(MouseButton::Right) {
+    if !mouse_input.pressed(MouseButton::Right) {
         return;
     }
- 
+
     state.selected.clear();
 }
-
-

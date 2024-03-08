@@ -39,7 +39,7 @@ impl EditorWindow for InspectorWindow {
 
         let selected = &cx.state::<Self>().unwrap().selected;
         let selected_entities = &cx.state::<HierarchyWindow>().unwrap().selected;
- 
+
         let add_window_state = cx.state::<AddWindow>();
         inspector(
             world,

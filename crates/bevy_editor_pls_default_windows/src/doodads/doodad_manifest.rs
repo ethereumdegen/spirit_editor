@@ -1,6 +1,8 @@
-
-
-use std::{fs::{self, File}, io::{Read, Write}, path::PathBuf};
+use std::{
+    fs::{self, File},
+    io::{Read, Write},
+    path::PathBuf,
+};
 
 use bevy::prelude::*;
 
@@ -8,78 +10,50 @@ use serde::{Deserialize, Serialize};
 
 use crate::zones::zone_file::CustomPropsMap;
 
-
-#[derive(Resource,Default)]
-pub struct DoodadManifestResource{
-    pub manifest: Option<Handle<DoodadManifest>> 
- 
+#[derive(Resource, Default)]
+pub struct DoodadManifestResource {
+    pub manifest: Option<Handle<DoodadManifest>>,
 }
 
- #[derive(Asset , TypePath, Clone, Debug , Serialize, Deserialize )]
+#[derive(Asset, TypePath, Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadManifest {
-
-	pub doodad_definitions: Vec<DoodadDefinition>
-
-
+    pub doodad_definitions: Vec<DoodadDefinition>,
 }
-
 
 impl DoodadManifest {
-
-
-    pub fn get_doodad_definition_by_name(&self,name: &str) -> Option<DoodadDefinition> {
-
-        //maybe use a hashmap for this ? 
+    pub fn get_doodad_definition_by_name(&self, name: &str) -> Option<DoodadDefinition> {
+        //maybe use a hashmap for this ?
         for doodad_definition in &self.doodad_definitions {
-
             if doodad_definition.name == name {
-                return Some(doodad_definition.clone())
+                return Some(doodad_definition.clone());
             }
-
         }
 
-
-        None 
-
-
+        None
     }
-
 }
 
-
-
-#[derive(Clone, Debug , Serialize, Deserialize )]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum RenderableType {
-
-    GltfModel(String) ,//the path 
-    CubeShape(CubeShapeDefinition)
-
+    GltfModel(String), //the path
+    CubeShape(CubeShapeDefinition),
 }
 
-#[derive(Clone, Debug , Serialize, Deserialize )]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CubeShapeDefinition {
-
-   pub color: Color
-
+    pub color: Color,
 }
 
-
-
-#[derive(Component,Clone, Debug , Serialize, Deserialize )]
-pub struct DoodadDefinition{
-
+#[derive(Component, Clone, Debug, Serialize, Deserialize)]
+pub struct DoodadDefinition {
     pub name: String,
-    pub model: RenderableType ,
-    pub initial_custom_props: Option<CustomPropsMap>
-
+    pub model: RenderableType,
+    pub initial_custom_props: Option<CustomPropsMap>,
 }
 
 impl DoodadManifest {
-
-  
-
-   pub fn load(  ) -> Result<Self, Box<dyn std::error::Error>> {
-        let file_path = get_save_file_path(   ) ;
+    pub fn load() -> Result<Self, Box<dyn std::error::Error>> {
+        let file_path = get_save_file_path();
         let mut file = File::open(file_path)?;
         let mut contents = String::new();
         file.read_to_string(&mut contents)?;
@@ -88,10 +62,6 @@ impl DoodadManifest {
     }
 }
 
-
-
-fn get_save_file_path( ) -> String {
-
-	format!("assets/doodad_manifest.ron"   ) 
-
+fn get_save_file_path() -> String {
+    format!("assets/doodad_manifest.ron")
 }

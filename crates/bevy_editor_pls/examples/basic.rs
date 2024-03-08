@@ -24,7 +24,7 @@ fn main() {
             EditorPlugin::new(),
             FrameTimeDiagnosticsPlugin,
             EntityCountDiagnosticsPlugin,
-              DefaultRaycastingPlugin
+            DefaultRaycastingPlugin,
         ))
         .add_systems(Startup, setup)
         .run();
