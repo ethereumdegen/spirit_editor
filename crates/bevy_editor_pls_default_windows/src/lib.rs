@@ -3,7 +3,7 @@
 
 use bevy::prelude::*;
  
-use zones::{ZoneEvent, ZoneResource};
+use zones::{zone_file::CustomPropsComponent, ZoneEvent, ZoneResource};
 
 pub mod add;
 pub mod assets;
@@ -34,6 +34,9 @@ impl Plugin for StandardWindowsPlugin {
     	app  
         .add_event::<ZoneEvent>()
         .add_event::<doodads::PlaceDoodadEvent>()
+
+        .register_type::<CustomPropsComponent>() //reflect
+
            .add_event::<doodads::picking::SelectDoodadEvent>()
 
 

@@ -6,6 +6,8 @@ use bevy::prelude::*;
 
 use serde::{Deserialize, Serialize};
 
+use crate::zones::zone_file::CustomPropsMap;
+
 
 #[derive(Resource,Default)]
 pub struct DoodadManifestResource{
@@ -44,23 +46,27 @@ impl DoodadManifest {
 
 }
 
+
+
+#[derive(Clone, Debug , Serialize, Deserialize )]
+pub enum RenderableType {
+
+    GltfModel(String) //the path 
+
+}
+
 #[derive(Component,Clone, Debug , Serialize, Deserialize )]
 pub struct DoodadDefinition{
 
     pub name: String,
-    pub model_path: String 
+    pub model: RenderableType ,
+    pub initial_custom_props: Option<CustomPropsMap>
 
 }
 
 impl DoodadManifest {
 
-  /* pub fn save(&self ) -> Result<(), Box<dyn std::error::Error>> {
-        let file_path = get_save_file_path( ) ;
-        info!("saving to {:?}", file_path );
-        let file = File::create(file_path)?;
-        ron::ser::to_writer(file, self)?;  
-        Ok(())
-    }*/
+  
 
    pub fn load(  ) -> Result<Self, Box<dyn std::error::Error>> {
         let file_path = get_save_file_path(   ) ;

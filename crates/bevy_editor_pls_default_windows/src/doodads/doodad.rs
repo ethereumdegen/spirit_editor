@@ -2,7 +2,7 @@
 
 use bevy::{prelude::*, utils::HashMap};
 
-use super::doodad_manifest::DoodadDefinition;
+use super::doodad_manifest::{DoodadDefinition, RenderableType};
 
 use anyhow::{Result,Context }; 
 
@@ -90,35 +90,52 @@ fn attach_models_to_doodads(
 		for (new_doodad_entity, doodad_component) in added_doodad_query.iter() {
 
 			  let doodad_name = &doodad_component.definition.name;
-			  let model_name = &doodad_component.definition.model_path;
-
-
-	        let model_handle = gltf_assets
-	           .gltf_models
-	            .get(model_name.as_str())
-	            .context(format!(" no doodad model registered at "))?;
-
-	        let loaded_model = models
-	            .get(model_handle)
-	            .context(format!("Could not load model handle for {}", model_name))?;
+				
 
 	            let doodad_name_clone = doodad_name.clone();
 	            let name_comp = Name::new(doodad_name_clone);
-	        commands
+	        	
+
+			    commands
 	            .entity(new_doodad_entity)
-	            .insert(
-	                loaded_model.named_scenes["Scene"].clone(), //add the scene.. the mesh   but we assume the transform is alrdy there
-	            )
+	            
 	            .insert(  name_comp )
 	            .insert(  PickableBundle::default() )
-	           // .insert(  PickRaycastTarget::default() )
-
- 
+	            ;
 
 
-	        //    .insert(DoodadColliderMarker::default())
-	             ; //.id() ;
+			let model_name:Option<String> = match (&doodad_component.definition.model).clone() {
 
+				RenderableType::GltfModel(model_name) => Some(model_name)
+
+			};
+
+			if let Some(model_name) = model_name {
+
+
+
+			        let model_handle = gltf_assets
+			           .gltf_models
+			            .get(model_name.as_str())
+			            .context(format!(" no doodad model registered at "))?;
+
+			        let loaded_model = models
+			            .get(model_handle)
+			            .context(format!("Could not load model handle for {}", model_name))?;
+
+
+			        	 
+			          commands
+			            .entity(new_doodad_entity)
+			            .insert(
+			                loaded_model.named_scenes["Scene"].clone(), //add the scene.. the mesh   but we assume the transform is alrdy there
+			            )
+			            
+			            .id();
+
+
+	            }
+	           
 
 		}
 

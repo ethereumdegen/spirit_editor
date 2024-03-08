@@ -15,7 +15,9 @@ use bevy::{
 
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_editor_pls_core::Editor;
+use crate::doodads::doodad_manifest::RenderableType;
 use crate::placement::PlacementWindow;
+use crate::zones::zone_file::CustomPropsComponent;
 use crate::zones::ZoneResource;
 use bevy_inspector_egui::bevy_egui::EguiContexts;
 use bevy_inspector_egui::{   egui::{self, ScrollArea}};
@@ -237,7 +239,9 @@ fn load_doodad_models(
 
                         for doodad_definition in &manifest.doodad_definitions {
 
-                                let model_path = &doodad_definition.model_path;
+                                let model_path = match &doodad_definition.model{
+                                    RenderableType::GltfModel(model_path) => model_path
+                                };
 
                                 let gltf_model_handle:Handle<Gltf> = asset_server.load( model_path   ) ;
 
@@ -310,6 +314,8 @@ pub fn handle_place_doodad_events(
         } ;
 
 
+        let init_custom_props = doodad_definition.initial_custom_props.clone();
+
         let mut transform = Transform::from_xyz(position.x, position.y, position.z);
 
         if let Some(rot) = evt.rotation_euler {
@@ -324,11 +330,18 @@ pub fn handle_place_doodad_events(
             transform ,
             ..default()
         })
-
         .insert(DoodadComponent::from_definition( &doodad_definition ))
         .id();
 
         println!("doodad spawned {:?}", doodad_spawned);
+
+        if let Some(init_custom_props) = init_custom_props{
+             println!("insert custom props {:?}", init_custom_props);
+
+
+            commands.entity(doodad_spawned)
+            .insert(CustomPropsComponent { props: init_custom_props }) ;
+        }
  
         if let Some(primary_zone) = &zone_resource.primary_zone {
             if let Some( mut  ent) = commands.get_entity(primary_zone.clone()) {

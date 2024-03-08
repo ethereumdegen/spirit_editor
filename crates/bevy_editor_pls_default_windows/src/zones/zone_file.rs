@@ -42,14 +42,17 @@ impl ZoneFile {
 
 }
 
-#[derive(Component)]
+//reflect makes this show up in the inspector 
+#[derive(Component,Reflect)]
+#[reflect(Component)]
 pub struct CustomPropsComponent{
-	props: CustomPropsMap
+	pub props: CustomPropsMap
 }
 
 pub type CustomPropsMap = HashMap<String, CustomProp>;
 
-#[derive(Serialize,Deserialize,Clone)]
+#[derive(Serialize,Deserialize,Clone,Debug,Reflect)]
+#[reflect( Serialize, Deserialize)]
 pub enum CustomProp{
 	Vec3(Vec3),
 	String(String),

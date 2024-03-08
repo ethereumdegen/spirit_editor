@@ -2,11 +2,12 @@
     doodad_definitions: [
         (
             name: "birch_yellow_1",
-            model_path: "models/doodads/birch_yellow.glb",
+            model: GltfModel("models/doodads/birch_yellow.glb"),
         ) ,
         (
             name: "bonfire",
-            model_path: "models/doodads/bonfire.glb",
+            model: GltfModel("models/doodads/bonfire.glb"),
+            initial_custom_props: Some({ "my_prop": Float(1.0) })
         ) 
     ]
   )

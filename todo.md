@@ -9,9 +9,11 @@ BUGS
 
 
 ## Immediate todo 
-  - 
-- make the placement tools work , populate the placement window 
-- write code for exporting zone , loading a zone 
+  
+
+  - if a gltf is missing, render a purple cube or whatever 
+
+  - make the manifest file specify the model type as an enum so we can render other things like shapes ?
 
  
 

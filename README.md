@@ -30,6 +30,25 @@ Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone applica
 
  - Create a file at assets/doodad_manifest.manifest.ron  and build your doodad definitions in there 
 
+```
+ # this is an example doodad manifest file telling the editor how to render (preview) doodads 
+ # see doodad_manifest.rs and zone_file.rs for more information about how this works 
+  (
+    doodad_definitions: [
+        (
+            name: "birch_yellow_1",
+            model: GltfModel("models/doodads/birch_yellow.glb"),
+        ) ,
+        (
+            name: "bonfire",
+            model: GltfModel("models/doodads/bonfire.glb"),            ,
+            initial_custom_props: Some({ "my_prop": Float(1.0) })
+        ) 
+    ]
+  )
+
+
+```
 
 
 ### Zones 

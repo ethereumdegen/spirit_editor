@@ -27,7 +27,7 @@ pub struct ZoneResource {
 
 }
 
-mod zone_file;
+pub mod zone_file;
 
 use zone_file::ZoneFile;
 
