@@ -4,8 +4,11 @@
 #[cfg(feature = "default_windows")]
 pub mod controls;
 
+ 
+
+
 use bevy::{
-    prelude::{Entity, Plugin, Update},
+    prelude::{Entity, Plugin, Update, IntoSystemConfigs},
     window::{MonitorSelection, Window, WindowPosition, WindowRef, WindowResolution},
 };
 
@@ -153,7 +156,7 @@ impl Plugin for EditorPlugin {
             app.add_plugins(bevy::pbr::wireframe::WireframePlugin);
 
             app.insert_resource(controls::EditorControls::default_bindings())
-                .add_systems(Update, controls::editor_controls_system);
+                .add_systems(Update, controls::editor_controls_system  .before(bevy_editor_pls_core::EditorSet::UI));
 
             let mut internal_state = app.world.resource_mut::<editor::EditorInternalState>();
 

@@ -230,6 +230,7 @@ fn set_main_pass_viewport(
 
         if !viewport_size.is_finite() {
             warn!("editor viewport size is infinite");
+            
         }
 
         bevy::render::camera::Viewport {
