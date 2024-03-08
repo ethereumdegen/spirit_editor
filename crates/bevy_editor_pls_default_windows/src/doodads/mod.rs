@@ -219,7 +219,7 @@ pub fn handle_place_doodad_events(
 
         if let Some(rot) = evt.rotation_euler {
             transform =
-                transform.with_rotation(Quat::from_euler(EulerRot::YXZ, rot.x, rot.y, rot.z))
+                transform.with_rotation(Quat::from_euler(EulerRot::XYZ, rot.x, rot.y, rot.z))
         }
         if let Some(scale) = evt.scale {
             transform = transform.with_scale(scale)
@@ -288,7 +288,7 @@ pub fn update_place_doodads(
     let rotation_euler: Option<Vec3> = match using_random_yaw {
         true => {
             let random_f32 = rng.gen_range(0.0..1.0);
-            Some((random_f32 * 3.14, 0.0, 0.0).into())
+            Some((0.0, random_f32 * 3.14, 0.0).into())
         }
         false => None,
     };

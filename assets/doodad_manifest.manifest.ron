@@ -1,13 +1,136 @@
   (
     doodad_definitions: [
+
+     // trees 
         (
             name: "birch_yellow_1",
             model: GltfModel("models/doodads/birch_yellow.glb"),
         ),
+
+        (
+            name: "birch_green_1",
+            model:  GltfModel("models/doodads/birch_green.glb")  
+        ) ,
+
+        (
+            name: "birch_dead_3",
+            model:  GltfModel("models/doodads/birch_dead_3.glb")  
+        ) ,
+     //elf building 
+
+
+        (
+            name: "elf_bld_floor_01",
+            model:  GltfModel("models/doodads/elf_bld_floor_01.glb")  
+        ),
+        (
+            name: "elf_bld_floor_02",
+            model:  GltfModel("models/doodads/elf_bld_floor_02.glb")  
+        ),
+        (
+            name: "elf_bld_floor_03",
+            model:  GltfModel("models/doodads/elf_bld_floor_03.glb")  
+        ),
+        (
+            name: "elf_bld_floor_04",
+            model:  GltfModel("models/doodads/elf_bld_floor_04.glb")  
+        ),
+        (
+            name: "elf_bld_floor_05",
+            model:  GltfModel("models/doodads/elf_bld_floor_05.glb")  
+        ),
+
+         (
+            name: "elf_bld_house_base_corner_01",
+            model:  GltfModel("models/doodads/elf_bld_house_base_corner_01.glb")  
+        ),
+          (
+            name: "elf_bld_house_base_wall_01",
+            model:  GltfModel("models/doodads/elf_bld_house_base_wall_01.glb")  
+        ),
+
+        (
+            name: "elf_bld_roof_01",
+            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+        ),
+          (
+            name: "elf_bld_roof_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+        ),
+         (
+            name: "elf_bld_roof_03",
+            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+        ),
+         (
+            name: "elf_bld_roof_04",
+            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+        ),
+
+
+          (
+            name: "elf_bld_stairs_01",
+            model:  GltfModel("models/doodads/elf_bld_stairs_01.glb")  
+        ),
+         (
+            name: "elf_bld_stairs_02",
+            model:  GltfModel("models/doodads/elf_bld_stairs_02.glb")  
+        ),
+           (
+            name: "elf_bld_stairs_03",
+            model:  GltfModel("models/doodads/elf_bld_stairs_03.glb")  
+        ),
+
+          (
+            name: "elf_bld_wall_01",
+            model:  GltfModel("models/doodads/elf_bld_wall_01.glb")  
+        ),
+             (
+            name: "elf_bld_wall_02",
+            model:  GltfModel("models/doodads/elf_bld_wall_02.glb")  
+        ),
+                (
+            name: "elf_bld_wall_03",
+            model:  GltfModel("models/doodads/elf_bld_wall_03.glb")  
+        ),
+
+       (
+            name: "elf_bld_window_01",
+            model:  GltfModel("models/doodads/elf_bld_window_01.glb")  
+        ),
+          (
+            name: "elf_bld_window_02",
+            model:  GltfModel("models/doodads/elf_bld_window_02.glb")  
+        ),
+            (
+            name: "elf_bld_window_03",
+            model:  GltfModel("models/doodads/elf_bld_window_03.glb")  
+        ),
+
+           (
+            name: "elf_bld_window_04",
+            model:  GltfModel("models/doodads/elf_bld_window_04.glb")  
+        ),
+
+          (
+            name: "elf_bld_window_05",
+            model:  GltfModel("models/doodads/elf_bld_window_05.glb")  
+        ),
+
+
+
+// ------
+
+
+
+
         (
             name: "bonfire",
-            model: GltfModel("models/doodads/bonfire.glb"),
-            initial_custom_props: Some({ "my_prop": Float(1.0) })
+            model: GltfModel("models/doodads/bonfire.glb") 
+        ),
+
+        (
+            name: "story_book_1",
+            model: GltfModel("models/doodads/story_book_1.glb") 
         ),
 
         (
@@ -18,8 +141,45 @@
                                         blue: 0.8,
                                         alpha: 1.0
                                     ))),
-            initial_custom_props: Some({ "my_prop": Float(1.0) })
-        ) 
+            initial_custom_props: Some({ "special_type": String("player_spawn") })
+        ),
+
+
+        (
+            name: "gnome_female",
+            model:  GltfModel("models/units/gnome_female_1.glb")
+      ) ,
+
+         (
+            name: "elf1",
+            model:  GltfModel("models/units/elf1.glb")  
+        ) ,
+
+
+        (
+            name: "wooden_chest",
+            model:  GltfModel("models/doodads/wooden_chest.glb")  
+        ) ,
+
+        (
+            name: "tent_1",
+            model:  GltfModel("models/doodads/tent_1.glb")  
+        ) ,
+
+
+
+          (
+            name: "vfx_leaves",
+            model: CubeShape( (color: Rgba(
+                                        red: 0.1,
+                                        green: 0.8,
+                                        blue: 0.1,
+                                        alpha: 0.8
+                                    ))),
+            initial_custom_props: Some({ "special_type": String("vfx_emitter") , "vfx_name":String("leaves" )})
+        ),
+
+
     ]
   )
 

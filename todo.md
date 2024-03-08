@@ -13,8 +13,8 @@ BUGS
 
   - if a gltf is missing, render a purple cube or whatever 
 
-  - make the manifest file specify the model type as an enum so we can render other things like shapes ?
-
+  - build a way to clone things 
+ - auto hide collision volume children ! 
  
 
 
