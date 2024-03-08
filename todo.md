@@ -5,25 +5,12 @@
 
 
 
-BUGS
-
-
 ## Immediate todo 
   
-
-   
-  - build a way to clone things 
-
- - auto hide collision volume children ! of doodads. 
  
+## LATER  
 
 
-- ** in terrain crate, give name component to my terrain and chunk 
+## bugs 
 
-
-
-
-## LATER 
-- add grid locking to translation
-
-- add random rot and scale checkboxes (add controls in doodad window for this ?  or window at bottom )
+sometimes the editor crashes due to a command buffer when pressing ESC 

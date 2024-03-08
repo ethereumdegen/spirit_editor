@@ -15,6 +15,11 @@ use bevy::{
     scene::SceneInstanceReady,
 };
 
+
+#[derive(Component, Default)]
+pub struct DoodadColliderMarker {}
+
+
 #[derive(Default)]
 pub(crate) struct DoodadPlugin;
 
@@ -92,6 +97,7 @@ fn attach_models_to_doodads(
                         eprintln!("{}",err);
                          commands
                             .entity(new_doodad_entity)
+                              .insert(Visibility::Hidden) // will be made visible by the collider marker systems 
                             .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
                             .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
 
@@ -134,4 +140,127 @@ fn get_loaded_model_from_name<'a>(
 
 
          Ok(loaded_model)
+}
+
+ 
+
+#[sysfail]
+pub(crate) fn add_doodad_collider_markers(
+    mut commands: Commands,
+    doodad_query: Query<
+        (Entity, &DoodadComponent),
+         (
+          
+            Without<DoodadColliderMarker>,
+            //With<Handle<Mesh>>,
+        ),
+    > ,
+   mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
+
+   
+)   {
+    #[cfg(feature = "tracing")]
+    let _span = info_span!("add_doodad_collider_markers").entered();
+
+    for evt in scene_instance_evt_reader.read(){
+        let parent = evt.parent;
+        
+        if let Some((new_doodad_entity, doodad_component)) = doodad_query.get(parent).ok() {
+
+             
+            commands
+            .entity(new_doodad_entity)
+            
+            .insert(DoodadColliderMarker::default())
+
+             ;
+
+        }
+
+    }
+
+
+   
+ }
+
+
+
+ #[sysfail]
+pub(crate) fn hide_doodad_collision_volumes(
+    mut commands: Commands,
+    doodad_query: Query<(Entity, &DoodadComponent, &Children), (Added<DoodadColliderMarker> ) >,
+
+    name_query: Query<&Name>,
+    children_query: Query<&Children>,
+    transform_query: Query<&Transform>,
+)   {
+    // Assume you have an `added_doodad_query` that includes entities representing the root of loaded GLTF models.
+    for (new_doodad_entity, doodad_component, children) in doodad_query.iter() {
+        // Traverse the hierarchy to find the `collision_volumes` node.
+        // `children` is a component that contains the direct children of the current entity.
+        for child in children.iter() {
+            if let Ok((collision_volumes_root_entity, _name)) = find_node_by_name_recursive(
+                &mut commands,
+                &name_query,
+                &children_query,
+                *child,
+                "collision_volumes",
+            ) {
+                // If you want to make the node invisible instead of removing it:
+                commands
+                    .entity(collision_volumes_root_entity)
+                    .insert(Visibility::Hidden);
+
+                println!(
+                    "found collision volumes root entity for {:?} -- hiding them ",
+                    &doodad_component
+                );
+
+
+
+                // If you want to remove the node altogether:
+                // commands.entity(entity).despawn_recursive();
+            } 
+        }
+
+        commands
+            .entity(new_doodad_entity)
+            .insert(Visibility::Inherited);
+    }
+
+     
+}
+
+// Recursive function to find a node by name in the scene graph.
+fn find_node_by_name_recursive(
+    commands: &mut Commands,
+
+    name_query: &Query<&Name>,
+    children_query: &Query<&Children>,
+
+    current_entity: Entity,
+    target_name: &str,
+) -> Result<(Entity, String), &'static str> {
+    if let Ok(name) = name_query.get(current_entity) {
+        info!("{:?}",name);
+        if name.as_str() == target_name {
+            return Ok((current_entity, name.to_string()));
+        }
+    }
+
+    if let Ok(children) = children_query.get(current_entity) {
+        for child in children.iter() {
+            if let Ok(result) = find_node_by_name_recursive(
+                commands,
+                &name_query,
+                &children_query,
+                *child,
+                target_name,
+            ) {
+                return Ok(result);
+            }
+        }
+    }
+
+    Err("Node not found")
 }
