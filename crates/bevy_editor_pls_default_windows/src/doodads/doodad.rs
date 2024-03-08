@@ -43,6 +43,8 @@ impl DoodadComponent {
     }
 }
 
+const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
+
 #[sysfail]
 fn attach_models_to_doodads(
     mut commands: Commands,
@@ -78,18 +80,28 @@ fn attach_models_to_doodads(
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
         match (&doodad_component.definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
-                let model_handle = gltf_assets
-                    .gltf_models
-                    .get(model_name.as_str())
-                    .context(format!(" no doodad model registered at "))?;
 
-                let loaded_model = models
-                    .get(model_handle)
-                    .context(format!("Could not load model handle for {}", model_name))?;
+               match get_loaded_model_from_name(model_name, &gltf_assets, &models){
 
-                commands.entity(new_doodad_entity).insert(
-                    loaded_model.named_scenes["Scene"].clone(), //add the scene.. the mesh   but we assume the transform is alrdy there
-                );
+                        Ok(loaded_model)=> {
+
+                             commands.entity(new_doodad_entity).insert(loaded_model.named_scenes["Scene"].clone() ) ; }
+                        ,
+                       Err(err) =>  {
+                       
+                        eprintln!("{}",err);
+                         commands
+                            .entity(new_doodad_entity)
+                            .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                            .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
+
+
+                       }
+
+                 };
+                
+
+               
             }
             RenderableType::CubeShape(cube_shape_def) => {
                 commands
@@ -99,4 +111,27 @@ fn attach_models_to_doodads(
             }
         };
     }
+}
+
+
+fn get_loaded_model_from_name<'a>(
+    model_name:String,
+
+   
+    gltf_assets: &Res<LoadedGltfAssets>,
+     models: &'a Res<'_, Assets<bevy::gltf::Gltf>>,
+
+     ) -> Result< &'a Gltf >{
+
+    let model_handle = gltf_assets
+                    .gltf_models
+                    .get(model_name.as_str())
+                    .context(format!(" no doodad model registered at "))?;
+
+      let loaded_model = models
+                    .get(model_handle)
+                    .context(format!("Could not load model handle for {}", model_name))?;
+
+
+         Ok(loaded_model)
 }

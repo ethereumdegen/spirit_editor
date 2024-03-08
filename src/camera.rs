@@ -52,10 +52,10 @@ pub fn update_camera_move(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
 ) {
-    const MOVE_SPEED: f32 = 2.5; // You can adjust this value as needed
+    const MOVE_SPEED: f32 = 1.0; // You can adjust this value as needed
 
     let boost_multiplier = match keyboard_input.pressed(KeyCode::ShiftLeft) {
-        true => 4.0,
+        true => 6.0,
         false => 1.0,
     };
 

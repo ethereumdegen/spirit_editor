@@ -11,10 +11,10 @@ BUGS
 ## Immediate todo 
   
 
-  - if a gltf is missing, render a purple cube or whatever 
-
+   
   - build a way to clone things 
- - auto hide collision volume children ! 
+
+ - auto hide collision volume children ! of doodads. 
  
 
 

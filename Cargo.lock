@@ -847,7 +847,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls"
-version = "0.8.1"
+version = "0.8.2"
 dependencies = [
  "bevy 0.13.0",
  "bevy_editor_pls_core",
@@ -859,7 +859,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls_core"
-version = "0.8.1"
+version = "0.8.2"
 dependencies = [
  "bevy 0.13.0",
  "bevy-inspector-egui",
@@ -869,7 +869,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_editor_pls_default_windows"
-version = "0.8.1"
+version = "0.8.2"
 dependencies = [
  "anyhow",
  "base64",
@@ -1282,9 +1282,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.13.0"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "20e5f57568e01db661d4bf6959c78a2f67802ce96eba4367c7a2bbdc1737af41"
+checksum = "074bf1f324b9f93d1573956529987938beddcc0c386f5c0d210047cb6baeca77"
 dependencies = [
  "anyhow",
  "bevy 0.13.0",
