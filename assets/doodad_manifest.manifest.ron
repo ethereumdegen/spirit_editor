@@ -1,6 +1,28 @@
   (
     doodad_definitions: [
 
+
+        (
+            name: "ancient_bg_islands",
+            model: GltfModel("models/doodads/ancient_bg_islands.glb"),
+        ),
+
+
+
+        // ancient 
+
+        (
+            name: "ancient_ivy_01",
+            model: GltfModel("models/doodads/ancient_ivy_01.glb"),
+        ),
+   (
+            name: "ancient_ivy_01b",
+            model: GltfModel("models/doodads/ancient_ivy_0b.glb"),
+        ),
+
+
+
+
      // trees 
         (
             name: "birch_yellow_1",
@@ -10,6 +32,27 @@
         (
             name: "birch_green_1",
             model:  GltfModel("models/doodads/birch_green.glb")  
+        ) ,
+
+        (
+            name: "birch_green_2",
+            model:  GltfModel("models/doodads/birch_green2.glb")  
+        ) ,
+
+         (
+            name: "birch_green_3",
+            model:  GltfModel("models/doodads/birch_green3.glb")  
+        ) ,
+
+
+        (
+            name: "birch_dead_1",
+            model:  GltfModel("models/doodads/birch_dead_1.glb")  
+        ) ,
+
+        (
+            name: "birch_dead_2",
+            model:  GltfModel("models/doodads/birch_dead_2.glb")  
         ) ,
 
         (
@@ -55,15 +98,63 @@
         ),
           (
             name: "elf_bld_roof_02",
-            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+            model:  GltfModel("models/doodads/elf_bld_roof_02.glb")  
         ),
          (
             name: "elf_bld_roof_03",
-            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+            model:  GltfModel("models/doodads/elf_bld_roof_03.glb")  
         ),
          (
             name: "elf_bld_roof_04",
-            model:  GltfModel("models/doodads/elf_bld_roof_01.glb")  
+            model:  GltfModel("models/doodads/elf_bld_roof_04.glb")  
+        ),
+
+         (
+            name: "elf_bld_roof_corner_concave_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_concave_02.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_roof_corner_convex_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_convex_02.glb")  
+        ),
+
+           (
+            name: "elf_bld_roof_corner_rounded_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_rounded_02.glb")  
+        ),
+
+                (
+            name: "elf_bld_roof_corner_window_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_window_02.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_arch_03",
+            model:  GltfModel("models/doodads/elf_bld_arch_03.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_wall_doorway_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_01b.glb")  
+        ),
+
+        (
+            name: "elf_bld_wall_doorway_curved_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_curved_01b.glb")  
+        ),
+
+        (
+            name: "elf_bld_wall_doorway_curved_02b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_curved_02b.glb")  
+        ),
+
+         (
+            name: "elf_bld_wall_doorway_double_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_double_01b.glb")  
         ),
 
 
@@ -84,7 +175,15 @@
             name: "elf_bld_wall_01",
             model:  GltfModel("models/doodads/elf_bld_wall_01.glb")  
         ),
-             (
+          (
+            name: "elf_bld_wall_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_01b.glb")  
+        ),
+           (
+            name: "elf_bld_wall_01c",
+            model:  GltfModel("models/doodads/elf_bld_wall_01c.glb")  
+        ),
+           (
             name: "elf_bld_wall_02",
             model:  GltfModel("models/doodads/elf_bld_wall_02.glb")  
         ),
@@ -120,7 +219,217 @@
 
 // ------
 
+     // enchanted forest 
 
+        (
+            name: "forest_env_dirt_cliff_01",
+            model:  GltfModel("models/doodads/forest_env_dirt_cliff_01.glb")  
+        ),
+
+        (
+            name: "forest_env_fern_01",
+            model:  GltfModel("models/doodads/forest_env_fern_01.glb")  
+        ),
+        (
+            name: "forest_env_fern_01b",
+            model:  GltfModel("models/doodads/forest_env_fern_01b.glb")  
+        ),
+        (
+            name: "forest_env_koru_01",
+            model:  GltfModel("models/doodads/forest_env_koru_01.glb")  
+        ),
+        (
+            name: "forest_env_leaves_01",
+            model:  GltfModel("models/doodads/forest_env_leaves_01.glb")  
+        ),
+        (
+            name: "forest_env_log_01",
+            model:  GltfModel("models/doodads/forest_env_log_01.glb")  
+        ),
+        (
+            name: "forest_env_log_02",
+            model:  GltfModel("models/doodads/forest_env_log_02.glb")  
+        ),
+         (
+            name: "forest_env_log_03",
+            model:  GltfModel("models/doodads/forest_env_log_03.glb")  
+        ),
+         (
+            name: "forest_env_log_04",
+            model:  GltfModel("models/doodads/forest_env_log_04.glb")  
+        ),
+
+         (
+            name: "forest_env_moss_lumps_01",
+            model:  GltfModel("models/doodads/forest_env_moss_lumps_01.glb")  
+        ),
+        (
+            name: "forest_env_mushroom_01",
+            model:  GltfModel("models/doodads/forest_env_mushroom_01.glb")  
+        ),
+        (
+            name: "forest_env_mushroom_03",
+            model:  GltfModel("models/doodads/forest_env_mushroom_03.glb")  
+        ),
+        (
+            name: "forest_env_mushroom_cap_01a",
+            model:  GltfModel("models/doodads/forest_env_mushroom_cap_01a.glb")  
+        ),
+        (
+            name: "forest_env_mushroom_cap_01b",
+            model:  GltfModel("models/doodads/forest_env_mushroom_cap_01b.glb")  
+        ),
+        (
+            name: "forest_env_roots_01",
+            model:  GltfModel("models/doodads/forest_env_roots_01.glb")  
+        ),
+        (
+            name: "forest_env_roots_02",
+            model:  GltfModel("models/doodads/forest_env_roots_02.glb")  
+        ),
+          (
+            name: "forest_env_tree_trunk_01",
+            model:  GltfModel("models/doodads/forest_env_tree_trunk_01.glb")  
+        ),
+         (
+            name: "forest_env_tree_trunk_02",
+            model:  GltfModel("models/doodads/forest_env_tree_trunk_02.glb")  
+        ),
+         (
+            name: "forest_env_undergrowth_01a",
+            model:  GltfModel("models/doodads/forest_env_undergrowth_01a.glb")  
+        ),
+        (
+            name: "forest_env_undergrowth_01b",
+            model:  GltfModel("models/doodads/forest_env_undergrowth_01b.glb")  
+        ),
+        (
+            name: "forest_env_undergrowth_01c",
+            model:  GltfModel("models/doodads/forest_env_undergrowth_01c.glb")  
+        ),
+        (
+            name: "forest_env_undergrowth_01d",
+            model:  GltfModel("models/doodads/forest_env_undergrowth_01d.glb")  
+        ),
+        (
+            name: "forest_env_undergrowth_web",
+            model:  GltfModel("models/doodads/forest_env_undergrowth_web.glb")  
+        ),
+        (
+            name: "forest_env_vines_01a",
+            model:  GltfModel("models/doodads/forest_env_vines_01a.glb")  
+        ),
+        (
+            name: "forest_env_vines_01b",
+            model:  GltfModel("models/doodads/forest_env_vines_01b.glb")  
+        ),
+        (
+            name: "forest_env_vines_02a",
+            model:  GltfModel("models/doodads/forest_env_vines_02a.glb")  
+        ),
+        (
+            name: "forest_env_vines_02b",
+            model:  GltfModel("models/doodads/forest_env_vines_02b.glb")  
+        ),
+        (
+            name: "forest_env_vines_03",
+            model:  GltfModel("models/doodads/forest_env_vines_03.glb")  
+        ),
+        (
+            name: "forest_grass_01",
+            model:  GltfModel("models/doodads/forest_grass_01.glb")  
+        ),
+        (
+            name: "forest_ground_grass_01",
+            model:  GltfModel("models/doodads/forest_ground_grass_01.glb")  
+        ),
+        (
+            name: "forest_prop_archway_01",
+            model:  GltfModel("models/doodads/forest_prop_archway_01.glb")  
+        ),
+        (
+            name: "forest_prop_crystal_01a",
+            model:  GltfModel("models/doodads/forest_prop_crystal_01a.glb")  
+        ),
+        (
+            name: "forest_prop_crystal_01b",
+            model:  GltfModel("models/doodads/forest_prop_crystal_01b.glb")  
+        ),
+        (
+            name: "forest_prop_crystal_01c",
+            model:  GltfModel("models/doodads/forest_prop_crystal_01c.glb")  
+        ),
+
+        (
+            name: "forest_prop_crystal_02a",
+            model:  GltfModel("models/doodads/forest_prop_crystal_02a.glb")  
+        ),
+        (
+            name: "forest_prop_crystal_02b",
+            model:  GltfModel("models/doodads/forest_prop_crystal_02b.glb")  
+        ),
+        (
+            name: "forest_prop_geode_01a",
+            model:  GltfModel("models/doodads/forest_prop_geode_01a.glb")  
+        ),
+        (
+            name: "forest_prop_geode_01b",
+            model:  GltfModel("models/doodads/forest_prop_geode_01b.glb")  
+        ),
+        (
+            name: "forest_prop_geode_01c",
+            model:  GltfModel("models/doodads/forest_prop_geode_01c.glb")  
+        ),
+        (
+            name: "forest_prop_geode_02a",
+            model:  GltfModel("models/doodads/forest_prop_geode_02a.glb")  
+        ),
+        (
+            name: "forest_prop_geode_02b",
+            model:  GltfModel("models/doodads/forest_prop_geode_02b.glb")  
+        ),
+
+        (
+            name: "forest_prop_lantern",
+            model:  GltfModel("models/doodads/forest_prop_lantern.glb")  
+        ),
+        (
+            name: "forest_prop_lantern_stand_01",
+            model:  GltfModel("models/doodads/forest_prop_lantern_stand_01.glb")  
+        ),
+        (
+            name: "forest_prop_lantern_stand_03",
+            model:  GltfModel("models/doodads/forest_prop_lantern_stand_03.glb")  
+        ),
+        (
+            name: "forest_prop_portal_with_stairs",
+            model:  GltfModel("models/doodads/forest_prop_portal_with_stairs.glb")  
+        ),
+        (
+            name: "forest_prop_stairs",
+            model:  GltfModel("models/doodads/forest_prop_stairs.glb")  
+        ),
+        (
+            name: "forest_prop_table",
+            model:  GltfModel("models/doodads/forest_prop_table.glb")  
+        ),
+
+        (
+            name: "forest_ruins_01",
+            model:  GltfModel("models/doodads/forest_ruins_01.glb")  
+        ),
+
+        (
+            name: "forest_ruins_02",
+            model:  GltfModel("models/doodads/forest_ruins_02.glb")  
+        ),
+
+        (
+            name: "forest_ruins_03",
+            model:  GltfModel("models/doodads/forest_ruins_03.glb")  
+        ),
+
+    // ----- 
 
 
         (

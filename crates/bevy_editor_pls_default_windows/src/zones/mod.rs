@@ -79,9 +79,9 @@ impl EditorWindow for ZoneWindow {
                     state.zone_create_result = None;
                 }
 
-                let enter_pressed = ui.input(|input| input.key_pressed(egui::Key::Enter));
+               // let enter_pressed = ui.input(|input| input.key_pressed(egui::Key::Enter));
 
-                if ui.button("Create Zone").clicked() || enter_pressed {
+                if ui.button("Create Zone").clicked()   {
                     let create_filename = if state.create_filename.is_empty() {
                         DEFAULT_FILENAME
                     } else {
@@ -105,7 +105,7 @@ impl EditorWindow for ZoneWindow {
 
                 let enter_pressed = ui.input(|input| input.key_pressed(egui::Key::Enter));
 
-                if ui.button("Load Zone").clicked() || enter_pressed {
+                if ui.button("Load Zone").clicked()   {
                     let load_filename = if state.load_filename.is_empty() {
                         DEFAULT_FILENAME
                     } else {

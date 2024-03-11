@@ -1,3 +1,4 @@
+use bevy::core_pipeline::bloom::BloomSettings;
 use bevy::input::mouse::MouseMotion;
 
 use std::f32::consts::PI;
@@ -12,6 +13,9 @@ use bevy_mesh_terrain::{
     terrain::{TerrainData, TerrainViewer},
     TerrainMeshPlugin,
 };
+
+
+use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use bevy::pbr::ShadowFilteringMethod;
 
@@ -55,6 +59,19 @@ fn main() {
         )
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
+
+
+        .add_plugins((
+                FrameTimeDiagnosticsPlugin,
+                LogDiagnosticsPlugin::default() ,
+                bevy::diagnostic::EntityCountDiagnosticsPlugin::default() ,
+  
+                bevy::diagnostic::SystemInformationDiagnosticsPlugin::default()
+
+                )) 
+
+
+
         .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)
@@ -118,14 +135,28 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         brightness: light_consts::lux::OVERCAST_DAY,
     });
 
+
+
+
+
+
+
     // camera
 
     commands
         .spawn(Camera3dBundle {
+            camera: Camera {
+                 hdr: true, // 1. HDR must be enabled on the camera
+                ..default()
+            },
+
             transform: Transform::from_xyz(20.0, 162.5, 20.0)
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
             ..default()
         })
+        .insert( BloomSettings::default())
         .insert(TerrainViewer::default())
         .insert(ShadowFilteringMethod::Jimenez14);
 }
+
+ 
