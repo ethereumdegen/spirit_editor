@@ -47,11 +47,7 @@ egui = "0.26"
 egui_dock = "0.11"
 egui-gizmo = "0.16"
 
-
-[[example]]
-name = "raycasting"
-path = "examples/raycasting.rs"
-
+ 
 [profile.dev.package."*"]
 opt-level = 3
 
