@@ -7,13 +7,9 @@ edition = "2021"
 [dependencies]
 bevy = "0.13.0"
 bevy_egui = "0.25.0"
-<<<<<<< HEAD
-#bevy_mesh_terrain = "0.13.1"
-bevy_mesh_terrain =  { path = "../bevy_mesh_terrain"}
 
-=======
-bevy_mesh_terrain = "0.13.4" 
->>>>>>> f992cd37d0d36237c26d337895adaa744ac7a99f
+
+bevy_mesh_terrain = "0.13.6"  
 
 bevy_mod_picking = {version="0.17.0", features=["backend_raycast",  "highlight","selection"]}
 bevy_mod_raycast = "0.17.0"

@@ -110,8 +110,14 @@
         ),
 
          (
-            name: "elf_bld_roof_corner_02",
-            model:  GltfModel("models/doodads/elf_bld_roof_corner_02.glb")  
+            name: "elf_bld_roof_corner_concave_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_concave_02.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_roof_corner_convex_02",
+            model:  GltfModel("models/doodads/elf_bld_roof_corner_convex_02.glb")  
         ),
 
            (
@@ -122,6 +128,33 @@
                 (
             name: "elf_bld_roof_corner_window_02",
             model:  GltfModel("models/doodads/elf_bld_roof_corner_window_02.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_arch_03",
+            model:  GltfModel("models/doodads/elf_bld_arch_03.glb")  
+        ),
+
+
+         (
+            name: "elf_bld_wall_doorway_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_01b.glb")  
+        ),
+
+        (
+            name: "elf_bld_wall_doorway_curved_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_curved_01b.glb")  
+        ),
+
+        (
+            name: "elf_bld_wall_doorway_curved_02b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_curved_02b.glb")  
+        ),
+
+         (
+            name: "elf_bld_wall_doorway_double_01b",
+            model:  GltfModel("models/doodads/elf_bld_wall_doorway_double_01b.glb")  
         ),
 
 
