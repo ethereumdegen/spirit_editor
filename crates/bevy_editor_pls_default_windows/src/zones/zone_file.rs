@@ -102,7 +102,7 @@ impl From<Transform> for TransformSimple {
         let translation = transform.translation;
 
         // Convert quaternion to Euler angles (in radians)
-        let (roll, pitch, yaw) = transform.rotation.to_euler(EulerRot::XYZ);
+        let ( yaw, pitch,  roll) = transform.rotation.to_euler(EulerRot::YXZ);
 
         // Extract scale directly
         let scale = transform.scale;
@@ -110,7 +110,7 @@ impl From<Transform> for TransformSimple {
         // Create and return a new instance of TransformSimple
         TransformSimple {
             translation,
-            rotation: Vec3::new(roll, pitch, yaw), // Assuming XYZ order for Euler angles
+            rotation: Vec3::new(yaw, pitch, roll ), 
             scale,
         }
     }

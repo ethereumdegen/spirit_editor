@@ -230,7 +230,7 @@ pub fn handle_place_doodad_events(
 
         if let Some(rot) = evt.rotation_euler {
             transform =
-                transform.with_rotation(Quat::from_euler(EulerRot::XYZ, rot.x, rot.y, rot.z))
+                transform.with_rotation(Quat::from_euler(EulerRot::YXZ, rot.x, rot.y, rot.z))
         }
         if let Some(scale) = evt.scale {
             transform = transform.with_scale(scale)
