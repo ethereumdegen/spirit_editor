@@ -483,41 +483,26 @@
 
          (
             name: "player_spawn",
-            model: CubeShape( (color: Rgba(
-                                        red: 0.8,
-                                        green: 0.2,
-                                        blue: 0.8,
-                                        alpha: 1.0
-                                    ))),
+            model:  GltfModel("models/editor/arrow_down_b.glb")  ,
             initial_custom_props: Some({ "special_type": String("player_spawn") })
         ),
 
           (
             name: "npc_waypoint",
-            model: CubeShape( (color: Rgba(
-                                        red: 0.2,
-                                        green: 0.8,
-                                        blue: 0.2,
-                                        alpha: 1.0
-                                    ))),
+            model:  GltfModel("models/editor/arrow_forward.glb")  ,
             initial_custom_props: Some({ 
             "special_type": String("npc_waypoint") ,
-             "unique_name": String("---") 
+             "waypoint_name": String("---") 
 
             })
         ),
 
         (
             name: "camera_waypoint",
-            model: CubeShape( (color: Rgba(
-                                        red: 0.2,
-                                        green: 0.8,
-                                        blue: 0.8,
-                                        alpha: 1.0
-                                    ))),
+             model:  GltfModel("models/editor/camera.glb")  ,
             initial_custom_props: Some({ 
             "special_type": String("camera_waypoint") ,  
-             "unique_name": String("---") 
+             "waypoint_name": String("---") 
               })
         ),
 
