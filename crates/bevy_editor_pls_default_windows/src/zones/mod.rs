@@ -228,6 +228,7 @@ pub fn handle_zone_events(
                     .spawn(SpatialBundle::default())
                     .insert(ZoneComponent {})
                     .insert(Name::new(zone_name.to_string()))
+                    
                     .id();
 
                 zone_resource.primary_zone = Some(created_zone);
@@ -241,6 +242,7 @@ pub fn handle_zone_events(
                             position: zone_entity.get_position(),
                             rotation_euler: Some(zone_entity.get_rotation_euler()),
                             scale: Some(zone_entity.get_scale()),
+                            custom_props: zone_entity.get_custom_props().clone()
                         }
                     });
                 }

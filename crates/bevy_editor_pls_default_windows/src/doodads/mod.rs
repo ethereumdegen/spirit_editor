@@ -7,7 +7,7 @@ use bevy::gltf::{Gltf, GltfMesh, GltfNode};
 
 use crate::doodads::doodad_manifest::RenderableType;
 use crate::placement::PlacementWindow;
-use crate::zones::zone_file::CustomPropsComponent;
+use crate::zones::zone_file::{CustomPropsComponent,CustomPropsMap};
 use crate::zones::ZoneResource;
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_editor_pls_core::Editor;
@@ -22,6 +22,8 @@ use bevy_mod_raycast::prelude::Raycast;
 
 use self::doodad::{DoodadComponent, DoodadPlugin, LoadedGltfAssets};
 use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource};
+
+
 
 pub mod doodad;
 mod doodad_manifest;
@@ -38,6 +40,7 @@ pub struct PlaceDoodadEvent {
     pub scale: Option<Vec3>,
     pub rotation_euler: Option<Vec3>,
     pub doodad_name: String,
+    pub custom_props: Option<CustomPropsMap>
     // pub doodad_definition: DoodadDefinition
 }
 
@@ -213,7 +216,15 @@ pub fn handle_place_doodad_events(
             continue;
         };
 
-        let init_custom_props = doodad_definition.initial_custom_props.clone();
+        let init_custom_props = &doodad_definition.initial_custom_props ;
+
+
+
+        let custom_props_to_attach = match &evt.custom_props {
+            Some(props) => Some( props ),
+            None  => init_custom_props.as_ref()
+        };
+
 
         let mut transform = Transform::from_xyz(position.x, position.y, position.z);
 
@@ -235,13 +246,13 @@ pub fn handle_place_doodad_events(
 
         println!("doodad spawned {:?}", doodad_spawned);
 
-        if let Some(init_custom_props) = init_custom_props {
+        if let Some(custom_props) = custom_props_to_attach {
             println!("insert custom props {:?}", init_custom_props);
 
             commands
                 .entity(doodad_spawned)
                 .insert(CustomPropsComponent {
-                    props: init_custom_props,
+                    props: custom_props.clone(),
                 });
         }
 
@@ -328,11 +339,14 @@ pub fn update_place_doodads(
 
             //   println!("place doodad 4 {:?}", doodad_definition);
 
+            let custom_props = None; 
+
             event_writer.send(PlaceDoodadEvent {
                 position: hit_coordinates,
                 doodad_name: doodad_definition.name,
                 rotation_euler,
                 scale,
+                custom_props
             });
         }
     }

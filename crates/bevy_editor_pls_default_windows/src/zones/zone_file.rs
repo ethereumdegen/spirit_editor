@@ -67,6 +67,10 @@ impl ZoneEntity {
         self.transform.scale
     }
 
+    pub fn get_custom_props(&self) -> &Option<CustomPropsMap> {
+        &self.custom_props
+    }
+
     fn from_entity(
         entity: Entity,
         zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>)>,
