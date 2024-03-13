@@ -1,5 +1,6 @@
 		
 use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap};
+use bevy_editor_pls_default_windows::doodads::built_vfx::BuiltVfxResource;
 use bevy_magic_fx::{animated_material::{build_animated_material, AnimatedMaterial}, magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}, shader_variant::ShaderVariantManifest};
 
 
@@ -31,13 +32,6 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
-#[derive(Resource, Default)]
-  struct BuiltVfxResource {
-
-
-  	magic_fx_variants: HashMap<String, MagicFxVariant>  	
-
-}
 
 
 
@@ -140,7 +134,7 @@ fn update_load_folders(
                 info!("asset path {:?}", asset_path); 
 
               
-                if (&asset_path.path()).starts_with("meshes") { 
+                if (&asset_path.path()).starts_with("models/meshes") { 
                          asset_loading_resource.mesh_handles_map.insert((&asset_path.path().to_str().unwrap().to_string()).clone(), asset_server.load(  &asset_path ) ) ;
                 }
  
@@ -165,6 +159,8 @@ fn update_load_folders(
             &&  !asset_loading_resource.shader_variants_map.is_empty() 
             &&  !asset_loading_resource.magic_fx_variants_map.is_empty() 
             {             
+
+                
                 next_state.set(LoadingState::FundamentalAssetsLoad);
             }
 
@@ -194,7 +190,7 @@ fn load_shader_variants(
 
     shader_variant_manifest_resource: Res<Assets<ShaderVariantManifest>>,
 
-    asset_server: ResMut<AssetServer>,
+   // asset_server: ResMut<AssetServer>,
 ) {
 
  

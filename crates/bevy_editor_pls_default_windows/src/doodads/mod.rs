@@ -26,7 +26,7 @@ use self::doodad::{DoodadComponent, DoodadPlugin, LoadedGltfAssets};
 use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource};
 
 
-
+pub mod built_vfx;
 pub mod doodad;
 mod doodad_manifest;
 pub mod picking;

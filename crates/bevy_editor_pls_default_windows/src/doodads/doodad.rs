@@ -1,12 +1,14 @@
 use bevy::{prelude::*, utils::HashMap};
 
-use super::doodad_manifest::{DoodadDefinition, RenderableType};
+use super::{built_vfx::BuiltVfxResource, doodad_manifest::{DoodadDefinition, RenderableType}};
 
 use anyhow::{Context, Result};
 
 use bevy_mod_sysfail::*;
 
 use bevy_mod_picking::prelude::*;
+ use bevy_magic_fx::magic_fx::MagicFxVariantComponent;
+
 
 //use bevy_mod_picking::prelude::{PickRaycastTarget, PickableBundle};
 
@@ -67,6 +69,9 @@ fn attach_models_to_doodads(
 
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+
+    mut built_vfx_registry: ResMut<BuiltVfxResource>,
+    time: Res<Time>, 
 ) {
     #[cfg(feature = "tracing")]
     let _span = info_span!("add_model_to_doodads").entered();
@@ -117,9 +122,26 @@ fn attach_models_to_doodads(
             }
 
              RenderableType::MagicFx(magic_fx_name) => {
+
+                let Some(magic_fx) = built_vfx_registry.magic_fx_variants.get(&magic_fx_name ) else {
+
+                    info!("spawn magic fx fallback");
+                    commands
+                    .entity(new_doodad_entity)
+                    .insert(meshes.add(Cuboid::new(2.0, 2.0, 2.0))) 
+                     .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
+
+
+                    continue 
+                };
+
+                 info!("spawn magic fx  {:?}", magic_fx_name.clone());
                 commands
                     .entity(new_doodad_entity)
-                    .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                     .insert(MagicFxVariantComponent {
+                            magic_fx: magic_fx.clone(),
+                            start_time: time.elapsed(),
+                        })
                     //.insert(materials.add(cube_shape_def.color.clone())
                      ;
             }

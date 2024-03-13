@@ -878,6 +878,7 @@ dependencies = [
  "bevy-inspector-egui",
  "bevy_common_assets",
  "bevy_editor_pls_core",
+ "bevy_magic_fx",
  "bevy_mod_debugdump",
  "bevy_mod_picking 0.18.1",
  "bevy_mod_raycast 0.17.0",

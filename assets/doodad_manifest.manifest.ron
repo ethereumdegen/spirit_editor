@@ -473,7 +473,7 @@
 
            (
             name: "waterfall_1",
-            model:  MagicFx("magicfx/waterfall.magicfx.ron")  
+            model:  MagicFx("magic_fx/waterfall.magicfx.ron")  
         ) ,
 
 

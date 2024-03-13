@@ -20,6 +20,7 @@ bevy = { version = "0.13", default-features = false, features = [
 ] }
 bevy_editor_pls_core.workspace = true
 bevy-inspector-egui.workspace = true
+bevy_magic_fx.workspace = true
 # bevy_mod_picking = { git = "https://github.com/aevyrie/bevy_mod_picking", rev = "7a9ffd020b530acef25c8cf8bc9475b7a13bd353", default-features = false, features = [
 #     "backend_raycast",
 #     "backend_egui",
