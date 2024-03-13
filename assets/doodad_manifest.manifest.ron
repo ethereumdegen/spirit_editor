@@ -473,7 +473,7 @@
 
            (
             name: "waterfall_1",
-            model:  MagicFx("models/doodads/tent_1.glb")  
+            model:  MagicFx("magicfx/waterfall.magicfx.ron")  
         ) ,
 
 

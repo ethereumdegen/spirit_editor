@@ -115,6 +115,14 @@ fn attach_models_to_doodads(
                     .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
                     .insert(materials.add(cube_shape_def.color.clone()));
             }
+
+             RenderableType::MagicFx(magic_fx_name) => {
+                commands
+                    .entity(new_doodad_entity)
+                    .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                    //.insert(materials.add(cube_shape_def.color.clone())
+                     ;
+            }
         };
     }
 }

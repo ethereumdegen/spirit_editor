@@ -1,5 +1,7 @@
+use asset_loading::asset_loading_plugin;
 use bevy::core_pipeline::bloom::BloomSettings;
 use bevy::input::mouse::MouseMotion;
+use bevy_magic_fx::MagicFxPlugin;
 
 use std::f32::consts::PI;
 
@@ -26,6 +28,7 @@ mod commands;
 mod editor_pls;
 mod tools;
 mod ui;
+mod asset_loading;
 
 use crate::camera::camera_plugin;
 
@@ -56,19 +59,24 @@ fn main() {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
                 }),
-        )
+        )   
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
 
+          .add_plugins(bevy_obj::ObjPlugin)
+            .add_plugins( MagicFxPlugin )
+        .add_plugins(asset_loading_plugin)
 
-        .add_plugins((
+
+        /*.add_plugins((
                 FrameTimeDiagnosticsPlugin,
                 LogDiagnosticsPlugin::default() ,
                 bevy::diagnostic::EntityCountDiagnosticsPlugin::default() ,
   
                 bevy::diagnostic::SystemInformationDiagnosticsPlugin::default()
 
-                )) 
+            )) 
+            */
 
 
 

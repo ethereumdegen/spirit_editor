@@ -1318,7 +1318,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.2"
+version = "0.13.3"
 dependencies = [
  "bevy 0.13.0",
  "bevy_editor_pls",
@@ -1329,6 +1329,7 @@ dependencies = [
  "bevy_mesh_terrain",
  "bevy_mod_picking 0.17.0",
  "bevy_mod_raycast 0.17.0",
+ "bevy_obj",
  "seldom_fn_plugin",
 ]
 

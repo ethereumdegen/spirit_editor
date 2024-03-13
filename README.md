@@ -6,15 +6,18 @@
 
 
 
-Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone application.
-
-Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.  
 
 
 
 ## How to use 
 
  
+Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone application.
+
+Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.  
+
+
+
 
 
 ### Terrain Edit Tips and tricks 
@@ -72,5 +75,9 @@ ex: Typically, trees will only have a yaw rotation.
 1. You will need to copy the terrain data folder from the assets folder of this editor to the assets folder of your game after you save your chunks.
 
 2. You will need to either save the scene or save your zone files and then move those files over to your game.  I wrote custom import scripts in rust in my games codebase to parse the zone files so my game will know how to spawn the doodads when the player enters the game scene . 
+
+
+
+
 
 

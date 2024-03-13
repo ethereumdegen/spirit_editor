@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.2"
+version = "0.13.3"
 edition = "2021"
 
 
@@ -23,6 +23,7 @@ seldom_fn_plugin = "0.6.0"
 bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
+bevy_obj = "0.13.0"
  
 
 
