@@ -11,6 +11,9 @@ bevy_egui = "0.25.0"
 
 bevy_mesh_terrain = "0.13.7"  
 
+bevy_magic_fx = "0.2.9"
+
+
 bevy_mod_picking = {version="0.17.0", features=["backend_raycast",  "highlight","selection"]}
 bevy_mod_raycast = "0.17.0"
 seldom_fn_plugin = "0.6.0"

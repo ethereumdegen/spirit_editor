@@ -10,9 +10,8 @@
 - add more elf walls 
 - add more trees (maek them ) (quaternius) 
 
+- BUG : cant add custom props in inspector anymore .
 
-- make delete do despawn
--  be abl to define cinematics 
 
  
 ## LATER  

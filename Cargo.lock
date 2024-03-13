@@ -650,6 +650,7 @@ dependencies = [
  "ron",
  "serde",
  "thiserror",
+ "toml",
 ]
 
 [[package]]
@@ -1261,6 +1262,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_magic_fx"
+version = "0.2.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c9438f8423af6abe7e69e2437b0ee2d0ccf6c7fdcd815d8cae47be3cb1e0800"
+dependencies = [
+ "bevy 0.13.0",
+ "bevy_common_assets",
+ "bevy_obj",
+ "ron",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "bevy_math"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1310,6 +1325,7 @@ dependencies = [
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
  "bevy_egui",
+ "bevy_magic_fx",
  "bevy_mesh_terrain",
  "bevy_mod_picking 0.17.0",
  "bevy_mod_raycast 0.17.0",
@@ -1479,6 +1495,21 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.48",
+]
+
+[[package]]
+name = "bevy_obj"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d935d4459450e0aa346451483a038f6ac78034999a05deb268abe5ac81713daf"
+dependencies = [
+ "anyhow",
+ "bevy_app 0.13.0",
+ "bevy_asset 0.13.0",
+ "bevy_render 0.13.0",
+ "bevy_utils 0.13.0",
+ "thiserror",
+ "tobj",
 ]
 
 [[package]]
@@ -5274,6 +5305,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_spanned"
+version = "0.6.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eb3622f419d1296904700073ea6cc23ad690adbd66f13ea683df73298736f0c1"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "sharded-slab"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5523,10 +5563,34 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
 
 [[package]]
+name = "tobj"
+version = "4.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f7ca3ec0405b0f2f95e0dbcced28882190dc79b0dac63ff82533d256d770223"
+dependencies = [
+ "ahash",
+]
+
+[[package]]
+name = "toml"
+version = "0.8.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "af06656561d28735e9c1cd63dfd57132c8155426aa6af24f36a00a351f88c48e"
+dependencies = [
+ "serde",
+ "serde_spanned",
+ "toml_datetime",
+ "toml_edit 0.22.7",
+]
+
+[[package]]
 name = "toml_datetime"
 version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3550f4e9685620ac18a50ed434eb3aec30db8ba93b0287467bca5826ea25baf1"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "toml_edit"
@@ -5536,7 +5600,7 @@ checksum = "1b5bb770da30e5cbfde35a2d7b9b8a2c4b8ef89548a7a6aeab5c9a576e3e7421"
 dependencies = [
  "indexmap 2.2.1",
  "toml_datetime",
- "winnow",
+ "winnow 0.5.35",
 ]
 
 [[package]]
@@ -5547,7 +5611,7 @@ checksum = "70f427fce4d84c72b5b732388bf4a9f4531b53f74e2887e3ecb2481f68f66d81"
 dependencies = [
  "indexmap 2.2.1",
  "toml_datetime",
- "winnow",
+ "winnow 0.5.35",
 ]
 
 [[package]]
@@ -5558,7 +5622,20 @@ checksum = "6a8534fd7f78b5405e860340ad6575217ce99f38d4d5c8f2442cb5ecb50090e1"
 dependencies = [
  "indexmap 2.2.1",
  "toml_datetime",
- "winnow",
+ "winnow 0.5.35",
+]
+
+[[package]]
+name = "toml_edit"
+version = "0.22.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "18769cd1cec395d70860ceb4d932812a0b4d06b1a4bb336745a4d21b9496e992"
+dependencies = [
+ "indexmap 2.2.1",
+ "serde",
+ "serde_spanned",
+ "toml_datetime",
+ "winnow 0.6.5",
 ]
 
 [[package]]
@@ -6478,6 +6555,15 @@ name = "winnow"
 version = "0.5.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1931d78a9c73861da0134f453bb1f790ce49b2e30eba8410b4b79bac72b46a2d"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "winnow"
+version = "0.6.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dffa400e67ed5a4dd237983829e66475f0a4a26938c4b04c21baede6262215b8"
 dependencies = [
  "memchr",
 ]

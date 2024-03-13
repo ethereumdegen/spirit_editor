@@ -3,6 +3,8 @@ use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 use bevy::prelude::*;
 use rand::Rng;
 
+use bevy::utils::HashMap;
+
 use bevy::gltf::{Gltf, GltfMesh, GltfNode};
 
 use crate::doodads::doodad_manifest::RenderableType;
@@ -253,6 +255,12 @@ pub fn handle_place_doodad_events(
                 .entity(doodad_spawned)
                 .insert(CustomPropsComponent {
                     props: custom_props.clone(),
+                });
+        }else{
+             commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent {
+                    props:  HashMap::new(),
                 });
         }
 

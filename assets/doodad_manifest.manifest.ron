@@ -470,6 +470,13 @@
 
         // special things 
 
+
+           (
+            name: "waterfall_1",
+            model:  MagicFx("models/doodads/tent_1.glb")  
+        ) ,
+
+
           (
             name: "vfx_leaves",
             model: CubeShape( (color: Rgba(

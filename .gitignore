@@ -2,5 +2,7 @@
 **default_terrain**
 
 
-assets/models/**
-assets/**/manifest.ron
+assets/models/doodads/**
+assets/models/units/**
+
+# assets/**/manifest.ron
