@@ -8,11 +8,15 @@ use bevy_editor_pls::EditorPlugin;
 
 use bevy_editor_pls::editor;
 
+use bevy_editor_pls_default_windows::zones::zone_file::CustomProp;
 use bevy_mesh_terrain::chunk::Chunk;
 use bevy_mesh_terrain::chunk::TerrainChunkMesh;
 
 pub fn editor_ui_plugin(app: &mut App) {
-    app.add_plugins(EditorPlugin {
+    app
+
+    .register_type::<CustomProp>()
+    .add_plugins(EditorPlugin {
         enable_camera_controls: true,
         ..default()
     })

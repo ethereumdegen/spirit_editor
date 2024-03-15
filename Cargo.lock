@@ -421,8 +421,6 @@ dependencies = [
 [[package]]
 name = "bevy-inspector-egui"
 version = "0.23.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bb36c3adb02afa4496085250d437217b2a5280d8dd464937c6c5b21bc88830c0"
 dependencies = [
  "bevy-inspector-egui-derive",
  "bevy_app 0.13.0",
@@ -450,8 +448,6 @@ dependencies = [
 [[package]]
 name = "bevy-inspector-egui-derive"
 version = "0.23.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b3c488161a04a123e10273e16d4533945943fcfcf345f066242790e8977aee2d"
 dependencies = [
  "proc-macro2",
  "quote",

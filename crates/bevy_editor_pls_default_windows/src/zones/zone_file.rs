@@ -34,15 +34,20 @@ pub struct CustomPropsComponent {
 
 pub type CustomPropsMap = HashMap<String, CustomProp>;
 
-#[derive(Serialize, Deserialize, Clone, Debug, Reflect)]
-#[reflect(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug, Reflect, Default)]
+#[reflect(Serialize, Deserialize,Default)]  //need to reflect default or else cant use + in editor 
 pub enum CustomProp {
     Vec3(Vec3),
     String(String),
     Float(f32),
-    Integer(i32),
+    Integer(i32), 
     Boolean(bool),
+    #[default]
+    None  
 }
+ 
+
+
 
 #[derive(Serialize, Deserialize)]
 pub struct ZoneEntity {
