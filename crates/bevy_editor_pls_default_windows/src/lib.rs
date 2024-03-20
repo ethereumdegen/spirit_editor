@@ -3,7 +3,7 @@
 
 use bevy::prelude::*;
  
-use zones::{zone_file::CustomPropsComponent, CustomProp, ZoneEvent, ZoneResource};
+use zones::{zone_file::{CustomProp, CustomPropsComponent},  ZoneEvent, ZoneResource};
 
  
 

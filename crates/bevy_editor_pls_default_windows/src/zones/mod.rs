@@ -216,12 +216,17 @@ pub fn handle_zone_events(
                     return;
                 };
 
-                // Deserialize the string into ZoneFile
-                let Ok(zone_file) = ron::from_str::<ZoneFile>(&file_content) else {
-                    println!("Could not parse file {:?}", file_name);
-                    return;
-                };
 
+                let zone_file = match ron::from_str::<ZoneFile>(&file_content) {
+
+                    Ok(f) => f ,
+
+                    Err(e) =>  {
+                        eprintln!("Could not parse file {:?} {:?}", file_name, e); 
+                        return;
+                    }
+                };
+               
                 //spawnn the zone entity and set it as primary
 
                 let created_zone = commands
