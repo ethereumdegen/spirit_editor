@@ -29,8 +29,10 @@ mod editor_pls;
 mod tools;
 mod ui;
 mod asset_loading;
+mod water;
 
 use crate::camera::camera_plugin;
+use crate::water::water_plugin;
 
 use crate::tools::brush_tools_plugin;
 
@@ -63,23 +65,12 @@ fn main() {
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
 
-          .add_plugins(bevy_obj::ObjPlugin)
-            .add_plugins( MagicFxPlugin )
+        .add_plugins(bevy_obj::ObjPlugin)
+        .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
-
-        /*.add_plugins((
-                FrameTimeDiagnosticsPlugin,
-                LogDiagnosticsPlugin::default() ,
-                bevy::diagnostic::EntityCountDiagnosticsPlugin::default() ,
-  
-                bevy::diagnostic::SystemInformationDiagnosticsPlugin::default()
-
-            )) 
-            */
-
-
-
+ 
+        .fn_plugin(water_plugin)
         .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)

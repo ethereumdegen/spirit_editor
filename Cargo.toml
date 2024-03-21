@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.3"
+version = "0.13.4"
 edition = "2021"
 
 
@@ -25,6 +25,8 @@ bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
 bevy_obj = "0.13.0"
  
+
+bevy_water = "0.13.0"
 
 
 [workspace.package]
