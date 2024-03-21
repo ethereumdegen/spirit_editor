@@ -83,6 +83,22 @@
             model:  GltfModel("models/doodads/elf_bld_floor_05.glb")  
         ),
 
+
+         (
+            name: "elf_bld_floor_corner_01",
+            model:  GltfModel("models/doodads/elf_bld_floor_corner_01.glb")  
+        ),
+          (
+            name: "elf_bld_floor_corner_01c",
+            model:  GltfModel("models/doodads/elf_bld_floor_corner_01c.glb")  
+        ),
+            (
+            name: "elf_bld_floor_corner_03",
+            model:  GltfModel("models/doodads/elf_bld_floor_corner_03.glb")  
+        ),
+
+
+
          (
             name: "elf_bld_house_base_corner_01",
             model:  GltfModel("models/doodads/elf_bld_house_base_corner_01.glb")  
