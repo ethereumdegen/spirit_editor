@@ -1,6 +1,5 @@
 		
-use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap};
-use bevy_editor_pls_default_windows::doodads::built_vfx::BuiltVfxResource;
+use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
 use bevy_magic_fx::{animated_material::{build_animated_material, AnimatedMaterial}, magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}, shader_variant::ShaderVariantManifest};
 
 
@@ -31,6 +30,13 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
+#[derive(Resource, Default)]
+ pub  struct BuiltVfxResource {
+
+
+  pub   magic_fx_variants: HashMap<String, MagicFxVariant>      
+
+}
 
 
 

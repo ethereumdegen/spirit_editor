@@ -39,8 +39,7 @@ impl Plugin for StandardWindowsPlugin {
             .init_resource::<placement::PlacementResource>()
             .add_systems(Update, zones::handle_zone_events)
             .add_systems(Update, doodads::update_place_doodads)
-            .add_systems(Update, doodads::doodad::hide_doodad_collision_volumes)
-            .add_systems(Update, doodads::doodad::add_doodad_collider_markers)
+           
             .add_systems(Update, doodads::reset_place_doodads)
             .add_systems(Update, doodads::handle_place_doodad_events)
             .add_systems(Update, doodads::picking::update_picking_doodads)

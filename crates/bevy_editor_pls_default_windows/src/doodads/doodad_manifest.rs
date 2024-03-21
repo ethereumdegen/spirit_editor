@@ -37,7 +37,8 @@ impl DoodadManifest {
 pub enum RenderableType {
     GltfModel(String), //the path
     CubeShape(CubeShapeDefinition),
-    MagicFx(String)
+    MagicFx(String),
+    LiquidPlane
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]

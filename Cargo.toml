@@ -14,7 +14,7 @@ bevy_mesh_terrain = "0.13.7"
 bevy_magic_fx = "0.2.9"
 
 
-bevy_mod_picking = {version="0.17.0", features=["backend_raycast",  "highlight","selection"]}
+bevy_mod_picking = {version="0.18.0", features=["backend_raycast",  "highlight","selection"]}
 bevy_mod_raycast = "0.17.0"
 seldom_fn_plugin = "0.6.0"
 
@@ -27,6 +27,8 @@ bevy_obj = "0.13.0"
  
 
 bevy_water = "0.13.0"
+anyhow = "1"
+bevy_mod_sysfail = "7.0.0"
 
 
 [workspace.package]
@@ -50,7 +52,8 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" } 
 
-bevy_magic_fx = "0.2.9"
+anyhow = "1"
+bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.23.4"
 egui = "0.26"

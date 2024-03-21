@@ -504,13 +504,55 @@
           //  initial_custom_props: Some({ "special_type": String("vfx_emitter") , "vfx_name":String("leaves" )})
         ),
 
+
+
+        (
+            name: "item_dagger",
+            model:  CubeShape( (color: Rgba(
+                                        red: 0.8,
+                                        green: 0.1,
+                                        blue: 0.1,
+                                        alpha: 0.8
+                                    )))  ,
+            initial_custom_props: Some({ 
+                "special_type": String("item"),
+                 "item_type": String("dagger.item")  
+
+                 })
+        ),
+
+
+        (
+            name: "trigger_volume",
+            model:  CubeShape( (color: Rgba(
+                                        red: 0.1,
+                                        green: 0.4,
+                                        blue: 0.8,
+                                        alpha: 0.3
+                                    )))  ,
+            initial_custom_props: Some({ 
+                "special_type": String("trigger_volume"),
+                 "trigger_volume_name": String("---") 
+
+
+                 })
+         ),
+
+
          (
+            
+            name: "water_plane",
+            model: LiquidPlane ,
+            initial_custom_props: Some({ "special_type": String("liquid_plane") })
+        ),
+
+        (
             name: "player_spawn",
             model:  GltfModel("models/editor/arrow_down_b.glb")  ,
             initial_custom_props: Some({ "special_type": String("player_spawn") })
         ),
 
-          (
+        (
             name: "npc_waypoint",
             model:  GltfModel("models/editor/arrow_forward.glb")  ,
             initial_custom_props: Some({ 

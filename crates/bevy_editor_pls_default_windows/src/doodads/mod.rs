@@ -22,13 +22,12 @@ use bevy_mod_raycast::CursorRay;
 
 use bevy_mod_raycast::prelude::Raycast;
 
-use self::doodad::{DoodadComponent, DoodadPlugin, LoadedGltfAssets};
+use self::doodad::{DoodadComponent,   LoadedGltfAssets};
 use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource};
 
-
-pub mod built_vfx;
+ 
 pub mod doodad;
-mod doodad_manifest;
+pub mod doodad_manifest;
 pub mod picking;
 
 #[derive(Resource, Default)]
@@ -61,7 +60,7 @@ impl EditorWindow for DoodadsWindow {
     /// Necessary setup (resources, systems) for the window.
     fn app_setup(app: &mut App) {
         app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["manifest.ron"]))
-            .add_plugins(DoodadPlugin)
+            
             .insert_resource(DoodadManifestResource::default())
             .insert_resource(DoodadToolState::default())
             .insert_resource(LoadedGltfAssets::default())
