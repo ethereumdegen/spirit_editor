@@ -37,6 +37,10 @@ pub struct LoadedGltfAssets {
     pub gltf_models: HashMap<String, Handle<Gltf>>,
 }
 
+
+
+
+
 #[derive(Component, Debug)]
 pub struct DoodadComponent {
     pub definition: DoodadDefinition,
