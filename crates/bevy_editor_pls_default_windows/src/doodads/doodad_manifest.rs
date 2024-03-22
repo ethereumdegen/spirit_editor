@@ -44,6 +44,7 @@ pub enum RenderableType {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CubeShapeDefinition {
     pub color: Color,
+    pub wireframe: bool 
 }
 
 #[derive(Component, Clone, Debug, Serialize, Deserialize)]

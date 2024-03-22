@@ -1,4 +1,4 @@
-use bevy::{prelude::*, utils::HashMap};
+use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 
 use bevy_mod_sysfail::*;
@@ -104,10 +104,16 @@ fn attach_models_to_doodads(
                
             }
             RenderableType::CubeShape(cube_shape_def) => {
-                commands
+                let spawned_entity = commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
-                    .insert(materials.add(cube_shape_def.color.clone()));
+                    .insert(materials.add(cube_shape_def.color.clone())).id();
+
+
+                if cube_shape_def.wireframe {
+
+                    commands.entity(spawned_entity).insert(Wireframe); 
+                }
             }
 
             RenderableType::MagicFx(magic_fx_name) => {
@@ -270,7 +276,7 @@ fn find_node_by_name_recursive(
     target_name: &str,
 ) -> Result<(Entity, String), &'static str> {
     if let Ok(name) = name_query.get(current_entity) {
-        info!("{:?}",name);
+   //     info!("find node {:?}",name);
         if name.as_str() == target_name {
             return Ok((current_entity, name.to_string()));
         }

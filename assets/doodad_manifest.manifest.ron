@@ -500,7 +500,7 @@
                                         green: 0.8,
                                         blue: 0.1,
                                         alpha: 0.8
-                                    ))),
+                                    ),    wireframe:false )),
           //  initial_custom_props: Some({ "special_type": String("vfx_emitter") , "vfx_name":String("leaves" )})
         ),
 
@@ -513,7 +513,9 @@
                                         green: 0.1,
                                         blue: 0.1,
                                         alpha: 0.8
-                                    )))  ,
+                                    ),
+                                 wireframe:false
+                ))  ,
             initial_custom_props: Some({ 
                 "special_type": String("item"),
                  "item_type": String("dagger.item")  
@@ -529,7 +531,9 @@
                                         green: 0.4,
                                         blue: 0.8,
                                         alpha: 0.3
-                                    )))  ,
+                                    ),
+                                    wireframe:true 
+                                    ))  ,
             initial_custom_props: Some({ 
                 "special_type": String("trigger_volume"),
                  "trigger_volume_name": String("---") 
@@ -547,10 +551,24 @@
         ),
 
         (
-            name: "player_spawn",
+            name: "player_waypoint",
             model:  GltfModel("models/editor/arrow_down_b.glb")  ,
-            initial_custom_props: Some({ "special_type": String("player_spawn") })
+            initial_custom_props: Some({ 
+                "special_type": String("player_waypoint") , 
+                "waypoint_name": String("---")  
+                })
         ),
+
+         (
+            name: "elf_door_01",
+            model:  GltfModel("models/doodads/elf_bld_door_01.glb")  ,
+            initial_custom_props: Some({  
+                 "teleporter": String("cave_entrance") , 
+                 "level_name": String("cave_level_01")   
+                })
+        ),
+
+
 
         (
             name: "npc_waypoint",

@@ -1,6 +1,7 @@
 use asset_loading::asset_loading_plugin;
 use bevy::core_pipeline::bloom::BloomSettings;
 use bevy::input::mouse::MouseMotion;
+use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
 
 use std::f32::consts::PI;
@@ -63,7 +64,10 @@ fn main() {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
                 }),
+
+
         )   
+       
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
 
