@@ -53,7 +53,8 @@ pub enum ToolMode {
 }
 const TOOL_MODES: [ToolMode; 2] = [ToolMode::Height, ToolMode::Splat];
 
-const BRUSH_TYPES: [BrushType; 3] = [BrushType::SetExact, BrushType::Smooth, BrushType::Noise];
+const BRUSH_TYPES_HEIGHT: [BrushType; 4] = [BrushType::SetExact, BrushType::Smooth, BrushType::Noise, BrushType::EyeDropper];
+const BRUSH_TYPES_SPLAT: [BrushType; 2] = [BrushType::SetExact, BrushType::EyeDropper];
 
 impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
@@ -119,6 +120,24 @@ fn editor_tools(
 
         match tools_state.tool_mode {
             ToolMode::Splat => {
+
+                 egui::ComboBox::new("brush_type", "")
+                    .selected_text(tools_state.brush_type.to_string())
+                    .show_ui(ui, |ui| {
+                        for brush_type in BRUSH_TYPES_SPLAT.into_iter() {
+                            if ui
+                                .selectable_label(
+                                    tools_state.brush_type == brush_type,
+                                    brush_type.to_string(),
+                                )
+                                .clicked()
+                            {
+                                tools_state.brush_type = brush_type;
+                            }
+                        }
+                    });
+
+
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=255)
                         .text("Texture A (R_Channel"),
@@ -136,7 +155,7 @@ fn editor_tools(
                 egui::ComboBox::new("brush_type", "")
                     .selected_text(tools_state.brush_type.to_string())
                     .show_ui(ui, |ui| {
-                        for brush_type in BRUSH_TYPES.into_iter() {
+                        for brush_type in BRUSH_TYPES_HEIGHT.into_iter() {
                             if ui
                                 .selectable_label(
                                     tools_state.brush_type == brush_type,

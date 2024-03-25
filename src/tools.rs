@@ -3,7 +3,7 @@ use bevy::prelude::*;
 use crate::editor_pls::bevy_pls_editor_is_active;
 use crate::ui::{EditorToolsState, ToolMode};
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::edit::EditingTool;
+use bevy_mesh_terrain::edit::{EditingTool, TerrainBrushEvent};
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
     edit::{BrushType, EditTerrainEvent, TerrainCommandEvent},
@@ -18,7 +18,13 @@ use bevy_mod_raycast::prelude::*;
 pub fn brush_tools_plugin(app: &mut App) {
     app.add_systems(
         Update,
-        update_brush_paint.run_if(not(bevy_pls_editor_is_active)),
+        (
+            update_brush_paint,
+            handle_brush_events_from_terrain,
+
+
+
+            ).chain().run_if(not(bevy_pls_editor_is_active)),
     );
 }
 
@@ -111,5 +117,35 @@ fn update_brush_paint(
                 radius,
             });
         }
+    }
+}
+
+
+
+fn handle_brush_events_from_terrain(
+    mut evt_reader: EventReader<TerrainBrushEvent>,
+
+){
+
+
+    for evt in evt_reader.read(){
+
+        info!("learned of evt {:?}", evt );
+        match evt{
+            TerrainBrushEvent::EyeDropTerrainHeight { height } => {
+
+
+
+
+            },
+            TerrainBrushEvent::EyeDropSplatMap { r, g, b } => {
+
+
+
+
+            }
+        }
+
+
     }
 }
