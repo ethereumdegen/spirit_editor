@@ -1,3 +1,4 @@
+use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 
@@ -29,11 +30,18 @@ pub(crate) struct DoodadPlugin;
 impl Plugin for DoodadPlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(LoadedGltfAssets::default())
-            .add_systems(Update, (attach_models_to_doodads, add_doodad_collider_markers, hide_doodad_collision_volumes));
+            .add_systems(Update, (attach_models_to_doodads, 
+                add_doodad_collider_markers, 
+                hide_doodad_collision_volumes,
+                add_wireframe_to_children
+
+                ));
     }
 }
 
 
+#[derive(Component, Default)]
+pub struct WireframeMarker {}
 
 
 #[derive(Component, Default)]
@@ -74,7 +82,9 @@ fn attach_models_to_doodads(
         commands
             .entity(new_doodad_entity)
             .insert(name_comp)
-            .insert(PickableBundle::default());
+            .insert(PickableBundle::default()) 
+
+            ;
 
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
         match (&doodad_component.definition.model).clone() {
@@ -84,14 +94,23 @@ fn attach_models_to_doodads(
 
                         Ok(loaded_model)=> {
 
-                             commands.entity(new_doodad_entity).insert(loaded_model.named_scenes["Scene"].clone() ) ; }
+                             commands.entity(new_doodad_entity)
+                               .insert(
+                                loaded_model.named_scenes["Scene"].clone()
+                                 )
+                               .insert(WireframeMarker {})
+                           
+                                  ; 
+
+
+                         }
                         ,
                        Err(err) =>  {
                        
                         eprintln!("{}",err);
                          commands
                             .entity(new_doodad_entity)
-                              .insert(Visibility::Hidden) // will be made visible by the collider marker systems 
+                           //   .insert(Visibility::Hidden)  
                             .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
                             .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
 
@@ -217,6 +236,43 @@ pub(crate) fn add_doodad_collider_markers(
    
  }
 
+
+
+fn add_wireframe_to_children( 
+        mut commands: Commands ,
+
+       doodad_query: Query<   (Entity,  &DoodadComponent) >,
+         children_query: Query<&Children>,           
+  
+      mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
+
+    ) {
+
+
+ for evt in scene_instance_evt_reader.read(){
+        let parent = evt.parent;
+        
+        if let Some((new_doodad_entity,_doodad_component)) = doodad_query.get(parent).ok() {
+         
+          for child_entity in DescendantIter::new(&children_query, new_doodad_entity) { 
+ 
+           
+                commands.entity( child_entity ) 
+                        .insert(Wireframe)
+                        .insert(WireframeColor { color: Color::LIME_GREEN  } )
+                        ;
+
+                    }
+             
+        }
+
+    }
+
+       
+
+
+
+}
 
 
  #[sysfail]

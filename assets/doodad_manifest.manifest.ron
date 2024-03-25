@@ -3,6 +3,13 @@
 
 
         (
+            name: "blank_block",
+            model: GltfModel("models/doodads/blank_block.glb"),
+        ),
+
+
+
+        (
             name: "ancient_bg_islands",
             model: GltfModel("models/doodads/ancient_bg_islands.glb"),
         ),
@@ -563,8 +570,9 @@
             name: "elf_door_01",
             model:  GltfModel("models/doodads/elf_bld_door_01.glb")  ,
             initial_custom_props: Some({  
-                 "teleporter": String("cave_entrance") , 
-                 "level_name": String("cave_level_01")   
+                 "teleporter": EmptyProp , 
+                 "level_name": String("---")   ,
+                 "waypoint_name": String("---")   
                 })
         ),
 

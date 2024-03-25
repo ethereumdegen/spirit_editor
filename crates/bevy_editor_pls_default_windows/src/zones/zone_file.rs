@@ -43,7 +43,7 @@ pub enum CustomProp {
     Integer(i32), 
     Boolean(bool),
     #[default]
-    None  
+    EmptyProp  
 }
  
 
