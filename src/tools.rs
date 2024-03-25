@@ -124,7 +124,7 @@ fn update_brush_paint(
 
 fn handle_brush_events_from_terrain(
     mut evt_reader: EventReader<TerrainBrushEvent>,
-
+    mut editor_tools_state: ResMut<EditorToolsState>,
 ){
 
 
@@ -134,14 +134,14 @@ fn handle_brush_events_from_terrain(
         match evt{
             TerrainBrushEvent::EyeDropTerrainHeight { height } => {
 
-
-
+                editor_tools_state.color.r = * height ; 
 
             },
             TerrainBrushEvent::EyeDropSplatMap { r, g, b } => {
 
-
-
+                editor_tools_state.color.r = * r as u16 ;
+                editor_tools_state.color.g = * g as u16 ;
+                editor_tools_state.color.b = * b as u16 ; 
 
             }
         }
