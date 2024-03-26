@@ -467,18 +467,6 @@
 
    
 
-
-        (
-            name: "gnome_female",
-            model:  GltfModel("models/units/gnome_female_1.glb")
-      ) ,
-
-         (
-            name: "elf1",
-            model:  GltfModel("models/units/elf1.glb")  
-        ) ,
-
-
         (
             name: "wooden_chest",
             model:  GltfModel("models/doodads/wooden_chest.glb")  
@@ -596,6 +584,30 @@
              "waypoint_name": String("---") 
               })
         ),
+
+
+        // ---- units 
+
+
+
+
+        (
+            name: "gnome_female",
+            model:  GltfModel("models/units/gnome_female_1.glb")
+        ),
+
+        (
+            name: "elf1",
+            model:  GltfModel("models/units/elf1.glb")  
+        ),
+
+        (
+            name: "skeleton1",
+            model:  GltfModel("models/units/skeleton_01.glb")  
+        ),
+
+
+
 
 
     ]

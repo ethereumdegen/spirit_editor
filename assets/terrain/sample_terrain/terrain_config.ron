@@ -6,7 +6,9 @@ TerrainConfig(
     lod_distance: 1000.0,
     lod_level_offset: 0,
     height_scale: 0.001,
-    attach_collision_data: true,
+    
+
+    use_greedy_mesh: false, 
     
     texture_image_sections: 32,
     // Assuming the addition of fields for paths to the height and splat folders
