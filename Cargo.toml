@@ -9,7 +9,7 @@ bevy = "0.13.1"
 bevy_egui = "0.25.0"
 
 
-bevy_mesh_terrain = "0.13.9"  
+bevy_mesh_terrain = "0.13.11"  
 
 bevy_magic_fx = "0.2.9"
 

@@ -8,6 +8,7 @@ use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
     edit::{BrushType, EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
+    tool_preview::{ToolPreviewResource},
     TerrainMeshPlugin,
 };
 
@@ -73,11 +74,11 @@ fn update_brush_paint(
     // command_event_writer: EventWriter<TerrainCommandEvent>,
     editor_tools_state: Res<EditorToolsState>,
 
+    mut tool_preview_state: ResMut<ToolPreviewResource>,
+
     mut contexts: EguiContexts,
 ) {
-    if !mouse_input.pressed(MouseButton::Left) {
-        return;
-    }
+     
 
     let egui_ctx = contexts.ctx_mut();
     if egui_ctx.is_pointer_over_area() {
@@ -107,6 +108,18 @@ fn update_brush_paint(
             let hit_coordinates = Vec2::new(hit_point.x, hit_point.z);
 
             //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there
+
+
+            tool_preview_state.tool_coordinates = hit_coordinates.clone();
+            tool_preview_state.tool_radius = radius.clone();
+            tool_preview_state.tool_color = (0.6,0.6,0.95).into() ;
+
+
+
+             if !mouse_input.pressed(MouseButton::Left) {
+                return;
+            }
+
 
             edit_event_writer.send(EditTerrainEvent {
                 entity: intersection_entity.clone(),
