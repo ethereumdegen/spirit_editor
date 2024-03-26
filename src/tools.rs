@@ -112,7 +112,7 @@ fn update_brush_paint(
 
             tool_preview_state.tool_coordinates = hit_coordinates.clone();
             tool_preview_state.tool_radius = radius.clone();
-            tool_preview_state.tool_color = (0.6,0.6,0.95).into() ;
+            tool_preview_state.tool_color = (0.6,0.6,0.9).into() ;
 
 
 

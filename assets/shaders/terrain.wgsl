@@ -168,7 +168,7 @@ fn fragment(
 
     let final_color = mix(
         vec4(pbr_out.color.rgb, alpha_mask_value.r),
-        vec4(pbr_out.color.rgb * color_from_tool, alpha_mask_value.r),
+        vec4( mix(pbr_out.color.rgb ,color_from_tool,0.02), alpha_mask_value.r),
         within_tool_radius
     );
           
