@@ -306,7 +306,7 @@ pub fn update_place_doodads(
     let rotation_euler: Option<Vec3> = match using_random_yaw {
         true => {
             let random_f32 = rng.gen_range(0.0..1.0);
-            Some((0.0, random_f32 * 3.14, 0.0).into())
+            Some(( random_f32 * 3.14, 0.0, 0.0).into())
         }
         false => None,
     };

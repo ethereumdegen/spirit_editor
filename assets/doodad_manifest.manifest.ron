@@ -66,6 +66,55 @@
             name: "birch_dead_3",
             model:  GltfModel("models/doodads/birch_dead_3.glb")  
         ) ,
+
+
+
+        (
+            name: "tree_green_2",
+            model:  GltfModel("models/doodads/tree_green_2.glb")  
+        ),
+
+        (
+            name: "tree_green_3",
+            model:  GltfModel("models/doodads/tree_green_3.glb")  
+        ),
+
+        (
+            name: "tree_green_4",
+            model:  GltfModel("models/doodads/tree_green_4.glb")  
+        ),
+
+        (
+            name: "tree_green_5",
+            model:  GltfModel("models/doodads/tree_green_5.glb")  
+        ),
+
+        (
+            name: "tree_green_6",
+            model:  GltfModel("models/doodads/tree_green_6.glb")  
+        ),
+
+        (
+            name: "tree_green_7",
+            model:  GltfModel("models/doodads/tree_green_7.glb")  
+        ),
+
+        (
+            name: "tree_green_8",
+            model:  GltfModel("models/doodads/tree_green_8.glb")  
+        ),
+
+        (
+            name: "tree_green_9",
+            model:  GltfModel("models/doodads/tree_green_9.glb")  
+        ),
+
+        (
+            name: "tree_green_10",
+            model:  GltfModel("models/doodads/tree_green_10.glb")  
+        ),
+
+
      //elf building 
 
 
@@ -451,6 +500,113 @@
             name: "forest_ruins_03",
             model:  GltfModel("models/doodads/forest_ruins_03.glb")  
         ),
+
+
+
+
+        // --- M Castle
+
+        (
+            name: "MCastle_ArchArm_01",
+            model:  GltfModel("models/doodads/MCastle_ArchArm_01.glb")  
+        ),
+
+        (
+            name: "MCastle_ArchDoors_00",
+            model:  GltfModel("models/doodads/MCastle_ArchDoors_00.glb")  
+        ),
+
+        (
+            name: "MCastle_ArchDoors_02",
+            model:  GltfModel("models/doodads/MCastle_ArchDoors_02.glb")  
+        ),
+
+        (
+            name: "MCastle_Baluster_Column_01",
+            model:  GltfModel("models/doodads/MCastle_Baluster_Column_01.glb")  
+        ),
+
+        (
+            name: "MCastle_Baluster_Corner_01",
+            model:  GltfModel("models/doodads/MCastle_Baluster_Corner_01.glb")  
+        ),
+
+
+        (
+            name: "MCastle_Baluster_Straight_01",
+            model:  GltfModel("models/doodads/MCastle_Baluster_Straight_01.glb")  
+        ),
+
+        (
+            name: "MCastle_CliffRock_Lrg_01",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Lrg_01.glb")  
+        ),
+
+        (
+            name: "MCastle_CliffRock_Lrg_02",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Lrg_02.glb")  
+        ),
+
+
+       (
+            name: "MCastle_CliffRock_Med_01",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Med_01.glb")  
+        ),
+
+        (
+            name: "MCastle_CliffRock_Med_02",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb")  
+        ),
+
+         (
+            name: "MCastle_CliffRock_Small_01",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Small_01.glb")  
+        ),
+
+        (
+            name: "MCastle_Cobbles_00",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_00.glb")  
+        ),
+
+        (
+            name: "MCastle_Cobbles_01",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_01.glb")  
+        ),
+
+        (
+            name: "MCastle_Cobbles_02",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_02.glb")  
+        ),
+
+        (
+            name: "MCastle_Cobbles_03",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_03.glb")  
+        ), 
+
+        (
+            name: "MCastle_Cobbles_04",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_04.glb")  
+        ), 
+
+        (
+            name: "MCastle_Cobbles_05",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_05.glb")  
+        ),
+
+        (
+            name: "MCastle_Cobbles_06",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_06.glb")  
+        ), 
+
+        (
+            name: "MCastle_Cobbles_07",
+            model:  GltfModel("models/doodads/MCastle_Cobbles_07.glb")  
+        ),
+
+
+
+
+
 
     // ----- 
 

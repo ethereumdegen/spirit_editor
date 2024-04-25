@@ -85,6 +85,7 @@ fn main() {
         .add_systems(Startup, setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
+        .add_systems(Update, update_directional_light_position)
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
         .run();
@@ -103,8 +104,8 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
 
     commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight {
-            shadow_depth_bias: 0.5,
-            shadow_normal_bias: 0.5,
+           // shadow_depth_bias: 0.5,
+           // shadow_normal_bias: 0.5,
 
             illuminance: light_consts::lux::OVERCAST_DAY,
             shadows_enabled: true,
@@ -114,18 +115,18 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         },
 
         transform: Transform {
-            translation: Vec3::new(0.0, 2.0, 0.0),
-            rotation: Quat::from_rotation_x(-PI / 4.2),
+            translation: Vec3::new(7.0, 20.0, 2.0),
+            
             ..default()
         },
 
         ..default()
     });
 
-    commands.spawn(DirectionalLightBundle {
+    /*commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight {
-            shadow_depth_bias: 0.5,
-            shadow_normal_bias: 0.5,
+           // shadow_depth_bias: 0.5,
+           // shadow_normal_bias: 0.5,
 
             illuminance: light_consts::lux::OVERCAST_DAY,
             shadows_enabled: true,
@@ -162,7 +163,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         },
 
         ..default()
-    });
+    });*/
 
 
     // light
@@ -183,7 +184,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
     */
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: light_consts::lux::OVERCAST_DAY,
+        brightness: 100.0 ,
     });
 
 
@@ -207,7 +208,36 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         })
         .insert( BloomSettings::default())
         .insert(TerrainViewer::default())
-        .insert(ShadowFilteringMethod::Jimenez14);
+       // .insert(ShadowFilteringMethod::Jimenez14)
+       ;
 }
 
  
+
+
+fn update_directional_light_position(
+    mut query: Query<&mut Transform, With<DirectionalLight>>,
+   
+    time: Res<Time>,
+) {
+
+    let current_time = time.elapsed();
+
+
+ //   let delta_time = time.delta_seconds();
+    
+    let SECONDS_IN_A_CYCLE = 80.0;
+
+    let angle = (current_time.as_millis() as f32 / (SECONDS_IN_A_CYCLE* 1000.0) ) * std::f32::consts::PI * 2.0; // Convert time to radians
+
+    let radius = 20.0; // Adjust the radius of the sun's orbit
+    let x = angle.cos() * radius;
+    let y = angle.sin() * radius + 10.0; // Adjust the height of the sun
+    let z = 0.0;
+
+    for mut transform in query.iter_mut() {
+
+        transform.translation = Vec3::new(x, y, z);
+        transform.look_at(Vec3::ZERO, Vec3::Y);
+    }
+}
