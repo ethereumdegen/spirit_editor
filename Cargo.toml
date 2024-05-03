@@ -21,6 +21,13 @@ seldom_fn_plugin = "0.6.0"
 
 
 
+ bevy_common_assets = {version="0.10.0", features= ["ron"]}
+ 
+
+serde = { version = "1", features = ["derive"] }
+  
+
+
 bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 

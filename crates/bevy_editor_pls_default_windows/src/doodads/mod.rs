@@ -59,7 +59,7 @@ impl EditorWindow for DoodadsWindow {
 
     /// Necessary setup (resources, systems) for the window.
     fn app_setup(app: &mut App) {
-        app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["manifest.ron"]))
+        app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"]))
             
             .insert_resource(DoodadManifestResource::default())
             .insert_resource(DoodadToolState::default())
@@ -139,7 +139,7 @@ fn load_doodad_manifest(
     asset_server: Res<AssetServer>,
     mut doodad_manifest_resource: ResMut<DoodadManifestResource>,
 ) {
-    doodad_manifest_resource.manifest = Some(asset_server.load("doodad_manifest.manifest.ron"));
+    doodad_manifest_resource.manifest = Some(asset_server.load("doodad_manifest.doodadmanifest.ron"));
 }
 
 fn load_doodad_models(

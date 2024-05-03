@@ -1,3 +1,5 @@
+ 
+use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
 use bevy::prelude::*;
 
 use bevy_egui::EguiContexts;
@@ -73,6 +75,9 @@ fn editor_tools(
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
 
     mut contexts: EguiContexts,
+
+    terrain_manifest_res: Res<TerrainManifestResource>,
+    terrain_manifest_asset: Res<Assets<TerrainManifest>>
 ) {
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
         if ui.button("Save All Chunks (Ctrl+S)").clicked() {
@@ -138,14 +143,28 @@ fn editor_tools(
                     });
 
 
+                let terrain_index_A = tools_state.color.r.clone();
+                let terrain_index_B = tools_state.color.g.clone();
+
+                let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
+
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=255)
                         .text("Texture A (R_Channel"),
                 );
+
+                if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
+                     ui.label( terrain_def.name.clone() );
+                }
+               
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.g, 0..=255)
                         .text("Texture B (G_Channel"),
                 );
+                 
+                if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
+                     ui.label( terrain_def.name.clone() );
+                }
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.b, 0..=255)
                         .text("Layer Fade (B_Channel"),

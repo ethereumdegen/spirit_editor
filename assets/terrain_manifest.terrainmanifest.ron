@@ -1,0 +1,166 @@
+  (
+    terrain_definitions: [
+
+
+        (
+            name: "forest leaves",
+           
+        ),
+
+         (
+            name: "stone leaves",
+           
+        ),
+
+         (
+            name: "stonewall + ivy",
+           
+        ),
+
+
+         (
+            name: "stonewall + ivy 2",
+           
+        ),
+
+         (
+            name: "dirt",
+           
+        ),
+
+         (
+            name: "mud",
+           
+        ),
+
+         (
+            name: "mud rocks",
+           
+        ),
+         (
+            name: "rooted earth",
+           
+        ),
+
+         (
+            name: "cracked mud",
+           
+        ),
+
+        (
+            name: "rocks purple",
+           
+        ),
+
+
+        (
+            name: "stone roots",
+           
+        ),
+
+
+
+        (
+            name: "magic grass",
+           
+        ),
+
+        (
+            name: "magic swamp",
+           
+        ),
+
+         (
+            name: "ice",
+           
+        ),
+
+
+         (
+            name: "snow",
+           
+        ),
+
+
+         (
+            name: "snow2",
+           
+        ),
+
+
+         (
+            name: "green cracks",
+           
+        ),
+
+           (
+            name: "purple cracks",
+           
+        ),
+
+         (
+            name: "stone wall",
+           
+        ),
+
+        (
+            name: "stone wall 2",
+           
+        ),
+
+        (
+            name: "stone wall 3",
+           
+        ),
+
+          (
+            name: "stone wall dark",
+           
+        ),
+
+          (
+            name: "stone wall medium",
+           
+        ),
+
+        (
+            name: "stone wall magic",
+           
+        ),
+
+        (
+            name: "scorched earth",
+           
+        ),
+
+           (
+            name: "mud earth",
+           
+        ),
+
+           (
+            name: "hard sand",
+           
+        ),
+         (
+            name: "soft sand",
+           
+        ),
+
+          (
+            name: "swamp1",
+           
+        ),
+            (
+            name: "swamp2",
+           
+        ),
+          (
+            name: "swamp3",
+           
+        ),
+
+
+
+	]
+)

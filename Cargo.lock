@@ -1120,6 +1120,7 @@ version = "0.13.5"
 dependencies = [
  "anyhow",
  "bevy 0.13.1",
+ "bevy_common_assets",
  "bevy_editor_pls",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
@@ -1132,6 +1133,7 @@ dependencies = [
  "bevy_obj",
  "bevy_water",
  "seldom_fn_plugin",
+ "serde",
 ]
 
 [[package]]

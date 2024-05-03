@@ -33,6 +33,7 @@ mod asset_loading;
 mod water;
 
 mod doodads;
+mod terrain;
 
 use crate::camera::camera_plugin;
 use crate::water::water_plugin;
@@ -72,6 +73,7 @@ fn main() {
         .add_plugins(TerrainMeshPlugin::default())
 
         .add_plugins(doodads::doodad::DoodadPlugin)
+        .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
 
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )
