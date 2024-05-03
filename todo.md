@@ -6,11 +6,9 @@
 
 
 ## Immediate todo 
+- zones in the proper folder should auto insta load  (?) 
 
-- add more elf walls 
-- add more trees (maek them ) (quaternius) 
-
-- BUG : cant add custom props in inspector anymore .
+- preview of doodad being placed (attach to a 3d node that is at intersection )
 
 
  

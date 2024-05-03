@@ -1,3 +1,4 @@
+use std::fs;
 use bevy::prelude::*;
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::egui::{self, RichText};
@@ -60,6 +61,8 @@ impl EditorWindow for ZoneWindow {
             })
             .unwrap_or_else(|| "None".to_owned());
 
+      ui.horizontal(|ui| {
+
         ui.vertical(|ui| {
             ui.horizontal(|ui| {
                 ui.label(format!("Primary zone: {:?}", primary_zone_name.clone()));
@@ -119,6 +122,22 @@ impl EditorWindow for ZoneWindow {
             // ----- h
         }); // ---- v
 
+           ui.vertical(|ui| {
+
+              ui.label(format!("--- " ) );
+
+                if ui.button("Load All Zones").clicked()   {
+                   
+                    // let entitys = query.iter(world).collect();
+                    state.zone_create_result = Some(load_all_zones(world));
+                }
+
+
+             }); // ---- v
+
+      }); // ---- H
+
+
         if let Some(status) = &state.zone_create_result {
             match status {
                 Ok(()) => {
@@ -149,6 +168,48 @@ fn load_zone(
     world.send_event::<ZoneEvent>(ZoneEvent::LoadZoneFile(name.into()));
 
     Ok(())
+}
+
+fn load_all_zones(
+    world: &mut World
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+
+
+    let zone_file_names:Vec<String> = get_all_zone_file_names();
+
+    for file_name in zone_file_names {
+          world.send_event::<ZoneEvent>(ZoneEvent::LoadZoneFile(file_name.into()));
+    }
+
+  
+
+    Ok(())
+}
+
+
+fn get_all_zone_file_names() -> Vec<String> {
+    let zones_dir = Path::new("assets/zones");
+
+    let file_names = match fs::read_dir(zones_dir) {
+        Ok(entries) => entries
+            .filter_map(|entry| {
+                entry.ok().and_then(|e| {
+                    let path = e.path();
+                    if path.is_file() && path.extension().map_or(false, |ext| ext == "ron") {
+                        path.file_stem().and_then(|stem| stem.to_str().map(|s| s.to_string()))
+                    } else {
+                        None
+                    }
+                })
+            })
+            .collect(),
+        Err(err) => {
+            eprintln!("Error reading directory: {:?}", err);
+            Vec::new()
+        }
+    };
+
+    file_names
 }
 
 pub fn handle_zone_events(
@@ -197,7 +258,7 @@ pub fn handle_zone_events(
 
                 let zone_file = ZoneFile::new(all_children, &zone_entity_query);
 
-                let zone_file_name = format!("{}.zone.ron", zone_name);
+                let zone_file_name = format!("assets/zones/{}.zone.ron", zone_name);
 
                 let ron = ron::ser::to_string(&zone_file).unwrap();
                 let file_saved = std::fs::write(zone_file_name, ron);
@@ -206,9 +267,25 @@ pub fn handle_zone_events(
             }
 
             ZoneEvent::LoadZoneFile(zone_name) => {
-                let file_name = format!("{}.zone.ron", zone_name);
 
-                let path = Path::new(&file_name);
+                let fixed_zone_name = match zone_name.ends_with( "zone.ron" ) || zone_name.ends_with( "zone" ){
+
+                    true => {
+
+                          let   parts: Vec<&str> = zone_name.split('.').collect();
+                         //   parts.pop(); // Remove the last part (".ron")
+                            parts.first().unwrap() .to_string() //.unwrap_or("".to_string())
+                           
+
+                      }, 
+                    false => zone_name.to_string()
+
+                };
+
+
+                let file_name = format!("assets/zones/{}.zone.ron", fixed_zone_name);
+ 
+                 let path = Path::new(&file_name);
 
                 // Read the file into a string
                 let Ok(file_content) = std::fs::read_to_string(path) else {
