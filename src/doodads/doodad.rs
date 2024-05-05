@@ -33,7 +33,7 @@ impl Plugin for DoodadPlugin {
             .add_systems(Update, (attach_models_to_doodads, 
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
-                add_wireframe_to_children
+              //  add_wireframe_to_children
 
                 ));
     }
