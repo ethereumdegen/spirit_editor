@@ -33,15 +33,13 @@ impl Plugin for DoodadPlugin {
             .add_systems(Update, (attach_models_to_doodads, 
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
-                add_wireframe_to_children
+              //  add_wireframe_to_children
 
                 ));
     }
 }
 
 
-#[derive(Component, Default)]
-pub struct WireframeMarker {}
 
 
 #[derive(Component, Default)]
@@ -98,7 +96,7 @@ fn attach_models_to_doodads(
                                .insert(
                                 loaded_model.named_scenes["Scene"].clone()
                                  )
-                               .insert(WireframeMarker {})
+                           //    .insert(WireframeMarker {})
                            
                                   ; 
 
@@ -238,41 +236,6 @@ pub(crate) fn add_doodad_collider_markers(
 
 
 
-fn add_wireframe_to_children( 
-        mut commands: Commands ,
-
-       doodad_query: Query<   (Entity,  &DoodadComponent) >,
-         children_query: Query<&Children>,           
-  
-      mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
-
-    ) {
-
-
- for evt in scene_instance_evt_reader.read(){
-        let parent = evt.parent;
-        
-        if let Some((new_doodad_entity,_doodad_component)) = doodad_query.get(parent).ok() {
-         
-          for child_entity in DescendantIter::new(&children_query, new_doodad_entity) { 
- 
-           
-                commands.entity( child_entity ) 
-                        .insert(Wireframe)
-                        .insert(WireframeColor { color: Color::LIME_GREEN  } )
-                        ;
-
-                    }
-             
-        }
-
-    }
-
-       
-
-
-
-}
 
 
  #[sysfail]

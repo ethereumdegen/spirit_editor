@@ -3,6 +3,7 @@
 
 use bevy::prelude::*;
  
+use doodads::DoodadPlugin;
 use zones::{zone_file::{CustomProp, CustomPropsComponent},  ZoneEvent, ZoneResource};
 
  
@@ -38,11 +39,10 @@ impl Plugin for StandardWindowsPlugin {
             .init_resource::<ZoneResource>()
             .init_resource::<placement::PlacementResource>()
             .add_systems(Update, zones::handle_zone_events)
-            .add_systems(Update, doodads::update_place_doodads)
-           
-            .add_systems(Update, doodads::reset_place_doodads)
-            .add_systems(Update, doodads::handle_place_doodad_events)
-            .add_systems(Update, doodads::picking::update_picking_doodads)
+
+
+            .add_plugins(DoodadPlugin {})
+          
             .add_systems(Update, placement::update_placement_tool_inputs)
             .add_systems(Update, placement::handle_placement_tool_events)
 

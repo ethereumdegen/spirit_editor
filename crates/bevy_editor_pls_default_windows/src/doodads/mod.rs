@@ -1,6 +1,8 @@
+use crate::doodads::doodad_placement_preview::DoodadPlacementPlugin;
 use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 
 use bevy::prelude::*;
+use bevy_mod_raycast::immediate::RaycastSettings;
 use rand::Rng;
 
 use bevy::utils::HashMap;
@@ -24,11 +26,39 @@ use bevy_mod_raycast::prelude::Raycast;
 
 use self::doodad::{DoodadComponent,   LoadedGltfAssets};
 use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource};
+use self::doodad_placement_preview::DoodadPlacementComponent;
 
  
-pub mod doodad;
+
 pub mod doodad_manifest;
 pub mod picking;
+pub mod doodad;
+pub mod doodad_placement_preview;
+
+
+pub struct DoodadPlugin {}
+impl Plugin for DoodadPlugin {
+    fn build(&self, app: &mut App) {
+        //put this inside of zone plugin ?
+         app
+         .add_plugins(DoodadPlacementPlugin {} )
+             .add_systems(Update, update_place_doodads)
+         
+           
+            .add_systems(Update, reset_place_doodads)
+            .add_systems(Update, handle_place_doodad_events)
+            .add_systems(Update, picking::update_picking_doodads)
+           
+
+            ;
+    }
+}
+
+
+ 
+
+
+
 
 #[derive(Resource, Default)]
 pub struct DoodadToolState {
@@ -284,6 +314,9 @@ pub fn update_place_doodads(
     mut contexts: EguiContexts,
 
     editor: Res<Editor>,
+
+     doodad_placement_component_query: Query<&Transform, With<DoodadPlacementComponent>>,
+       parent_query: Query<&Parent >
 ) {
     //we can tell if we are clicking in viewport
     let egui_ctx = contexts.ctx_mut();
@@ -333,9 +366,33 @@ pub fn update_place_doodads(
         return;
     }
 
+
+    let raycast_filter = |entity: Entity| {
+
+        
+         let mut current_entity = entity;
+        loop {
+            if doodad_placement_component_query.get(current_entity).is_ok() {
+                return false;
+            }
+            match parent_query.get(current_entity).ok() {
+                Some(parent) => current_entity = parent.get(),
+                None => break,
+            }
+        }
+        true
+    };
+
+    let raycast_settings = RaycastSettings {
+        filter: &raycast_filter,
+        ..default()
+    };
+
+
+
     if let Some(cursor_ray) = **cursor_ray {
         if let Some((_intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &default()).first()
+            raycast.cast_ray(cursor_ray, &raycast_settings).first()
         {
             let hit_point = intersection_data.position();
 
