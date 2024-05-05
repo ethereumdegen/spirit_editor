@@ -96,7 +96,7 @@ fn attach_models_to_doodads(
                                .insert(
                                 loaded_model.named_scenes["Scene"].clone()
                                  )
-                           //    .insert(WireframeMarker {})
+ 
                            
                                   ; 
 

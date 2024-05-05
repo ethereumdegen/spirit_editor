@@ -229,7 +229,8 @@ pub fn handle_placement_tool_events(
                              scale: Some(simple_xform.scale), 
                              rotation_euler: Some(simple_xform.rotation), 
                              doodad_name: doodad_comp.definition.name.clone(),
-                             custom_props: None 
+                             custom_props: None ,
+                             zone: None 
                       });
 
 

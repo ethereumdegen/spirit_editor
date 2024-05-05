@@ -24,7 +24,9 @@
         ),
    (
             name: "ancient_ivy_01b",
+ 
             model: GltfModel("models/doodads/ancient/ancient_ivy_0b.glb"),
+ 
         ),
 
 
@@ -88,12 +90,7 @@
             name: "tree_green_5",
             model:  GltfModel("models/doodads/tree_green_5.glb")  
         ),
-
-        (
-            name: "tree_green_6",
-            model:  GltfModel("models/doodads/tree_green_6.glb")  
-        ),
-
+ 
         (
             name: "tree_green_7",
             model:  GltfModel("models/doodads/tree_green_7.glb")  
@@ -282,11 +279,12 @@
             model:  GltfModel("models/doodads/elven/elf_bld_window_04.glb")  
         ),
 
+ 
           (
             name: "elf_bld_window_05",
             model:  GltfModel("models/doodads/elven/elf_bld_window_05.glb")  
         ),
-
+ 
 
 
 // ------
@@ -307,8 +305,11 @@
             model:  GltfModel("models/doodads/forest/forest_env_fern_01b.glb")  
         ),
         (
-            name: "forest_env_koru_01",
-            model:  GltfModel("models/doodads/forest/forest_env_koru_01.glb")  
+ 
+ 
+            name: "forest_env_fern_koru_01",
+            model:  GltfModel("models/doodads/forest/forest_env_fern_koru_01.glb")  
+ 
         ),
         (
             name: "forest_env_leaves_01",
@@ -499,9 +500,459 @@
         (
             name: "forest_ruins_03",
             model:  GltfModel("models/doodads/forest/forest_ruins_03.glb")  
+ 
         ),
 
 
+        // --- Meadow
+
+        (
+            name: "meadow_Env_Ground_Cover_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_01.glb")  
+        ),
+
+            (
+            name: "meadow_Env_Ground_Cover_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_02.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Ground_Cover_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_03.glb")  
+        ),
+
+
+        (
+            name: "meadow_Env_Ground_Cliff_Large_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cliff_Large_01.glb")  
+        ),
+
+
+         (
+            name: "meadow_Env_Ground_Cliff_Large_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cliff_Large_02.glb")  
+        ),
+
+         (
+            name: "meadow_Env_Rock_Cliff_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_01.glb")  
+        ),
+         (
+            name: "meadow_Env_Rock_Cliff_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_02.glb")  
+        ),
+      (
+            name: "meadow_Env_Rock_Cliff_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_03.glb")  
+        ),
+
+      (
+            name: "meadow_Env_Rock_Ground_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Ground_01.glb")  
+        ),
+
+         (
+            name: "meadow_Env_Rock_Ground_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Ground_02.glb")  
+        ),
+
+
+         (
+            name: "meadow_Env_Rock_Pile_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_01.glb")  
+        ),
+           (
+            name: "meadow_Env_Rock_Pile_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_02.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Rock_Pile_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_03.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Tree_Meadow_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Tree_Meadow_01.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Tree_Meadow_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Tree_Meadow_02.glb")  
+        ),
+
+         (
+            name: "meadow_Env_Wildflowers_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_01.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Wildflowers_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_02.glb")  
+        ),
+
+        (
+            name: "meadow_Env_Wildflowers_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_03.glb")  
+        ),
+
+         (
+            name: "meadow_Prop_Bridge_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Bridge_01.glb")  
+        ),
+
+           (
+            name: "meadow_Prop_Camp_Crate_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Crate_01.glb")  
+        ),
+
+         (
+            name: "meadow_Prop_Camp_Fireplace_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Fireplace_01.glb")  
+        ),
+        (
+            name: "meadow_Prop_Camp_Fireplace_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Fireplace_02.glb")  
+        ),
+
+          (
+            name: "meadow_Prop_Camp_Tent_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Tent_01.glb")  
+        ),
+         
+
+        (
+            name: "meadow_Prop_Gate_Small_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Gate_Small_01.glb")  
+        ),
+            
+         (
+            name: "meadow_Prop_Leaves_Pile_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Leaves_Pile_01.glb")  
+        ),
+
+        (
+            name: "meadow_Prop_Leaves_Pile_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Leaves_Pile_02.glb")  
+        ),
+
+
+       (
+            name: "meadow_Prop_Meadow_Fence_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_01.glb")  
+        ),
+
+       (
+            name: "meadow_Prop_Meadow_Fence_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_02.glb")  
+        ),
+      (
+            name: "meadow_Prop_Meadow_Fence_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_03.glb")  
+        ),
+       (
+            name: "meadow_Prop_Meadow_Fence_04",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_04.glb")  
+        ),
+
+        (
+            name: "meadow_Prop_Meadow_Fence_05",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_05.glb")  
+        ),
+
+
+         (
+            name: "meadow_Prop_Meadow_Fence_06",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_06.glb")  
+        ),
+
+
+          (
+            name: "meadow_Prop_Meadow_Fence_07",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_07.glb")  
+        ),
+          (
+            name: "meadow_Prop_Mushroom_Sparse_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Mushroom_Sparse_03.glb")  
+        ),
+
+
+      (
+            name: "meadow_Prop_StoneArch_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneArch_01.glb")  
+        ),
+
+       (
+            name: "meadow_Prop_Stone_Hole_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Stone_Hole_01.glb")  
+        ),
+
+
+         (
+            name: "meadow_Prop_StoneRunes_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_01.glb")  
+        ),
+        (
+            name: "meadow_Prop_StoneRunes_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_02.glb")  
+        ),
+      (
+            name: "meadow_Prop_StoneRunes_03",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_03.glb")  
+        ),
+           (
+            name: "meadow_Prop_Stonewall_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Stonewall_01.glb")  
+        ),
+
+       (
+            name: "meadow_Prop_Stonewall_02",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Stonewall_02.glb")  
+        ),
+
+         (
+            name: "meadow_Prop_Sword_Stone_01",
+            model:  GltfModel("models/doodads/synty_meadow/meadow_Prop_Sword_Stone_01.glb")  
+        ),
+
+
+
+        // --- Frog Shrine 
+           (
+            name: "FrogShrine_Env_Base_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Env_Base_01.glb")  
+        ),
+
+         (
+            name: "FrogShrine_Env_Grass_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Env_Grass_01.glb")  
+        ),
+
+            (
+            name: "FrogShrine_Prop_Frog_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Frog_01.glb")  
+        ),
+
+          (
+            name: "FrogShrine_Prop_Lantern_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Lantern_01.glb")  
+        ),
+
+              (
+            name: "FrogShrine_Prop_Shrine_Base_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Shrine_Base_01.glb")  
+        ),
+
+         (
+            name: "FrogShrine_Prop_Shrine_Cover_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Shrine_Cover_01.glb")  
+        ),
+
+              (
+            name: "FrogShrine_Prop_Stand_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Stand_01.glb")  
+        ),
+
+          (
+            name: "FrogShrine_Prop_Tree_01",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Tree_01.glb")  
+        ),
+
+           (
+            name: "FrogShrine_Prop_Tree_02",
+            model:  GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Tree_02.glb")  
+        ),
+        // --- Jungle 
+
+         (
+            name: "SM_Env_Bush_Palm_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_01.glb")  
+        ), 
+
+         (
+            name: "SM_Env_Bush_Palm_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_02.glb")  
+        ),
+           (
+            name: "SM_Env_Bush_Palm_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_03.glb")  
+        ), 
+        (
+            name: "SM_Env_Bush_Palm_04",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_04.glb")  
+        ),
+
+
+        (
+            name: "SM_Env_Bush_Tropical_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_01.glb")  
+        ),
+
+
+  (
+            name: "SM_Env_Bush_Tropical_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_02.glb")  
+        ),
+
+
+     (
+            name: "SM_Env_Bush_Tropical_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_03.glb")  
+        ),
+
+
+    (
+            name: "SM_Env_Bush_Tropical_04",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_04.glb")  
+        ),
+
+      (
+            name: "SM_Env_Creeper_Clump_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Clump_01.glb")  
+        ),
+
+       (
+            name: "SM_Env_Creeper_Vine_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Vine_01.glb")  
+        ),
+      (
+            name: "SM_Env_Creeper_Vine_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Vine_02.glb")  
+        ),
+
+
+      (
+            name: "SM_Env_Fern_Part_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_01.glb")  
+        ),
+       (
+            name: "SM_Env_Fern_Part_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_02.glb")  
+        ),
+
+      (
+            name: "SM_Env_Fern_Part_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_03.glb")  
+        ),
+
+      (
+            name: "SM_Env_Fern_Part_04",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_04.glb")  
+        ),
+
+       (
+            name: "SM_Env_Flower_Base_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_01.glb")  
+        ),
+      (
+            name: "SM_Env_Flower_Base_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_02.glb")  
+        ),
+          (
+            name: "SM_Env_Flower_Base_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_03.glb")  
+        ),
+
+        (
+            name: "SM_Env_Flower_Pitcher_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Pitcher_01.glb")  
+        ),
+       (
+            name: "SM_Env_Flower_Pitcher_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Pitcher_02.glb")  
+        ),
+       (
+            name: "SM_Env_Flowers_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_01.glb")  
+        ),
+
+        (
+            name: "SM_Env_Flowers_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_02.glb")  
+        ),
+
+         (
+            name: "SM_Env_Flowers_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_03.glb")  
+        ),
+
+       (
+            name: "SM_Env_Flowers_04",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_04.glb")  
+        ),
+
+
+         (
+            name: "SM_Env_Vines_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Vines_01.glb")  
+        ),
+
+         (
+            name: "SM_Env_Vines_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Vines_02.glb")  
+        ),
+
+        (
+            name: "SM_Env_Vines_03",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Vines_03.glb")  
+        ),
+
+        (
+            name: "SM_Env_Vines_04",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Vines_04.glb")  
+        ),
+
+          (
+            name: "SM_Env_Vines_05",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Env_Vines_05.glb")  
+        ),
+
+       (
+            name: "SM_Prop_ShipWreck_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_ShipWreck_01.glb")  
+        ),
+
+
+       (
+            name: "SM_Prop_ShipWreck_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_ShipWreck_02.glb")  
+        ),
+
+        (
+            name: "SM_Prop_Whale_Skeleton_Rib_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Rib_01.glb")  
+        ),
+
+        (
+            name: "SM_Prop_Whale_Skeleton_Rib_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Rib_02.glb")  
+        ),
+
+          (
+            name: "SM_Prop_Whale_Skeleton_Ribcage_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Ribcage_01.glb")  
+        ),
+
+        (
+            name: "SM_Prop_Whale_Skeleton_Ribcage_02",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Ribcage_02.glb")  
+        ),
+ 
+        (
+            name: "SM_Prop_Whale_Skeleton_Skull_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Skull_01.glb")  
+ 
+        ),
+
+        (
+            name: "SM_Prop_Whale_Skeleton_Tail_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Tail_01.glb")  
+        ),
+
+        (
+            name: "SM_Prop_Whale_Skeleton_Vertebra_01",
+            model:  GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Vertebra_01.glb")  
+        ),
 
 
         // --- M Castle

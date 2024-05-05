@@ -71,7 +71,8 @@ pub struct PlaceDoodadEvent {
     pub scale: Option<Vec3>,
     pub rotation_euler: Option<Vec3>,
     pub doodad_name: String,
-    pub custom_props: Option<CustomPropsMap>
+    pub custom_props: Option<CustomPropsMap>,
+    pub zone: Option<Entity> 
     // pub doodad_definition: DoodadDefinition
 }
 
@@ -293,7 +294,12 @@ pub fn handle_place_doodad_events(
                 });
         }
 
-        if let Some(primary_zone) = &zone_resource.primary_zone {
+
+         if let Some(zone_override) = &evt.zone {
+            if let Some(mut ent) = commands.get_entity(zone_override.clone()) {
+                ent.add_child(doodad_spawned);
+            }
+        }else  if let Some(primary_zone) = &zone_resource.primary_zone {
             if let Some(mut ent) = commands.get_entity(primary_zone.clone()) {
                 ent.add_child(doodad_spawned);
             }
@@ -410,7 +416,8 @@ pub fn update_place_doodads(
                 doodad_name: doodad_definition.name,
                 rotation_euler,
                 scale,
-                custom_props
+                custom_props,
+                zone: None
             });
         }
     }
