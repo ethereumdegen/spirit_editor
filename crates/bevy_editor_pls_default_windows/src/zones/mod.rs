@@ -324,7 +324,8 @@ pub fn handle_zone_events(
                             position: zone_entity.get_position(),
                             rotation_euler: Some(zone_entity.get_rotation_euler()),
                             scale: Some(zone_entity.get_scale()),
-                            custom_props: zone_entity.get_custom_props().clone()
+                            custom_props: zone_entity.get_custom_props().clone(),
+                            zone:Some(created_zone)
                         }
                     });
                 }
