@@ -323,17 +323,6 @@
 
 
      (
-            name: "forest_env_dirt_cliff_07",
-            model:  GltfModel("models/doodads/forest/forest_env_dirt_cliff_07.glb")  
-        ),
-
-
-     (
-            name: "forest_env_dirt_cliff_08",
-            model:  GltfModel("models/doodads/forest/forest_env_dirt_cliff_08.glb")  
-        ),
-
-     (
             name: "forest_env_dirt_cliff_10",
             model:  GltfModel("models/doodads/forest/forest_env_dirt_cliff_10.glb")  
         ),
@@ -341,6 +330,52 @@
     (
             name: "forest_env_dirt_cliff_11",
             model:  GltfModel("models/doodads/forest/forest_env_dirt_cliff_11.glb")  
+        ),
+
+
+
+
+
+     (
+            name: "forest_env_stone_cliff_01",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_01.glb")  
+        ),
+
+
+     (
+            name: "forest_env_stone_cliff_02",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_02.glb")  
+        ),
+
+
+     (
+            name: "forest_env_stone_cliff_03",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_03.glb")  
+        ),
+
+
+     (
+            name: "forest_env_stone_cliff_04",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_04.glb")  
+        ),
+
+
+
+     (
+            name: "forest_env_stone_cliff_06",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_06.glb")  
+        ),
+
+
+     (
+            name: "forest_env_stone_cliff_07",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_07.glb")  
+        ),
+
+
+     (
+            name: "forest_env_stone_cliff_08",
+            model:  GltfModel("models/doodads/forest/forest_env_stone_cliff_08.glb")  
         ),
 
 

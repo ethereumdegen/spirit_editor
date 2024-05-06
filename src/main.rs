@@ -45,6 +45,35 @@ use crate::ui::editor_ui_plugin;
 
 use seldom_fn_plugin::FnPluginExt;
 
+
+
+use bevy::winit::WinitWindows;
+use winit::window::Icon;
+
+fn set_window_icon(
+    // we have to use `NonSend` here
+    windows: NonSend<WinitWindows>,
+) {
+    // here we use the `image` crate to load our icon data from a png file
+    // this is not a very bevy-native solution, but it will do
+    let (icon_rgba, icon_width, icon_height) = {
+        let image = image::open("assets/images/favicon.png")
+            .expect("Failed to open icon path")
+            .into_rgba8();
+        let (width, height) = image.dimensions();
+        let rgba = image.into_raw();
+        (rgba, width, height)
+    };
+    let icon = Icon::from_rgba(icon_rgba, icon_width, icon_height).unwrap();
+
+    // do it for all windows
+    for window in windows.windows.values() {
+        window.set_window_icon(Some(icon.clone()));
+    }
+}
+
+
+
 fn main() {
     let mut wgpu_settings = WgpuSettings::default();
     wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
@@ -68,7 +97,7 @@ fn main() {
 
 
         )   
-       
+        
         .add_plugins(DefaultRaycastingPlugin)
         .add_plugins(TerrainMeshPlugin::default())
 
@@ -84,6 +113,7 @@ fn main() {
         .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)
+          .add_systems(Startup, set_window_icon)
         .add_systems(Startup, setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)

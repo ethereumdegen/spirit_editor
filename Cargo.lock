@@ -1095,9 +1095,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.13.17"
+version = "0.13.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "654750d8bec7a463e48a1e931114a1a918f3607667b346bf7865a8b6337503f7"
+checksum = "4a5c18ada85521aef1d5ed581e84f0ce21f2926a02ac69b466c57aa8e80236e1"
 dependencies = [
  "anyhow",
  "bevy 0.13.1",
@@ -1132,8 +1132,10 @@ dependencies = [
  "bevy_mod_sysfail 7.0.0",
  "bevy_obj",
  "bevy_water",
+ "image",
  "seldom_fn_plugin",
  "serde",
+ "winit",
 ]
 
 [[package]]
