@@ -189,6 +189,7 @@ impl Plugin for EditorPlugin {
                     std::any::TypeId::of::<ZoneWindow>(),
                     std::any::TypeId::of::<ResourcesWindow>(),
                     std::any::TypeId::of::<AssetsWindow>(),
+                    std::any::TypeId::of::<LightingWindow>(),
                     std::any::TypeId::of::<DebugSettingsWindow>(),
                     std::any::TypeId::of::<DiagnosticsWindow>(),
                 ],

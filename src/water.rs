@@ -21,9 +21,11 @@ pub(crate) fn water_plugin(app: &mut App) {
         spawn_tiles: None, 
         ..default()
     })
+
     .add_plugins(WaterPlugin)
       .add_systems(Update, add_model_to_liquid_plane )
 
+      
       ;
 
 }
