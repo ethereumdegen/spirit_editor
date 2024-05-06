@@ -250,6 +250,22 @@ pub fn handle_zone_events(
 
                 let zone_name: &str = zone_name_comp.as_str();
 
+
+                let fixed_zone_name = match zone_name.ends_with( "zone.ron" ) || zone_name.ends_with( "zone" ){
+
+                    true => {
+
+                          let   parts: Vec<&str> = zone_name.split('.').collect();
+                         
+                            parts.first().unwrap() .to_string()  
+                           
+
+                      }, 
+                    false => zone_name.to_string()
+
+                };
+                
+
                 let mut all_children: Vec<Entity> = Vec::new();
 
                 for child in DescendantIter::new(&children_query, ent.clone()) {
@@ -258,7 +274,7 @@ pub fn handle_zone_events(
 
                 let zone_file = ZoneFile::new(all_children, &zone_entity_query);
 
-                let zone_file_name = format!("assets/zones/{}.zone.ron", zone_name);
+                let zone_file_name = format!("assets/zones/{}.zone.ron", fixed_zone_name);
 
                 let ron = ron::ser::to_string(&zone_file).unwrap();
                 let file_saved = std::fs::write(zone_file_name, ron);
@@ -273,8 +289,8 @@ pub fn handle_zone_events(
                     true => {
 
                           let   parts: Vec<&str> = zone_name.split('.').collect();
-                         //   parts.pop(); // Remove the last part (".ron")
-                            parts.first().unwrap() .to_string() //.unwrap_or("".to_string())
+                         
+                            parts.first().unwrap() .to_string()  
                            
 
                       }, 
