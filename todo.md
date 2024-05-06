@@ -7,7 +7,7 @@
 
 ## Immediate todo 
  
-- preview of doodad being placed (attach to a 3d node that is at intersection )
+- ui window to control ambient lighting 
 
 
  

@@ -26,8 +26,8 @@ pub use bevy_editor_pls_default_windows as default_windows;
 /// Commonly used types and extension traits
 pub mod prelude {
     pub use crate::{AddEditorWindow, EditorPlugin};
-    #[cfg(feature = "default_windows")]
-    pub use bevy_editor_pls_default_windows::scenes::NotInScene;
+    //#[cfg(feature = "default_windows")]
+   // pub use bevy_editor_pls_default_windows::scenes::NotInScene;
 }
 
 /// Where to show the editor
@@ -128,7 +128,7 @@ impl Plugin for EditorPlugin {
             use bevy_editor_pls_default_windows::inspector::InspectorWindow;
             use bevy_editor_pls_default_windows::renderer::RendererWindow;
             use bevy_editor_pls_default_windows::resources::ResourcesWindow;
-            use bevy_editor_pls_default_windows::scenes::SceneWindow;
+            use bevy_editor_pls_default_windows::lighting::LightingWindow;
 
             use bevy_editor_pls_default_windows::doodads::DoodadsWindow;
             use bevy_editor_pls_default_windows::zones::ZoneWindow;
@@ -143,7 +143,7 @@ impl Plugin for EditorPlugin {
             app.add_editor_window::<RendererWindow>();
 
             app.add_editor_window::<ResourcesWindow>();
-            app.add_editor_window::<SceneWindow>();
+            app.add_editor_window::<LightingWindow>();
             app.add_editor_window::<ZoneWindow>();
             app.add_editor_window::<GizmoWindow>();
             app.add_editor_window::<PlacementWindow>();

@@ -123,73 +123,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         },
 
         ..default()
-    });
-
-    /*commands.spawn(DirectionalLightBundle {
-        directional_light: DirectionalLight {
-           // shadow_depth_bias: 0.5,
-           // shadow_normal_bias: 0.5,
-
-            illuminance: light_consts::lux::OVERCAST_DAY,
-            shadows_enabled: true,
-
-            color: Color::WHITE,
-            ..default()
-        },
-
-        transform: Transform {
-            translation: Vec3::new(0.0, 2.0, 0.0),
-            rotation: Quat::from_rotation_x(-PI  * 1.1 ),
-            ..default()
-        },
-
-        ..default()
-    });
-
-     commands.spawn(DirectionalLightBundle {
-        directional_light: DirectionalLight {
-            shadow_depth_bias: 0.5,
-            shadow_normal_bias: 0.5,
-
-            illuminance: light_consts::lux::OVERCAST_DAY,
-            shadows_enabled: true,
-
-            color: Color::WHITE,
-            ..default()
-        },
-
-        transform: Transform {
-            translation: Vec3::new(0.0, 2.0, 0.0),
-            rotation: Quat::from_rotation_x( PI * 0.1),
-            ..default()
-        },
-
-        ..default()
-    });*/
-
-
-    // light
-    /* commands.spawn(PointLightBundle {
-            point_light: PointLight {
-                intensity: 1500.0,
-                shadows_enabled: true,
-
-                shadow_depth_bias: 0.5,
-                shadow_normal_bias: 0.5,
-
-                color: Color::WHITE,
-                ..default()
-            },
-            transform: Transform::from_xyz(4.0, 800.0, 4.0),
-            ..default()
-        });
-    */
-    commands.insert_resource(AmbientLight {
-        color: Color::WHITE,
-        brightness: 100.0 ,
-    });
-
-
+    }); 
 
 
 

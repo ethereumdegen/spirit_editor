@@ -1145,6 +1145,16 @@
          ),
 
 
+
+         (
+            name: "ladder_01",
+            model: GltfModel("models/doodads/ladder_1.glb"),
+
+             initial_custom_props: Some({ "climbable": Boolean(true) })
+        ),
+
+ 
+
          (
             
             name: "water_plane",
@@ -1171,6 +1181,14 @@
                 })
         ),
 
+
+          (
+            name: "elf_door_02",
+            model:  GltfModel("models/doodads/elven/elf_bld_door_02.glb")  ,
+            initial_custom_props: Some({  
+                 
+                })
+        ),
 
 
         (
@@ -1214,6 +1232,14 @@
         ),
 
 
+           (
+            name: "orc1",
+            model:  GltfModel("models/units/elf1.glb")  
+        ),
+              (
+            name: "fae1",
+            model:  GltfModel("models/units/elf1.glb")  
+        ),
 
 
 
