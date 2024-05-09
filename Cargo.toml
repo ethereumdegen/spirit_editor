@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.6"
+version = "0.13.7"
 edition = "2021"
 
 
@@ -19,6 +19,11 @@ image = { version = "0.24", default-features = false }
 
   bevy_mesh_terrain = "0.13.21"  
  #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+
+
+ bevy_regions = "0.13.4"
+#bevy_regions =  {path="../bevy_regions"}
+
 
 bevy_magic_fx = "0.2.9"
 
@@ -45,8 +50,7 @@ bevy_obj = "0.13.0"
 bevy_water = "0.13.0"
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
-#bevy_regions = "0.13.3"
-bevy_regions =  {path="../bevy_regions"}
+
 
 [workspace.package]
 version = "0.8.2"

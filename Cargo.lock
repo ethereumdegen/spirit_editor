@@ -1485,7 +1485,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_regions"
-version = "0.13.3"
+version = "0.13.4"
 dependencies = [
  "anyhow",
  "bevy 0.13.1",
