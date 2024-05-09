@@ -1,3 +1,6 @@
+use bevy_regions::regions::RegionsData;
+use bevy_regions::regions_config::RegionsConfig;
+use bevy_regions::BevyRegionsPlugin;
 use asset_loading::asset_loading_plugin;
 use bevy::core_pipeline::bloom::BloomSettings;
 use bevy::input::mouse::MouseMotion;
@@ -99,6 +102,10 @@ fn main() {
         )   
         
         .add_plugins(DefaultRaycastingPlugin)
+
+        .add_plugins(BevyRegionsPlugin::default())
+
+
         .add_plugins(TerrainMeshPlugin::default())
 
         .add_plugins(doodads::doodad::DoodadPlugin)
@@ -133,6 +140,18 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
                 .unwrap(),
         )
         .insert(TerrainData::new());
+
+
+        //spawan regions painting plane 
+     commands
+        .spawn(SpatialBundle {
+            transform: Transform::from_xyz(0.0, 40.0, 0.0) ,
+            ..default()
+        } )
+        .insert(RegionsConfig::load_from_file("assets/regions/regions_config.ron").unwrap())
+        .insert(RegionsData::new()) 
+        .insert(Visibility::Visible)  // only in editor 
+        ;
 
     commands.spawn(DirectionalLightBundle {
         directional_light: DirectionalLight {
