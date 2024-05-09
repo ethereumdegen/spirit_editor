@@ -1131,6 +1131,7 @@ dependencies = [
  "bevy_mod_raycast",
  "bevy_mod_sysfail 7.0.0",
  "bevy_obj",
+ "bevy_regions",
  "bevy_water",
  "image",
  "seldom_fn_plugin",
@@ -1480,6 +1481,25 @@ dependencies = [
  "quote",
  "syn 2.0.48",
  "uuid",
+]
+
+[[package]]
+name = "bevy_regions"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d29574ec90fac9d4cff17e5270d5d438a1dd18936ca9031690e19ac6226286f5"
+dependencies = [
+ "anyhow",
+ "bevy 0.13.1",
+ "bevy_mod_sysfail 6.0.0",
+ "futures-lite 1.13.0",
+ "image",
+ "png",
+ "rand",
+ "ron",
+ "serde",
+ "serde_json",
+ "thiserror",
 ]
 
 [[package]]

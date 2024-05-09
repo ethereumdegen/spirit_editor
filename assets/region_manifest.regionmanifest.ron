@@ -1,0 +1,43 @@
+  (
+    region_definitions: [
+
+    
+      (
+            name: "None",
+            color: Rgba(
+                             red: 0.0,
+                            green:  0.0,
+                            blue:  0.0,
+                            alpha: 1.0
+                        ) 
+           
+        ),
+        
+        
+        (
+            name: "Tangled Grove",
+            color: Rgba(
+                             red: 0.9,
+                            green:  0.9,
+                            blue:  0.9,
+                            alpha: 1.0
+                        ) 
+           
+        ),
+
+        (
+            name: "Mirror Lake",
+            color: Rgba(
+                             red: 0.7,
+                            green:  0.7,
+                            blue:  0.9,
+                            alpha: 1.0
+                        ) 
+           
+        ),
+ 
+
+
+
+	]
+)

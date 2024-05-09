@@ -1803,6 +1803,26 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
                 })
         ),
 
+
+
+        (
+            name: "region_marker",
+             model:  CubeShape( (color: Rgba(
+                                        red: 0.78,
+                                        green: 0.55,
+                                        blue: 0.24,
+                                        alpha: 0.3
+                                    ),
+                                    wireframe:true 
+                       ))  ,
+            initial_custom_props: Some({ 
+                "special_type": String("region_marker") , 
+                "region_name": String("---")  
+                })
+        ),
+
+        
+
          (
             name: "elf_door_01",
             model:  GltfModel("models/doodads/elven/elf_bld_door_01.glb")  ,
