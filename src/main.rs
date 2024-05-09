@@ -103,10 +103,12 @@ fn main() {
         
         .add_plugins(DefaultRaycastingPlugin)
 
-        .add_plugins(BevyRegionsPlugin::default())
+     
 
 
         .add_plugins(TerrainMeshPlugin::default())
+
+        .add_plugins(BevyRegionsPlugin::default())
 
         .add_plugins(doodads::doodad::DoodadPlugin)
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
@@ -142,10 +144,10 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         .insert(TerrainData::new());
 
 
-        //spawan regions painting plane 
+        //spawn regions painting plane 
      commands
         .spawn(SpatialBundle {
-            transform: Transform::from_xyz(0.0, 40.0, 0.0) ,
+            transform: Transform::from_xyz(512.0, 40.0, 512.0) , //fix me ... 
             ..default()
         } )
         .insert(RegionsConfig::load_from_file("assets/regions/regions_config.ron").unwrap())
