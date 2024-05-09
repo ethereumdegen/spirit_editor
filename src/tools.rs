@@ -1,16 +1,20 @@
 use bevy::prelude::*;
 
 use crate::editor_pls::bevy_pls_editor_is_active;
-use crate::ui::{EditorToolsState, ToolMode};
+use crate::ui::{BrushType, EditorToolsState, ToolMode};
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::edit::{EditingTool, TerrainBrushEvent};
+use bevy_mesh_terrain::edit::{ BrushType as TerrainBrushType,  EditingTool as TerrainEditingTool , TerrainBrushEvent};
+
+use bevy_regions::edit::{BrushType as RegionsBrushType, EditRegionEvent, EditingTool as RegionsEditingTool, RegionBrushEvent};
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
-    edit::{BrushType, EditTerrainEvent, TerrainCommandEvent},
+    edit::{  EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
-    tool_preview::{ToolPreviewResource},
+    tool_preview::{ToolPreviewResource as TerrainToolPreviewResource},
     TerrainMeshPlugin,
 };
+
+use bevy_regions::tool_preview::{ToolPreviewResource as RegionsToolPreviewResource};
 
 use bevy_egui::EguiContexts;
 
@@ -49,18 +53,41 @@ impl From<EditorToolsState> for EditingToolData {
     }
 }
 
+
+enum EditingTool {
+
+    TerrainEditingTool(TerrainEditingTool),
+    RegionsEditingTool(RegionsEditingTool),
+
+}
+
+
+
+/*
+
+make a system so when brush type changes, the editing tool will change ... to be one that is valid ! s
+
+*/
+
+
 impl From<EditorToolsState> for EditingTool {
     fn from(state: EditorToolsState) -> Self {
+ 
+
         match state.tool_mode {
-            ToolMode::Height => EditingTool::SetHeightMap {
-                height: state.color.r,
-            },
-            ToolMode::Splat => EditingTool::SetSplatMap {
-                r: state.color.r as u8,
-                g: state.color.g as u8,
-                b: state.color.b as u8,
-            },
-        }
+                    ToolMode::Height => EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
+                        height: state.color.r,
+                    }),
+                    ToolMode::Splat => EditingTool::TerrainEditingTool( TerrainEditingTool::SetSplatMap {
+                        r: state.color.r as u8,
+                        g: state.color.g as u8,
+                        b: state.color.b as u8,
+                    }) ,
+                      ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
+                        region_index: state.color.r as u8,
+                    }),  
+            } 
+       
     }
 }
 
@@ -70,11 +97,13 @@ fn update_brush_paint(
     cursor_ray: Res<CursorRay>,
     mut raycast: Raycast,
 
-    mut edit_event_writer: EventWriter<EditTerrainEvent>,
+    mut edit_terrain_event_writer: EventWriter<EditTerrainEvent>,
+    mut edit_regions_event_writer: EventWriter<EditRegionEvent>,
     // command_event_writer: EventWriter<TerrainCommandEvent>,
     editor_tools_state: Res<EditorToolsState>,
 
-    mut tool_preview_state: ResMut<ToolPreviewResource>,
+    mut terrain_tool_preview_state: ResMut<TerrainToolPreviewResource>,
+    mut regions_tool_preview_state: ResMut<RegionsToolPreviewResource>,
 
     mut contexts: EguiContexts,
 ) {
@@ -98,6 +127,8 @@ fn update_brush_paint(
 
     // let tool = EditingTool::SetSplatMap(5,1,0,25.0,false);
 
+
+
     if let Some(cursor_ray) = **cursor_ray {
         if let Some((intersection_entity, intersection_data)) =
             raycast.cast_ray(cursor_ray, &default()).first()
@@ -110,9 +141,15 @@ fn update_brush_paint(
             //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there
 
 
-            tool_preview_state.tool_coordinates = hit_coordinates.clone();
-            tool_preview_state.tool_radius = radius.clone();
-            tool_preview_state.tool_color = (0.6,0.6,0.9).into() ;
+            terrain_tool_preview_state.tool_coordinates = hit_coordinates.clone();
+            terrain_tool_preview_state.tool_radius = radius.clone();
+            terrain_tool_preview_state.tool_color = (0.6,0.6,0.9).into() ;
+
+
+            regions_tool_preview_state.tool_coordinates = hit_coordinates.clone();
+            regions_tool_preview_state.tool_radius = radius.clone();
+            regions_tool_preview_state.tool_color = (0.6,0.6,0.9).into() ;
+
 
 
 
@@ -121,14 +158,49 @@ fn update_brush_paint(
             }
 
 
-            edit_event_writer.send(EditTerrainEvent {
-                entity: intersection_entity.clone(),
-                tool: tool_data.editing_tool,
-                brush_type,
-                brush_hardness,
-                coordinates: hit_coordinates,
-                radius,
-            });
+            match tool_data.editing_tool {
+                EditingTool::TerrainEditingTool(terrain_edit_tool) =>  {
+
+                 let  terrain_brush_type = match &brush_type {
+                    BrushType::SetExact => TerrainBrushType::SetExact,
+                    BrushType::Smooth => TerrainBrushType::Smooth,
+                    BrushType::Noise => TerrainBrushType::Noise,
+                    BrushType::EyeDropper => TerrainBrushType::EyeDropper,
+                };
+
+                       edit_terrain_event_writer.send(EditTerrainEvent {
+                            entity: intersection_entity.clone(),
+                            tool: terrain_edit_tool,
+                            brush_type: terrain_brush_type,
+                            brush_hardness,
+                            coordinates: hit_coordinates,
+                            radius,
+                        });
+                  
+
+                },
+                EditingTool::RegionsEditingTool(region_edit_tool) => {
+
+                       let  regions_brush_type = match &brush_type {
+                            BrushType::SetExact => RegionsBrushType::SetExact,
+                            BrushType::Smooth => RegionsBrushType::SetExact,
+                            BrushType::Noise => RegionsBrushType::SetExact,
+                            BrushType::EyeDropper => RegionsBrushType::EyeDropper,
+                        };
+
+                     edit_regions_event_writer.send(EditRegionEvent {   
+                            entity: intersection_entity.clone(),
+                            tool: region_edit_tool,
+                            brush_type:regions_brush_type,
+                            brush_hardness,
+                            coordinates: hit_coordinates,
+                            radius,
+                        });
+                      
+                },
+            }
+
+         
         }
     }
 }

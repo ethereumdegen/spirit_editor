@@ -45,8 +45,8 @@ bevy_obj = "0.13.0"
 bevy_water = "0.13.0"
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
-bevy_regions = "0.13.3"
-
+#bevy_regions = "0.13.3"
+bevy_regions =  {path="../bevy_regions"}
 
 [workspace.package]
 version = "0.8.2"

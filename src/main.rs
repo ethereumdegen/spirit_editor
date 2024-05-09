@@ -6,6 +6,7 @@ use bevy::core_pipeline::bloom::BloomSettings;
 use bevy::input::mouse::MouseMotion;
 use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
+use ui::EditorToolsState;
 
 use std::f32::consts::PI;
 
@@ -126,6 +127,7 @@ fn main() {
         .add_systems(Startup, setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
+         .add_systems(Update, update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
@@ -147,12 +149,12 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         //spawn regions painting plane 
      commands
         .spawn(SpatialBundle {
-            transform: Transform::from_xyz(512.0, 40.0, 512.0) , //fix me ... 
+           transform: Transform::from_xyz(0.0, 40.0, 0.0) , 
             ..default()
         } )
         .insert(RegionsConfig::load_from_file("assets/regions/regions_config.ron").unwrap())
         .insert(RegionsData::new()) 
-        .insert(Visibility::Visible)  // only in editor 
+        .insert(Visibility::Hidden)  // only in editor 
         ;
 
     commands.spawn(DirectionalLightBundle {
@@ -227,4 +229,24 @@ fn update_directional_light_position(
         transform.translation = Vec3::new(x, y, z);
         transform.look_at(Vec3::ZERO, Vec3::Y);
     }
+}
+
+
+fn update_regions_plane_visibility (
+
+   mut region_plane_query: Query<&mut Visibility, With<RegionsData>>,
+   editor_tools_state: Res<EditorToolsState>
+
+
+
+  ){
+
+    let Some( mut region_plane_vis ) = region_plane_query.get_single_mut().ok() else {return};
+
+    *region_plane_vis = match &editor_tools_state.tool_mode {
+        
+        ui::ToolMode::Regions => Visibility::Visible, 
+        _ => Visibility::Hidden
+    }
+
 }

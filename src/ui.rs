@@ -5,7 +5,8 @@ use bevy::prelude::*;
 use bevy_egui::EguiContexts;
 use bevy_egui::{egui, EguiContext, EguiPlugin};
 
-use bevy_mesh_terrain::edit::{BrushType, TerrainCommandEvent};
+use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
+use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
 
@@ -33,36 +34,72 @@ pub struct EditorToolsState {
     pub brush_hardness: u32,
     pub color: LinearPixelColor, //brush mode
 }
-/*
-impl Default for EditorToolsState{
 
-    fn default() -> Self{
-        Self{
 
-            brush_radius: 50,
-            brush_hardness: 100,
-            ..default()
+#[derive(Clone ,PartialEq)]
+pub enum BrushType {
+ 
+    SetExact,
+    Smooth,
+    Noise,
+    EyeDropper
+}
+
+impl BrushType{
+
+    pub fn to_string(&self) -> String{
+
+        match self {
+
+            BrushType::SetExact  => "Set Exact".into(),
+             BrushType::Smooth  => "Smooth".into(),
+             BrushType::Noise  => "Noise".into(),
+             BrushType::EyeDropper  => "Eyedropper".into(),
+
+            
+
         }
-        }
+
     }
-    */
+}
+
+impl Default for BrushType {
+    fn default() -> Self {
+      BrushType::SetExact 
+    }
+} 
 
 #[derive(Eq, PartialEq, Debug, Default, Clone)]
 pub enum ToolMode {
     #[default]
     Height,
     Splat,
+    Regions
 }
-const TOOL_MODES: [ToolMode; 2] = [ToolMode::Height, ToolMode::Splat];
+const TOOL_MODES: [ToolMode; 3] = [ToolMode::Height, ToolMode::Splat, ToolMode::Regions];
 
-const BRUSH_TYPES_HEIGHT: [BrushType; 4] = [BrushType::SetExact, BrushType::Smooth, BrushType::Noise, BrushType::EyeDropper];
-const BRUSH_TYPES_SPLAT: [BrushType; 2] = [BrushType::SetExact, BrushType::EyeDropper];
+const BRUSH_TYPES_HEIGHT: [ BrushType; 4] = [
+BrushType::SetExact , 
+BrushType::Smooth , 
+   BrushType::Noise , 
+ BrushType::EyeDropper
+];
+const BRUSH_TYPES_SPLAT: [ BrushType; 2] = [
+BrushType::SetExact , 
+ 
+ BrushType::EyeDropper
+];
+const BRUSH_TYPES_REGION: [BrushType; 2] = [
+BrushType::SetExact ,   
+BrushType::EyeDropper
+];
 
 impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let label = match self {
             ToolMode::Height => "Height",
             ToolMode::Splat => "Splat",
+            ToolMode::Regions => "Regions"
         };
 
         write!(f, "{}", label)
@@ -73,6 +110,7 @@ fn editor_tools(
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
+    mut region_command_event_writer: EventWriter<RegionCommandEvent>,
 
     mut contexts: EguiContexts,
 
@@ -80,13 +118,14 @@ fn editor_tools(
     terrain_manifest_asset: Res<Assets<TerrainManifest>>
 ) {
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
-        if ui.button("Save All Chunks (Ctrl+S)").clicked() {
+        if ui.button("Save All   (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
+            region_command_event_writer.send(RegionCommandEvent::SaveAll );
         }
 
-        if ui.button("Save Splat and Height").clicked() {
-            command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, false));
-        }
+       // if ui.button("Save Splat and Height").clicked() {
+      //      command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, false));
+      //  }
 
         ui.spacing();
         ui.separator();
@@ -191,6 +230,32 @@ fn editor_tools(
                     egui::Slider::new(&mut tools_state.color.r, 0..=65535)
                         .text("Height (R_Channel)"),
                 );
+            },
+            ToolMode::Regions => {
+
+
+                 egui::ComboBox::new("brush_type", "")
+                    .selected_text(tools_state.brush_type.to_string())
+                    .show_ui(ui, |ui| {
+                        for brush_type in BRUSH_TYPES_REGION.into_iter() {
+                            if ui
+                                .selectable_label(
+                                    tools_state.brush_type == brush_type,
+                                    brush_type.to_string(),
+                                )
+                                .clicked()
+                            {
+                                tools_state.brush_type = brush_type;
+                            }
+                        }
+                    });
+
+                ui.add(
+                    egui::Slider::new(&mut tools_state.color.r, 0..=64)
+                        .text("Region Index (R_Channel)"),
+                );
+
+
             }
         }
     });
