@@ -25,7 +25,7 @@ image = { version = "0.24", default-features = false }
 #bevy_regions =  {path="../bevy_regions"}
 
 
-bevy_magic_fx = "0.2.9"
+bevy_magic_fx = "0.3.7"
 
 
 bevy_mod_picking = {version="0.18.0", features=["backend_raycast",  "highlight","selection"]}

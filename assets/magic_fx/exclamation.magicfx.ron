@@ -4,8 +4,8 @@
     magic_fx_instances: [
 ( 
 
-     shader_variant_name: "waterfall.shadvar",
-	  mesh_name:  "models/meshes/waterfall01.obj", 
+     shader_variant_name: "yellow.shadvar",
+	  mesh_name:  "models/meshes/exclamation.obj", 
 		  start_time_offset: 0.0,
 		  end_time_offset: 300.0,
 		  start_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
@@ -17,7 +17,7 @@
 
     ] ,  
 
-    max_time: None ,
+    max_time: None,
     repeating: true 
 
 

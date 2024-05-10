@@ -1727,6 +1727,16 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
         ) ,
 
 
+        (
+            name: "exclamation_point",
+            model:  MagicFx("magic_fx/exclamation.magicfx.ron")  
+        ) ,
+
+
+// how can i make interact w this do a cinematic ?
+//like trigger volume 
+
+
           (
             name: "vfx_leaves",
             model: CubeShape( (color: Rgba(
