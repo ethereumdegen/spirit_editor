@@ -1729,7 +1729,15 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
 
         (
             name: "exclamation_point",
-            model:  MagicFx("magic_fx/exclamation.magicfx.ron")  
+            model:  MagicFx("magic_fx/exclamation.magicfx.ron")  ,
+
+               initial_custom_props: Some({ 
+               //gets Interactable from the games doodad manifest 
+                 "interaction_trigger_script": String("---")  
+
+                 })
+
+
         ) ,
 
 
@@ -1780,7 +1788,7 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
                                     ))  ,
             initial_custom_props: Some({ 
                 "special_type": String("trigger_volume"),
-                 "trigger_volume_name": String("---") 
+                 "interaction_trigger_script": String("---") 
 
 
                  })

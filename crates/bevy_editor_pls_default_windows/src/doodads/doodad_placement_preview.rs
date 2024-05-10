@@ -324,6 +324,8 @@ pub fn update_doodad_placement_preview_model (
 
               
             },
+ 
+
            _ =>  {
 
            	warn!("no preview for this model type");

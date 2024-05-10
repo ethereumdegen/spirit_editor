@@ -137,7 +137,7 @@ fn attach_models_to_doodads(
 
                 let Some(magic_fx) = built_vfx_registry.magic_fx_variants.get(&magic_fx_name ) else {
 
-                    info!("spawn magic fx fallback");
+                    info!("spawn magic fx fallback for {:?}",magic_fx_name);
                     commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(2.0, 2.0, 2.0))) 
