@@ -1708,7 +1708,15 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
 
         (
             name: "wooden_chest",
-            model:  GltfModel("models/doodads/wooden_chest.glb")  
+            model:  GltfModel("models/doodads/wooden_chest.glb")  ,
+
+              initial_custom_props: Some({ 
+               //gets Interactable and lootable from the games doodad manifest 
+                 "has_loot_table": String("---")  
+
+               })
+
+
         ) ,
 
         (
