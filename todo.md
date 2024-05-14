@@ -16,7 +16,4 @@
 
 ## bugs 
 
-
-
-
-sometimes the editor crashes due to a command buffer when pressing ESC 
+ 
