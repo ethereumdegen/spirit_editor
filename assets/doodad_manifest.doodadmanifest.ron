@@ -1093,6 +1093,15 @@
             model:  GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb")  
         ),
 
+
+
+        (
+            name: "SecretRockWall_HingeVertical",
+            model:  GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb")  
+        ),
+
+
+
          (
             name: "MCastle_CliffRock_Small_01",
             model:  GltfModel("models/doodads/MCastle_CliffRock_Small_01.glb")  
