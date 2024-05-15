@@ -1913,6 +1913,22 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
             model:  GltfModel("models/units/elf1.glb")  
         ),
 
+
+        //special units 
+          (
+            name: "gabriella",
+            model:  GltfModel("models/units/elf1.glb")  ,
+              initial_custom_props: Some({
+
+                "unique_name": String("gabriella"),
+                "has_dialog_tree": String("gabriella")
+                
+               })
+        ),
+
+        // ---- 
+
+
         (
             name: "skeleton1",
             model:  GltfModel("models/units/skeleton_01.glb")  
