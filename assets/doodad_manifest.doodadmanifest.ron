@@ -1,10 +1,23 @@
   (
+
+
+    doodad_tags: [
+
+        "editor",
+        "forest",
+        "trees"
+        
+    ],
+
+
+
     doodad_definitions: [
 
 
         (
             name: "blank_block",
             model: GltfModel("models/doodads/blank_block.glb"),
+            tags: [ "editor" ] 
         ),
 
 
@@ -15,11 +28,7 @@
         ),
 
 
-
-        (
-            name: "ancient_bg_islands",
-            model: GltfModel("models/doodads/ancient/ancient_bg_islands.glb"),
-        ),
+ 
 
 
          (
@@ -70,11 +79,16 @@
         (
             name: "birch_yellow_1",
             model: GltfModel("models/doodads/birch_yellow.glb"),
+
+              tags: [ "trees","forest" ] 
+
+
         ),
 
         (
             name: "birch_green_1",
-            model:  GltfModel("models/doodads/birch_green.glb")  
+            model:  GltfModel("models/doodads/birch_green.glb")  ,
+            tags: [ "trees","forest" ] 
         ) ,
 
         (

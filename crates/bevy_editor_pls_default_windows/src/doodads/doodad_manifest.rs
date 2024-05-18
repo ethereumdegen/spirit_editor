@@ -17,6 +17,7 @@ pub struct DoodadManifestResource {
 
 #[derive(Asset, TypePath, Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadManifest {
+    pub doodad_tags: Vec<String>,
     pub doodad_definitions: Vec<DoodadDefinition>,
 }
 
@@ -52,6 +53,7 @@ pub struct DoodadDefinition {
     pub name: String,
     pub model: RenderableType,
     pub initial_custom_props: Option<CustomPropsMap>,
+    pub tags: Option<String> ,
 }
 
 impl DoodadManifest {
