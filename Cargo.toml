@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.7"
+version = "0.13.8"
 edition = "2021"
 
 
@@ -71,7 +71,7 @@ resolver = "2"
 [workspace.dependencies]
 bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
-bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" } 
+bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
 
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"

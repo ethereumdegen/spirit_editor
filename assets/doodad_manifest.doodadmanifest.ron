@@ -16,6 +16,40 @@
 
 
 
+        (
+            name: "ancient_bg_islands",
+            model: GltfModel("models/doodads/ancient/ancient_bg_islands.glb"),
+        ),
+
+
+         (
+            name: "skeleton_prop_lootable",
+            model: GltfModel("models/doodads/skele_prop_dead_1b.glb"),
+
+                initial_custom_props: Some({ 
+               //gets Interactable and lootable from the games doodad manifest 
+                 "has_loot_table": String("---")  
+
+               })
+                
+        ),
+
+        (
+            name: "skele_prop_dead_1",
+            model: GltfModel("models/doodads/skele_prop_dead_1.glb"),
+        ),
+
+           (
+            name: "skele_prop_dead_1b",
+            model: GltfModel("models/doodads/skele_prop_dead_1b.glb"),
+        ),
+
+              (
+            name: "skeleton_prop_head",
+            model: GltfModel("models/doodads/skele_head.glb"),
+        ),
+
+        
         // ancient 
 
         (
@@ -284,7 +318,31 @@
         ),
 
   
+         (
+            name: "story_stone_1",
+            model:  GltfModel("models/doodads/story_stones/story_stone_1.glb")  
+        ),
 
+
+
+
+// ------
+
+     // ancient forest 
+
+       (
+            name: "AncientForestTree1",
+            model:  GltfModel("models/doodads/ancient_forest/AncientForestTree1.glb")  
+        ),
+
+      (
+            name: "AncientForestTree2",
+            model:  GltfModel("models/doodads/ancient_forest/AncientForestTree2.glb")  
+        ),
+      (
+            name: "AncientForestTree3",
+            model:  GltfModel("models/doodads/ancient_forest/AncientForestTree3.glb")  
+        ),
 
 // ------
 
@@ -1738,9 +1796,14 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
         // special things 
 
 
-           (
+         (
             name: "waterfall_1",
             model:  MagicFx("magic_fx/waterfall.magicfx.ron")  
+        ) ,
+
+           (
+            name: "sunshaft",
+            model:  MagicFx("magic_fx/sunshaft.magicfx.ron")  
         ) ,
 
 
