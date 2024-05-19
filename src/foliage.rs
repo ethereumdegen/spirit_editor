@@ -63,7 +63,8 @@ fn add_data_for_foliage_chunks (
 
 
                 commands.entity(chunk_entity).insert(     
-               
+                
+                    //make an enum type for HeightMapU8 and HeightMapU16 
                     FoliageChunkYOffsetData {
                         y_offset_map_data: *raw_height_data
 
