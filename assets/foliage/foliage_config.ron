@@ -5,7 +5,7 @@ FoliageConfig(
 
     
 
-    density_folder_path: Some("foliage/density"), 
+    density_folder_path: Some("foliage/density/"), 
     grass_y_map_folder_path: None, //comes from height map and custom system
  
     
