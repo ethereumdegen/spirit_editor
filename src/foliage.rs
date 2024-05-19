@@ -1,5 +1,7 @@
 
 
+use bevy_foliage_paint::foliage_chunk;
+use bevy_mesh_terrain::chunk::ChunkHeightMapResource;
 use bevy_foliage_paint::foliage_chunk::FoliageChunkYOffsetData;
 use bevy_foliage_paint::foliage_chunk::FoliageChunkYOffsetTexture;
 use bevy_foliage_paint::density_map::DensityMap;
@@ -25,8 +27,8 @@ impl Plugin for FoliagePlugin {
 }
 
 
- 
-
+#[derive(Component)]
+pub struct FoliageChunkNeedsRebuild ;   // from height or density edit .. ? 
 
   
 fn add_data_for_foliage_chunks (   
@@ -40,14 +42,39 @@ fn add_data_for_foliage_chunks (
 
 
     chunks_query: Query< 
-       Entity   , 
-    (   With<FoliageChunk>, Without<FoliageChunkDensityData>   )
-    > 
+       (Entity,&FoliageChunk)   , 
+      Or<(Without<FoliageChunkYOffsetData> , With<FoliageChunkNeedsRebuild> )>    
+    > ,
+
+
+     mut chunk_height_maps: ResMut<ChunkHeightMapResource>,
+
 
     ){
 
 
-      for chunk_entity in chunks_query.iter() {
+      for (chunk_entity,foliage_chunk) in chunks_query.iter() {
+
+        let chunk_id = &foliage_chunk.chunk_id;
+
+           if let Some(height_map_data) = &chunk_height_maps.chunk_height_maps.get(chunk_id)
+            {
+               let raw_height_data = &height_map_data.0;
+
+
+                commands.entity(chunk_entity).insert(     
+               
+                    FoliageChunkYOffsetData {
+                        y_offset_map_data: *raw_height_data
+
+
+                    } 
+
+                );
+
+
+            }
+
 
 
         //get this from the density images folder .. or a data resource maybe 
@@ -58,8 +85,8 @@ fn add_data_for_foliage_chunks (
 
 
 
-        if let Some(density_map) = density_map {
-              if let Some(y_offset_map) = y_offset_map {
+   //if let Some(density_map) = density_map {
+           //   if let Some(y_offset_map) = y_offset_map {
 
 
 
@@ -67,10 +94,10 @@ fn add_data_for_foliage_chunks (
 
              //   let dimensions:Vec2  = Vec2::new(256.0,256.0);
 
-                let density_map_data = DensityMapU8::load_from_image( density_map  ).unwrap();
-                let y_offset_map_data = DensityMapU8::load_from_image( y_offset_map  ).unwrap();
+             //  let density_map_data = DensityMapU8::load_from_image( density_map  ).unwrap();
+              //  let y_offset_map_data = DensityMapU8::load_from_image( y_offset_map  ).unwrap();
 
-                commands.entity(chunk_entity).insert( 
+               /* commands.entity(chunk_entity).insert( 
 
                     FoliageChunkDensityData {
                         density_map_data: *density_map_data
@@ -85,29 +112,20 @@ fn add_data_for_foliage_chunks (
                
                     FoliageChunkDensityTexture::default() 
  
-                );
+                );*/
 
 
-                commands.entity(chunk_entity).insert(     
                
-                    FoliageChunkYOffsetData {
-                        y_offset_map_data: *y_offset_map_data
-
-
-                    } 
-
-                );
-
+/*
                 commands.entity(chunk_entity).insert(     
                
                     FoliageChunkYOffsetTexture::default() 
  
                 );
+*/
+            
 
-            }
-
-
-            }
+ 
         }
 
 }
