@@ -155,7 +155,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
               
      commands
         .spawn(SpatialBundle {
-           transform: Transform::from_xyz(0.0, 40.0, 0.0) , 
+           transform: Transform::from_xyz(0.0, 0.5, 0.0) , 
             ..default()
         } )
         .insert(FoliageConfig::load_from_file("assets/foliage/foliage_config.ron").unwrap())

@@ -3,7 +3,7 @@ FoliageConfig(
     boundary_dimensions: (1024.0, 1024.0), // Vec2(x, y)
     chunk_rows: 4,
 
-    height_scale: 0.0004, 
+    height_scale: 0.001, 
 
     density_folder_path: Some("foliage/density/"), 
     grass_y_map_folder_path: None, //comes from height map and custom system
