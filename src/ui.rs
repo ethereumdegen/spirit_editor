@@ -15,7 +15,7 @@ use crate::editor_pls::bevy_pls_editor_is_active;
 
 pub fn editor_ui_plugin(app: &mut App) {
     app.init_resource::<EditorToolsState>()
-        .add_plugins(EguiPlugin)
+       // .add_plugins(EguiPlugin)  // only add this if it hasnt been added 
         .add_systems(Update, editor_tools.run_if(not(bevy_pls_editor_is_active)));
 }
 

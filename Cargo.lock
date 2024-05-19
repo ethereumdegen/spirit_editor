@@ -1214,6 +1214,7 @@ version = "0.13.8"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",
+ "bevy-inspector-egui 0.24.0",
  "bevy_common_assets",
  "bevy_editor_pls",
  "bevy_editor_pls_core",

@@ -53,7 +53,7 @@ pub struct DoodadDefinition {
     pub name: String,
     pub model: RenderableType,
     pub initial_custom_props: Option<CustomPropsMap>,
-    pub tags: Option<String> ,
+    pub tags: Option<Vec<String>> ,
 }
 
 impl DoodadManifest {

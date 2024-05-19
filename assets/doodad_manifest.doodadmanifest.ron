@@ -17,7 +17,7 @@
         (
             name: "blank_block",
             model: GltfModel("models/doodads/blank_block.glb"),
-            tags: [ "editor" ] 
+            tags: Some([ "editor" ])
         ),
 
 
@@ -80,7 +80,7 @@
             name: "birch_yellow_1",
             model: GltfModel("models/doodads/birch_yellow.glb"),
 
-              tags: [ "trees","forest" ] 
+              tags: Some([ "trees","forest" ])
 
 
         ),
@@ -88,7 +88,7 @@
         (
             name: "birch_green_1",
             model:  GltfModel("models/doodads/birch_green.glb")  ,
-            tags: [ "trees","forest" ] 
+            tags: Some( [ "trees","forest" ]  )
         ) ,
 
         (

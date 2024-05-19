@@ -38,7 +38,7 @@ fn add_data_for_foliage_chunks (
 
    // sample_textures_res: Res<SampleTexturesResource>, 
 
-    image_assets: Res<Assets<Image>>,
+  //  image_assets: Res<Assets<Image>>,
 
 
     chunks_query: Query< 
@@ -47,7 +47,7 @@ fn add_data_for_foliage_chunks (
     > ,
 
 
-     mut chunk_height_maps: ResMut<ChunkHeightMapResource>,
+      chunk_height_maps: Res<ChunkHeightMapResource>,
 
 
     ){
@@ -62,11 +62,19 @@ fn add_data_for_foliage_chunks (
                let raw_height_data = &height_map_data.0;
 
 
-                commands.entity(chunk_entity).insert(     
-                
+
+               info!("add y offset data to foliage chunk");
+
+                commands.entity(chunk_entity).insert(
+                    /*
+                    FoliageChunkDensityTexture {
+
+                    }
+                    */
+
                     //make an enum type for HeightMapU8 and HeightMapU16 
                     FoliageChunkYOffsetData {
-                        y_offset_map_data: *raw_height_data
+                        y_offset_map_data:  raw_height_data.clone()
 
 
                     } 
