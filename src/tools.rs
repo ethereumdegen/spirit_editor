@@ -5,7 +5,19 @@ use crate::ui::{BrushType, EditorToolsState, ToolMode};
 use bevy::input::mouse::MouseMotion;
 use bevy_mesh_terrain::edit::{ BrushType as TerrainBrushType,  EditingTool as TerrainEditingTool , TerrainBrushEvent};
 
-use bevy_regions::edit::{BrushType as RegionsBrushType, EditRegionEvent, EditingTool as RegionsEditingTool, RegionBrushEvent};
+use bevy_regions::edit::{
+    BrushType as RegionsBrushType, 
+    EditRegionEvent, 
+    EditingTool as RegionsEditingTool,
+     RegionBrushEvent};
+
+use bevy_foliage_paint::edit::{
+    BrushType as FoliageBrushType, 
+    EditFoliageEvent, 
+    EditingTool as FoliageEditingTool,
+     FoliageBrushEvent};
+
+     
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
     edit::{  EditTerrainEvent, TerrainCommandEvent},
@@ -58,6 +70,7 @@ enum EditingTool {
 
     TerrainEditingTool(TerrainEditingTool),
     RegionsEditingTool(RegionsEditingTool),
+    FoliageEditingTool(FoliageEditingTool),
 
 }
 
@@ -83,8 +96,12 @@ impl From<EditorToolsState> for EditingTool {
                         g: state.color.g as u8,
                         b: state.color.b as u8,
                     }) ,
-                      ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
+                     ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
                         region_index: state.color.r as u8,
+                    }),  
+                    ToolMode::Foliage => EditingTool::FoliageEditingTool( 
+                        FoliageEditingTool::SetFoliageMap {
+                        foliage_index: state.color.r as u8,
                     }),  
             } 
        
@@ -98,6 +115,7 @@ fn update_brush_paint(
     mut raycast: Raycast,
 
     mut edit_terrain_event_writer: EventWriter<EditTerrainEvent>,
+    mut edit_foliage_event_writer: EventWriter<EditFoliageEvent>,
     mut edit_regions_event_writer: EventWriter<EditRegionEvent>,
     // command_event_writer: EventWriter<TerrainCommandEvent>,
     editor_tools_state: Res<EditorToolsState>,
@@ -179,7 +197,26 @@ fn update_brush_paint(
                   
 
                 },
-                EditingTool::RegionsEditingTool(region_edit_tool) => {
+                EditingTool::FoliageEditingTool(foliage_edit_tool) => {
+
+                       let  foliage_brush_type = match &brush_type {
+                            BrushType::SetExact => FoliageBrushType::SetExact,
+                            BrushType::Smooth => FoliageBrushType::SetExact,
+                            BrushType::Noise => FoliageBrushType::SetExact,
+                            BrushType::EyeDropper => FoliageBrushType::EyeDropper,
+                        };
+
+                     edit_foliage_event_writer.send(EditFoliageEvent {   
+                            entity: intersection_entity.clone(),
+                            tool: foliage_edit_tool,
+                            brush_type:foliage_brush_type,
+                            brush_hardness,
+                            coordinates: hit_coordinates,
+                            radius,
+                        });
+                      
+                },
+                 EditingTool::RegionsEditingTool(region_edit_tool) => {
 
                        let  regions_brush_type = match &brush_type {
                             BrushType::SetExact => RegionsBrushType::SetExact,

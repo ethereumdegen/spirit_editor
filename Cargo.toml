@@ -25,6 +25,8 @@ image = { version = "0.24", default-features = false }
 #bevy_regions =  {path="../bevy_regions"}
 
 
+bevy_foliage_paint =  {path="../bevy_foliage_paint"}
+
 bevy_magic_fx = "0.3.7"
 
 

@@ -1,0 +1,13 @@
+[package]
+name = "bevy_editor_pls_ext"
+version.workspace = true
+edition.workspace = true
+license.workspace = true 
+
+[dependencies]
+bevy = { version = "0.13", default-features = false }
+bevy_editor_pls_core.workspace = true
+bevy_editor_pls_default_windows.workspace = true
+bevy-inspector-egui.workspace = true
+indexmap = "2"
+egui_dock.workspace = true

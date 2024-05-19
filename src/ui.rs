@@ -7,6 +7,7 @@ use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
+use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
 
@@ -74,15 +75,21 @@ pub enum ToolMode {
     #[default]
     Height,
     Splat,
+    Foliage,
     Regions
 }
-const TOOL_MODES: [ToolMode; 3] = [ToolMode::Height, ToolMode::Splat, ToolMode::Regions];
+const TOOL_MODES: [ToolMode; 4] = [
+ToolMode::Height, 
+ToolMode::Splat, 
+ToolMode::Foliage, 
+ToolMode::Regions
+];
 
 const BRUSH_TYPES_HEIGHT: [ BrushType; 4] = [
 BrushType::SetExact , 
 BrushType::Smooth , 
-   BrushType::Noise , 
- BrushType::EyeDropper
+BrushType::Noise , 
+BrushType::EyeDropper
 ];
 const BRUSH_TYPES_SPLAT: [ BrushType; 2] = [
 BrushType::SetExact , 
@@ -94,11 +101,19 @@ BrushType::SetExact ,
 BrushType::EyeDropper
 ];
 
+//consider adding more stuff bc of bitmasking 
+const BRUSH_TYPES_FOLIAGE: [BrushType; 2] = [
+BrushType::SetExact ,   
+BrushType::EyeDropper
+];
+
+
 impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let label = match self {
             ToolMode::Height => "Height",
             ToolMode::Splat => "Splat",
+            ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions"
         };
 
@@ -110,6 +125,7 @@ fn editor_tools(
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
+    mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
 
     mut contexts: EguiContexts,
@@ -121,6 +137,7 @@ fn editor_tools(
         if ui.button("Save All   (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
+            foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
         }
 
        // if ui.button("Save Splat and Height").clicked() {
@@ -231,6 +248,32 @@ fn editor_tools(
                         .text("Height (R_Channel)"),
                 );
             },
+            ToolMode::Foliage => {
+
+
+                 egui::ComboBox::new("brush_type", "")
+                    .selected_text(tools_state.brush_type.to_string())
+                    .show_ui(ui, |ui| {
+                        for brush_type in BRUSH_TYPES_FOLIAGE.into_iter() {
+                            if ui
+                                .selectable_label(
+                                    tools_state.brush_type == brush_type,
+                                    brush_type.to_string(),
+                                )
+                                .clicked()
+                            {
+                                tools_state.brush_type = brush_type;
+                            }
+                        }
+                    });
+
+                ui.add(
+                    egui::Slider::new(&mut tools_state.color.r, 0..=64)
+                        .text("Foliage Index (R_Channel)"),
+                );
+
+
+            }
             ToolMode::Regions => {
 
 
