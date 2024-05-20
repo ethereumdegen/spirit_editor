@@ -1190,6 +1190,8 @@ dependencies = [
 [[package]]
 name = "bevy_mesh_terrain"
 version = "0.13.22"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c45b2d1eab35908609cc5c919ae3f12e18650ee9ed2d5363f19c44c36ccd23c"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",
