@@ -59,7 +59,7 @@ fn add_data_for_foliage_chunks (
 
            if let Some(height_map_data) = &chunk_height_maps.chunk_height_maps.get(chunk_id)
             {
-               let raw_height_data = &height_map_data.0;
+               let raw_height_data =  height_map_data ;
 
 
 
@@ -74,7 +74,7 @@ fn add_data_for_foliage_chunks (
 
                     //make an enum type for HeightMapU8 and HeightMapU16 
                     FoliageChunkYOffsetData {
-                        y_offset_map_data:  raw_height_data.clone()
+                        y_offset_map_data:  raw_height_data.to_vec()
 
 
                     } 

@@ -1189,9 +1189,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.13.21"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a5c18ada85521aef1d5ed581e84f0ce21f2926a02ac69b466c57aa8e80236e1"
+version = "0.13.22"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",
@@ -5323,6 +5321,8 @@ dependencies = [
 [[package]]
 name = "warbler_grass"
 version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3396a5626f5b56a7014adba030aa78ef9f1adda26c2f28fed0281f5ebabbac26"
 dependencies = [
  "bevy 0.13.2",
  "bitflags 2.4.2",
