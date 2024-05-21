@@ -1,34 +1,30 @@
 ## Bevy Mesh Terrain Editor 
 
-
+Load, Edit, and Save terrain and other game data files for bevy_mesh_terrain in a standalone application.
 
 ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/9e32f8a0-e513-4ee0-8b4b-3e4d73ab8608)
 
 
 
+## Tool Modes 
+1. Terrain Height
+2. Terrain Splat
+3. Foliage (warbler grass)
+4. Regions
+5. Doodad Placement (Press ESC to toggle) 
+
+
+## Doodads and zone files 
+ 
+Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.    
 
 
 
-## How to use 
+### Terrain Splat Map
+ 
+- When painting, the system supports up to 255 textures with high efficiency and very few draw calls. However, the tradeoff is you have to be careful how you blend and paint them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
 
  
-Load, Edit, and Save terrain files for bevy_mesh_terrain in a standalone application.
-
-Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.  
-
-
-
-
-
-### Terrain Edit Tips and tricks 
-
-- You dont have to 'save all chunks' unless you need to export collision data to a game.  Often, saving splat and height is sufficient and far faster. 
-
-- When painting, the system supports up to 255 textures. However, you have to  be very careful how you blend them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
-
-
-
-
 
 
 ### Placing Doodads 
