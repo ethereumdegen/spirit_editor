@@ -7,9 +7,9 @@
 
 ## Immediate todo 
 
-- foliage painting 
+-  
 - organize doodads in  tag folders 
-
+- add doodad bundles (house) 
 
 - when cloning an asset, auto select the new clone 
 
