@@ -43,6 +43,8 @@ mod doodads;
 mod terrain;
 mod foliage; 
 
+mod regions;
+
 use crate::camera::camera_plugin;
 use crate::water::water_plugin;
 
@@ -131,7 +133,7 @@ fn main() {
         .add_systems(Startup, setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
-         .add_systems(Update, update_regions_plane_visibility)
+         .add_systems(Update, regions::update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
@@ -249,22 +251,3 @@ fn update_directional_light_position(
     }
 }
 
-
-fn update_regions_plane_visibility (
-
-   mut region_plane_query: Query<&mut Visibility, With<RegionsData>>,
-   editor_tools_state: Res<EditorToolsState>
-
-
-
-  ){
-
-    let Some( mut region_plane_vis ) = region_plane_query.get_single_mut().ok() else {return};
-
-    *region_plane_vis = match &editor_tools_state.tool_mode {
-        
-        ui::ToolMode::Regions => Visibility::Visible, 
-        _ => Visibility::Hidden
-    }
-
-}

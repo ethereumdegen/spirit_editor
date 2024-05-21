@@ -100,8 +100,8 @@ impl From<EditorToolsState> for EditingTool {
                         region_index: state.color.r as u8,
                     }),  
                     ToolMode::Foliage => EditingTool::FoliageEditingTool( 
-                        FoliageEditingTool::SetFoliageMap {
-                        foliage_index: state.color.r as u8,
+                        FoliageEditingTool::SetFoliageDensity {
+                        density: state.color.r as u8,
                     }),  
             } 
        

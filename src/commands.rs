@@ -1,3 +1,4 @@
+use bevy_foliage_paint::edit::FoliageCommandEvent;
 use bevy::prelude::*;
 
 use bevy::input::mouse::MouseMotion;
@@ -18,6 +19,7 @@ pub fn update_commands(
    // mut edit_event_writer: EventWriter<EditTerrainEvent>,
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
+    mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
 ) {
     if key_input.pressed(KeyCode::ControlLeft) || key_input.pressed(KeyCode::ControlRight) {
         if key_input.just_pressed(KeyCode::KeyS) {
@@ -25,6 +27,7 @@ pub fn update_commands(
 
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll);
+            foliage_command_event_writer.send(FoliageCommandEvent::SaveAll);
         }
     }
 }

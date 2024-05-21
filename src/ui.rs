@@ -268,7 +268,7 @@ fn editor_tools(
                     });
 
                 ui.add(
-                    egui::Slider::new(&mut tools_state.color.r, 0..=64)
+                    egui::Slider::new(&mut tools_state.color.r, 0..=256)
                         .text("Foliage Index (R_Channel)"),
                 );
 
