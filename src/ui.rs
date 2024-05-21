@@ -206,7 +206,10 @@ fn editor_tools(
 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=255)
-                        .text("Texture A (R_Channel"),
+                        .text("Texture A (R_Channel")
+                        .step_by(1.0)
+                        .drag_value_speed(0.1)
+                        ,
                 );
 
                 if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
@@ -215,7 +218,10 @@ fn editor_tools(
                
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.g, 0..=255)
-                        .text("Texture B (G_Channel"),
+                        .text("Texture B (G_Channel")
+                         .step_by(1.0)
+                        .drag_value_speed(0.1)
+                        ,
                 );
                  
                 if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
@@ -223,7 +229,11 @@ fn editor_tools(
                 }
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.b, 0..=255)
-                        .text("Layer Fade (B_Channel"),
+                        .text("Layer Fade (B_Channel")
+                         .step_by(1.0)
+                        .drag_value_speed(0.1)
+                      
+                        ,
                 );
             }
             ToolMode::Height => {
@@ -245,7 +255,10 @@ fn editor_tools(
 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=65535)
-                        .text("Height (R_Channel)"),
+                        .text("Height (R_Channel)")
+                       //  .step_by(1.0)
+                       // .drag_value_speed(1.0)
+                        ,
                 );
             },
             ToolMode::Foliage => {
@@ -269,7 +282,10 @@ fn editor_tools(
 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=256)
-                        .text("Foliage Index (R_Channel)"),
+                        .text("Foliage Index (R_Channel)")
+                         .step_by(1.0)
+                        .drag_value_speed(1.0)
+                        ,
                 );
 
 
@@ -295,7 +311,10 @@ fn editor_tools(
 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=64)
-                        .text("Region Index (R_Channel)"),
+                        .text("Region Index (R_Channel)")
+                         .step_by(1.0)
+                        .drag_value_speed(1.0),
+
                 );
 
 

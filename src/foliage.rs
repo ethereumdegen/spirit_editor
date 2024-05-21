@@ -77,7 +77,7 @@ fn add_data_for_foliage_chunks (
 
                 );
 
-
+                  commands.entity(chunk_entity).remove::<FoliageChunkNeedsRebuild>();
             }
 
 
