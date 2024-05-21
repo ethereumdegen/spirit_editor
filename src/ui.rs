@@ -134,6 +134,9 @@ fn editor_tools(
     terrain_manifest_asset: Res<Assets<TerrainManifest>>
 ) {
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
+
+      
+
         if ui.button("Save All   (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
@@ -204,11 +207,15 @@ fn editor_tools(
 
                 let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
 
+                  ui.spacing_mut().slider_width = 300.0;
+
                 ui.add(
+
                     egui::Slider::new(&mut tools_state.color.r, 0..=255)
                         .text("Texture A (R_Channel")
                         .step_by(1.0)
                         .drag_value_speed(0.1)
+
                         ,
                 );
 
@@ -232,7 +239,7 @@ fn editor_tools(
                         .text("Layer Fade (B_Channel")
                          .step_by(1.0)
                         .drag_value_speed(0.1)
-                      
+
                         ,
                 );
             }
@@ -253,6 +260,8 @@ fn editor_tools(
                         }
                     });
 
+
+                  ui.spacing_mut().slider_width = 300.0;
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=65535)
                         .text("Height (R_Channel)")
@@ -280,6 +289,8 @@ fn editor_tools(
                         }
                     });
 
+
+                  ui.spacing_mut().slider_width = 300.0;
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=256)
                         .text("Foliage Index (R_Channel)")
@@ -309,6 +320,9 @@ fn editor_tools(
                         }
                     });
 
+
+                  ui.spacing_mut().slider_width = 300.0;
+                  
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=64)
                         .text("Region Index (R_Channel)")
