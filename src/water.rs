@@ -58,7 +58,7 @@ pub(crate) fn add_model_to_liquid_plane(
       
 
       
-  let water_height = 0.0;
+  //let water_height = 0.0;
   // Generate mesh for water.
   let mesh: Handle<Mesh> = meshes.add(
     Mesh::from( Plane3d{

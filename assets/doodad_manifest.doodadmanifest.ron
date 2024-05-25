@@ -1903,7 +1903,25 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
             
             name: "water_plane",
             model: LiquidPlane ,
-            initial_custom_props: Some({ "special_type": String("liquid_plane") })
+            initial_custom_props: Some({ 
+              "special_type": String("liquid_plane") ,
+              "liquid_type": String("water"),
+
+
+            })
+        ),
+
+
+         (
+            
+            name: "water_plane_swamp_green",
+            model: LiquidPlane ,
+            initial_custom_props: Some({ 
+              "special_type": String("liquid_plane") ,
+              "liquid_type": String("swamp_green"),
+
+
+            })
         ),
 
         (
