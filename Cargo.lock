@@ -1230,7 +1230,7 @@ dependencies = [
  "bevy_mod_sysfail 7.0.0",
  "bevy_obj",
  "bevy_regions",
- "bevy_water",
+ "degen_toon_water",
  "image",
  "seldom_fn_plugin",
  "serde",
@@ -1678,6 +1678,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_shader_utils"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2ac2f8adeb27b4e114fcb451fd1a72615cdd760303137c20701b7362ef79474"
+dependencies = [
+ "bevy 0.13.2",
+]
+
+[[package]]
 name = "bevy_sprite"
 version = "0.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1897,16 +1906,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.48",
-]
-
-[[package]]
-name = "bevy_water"
-version = "0.13.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1d0ae7102f4e0dcc616bfc7c01d42bb55b7a958297459f590f1ddff6ec20d8fb"
-dependencies = [
- "anyhow",
- "bevy 0.13.2",
 ]
 
 [[package]]
@@ -2554,6 +2553,20 @@ name = "data-encoding"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7e962a19be5cfc3f3bf6dd8f61eb50107f356ad6270fbb3ed41476571db78be5"
+
+[[package]]
+name = "degen_toon_water"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6cf1a51bc8e1cb68ba115c56762f2fe10b4cf7256881fa12703d5756af9e62d4"
+dependencies = [
+ "bevy 0.13.2",
+ "bevy_common_assets",
+ "bevy_shader_utils",
+ "ron",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "derive_more"

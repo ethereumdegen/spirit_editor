@@ -49,7 +49,7 @@ bevy_editor_pls_default_windows = { workspace = true  }
 bevy_obj = "0.13.0"
  
 
-bevy_water = "0.13.0"
+degen_toon_water = "0.13.2"
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.24.0"
