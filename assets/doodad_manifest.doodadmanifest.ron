@@ -1898,8 +1898,7 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
         ),
 
  
-
-         (
+   (
             
             name: "water_plane",
             model: LiquidPlane ,
@@ -1923,6 +1922,8 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
 
             })
         ),
+
+        
 
         (
             name: "player_waypoint",
