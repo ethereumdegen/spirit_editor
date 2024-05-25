@@ -39,7 +39,7 @@ mod editor_pls;
 mod tools;
 mod ui;
 mod asset_loading;
-mod water;
+mod liquid;
 
 mod doodads;
 mod terrain;
@@ -48,7 +48,7 @@ mod foliage;
 mod regions;
 
 use crate::camera::camera_plugin;
-use crate::water::water_plugin;
+use crate::liquid::liquid_plugin;
 
 use crate::tools::brush_tools_plugin;
 
@@ -127,7 +127,7 @@ fn main() {
         .add_plugins(asset_loading_plugin)
 
  
-        .fn_plugin(water_plugin)
+        .fn_plugin(liquid_plugin)
         .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)

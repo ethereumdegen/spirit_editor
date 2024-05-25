@@ -19,7 +19,8 @@ use bevy::{
     scene::SceneInstanceReady,
 };
 
-use crate::{asset_loading::BuiltVfxResource, water::LiquidPlaneComponent};
+use crate::{asset_loading::BuiltVfxResource, 
+    liquid::LiquidPlaneComponent};
 
 
 
@@ -159,11 +160,13 @@ fn attach_models_to_doodads(
             }
 
 
-            RenderableType::LiquidPlane => {
+            RenderableType::LiquidPlane (liquid_type) => {
 
                  commands
                     .entity(new_doodad_entity)
-                     .insert(LiquidPlaneComponent {   });
+                     .insert(LiquidPlaneComponent { 
+                        liquid_type: liquid_type.clone()
+                       });
 
             }
         };

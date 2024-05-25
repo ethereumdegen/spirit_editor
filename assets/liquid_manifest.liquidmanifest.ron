@@ -1,0 +1,30 @@
+  (
+    liquid_definitions:  {
+ 
+
+    	"water" : (
+
+
+    	 ),
+
+    	 "water_swamp_green" : (
+
+    	 	shallow_color: Some( Rgba(
+    	 	 			 red: 0.5,
+                         green:  0.6,
+                         blue:  0.5,
+                         alpha: 1.0
+    	 	) ),
+
+    	 	deep_color: Some( Rgba(
+    	 	 			 red: 0.5,
+                         green:  0.6,
+                         blue:  0.5,
+                         alpha: 1.0
+    	 	) ),
+
+    	 )
+
+    }
+
+  )

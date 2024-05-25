@@ -1232,6 +1232,7 @@ dependencies = [
  "bevy_regions",
  "degen_toon_water",
  "image",
+ "ron",
  "seldom_fn_plugin",
  "serde",
  "winit",
@@ -2556,9 +2557,9 @@ checksum = "7e962a19be5cfc3f3bf6dd8f61eb50107f356ad6270fbb3ed41476571db78be5"
 
 [[package]]
 name = "degen_toon_water"
-version = "0.13.5"
+version = "0.13.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "792609930f8bcf68d015d51265fd8399ca9ea6b2cc44bb222817e1edbde43e7f"
+checksum = "531b01377dfe46270212bad1afdb0228d9c463119e24a9dbab6548b98d506b8d"
 dependencies = [
  "bevy 0.13.2",
  "bevy_common_assets",

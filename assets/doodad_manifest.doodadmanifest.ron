@@ -2147,7 +2147,7 @@ model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_05.glb")
    (
             
             name: "water_plane",
-            model: LiquidPlane ,
+            model: LiquidPlane("water") ,
             initial_custom_props: Some({ 
               "special_type": String("liquid_plane") ,
               "liquid_type": String("water"),
@@ -2160,7 +2160,7 @@ model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_05.glb")
          (
             
             name: "water_plane_swamp_green",
-            model: LiquidPlane ,
+            model: LiquidPlane("water_swamp_green") ,
             initial_custom_props: Some({ 
               "special_type": String("liquid_plane") ,
               "liquid_type": String("swamp_green"),
