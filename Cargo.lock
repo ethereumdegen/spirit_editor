@@ -2556,9 +2556,9 @@ checksum = "7e962a19be5cfc3f3bf6dd8f61eb50107f356ad6270fbb3ed41476571db78be5"
 
 [[package]]
 name = "degen_toon_water"
-version = "0.13.4"
+version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0cc17e867ef166c4233ffae8943b2d6ed330c937379859b2f0738d5bf45ad10e"
+checksum = "792609930f8bcf68d015d51265fd8399ca9ea6b2cc44bb222817e1edbde43e7f"
 dependencies = [
  "bevy 0.13.2",
  "bevy_common_assets",
