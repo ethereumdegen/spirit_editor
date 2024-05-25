@@ -1,3 +1,5 @@
+use bevy::core_pipeline::prepass::NormalPrepass;
+use bevy::core_pipeline::prepass::DepthPrepass;
 use bevy_foliage_paint::foliage_config::FoliageConfig;
 use bevy_foliage_paint::foliage::FoliageData;
 use bevy_foliage_paint::BevyFoliagePaintPlugin;
@@ -217,6 +219,8 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         })
         .insert( BloomSettings::default())
         .insert(TerrainViewer::default())
+        .insert( DepthPrepass )
+        .insert( NormalPrepass)
        // .insert(ShadowFilteringMethod::Jimenez14)
        ;
 }
