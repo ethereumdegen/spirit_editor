@@ -61,7 +61,12 @@ bevy_obj = "0.13.0"
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.24.0"
-bevy_foliage_paint = "0.13.6"
+
+
+ 
+#bevy_foliage_paint = "0.13.6"
+
+bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "792e1d86587107e674138a3c5f9ea1a410c654bf"}
 
 
 [workspace.package]
