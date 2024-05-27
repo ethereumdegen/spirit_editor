@@ -7,9 +7,11 @@
 
 ## Immediate todo 
 
--  add snap dimensions 
+
 - organize doodads in  tag folders 
 - add doodad bundles (house) 
+
+-  add snap dimensions 
 
 - when cloning an asset, auto select the new clone 
 

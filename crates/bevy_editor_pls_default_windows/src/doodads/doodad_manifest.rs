@@ -1,3 +1,4 @@
+use bevy::utils::HashMap;
 use std::{
     fs::{self, File},
     io::{Read, Write},
@@ -13,24 +14,23 @@ use crate::zones::zone_file::CustomPropsMap;
 #[derive(Resource, Default)]
 pub struct DoodadManifestResource {
     pub manifest: Option<Handle<DoodadManifest>>,
+
+    pub doodad_tag_map: HashMap< String, Vec<DoodadDefinition>  >
 }
 
 #[derive(Asset, TypePath, Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadManifest {
     pub doodad_tags: Vec<String>,
-    pub doodad_definitions: Vec<DoodadDefinition>,
+    pub doodad_definitions: HashMap<String,DoodadDefinition>,
 }
 
 impl DoodadManifest {
     pub fn get_doodad_definition_by_name(&self, name: &str) -> Option<DoodadDefinition> {
-        //maybe use a hashmap for this ?
-        for doodad_definition in &self.doodad_definitions {
-            if doodad_definition.name == name {
-                return Some(doodad_definition.clone());
-            }
-        }
+     
 
-        None
+        return self.doodad_definitions.get(name).cloned();
+
+        
     }
 }
 
@@ -50,7 +50,7 @@ pub struct CubeShapeDefinition {
 
 #[derive(Component, Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadDefinition {
-    pub name: String,
+   // pub name: String,
     pub model: RenderableType,
     pub initial_custom_props: Option<CustomPropsMap>,
     pub tags: Option<Vec<String>> ,
@@ -59,7 +59,7 @@ pub struct DoodadDefinition {
 
 impl DoodadManifest {
     pub fn load() -> Result<Self, Box<dyn std::error::Error>> {
-        let file_path = get_save_file_path();
+        let file_path = get_doodad_manifest_file_path();
         let mut file = File::open(file_path)?;
         let mut contents = String::new();
         file.read_to_string(&mut contents)?;
@@ -68,6 +68,6 @@ impl DoodadManifest {
     }
 }
 
-fn get_save_file_path() -> String {
+fn get_doodad_manifest_file_path() -> String {
     format!("assets/doodad_manifest.ron")
 }

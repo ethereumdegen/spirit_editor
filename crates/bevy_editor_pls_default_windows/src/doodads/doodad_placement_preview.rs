@@ -200,11 +200,11 @@ pub fn update_doodad_placement_preview_state (
    	if let Some( (_placement_preview_entity, mut doodad_placement_comp) ) = doodad_placement_component_query.get_single_mut().ok(){
 
    		match selected_doodad_definition.clone() {
-   			 Some(doodad_definition) => {
+   			 Some(doodad_definition_name) => {
 
 
-   			 	if doodad_placement_comp.preview_doodad_name != Some(doodad_definition.name.clone()) {
-   			 		 doodad_placement_comp.preview_doodad_name  = Some(doodad_definition.name.clone());
+   			 	if doodad_placement_comp.preview_doodad_name != Some(doodad_definition_name.clone()) {
+   			 		 doodad_placement_comp.preview_doodad_name  = Some(doodad_definition_name.clone());
    			 	}
 
    			 	

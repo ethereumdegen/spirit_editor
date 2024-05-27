@@ -52,7 +52,7 @@ const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 fn attach_models_to_doodads(
     mut commands: Commands,
     added_doodad_query: Query<
-        (Entity, &DoodadComponent),
+        (Entity,   &DoodadComponent),
         (
             Added<DoodadComponent>,
             With<GlobalTransform>,
@@ -72,15 +72,15 @@ fn attach_models_to_doodads(
     #[cfg(feature = "tracing")]
     let _span = info_span!("add_model_to_doodads").entered();
 
-    for (new_doodad_entity, doodad_component) in added_doodad_query.iter() {
-        let doodad_name = &doodad_component.definition.name;
+    for (new_doodad_entity,  doodad_component) in added_doodad_query.iter() {
+     //   let doodad_name = &name_comp.to_string();
 
-        let doodad_name_clone = doodad_name.clone();
-        let name_comp = Name::new(doodad_name_clone);
+      //  let doodad_name_clone = doodad_name.clone();
+      //  let name_comp = Name::new(doodad_name_clone);
 
         commands
             .entity(new_doodad_entity)
-            .insert(name_comp)
+        //    .insert(name_comp)
             .insert(PickableBundle::default()) 
 
             ;

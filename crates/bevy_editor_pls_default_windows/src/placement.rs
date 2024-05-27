@@ -191,7 +191,7 @@ pub fn handle_placement_tool_events(
   mut placement_evt_reader: EventReader<PlacementEvent>,
   mut place_doodad_evt_writer: EventWriter<PlaceDoodadEvent>, 
 
-  mut  doodad_query: Query< (Entity, &DoodadComponent, &mut Transform), With<DoodadComponent>  >,
+  mut  doodad_query: Query< (Entity, &Name, &DoodadComponent, &mut Transform), With<DoodadComponent>  >,
 
 
  
@@ -217,7 +217,7 @@ pub fn handle_placement_tool_events(
 
                 let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((entity, doodad_comp, doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
+                if let Some((entity, name_comp, doodad_comp, doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
 
                   //  let mut translation = doodad_xform.translation ;
 
@@ -228,7 +228,7 @@ pub fn handle_placement_tool_events(
                              position: simple_xform.translation, 
                              scale: Some(simple_xform.scale), 
                              rotation_euler: Some(simple_xform.rotation), 
-                             doodad_name: doodad_comp.definition.name.clone(),
+                             doodad_name: name_comp.to_string().clone(),
                              custom_props: None ,
                              zone: None 
                       });
@@ -246,7 +246,7 @@ pub fn handle_placement_tool_events(
 
                   let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((_, _, mut doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get_mut(ent).ok() ) {
+                if let Some((_, _, _, mut doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get_mut(ent).ok() ) {
 
                     let mut translation = doodad_xform.translation ; 
 

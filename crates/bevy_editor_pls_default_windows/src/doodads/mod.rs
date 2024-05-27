@@ -62,7 +62,7 @@ impl Plugin for DoodadPlugin {
 
 #[derive(Resource, Default)]
 pub struct DoodadToolState {
-    pub selected: Option<DoodadDefinition>,
+    pub selected: Option<String>,
 }
 
 #[derive(Event)]
@@ -114,6 +114,9 @@ impl EditorWindow for DoodadsWindow {
 
         let mut doodad_tool_resource = world.resource_mut::<DoodadToolState>();
 
+
+
+
         /*
                  let doodad_row_state = match cx.state_mut::<DoodadsWindow >() {
                         Some(a) => a,
@@ -134,8 +137,13 @@ impl EditorWindow for DoodadsWindow {
                     return;
                 };
 
-                if let Some(selected_doodad_def) = &doodad_tool_resource.selected {
-                    ui.label(format!("Placing: {:?}", selected_doodad_def.name.clone()));
+                  
+
+
+
+
+                if let Some(selected_doodad_name) = &doodad_tool_resource.selected {
+                    ui.label(format!("Placing: {:?}", selected_doodad_name.clone()));
 
                     ui.separator();
 
@@ -148,8 +156,15 @@ impl EditorWindow for DoodadsWindow {
 
                 ui.separator();
 
-                for doodad_definition in &doodad_manifest.doodad_definitions {
-                    let label_text = doodad_definition.name.clone();
+                
+                for doodad_tag in &doodad_manifest.doodad_tags {
+
+
+
+                }
+
+                for (doodad_name,doodad_definition) in &doodad_manifest.doodad_definitions {
+                    let label_text = doodad_name.clone();
                     let checked = false;
 
                     if ui.selectable_label(checked, label_text.clone()).clicked() {
@@ -157,7 +172,7 @@ impl EditorWindow for DoodadsWindow {
 
                         println!("detected a doodad click  !! {:?}", label_text);
 
-                        doodad_tool_resource.selected = Some(doodad_definition.clone());
+                        doodad_tool_resource.selected = Some(doodad_name.clone());
                     }
                 }
             });
@@ -196,7 +211,7 @@ fn load_doodad_models(
 
                     println!("loading gltfs 1 ");
 
-                    for doodad_definition in &manifest.doodad_definitions {
+                    for (doodad_name,doodad_definition) in &manifest.doodad_definitions {
                         let model_path_to_load = match &doodad_definition.model {
                             RenderableType::GltfModel(model_path) => Some(model_path),
                             _ => None, //other types dont need to have stuff preloaded
@@ -273,6 +288,7 @@ pub fn handle_place_doodad_events(
                 transform,
                 ..default()
             })
+            .insert(Name::new(doodad_name.clone())  )
             .insert(DoodadComponent::from_definition(&doodad_definition))
             .id();
 
@@ -364,7 +380,7 @@ pub fn update_place_doodads(
 
     let selected_doodad_definition = &doodad_tool_resource.selected;
 
-    let Some(doodad_definition) = selected_doodad_definition.clone() else {
+    let Some(doodad_definition_name) = selected_doodad_definition.clone() else {
         return;
     };
 
@@ -413,7 +429,7 @@ pub fn update_place_doodads(
 
             event_writer.send(PlaceDoodadEvent {
                 position: hit_coordinates,
-                doodad_name: doodad_definition.name,
+                doodad_name: doodad_definition_name,
                 rotation_euler,
                 scale,
                 custom_props,
