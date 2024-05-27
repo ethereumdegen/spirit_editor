@@ -33,7 +33,7 @@ impl Plugin for StandardWindowsPlugin {
          app
             .add_event::<placement::PlacementEvent>()
             .add_event::<ZoneEvent>()
-            .add_event::<doodads::PlaceDoodadEvent>()
+           
             .register_type::<CustomPropsComponent>() //reflect
               .register_type::<CustomProp>() //reflect
             .add_event::<doodads::picking::SelectDoodadEvent>()

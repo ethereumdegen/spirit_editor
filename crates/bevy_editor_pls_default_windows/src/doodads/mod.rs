@@ -25,7 +25,7 @@ use bevy_mod_raycast::CursorRay;
 use bevy_mod_raycast::prelude::Raycast;
 
 use self::doodad::{DoodadComponent,   LoadedGltfAssets};
-use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource};
+use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource, DoodadTagMapResource};
 use self::doodad_placement_preview::DoodadPlacementComponent;
 
  
@@ -41,12 +41,19 @@ impl Plugin for DoodadPlugin {
     fn build(&self, app: &mut App) {
         //put this inside of zone plugin ?
          app
-         .add_plugins(DoodadPlacementPlugin {} )
+
+             .add_event::< PlaceDoodadEvent>()
+               .add_event::< DoodadToolEvent>()
+
+            //.init_resource::<DoodadTagMapResource>()
+
+
+              .add_plugins(DoodadPlacementPlugin {} )
              .add_systems(Update, update_place_doodads)
          
            
             .add_systems(Update, reset_place_doodads)
-            .add_systems(Update, handle_place_doodad_events)
+            .add_systems(Update, (handle_place_doodad_events,handle_doodad_tool_events))
             .add_systems(Update, picking::update_picking_doodads)
            
 
@@ -64,6 +71,15 @@ impl Plugin for DoodadPlugin {
 pub struct DoodadToolState {
     pub selected: Option<String>,
 }
+
+
+
+#[derive(Event)]
+pub enum DoodadToolEvent {
+    SetSelectedDoodad(Option<String>)
+}
+
+
 
 #[derive(Event)]
 pub struct PlaceDoodadEvent {
@@ -93,6 +109,7 @@ impl EditorWindow for DoodadsWindow {
         app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"]))
             
             .insert_resource(DoodadManifestResource::default())
+            .insert_resource(DoodadTagMapResource::default())
             .insert_resource(DoodadToolState::default())
             .insert_resource(LoadedGltfAssets::default())
             .add_systems(Startup, load_doodad_manifest)
@@ -101,6 +118,11 @@ impl EditorWindow for DoodadsWindow {
 
     fn ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
         let doodad_definition_resource = world.resource::<DoodadManifestResource>();
+
+         let doodad_tag_map_resource = world.resource::<DoodadTagMapResource>();
+
+
+       
 
         //this releases the lock on World
         let doodad_manifest_handle = &doodad_definition_resource.manifest.clone();
@@ -112,7 +134,7 @@ impl EditorWindow for DoodadsWindow {
             .and_then(|h| doodad_manifests_map.get(h))
             .cloned();
 
-        let mut doodad_tool_resource = world.resource_mut::<DoodadToolState>();
+        let   doodad_tool_resource = world.resource::<DoodadToolState>();
 
 
 
@@ -128,6 +150,11 @@ impl EditorWindow for DoodadsWindow {
                         }
                     };
         */
+
+
+
+        let mut events_to_send=  Vec::new();
+
 
         ScrollArea::vertical()
             .auto_shrink([false, false])
@@ -148,7 +175,9 @@ impl EditorWindow for DoodadsWindow {
                     ui.separator();
 
                     if ui.button("reset").clicked() {
-                        doodad_tool_resource.selected = None;
+                       //    doodad_tool_resource.selected = None;
+
+                      events_to_send.push(  DoodadToolEvent::SetSelectedDoodad( None )    );
                     }
                 } else {
                     ui.label("---");
@@ -156,26 +185,52 @@ impl EditorWindow for DoodadsWindow {
 
                 ui.separator();
 
+
+
+
+                let doodad_tag_map = &doodad_tag_map_resource.doodad_tag_map;
                 
-                for doodad_tag in &doodad_manifest.doodad_tags {
+                for doodad_tag in doodad_tag_map.keys() {
+
+                    if let Some(doodads_with_tag) = &doodad_tag_map.get(doodad_tag) {
+                    egui::CollapsingHeader::new(doodad_tag)
+                        .default_open(false)
+                        .show(ui, |ui| {
+                            for doodad_name in doodads_with_tag.iter() {
 
 
 
-                }
 
-                for (doodad_name,doodad_definition) in &doodad_manifest.doodad_definitions {
-                    let label_text = doodad_name.clone();
-                    let checked = false;
+                                 let label_text = doodad_name.clone();
+                                    let checked = false;
 
-                    if ui.selectable_label(checked, label_text.clone()).clicked() {
-                        //*selection = InspectorSelection::Entities ;
+                                    if ui.selectable_label(checked, label_text.clone()).clicked() {
+                                        //*selection = InspectorSelection::Entities ;
 
-                        println!("detected a doodad click  !! {:?}", label_text);
+                                        println!("detected a doodad click  !! {:?}", label_text);
+                                         events_to_send.push(  DoodadToolEvent::SetSelectedDoodad( Some( doodad_name.clone() ) )    );
 
-                        doodad_tool_resource.selected = Some(doodad_name.clone());
+                                      //  doodad_tool_resource.selected = Some(doodad_name.clone());
+                                    }
+
+
+
+
+                                 
+                            }
+                        });
                     }
+
+
+
+
                 }
-            });
+
+
+            }); //end ui 
+
+
+        world.send_event_batch( events_to_send );
     }
 }
 
@@ -186,11 +241,17 @@ fn load_doodad_manifest(
     mut doodad_manifest_resource: ResMut<DoodadManifestResource>,
 ) {
     doodad_manifest_resource.manifest = Some(asset_server.load("doodad_manifest.doodadmanifest.ron"));
+
+
+
+
 }
 
 fn load_doodad_models(
     mut evt_asset: EventReader<AssetEvent<DoodadManifest>>,
     doodad_manifest_resource: Res<DoodadManifestResource>,
+
+    mut doodad_tag_map_resource: ResMut<DoodadTagMapResource>, 
     doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 
     mut loaded_gltf_resource: ResMut<LoadedGltfAssets>,
@@ -227,6 +288,23 @@ fn load_doodad_models(
                             println!("loaded gltf {:?}", model_path);
                         }
                     }
+
+                    //now that our manifest is loaded, lets populate the doodad tag map resource 
+                    for (doodad_name,doodad_definition) in &manifest.doodad_definitions {
+
+                        for tag in &doodad_definition.tags.clone().unwrap_or(Vec::new()){
+                            doodad_tag_map_resource.doodad_tag_map.entry(tag.clone()).or_default().push(doodad_name.to_string());
+                        }
+
+
+                        doodad_tag_map_resource.doodad_tag_map.entry("all_doodads".to_string()).or_default().push(doodad_name.to_string());
+
+                    }
+
+ 
+
+             
+
                 }
             }
             _ => {}
@@ -458,4 +536,26 @@ pub fn reset_place_doodads(
     }
 
     doodad_tool_resource.selected = None;
+}
+
+
+
+pub fn handle_doodad_tool_events(
+    mut event_reader: EventReader<DoodadToolEvent>,
+
+    mut doodad_tool_resource: ResMut<DoodadToolState>
+) {
+    for evt in event_reader.read(){
+
+        match evt {
+            DoodadToolEvent::SetSelectedDoodad(doodad_name) => {
+
+
+                doodad_tool_resource.selected = doodad_name.clone();
+            }
+        }
+
+
+
+    }
 }

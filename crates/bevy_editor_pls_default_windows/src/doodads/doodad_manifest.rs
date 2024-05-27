@@ -11,17 +11,25 @@ use serde::{Deserialize, Serialize};
 
 use crate::zones::zone_file::CustomPropsMap;
 
+pub type DoodadName = String;
+
 #[derive(Resource, Default)]
 pub struct DoodadManifestResource {
     pub manifest: Option<Handle<DoodadManifest>>,
-
-    pub doodad_tag_map: HashMap< String, Vec<DoodadDefinition>  >
+ 
 }
+
+#[derive(Resource, Default)]
+pub struct DoodadTagMapResource {
+    
+    pub doodad_tag_map: HashMap< String, Vec<DoodadName>  >
+}
+
 
 #[derive(Asset, TypePath, Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadManifest {
-    pub doodad_tags: Vec<String>,
-    pub doodad_definitions: HashMap<String,DoodadDefinition>,
+  //  pub doodad_tags: Vec<String>,
+    pub doodad_definitions: HashMap<DoodadName,DoodadDefinition>,
 }
 
 impl DoodadManifest {
