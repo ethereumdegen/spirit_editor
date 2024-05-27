@@ -4,6 +4,21 @@
 
     	"water" : (
 
+       shallow_color: Some( Rgba(
+                   red: 0.35,
+                         green:  0.55,
+                         blue:  0.66,
+                         alpha: 0.8
+        ) ),
+
+        deep_color: Some( Rgba(
+                       red: 0.12,
+                         green:  0.45,
+                         blue:  0.63,
+                         alpha: 0.9
+        ) ),
+
+
 
     	 ),
 
@@ -22,6 +37,13 @@
                          blue:  0.3,
                          alpha: 0.9
     	 	) ),
+
+         foam_color: Some( Rgba(
+                       red: 0.4,
+                         green:  0.4,
+                         blue:  0.4,
+                         alpha: 0.9
+        ) ),
 
     	 )
 

@@ -96,6 +96,10 @@ pub struct LiquidPlaneComponent {
 
     if let Some(deep_color) = liquid_type.deep_color {
          liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color;
+    }  
+
+     if let Some(foam_color) = liquid_type.foam_color {
+         liquid_material.extension.custom_uniforms.foam_color = foam_color;
     }   
 
    
@@ -138,7 +142,7 @@ pub struct LiquidDefinition {
 
     pub shallow_color: Option<Color> ,
      pub deep_color: Option<Color> ,
-
+     pub foam_color: Option<Color> ,
 
 
 }
