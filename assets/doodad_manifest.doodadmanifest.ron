@@ -1,7 +1,7 @@
   (
 
 
-   
+
 
     doodad_definitions: {
 
@@ -18,41 +18,64 @@
         "ancient_bg_islands": (
             name: "ancient_bg_islands",
             model: GltfModel("models/doodads/ancient/ancient_bg_islands.glb"),
+
+            tags: Some([ "backdrop" ]),
         ),
 
 
- 
+    
+      "backpack_prop_lootable": (
+        
+        model: GltfModel("models/doodads/leather_backpack_1.glb"),
+        initial_custom_props: Some({
+            "has_loot_table": String("---"),
+        }),
+
+        tags: Some([ "lootable" ]),
+      ),
+
+
+
     "skeleton_prop_lootable": (
         name: "skeleton_prop_lootable",
         model: GltfModel("models/doodads/skele_prop_dead_1b.glb"),
         initial_custom_props: Some({
             "has_loot_table": String("---"),
         }),
+
+        tags: Some([ "lootable" , "skeleton"]),
     ),
 
     "skele_prop_dead_1": (
         name: "skele_prop_dead_1",
         model: GltfModel("models/doodads/skele_prop_dead_1.glb"),
+
+          tags: Some([ "skeleton" ]),
     ),
 
     "skele_prop_dead_1b": (
         name: "skele_prop_dead_1b",
         model: GltfModel("models/doodads/skele_prop_dead_1b.glb"),
+        tags: Some([ "skeleton" ]),
     ),
 
     "skeleton_prop_head": (
         name: "skeleton_prop_head",
         model: GltfModel("models/doodads/skele_head.glb"),
+        tags: Some([ "skeleton" ]),
     ),
 
     "ancient_ivy_01": (
         name: "ancient_ivy_01",
         model: GltfModel("models/doodads/ancient/ancient_ivy_01.glb"),
+
+        tags: Some([ "ancient" ]),
     ),
 
     "ancient_ivy_01b": (
         name: "ancient_ivy_01b",
         model: GltfModel("models/doodads/ancient/ancient_ivy_01b.glb"),
+          tags: Some([ "ancient" ]),
     ),
 
     "birch_yellow_1": (
@@ -70,246 +93,295 @@
     "birch_green_2": (
         name: "birch_green_2",
         model: GltfModel("models/doodads/birch_green2.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "birch_green_3": (
         name: "birch_green_3",
         model: GltfModel("models/doodads/birch_green3.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "birch_dead_1": (
         name: "birch_dead_1",
         model: GltfModel("models/doodads/birch_dead_1.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "birch_dead_2": (
         name: "birch_dead_2",
         model: GltfModel("models/doodads/birch_dead_2.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "birch_dead_3": (
         name: "birch_dead_3",
         model: GltfModel("models/doodads/birch_dead_3.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_2": (
         name: "tree_green_2",
         model: GltfModel("models/doodads/tree_green_2.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_3": (
         name: "tree_green_3",
         model: GltfModel("models/doodads/tree_green_3.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_4": (
         name: "tree_green_4",
         model: GltfModel("models/doodads/tree_green_4.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_5": (
         name: "tree_green_5",
         model: GltfModel("models/doodads/tree_green_5.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_7": (
         name: "tree_green_7",
         model: GltfModel("models/doodads/tree_green_7.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_8": (
         name: "tree_green_8",
         model: GltfModel("models/doodads/tree_green_8.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_9": (
         name: "tree_green_9",
         model: GltfModel("models/doodads/tree_green_9.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "tree_green_10": (
         name: "tree_green_10",
         model: GltfModel("models/doodads/tree_green_10.glb"),
+        tags: Some(["trees", "forest"]),
     ),
 
     "elf_bld_floor_01": (
         name: "elf_bld_floor_01",
         model: GltfModel("models/doodads/elven/elf_bld_floor_01.glb"),
+        tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_02": (
         name: "elf_bld_floor_02",
         model: GltfModel("models/doodads/elven/elf_bld_floor_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_03": (
         name: "elf_bld_floor_03",
         model: GltfModel("models/doodads/elven/elf_bld_floor_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_04": (
         name: "elf_bld_floor_04",
         model: GltfModel("models/doodads/elven/elf_bld_floor_04.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_05": (
         name: "elf_bld_floor_05",
         model: GltfModel("models/doodads/elven/elf_bld_floor_05.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_corner_01": (
         name: "elf_bld_floor_corner_01",
         model: GltfModel("models/doodads/elven/elf_bld_floor_corner_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_corner_01c": (
         name: "elf_bld_floor_corner_01c",
         model: GltfModel("models/doodads/elven/elf_bld_floor_corner_01c.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_floor_corner_03": (
         name: "elf_bld_floor_corner_03",
         model: GltfModel("models/doodads/elven/elf_bld_floor_corner_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_house_base_corner_01": (
         name: "elf_bld_house_base_corner_01",
         model: GltfModel("models/doodads/elven/elf_bld_house_base_corner_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_house_base_wall_01": (
         name: "elf_bld_house_base_wall_01",
         model: GltfModel("models/doodads/elven/elf_bld_house_base_wall_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_01": (
         name: "elf_bld_roof_01",
         model: GltfModel("models/doodads/elven/elf_bld_roof_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_02": (
         name: "elf_bld_roof_02",
         model: GltfModel("models/doodads/elven/elf_bld_roof_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_03": (
         name: "elf_bld_roof_03",
         model: GltfModel("models/doodads/elven/elf_bld_roof_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_04": (
         name: "elf_bld_roof_04",
         model: GltfModel("models/doodads/elven/elf_bld_roof_04.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_corner_concave_02": (
         name: "elf_bld_roof_corner_concave_02",
         model: GltfModel("models/doodads/elven/elf_bld_roof_corner_concave_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_corner_convex_02": (
         name: "elf_bld_roof_corner_convex_02",
         model: GltfModel("models/doodads/elven/elf_bld_roof_corner_convex_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_corner_rounded_02": (
         name: "elf_bld_roof_corner_rounded_02",
         model: GltfModel("models/doodads/elven/elf_bld_roof_corner_rounded_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_roof_corner_window_02": (
         name: "elf_bld_roof_corner_window_02",
         model: GltfModel("models/doodads/elven/elf_bld_roof_corner_window_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_arch_03": (
         name: "elf_bld_arch_03",
         model: GltfModel("models/doodads/elven/elf_bld_arch_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_doorway_01b": (
         name: "elf_bld_wall_doorway_01b",
         model: GltfModel("models/doodads/elven/elf_bld_wall_doorway_01b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_doorway_curved_01b": (
         name: "elf_bld_wall_doorway_curved_01b",
         model: GltfModel("models/doodads/elven/elf_bld_wall_doorway_curved_01b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_doorway_curved_02b": (
         name: "elf_bld_wall_doorway_curved_02b",
         model: GltfModel("models/doodads/elven/elf_bld_wall_doorway_curved_02b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_doorway_double_01b": (
         name: "elf_bld_wall_doorway_double_01b",
         model: GltfModel("models/doodads/elven/elf_bld_wall_doorway_double_01b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_stairs_01": (
         name: "elf_bld_stairs_01",
         model: GltfModel("models/doodads/elven/elf_bld_stairs_01.glb"),
+         tags: Some(["elven", "building","stairs"]),
     ),
 
     "elf_bld_stairs_02": (
         name: "elf_bld_stairs_02",
         model: GltfModel("models/doodads/elven/elf_bld_stairs_02.glb"),
+         tags: Some(["elven", "building","stairs"]),
     ),
 
     "elf_bld_stairs_03": (
         name: "elf_bld_stairs_03",
         model: GltfModel("models/doodads/elven/elf_bld_stairs_03.glb"),
+         tags: Some(["elven", "building","stairs"]),
     ),
 
     "elf_bld_wall_01": (
         name: "elf_bld_wall_01",
         model: GltfModel("models/doodads/elven/elf_bld_wall_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_01b": (
         name: "elf_bld_wall_01b",
         model: GltfModel("models/doodads/elven/elf_bld_wall_01b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_01c": (
         name: "elf_bld_wall_01c",
         model: GltfModel("models/doodads/elven/elf_bld_wall_01c.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_02": (
         name: "elf_bld_wall_02",
         model: GltfModel("models/doodads/elven/elf_bld_wall_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_wall_03": (
         name: "elf_bld_wall_03",
         model: GltfModel("models/doodads/elven/elf_bld_wall_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_window_01": (
         name: "elf_bld_window_01",
         model: GltfModel("models/doodads/elven/elf_bld_window_01.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_window_01b": (
         name: "elf_bld_window_01b",
         model: GltfModel("models/doodads/elven/elf_bld_window_01b.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_window_02": (
         name: "elf_bld_window_02",
         model: GltfModel("models/doodads/elven/elf_bld_window_02.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_window_03": (
         name: "elf_bld_window_03",
         model: GltfModel("models/doodads/elven/elf_bld_window_03.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "elf_bld_window_04": (
         name: "elf_bld_window_04",
         model: GltfModel("models/doodads/elven/elf_bld_window_04.glb"),
+         tags: Some(["elven", "building"]),
     ),
 
     "story_stone_1": (
@@ -320,546 +392,657 @@
     "AncientForestTree1": (
         name: "AncientForestTree1",
         model: GltfModel("models/doodads/ancient_forest/AncientForestTree1.glb"),
+         tags: Some(["forest", "trees"]),
     ),
 
     "AncientForestTree2": (
         name: "AncientForestTree2",
         model: GltfModel("models/doodads/ancient_forest/AncientForestTree2.glb"),
+         tags: Some(["forest", "trees"]),
     ),
 
     "AncientForestTree3": (
         name: "AncientForestTree3",
         model: GltfModel("models/doodads/ancient_forest/AncientForestTree3.glb"),
+         tags: Some(["forest", "trees"]),
     ),
 
     "forest_env_dirt_cliff_01": (
         name: "forest_env_dirt_cliff_01",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_01.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_02": (
         name: "forest_env_dirt_cliff_02",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_02.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_03": (
         name: "forest_env_dirt_cliff_03",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_03.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_04": (
         name: "forest_env_dirt_cliff_04",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_04.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_05": (
         name: "forest_env_dirt_cliff_05",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_05.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_06": (
         name: "forest_env_dirt_cliff_06",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_06.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_10": (
         name: "forest_env_dirt_cliff_10",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_10.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_dirt_cliff_11": (
         name: "forest_env_dirt_cliff_11",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_11.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_01": (
         name: "forest_env_stone_cliff_01",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_01.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_02": (
         name: "forest_env_stone_cliff_02",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_02.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_03": (
         name: "forest_env_stone_cliff_03",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_03.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_04": (
         name: "forest_env_stone_cliff_04",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_04.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_06": (
         name: "forest_env_stone_cliff_06",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_06.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_07": (
         name: "forest_env_stone_cliff_07",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_07.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_stone_cliff_08": (
         name: "forest_env_stone_cliff_08",
         model: GltfModel("models/doodads/forest/forest_env_stone_cliff_08.glb"),
+         tags: Some(["forest", "cliff"]),
     ),
 
     "forest_env_fern_01": (
         name: "forest_env_fern_01",
         model: GltfModel("models/doodads/forest/forest_env_fern_01.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_fern_01b": (
         name: "forest_env_fern_01b",
         model: GltfModel("models/doodads/forest/forest_env_fern_01b.glb"),
+        tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_fern_koru_01": (
         name: "forest_env_fern_koru_01",
         model: GltfModel("models/doodads/forest/forest_env_fern_koru_01.glb"),
+        tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_leaves_01": (
         name: "forest_env_leaves_01",
         model: GltfModel("models/doodads/forest/forest_env_leaves_01.glb"),
+        tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_log_01": (
         name: "forest_env_log_01",
         model: GltfModel("models/doodads/forest/forest_env_log_01.glb"),
+        tags: Some(["forest", "log"]),
     ),
 
     "forest_env_log_02": (
         name: "forest_env_log_02",
         model: GltfModel("models/doodads/forest/forest_env_log_02.glb"),
+          tags: Some(["forest", "log"]),
     ),
 "forest_env_log_03": (
         name: "forest_env_log_03",
         model: GltfModel("models/doodads/forest/forest_env_log_03.glb"),
+          tags: Some(["forest", "log"]),
     ),
 
     "forest_env_log_04": (
         name: "forest_env_log_04",
         model: GltfModel("models/doodads/forest/forest_env_log_04.glb"),
+          tags: Some(["forest", "log"]),
     ),
 
     "forest_env_moss_lumps_01": (
         name: "forest_env_moss_lumps_01",
         model: GltfModel("models/doodads/forest/forest_env_moss_lumps_01.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_mushroom_01": (
         name: "forest_env_mushroom_01",
         model: GltfModel("models/doodads/forest/forest_env_mushroom_01.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_mushroom_03": (
         name: "forest_env_mushroom_03",
         model: GltfModel("models/doodads/forest/forest_env_mushroom_03.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_mushroom_cap_01a": (
         name: "forest_env_mushroom_cap_01a",
         model: GltfModel("models/doodads/forest/forest_env_mushroom_cap_01a.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_mushroom_cap_01b": (
         name: "forest_env_mushroom_cap_01b",
         model: GltfModel("models/doodads/forest/forest_env_mushroom_cap_01b.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_roots_01": (
         name: "forest_env_roots_01",
         model: GltfModel("models/doodads/forest/forest_env_roots_01.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_roots_02": (
         name: "forest_env_roots_02",
         model: GltfModel("models/doodads/forest/forest_env_roots_02.glb"),
+         tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_tree_trunk_01": (
         name: "forest_env_tree_trunk_01",
         model: GltfModel("models/doodads/forest/forest_env_tree_trunk_01.glb"),
+         tags: Some(["forest", "trees"]),
     ),
 
     "forest_env_tree_trunk_02": (
         name: "forest_env_tree_trunk_02",
         model: GltfModel("models/doodads/forest/forest_env_tree_trunk_02.glb"),
+          tags: Some(["forest", "trees"]),
     ),
 
     "forest_env_undergrowth_01a": (
         name: "forest_env_undergrowth_01a",
         model: GltfModel("models/doodads/forest/forest_env_undergrowth_01a.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_undergrowth_01b": (
         name: "forest_env_undergrowth_01b",
         model: GltfModel("models/doodads/forest/forest_env_undergrowth_01b.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_undergrowth_01c": (
         name: "forest_env_undergrowth_01c",
         model: GltfModel("models/doodads/forest/forest_env_undergrowth_01c.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_undergrowth_01d": (
         name: "forest_env_undergrowth_01d",
         model: GltfModel("models/doodads/forest/forest_env_undergrowth_01d.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_undergrowth_web": (
         name: "forest_env_undergrowth_web",
         model: GltfModel("models/doodads/forest/forest_env_undergrowth_web.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_vines_01a": (
         name: "forest_env_vines_01a",
         model: GltfModel("models/doodads/forest/forest_env_vines_01a.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_vines_01b": (
         name: "forest_env_vines_01b",
         model: GltfModel("models/doodads/forest/forest_env_vines_01b.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_vines_02a": (
         name: "forest_env_vines_02a",
         model: GltfModel("models/doodads/forest/forest_env_vines_02a.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_vines_02b": (
         name: "forest_env_vines_02b",
         model: GltfModel("models/doodads/forest/forest_env_vines_02b.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_env_vines_03": (
         name: "forest_env_vines_03",
         model: GltfModel("models/doodads/forest/forest_env_vines_03.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_grass_01": (
         name: "forest_grass_01",
         model: GltfModel("models/doodads/forest/forest_grass_01.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_ground_grass_01": (
         name: "forest_ground_grass_01",
         model: GltfModel("models/doodads/forest/forest_ground_grass_01.glb"),
+          tags: Some(["forest", "foliage"]),
     ),
 
     "forest_prop_archway_01": (
         name: "forest_prop_archway_01",
         model: GltfModel("models/doodads/forest/forest_prop_archway_01.glb"),
+          tags: Some(["forest" ]),
     ),
 
     "forest_prop_crystal_01a": (
         name: "forest_prop_crystal_01a",
         model: GltfModel("models/doodads/forest/forest_prop_crystal_01a.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_crystal_01b": (
         name: "forest_prop_crystal_01b",
         model: GltfModel("models/doodads/forest/forest_prop_crystal_01b.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_crystal_01c": (
         name: "forest_prop_crystal_01c",
         model: GltfModel("models/doodads/forest/forest_prop_crystal_01c.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_crystal_02a": (
         name: "forest_prop_crystal_02a",
         model: GltfModel("models/doodads/forest/forest_prop_crystal_02a.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_crystal_02b": (
         name: "forest_prop_crystal_02b",
         model: GltfModel("models/doodads/forest/forest_prop_crystal_02b.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_geode_01a": (
         name: "forest_prop_geode_01a",
         model: GltfModel("models/doodads/forest/forest_prop_geode_01a.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_geode_01b": (
         name: "forest_prop_geode_01b",
         model: GltfModel("models/doodads/forest/forest_prop_geode_01b.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_geode_01c": (
         name: "forest_prop_geode_01c",
         model: GltfModel("models/doodads/forest/forest_prop_geode_01c.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_geode_02a": (
         name: "forest_prop_geode_02a",
         model: GltfModel("models/doodads/forest/forest_prop_geode_02a.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_geode_02b": (
         name: "forest_prop_geode_02b",
         model: GltfModel("models/doodads/forest/forest_prop_geode_02b.glb"),
+         tags: Some(["cave","mineral" ]),
     ),
 
     "forest_prop_lantern": (
         name: "forest_prop_lantern",
         model: GltfModel("models/doodads/forest/forest_prop_lantern.glb"),
+         tags: Some(["forest","lantern" ]),
     ),
 
     "forest_prop_lantern_stand_01": (
         name: "forest_prop_lantern_stand_01",
         model: GltfModel("models/doodads/forest/forest_prop_lantern_stand_01.glb"),
+        tags: Some(["forest","lantern" ]),
     ),
 
     "forest_prop_lantern_stand_03": (
         name: "forest_prop_lantern_stand_03",
         model: GltfModel("models/doodads/forest/forest_prop_lantern_stand_03.glb"),
+        tags: Some(["forest","lantern" ]),
     ),
 
     "forest_prop_portal_with_stairs": (
         name: "forest_prop_portal_with_stairs",
         model: GltfModel("models/doodads/forest/forest_prop_portal_with_stairs.glb"),
+        tags: Some(["forest"  ]),
     ),
 
     "forest_prop_stairs": (
         name: "forest_prop_stairs",
         model: GltfModel("models/doodads/forest/forest_prop_stairs.glb"),
+          tags: Some(["forest","stairs"  ]),
     ),
 
     "forest_prop_table": (
         name: "forest_prop_table",
         model: GltfModel("models/doodads/forest/forest_prop_table.glb"),
+         tags: Some(["forest","table"  ]),
     ),
 
     "forest_ruins_01": (
         name: "forest_ruins_01",
         model: GltfModel("models/doodads/forest/forest_ruins_01.glb"),
+          tags: Some(["forest","ruins"  ]),
     ),
 
     "forest_ruins_02": (
         name: "forest_ruins_02",
         model: GltfModel("models/doodads/forest/forest_ruins_02.glb"),
+         tags: Some(["forest","ruins"  ]),
     ),  
 
 
      "forest_ruins_03": (
         name: "forest_ruins_03",
         model: GltfModel("models/doodads/forest/forest_ruins_03.glb"),
+         tags: Some(["forest","ruins"  ]),
     ),
 
     "meadow_Env_Ground_Cover_01": (
         name: "meadow_Env_Ground_Cover_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_01.glb"),
+
+         tags: Some(["meadow"   ]),
     ),
 
     "meadow_Env_Ground_Cover_02": (
         name: "meadow_Env_Ground_Cover_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_02.glb"),
+        tags: Some(["meadow"   ]),
     ),
 
     "meadow_Env_Ground_Cover_03": (
         name: "meadow_Env_Ground_Cover_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cover_03.glb"),
+        tags: Some(["meadow"   ]),
     ),
 
     "meadow_Env_Ground_Cliff_Large_01": (
         name: "meadow_Env_Ground_Cliff_Large_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cliff_Large_01.glb"),
+        tags: Some(["meadow" ,"cliff"  ]),
     ),
 
     "meadow_Env_Ground_Cliff_Large_02": (
         name: "meadow_Env_Ground_Cliff_Large_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Ground_Cliff_Large_02.glb"),
+         tags: Some(["meadow" ,"cliff"  ]),
     ),
 
     "meadow_Env_Rock_Cliff_01": (
         name: "meadow_Env_Rock_Cliff_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_01.glb"),
+         tags: Some(["meadow" ,"cliff"  ]),
     ),
 
     "meadow_Env_Rock_Cliff_02": (
         name: "meadow_Env_Rock_Cliff_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_02.glb"),
+         tags: Some(["meadow" ,"cliff"  ]),
     ),
 
     "meadow_Env_Rock_Cliff_03": (
         name: "meadow_Env_Rock_Cliff_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Cliff_03.glb"),
+         tags: Some(["meadow" ,"cliff"  ]),
     ),
 
     "meadow_Env_Rock_Ground_01": (
         name: "meadow_Env_Rock_Ground_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Ground_01.glb"),
+         tags: Some(["meadow" ,"rocks"  ]),
     ),
 
     "meadow_Env_Rock_Ground_02": (
         name: "meadow_Env_Rock_Ground_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Ground_02.glb"),
+         tags: Some(["meadow" ,"rocks"  ]),
     ),
 
     "meadow_Env_Rock_Pile_01": (
         name: "meadow_Env_Rock_Pile_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_01.glb"),
+        tags: Some(["meadow" ,"rocks"  ]),
     ),
 
     "meadow_Env_Rock_Pile_02": (
         name: "meadow_Env_Rock_Pile_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_02.glb"),
+        tags: Some(["meadow" ,"rocks"  ]),
     ),
 
     "meadow_Env_Rock_Pile_03": (
         name: "meadow_Env_Rock_Pile_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Rock_Pile_03.glb"),
+        tags: Some(["meadow" ,"rocks"  ]),
     ),
 
     "meadow_Env_Tree_Meadow_01": (
         name: "meadow_Env_Tree_Meadow_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Tree_Meadow_01.glb"),
+        tags: Some(["meadow" ,"trees"  ]),
     ),
 
     "meadow_Env_Tree_Meadow_02": (
         name: "meadow_Env_Tree_Meadow_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Tree_Meadow_02.glb"),
+        tags: Some(["meadow" ,"trees"  ]),
     ),
 
     "meadow_Env_Wildflowers_01": (
         name: "meadow_Env_Wildflowers_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_01.glb"),
+        tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Env_Wildflowers_02": (
         name: "meadow_Env_Wildflowers_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_02.glb"),
+        tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Env_Wildflowers_03": (
         name: "meadow_Env_Wildflowers_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Env_Wildflowers_03.glb"),
+        tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Prop_Bridge_01": (
         name: "meadow_Prop_Bridge_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Bridge_01.glb"),
+        tags: Some(["meadow" ,"bridge"  ]),
     ),
 
     "meadow_Prop_Camp_Crate_01": (
         name: "meadow_Prop_Camp_Crate_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Crate_01.glb"),
+        tags: Some(["meadow" ,"camp"  ]),
     ),
 
     "meadow_Prop_Camp_Fireplace_01": (
         name: "meadow_Prop_Camp_Fireplace_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Fireplace_01.glb"),
+          tags: Some(["meadow" ,"camp"  ]),
     ),
 
     "meadow_Prop_Camp_Fireplace_02": (
         name: "meadow_Prop_Camp_Fireplace_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Fireplace_02.glb"),
+          tags: Some(["meadow" ,"camp"  ]),
     ),
 
     "meadow_Prop_Camp_Tent_01": (
         name: "meadow_Prop_Camp_Tent_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Camp_Tent_01.glb"),
+          tags: Some(["meadow" ,"camp"  ]),
     ),
 
     "meadow_Prop_Gate_Small_01": (
         name: "meadow_Prop_Gate_Small_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Gate_Small_01.glb"),
+
+          tags: Some(["meadow" ,"gate"  ]),
     ),
 
     "meadow_Prop_Leaves_Pile_01": (
         name: "meadow_Prop_Leaves_Pile_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Leaves_Pile_01.glb"),
+         tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Prop_Leaves_Pile_02": (
         name: "meadow_Prop_Leaves_Pile_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Leaves_Pile_02.glb"),
+         tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_01": (
         name: "meadow_Prop_Meadow_Fence_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_01.glb"),
+         tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_02": (
         name: "meadow_Prop_Meadow_Fence_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_02.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_03": (
         name: "meadow_Prop_Meadow_Fence_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_03.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_04": (
         name: "meadow_Prop_Meadow_Fence_04",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_04.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_05": (
         name: "meadow_Prop_Meadow_Fence_05",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_05.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_06": (
         name: "meadow_Prop_Meadow_Fence_06",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_06.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Meadow_Fence_07": (
         name: "meadow_Prop_Meadow_Fence_07",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Meadow_Fence_07.glb"),
+           tags: Some(["meadow" ,"fence"  ]),
     ),
 
     "meadow_Prop_Mushroom_Sparse_03": (
         name: "meadow_Prop_Mushroom_Sparse_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Mushroom_Sparse_03.glb"),
+           tags: Some(["meadow" ,"foliage"  ]),
     ),
 
     "meadow_Prop_StoneArch_01": (
         name: "meadow_Prop_StoneArch_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneArch_01.glb"),
+          tags: Some(["meadow" ,"stone"  ]),
     ),
 
     "meadow_Prop_Stone_Hole_01": (
         name: "meadow_Prop_Stone_Hole_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Stone_Hole_01.glb"),
+         tags: Some(["meadow" ,"stone"  ]),
     ),
 
     "meadow_Prop_StoneRunes_01": (
         name: "meadow_Prop_StoneRunes_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_01.glb"),
+         tags: Some(["meadow" ,"stone"  ]),
     ),
 
     "meadow_Prop_StoneRunes_02": (
         name: "meadow_Prop_StoneRunes_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_02.glb"),
+         tags: Some(["meadow" ,"stone"  ]),
     ),
 
     "meadow_Prop_StoneRunes_03": (
         name: "meadow_Prop_StoneRunes_03",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_StoneRunes_03.glb"),
+         tags: Some(["meadow" ,"stone"  ]),
     ),
 
     "meadow_Prop_Stonewall_01": (
         name: "meadow_Prop_Stonewall_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Stonewall_01.glb"),
+         tags: Some(["meadow" ,"stone" ,"wall" ]),
     ),
 
     "meadow_Prop_Stonewall_02": (
         name: "meadow_Prop_Stonewall_02",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Stonewall_02.glb"),
+         tags: Some(["meadow" ,"stone" ,"wall" ]),
     ),
 
     "meadow_Prop_Sword_Stone_01": (
         name: "meadow_Prop_Sword_Stone_01",
         model: GltfModel("models/doodads/synty_meadow/meadow_Prop_Sword_Stone_01.glb"),
+         tags: Some(["meadow" ,"stone"   ]),
     ),
 
 
@@ -868,336 +1051,284 @@
        "FrogShrine_Env_Base_01": (
         name: "FrogShrine_Env_Base_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Env_Base_01.glb"),
+
+         tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Env_Grass_01": (
         name: "FrogShrine_Env_Grass_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Env_Grass_01.glb"),
+          tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Prop_Frog_01": (
         name: "FrogShrine_Prop_Frog_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Frog_01.glb"),
+          tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Prop_Lantern_01": (
         name: "FrogShrine_Prop_Lantern_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Lantern_01.glb"),
+          tags: Some(["shrine","lantern" ]),
     ),
 
     "FrogShrine_Prop_Shrine_Base_01": (
         name: "FrogShrine_Prop_Shrine_Base_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Shrine_Base_01.glb"),
+          tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Prop_Shrine_Cover_01": (
         name: "FrogShrine_Prop_Shrine_Cover_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Shrine_Cover_01.glb"),
+          tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Prop_Stand_01": (
         name: "FrogShrine_Prop_Stand_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Stand_01.glb"),
+          tags: Some(["shrine" ]),
     ),
 
     "FrogShrine_Prop_Tree_01": (
         name: "FrogShrine_Prop_Tree_01",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Tree_01.glb"),
+          tags: Some(["shrine" ,"trees"]),
     ),
 
     "FrogShrine_Prop_Tree_02": (
         name: "FrogShrine_Prop_Tree_02",
         model: GltfModel("models/doodads/frog_shrine/FrogShrine_Prop_Tree_02.glb"),
+           tags: Some(["shrine" ,"trees"]),
     ),
 
     "SM_Env_Bush_Palm_01": (
         name: "SM_Env_Bush_Palm_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_01.glb"),
+           tags: Some(["jungle" ,"trees"]),
     ),
 
     "SM_Env_Bush_Palm_02": (
         name: "SM_Env_Bush_Palm_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_02.glb"),
+            tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Palm_03": (
         name: "SM_Env_Bush_Palm_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_03.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Palm_04": (
         name: "SM_Env_Bush_Palm_04",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Palm_04.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Tropical_01": (
         name: "SM_Env_Bush_Tropical_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_01.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Tropical_02": (
         name: "SM_Env_Bush_Tropical_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_02.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Tropical_03": (
         name: "SM_Env_Bush_Tropical_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_03.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Bush_Tropical_04": (
         name: "SM_Env_Bush_Tropical_04",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Bush_Tropical_04.glb"),
+         tags: Some(["jungle" ,"trees"])
     ),
 
     "SM_Env_Creeper_Clump_01": (
         name: "SM_Env_Creeper_Clump_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Clump_01.glb"),
+         tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Creeper_Vine_01": (
         name: "SM_Env_Creeper_Vine_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Vine_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Creeper_Vine_02": (
         name: "SM_Env_Creeper_Vine_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Creeper_Vine_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Fern_Part_01": (
         name: "SM_Env_Fern_Part_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Fern_Part_02": (
         name: "SM_Env_Fern_Part_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Fern_Part_03": (
         name: "SM_Env_Fern_Part_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_03.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Fern_Part_04": (
         name: "SM_Env_Fern_Part_04",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Fern_Part_04.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flower_Base_01": (
         name: "SM_Env_Flower_Base_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flower_Base_02": (
         name: "SM_Env_Flower_Base_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flower_Base_03": (
         name: "SM_Env_Flower_Base_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Base_03.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flower_Pitcher_01": (
         name: "SM_Env_Flower_Pitcher_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Pitcher_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flower_Pitcher_02": (
         name: "SM_Env_Flower_Pitcher_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flower_Pitcher_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flowers_01": (
         name: "SM_Env_Flowers_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flowers_02": (
         name: "SM_Env_Flowers_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flowers_03": (
         name: "SM_Env_Flowers_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_03.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Flowers_04": (
         name: "SM_Env_Flowers_04",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Flowers_04.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Vines_01": (
         name: "SM_Env_Vines_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Vines_01.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Vines_02": (
         name: "SM_Env_Vines_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Vines_02.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Vines_03": (
         name: "SM_Env_Vines_03",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Vines_03.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Vines_04": (
         name: "SM_Env_Vines_04",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Vines_04.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Env_Vines_05": (
         name: "SM_Env_Vines_05",
         model: GltfModel("models/doodads/synty_jungle/SM_Env_Vines_05.glb"),
+           tags: Some(["jungle" ,"foliage"])
     ),
 
     "SM_Prop_ShipWreck_01": (
         name: "SM_Prop_ShipWreck_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_ShipWreck_01.glb"),
+           tags: Some(["jungle" , "prop_large"])
     ),
 
     "SM_Prop_ShipWreck_02": (
         name: "SM_Prop_ShipWreck_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_ShipWreck_02.glb"),
+           tags: Some(["jungle" , "prop_large"])
     ),
 
     "SM_Prop_Whale_Skeleton_Rib_01": (
         name: "SM_Prop_Whale_Skeleton_Rib_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Rib_01.glb"),
+           tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Rib_02": (
         name: "SM_Prop_Whale_Skeleton_Rib_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Rib_02.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Ribcage_01": (
         name: "SM_Prop_Whale_Skeleton_Ribcage_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Ribcage_01.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Ribcage_02": (
         name: "SM_Prop_Whale_Skeleton_Ribcage_02",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Ribcage_02.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Skull_01": (
         name: "SM_Prop_Whale_Skeleton_Skull_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Skull_01.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Tail_01": (
         name: "SM_Prop_Whale_Skeleton_Tail_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Tail_01.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "SM_Prop_Whale_Skeleton_Vertebra_01": (
         name: "SM_Prop_Whale_Skeleton_Vertebra_01",
         model: GltfModel("models/doodads/synty_jungle/SM_Prop_Whale_Skeleton_Vertebra_01.glb"),
-    ),
-
-    "MCastle_ArchArm_01": (
-        name: "MCastle_ArchArm_01",
-        model: GltfModel("models/doodads/MCastle_ArchArm_01.glb"),
-    ),
-
-    "MCastle_ArchDoors_00": (
-        name: "MCastle_ArchDoors_00",
-        model: GltfModel("models/doodads/MCastle_ArchDoors_00.glb"),
-    ),
-
-    "MCastle_ArchDoors_02": (
-        name: "MCastle_ArchDoors_02",
-        model: GltfModel("models/doodads/MCastle_ArchDoors_02.glb"),
-    ),
-
-    "MCastle_Baluster_Column_01": (
-        name: "MCastle_Baluster_Column_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Column_01.glb"),
-    ),
-
-    "MCastle_Baluster_Corner_01": (
-        name: "MCastle_Baluster_Corner_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Corner_01.glb"),
-    ),
-
-    "MCastle_Baluster_Straight_01": (
-        name: "MCastle_Baluster_Straight_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Straight_01.glb"),
-    ),
-
-    "MCastle_CliffRock_Lrg_01": (
-        name: "MCastle_CliffRock_Lrg_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_01.glb"),
-    ),
-
-    "MCastle_CliffRock_Lrg_02": (
-        name: "MCastle_CliffRock_Lrg_02",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_02.glb"),
-    ),
-
-    "MCastle_CliffRock_Med_01": (
-        name: "MCastle_CliffRock_Med_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_01.glb"),
-    ),
-
-    "MCastle_CliffRock_Med_02": (
-        name: "MCastle_CliffRock_Med_02",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
-    ),
-
-    "SecretRockWall_HingeVertical": (
-        name: "SecretRockWall_HingeVertical",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
-    ),
-
-    "MCastle_CliffRock_Small_01": (
-        name: "MCastle_CliffRock_Small_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Small_01.glb"),
-    ),
-
-    "MCastle_Cobbles_00": (
-        name: "MCastle_Cobbles_00",
-        model: GltfModel("models/doodads/MCastle_Cobbles_00.glb"),
-    ),
-
-    "MCastle_Cobbles_01": (
-        name: "MCastle_Cobbles_01",
-        model: GltfModel("models/doodads/MCastle_Cobbles_01.glb"),
-    ),
-
-    "MCastle_Cobbles_02": (
-        name: "MCastle_Cobbles_02",
-        model: GltfModel("models/doodads/MCastle_Cobbles_02.glb"),
-    ),
-
-    "MCastle_Cobbles_03": (
-        name: "MCastle_Cobbles_03",
-        model: GltfModel("models/doodads/MCastle_Cobbles_03.glb"),
-    ),
-
-    "MCastle_Cobbles_04": (
-        name: "MCastle_Cobbles_04",
-        model: GltfModel("models/doodads/MCastle_Cobbles_04.glb"),
-    ),
-
-    "MCastle_Cobbles_05": (
-        name: "MCastle_Cobbles_05",
-        model: GltfModel("models/doodads/MCastle_Cobbles_05.glb"),
-    ),
-
-    "MCastle_Cobbles_06": (
-        name: "MCastle_Cobbles_06",
-        model: GltfModel("models/doodads/MCastle_Cobbles_06.glb"),
-    ),
-
-    "MCastle_Cobbles_07": (
-        name: "MCastle_Cobbles_07",
-        model: GltfModel("models/doodads/MCastle_Cobbles_07.glb"),
+          tags: Some(["jungle" , "bones"])
     ),
 
     "fault_rock_A_1": (
@@ -1298,286 +1429,344 @@
     "cavern_bushtopper_5": (
         name: "cavern_bushtopper_5",
         model: GltfModel("models/doodads/cavern/cavern_bushtopper_5.glb"),
+
+        tags: Some(["cavern"]),
     ),
 
     "cavern_entrance_1": (
         name: "cavern_entrance_1",
         model: GltfModel("models/doodads/cavern/cavern_entrance_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_entrance_2": (
         name: "cavern_entrance_2",
         model: GltfModel("models/doodads/cavern/cavern_entrance_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_fern_01": (
         name: "cavern_fern_01",
         model: GltfModel("models/doodads/cavern/cavern_fern_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_fern_02": (
         name: "cavern_fern_02",
         model: GltfModel("models/doodads/cavern/cavern_fern_02.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_border_edge_1": (
         name: "cavern_floor_border_edge_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_border_edge_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_lg_1": (
         name: "cavern_floor_lg_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_lg_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_lg_2": (
         name: "cavern_floor_lg_2",
         model: GltfModel("models/doodads/cavern/cavern_floor_lg_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_lg_3": (
         name: "cavern_floor_lg_3",
         model: GltfModel("models/doodads/cavern/cavern_floor_lg_3.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_lg_4": (
         name: "cavern_floor_lg_4",
         model: GltfModel("models/doodads/cavern/cavern_floor_lg_4.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_narrow_bridge_lg_1": (
         name: "cavern_floor_narrow_bridge_lg_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_narrow_bridge_lg_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_narrow_corner_1": (
         name: "cavern_floor_narrow_corner_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_narrow_corner_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_narrow_dip_1": (
         name: "cavern_floor_narrow_dip_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_narrow_dip_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_narrow_intersection_1": (
         name: "cavern_floor_narrow_intersection_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_narrow_intersection_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_narrow_ramp_1": (
         name: "cavern_floor_narrow_ramp_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_narrow_ramp_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_wide_anglecorner_1": (
         name: "cavern_floor_wide_anglecorner_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_wide_anglecorner_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_wide_narrow_1": (
         name: "cavern_floor_wide_narrow_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_wide_narrow_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_wide_straight_1": (
         name: "cavern_floor_wide_straight_1",
         model: GltfModel("models/doodads/cavern/cavern_floor_wide_straight_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_floor_wide_straight_2": (
         name: "cavern_floor_wide_straight_2",
         model: GltfModel("models/doodads/cavern/cavern_floor_wide_straight_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_grass_01": (
         name: "cavern_grass_01",
         model: GltfModel("models/doodads/cavern/cavern_grass_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_hanging_bush_01": (
         name: "cavern_hanging_bush_01",
         model: GltfModel("models/doodads/cavern/cavern_hanging_bush_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_hanging_bush_03": (
         name: "cavern_hanging_bush_03",
         model: GltfModel("models/doodads/cavern/cavern_hanging_bush_03.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_hanging_root_02": (
         name: "cavern_hanging_root_02",
         model: GltfModel("models/doodads/cavern/cavern_hanging_root_02.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_mushroom_01": (
         name: "cavern_mushroom_01",
         model: GltfModel("models/doodads/cavern/cavern_mushroom_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_1": (
         name: "cavern_pillar_1",
         model: GltfModel("models/doodads/cavern/cavern_pillar_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_2": (
         name: "cavern_pillar_2",
         model: GltfModel("models/doodads/cavern/cavern_pillar_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_3": (
         name: "cavern_pillar_3",
         model: GltfModel("models/doodads/cavern/cavern_pillar_3.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_4": (
         name: "cavern_pillar_4",
         model: GltfModel("models/doodads/cavern/cavern_pillar_4.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_5": (
         name: "cavern_pillar_5",
         model: GltfModel("models/doodads/cavern/cavern_pillar_5.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_6": (
         name: "cavern_pillar_6",
         model: GltfModel("models/doodads/cavern/cavern_pillar_6.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_pillar_sideways_1": (
         name: "cavern_pillar_sideways_1",
         model: GltfModel("models/doodads/cavern/cavern_pillar_sideways_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_shrub_01": (
         name: "cavern_shrub_01",
         model: GltfModel("models/doodads/cavern/cavern_shrub_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_shrub_02": (
         name: "cavern_shrub_02",
         model: GltfModel("models/doodads/cavern/cavern_shrub_02.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_step_lg_1": (
         name: "cavern_step_lg_1",
         model: GltfModel("models/doodads/cavern/cavern_step_lg_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_step_lg_2": (
         name: "cavern_step_lg_2",
         model: GltfModel("models/doodads/cavern/cavern_step_lg_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_step_md_1": (
         name: "cavern_step_md_1",
         model: GltfModel("models/doodads/cavern/cavern_step_md_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_tree_dead_01": (
         name: "cavern_tree_dead_01",
         model: GltfModel("models/doodads/cavern/cavern_tree_dead_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_tree_dead_02": (
         name: "cavern_tree_dead_02",
         model: GltfModel("models/doodads/cavern/cavern_tree_dead_02.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_vines_01": (
         name: "cavern_vines_01",
         model: GltfModel("models/doodads/cavern/cavern_vines_01.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_vines_02": (
         name: "cavern_vines_02",
         model: GltfModel("models/doodads/cavern/cavern_vines_02.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_angle_1": (
         name: "cavern_wall_angle_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_angle_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_angle_2": (
         name: "cavern_wall_angle_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_angle_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_corner_lg_1": (
         name: "cavern_wall_corner_lg_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_corner_lg_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_corner_md_1": (
         name: "cavern_wall_corner_md_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_corner_md_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_corner_md_2": (
         name: "cavern_wall_corner_md_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_corner_md_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_end_1": (
         name: "cavern_wall_end_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_end_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_end_2": (
         name: "cavern_wall_end_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_end_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_filler_1": (
         name: "cavern_wall_filler_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_filler_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_filler_2": (
         name: "cavern_wall_filler_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_filler_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_lg_1": (
         name: "cavern_wall_lg_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_lg_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_lg_2": (
         name: "cavern_wall_lg_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_lg_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_med_1": (
         name: "cavern_wall_med_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_med_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_med_2": (
         name: "cavern_wall_med_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_med_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_med_3": (
         name: "cavern_wall_med_3",
         model: GltfModel("models/doodads/cavern/cavern_wall_med_3.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_middle_1": (
         name: "cavern_wall_middle_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_middle_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_middle_2": (
         name: "cavern_wall_middle_2",
         model: GltfModel("models/doodads/cavern/cavern_wall_middle_2.glb"),
+        tags: Some(["cavern"]),
     ),
 
     "cavern_wall_narrow_1": (
         name: "cavern_wall_narrow_1",
         model: GltfModel("models/doodads/cavern/cavern_wall_narrow_1.glb"),
+        tags: Some(["cavern"]),
     ),
 
 
@@ -1586,296 +1775,446 @@
  // ----- 
 
 
-        //polstyle castle 
+        //polystyle castle 
 
 
-            "MCastle_Cobbles_00": (
+        //some of these are duplicates !!
+
+    "MCastle_ArchArm_01": (
+        name: "MCastle_ArchArm_01",
+        model: GltfModel("models/doodads/MCastle_ArchArm_01.glb"),
+          tags: Some(["castle"  ])
+    ),
+
+    "MCastle_ArchDoors_00": (
+        name: "MCastle_ArchDoors_00",
+        model: GltfModel("models/doodads/MCastle_ArchDoors_00.glb"),
+        tags: Some(["castle"  ])
+    ),
+
+    "MCastle_ArchDoors_02": (
+        name: "MCastle_ArchDoors_02",
+        model: GltfModel("models/doodads/MCastle_ArchDoors_02.glb"),
+        tags: Some(["castle"  ])
+    ),
+
+    "MCastle_Baluster_Column_01": (
+        name: "MCastle_Baluster_Column_01",
+        model: GltfModel("models/doodads/MCastle_Baluster_Column_01.glb"),
+        tags: Some(["castle"  ])
+    ),
+
+    "MCastle_Baluster_Corner_01": (
+        name: "MCastle_Baluster_Corner_01",
+        model: GltfModel("models/doodads/MCastle_Baluster_Corner_01.glb"),
+        tags: Some(["castle"  ])
+    ),
+
+    "MCastle_Baluster_Straight_01": (
+        name: "MCastle_Baluster_Straight_01",
+        model: GltfModel("models/doodads/MCastle_Baluster_Straight_01.glb"),
+        tags: Some(["castle"  ])
+    ),
+
+    "MCastle_CliffRock_Lrg_01": (
+        name: "MCastle_CliffRock_Lrg_01",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_01.glb"),
+        tags: Some(["castle" ,"cliff" ])
+    ),
+
+    "MCastle_CliffRock_Lrg_02": (
+        name: "MCastle_CliffRock_Lrg_02",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_02.glb"),
+          tags: Some(["castle" ,"cliff" ])
+    ),
+
+    "MCastle_CliffRock_Med_01": (
+        name: "MCastle_CliffRock_Med_01",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Med_01.glb"),
+          tags: Some(["castle" ,"cliff" ])
+    ),
+
+    "MCastle_CliffRock_Med_02": (
+        name: "MCastle_CliffRock_Med_02",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
+          tags: Some(["castle" ,"cliff" ])
+    ),
+
+    "SecretRockWall_HingeVertical": (
+        name: "SecretRockWall_HingeVertical",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
+          tags: Some(["castle" ,"cliff" ])
+    ),
+
+    "MCastle_CliffRock_Small_01": (
+        name: "MCastle_CliffRock_Small_01",
+        model: GltfModel("models/doodads/MCastle_CliffRock_Small_01.glb"),
+          tags: Some(["castle" ,"cliff" ])
+    ),
+ 
+
+
+
+     "MCastle_Cobbles_00": (
         name: "MCastle_Cobbles_00",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_00.glb"),
+         tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Cobbles_02": (
         name: "MCastle_Cobbles_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_02.glb"),
+          tags: Some(["castle","floors"  ]),
+
     ),
     "MCastle_Cobbles_03": (
         name: "MCastle_Cobbles_03",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_03.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Cobbles_04": (
         name: "MCastle_Cobbles_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_04.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Cobbles_06": (
         name: "MCastle_Cobbles_06",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_06.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Cobbles_07": (
         name: "MCastle_Cobbles_07",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Cobbles_07.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Fixtures_05": (
         name: "MCastle_Fixtures_05",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Fixtures_05.glb"),
+          tags: Some(["castle"  ]),
     ),
     "MCastle_Floorboards_01": (
         name: "MCastle_Floorboards_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Floorboards_01.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Floorboards_02": (
         name: "MCastle_Floorboards_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Floorboards_02.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Floorboards_03": (
         name: "MCastle_Floorboards_03",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Floorboards_03.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Floorboards_04": (
         name: "MCastle_Floorboards_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Floorboards_04.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Foundations_00": (
         name: "MCastle_Foundations_00",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Foundations_00.glb"),
+          tags: Some(["castle","floors"  ]),
     ),
     "MCastle_Foundations_01": (
         name: "MCastle_Foundations_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Foundations_01.glb"),
+          tags: Some(["castle","foundation"  ]),
     ),
     "MCastle_GiantPillar_Block_01": (
         name: "MCastle_GiantPillar_Block_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_GiantPillar_Block_01.glb"),
+          tags: Some(["castle"  ]),
     ),
     "MCastle_Grill": (
         name: "MCastle_Grill",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Grill.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_InteriorSupports_04": (
         name: "MCastle_InteriorSupports_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_InteriorSupports_04.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_01": (
         name: "MCastle_Ruins_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_01.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_02": (
         name: "MCastle_Ruins_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_02.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_03": (
         name: "MCastle_Ruins_03",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_03.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_04": (
         name: "MCastle_Ruins_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_04.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_05": (
         name: "MCastle_Ruins_05",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_05.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_07": (
         name: "MCastle_Ruins_07",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_07.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_08": (
         name: "MCastle_Ruins_08",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_08.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Ruins_10": (
         name: "MCastle_Ruins_10",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Ruins_10.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_01": (
         name: "MCastle_SmallTurret_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_01.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_02": (
         name: "MCastle_SmallTurret_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_02.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_03": (
         name: "MCastle_SmallTurret_03",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_03.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_04": (
         name: "MCastle_SmallTurret_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_04.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_05": (
         name: "MCastle_SmallTurret_05",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_05.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_06": (
         name: "MCastle_SmallTurret_06",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_06.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_07": (
         name: "MCastle_SmallTurret_07",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_07.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_08": (
         name: "MCastle_SmallTurret_08",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_08.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_09": (
         name: "MCastle_SmallTurret_09",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_09.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_10": (
         name: "MCastle_SmallTurret_10",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_10.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_11": (
         name: "MCastle_SmallTurret_11",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_11.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_12": (
         name: "MCastle_SmallTurret_12",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_12.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SmallTurret_Floor_01": (
         name: "MCastle_SmallTurret_Floor_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SmallTurret_Floor_01.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWall_Base_Lower": (
         name: "MCastle_SquareWall_Base_Lower",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWall_Base_Lower.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWall_Base_RectWin": (
         name: "MCastle_SquareWall_Base_RectWin",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWall_Base_RectWin.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_07": (
         name: "MCastle_SquareWalls_07",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_07.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_14": (
         name: "MCastle_SquareWalls_14",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_14.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_19": (
         name: "MCastle_SquareWalls_19",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_19.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_20": (
         name: "MCastle_SquareWalls_20",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_20.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_21": (
         name: "MCastle_SquareWalls_21",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_21.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_22": (
         name: "MCastle_SquareWalls_22",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_22.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_ArchCarbels": (
         name: "MCastle_SquareWalls_ArchCarbels",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_ArchCarbels.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_ArchedWindow_00": (
         name: "MCastle_SquareWalls_ArchedWindow_00",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_ArchedWindow_00.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Base_TriFront": (
         name: "MCastle_SquareWalls_Base_TriFront",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Base_TriFront.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Border_01": (
         name: "MCastle_SquareWalls_Border_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_01.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Border_02": (
         name: "MCastle_SquareWalls_Border_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_02.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Border_CrossWin": (
         name: "MCastle_SquareWalls_Border_CrossWin",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_CrossWin.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Border_Door": (
         name: "MCastle_SquareWalls_Border_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_Door.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Border_LargeWin": (
         name: "MCastle_SquareWalls_Border_LargeWin",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_LargeWin.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Door": (
         name: "MCastle_SquareWalls_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Door.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_HeavyTrim_Door": (
         name: "MCastle_SquareWalls_HeavyTrim_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_HeavyTrim_Door.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_HeavyTrim": (
         name: "MCastle_SquareWalls_HeavyTrim",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_HeavyTrim.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Int_WindowArch": (
         name: "MCastle_SquareWalls_Int_WindowArch",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Int_WindowArch.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_Portcullis": (
         name: "MCastle_SquareWalls_Portcullis",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Portcullis.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_SquareWalls_SmallWindow": (
         name: "MCastle_SquareWalls_SmallWindow",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_SmallWindow.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_00": (
         name: "MCastle_Steps_00",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_00.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_01": (
         name: "MCastle_Steps_01",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_01.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_02": (
         name: "MCastle_Steps_02",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_02.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_03": (
         name: "MCastle_Steps_03",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_03.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_04": (
         name: "MCastle_Steps_04",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_04.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_05": (
         name: "MCastle_Steps_05",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_05.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_06": (
         name: "MCastle_Steps_06",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_06.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_07": (
         name: "MCastle_Steps_07",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_07.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_08": (
         name: "MCastle_Steps_08",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_08.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_09": (
         name: "MCastle_Steps_09",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_09.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_10": (
         name: "MCastle_Steps_10",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_10.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_11": (
         name: "MCastle_Steps_11",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_11.glb"),
+         tags: Some(["castle"  ]),
     ),
     "MCastle_Steps_12": (
         name: "MCastle_Steps_12",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Steps_12.glb"),
+         tags: Some(["castle"  ]),
     ),
 
 
@@ -2091,249 +2430,315 @@
         name: "wood_supports_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
     ),
+
+
+
+    // swamp !!
+
     "SM_Bld_Shack_Swamp_01b": (
         name: "SM_Bld_Shack_Swamp_01b",
         model: GltfModel("models/doodads/synty_swamp/SM_Bld_Shack_Swamp_01b.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Bld_Shack_Swamp_01": (
         name: "SM_Bld_Shack_Swamp_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Bld_Shack_Swamp_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Bush_Bramble_01": (
         name: "SM_Env_Bush_Bramble_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Bush_Bramble_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Bush_Bramble_02": (
         name: "SM_Env_Bush_Bramble_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Bush_Bramble_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Grass_Tall_Clump_01": (
         name: "SM_Env_Grass_Tall_Clump_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Grass_Tall_Clump_02": (
         name: "SM_Env_Grass_Tall_Clump_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Grass_Tall_Clump_03": (
         name: "SM_Env_Grass_Tall_Clump_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Swamp_Leaves_01": (
         name: "SM_Env_Swamp_Leaves_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Leaves_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Swamp_Leaves_02": (
         name: "SM_Env_Swamp_Leaves_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Leaves_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Swamp_Log_01": (
         name: "SM_Env_Swamp_Log_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Log_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Swamp_Log_02": (
         name: "SM_Env_Swamp_Log_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Log_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Dead_01": (
         name: "SM_Env_Tree_Dead_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Dead_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Dead_02": (
         name: "SM_Env_Tree_Dead_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Dead_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Mangrove_01": (
         name: "SM_Env_Tree_Mangrove_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Mangrove_02": (
         name: "SM_Env_Tree_Mangrove_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Mangrove_03": (
         name: "SM_Env_Tree_Mangrove_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Swamp_01": (
         name: "SM_Env_Tree_Swamp_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Swamp_02": (
         name: "SM_Env_Tree_Swamp_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Swamp_03": (
         name: "SM_Env_Tree_Swamp_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Env_Tree_Swamp_04": (
         name: "SM_Env_Tree_Swamp_04",
         model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_04.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Bone_Hand_01": (
         name: "SM_Prop_Bone_Hand_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Hand_01.glb"),
+         tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_Bone_Hip_01": (
         name: "SM_Prop_Bone_Hip_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Hip_01.glb"),
+             tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_Bone_Pile_01": (
         name: "SM_Prop_Bone_Pile_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Pile_01.glb"),
+             tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_Bone_Pile_02": (
         name: "SM_Prop_Bone_Pile_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Pile_02.glb"),
+             tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_Bone_Ribcage_01": (
         name: "SM_Prop_Bone_Ribcage_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Ribcage_01.glb"),
+             tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_Bone_Skull_01": (
         name: "SM_Prop_Bone_Skull_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Skull_01.glb"),
+             tags: Some(["swamp" ,"bones" ]),
     ),
     "SM_Prop_CemeteryFence_01": (
         name: "SM_Prop_CemeteryFence_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_01.glb"),
+             tags: Some(["swamp" ,"fence" ]),
     ),
     "SM_Prop_CemeteryFence_02": (
         name: "SM_Prop_CemeteryFence_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_02.glb"),
+          tags: Some(["swamp" ,"fence" ]),
     ),
     "SM_Prop_CemeteryFence_End_01": (
         name: "SM_Prop_CemeteryFence_End_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_End_01.glb"),
+          tags: Some(["swamp" ,"fence" ]),
     ),
     "SM_Prop_Effigy_01": (
         name: "SM_Prop_Effigy_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Effigy_01.glb"),
+          tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Effigy_02": (
         name: "SM_Prop_Effigy_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Effigy_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Jetty_01": (
         name: "SM_Prop_Jetty_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Jetty_02": (
         name: "SM_Prop_Jetty_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Jetty_03": (
         name: "SM_Prop_Jetty_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Sewerpipe_Slime_01": (
         name: "SM_Prop_Sewerpipe_Slime_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Sewerpipe_Slime_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Shrunken_Head_01": (
         name: "SM_Prop_Shrunken_Head_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Shrunken_Head_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Shrunken_Head_02": (
         name: "SM_Prop_Shrunken_Head_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Shrunken_Head_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Stump_01": (
         name: "SM_Prop_Stump_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Stump_01.glb"),
+         tags: Some(["swamp","trees"  ]),
     ),
     "SM_Prop_Stump_02": (
         name: "SM_Prop_Stump_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Stump_02.glb"),
+         tags: Some(["swamp" ,"trees" ]),
     ),
     "SM_Prop_Swamp_Lantern_01": (
         name: "SM_Prop_Swamp_Lantern_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Lantern_01.glb"),
+         tags: Some(["swamp" ,"lantern" ]),
     ),
     "SM_Prop_Swamp_Lantern_02": (
         name: "SM_Prop_Swamp_Lantern_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Lantern_02.glb"),
+         tags: Some(["swamp" ,"lantern" ]),
     ),
     "SM_Prop_Swamp_Log_01": (
         name: "SM_Prop_Swamp_Log_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Swamp_Log_02": (
         name: "SM_Prop_Swamp_Log_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Swamp_Log_03": (
         name: "SM_Prop_Swamp_Log_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Swamp_Log_04": (
         name: "SM_Prop_Swamp_Log_04",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_04.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Swamp_Log_05": (
         name: "SM_Prop_Swamp_Log_05",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_05.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Tombstone_01": (
         name: "SM_Prop_Tombstone_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Tombstone_02": (
         name: "SM_Prop_Tombstone_02",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Tombstone_03": (
         name: "SM_Prop_Tombstone_03",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Tombstone_04": (
         name: "SM_Prop_Tombstone_04",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_04.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_VineTree_01": (
         name: "SM_Prop_VineTree_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_VineTree_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "SM_Prop_Wooden_Table_01": (
         name: "SM_Prop_Wooden_Table_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Wooden_Table_01.glb"),
+         tags: Some(["swamp","table"]),
     ),
     "Swamp_Tree_04": (
         name: "Swamp_Tree_04",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_04.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_05": (
         name: "Swamp_Tree_05",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_05.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_Root_01": (
         name: "Swamp_Tree_Root_01",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_01.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_Root_02": (
         name: "Swamp_Tree_Root_02",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_02.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_Root_03": (
         name: "Swamp_Tree_Root_03",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_03.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_Root_04": (
         name: "Swamp_Tree_Root_04",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_04.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "Swamp_Tree_Root_05": (
         name: "Swamp_Tree_Root_05",
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_05.glb"),
+         tags: Some(["swamp"  ]),
     ),
     "bonfire": (
         name: "bonfire",
         model: GltfModel("models/doodads/bonfire.glb"),
+         tags: Some([ "camp" ]),
     ),
     "story_book_1": (
         name: "story_book_1",
         model: GltfModel("models/doodads/story_book_1.glb"),
+          tags: Some([ "special" ]),
     ),
     "wooden_chest": (
         name: "wooden_chest",
@@ -2345,14 +2750,17 @@
     "tent_1": (
         name: "tent_1",
         model: GltfModel("models/doodads/tent_1.glb"),
+         tags: Some([ "camp" ]),
     ),
     "waterfall_1": (
         name: "waterfall_1",
         model: MagicFx("magic_fx/waterfall.magicfx.ron"),
+          tags: Some([ "fx" ,"water"]),
     ),
     "sunshaft": (
         name: "sunshaft",
         model: MagicFx("magic_fx/sunshaft.magicfx.ron"),
+        tags: Some([ "fx" ]),
     ),
 
 
@@ -2364,7 +2772,9 @@
                //gets Interactable from the games doodad manifest 
                  "interaction_trigger_script": String("---")  
 
-                 })
+                 }),
+
+               tags: Some([ "special" ]),
 
 
         ) ,
@@ -2382,7 +2792,10 @@
                                         blue: 0.1,
                                         alpha: 0.8
                                     ),    wireframe:false )),
-          //  initial_custom_props: Some({ "special_type": String("vfx_emitter") , "vfx_name":String("leaves" )})
+          //  initial_custom_props: Some({ "special_type": String("vfx_emitter") , "vfx_name":String("leaves" )})  ,
+
+
+           tags: Some([ "fx" ]),
         ),
 
 
@@ -2401,7 +2814,9 @@
                 "special_type": String("item"),
                  "item_type": String("dagger.item")  
 
-                 })
+                 }),
+
+                 tags: Some([ "item" ]),
         ),
 
 
@@ -2420,7 +2835,10 @@
                  "interaction_trigger_script": String("---") 
 
 
-                 })
+                 }),
+
+
+               tags: Some([ "editor" ,"special" ]),
          ),
 
 
@@ -2429,7 +2847,9 @@
             name: "ladder_01",
             model: GltfModel("models/doodads/ladder_1.glb"),
 
-             initial_custom_props: Some({ "climbable": Boolean(true) })
+             initial_custom_props: Some({ "climbable": Boolean(true) }),
+
+             tags: Some([ "ladder" ]),
         ),
 
  
@@ -2442,7 +2862,9 @@
               "liquid_type": String("water"),
 
 
-            })
+            }),
+
+             tags: Some([ "water" ]),
         ),
 
 
@@ -2455,7 +2877,10 @@
               "liquid_type": String("swamp_green"),
 
 
-            })
+            }),
+
+
+            tags: Some([ "water" ]),
         ),
 
         
@@ -2466,7 +2891,8 @@
             initial_custom_props: Some({ 
                 "special_type": String("player_waypoint") , 
                 "waypoint_name": String("---")  
-                })
+                }),
+            tags: Some([ "editor" , "special"]),
         ),
 
 
@@ -2500,7 +2926,8 @@
             "special_type": String("npc_waypoint") ,
              "waypoint_name": String("---") 
 
-            })
+            }),
+              tags: Some([ "editor" , "special"]),
         ),
 
        "camera_waypoint" : (
@@ -2509,7 +2936,8 @@
             initial_custom_props: Some({ 
             "special_type": String("camera_waypoint") ,  
              "waypoint_name": String("---") 
-              })
+              }),
+                tags: Some([ "editor" , "special"]),
         ),
 
 
@@ -2520,12 +2948,15 @@
 
         "gnome_female": (
             name: "gnome_female",
-            model:  GltfModel("models/units/gnome_female_1.glb")
+            model:  GltfModel("models/units/gnome_female_1.glb"),
+
+              tags: Some([ "units"]),
         ),
 
         "elf1": (
             name: "elf1",
-            model:  GltfModel("models/units/elf1.glb")  
+            model:  GltfModel("models/units/elf1.glb")  ,
+             tags: Some([ "units"]),
         ),
 
 
@@ -2538,7 +2969,8 @@
                 "unique_name": String("gabriella"),
                 "has_dialog_tree": String("gabriella")
                 
-               })
+               }),
+                tags: Some([ "units"]),
         ),
 
         // ---- 
@@ -2546,17 +2978,20 @@
 
        "skeleton1": (
             name: "skeleton1",
-            model:  GltfModel("models/units/skeleton_01.glb")  
+            model:  GltfModel("models/units/skeleton_01.glb")  ,
+             tags: Some([ "units"]),
         ),
 
 
          "orc1":  (
             name: "orc1",
-            model:  GltfModel("models/units/elf1.glb")  
+            model:  GltfModel("models/units/elf1.glb")  ,
+             tags: Some([ "units"]),
         ),
           "fae1": (
             name: "fae1",
-            model:  GltfModel("models/units/elf1.glb")  
+            model:  GltfModel("models/units/elf1.glb")  ,
+             tags: Some([ "units"]),
         ),
 
 
