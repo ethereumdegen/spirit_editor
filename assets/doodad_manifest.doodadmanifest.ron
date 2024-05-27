@@ -24,16 +24,6 @@
 
 
     
-      "backpack_prop_lootable": (
-        
-        model: GltfModel("models/doodads/leather_backpack_1.glb"),
-        initial_custom_props: Some({
-            "has_loot_table": String("---"),
-        }),
-
-        tags: Some([ "lootable" ]),
-      ),
-
 
 
     "skeleton_prop_lootable": (
@@ -2798,27 +2788,52 @@
            tags: Some([ "fx" ]),
         ),
 
-
+// ---  items  
 
        "item_dagger":  (
-            name: "item_dagger",
-            model:  CubeShape( (color: Rgba(
-                                        red: 0.8,
-                                        green: 0.1,
-                                        blue: 0.1,
-                                        alpha: 0.8
-                                    ),
-                                 wireframe:false
-                ))  ,
-            initial_custom_props: Some({ 
+            
+             model: GltfModel("models/doodads/item_doodads/rpg_dagger_04.glb"),
+
+
+              initial_custom_props: Some({ 
                 "special_type": String("item"),
                  "item_type": String("dagger.item")  
 
-                 }),
+             }),
 
-                 tags: Some([ "item" ]),
+            tags: Some([ "item" ]),
         ),
 
+
+
+
+         "prop_item_power_sword_1":  (
+         
+           model: GltfModel("models/doodads/item_doodads/rpg_katana_01.glb"),
+          tags: Some([ "item" ]),
+            
+        ),
+
+
+          "prop_item_backpack_lootable":  (
+           
+           model: GltfModel("models/doodads/item_doodads/leather_backpack_1.glb"),
+
+            initial_custom_props: Some({
+            "has_loot_table": String("---"),
+           }),
+
+
+          tags: Some([ "item","lootable"]),
+            
+        ),
+
+
+ 
+
+
+
+// -----
 
        "trigger_volume": (
             name: "trigger_volume",
@@ -2991,7 +3006,7 @@
           "fae1": (
             name: "fae1",
             model:  GltfModel("models/units/elf1.glb")  ,
-             tags: Some([ "units"]),
+             tags: Some([ "units"]),g
         ),
 
 
