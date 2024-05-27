@@ -17,7 +17,7 @@ image = { version = "0.24", default-features = false }
 
 
 
- bevy_mesh_terrain = "0.13.23"  
+ bevy_mesh_terrain = "0.13.24"  
 
 #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
@@ -25,9 +25,9 @@ image = { version = "0.24", default-features = false }
 
 
 
- degen_toon_water = "0.13.7"
+ #degen_toon_water = "0.13.9"
 
-#degen_toon_water =  {path="../degen_toon_water"}
+degen_toon_water =  {path="../degen_toon_water"}
 
 
  bevy_regions = "0.13.4"

@@ -95,7 +95,7 @@ pub struct LiquidPlaneComponent {
     }   
 
     if let Some(deep_color) = liquid_type.deep_color {
-         liquid_material.extension.custom_uniforms.depth_gradient_shallow = deep_color;
+         liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color;
     }   
 
    
@@ -107,7 +107,7 @@ pub struct LiquidPlaneComponent {
          );   
 
   let water_mesh =  commands.spawn(MaterialMeshBundle {
-            mesh: meshes.add(Plane3d::default().mesh().size(50.0, 50.0)),
+            mesh: meshes.add(Plane3d::default().mesh().size(1.0, 1.0)),
             material:  liquid_material_handle,
             ..default()
         } )

@@ -1191,9 +1191,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.13.23"
+version = "0.13.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ffae04a655ee55e34561604ea48c9be19a400b68c398b96f7a31a63abedcd2ea"
+checksum = "c3a145ced65e061190d47e8dcdcf3eda08a7807eaa69775838a06d8077bc3803"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",
@@ -2557,9 +2557,7 @@ checksum = "7e962a19be5cfc3f3bf6dd8f61eb50107f356ad6270fbb3ed41476571db78be5"
 
 [[package]]
 name = "degen_toon_water"
-version = "0.13.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "531b01377dfe46270212bad1afdb0228d9c463119e24a9dbab6548b98d506b8d"
+version = "0.13.11"
 dependencies = [
  "bevy 0.13.2",
  "bevy_common_assets",
