@@ -18,7 +18,7 @@ Load, Edit, and Save terrain and other game data files for bevy_mesh_terrain in 
  
 Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.    
 
-![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/e898f5a3-01a4-4ea1-88a7-a5cb50a01882)
+![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/cfea97c5-b73a-4a54-9e27-e1f0a5c36229)
 
 
 
