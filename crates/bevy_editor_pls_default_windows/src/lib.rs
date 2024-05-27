@@ -19,7 +19,7 @@ pub mod hierarchy;
 pub mod inspector;
 pub mod renderer;
 pub mod resources;
- pub mod scenes;
+pub mod scenes;
 pub mod lighting;
 
 pub mod doodads;

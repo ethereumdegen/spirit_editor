@@ -54,6 +54,7 @@ pub struct DoodadDefinition {
     pub model: RenderableType,
     pub initial_custom_props: Option<CustomPropsMap>,
     pub tags: Option<Vec<String>> ,
+    pub snap_dimensions: Option<Vec2>, 
 }
 
 impl DoodadManifest {

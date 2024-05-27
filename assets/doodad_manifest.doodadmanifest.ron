@@ -17,7 +17,8 @@
         (
             name: "blank_block",
             model: GltfModel("models/doodads/blank_block.glb"),
-            tags: Some([ "editor" ])
+            tags: Some([ "editor" ]),
+            snap_dimensions: Some( (2.0,2.0) ),
         ),
 
 
