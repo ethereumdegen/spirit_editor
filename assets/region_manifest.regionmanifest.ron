@@ -25,6 +25,32 @@
            
         ),
 
+
+        (
+            name: "Swamp One",
+            color: Rgba(
+                             red: 0.7,
+                            green:  0.7,
+                            blue:  0.9,
+                            alpha: 1.0
+                        ) 
+           
+        ),
+
+
+
+        (
+            name: "Fortress of Viridia",
+            color: Rgba(
+                             red: 0.7,
+                            green:  0.7,
+                            blue:  0.9,
+                            alpha: 1.0
+                        ) 
+           
+        ),
+
+
         (
             name: "Mirror Lake",
             color: Rgba(
