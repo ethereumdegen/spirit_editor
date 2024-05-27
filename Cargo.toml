@@ -17,8 +17,17 @@ image = { version = "0.24", default-features = false }
 
 
 
- bevy_mesh_terrain = "0.13.22"  
-  #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+ bevy_mesh_terrain = "0.13.24"  
+
+#bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+
+
+
+
+
+ #degen_toon_water = "0.13.9"
+
+degen_toon_water =  {path="../degen_toon_water"}
 
 
  bevy_regions = "0.13.4"
@@ -40,7 +49,7 @@ seldom_fn_plugin = "0.6.0"
  
 
 serde = { version = "1", features = ["derive"] }
-  
+   ron = "0.8.1"
 
 
 bevy_editor_pls.workspace = true
@@ -49,7 +58,6 @@ bevy_editor_pls_default_windows = { workspace = true  }
 bevy_obj = "0.13.0"
  
 
-bevy_water = "0.13.0"
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.24.0"

@@ -206,9 +206,11 @@ fn editor_tools(
                 let terrain_index_B = tools_state.color.g.clone();
 
                 let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
+ 
 
-                  ui.spacing_mut().slider_width = 300.0;
-
+ 
+                  ui.spacing_mut().slider_width = 255.0;
+ 
                 ui.add(
 
                     egui::Slider::new(&mut tools_state.color.r, 0..=255)
@@ -222,8 +224,9 @@ fn editor_tools(
                 if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
                      ui.label( terrain_def.name.clone() );
                 }
-               
+                 ui.spacing_mut().slider_width = 255.0;
                 ui.add(
+
                     egui::Slider::new(&mut tools_state.color.g, 0..=255)
                         .text("Texture B (G_Channel")
                          .step_by(1.0)
@@ -234,6 +237,7 @@ fn editor_tools(
                 if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
                      ui.label( terrain_def.name.clone() );
                 }
+                  ui.spacing_mut().slider_width = 255.0;
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.b, 0..=255)
                         .text("Layer Fade (B_Channel")
@@ -259,9 +263,11 @@ fn editor_tools(
                             }
                         }
                     });
+ 
 
 
                   ui.spacing_mut().slider_width = 300.0;
+ 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=65535)
                         .text("Height (R_Channel)")
@@ -288,9 +294,9 @@ fn editor_tools(
                             }
                         }
                     });
-
-
-                  ui.spacing_mut().slider_width = 300.0;
+ 
+                     ui.spacing_mut().slider_width = 256.0;  
+ 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=256)
                         .text("Foliage Index (R_Channel)")
@@ -319,10 +325,10 @@ fn editor_tools(
                             }
                         }
                     });
-
-
-                  ui.spacing_mut().slider_width = 300.0;
-                  
+   
+ 
+                      ui.spacing_mut().slider_width = 200.0;
+ 
                 ui.add(
                     egui::Slider::new(&mut tools_state.color.r, 0..=64)
                         .text("Region Index (R_Channel)")

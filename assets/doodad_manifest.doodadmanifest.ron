@@ -1768,6 +1768,252 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
 ),
 
 
+// ----- swamp 
+
+
+       (
+            name: "SM_Bld_Shack_Swamp_01b",
+            model:  GltfModel("models/doodads/synty_swamp/SM_Bld_Shack_Swamp_01b.glb")  
+        ),
+
+
+       (
+            name: "SM_Bld_Shack_Swamp_01",
+            model:  GltfModel("models/doodads/synty_swamp/SM_Bld_Shack_Swamp_01.glb")  
+        ),
+ 
+ 
+
+
+(
+name: "SM_Env_Bush_Bramble_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Bush_Bramble_01.glb")
+),
+(
+name: "SM_Env_Bush_Bramble_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Bush_Bramble_02.glb")
+),
+(
+name: "SM_Env_Grass_Tall_Clump_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_01.glb")
+),
+(
+name: "SM_Env_Grass_Tall_Clump_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_02.glb")
+),
+(
+name: "SM_Env_Grass_Tall_Clump_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Grass_Tall_Clump_03.glb")
+),
+(
+name: "SM_Env_Swamp_Leaves_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Leaves_01.glb")
+),
+(
+name: "SM_Env_Swamp_Leaves_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Leaves_02.glb")
+),
+(
+name: "SM_Env_Swamp_Log_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Log_01.glb")
+),
+(
+name: "SM_Env_Swamp_Log_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Swamp_Log_02.glb")
+),
+(
+name: "SM_Env_Tree_Dead_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Dead_01.glb")
+),
+(
+name: "SM_Env_Tree_Dead_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Dead_02.glb")
+),
+(
+name: "SM_Env_Tree_Mangrove_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_01.glb")
+),
+(
+name: "SM_Env_Tree_Mangrove_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_02.glb")
+),
+(
+name: "SM_Env_Tree_Mangrove_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Mangrove_03.glb")
+),
+(
+name: "SM_Env_Tree_Swamp_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_01.glb")
+),
+(
+name: "SM_Env_Tree_Swamp_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_02.glb")
+),
+(
+name: "SM_Env_Tree_Swamp_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_03.glb")
+),
+(
+name: "SM_Env_Tree_Swamp_04",
+model: GltfModel("models/doodads/synty_swamp/SM_Env_Tree_Swamp_04.glb")
+),
+(
+name: "SM_Prop_Bone_Hand_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Hand_01.glb")
+),
+(
+name: "SM_Prop_Bone_Hip_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Hip_01.glb")
+),
+(
+name: "SM_Prop_Bone_Pile_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Pile_01.glb")
+),
+(
+name: "SM_Prop_Bone_Pile_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Pile_02.glb")
+),
+(
+name: "SM_Prop_Bone_Ribcage_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Ribcage_01.glb")
+),
+(
+name: "SM_Prop_Bone_Skull_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Skull_01.glb")
+),
+(
+name: "SM_Prop_CemeteryFence_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_01.glb")
+),
+(
+name: "SM_Prop_CemeteryFence_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_02.glb")
+),
+(
+name: "SM_Prop_CemeteryFence_End_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_End_01.glb")
+),
+(
+name: "SM_Prop_Effigy_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Effigy_01.glb")
+),
+(
+name: "SM_Prop_Effigy_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Effigy_02.glb")
+),
+(
+name: "SM_Prop_Jetty_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_01.glb")
+),
+(
+name: "SM_Prop_Jetty_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_02.glb")
+),
+(
+name: "SM_Prop_Jetty_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Jetty_03.glb")
+),
+(
+name: "SM_Prop_Sewerpipe_Slime_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Sewerpipe_Slime_01.glb")
+),
+(
+name: "SM_Prop_Shrunken_Head_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Shrunken_Head_01.glb")
+),
+
+(
+name: "SM_Prop_Shrunken_Head_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Shrunken_Head_02.glb")
+),
+(
+name: "SM_Prop_Stump_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Stump_01.glb")
+),
+(
+name: "SM_Prop_Stump_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Stump_02.glb")
+),
+(
+name: "SM_Prop_Swamp_Lantern_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Lantern_01.glb")
+),
+(
+name: "SM_Prop_Swamp_Lantern_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Lantern_02.glb")
+),
+(
+name: "SM_Prop_Swamp_Log_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_01.glb")
+),
+(
+name: "SM_Prop_Swamp_Log_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_02.glb")
+),
+(
+name: "SM_Prop_Swamp_Log_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_03.glb")
+),
+(
+name: "SM_Prop_Swamp_Log_04",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_04.glb")
+),
+(
+name: "SM_Prop_Swamp_Log_05",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Swamp_Log_05.glb")
+),
+(
+name: "SM_Prop_Tombstone_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_01.glb")
+),
+(
+name: "SM_Prop_Tombstone_02",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_02.glb")
+),
+(
+name: "SM_Prop_Tombstone_03",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_03.glb")
+),
+(
+name: "SM_Prop_Tombstone_04",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Tombstone_04.glb")
+),
+(
+name: "SM_Prop_VineTree_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_VineTree_01.glb")
+),
+(
+name: "SM_Prop_Wooden_Table_01",
+model: GltfModel("models/doodads/synty_swamp/SM_Prop_Wooden_Table_01.glb")
+),
+(
+name: "Swamp_Tree_04",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_04.glb")
+),
+(
+name: "Swamp_Tree_05",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_05.glb")
+),
+(
+name: "Swamp_Tree_Root_01",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_01.glb")
+),
+(
+name: "Swamp_Tree_Root_02",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_02.glb")
+),
+(
+name: "Swamp_Tree_Root_03",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_03.glb")
+),
+(
+name: "Swamp_Tree_Root_04",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_04.glb")
+),
+(
+name: "Swamp_Tree_Root_05",
+model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_05.glb")
+),
 
 
 
@@ -1899,13 +2145,32 @@ model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
         ),
 
  
+   (
+            
+            name: "water_plane",
+            model: LiquidPlane("water") ,
+            initial_custom_props: Some({ 
+              "special_type": String("liquid_plane") ,
+              "liquid_type": String("water"),
+
+
+            })
+        ),
+
 
          (
             
-            name: "water_plane",
-            model: LiquidPlane ,
-            initial_custom_props: Some({ "special_type": String("liquid_plane") })
+            name: "water_plane_swamp_green",
+            model: LiquidPlane("water_swamp_green") ,
+            initial_custom_props: Some({ 
+              "special_type": String("liquid_plane") ,
+              "liquid_type": String("swamp_green"),
+
+
+            })
         ),
+
+        
 
         (
             name: "player_waypoint",

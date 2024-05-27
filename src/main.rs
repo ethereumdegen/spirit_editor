@@ -1,3 +1,5 @@
+use bevy::core_pipeline::prepass::NormalPrepass;
+use bevy::core_pipeline::prepass::DepthPrepass;
 use bevy_foliage_paint::foliage_config::FoliageConfig;
 use bevy_foliage_paint::foliage::FoliageData;
 use bevy_foliage_paint::BevyFoliagePaintPlugin;
@@ -37,7 +39,7 @@ mod editor_pls;
 mod tools;
 mod ui;
 mod asset_loading;
-mod water;
+mod liquid;
 
 mod doodads;
 mod terrain;
@@ -46,7 +48,7 @@ mod foliage;
 mod regions;
 
 use crate::camera::camera_plugin;
-use crate::water::water_plugin;
+use crate::liquid::liquid_plugin;
 
 use crate::tools::brush_tools_plugin;
 
@@ -125,7 +127,7 @@ fn main() {
         .add_plugins(asset_loading_plugin)
 
  
-        .fn_plugin(water_plugin)
+        .fn_plugin(liquid_plugin)
         .fn_plugin(brush_tools_plugin)
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)
@@ -217,6 +219,8 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         })
         .insert( BloomSettings::default())
         .insert(TerrainViewer::default())
+        .insert( DepthPrepass )
+        .insert( NormalPrepass)
        // .insert(ShadowFilteringMethod::Jimenez14)
        ;
 }

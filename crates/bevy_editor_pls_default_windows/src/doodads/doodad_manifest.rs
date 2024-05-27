@@ -39,7 +39,7 @@ pub enum RenderableType {
     GltfModel(String), //the path
     CubeShape(CubeShapeDefinition),
     MagicFx(String),
-    LiquidPlane
+    LiquidPlane(String)
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
