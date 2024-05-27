@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.8"
+version = "0.13.9"
 edition = "2021"
 
 
@@ -25,9 +25,9 @@ image = { version = "0.24", default-features = false }
 
 
 
- #degen_toon_water = "0.13.9"
+ degen_toon_water = "0.13.9"
 
-degen_toon_water =  {path="../degen_toon_water"}
+#degen_toon_water =  {path="../degen_toon_water"}
 
 
  bevy_regions = "0.13.4"
