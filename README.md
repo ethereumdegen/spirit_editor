@@ -55,8 +55,8 @@ Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  T
 
 #### Coordinates 
 
-Rotation is   EulerRot::YXZ  - pitch yaw roll. 
-ex: Typically, trees will only have a pitch rotation. 
+Rotation is   EulerRot::YXZ  - yaw pitch roll. 
+ex: Typically, trees will only have a yaw rotation. 
 
 
 
