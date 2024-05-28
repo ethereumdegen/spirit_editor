@@ -3006,7 +3006,7 @@
           "fae1": (
             name: "fae1",
             model:  GltfModel("models/units/elf1.glb")  ,
-             tags: Some([ "units"]),g
+             tags: Some([ "units"]),
         ),
 
 
