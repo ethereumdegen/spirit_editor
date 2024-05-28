@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct ZoneFile {
-    pub entities: Vec<ZoneEntity>,
+    pub entities: Vec<ZoneEntity>, 
 }
 
 impl ZoneFile {

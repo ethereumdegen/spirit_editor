@@ -1,0 +1,3 @@
+(
+    terrain_path: Some("default_terrain"),    
+)

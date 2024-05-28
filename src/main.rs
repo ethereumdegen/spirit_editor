@@ -1,3 +1,4 @@
+use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
 use bevy_foliage_paint::foliage_config::FoliageConfig;
@@ -33,6 +34,7 @@ use bevy::pbr::ShadowFilteringMethod;
 
 use bevy_mod_raycast::prelude::*;
 
+mod editor_config; 
 mod camera;
 mod commands;
 mod editor_pls;
@@ -145,16 +147,24 @@ fn main() {
 /// set up a simple 3D scene
 fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
 ) {
-    commands
-        .spawn(SpatialBundle::default())
-        .insert(
-            TerrainConfig::load_from_file("assets/terrain/default_terrain/terrain_config.ron")
-                .unwrap(),
-        )
-        .insert(TerrainData::new());
 
 
+    
+    let editor_config = EditorConfig::load();
 
+    if let Some(terrain_path) = &editor_config.get_terrain_path_full(){
+
+       
+        commands
+            .spawn(SpatialBundle::default())
+            .insert(
+                TerrainConfig::load_from_file(terrain_path)
+                    .unwrap(),
+            )
+            .insert(TerrainData::new());
+
+
+    }
 
               
      commands
