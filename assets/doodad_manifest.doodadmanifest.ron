@@ -2889,7 +2889,7 @@
             model: LiquidPlane("water_swamp_green") ,
             initial_custom_props: Some({ 
               "special_type": String("liquid_plane") ,
-              "liquid_type": String("swamp_green"),
+              "liquid_type": String("water_swamp_green"),
 
 
             }),
