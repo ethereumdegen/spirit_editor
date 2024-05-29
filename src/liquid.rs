@@ -76,9 +76,7 @@ pub struct LiquidPlaneComponent {
 
   let liquid_type = &liquid_plane_component.liquid_type ;
 
-
-  let liquid_type =  liquid_manifest_res.liquid_definitions.get(  liquid_type ) ;
-
+ 
  //  let base_color = Color::rgba(0.2,0.2,0.6,1.0);
   // let emissive = Color::rgba(0.2,0.2,0.6,1.0);
 
@@ -86,25 +84,13 @@ pub struct LiquidPlaneComponent {
   let mut liquid_material =  build_toon_water_material (  );
 
 
-  if let Some(liquid_type) = liquid_type {
+  if let Some( liquid_definition ) =  liquid_manifest_res.liquid_definitions.get(  liquid_type ) {
 
-    //modify the liquid material params based on this 
-
-    if let Some(shallow_color) = liquid_type.shallow_color {
-         liquid_material.extension.custom_uniforms.depth_gradient_shallow = shallow_color;
-    }   
-
-    if let Some(deep_color) = liquid_type.deep_color {
-         liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color;
-    }  
-
-     if let Some(foam_color) = liquid_type.foam_color {
-         liquid_material.extension.custom_uniforms.foam_color = foam_color;
-    }   
-
-   
+         liquid_definition.apply_to_liquid_material(&mut liquid_material);
   }
 
+
+  
 
   let liquid_material_handle = toon_water_materials.add( 
     liquid_material
@@ -145,6 +131,33 @@ pub struct LiquidDefinition {
      pub foam_color: Option<Color> ,
 
 
+}
+
+impl LiquidDefinition {
+
+
+ pub fn apply_to_liquid_material(&self, liquid_material: &mut ToonWaterMaterial ) {
+
+         // let surface_noise_scroll_speed = Vec2::new(0.1,0.1);
+         // water_mat.extension.custom_uniforms.surface_noise_scroll = surface_noise_scroll_speed;
+
+  
+
+            if let Some(shallow_color) = self.shallow_color {
+                 liquid_material.extension.custom_uniforms.depth_gradient_shallow = shallow_color;
+            }   
+
+            if let Some(deep_color) = self.deep_color {
+                 liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color;
+            }  
+
+             if let Some(foam_color) = self.foam_color {
+                 liquid_material.extension.custom_uniforms.foam_color = foam_color;
+            }   
+ 
+
+
+    }
 }
 
 
