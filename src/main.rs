@@ -1,3 +1,5 @@
+use bevy::core_pipeline::tonemapping::Tonemapping;
+use bevy_editor_pls_default_windows::lighting::Sun;
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
@@ -110,8 +112,10 @@ fn main() {
                 }),
 
 
+
         )   
         
+
         .add_plugins(DefaultRaycastingPlugin)
  
 
@@ -189,13 +193,14 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         .insert(Visibility::Hidden)  // only in editor 
         ;
 
-    commands.spawn(DirectionalLightBundle {
+    commands.spawn(  DirectionalLightBundle {
         directional_light: DirectionalLight {
            // shadow_depth_bias: 0.5,
            // shadow_normal_bias: 0.5,
 
+
             illuminance: light_consts::lux::OVERCAST_DAY,
-            shadows_enabled: true,
+            shadows_enabled: false,
 
             color: Color::WHITE,
             ..default()
@@ -208,7 +213,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
         },
 
         ..default()
-    }); 
+    }  ).insert(Sun); 
 
 
 
@@ -222,16 +227,17 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
                  hdr: true, // 1. HDR must be enabled on the camera
                 ..default()
             },
+            tonemapping: Tonemapping::TonyMcMapface,
 
             transform: Transform::from_xyz(20.0, 162.5, 20.0)
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
             ..default()
         })
-        .insert( BloomSettings::default())
+       // .insert( BloomSettings::default())
         .insert(TerrainViewer::default())
         .insert( DepthPrepass )
         .insert( NormalPrepass)
-       // .insert(ShadowFilteringMethod::Jimenez14)
+        // .insert(ShadowFilteringMethod::Jimenez14)
        ;
 }
 

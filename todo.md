@@ -7,8 +7,8 @@
 
 ## Immediate todo 
 
+- allow for disable shadows in editor ??
 
-- organize doodads in  tag folders 
 - add doodad bundles (house) 
 
 -  add snap dimensions 

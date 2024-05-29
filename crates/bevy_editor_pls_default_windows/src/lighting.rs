@@ -7,11 +7,15 @@ use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::egui::{self, RichText};
 
  
+#[derive(Component)]
+ pub struct Sun ;
  
 
  
 pub struct LightingWindowState {
    ambient_light_illumination: f32,
+
+   enable_dynamic_shadows: bool 
    // scene_save_result: Option<Result<(), Box<dyn std::error::Error + Send + Sync>>>,
 }
 
@@ -20,7 +24,11 @@ impl Default for LightingWindowState {
 
 
 	fn default() -> Self { 
-		Self{ ambient_light_illumination: 100.0 } 
+		Self{ 
+            ambient_light_illumination: 100.0 ,
+            enable_dynamic_shadows: true 
+
+        } 
 	}
 }
 
