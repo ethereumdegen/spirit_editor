@@ -2720,6 +2720,47 @@
         model: GltfModel("models/doodads/synty_swamp/Swamp_Tree_Root_05.glb"),
          tags: Some(["swamp"  ]),
     ),
+
+
+    //dungeon (synty) 
+
+
+   "bramble_01": ( 
+        model: GltfModel("models/doodads/synty_dungeon/bramble_01.glb"),
+         tags: Some(["dungeon", "foliage"  ]),
+    ),
+
+   "bramble_02": ( 
+        model: GltfModel("models/doodads/synty_dungeon/bramble_02.glb"),
+         tags: Some(["dungeon", "foliage"  ]),
+    ),
+
+
+   "bramble_03": ( 
+        model: GltfModel("models/doodads/synty_dungeon/bramble_03.glb"),
+         tags: Some(["dungeon", "foliage"  ]),
+    ),
+
+
+
+    "entrance_stairs_ruins": ( 
+        model: GltfModel("models/doodads/synty_dungeon/entrance_stairs_ruins.glb"),
+         tags: Some(["dungeon", "ruins"  ]),
+    ),
+    
+     "obelisk_1_glow": ( 
+        model: GltfModel("models/doodads/synty_dungeon/obelisk_1_glow.glb"),
+         tags: Some(["dungeon", "ruins"  ]),
+    ),
+
+
+
+    // -----
+
+
+
+
+
     "bonfire": (
         name: "bonfire",
         model: GltfModel("models/doodads/bonfire.glb"),
