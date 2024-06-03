@@ -1,0 +1,88 @@
+
+     "AncientForestMoss1": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss1.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+       "AncientForestMoss2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss2.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+    "AncientForestMoss3": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss3.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestMoss4": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss4.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+     "AncientForestMoss5": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss5.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestMoss6": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss6.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestMoss7": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestMoss7.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestNest": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestNest.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+
+
+
+
+
+
+
+
+    "AncientForestSticks1": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestSticks1.glb"),
+         tags: Some(["forest", "sticks"]),
+    ),
+
+      "AncientForestSticks2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestSticks2.glb"),
+         tags: Some(["forest", "sticks"]),
+    ),
+
+      "AncientForestWeeds1": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestWeeds1.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestWeeds2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestWeeds2.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestWeeds3": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestWeeds3.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+     "AncientForestWeeds4": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestWeeds4.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+      "AncientForestWeeds5": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestWeeds5.glb"),
+         tags: Some(["forest", "foliage"]),
+    ),
+
+    

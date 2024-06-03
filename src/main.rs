@@ -233,7 +233,7 @@ fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
             ..default()
         })
-       // .insert( BloomSettings::default())
+       .insert( BloomSettings::OLD_SCHOOL )
         .insert(TerrainViewer::default())
         .insert( DepthPrepass )
         .insert( NormalPrepass)

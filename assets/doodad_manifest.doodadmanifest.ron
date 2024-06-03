@@ -379,6 +379,7 @@
         model: GltfModel("models/doodads/story_stones/story_stone_1.glb"),
     ),
 
+// --- 
     "AncientForestTree1": (
         name: "AncientForestTree1",
         model: GltfModel("models/doodads/ancient_forest/AncientForestTree1.glb"),
@@ -397,6 +398,181 @@
          tags: Some(["forest", "trees"]),
     ),
 
+
+  "AncientForestBush1": (
+        
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush1.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+  "AncientForestBush2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush2.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+     
+  "AncientForestBush3": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush3.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+    
+  "AncientForestBush4": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush4.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+     
+  "AncientForestBush5": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush5.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+     
+  "AncientForestBush6": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush6.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+     
+  "AncientForestBush7": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestBush7.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+ 
+  "AncientForestStump1": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestStump1.glb"),
+         tags: Some(["forest", "stump"]),
+    ),
+ "AncientForestStump2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestStump2.glb"),
+         tags: Some(["forest", "stump"]),
+    ),
+
+  "AncientForestLog1": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestLog1.glb"),
+         tags: Some(["forest", "log"]),
+    ),
+
+  "AncientForestLog2": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestLog2.glb"),
+         tags: Some(["forest", "log"]),
+    ),
+
+  "AncientForestLog3": (
+       
+        model: GltfModel("models/doodads/ancient_forest/AncientForestLog3.glb"),
+         tags: Some(["forest", "log"]),
+    ),
+
+
+
+
+// --
+
+
+
+
+
+
+// -----
+
+   "birch_01": (
+       
+        model: GltfModel("models/doodads/stylized_forest/birch_01.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+
+    "birch_02": (
+       
+        model: GltfModel("models/doodads/stylized_forest/birch_02.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+
+     "birch_03": (
+       
+        model: GltfModel("models/doodads/stylized_forest/birch_03.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+
+
+     "bush_01": (
+       
+        model: GltfModel("models/doodads/stylized_forest/bush_01.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+         "bush_02": (
+       
+        model: GltfModel("models/doodads/stylized_forest/bush_02.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+    "bush_03": (
+       
+        model: GltfModel("models/doodads/stylized_forest/bush_03.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+    "bush_04": (
+       
+        model: GltfModel("models/doodads/stylized_forest/bush_04.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+    "bush_05": (
+       
+        model: GltfModel("models/doodads/stylized_forest/bush_05.glb"),
+         tags: Some(["forest", "bush"]),
+    ),
+
+  
+
+    "pine_01": (
+       
+        model: GltfModel("models/doodads/stylized_forest/pine_01.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+
+    "pine_02": (
+       
+        model: GltfModel("models/doodads/stylized_forest/pine_02.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+
+   "spruce_01": (
+       
+        model: GltfModel("models/doodads/stylized_forest/spruce_01.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+     "spruce_02": (
+       
+        model: GltfModel("models/doodads/stylized_forest/spruce_02.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+    "spruce_03": (
+       
+        model: GltfModel("models/doodads/stylized_forest/spruce_03.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+    "spruce_04": (
+       
+        model: GltfModel("models/doodads/stylized_forest/spruce_04.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+    "spruce_05": (
+       
+        model: GltfModel("models/doodads/stylized_forest/spruce_05.glb"),
+         tags: Some(["forest", "trees"]),
+    ),
+// -----
     "forest_env_dirt_cliff_01": (
         name: "forest_env_dirt_cliff_01",
         model: GltfModel("models/doodads/forest/forest_env_dirt_cliff_01.glb"),
@@ -732,6 +908,11 @@
          tags: Some(["forest","lantern" ]),
     ),
 
+    "forest_prop_lantern_full": (
+        name: "forest_prop_lantern",
+        model: GltfModel("models/doodads/forest/forest_prop_lantern_full.glb"),
+         tags: Some(["forest","lantern" ]),
+    ),
     "forest_prop_lantern_stand_01": (
         name: "forest_prop_lantern_stand_01",
         model: GltfModel("models/doodads/forest/forest_prop_lantern_stand_01.glb"),
