@@ -1156,13 +1156,14 @@ dependencies = [
 
 [[package]]
 name = "bevy_magic_fx"
-version = "0.3.7"
+version = "0.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9323591b17438c8966dc3338003f2d29e868e7130602dcf0155494f406d46a1d"
+checksum = "a7548ac92cf704259bb1d92ad7360aeebaac98d1c0ee0ac9898fa8cf3880f782"
 dependencies = [
  "bevy 0.13.2",
  "bevy_common_assets",
  "bevy_obj",
+ "bevy_shader_utils",
  "ron",
  "serde",
  "serde_json",
