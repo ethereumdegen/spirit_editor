@@ -36,7 +36,7 @@ image = { version = "0.24", default-features = false }
 
  
 
-bevy_magic_fx = "0.13.1"
+bevy_magic_fx = "0.13.3"
 
 
 bevy_mod_picking = {version="0.18.0", features=["backend_raycast",  "highlight","selection"]}

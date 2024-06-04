@@ -1,0 +1,42 @@
+(
+    
+    
+    magic_fx_instances: [
+ 
+ 
+
+  (
+    shader_variant_name: "corona_blue.shadvar",
+	  mesh_name:  "models/meshes/FX_glowy_circle.obj", 
+	    billboard_mesh: false,
+		  start_time_offset: 0.0,
+		  end_time_offset: 1.0,
+		  start_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
+		  end_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
+
+		  start_tint_color: Some(   Rgba(
+			        red: 1.0,
+			        green: 1.0,
+			        blue: 1.0,
+			        alpha: 1.0
+			    )),
+
+		  end_tint_color: Some(   Rgba(
+			        red: 1.0,
+			        green:1.0,
+			        blue: 1.0,
+			        alpha: 1.0
+			    )), 
+
+    ),
+ 
+ 
+    
+
+    ] ,  
+
+    max_time: None,
+    repeating: true 
+
+
+)

@@ -1156,9 +1156,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_magic_fx"
-version = "0.13.2"
+version = "0.13.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7548ac92cf704259bb1d92ad7360aeebaac98d1c0ee0ac9898fa8cf3880f782"
+checksum = "f670ca485066594801e34825dd85d2d54dfb46e21c576b79f4f4d72dc3a700aa"
 dependencies = [
  "bevy 0.13.2",
  "bevy_common_assets",

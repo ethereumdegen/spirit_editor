@@ -2992,7 +2992,23 @@
 
                  }),
 
-               tags: Some([ "special" ]),
+               tags: Some([ "special" ,"fx" ]),
+
+
+        ) ,
+
+
+         "glowy_corona": (
+             
+            model:  MagicFx("magic_fx/glowy_corona.magicfx.ron")  ,
+
+               initial_custom_props: Some({ 
+               //gets Interactable from the games doodad manifest 
+                 "interaction_trigger_script": String("---")  
+
+                 }),
+
+               tags: Some([ "special","fx" ]),
 
 
         ) ,
