@@ -207,20 +207,26 @@ fn load_shader_variants(
 
                      let shader_variant_manifest: &ShaderVariantManifest = shader_variant_manifest_resource
                         .get( shader_manifest_handle.id())
-                        .unwrap();
+                        .expect(format!("could not load {:?}", &file_path).as_str());
 
                     //finish loading and building the shader variant and add it to the map 
                     let texture_handles_map = &asset_loading_resource.texture_handles_map;
                     
 
-                        let file_path_clone = file_path.clone();
+                    let file_path_clone = file_path.clone();
                     let shadvar_name = AssetPath::parse(file_path_clone.as_str()).path().file_stem().unwrap().to_str().unwrap().to_string()  ;
 
-                    let shader_material_handle = animated_materials.add( build_animated_material(
+
+                    let Some(built_material) = build_animated_material(
                         shader_variant_manifest,
                         &texture_handles_map
-                        ).unwrap()
-                    ); 
+                     ) else {
+                        warn!("could not load {:?}", &shadvar_name);
+                        continue;
+                    };
+
+
+                    let shader_material_handle = animated_materials.add( built_material ); 
                     println!("adding shadvar_name {:?}",&shadvar_name);
 
                     asset_loading_resource.animated_material_map.insert( shadvar_name, shader_material_handle );
