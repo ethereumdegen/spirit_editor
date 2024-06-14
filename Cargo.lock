@@ -875,13 +875,14 @@ dependencies = [
 
 [[package]]
 name = "bevy_foliage_paint"
-version = "0.13.9"
-source = "git+https://github.com/ethereumdegen/bevy_foliage_paint?rev=792e1d86587107e674138a3c5f9ea1a410c654bf#792e1d86587107e674138a3c5f9ea1a410c654bf"
+version = "0.13.11"
+source = "git+https://github.com/ethereumdegen/bevy_foliage_paint?rev=16c0277050f1e1275f63a5e52925903b18d89b9a#16c0277050f1e1275f63a5e52925903b18d89b9a"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",
  "bevy-inspector-egui 0.24.0",
  "bevy_mod_sysfail 6.0.0",
+ "bevy_obj",
  "futures-lite 1.13.0",
  "image",
  "png",

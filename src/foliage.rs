@@ -26,7 +26,7 @@ impl Plugin for FoliagePlugin {
          app
              .add_systems(Update, add_data_for_foliage_chunks)
 
-              .add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
+             .add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
 
              .add_systems(Update, update_foliage_root_visibility )
            

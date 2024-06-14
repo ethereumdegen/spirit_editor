@@ -1505,96 +1505,115 @@
     "fault_rock_A_1": (
         name: "fault_rock_A_1",
         model: GltfModel("models/doodads/rocks/fault_rock_A_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "fault_rock_A_2": (
         name: "fault_rock_A_2",
         model: GltfModel("models/doodads/rocks/fault_rock_A_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "fault_rock_B_1": (
         name: "fault_rock_B_1",
         model: GltfModel("models/doodads/rocks/fault_rock_B_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "fault_rock_B_8": (
         name: "fault_rock_B_8",
         model: GltfModel("models/doodads/rocks/fault_rock_B_8.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "fault_rock_C_1": (
         name: "fault_rock_C_1",
         model: GltfModel("models/doodads/rocks/fault_rock_C_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "fault_rock_C_2": (
         name: "fault_rock_C_2",
         model: GltfModel("models/doodads/rocks/fault_rock_C_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cave_entrance_1": (
         name: "rock_cave_entrance_1",
         model: GltfModel("models/doodads/rocks/rock_cave_entrance_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cluster_lg_1": (
         name: "rock_cluster_lg_1",
         model: GltfModel("models/doodads/rocks/rock_cluster_lg_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cluster_lg_2": (
         name: "rock_cluster_lg_2",
         model: GltfModel("models/doodads/rocks/rock_cluster_lg_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cluster_lg_3": (
         name: "rock_cluster_lg_3",
         model: GltfModel("models/doodads/rocks/rock_cluster_lg_3.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cluster_lg_4": (
         name: "rock_cluster_lg_4",
         model: GltfModel("models/doodads/rocks/rock_cluster_lg_4.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_cluster_lg_5": (
         name: "rock_cluster_lg_5",
         model: GltfModel("models/doodads/rocks/rock_cluster_lg_5.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_pile_1": (
         name: "rock_pile_1",
         model: GltfModel("models/doodads/rocks/rock_pile_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_pile_2": (
         name: "rock_pile_2",
         model: GltfModel("models/doodads/rocks/rock_pile_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_pile_3": (
         name: "rock_pile_3",
         model: GltfModel("models/doodads/rocks/rock_pile_3.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_pile_curved_1": (
         name: "rock_pile_curved_1",
         model: GltfModel("models/doodads/rocks/rock_pile_curved_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "rock_pile_curved_2": (
         name: "rock_pile_curved_2",
         model: GltfModel("models/doodads/rocks/rock_pile_curved_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "stone_pile_1": (
         name: "stone_pile_1",
         model: GltfModel("models/doodads/rocks/stone_pile_1.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "stone_pile_2": (
         name: "stone_pile_2",
         model: GltfModel("models/doodads/rocks/stone_pile_2.glb"),
+          tags: Some(["rocks"   ]),
     ),
 
     "cavern_bushtopper_5": (
@@ -1947,79 +1966,77 @@
 
 
         //polystyle castle 
-
-
-        //some of these are duplicates !!
+ 
 
     "MCastle_ArchArm_01": (
         name: "MCastle_ArchArm_01",
-        model: GltfModel("models/doodads/MCastle_ArchArm_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_ArchArm_01.glb"),
           tags: Some(["castle"  ])
     ),
 
     "MCastle_ArchDoors_00": (
         name: "MCastle_ArchDoors_00",
-        model: GltfModel("models/doodads/MCastle_ArchDoors_00.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_ArchDoors_00.glb"),
         tags: Some(["castle"  ])
     ),
 
     "MCastle_ArchDoors_02": (
         name: "MCastle_ArchDoors_02",
-        model: GltfModel("models/doodads/MCastle_ArchDoors_02.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_ArchDoors_02.glb"),
         tags: Some(["castle"  ])
     ),
 
     "MCastle_Baluster_Column_01": (
         name: "MCastle_Baluster_Column_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Column_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_Baluster_Column_01.glb"),
         tags: Some(["castle"  ])
     ),
 
     "MCastle_Baluster_Corner_01": (
         name: "MCastle_Baluster_Corner_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Corner_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_Baluster_Corner_01.glb"),
         tags: Some(["castle"  ])
     ),
 
     "MCastle_Baluster_Straight_01": (
         name: "MCastle_Baluster_Straight_01",
-        model: GltfModel("models/doodads/MCastle_Baluster_Straight_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_Baluster_Straight_01.glb"),
         tags: Some(["castle"  ])
     ),
 
     "MCastle_CliffRock_Lrg_01": (
         name: "MCastle_CliffRock_Lrg_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Lrg_01.glb"),
         tags: Some(["castle" ,"cliff" ])
     ),
 
     "MCastle_CliffRock_Lrg_02": (
         name: "MCastle_CliffRock_Lrg_02",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Lrg_02.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Lrg_02.glb"),
           tags: Some(["castle" ,"cliff" ])
     ),
 
     "MCastle_CliffRock_Med_01": (
         name: "MCastle_CliffRock_Med_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Med_01.glb"),
           tags: Some(["castle" ,"cliff" ])
     ),
 
     "MCastle_CliffRock_Med_02": (
         name: "MCastle_CliffRock_Med_02",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Med_02.glb"),
           tags: Some(["castle" ,"cliff" ])
     ),
 
     "SecretRockWall_HingeVertical": (
         name: "SecretRockWall_HingeVertical",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Med_02.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Med_02.glb"),
           tags: Some(["castle" ,"cliff" ])
     ),
 
     "MCastle_CliffRock_Small_01": (
         name: "MCastle_CliffRock_Small_01",
-        model: GltfModel("models/doodads/MCastle_CliffRock_Small_01.glb"),
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_CliffRock_Small_01.glb"),
           tags: Some(["castle" ,"cliff" ])
     ),
  
@@ -2100,7 +2117,7 @@
     "MCastle_Grill": (
         name: "MCastle_Grill",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_Grill.glb"),
-         tags: Some(["castle"  ]),
+         tags: Some(["castle" ,"door" ]),
     ),
     "MCastle_InteriorSupports_04": (
         name: "MCastle_InteriorSupports_04",
@@ -2285,7 +2302,7 @@
     "MCastle_SquareWalls_Border_Door": (
         name: "MCastle_SquareWalls_Border_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Border_Door.glb"),
-         tags: Some(["castle"  ]),
+         tags: Some(["castle" ,"door" ]),
     ),
     "MCastle_SquareWalls_Border_LargeWin": (
         name: "MCastle_SquareWalls_Border_LargeWin",
@@ -2295,12 +2312,12 @@
     "MCastle_SquareWalls_Door": (
         name: "MCastle_SquareWalls_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_Door.glb"),
-         tags: Some(["castle"  ]),
+         tags: Some(["castle" ,"door" ]),
     ),
     "MCastle_SquareWalls_HeavyTrim_Door": (
         name: "MCastle_SquareWalls_HeavyTrim_Door",
         model: GltfModel("models/doodads/polystyle_castle/MCastle_SquareWalls_HeavyTrim_Door.glb"),
-         tags: Some(["castle"  ]),
+         tags: Some(["castle" ,"door" ]),
     ),
     "MCastle_SquareWalls_HeavyTrim": (
         name: "MCastle_SquareWalls_HeavyTrim",
@@ -2389,218 +2406,385 @@
     ),
 
 
+       "MCastle_StoneBorder": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_StoneBorder.glb"),
+         tags: Some(["castle"  ]),
+    ),
+
+     "MCastle_TileSlabs_01": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TileSlabs_01.glb"),
+         tags: Some(["castle"  ]),
+    ),
+
+    "MCastle_TileSlabs_02": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TileSlabs_03.glb"),
+         tags: Some(["castle"  ]),
+    ),
+      "MCastle_TileSlabs_03": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TileSlabs_03.glb"),
+         tags: Some(["castle"  ]),
+    ),
+
+ "MCastle_TunnelWalls_00": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TunnelWalls_00.glb"),
+         tags: Some(["castle"  ]),
+    ),
+
+
+ "MCastle_TunnelWalls_01": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TunnelWalls_01.glb"),
+         tags: Some(["castle"  ]),
+    ),
+
+
+ "MCastle_TunnelWalls_02": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TunnelWalls_02.glb"),
+         tags: Some(["castle"  ]),
+    ),             
+  "MCastle_TunnelWalls_03": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_TunnelWalls_03.glb"),
+         tags: Some(["castle"  ]),
+    ), 
+     "MCastle_Window_01": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_Window_01.glb"),
+         tags: Some(["castle"  ]),
+    ),      
+        
+             "MCastle_Window_02": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_Window_02.glb"),
+         tags: Some(["castle"  ]),
+    ),  
+       "MCastle_WindowWall_01": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WindowWall_01.glb"),
+         tags: Some(["castle"  ]),
+    ),  
+         "MCastle_WindowWall_01_Int_A": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WindowWall_01_Int_A.glb"),
+         tags: Some(["castle"  ]),
+    ),  
+       "MCastle_WindowWall_01_Int_B": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WindowWall_01_Int_B.glb"),
+         tags: Some(["castle"  ]),
+    ), 
+
+
+     "MCastle_WindowWall_02": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WindowWall_02.glb"),
+         tags: Some(["castle"  ]),
+    ),  
+
+     "MCastle_WindowWall_03_Int_B": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WindowWall_03_Int_B.glb"),
+         tags: Some(["castle"  ]),
+    ),  
+
+    "MCastle_WoodPlatfrm_01": (
+      
+        model: GltfModel("models/doodads/polystyle_castle/MCastle_WoodPlatfrm_01.glb"),
+         tags: Some(["castle"  ]),
+    ),    
+ 
+ 
 
 
     // --- poly dungeon  
+    // Thee are from arcbond / unreal engine 
 
         "alter_1": (
         name: "alter_1",
         model: GltfModel("models/doodads/poly_dungeon/alter_1.glb"),
+
+          tags: Some(["dungeon"  ]),
+
     ),
     "crypt_entrance_2": (
         name: "crypt_entrance_2",
         model: GltfModel("models/doodads/poly_dungeon/crypt_entrance_2.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "entrance_lg_1": (
         name: "entrance_lg_1",
         model: GltfModel("models/doodads/poly_dungeon/entrance_lg_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_1": (
         name: "floor_tiles_1",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_2": (
         name: "floor_tiles_2",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_2.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_5": (
         name: "floor_tiles_5",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_5.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_7": (
         name: "floor_tiles_7",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_7.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_pentagram": (
         name: "floor_tiles_pentagram",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_pentagram.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_rune_1": (
         name: "floor_tiles_rune_1",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_rune_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_rune_2": (
         name: "floor_tiles_rune_2",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_rune_2.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_rune_3": (
         name: "floor_tiles_rune_3",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_rune_3.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "floor_tiles_rune_4": (
         name: "floor_tiles_rune_4",
         model: GltfModel("models/doodads/poly_dungeon/floor_tiles_rune_4.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "grate_1": (
         name: "grate_1",
         model: GltfModel("models/doodads/poly_dungeon/grate_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "grate_ground_1": (
         name: "grate_ground_1",
         model: GltfModel("models/doodads/poly_dungeon/grate_ground_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "hatch_door_1": (
         name: "hatch_door_1",
         model: GltfModel("models/doodads/poly_dungeon/hatch_door_1.glb"),
+        tags: Some(["dungeon" , "door" ]),
+
+          initial_custom_props: Some({  
+                 "teleporter": EmptyProp , 
+                 "level_name": String("---")   ,
+                 "waypoint_name": String("---")   
+                })
+
+
     ),
     "mine_tunnel_corner_1": (
         name: "mine_tunnel_corner_1",
         model: GltfModel("models/doodads/poly_dungeon/mine_tunnel_corner_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "mine_tunnel_entrance": (
         name: "mine_tunnel_entrance",
         model: GltfModel("models/doodads/poly_dungeon/mine_tunnel_entrance.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "mine_tunnel_straight_1": (
         name: "mine_tunnel_straight_1",
         model: GltfModel("models/doodads/poly_dungeon/mine_tunnel_straight_1.glb"),
+           tags: Some(["dungeon"  ]),
     ),
     "mushroom_flat_lg": (
         name: "mushroom_flat_lg",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_flat_lg.glb"),
+           tags: Some(["foliage"  ]),
     ),
     "mushroom_flat_sm": (
         name: "mushroom_flat_sm",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_flat_sm.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_lg_1": (
         name: "mushroom_lg_1",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_lg_1.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_lg_2": (
         name: "mushroom_lg_2",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_lg_2.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_lg_5": (
         name: "mushroom_lg_5",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_lg_5.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_sm_1": (
         name: "mushroom_sm_1",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_sm_1.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_sm_2": (
         name: "mushroom_sm_2",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_sm_2.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "mushroom_sm_3": (
         name: "mushroom_sm_3",
         model: GltfModel("models/doodads/poly_dungeon/mushroom_sm_3.glb"),
+         tags: Some(["foliage"  ]),
     ),
     "pillar_base_round_1": (
         name: "pillar_base_round_1",
         model: GltfModel("models/doodads/poly_dungeon/pillar_base_round_1.glb"),
+         tags: Some(["dungeon"  ]),
     ),
     "pillar_broken_pile_2": (
         name: "pillar_broken_pile_2",
         model: GltfModel("models/doodads/poly_dungeon/pillar_broken_pile_2.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "pillar_round_1": (
         name: "pillar_round_1",
         model: GltfModel("models/doodads/poly_dungeon/pillar_round_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "statue_angel_1": (
         name: "statue_angel_1",
         model: GltfModel("models/doodads/poly_dungeon/statue_angel_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "statue_angel_2": (
         name: "statue_angel_2",
         model: GltfModel("models/doodads/poly_dungeon/statue_angel_2.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "statue_fountain_1": (
         name: "statue_fountain_1",
         model: GltfModel("models/doodads/poly_dungeon/statue_fountain_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "statue_lantern_1": (
         name: "statue_lantern_1",
         model: GltfModel("models/doodads/poly_dungeon/statue_lantern_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "stone_throne_1": (
         name: "stone_throne_1",
         model: GltfModel("models/doodads/poly_dungeon/stone_throne_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "stone_wall_round_1": (
         name: "stone_wall_round_1",
         model: GltfModel("models/doodads/poly_dungeon/stone_wall_round_1.glb"),
+        tags: Some(["dungeon"  ]),
     ),
     "tree_twisted_1": (
         name: "tree_twisted_1",
         model: GltfModel("models/doodads/poly_dungeon/tree_twisted_1.glb"),
+        tags: Some(["dungeon","trees"  ]),
     ),
     "tree_twisted_2": (
         name: "tree_twisted_2",
         model: GltfModel("models/doodads/poly_dungeon/tree_twisted_2.glb"),
+        tags: Some(["dungeon","trees"  ]),
     ),
     "wood_bridge_1": (
         name: "wood_bridge_1",
         model: GltfModel("models/doodads/poly_dungeon/wood_bridge_1.glb"),
+        tags: Some(["dungeon","bridge"  ]),
     ),
     "wood_bridge_2": (
         name: "wood_bridge_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_bridge_2.glb"),
+         tags: Some(["dungeon","bridge"  ]),
     ),
     "wood_ceiling_1": (
         name: "wood_ceiling_1",
         model: GltfModel("models/doodads/poly_dungeon/wood_ceiling_1.glb"),
+         tags: Some(["dungeon"   ]),
     ),
     "wood_pillar": (
         name: "wood_pillar",
         model: GltfModel("models/doodads/poly_dungeon/wood_pillar.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_platform_1": (
         name: "wood_platform_1",
         model: GltfModel("models/doodads/poly_dungeon/wood_platform_1.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_platform_2": (
         name: "wood_platform_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_platform_2.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_platform_3": (
         name: "wood_platform_3",
         model: GltfModel("models/doodads/poly_dungeon/wood_platform_3.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_platform_4": (
         name: "wood_platform_4",
         model: GltfModel("models/doodads/poly_dungeon/wood_platform_4.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_railing_1": (
         name: "wood_railing_1",
         model: GltfModel("models/doodads/poly_dungeon/wood_railing_1.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_railing_2": (
         name: "wood_railing_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_railing_2.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_rubble_planks_2": (
         name: "wood_rubble_planks_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_rubble_planks_2.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_rubble_planks": (
         name: "wood_rubble_planks",
         model: GltfModel("models/doodads/poly_dungeon/wood_rubble_planks.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_support_beam": (
         name: "wood_support_beam",
         model: GltfModel("models/doodads/poly_dungeon/wood_support_beam.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_supports_1": (
         name: "wood_supports_1",
         model: GltfModel("models/doodads/poly_dungeon/wood_supports_1.glb"),
+          tags: Some(["dungeon"   ]),
     ),
     "wood_supports_2": (
         name: "wood_supports_2",
         model: GltfModel("models/doodads/poly_dungeon/wood_supports_2.glb"),
+          tags: Some(["dungeon"   ]),
     ),
+
+
+
+
+
+    //polystyle dungeon 
+
+
+
+
 
 
 
@@ -3131,11 +3315,25 @@
 
 
 
-       "ladder_01":  (
+       "ladder_climbable":  (
             name: "ladder_01",
             model: GltfModel("models/doodads/ladder_1.glb"),
 
              initial_custom_props: Some({ "climbable": Boolean(true) }),
+
+             tags: Some([ "ladder" ]),
+        ),
+
+
+       "ladder_teleporter":  (
+            name: "ladder_01",
+            model: GltfModel("models/doodads/ladder_1.glb"),
+
+                 initial_custom_props: Some({  
+                 "teleporter": EmptyProp , 
+                 "level_name": String("---")   ,
+                 "waypoint_name": String("---")   
+                }),
 
              tags: Some([ "ladder" ]),
         ),

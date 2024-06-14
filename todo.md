@@ -7,6 +7,14 @@
 
 ## Immediate todo 
 
+- add visual grid snap dimensions 
+
+
+
+
+
+
+
 - allow for disable shadows in editor ??
 
 - add doodad bundles (house) 

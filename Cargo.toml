@@ -66,7 +66,7 @@ bevy-inspector-egui = "0.24.0"
  
 #bevy_foliage_paint = "0.13.6"
 
-bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "792e1d86587107e674138a3c5f9ea1a410c654bf"}
+bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "16c0277050f1e1275f63a5e52925903b18d89b9a"}
 
 
 [workspace.package]
