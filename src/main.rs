@@ -1,5 +1,6 @@
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
+use bevy_editor_pls_default_windows::zones::ZoneEvent;
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
@@ -149,26 +150,39 @@ fn main() {
 }
 
 /// set up a simple 3D scene
-fn setup(mut commands: Commands, // asset_server: Res<AssetServer>
+fn setup(
+mut commands: Commands,
+
+mut zone_event_writer: EventWriter<ZoneEvent>
+
+
+ // asset_server: Res<AssetServer>
 ) {
-
-
+ 
     
     let editor_config = EditorConfig::load();
 
-    if let Some(terrain_path) = &editor_config.get_terrain_path_full(){
-
-       
+    if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
+   
         commands
             .spawn(SpatialBundle::default())
             .insert(
                 TerrainConfig::load_from_file(terrain_path)
                     .unwrap(),
             )
-            .insert(TerrainData::new());
+            .insert(TerrainData::new()); 
+
+    }
+
+    for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
+
+
+      zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
 
 
     }
+
+
 
               
      commands

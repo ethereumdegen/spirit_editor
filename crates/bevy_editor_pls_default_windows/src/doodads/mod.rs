@@ -53,7 +53,7 @@ impl Plugin for DoodadPlugin {
          
            
             .add_systems(Update, reset_place_doodads)
-            .add_systems(Update, (handle_place_doodad_events,handle_doodad_tool_events))
+            .add_systems(Update, (handle_place_doodad_events,handle_doodad_tool_events , replace_proto_doodads_with_doodads).chain()  )
             .add_systems(Update, picking::update_picking_doodads)
            
 
@@ -78,6 +78,13 @@ pub struct DoodadToolState {
 pub enum DoodadToolEvent {
     SetSelectedDoodad(Option<String>)
 }
+
+#[derive(Component)]
+pub struct DoodadProto;
+
+
+#[derive(Component)]
+pub struct DoodadNeedsModelAttached;
 
 
 
@@ -331,37 +338,20 @@ pub fn handle_place_doodad_events(
 
     zone_resource: Res<ZoneResource>,
 
-    doodad_manifest_resource: Res<DoodadManifestResource>,
-    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+   // doodad_manifest_resource: Res<DoodadManifestResource>,
+   // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 ) {
-    let Some(manifest_handle) = &doodad_manifest_resource.manifest else {
-        println!("WARN: no doodad manifest file found");
-        return;
-    };
+   // let manifest_handle = &doodad_manifest_resource.manifest;
 
-    let Some(manifest) = doodad_manifest_assets.get(manifest_handle) else {
-        println!("WARN: no doodad manifest file found");
-        return;
-    };
+
+   // let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
 
     for evt in evt_reader.read() {
         let position = &evt.position;
         let doodad_name = &evt.doodad_name;
 
-        let Some(doodad_definition) = manifest.get_doodad_definition_by_name(doodad_name) else {
-            println!("WARN: Could not spawn doodad {:?}", doodad_name);
-            continue;
-        };
 
-        let init_custom_props = &doodad_definition.initial_custom_props ;
-
-
-
-        let custom_props_to_attach = match &evt.custom_props {
-            Some(props) => Some( props ),
-            None  => init_custom_props.as_ref()
-        };
-
+ 
 
         let mut transform = Transform::from_xyz(position.x, position.y, position.z);
 
@@ -379,7 +369,7 @@ pub fn handle_place_doodad_events(
                 ..default()
             })
             .insert(Name::new(doodad_name.clone())  )
-            .insert(DoodadComponent::from_definition(&doodad_definition))
+            .insert( DoodadProto )
             .id();
 
 
@@ -393,8 +383,16 @@ pub fn handle_place_doodad_events(
 
         println!("doodad spawned {:?}", doodad_spawned);
 
-        if let Some(custom_props) = custom_props_to_attach {
-            println!("insert custom props {:?}", init_custom_props);
+        
+            //from cloning ! 
+        let proto_custom_props_to_attach = match &evt.custom_props {
+            Some(props) => Some( props ),
+            None  => None
+        };
+
+
+         if let Some(custom_props) = proto_custom_props_to_attach {
+          //  println!("insert custom props {:?}", init_custom_props);
 
             commands
                 .entity(doodad_spawned)
@@ -404,10 +402,10 @@ pub fn handle_place_doodad_events(
         }else{
              commands
                 .entity(doodad_spawned)
-                .insert(CustomPropsComponent {
-                    props:  HashMap::new(),
-                });
+                .insert( CustomPropsComponent::default()  );
         }
+
+
 
 
          if let Some(zone_override) = &evt.zone {
@@ -421,6 +419,80 @@ pub fn handle_place_doodad_events(
         }
     }
 }
+
+
+
+
+pub fn replace_proto_doodads_with_doodads(
+    mut commands: Commands,
+
+    doodad_proto_query: Query<(Entity,&Name,Option<&CustomPropsComponent>), With<DoodadProto>>,
+ 
+
+  //  zone_resource: Res<ZoneResource>,
+
+    doodad_manifest_resource: Res<DoodadManifestResource>,
+    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+) {
+    let manifest_handle = &doodad_manifest_resource.manifest;
+
+
+    let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
+
+    for (doodad_entity,doodad_name,existing_custom_props_comp) in doodad_proto_query.iter() {
+       
+        let doodad_name = doodad_name.as_str();
+
+        let Some(doodad_definition) = manifest.map(|m| m.get_doodad_definition_by_name(doodad_name)).flatten() else {
+            println!("WARN: Could not replace doodad proto {:?}", doodad_name);
+ 
+            continue;
+        };
+
+        let  custom_props_from_manifest = &doodad_definition.initial_custom_props ;
+
+ 
+
+ 
+
+        let doodad_spawned = commands
+            .entity( doodad_entity)  
+            .insert(DoodadComponent::from_definition(&doodad_definition))
+            .remove::<DoodadProto>()
+            .insert(DoodadNeedsModelAttached)
+            .id();
+
+
+    
+
+        println!("doodad spawned {:?}", doodad_spawned);
+
+        if existing_custom_props_comp.is_none(){
+
+           if let Some(custom_props) = custom_props_from_manifest {  
+              commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent {
+                    props: custom_props.clone(),
+                });
+             }else {
+
+                 commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent::default() );
+
+             }
+
+        }
+        //do stuff w existing_custom_props_comp ? 
+      
+
+
+       
+    }
+}
+
+
 
 pub fn update_place_doodads(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click

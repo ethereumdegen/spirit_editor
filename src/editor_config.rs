@@ -7,7 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct EditorConfig {
 
 
-	terrain_path: Option<String> ,
+	initial_terrain_to_load: Option<String> ,
+
+	initial_zones_to_load: Option<Vec<String>>
 
 }
 
@@ -34,14 +36,17 @@ impl EditorConfig{
 	}
 
 
-	pub fn get_terrain_path_full(&self) -> Option<String> {
+	pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
 
-
-
-		return self.terrain_path.as_ref().map(|t| format!("assets/terrain/{}/terrain_config.ron", t)  )
+		return self.initial_terrain_to_load.as_ref().map(|t| format!("assets/terrain/{}/terrain_config.ron", t)  )
 	}
 
+    pub fn get_initial_zones_to_load(&self) -> Option<Vec<String>> { 
 
+		return self.initial_zones_to_load.as_ref().map(|zone_names|   
+			zone_names.iter().map(|z|  format!("{}", z)   ).collect()
+		 )
+	}
 
 }
 

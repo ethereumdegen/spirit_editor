@@ -26,7 +26,7 @@ impl ZoneFile {
 }
 
 //reflect makes this show up in the inspector
-#[derive(Component, Reflect)]
+#[derive(Component, Reflect,Default)]
 #[reflect(Component)]
 pub struct CustomPropsComponent {
     pub props: CustomPropsMap,

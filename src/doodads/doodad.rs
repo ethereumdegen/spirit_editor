@@ -1,3 +1,4 @@
+use bevy_editor_pls_default_windows::doodads::DoodadNeedsModelAttached;
 use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
@@ -54,7 +55,7 @@ fn attach_models_to_doodads(
     added_doodad_query: Query<
         (Entity,   &DoodadComponent),
         (
-            Added<DoodadComponent>,
+            With<DoodadNeedsModelAttached>,
             With<GlobalTransform>,
             Without<Handle<Mesh>>,
         ),
@@ -66,7 +67,7 @@ fn attach_models_to_doodads(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
-    mut built_vfx_registry: ResMut<BuiltVfxResource>,
+      built_vfx_registry: Res<BuiltVfxResource>,
     time: Res<Time>, 
 ) {
     #[cfg(feature = "tracing")]
@@ -97,6 +98,8 @@ fn attach_models_to_doodads(
                                .insert(
                                 loaded_model.named_scenes["Scene"].clone()
                                  )
+                               .remove::<DoodadNeedsModelAttached>()
+
  
                            
                                   ; 
@@ -107,12 +110,14 @@ fn attach_models_to_doodads(
                        Err(err) =>  {
                        
                         eprintln!("{}",err);
+
+                        /*
                          commands
                             .entity(new_doodad_entity)
                            //   .insert(Visibility::Hidden)  
                             .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
                             .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
-
+                            */
 
                        }
 
@@ -125,6 +130,7 @@ fn attach_models_to_doodads(
                 let spawned_entity = commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                     .remove::<DoodadNeedsModelAttached>()
                     .insert(materials.add(cube_shape_def.color.clone())).id();
 
 
@@ -142,6 +148,7 @@ fn attach_models_to_doodads(
                     commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(2.0, 2.0, 2.0))) 
+                     .remove::<DoodadNeedsModelAttached>()
                      .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
 
 
@@ -155,6 +162,7 @@ fn attach_models_to_doodads(
                             magic_fx: magic_fx.clone(),
                             start_time: time.elapsed(),
                         })
+                      .remove::<DoodadNeedsModelAttached>()
                     //.insert(materials.add(cube_shape_def.color.clone())
                      ;
             }
@@ -166,7 +174,9 @@ fn attach_models_to_doodads(
                     .entity(new_doodad_entity)
                      .insert(LiquidPlaneComponent { 
                         liquid_type: liquid_type.clone()
-                       });
+                       })
+                      .remove::<DoodadNeedsModelAttached>()
+                      ;
 
             }
         };
