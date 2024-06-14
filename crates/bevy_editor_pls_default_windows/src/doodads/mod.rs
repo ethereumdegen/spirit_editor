@@ -14,7 +14,7 @@ use crate::placement::PlacementWindow;
 use crate::zones::zone_file::{CustomPropsComponent,CustomPropsMap};
 use crate::zones::ZoneResource;
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
-use bevy_editor_pls_core::Editor;
+use bevy_editor_pls_core::{Editor, EditorEvent};
 use bevy_inspector_egui::bevy_egui::EguiContexts;
 use bevy_inspector_egui::egui::{self, ScrollArea};
 
@@ -301,6 +301,15 @@ fn load_doodad_models(
 
                     }
 
+                     // Sort tags and doodad names
+                  
+                    let mut sorted_keys: Vec<_> = doodad_tag_map_resource.doodad_tag_map.keys().cloned().collect();
+                    sorted_keys.sort();
+                    doodad_tag_map_resource.doodad_tag_map = sorted_keys.into_iter().map(|k| (k.clone(), doodad_tag_map_resource.doodad_tag_map.remove(&k).unwrap())).collect();
+                    
+                      for doodads in doodad_tag_map_resource.doodad_tag_map.values_mut() {
+                        doodads.sort();
+                    }
  
 
              
@@ -316,6 +325,9 @@ pub fn handle_place_doodad_events(
     mut commands: Commands,
 
     mut evt_reader: EventReader<PlaceDoodadEvent>,
+
+    mut editor_event_writer: EventWriter<EditorEvent>,
+    mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
 
     zone_resource: Res<ZoneResource>,
 
@@ -369,6 +381,15 @@ pub fn handle_place_doodad_events(
             .insert(Name::new(doodad_name.clone())  )
             .insert(DoodadComponent::from_definition(&doodad_definition))
             .id();
+
+
+        editor_event_writer.send( 
+            EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+         );
+
+        doodad_tool_event_writer.send(
+            DoodadToolEvent::SetSelectedDoodad(None) 
+        );
 
         println!("doodad spawned {:?}", doodad_spawned);
 

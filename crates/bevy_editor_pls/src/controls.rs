@@ -135,6 +135,7 @@ pub enum Action {
     PlayPauseEditor,
     PauseUnpauseTime,
     FocusSelected,
+    ClearSelection,
 
     #[cfg(feature = "default_windows")]
     SetGizmoModeTranslate,
@@ -150,6 +151,7 @@ impl std::fmt::Display for Action {
             Action::PlayPauseEditor => write!(f, "Play/Pause editor"),
             Action::PauseUnpauseTime => write!(f, "Pause/Unpause time"),
             Action::FocusSelected => write!(f, "Focus Selected Entity"),
+            Action::ClearSelection => write!(f, "Clear Selection"),
             #[cfg(feature = "default_windows")]
             Action::SetGizmoModeTranslate => write!(f, "Activate translation gizmo"),
             #[cfg(feature = "default_windows")]
@@ -229,6 +231,16 @@ pub fn editor_controls_system(
         editor_events.send(EditorEvent::FocusSelected);
     }
 
+
+    if controls.just_pressed(
+        Action::ClearSelection,
+        &keyboard_input,
+        &mouse_input,
+        &editor,
+    ) {
+        editor_events.send(EditorEvent::SetSelectedEntities(None));
+    }
+
     #[cfg(feature = "default_windows")]
     {
         if controls.just_pressed(
@@ -306,6 +318,14 @@ impl EditorControls {
             },
         );
 
+       controls.insert(
+            Action::ClearSelection,
+            Binding {
+                input: UserInput::Single(Button::Mouse( MouseButton::Right )),
+                conditions: vec![ ],
+            },
+        );
+
         #[cfg(feature = "default_windows")]
         {
             controls.insert(
@@ -318,7 +338,7 @@ impl EditorControls {
             );
             controls.insert(
                 Action::SetGizmoModeScale,
-                UserInput::Single(Button::Keyboard(KeyCode::KeyS)).into(),
+                UserInput::Single(Button::Keyboard(KeyCode::KeyY)).into(),
             );
         }
 

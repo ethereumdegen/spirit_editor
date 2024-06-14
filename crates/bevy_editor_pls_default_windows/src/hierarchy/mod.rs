@@ -7,6 +7,7 @@ use bevy::pbr::wireframe::Wireframe;
 use bevy::prelude::*;
 use bevy::reflect::TypeRegistry;
 use bevy::render::{Extract, RenderApp};
+use bevy_editor_pls_core::EditorEvent;
 use bevy_inspector_egui::bevy_inspector::guess_entity_name;
 use bevy_inspector_egui::bevy_inspector::hierarchy::SelectedEntities;
 use bevy_inspector_egui::egui::text::CCursorRange;
@@ -66,7 +67,7 @@ impl EditorWindow for HierarchyWindow {
     fn app_setup(app: &mut bevy::prelude::App) {
         // picking::setup(app);
         app.add_systems(PostUpdate, clear_removed_entites)
-            .add_systems(Update, clear_selection);
+            .add_systems(Update, listen_for_select_entities_events);
 
         // .add_system(handle_events);
 
@@ -280,6 +281,46 @@ fn rename_entity_ui(ui: &mut egui::Ui, rename_info: &mut RenameInfo, world: &mut
     TextEdit::store_state(ui.ctx(), id, edit_state);
 }
 
+
+
+pub fn listen_for_select_entities_events(  
+
+    mut editor_evt_reader: EventReader<EditorEvent>,
+
+
+    mut editor: ResMut<Editor>,
+    ){
+
+
+    for evt in editor_evt_reader.read(){
+
+
+        match evt {
+
+
+            EditorEvent::SetSelectedEntities(entities_to_select) => {
+                let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
+
+                state.selected.clear();
+
+
+                for entity in entities_to_select.clone().unwrap_or(Vec::new()){
+                       state.selected.select_maybe_add( entity, true );  
+                } 
+
+
+            }
+
+            _ => {}
+        }
+
+
+    }
+
+
+}
+
+/*
 pub fn clear_selection(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
@@ -293,3 +334,4 @@ pub fn clear_selection(
 
     state.selected.clear();
 }
+*/

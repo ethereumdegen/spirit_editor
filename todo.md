@@ -10,7 +10,7 @@
 - add visual grid snap dimensions 
 
 
-
+- remember can  handle controls better  by  using bevy_editor_pls/src/controls.rs
 
 
 

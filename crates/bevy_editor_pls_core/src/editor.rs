@@ -13,6 +13,7 @@ use crate::editor_window::{EditorWindow, EditorWindowContext};
 pub enum EditorEvent {
     Toggle { now_active: bool },
     FocusSelected,
+    SetSelectedEntities(Option<Vec<Entity>>)
 }
 
 #[derive(Debug)]

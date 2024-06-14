@@ -1,6 +1,6 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.9"
+version = "0.13.12"
 edition = "2021"
 
 

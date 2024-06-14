@@ -15,6 +15,334 @@
 
 
 
+
+        // PROTO 
+
+
+    "buildings_block_1x1_01p": (
+        name: "buildings_block_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Block_1x1_01P.glb"),
+
+
+          tags: Some([ "proto" ]),
+
+    ),
+
+    "buildings_column_1x3_01p": (
+        name: "buildings_column_1x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Column_1x3_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_column_2x3_01p": (
+        name: "buildings_column_2x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Column_2x3_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_door_01p": (
+        name: "buildings_door_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Door_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_door_frame_01p": (
+        name: "buildings_door_frame_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_DoorFrame_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_1x1_01p": (
+        name: "buildings_floor_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Floor_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_2x2_01p": (
+        name: "buildings_floor_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Floor_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_5x5_01p": (
+        name: "buildings_floor_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Floor_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_angle_1x1_01p": (
+        name: "buildings_floor_angle_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorAngle_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_angle_2x2_01p": (
+        name: "buildings_floor_angle_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorAngle_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_angle_5x5_01p": (
+        name: "buildings_floor_angle_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorAngle_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_chamfer_1x1_01p": (
+        name: "buildings_floor_chamfer_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorChamfer_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_chamfer_2x2_01p": (
+        name: "buildings_floor_chamfer_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorChamfer_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_chamfer_5x5_01p": (
+        name: "buildings_floor_chamfer_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorChamfer_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_curved_1x1_01p": (
+        name: "buildings_floor_curved_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorCurved_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_curved_2x2_01p": (
+        name: "buildings_floor_curved_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorCurved_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_curved_5x5_01p": (
+        name: "buildings_floor_curved_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorCurved_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_hole_1x1_01p": (
+        name: "buildings_floor_hole_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorHole_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_hole_2x2_01p": (
+        name: "buildings_floor_hole_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorHole_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_hole_5x5_01p": (
+        name: "buildings_floor_hole_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorHole_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_inner_curved_1x1_01p": (
+        name: "buildings_floor_inner_curved_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorInnerCurved_1x1_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_inner_curved_2x2_01p": (
+        name: "buildings_floor_inner_curved_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorInnerCurved_2x2_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+    "buildings_floor_inner_curved_5x5_01p": (
+        name: "buildings_floor_inner_curved_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_FloorInnerCurved_5x5_01P.glb"),
+           tags: Some([ "proto" ]),
+    ),
+
+
+
+  "buildings_rail_1x1_01p": (
+        name: "buildings_rail_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Rail_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_rail_5x1_01p": (
+        name: "buildings_rail_5x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Rail_5x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_rail_stairs_1x1_01p": (
+        name: "buildings_rail_stairs_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_RailStairs_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_20_1x1_01p": (
+        name: "buildings_ramp_20_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_20_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_25_1x1_01p": (
+        name: "buildings_ramp_25_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_25_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_30_1x1_01p": (
+        name: "buildings_ramp_30_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_30_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_60_1x1_01p": (
+        name: "buildings_ramp_60_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_60_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_70_1x1_01p": (
+        name: "buildings_ramp_70_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_70_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_ramp_corner_1x1_01p": (
+        name: "buildings_ramp_corner_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Ramp_Corner_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_roof_angled_1x1_01p": (
+        name: "buildings_roof_angled_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Roof_Angled_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_roof_angled_2x2_01p": (
+        name: "buildings_roof_angled_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Roof_Angled_2x2_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_roof_angled_5x5_01p": (
+        name: "buildings_roof_angled_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Roof_Angled_5x5_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_stairs_1x1_01p": (
+        name: "buildings_stairs_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Stairs_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_stairs_1x2_01p": (
+        name: "buildings_stairs_1x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Stairs_1x2_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_stairs_1x2_02p": (
+        name: "buildings_stairs_1x2_02p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Stairs_1x2_02P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_stairs_1x3_01p": (
+        name: "buildings_stairs_1x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Stairs_1x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_1x3_01p": (
+        name: "buildings_wall_1x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Wall_1x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_2x3_01p": (
+        name: "buildings_wall_2x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Wall_2x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_5x3_01p": (
+        name: "buildings_wall_5x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_Wall_5x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_arch_2x3_01p": (
+        name: "buildings_wall_arch_2x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallArch_2x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_chamfer_1x1_01p": (
+        name: "buildings_wall_chamfer_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallChamfer_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_chamfer_2x2_01p": (
+        name: "buildings_wall_chamfer_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallChamfer_2x2_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_chamfer_5x5_01p": (
+        name: "buildings_wall_chamfer_5x5_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallChamfer_5x5_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_curved_1x1_01p": (
+        name: "buildings_wall_curved_1x1_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallCurved_1x1_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_curved_2x2_01p": (
+        name: "buildings_wall_curved_2x2_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallCurved_2x2_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_door_2x3_01p": (
+        name: "buildings_wall_door_2x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallDoor_2x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_door_5x3_01p": (
+        name: "buildings_wall_door_5x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallDoor_5x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_window_2x3_01p": (
+        name: "buildings_wall_window_2x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallWindow_2x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+    "buildings_wall_window_5x3_01p": (
+        name: "buildings_wall_window_5x3_01p",
+        model: GltfModel("models/doodads/proto/SM_Buildings_WallWindow_5x3_01P.glb"),
+   tags: Some([ "proto" ]),
+    ),
+
+
+
+
+
+
+
+
         "ancient_bg_islands": (
             name: "ancient_bg_islands",
             model: GltfModel("models/doodads/ancient/ancient_bg_islands.glb"),
