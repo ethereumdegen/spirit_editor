@@ -226,12 +226,6 @@ impl<'a> Hierarchy<'a> {
             self.state.selected.remove(entity);
         }
 
-        if ui.input(|input| input.key_pressed(egui::Key::Delete)) {
-            for entity in self.state.selected.iter() {
-                self.world.entity_mut(entity).despawn_recursive();
-            }
-            self.state.selected.clear();
-        }
 
         new_selection
     }
@@ -289,6 +283,8 @@ pub fn listen_for_select_entities_events(
 
 
     mut editor: ResMut<Editor>,
+
+    mut commands: Commands , 
     ){
 
 
@@ -307,6 +303,24 @@ pub fn listen_for_select_entities_events(
                 for entity in entities_to_select.clone().unwrap_or(Vec::new()){
                        state.selected.select_maybe_add( entity, true );  
                 } 
+
+
+            }
+
+
+            EditorEvent::DeleteSelectedEntities => {
+                   let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
+
+                //if ui.input(|input| input.key_pressed(egui::Key::Delete)) {
+                    for entity in  state.selected.iter() {
+                        if let Some(cmd) = commands.get_entity( entity ){
+
+                            cmd.despawn_recursive();
+                        }
+                   
+                    }
+                     state.selected.clear();
+                //}
 
 
             }

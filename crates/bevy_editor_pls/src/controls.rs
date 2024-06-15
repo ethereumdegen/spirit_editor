@@ -136,6 +136,7 @@ pub enum Action {
     PauseUnpauseTime,
     FocusSelected,
     ClearSelection,
+    DeleteSelectedEntities, 
 
     #[cfg(feature = "default_windows")]
     SetGizmoModeTranslate,
@@ -151,6 +152,7 @@ impl std::fmt::Display for Action {
             Action::PlayPauseEditor => write!(f, "Play/Pause editor"),
             Action::PauseUnpauseTime => write!(f, "Pause/Unpause time"),
             Action::FocusSelected => write!(f, "Focus Selected Entity"),
+            Action::DeleteSelectedEntities => write!(f, "Delete Selected Entities"), 
             Action::ClearSelection => write!(f, "Clear Selection"),
             #[cfg(feature = "default_windows")]
             Action::SetGizmoModeTranslate => write!(f, "Activate translation gizmo"),
@@ -232,6 +234,17 @@ pub fn editor_controls_system(
     }
 
 
+     if controls.just_pressed(
+            Action::DeleteSelectedEntities,
+            &keyboard_input,
+            &mouse_input,
+            &editor,
+        ) {
+            editor_events.send(EditorEvent::DeleteSelectedEntities);
+        }
+
+
+
     if controls.just_pressed(
         Action::ClearSelection,
         &keyboard_input,
@@ -240,6 +253,9 @@ pub fn editor_controls_system(
     ) {
         editor_events.send(EditorEvent::SetSelectedEntities(None));
     }
+ 
+
+
 
     #[cfg(feature = "default_windows")]
     {
@@ -309,6 +325,15 @@ impl EditorControls {
                 conditions: vec![BindingCondition::ListeningForText(false)],
             },
         );
+
+          controls.insert(
+            Action::DeleteSelectedEntities,
+            Binding {
+                input: UserInput::Single(Button::Keyboard(KeyCode::Delete)),
+                conditions: vec![BindingCondition::ListeningForText(false)],
+            },
+        );
+
 
         controls.insert(
             Action::FocusSelected,

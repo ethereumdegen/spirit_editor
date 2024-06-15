@@ -19,6 +19,91 @@
         // PROTO 
 
 
+         
+    "proto_block_stone_1": (
+        name: "proto_block_stone_1",
+        model: GltfModel("models/doodads/proto/proto_block_stone_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_2": (
+        name: "proto_block_stone_2",
+        model: GltfModel("models/doodads/proto/proto_block_stone_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_3": (
+        name: "proto_block_stone_3",
+        model: GltfModel("models/doodads/proto/proto_block_stone_3.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_long_1": (
+        name: "proto_block_stone_long_1",
+        model: GltfModel("models/doodads/proto/proto_block_stone_long_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_long_2": (
+        name: "proto_block_stone_long_2",
+        model: GltfModel("models/doodads/proto/proto_block_stone_long_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_tall_1": (
+        name: "proto_block_stone_tall_1",
+        model: GltfModel("models/doodads/proto/proto_block_stone_tall_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_block_stone_tall_2": (
+        name: "proto_block_stone_tall_2",
+        model: GltfModel("models/doodads/proto/proto_block_stone_tall_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_floor_stone_1": (
+        name: "proto_floor_stone_1",
+        model: GltfModel("models/doodads/proto/proto_floor_stone_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_floor_stone_2": (
+        name: "proto_floor_stone_2",
+        model: GltfModel("models/doodads/proto/proto_floor_stone_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_floor_stone_shale_1": (
+        name: "proto_floor_stone_shale_1",
+        model: GltfModel("models/doodads/proto/proto_floor_stone_shale_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_floor_stone_tri_1": (
+        name: "proto_floor_stone_tri_1",
+        model: GltfModel("models/doodads/proto/proto_floor_stone_tri_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_floor_stone_tri_2": (
+        name: "proto_floor_stone_tri_2",
+        model: GltfModel("models/doodads/proto/proto_floor_stone_tri_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_wall_stone_1": (
+        name: "proto_wall_stone_1",
+        model: GltfModel("models/doodads/proto/proto_wall_stone_1.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_wall_stone_2": (
+        name: "proto_wall_stone_2",
+        model: GltfModel("models/doodads/proto/proto_wall_stone_2.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_wall_stone_3": (
+        name: "proto_wall_stone_3",
+        model: GltfModel("models/doodads/proto/proto_wall_stone_3.glb"),
+        tags: Some(["proto"]),
+    ),
+    "proto_wall_stone_4": (
+        name: "proto_wall_stone_4",
+        model: GltfModel("models/doodads/proto/proto_wall_stone_4.glb"),
+        tags: Some(["proto"]),
+    ),
+ 
+
+
+
     "buildings_block_1x1_01p": (
         name: "buildings_block_1x1_01p",
         model: GltfModel("models/doodads/proto/SM_Buildings_Block_1x1_01P.glb"),

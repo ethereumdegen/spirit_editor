@@ -2,6 +2,6 @@
    // initial_terrain_to_load:  Some("default_terrain"),    
     initial_terrain_to_load: None,    
     initial_zones_to_load: Some([
-        "dungeon_01_interior.zone"
+        "dungeon_broken_elves_interior.zone"
     ]),
 )
