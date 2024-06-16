@@ -20,6 +20,7 @@ Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  T
 
 ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/cfea97c5-b73a-4a54-9e27-e1f0a5c36229)
 
+![level_blockout_1](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/63988249-0758-4518-a51c-b0c6a25bf2b4)
 
 
 ### Terrain Splat Map
