@@ -426,7 +426,7 @@ pub fn handle_place_doodad_events(
 pub fn replace_proto_doodads_with_doodads(
     mut commands: Commands,
 
-    doodad_proto_query: Query<(Entity,&Name,Option<&CustomPropsComponent>), With<DoodadProto>>,
+    mut doodad_proto_query: Query<(Entity,&Name,Option<&mut CustomPropsComponent>), With<DoodadProto>>,
  
 
   //  zone_resource: Res<ZoneResource>,
@@ -439,7 +439,7 @@ pub fn replace_proto_doodads_with_doodads(
 
     let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
 
-    for (doodad_entity,doodad_name,existing_custom_props_comp) in doodad_proto_query.iter() {
+    for (doodad_entity,doodad_name,existing_custom_props_comp) in doodad_proto_query.iter_mut() {
        
         let doodad_name = doodad_name.as_str();
 
@@ -467,9 +467,16 @@ pub fn replace_proto_doodads_with_doodads(
 
         println!("doodad spawned {:?}", doodad_spawned);
 
-        if existing_custom_props_comp.is_none(){
+        if let Some( mut existing_custom_props_comp ) = existing_custom_props_comp {
+             if let Some(custom_props) = custom_props_from_manifest {  
 
-           if let Some(custom_props) = custom_props_from_manifest {  
+                existing_custom_props_comp.set_custom_props_if_empty(custom_props);
+            }
+
+
+        }else {
+
+             if let Some(custom_props) = custom_props_from_manifest {  
               commands
                 .entity(doodad_spawned)
                 .insert(CustomPropsComponent {
@@ -484,6 +491,8 @@ pub fn replace_proto_doodads_with_doodads(
              }
 
         }
+
+ 
         //do stuff w existing_custom_props_comp ? 
       
 

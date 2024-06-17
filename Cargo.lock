@@ -1585,9 +1585,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_regions"
-version = "0.13.4"
+version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "530eb6b13d10a26869e569bf5d65cd98c389743f20c2eba5f27ef0925ae63144"
+checksum = "4d434c82efcfa840c60b8f8dbb138f34f4145b0f14734a92f47aff115712605d"
 dependencies = [
  "anyhow",
  "bevy 0.13.2",

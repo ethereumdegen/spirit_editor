@@ -32,6 +32,31 @@ pub struct CustomPropsComponent {
     pub props: CustomPropsMap,
 }
 
+impl CustomPropsComponent {
+    pub fn set_custom_props_if_empty(&mut self, new_props: &CustomPropsMap){
+
+        for (key,val) in new_props.iter(){
+
+            if self.props.get( key ).is_none(){
+                  self.props.insert(key.to_string(), val.clone());
+            }
+          
+        }
+
+    }
+
+
+    pub fn set_custom_props(&mut self, new_props: &CustomPropsMap){
+
+        for (key,val) in new_props.iter(){
+
+
+            self.props.insert(key.to_string(), val.clone());
+        }
+
+    }
+}
+
 pub type CustomPropsMap = HashMap<String, CustomProp>;
 
 #[derive(Serialize, Deserialize, Clone, Debug, Reflect, Default)]
