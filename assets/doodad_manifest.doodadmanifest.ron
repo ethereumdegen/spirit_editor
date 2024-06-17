@@ -3726,6 +3726,26 @@
                tags: Some([ "editor" ,"special" ]),
          ),
 
+        "editor_notes": (
+            name: "editor_notes",
+            model:  CubeShape( ( color: Rgba(
+                                        red: 0.1,
+                                        green: 0.8,
+                                        blue: 0.8,
+                                        alpha: 0.3
+                                    )
+                                   
+                                    ))  ,
+            initial_custom_props: Some({ 
+                "notes": String("---"),
+                 
+
+                 }),
+
+
+               tags: Some([ "editor" ,"special" ]),
+         ),
+
 
 
        "ladder_climbable":  (
