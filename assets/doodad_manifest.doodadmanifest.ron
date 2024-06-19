@@ -3645,6 +3645,53 @@
             tags: Some([ "item" ]),
         ),
 
+           "item_soul_stealer":  (
+            
+             model: GltfModel("models/doodads/item_doodads/rpg_sword_01.glb"),
+
+
+              initial_custom_props: Some({ 
+                "special_type": String("item"),
+                 "item_type": String("soul_stealer.item")  
+
+             }),
+
+            tags: Some([ "item" ]),
+        ),
+
+           "item_familiar_stone":  (
+            
+             model: GltfModel("models/doodads/item_doodads/cats_collar.glb"),
+
+
+              initial_custom_props: Some({ 
+                "special_type": String("item"),
+                 "item_type": String("familiar_stone.item")  
+
+             }),
+
+            tags: Some([ "item" ]),
+        ),
+
+
+
+           "item_test_sword_1":  (
+            
+             model: GltfModel("models/doodads/item_doodads/rpg_sword_01.glb"),
+
+
+              initial_custom_props: Some({ 
+                "special_type": String("item"),
+                 "item_type": String("test_sword_1.item")  
+
+             }),
+
+            tags: Some([ "item" ]),
+        ),
+
+
+
+
           "item_test_sword_1":  (
             
              model: GltfModel("models/doodads/item_doodads/rpg_sword_01.glb"),
