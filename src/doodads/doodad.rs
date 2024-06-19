@@ -1,3 +1,4 @@
+use bevy::utils::Duration;
 use bevy_editor_pls_default_windows::doodads::DoodadNeedsModelAttached;
 use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
@@ -32,15 +33,24 @@ pub(crate) struct DoodadPlugin;
 impl Plugin for DoodadPlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(LoadedGltfAssets::default())
-            .add_systems(Update, (attach_models_to_doodads, 
+            .add_systems(Update, (
+                attach_models_to_doodads, 
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
+
+                remove_recently_failed_to_load
               //  add_wireframe_to_children
 
                 ));
     }
 }
 
+#[derive(Component, Default)]
+pub struct RecentlyFailedToLoadModel {
+
+    created_at : Duration 
+
+}
 
 
 
@@ -58,6 +68,7 @@ fn attach_models_to_doodads(
             With<DoodadNeedsModelAttached>,
             With<GlobalTransform>,
             Without<Handle<Mesh>>,
+            Without<RecentlyFailedToLoadModel>,
         ),
     >,
 
@@ -99,7 +110,7 @@ fn attach_models_to_doodads(
                                 loaded_model.named_scenes["Scene"].clone()
                                  )
                                .remove::<DoodadNeedsModelAttached>()
-
+                                .remove::<RecentlyFailedToLoadModel>()
  
                            
                                   ; 
@@ -110,6 +121,15 @@ fn attach_models_to_doodads(
                        Err(err) =>  {
                        
                         eprintln!("{}",err);
+
+
+                          commands.entity(new_doodad_entity)
+                               .insert(
+                                RecentlyFailedToLoadModel {
+                                    created_at: time.elapsed() 
+                                }
+                             ) ;
+                               
 
                         /*
                          commands
@@ -183,6 +203,36 @@ fn attach_models_to_doodads(
     }
 }
 
+
+ 
+fn remove_recently_failed_to_load(
+    mut commands: Commands,
+     doodad_query: Query<
+         (Entity, &RecentlyFailedToLoadModel) ,
+        ( 
+             With<DoodadComponent>,
+            With<RecentlyFailedToLoadModel>,
+        ),
+    >,
+
+ 
+    time: Res<Time>, 
+) {
+    
+    for (doodad_entity,recently_failed_to_load_comp) in doodad_query.iter(){
+
+        let failed_at = &recently_failed_to_load_comp.created_at;
+
+        if time.elapsed()  >  *failed_at +   Duration::from_secs_f32(1.0) {
+
+            if let Some(mut cmd) = commands.get_entity(doodad_entity){ 
+                cmd.remove::<RecentlyFailedToLoadModel>();
+            }
+
+        } 
+
+    }
+}
 
 fn get_loaded_model_from_name<'a>(
     model_name:String,
