@@ -165,11 +165,21 @@ fn attach_models_to_doodads(
                 let Some(magic_fx) = built_vfx_registry.magic_fx_variants.get(&magic_fx_name ) else {
 
                     info!("spawn magic fx fallback for {:?}",magic_fx_name);
-                    commands
+               
+               /*     commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(2.0, 2.0, 2.0))) 
                      .remove::<DoodadNeedsModelAttached>()
-                     .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
+                     .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );*/
+
+                     
+                          commands.entity(new_doodad_entity)
+                               .insert(
+                                RecentlyFailedToLoadModel {
+                                    created_at: time.elapsed() 
+                                }
+                             ) ;
+                               
 
 
                     continue 
