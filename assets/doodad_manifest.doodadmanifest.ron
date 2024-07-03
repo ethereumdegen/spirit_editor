@@ -425,7 +425,7 @@
 
 
 
-
+  // ANCIENT 
 
 
         "ancient_bg_islands": (
@@ -436,6 +436,350 @@
         ),
 
 
+
+ 
+ "ancient_bld_floor_01": (
+    name: "ancient_bld_floor_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_large_01e": (
+    name: "ancient_bld_wall_large_01e",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_large_01e.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_vine_02": (
+    name: "ancient_vine_02",
+    model: GltfModel("models/doodads/ancient/ancient_vine_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_stairs_02": (
+    name: "ancient_bld_stairs_02",
+    model: GltfModel("models/doodads/ancient/ancient_bld_stairs_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_large_01d": (
+    name: "ancient_bld_wall_large_01d",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_large_01d.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_vine_03": (
+    name: "ancient_vine_03",
+    model: GltfModel("models/doodads/ancient/ancient_vine_03.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_01c": (
+    name: "ancient_ivy_draped_01c",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_01c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_curved_01b": (
+    name: "ancient_bld_wall_curved_01b",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_curved_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_prop_bracket": (
+    name: "ancient_sm_prop_bracket",
+    model: GltfModel("models/doodads/ancient/ancient_sm_prop_bracket.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_floor_04": (
+    name: "ancient_bld_floor_04",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_04.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_02": (
+    name: "ancient_ivy_02",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_floor_02": (
+    name: "ancient_bld_floor_02",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_base_pillar_01b": (
+    name: "ancient_bld_base_pillar_01b",
+    model: GltfModel("models/doodads/ancient/ancient_bld_base_pillar_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_stairs_01": (
+    name: "ancient_bld_stairs_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_stairs_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+ 
+
+"ancient_ivy_draped_01a": (
+    name: "ancient_ivy_draped_01a",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_01a.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_prop_marble_block_02": (
+    name: "ancient_sm_prop_marble_block_02",
+    model: GltfModel("models/doodads/ancient/ancient_sm_prop_marble_block_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_01b": (
+    name: "ancient_bld_wall_01b",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_lilies_01": (
+    name: "ancient_lilies_01",
+    model: GltfModel("models/doodads/ancient/ancient_lilies_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_prop_marble_block": (
+    name: "ancient_sm_prop_marble_block",
+    model: GltfModel("models/doodads/ancient/ancient_sm_prop_marble_block.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_02a": (
+    name: "ancient_ivy_draped_02a",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_02a.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_01b": (
+    name: "ancient_ivy_01b",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_floor_wood_01": (
+    name: "ancient_bld_floor_wood_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_wood_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_cobblestone_01": (
+    name: "ancient_cobblestone_01",
+    model: GltfModel("models/doodads/ancient/ancient_cobblestone_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_base_pillar_04": (
+    name: "ancient_bld_base_pillar_04",
+    model: GltfModel("models/doodads/ancient/ancient_bld_base_pillar_04.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_03b": (
+    name: "ancient_ivy_03b",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_03b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_pebbles_01": (
+    name: "ancient_pebbles_01",
+    model: GltfModel("models/doodads/ancient/ancient_pebbles_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_02b": (
+    name: "ancient_ivy_draped_02b",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_02b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_floor_03": (
+    name: "ancient_bld_floor_03",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_03.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_03c": (
+    name: "ancient_ivy_03c",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_03c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_floor_tile_01": (
+    name: "ancient_bld_floor_tile_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_floor_tile_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_prop_brazier_02": (
+    name: "ancient_sm_prop_brazier_02",
+    model: GltfModel("models/doodads/ancient/ancient_sm_prop_brazier_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_01c": (
+    name: "ancient_bld_wall_01c",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_01c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_02b": (
+    name: "ancient_ivy_02b",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_02b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_base_pillar_01c": (
+    name: "ancient_bld_base_pillar_01c",
+    model: GltfModel("models/doodads/ancient/ancient_bld_base_pillar_01c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_prop_brazier_04": (
+    name: "ancient_sm_prop_brazier_04",
+    model: GltfModel("models/doodads/ancient/ancient_sm_prop_brazier_04.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_stairs_01b": (
+    name: "ancient_bld_stairs_01b",
+    model: GltfModel("models/doodads/ancient/ancient_bld_stairs_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_02d": (
+    name: "ancient_ivy_draped_02d",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_02d.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_03a": (
+    name: "ancient_ivy_03a",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_03a.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_01": (
+    name: "ancient_bld_wall_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_env_rock_cliff_layers_02": (
+    name: "ancient_sm_env_rock_cliff_layers_02",
+    model: GltfModel("models/doodads/ancient/ancient_sm_env_rock_cliff_layers_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_dirt_row": (
+    name: "ancient_dirt_row",
+    model: GltfModel("models/doodads/ancient/ancient_dirt_row.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_pillar_03": (
+    name: "ancient_ivy_pillar_03",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_pillar_03.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_lilies_02": (
+    name: "ancient_lilies_02",
+    model: GltfModel("models/doodads/ancient/ancient_lilies_02.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_vine_01": (
+    name: "ancient_vine_01",
+    model: GltfModel("models/doodads/ancient/ancient_vine_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_pillar_square_01": (
+    name: "ancient_ivy_pillar_square_01",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_pillar_square_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_01b": (
+    name: "ancient_ivy_draped_01b",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_03d": (
+    name: "ancient_ivy_03d",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_03d.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_large_01b": (
+    name: "ancient_bld_wall_large_01b",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_large_01b.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_env_rock_cliff": (
+    name: "ancient_sm_env_rock_cliff",
+    model: GltfModel("models/doodads/ancient/ancient_sm_env_rock_cliff.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_draped_02c": (
+    name: "ancient_ivy_draped_02c",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_draped_02c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_02c": (
+    name: "ancient_ivy_02c",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_02c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_wall_large_01c": (
+    name: "ancient_bld_wall_large_01c",
+    model: GltfModel("models/doodads/ancient/ancient_bld_wall_large_01c.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_sm_env_rock_cliff_layers_01": (
+    name: "ancient_sm_env_rock_cliff_layers_01",
+    model: GltfModel("models/doodads/ancient/ancient_sm_env_rock_cliff_layers_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_bld_base_pillar_01": (
+    name: "ancient_bld_base_pillar_01",
+    model: GltfModel("models/doodads/ancient/ancient_bld_base_pillar_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_01": (
+    name: "ancient_ivy_01",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+"ancient_ivy_pillar_01": (
+    name: "ancient_ivy_pillar_01",
+    model: GltfModel("models/doodads/ancient/ancient_ivy_pillar_01.glb"),
+    tags: Some(["ancient", "building"]),
+),
+
+
+
+
+// ----
     
 
 

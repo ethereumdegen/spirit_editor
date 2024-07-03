@@ -2,7 +2,7 @@
 name = "bevy_mesh_terrain_editor"
 version = "0.13.12"
 edition = "2021"
-
+default-run = "main"
 
 [dependencies]
 bevy = "0.13.1"
@@ -103,3 +103,15 @@ egui-gizmo = "0.16"
 opt-level = 3
 
  
+
+
+
+
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "generate_doodad_manifests"
+path = "scripts/generate_doodad_manifests.rs"
