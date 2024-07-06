@@ -1,13 +1,13 @@
 
 
-## Bedy Mesh Terrain Editor
+## Bevy Mesh Terrain Editor
 
-
+- maybe perform the loading in discrete well-defined stages ?
 
 
 ## Immediate todo 
 
-- add visual grid snap dimensions 
+- add visual grid snap dimensions (0.14 has grid gizmo)
 
 
 - remember can  handle controls better  by  using bevy_editor_pls/src/controls.rs
