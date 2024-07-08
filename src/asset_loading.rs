@@ -1,5 +1,5 @@
 		
-use bevy_asset_loader::prelude::LoadingState;
+use bevy_asset_loader::prelude::*; 
 use bevy_asset_loader::loading_state::LoadingStateAppExt;
 use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
 use bevy_magic_fx::{animated_material::{build_animated_material, AnimatedMaterial}, magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}, shader_variant::ShaderVariantManifest};
@@ -17,9 +17,9 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 		      .init_state::<AssetLoadState>()
-		      .init_resource::<BuiltVfxResource>()
-		       .init_resource::<AssetLoadingResource>()
-		        .init_resource::<FolderLoadingResource>()
+		      .init_resource::<BuiltVfxHandleRegistry>()
+		      // .init_resource::<AssetLoadingResource>()
+		     //   .init_resource::<FolderLoadingResource>()
 		    //  .add_systems(Startup, setup)
 
 		   //   .add_systems(Update, update_load_folders)
@@ -33,7 +33,10 @@ pub fn asset_loading_plugin(app: &mut App) {
                 .add_loading_state(
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::FundamentalAssetsLoad)
-                        .load_collection::<AudioAssets>(),
+                        .load_collection::<TextureAssets>() 
+                         .load_collection::<MeshAssets>()
+                          .load_collection::<ShaderVariantAssets>() 
+                           //.load_collection::<AnimatedMaterialAssets>() 
                 )
                 .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
          ;
@@ -48,10 +51,45 @@ pub fn asset_loading_plugin(app: &mut App) {
 
  }
 
+#[derive(AssetCollection, Resource)]
+struct TextureAssets {
+   
+     #[asset(path = "textures", collection(typed, mapped))]
+    pub(crate) textures: HashMap<AssetFileName, Handle<Image>>,
+
+
+}
+
+
+#[derive(AssetCollection, Resource)]
+struct MeshAssets {
+   
+     #[asset(path = "models/meshes", collection(typed, mapped))]
+    pub(crate) meshes: HashMap<AssetFileName, Handle<Mesh>>,
+
+
+}
+
+#[derive(AssetCollection, Resource, Clone)]
+pub(crate) struct ShaderVariantAssets {
+    #[asset(path = "shader_variants", collection(typed, mapped))]
+    pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
+}
+
 
 
 #[derive(Resource, Default)]
- pub  struct BuiltVfxResource {
+pub struct BuiltVfxHandleRegistry {
+     pub   magic_fx_variants: HashMap<String, MagicFxVariant>  , 
+
+    //shader var name -> animated material
+    pub shader_variant_materials: HashMap<String, Handle<AnimatedMaterial>>,
+}
+
+
+/*
+#[derive(Resource, Default)]
+ pub  struct MagicFxAssets {
 
 
   pub   magic_fx_variants: HashMap<String, MagicFxVariant>      
@@ -59,10 +97,18 @@ pub fn asset_loading_plugin(app: &mut App) {
 }
 
 
+#[derive(Resource, Default)]
+ pub  struct MeshAssets {
 
 
+  pub   magic_fx_variants: HashMap<String, MagicFxVariant>      
+
+}
+
+*/
 
 
+/*
 #[derive(Resource, Default)]
   struct AssetLoadingResource {
     texture_handles_map: HashMap<String, Handle<Image>>,
@@ -75,9 +121,13 @@ pub fn asset_loading_plugin(app: &mut App) {
      animated_material_map: HashMap<String, Handle<AnimatedMaterial>>,
  
 }
+*/
 
 
 
+
+
+/*
 #[derive(Resource, Default)]
   struct FolderLoadingResource {
    
@@ -89,7 +139,7 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
    
-}
+}*/
 
 
 #[derive(States,Hash,Eq,PartialEq,Debug,Clone,Default)]
@@ -102,7 +152,7 @@ pub enum AssetLoadState {
 
 }
 
-
+/*
 fn setup(
  
     asset_server: ResMut<AssetServer>,
@@ -129,10 +179,10 @@ fn setup(
  
    
 }
+*/
 
 
-
-
+/*
 fn update_load_folders(
        mut ev_asset: EventReader<AssetEvent<LoadedFolder>>,
 
@@ -202,15 +252,15 @@ fn update_load_folders(
     }
 
 }
-
+*/
 
 
 fn load_shader_variants( 
     
-    mut next_state: ResMut<NextState<LoadingState>>,
+    //mut next_state: ResMut<NextState<LoadingState>>,
  
 
-    mut asset_loading_resource: ResMut<AssetLoadingResource>,
+ //   mut asset_loading_resource: ResMut<AssetLoadingResource>,
     mut animated_materials: ResMut<Assets<AnimatedMaterial>>,
 
 
@@ -252,9 +302,9 @@ fn load_shader_variants(
                     asset_loading_resource.animated_material_map.insert( shadvar_name, shader_material_handle );
 
 
-                    if asset_loading_resource.animated_material_map.len() >= asset_loading_resource.shader_variants_map.len() {
-                    			next_state.set(LoadingState::ShadersLoad);
-                     }
+                   // if asset_loading_resource.animated_material_map.len() >= asset_loading_resource.shader_variants_map.len() {
+                   // 			next_state.set(LoadingState::ShadersLoad);
+                   //  }
                     
 
                
@@ -267,17 +317,17 @@ fn load_shader_variants(
 
 fn load_magic_fx( 
     
-    mut next_state: ResMut<NextState<LoadingState>>,
+    mut next_state: ResMut<NextState<AssetLoadState>>,
  
 
-      asset_loading_resource: Res <AssetLoadingResource>,
+    //  asset_loading_resource: Res <AssetLoadingResource>,
    // mut animated_materials: ResMut<Assets<AnimatedMaterial>>,
 
 
      fx_variant_assets: ResMut<Assets<MagicFxVariantManifest>>,
 
 
-    mut built_vfx_resource: ResMut<BuiltVfxResource>
+    mut built_vfx_resource: ResMut<BuiltVfxHandleRegistry>
 
      
 ) {
