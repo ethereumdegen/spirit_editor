@@ -38,7 +38,8 @@ pub fn asset_loading_plugin(app: &mut App) {
                           .load_collection::<ShaderVariantAssets>() 
                            //.load_collection::<AnimatedMaterialAssets>() 
                 )
-                .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
+                .add_systems(OnEnter(AssetLoadState::FundamentalAssetsLoad), load_shader_variants)
+                 .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
          ;
 
 
@@ -77,13 +78,25 @@ pub(crate) struct ShaderVariantAssets {
 }
 
 
+#[derive(AssetCollection, Resource, Clone)]
+pub(crate) struct MagicFxVariantAssets {
+    #[asset(path = "magic_fx", collection(typed, mapped))]
+    pub(crate) magic_fx_variants: HashMap<AssetFileStem, Handle<MagicFxVariantManifest>>, //see bevy shader play
+}
+
+
+
 
 #[derive(Resource, Default)]
 pub struct BuiltVfxHandleRegistry {
-     pub   magic_fx_variants: HashMap<String, MagicFxVariant>  , 
 
     //shader var name -> animated material
-    pub shader_variant_materials: HashMap<String, Handle<AnimatedMaterial>>,
+    pub animated_materials_map: HashMap<String, Handle<AnimatedMaterial>>,
+
+
+    pub magic_fx_variants: HashMap<String, MagicFxVariant>  , 
+
+    
 }
 
 
@@ -257,14 +270,20 @@ fn update_load_folders(
 
 fn load_shader_variants( 
     
-    //mut next_state: ResMut<NextState<LoadingState>>,
+    mut next_state: ResMut<NextState<AssetLoadState>>,
  
 
  //   mut asset_loading_resource: ResMut<AssetLoadingResource>,
     mut animated_materials: ResMut<Assets<AnimatedMaterial>>,
 
+    loaded_textures: Res<TextureAssets>,
+    loaded_shader_variants: Res<ShaderVariantAssets>, 
+
 
     shader_variant_manifest_resource: Res<Assets<ShaderVariantManifest>>,
+
+
+    mut built_vfx_resource: ResMut<BuiltVfxHandleRegistry>
 
    // asset_server: ResMut<AssetServer>,
 ) {
@@ -272,19 +291,19 @@ fn load_shader_variants(
  
                 //once the shader variant loads, we can start loading our magic fx
 
-                for (file_path, shader_manifest_handle) in asset_loading_resource.shader_variants_map.clone().iter() {
+                for (file_stem, shader_manifest_handle) in loaded_shader_variants.variants.clone().iter() {
              
 
                      let shader_variant_manifest: &ShaderVariantManifest = shader_variant_manifest_resource
                         .get( shader_manifest_handle.id())
-                        .expect(format!("could not load {:?}", &file_path).as_str());
+                        .expect(format!("could not load {:?}", &file_stem).as_str());
 
                     //finish loading and building the shader variant and add it to the map 
-                    let texture_handles_map = &asset_loading_resource.texture_handles_map;
+                    let texture_handles_map = &loaded_textures.textures;
                     
 
-                    let file_path_clone = file_path.clone();
-                    let shadvar_name = AssetPath::parse(file_path_clone.as_str()).path().file_stem().unwrap().to_str().unwrap().to_string()  ;
+                   // let file_stem_clone = file_stem.clone();
+                    let shadvar_name =  file_stem.clone() ; 
 
 
                     let Some(built_material) = build_animated_material(
@@ -299,17 +318,19 @@ fn load_shader_variants(
                     let shader_material_handle = animated_materials.add( built_material ); 
                     println!("adding shadvar_name {:?}",&shadvar_name);
 
-                    asset_loading_resource.animated_material_map.insert( shadvar_name, shader_material_handle );
+                    built_vfx_resource.animated_materials_map.insert( shadvar_name, shader_material_handle );
 
 
-                   // if asset_loading_resource.animated_material_map.len() >= asset_loading_resource.shader_variants_map.len() {
-                   // 			next_state.set(LoadingState::ShadersLoad);
-                   //  }
+                  //  if asset_loading_resource.animated_material_map.len() >= asset_loading_resource.shader_variants_map.len() {
+                    		
+                    //}
                     
 
                
                    
                 }
+
+                    next_state.set(AssetLoadState::ShadersLoad);
             
            
 }
@@ -323,6 +344,10 @@ fn load_magic_fx(
     //  asset_loading_resource: Res <AssetLoadingResource>,
    // mut animated_materials: ResMut<Assets<AnimatedMaterial>>,
 
+    loaded_textures: Res<TextureAssets>, 
+     loaded_meshes: Res<MeshAssets>, 
+
+   loaded_magic_fx_variants: Res<MagicFxVariantAssets>, 
 
      fx_variant_assets: ResMut<Assets<MagicFxVariantManifest>>,
 
@@ -333,7 +358,7 @@ fn load_magic_fx(
 ) {
 
 
-   for (file_path, magic_fx_handle) in asset_loading_resource.magic_fx_variants_map.clone().iter() {
+   for (file_stem, magic_fx_handle) in loaded_magic_fx_variants.magic_fx_variants.clone().iter() {
 
 
 
@@ -342,28 +367,29 @@ fn load_magic_fx(
                         .get( magic_fx_handle.id() )
                         .unwrap();
 
-                     let mesh_handles_map = &asset_loading_resource.mesh_handles_map;
+                     let mesh_handles_map = &loaded_meshes.meshes;
 
-                    let animated_materials_map = &asset_loading_resource.animated_material_map;
+
+                    let animated_materials_map = &built_vfx_resource.animated_materials_map;
   
                     let magic_fx = MagicFxVariant::from_manifest(
                         magic_fx_variant_manifest,
                       
-                        &mesh_handles_map,
+                         mesh_handles_map,
                       
                         &animated_materials_map,
                      
                         
                     ).unwrap();
 
-                    info!("loaded magic fx {:?}", file_path.to_string());
+                    info!("loaded magic fx {:?}", file_stem.to_string());
 
-   				 built_vfx_resource.magic_fx_variants.insert(  file_path.to_string() , magic_fx) ;
+   				 built_vfx_resource.magic_fx_variants.insert(  file_stem.to_string() , magic_fx) ;
 
    }	
 
 
-   next_state.set(LoadingState::Complete);
+   next_state.set(AssetLoadState::Complete);
 
    info!("Asset loading complete.");
 

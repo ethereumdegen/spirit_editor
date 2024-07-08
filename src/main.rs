@@ -1,4 +1,4 @@
-use asset_loading::LoadingState;
+use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
 use bevy_editor_pls_default_windows::zones::ZoneEvent;
@@ -140,7 +140,7 @@ fn main() {
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)
           .add_systems(Startup, set_window_icon)
-        .add_systems(OnEnter(LoadingState::Complete), setup)
+        .add_systems(OnEnter(AssetLoadState::Complete), setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
          .add_systems(Update, regions::update_regions_plane_visibility)

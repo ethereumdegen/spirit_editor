@@ -1,3 +1,4 @@
+use crate::asset_loading::BuiltVfxHandleRegistry;
 use bevy::utils::Duration;
 use bevy_editor_pls_default_windows::doodads::DoodadNeedsModelAttached;
 use bevy::pbr::wireframe::WireframeColor;
@@ -21,7 +22,7 @@ use bevy::{
     scene::SceneInstanceReady,
 };
 
-use crate::{asset_loading::BuiltVfxResource, 
+use crate::{ 
     liquid::LiquidPlaneComponent};
 
 
@@ -78,7 +79,7 @@ fn attach_models_to_doodads(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
-      built_vfx_registry: Res<BuiltVfxResource>,
+      built_vfx_registry: Res<BuiltVfxHandleRegistry>,
     time: Res<Time>, 
 ) {
     #[cfg(feature = "tracing")]
