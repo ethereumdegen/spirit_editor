@@ -33,13 +33,16 @@ pub(crate) struct DoodadPlugin;
 
 impl Plugin for DoodadPlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(LoadedGltfAssets::default())
+        app
+          //.insert_resource(LoadedGltfAssets::default())
             .add_systems(Update, (
                 attach_models_to_doodads, 
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
 
-                remove_recently_failed_to_load
+                remove_recently_failed_to_load,
+
+                update_doodad_placement_preview_model
               //  add_wireframe_to_children
 
                 ));
@@ -74,7 +77,7 @@ fn attach_models_to_doodads(
     >,
 
     models: Res<Assets<Gltf>>,
-    gltf_assets: Res<LoadedGltfAssets>,
+    gltf_assets: Res<GltfAssets>,
 
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -391,3 +394,140 @@ fn find_node_by_name_recursive(
 
     Err("Node not found")
 }
+
+
+
+
+pub fn update_doodad_placement_preview_model (
+  
+
+    mut commands: Commands,
+
+   // doodad_tool_resource: Res<DoodadToolState>,
+ 
+
+
+    doodad_manifest_resource: Res<DoodadManifestResource>,
+    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+
+    gltf_assets: Res<GltfAssets>,
+     models:  Res< Assets<bevy::gltf::Gltf>>,
+
+
+     //this is happening too often !! 
+      doodad_placement_component_query: Query<(Entity,&DoodadPlacementComponent), Changed<DoodadPlacementComponent>>
+
+) {
+    //we can tell if we are clicking in viewport
+  
+
+   
+    // ------- compute our rotation and scale from placement properties
+    
+   
+
+   // let selected_doodad_definition = &doodad_tool_resource.selected;
+ 
+
+    let Some((placement_preview_entity, doodad_placement_comp)) = doodad_placement_component_query.get_single().ok() else {return};
+    
+         commands.entity(placement_preview_entity).despawn_descendants() ;
+
+              let Some(doodad_name) =  &doodad_placement_comp.preview_doodad_name else {return};
+
+
+                  let Some(manifest_handle) = &doodad_manifest_resource.manifest else {
+                        println!("WARN: no doodad manifest file found");
+                        return;
+                    };
+
+
+                     let Some(manifest) = doodad_manifest_assets.get(manifest_handle) else {
+                        println!("WARN: no doodad manifest file found");
+                        return;
+                    };
+
+
+                   let Some(doodad_definition) = manifest.get_doodad_definition_by_name(doodad_name) else {
+                        println!("WARN: Could not spawn doodad {:?}", doodad_name);
+                        return;
+                    };
+               
+            
+            
+
+
+           match (&doodad_definition.model).clone() {
+            RenderableType::GltfModel(model_name) => {
+
+               match get_loaded_model_from_name(model_name, &gltf_assets, &models){
+
+                        Ok(loaded_model)=> {
+
+                            info!("spawn preview placement model ");
+
+                             let gltf_scene = commands.spawn(SpatialBundle::default())
+                             .insert(  loaded_model.named_scenes["Scene"].clone() )
+                             .insert(GhostlyMaterialMarker {})
+                             .id();
+
+
+                            commands 
+                              .entity(placement_preview_entity)
+                               .add_child(
+                                gltf_scene
+                                 )
+                           //    .insert( Wireframe )
+                              
+                           
+                                  ; 
+
+
+                         }
+                        ,
+                       Err(_err) =>  {
+                       
+                        
+
+
+                       }
+
+                 };
+                
+
+              
+            },
+ 
+
+           _ =>  {
+
+            warn!("no preview for this model type");
+           }
+        }
+}
+
+
+/*
+
+fn get_loaded_model_from_name<'a>(
+    model_name:String,
+
+   
+    gltf_assets: &Res<GltfAssets>,
+     models: &'a Res<'_, Assets<bevy::gltf::Gltf>>,
+
+     ) -> Result< &'a Gltf >{
+
+    let model_handle = gltf_assets
+                    .gltf_models
+                    .get(model_name.as_str())
+                    .context(format!(" no doodad model registered at "))?;
+
+      let loaded_model = models
+                    .get(model_handle)
+                    .context(format!("Could not load model handle for {}", model_name))?;
+
+
+         Ok(loaded_model)
+}
+*/

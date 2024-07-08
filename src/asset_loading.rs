@@ -1,4 +1,5 @@
 		
+use bevy::gltf::Gltf;
 use bevy_asset_loader::prelude::*; 
 use bevy_asset_loader::loading_state::LoadingStateAppExt;
 use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
@@ -34,6 +35,8 @@ pub fn asset_loading_plugin(app: &mut App) {
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::FundamentalAssetsLoad)
                         .load_collection::<TextureAssets>() 
+
+                         .load_collection::<GltfAssets>() 
                          .load_collection::<MeshAssets>()
                           .load_collection::<ShaderVariantAssets>() 
                            //.load_collection::<AnimatedMaterialAssets>() 
@@ -61,6 +64,16 @@ struct TextureAssets {
 
 }
 
+#[derive(AssetCollection, Resource)]
+struct GltfAssets {
+   
+     #[asset(path = "models/meshes", collection(typed, mapped))]
+    pub(crate) doodad_models: HashMap<AssetFileName, Handle<Gltf>>,
+
+
+}
+
+
 
 #[derive(AssetCollection, Resource)]
 struct MeshAssets {
@@ -74,14 +87,14 @@ struct MeshAssets {
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct ShaderVariantAssets {
     #[asset(path = "shader_variants", collection(typed, mapped))]
-    pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
+    pub(crate) variants: HashMap<String, Handle<ShaderVariantManifest>>, //see bevy shader play
 }
 
 
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct MagicFxVariantAssets {
     #[asset(path = "magic_fx", collection(typed, mapped))]
-    pub(crate) magic_fx_variants: HashMap<AssetFileStem, Handle<MagicFxVariantManifest>>, //see bevy shader play
+    pub(crate) magic_fx_variants: HashMap<String, Handle<MagicFxVariantManifest>>, //see bevy shader play
 }
 
 
@@ -300,7 +313,11 @@ fn load_shader_variants(
 
                     //finish loading and building the shader variant and add it to the map 
                     let texture_handles_map = &loaded_textures.textures;
-                    
+                    let mut rebuilt_texture_handle_map: HashMap<String, Handle<Image>> = HashMap::new();
+
+                    for (key, value) in texture_handles_map.iter() {
+                        rebuilt_texture_handle_map.insert(key.clone().into(), value.clone());
+                    }
 
                    // let file_stem_clone = file_stem.clone();
                     let shadvar_name =  file_stem.clone() ; 
@@ -308,7 +325,7 @@ fn load_shader_variants(
 
                     let Some(built_material) = build_animated_material(
                         shader_variant_manifest,
-                        &texture_handles_map
+                        &rebuilt_texture_handle_map
                      ) else {
                         warn!("could not load {:?}", &shadvar_name);
                         continue;
@@ -318,7 +335,7 @@ fn load_shader_variants(
                     let shader_material_handle = animated_materials.add( built_material ); 
                     println!("adding shadvar_name {:?}",&shadvar_name);
 
-                    built_vfx_resource.animated_materials_map.insert( shadvar_name, shader_material_handle );
+                    built_vfx_resource.animated_materials_map.insert( shadvar_name.into(), shader_material_handle );
 
 
                   //  if asset_loading_resource.animated_material_map.len() >= asset_loading_resource.shader_variants_map.len() {
@@ -368,23 +385,29 @@ fn load_magic_fx(
                         .unwrap();
 
                      let mesh_handles_map = &loaded_meshes.meshes;
+                    let mut rebuilt_mesh_handle_map: HashMap<String, Handle<Mesh>> = HashMap::new();
 
+                    for (key, value) in mesh_handles_map.iter() {
+                        rebuilt_mesh_handle_map.insert(key.clone().into(), value.clone());
+                    }
 
                     let animated_materials_map = &built_vfx_resource.animated_materials_map;
   
                     let magic_fx = MagicFxVariant::from_manifest(
                         magic_fx_variant_manifest,
                       
-                         mesh_handles_map,
+                        & rebuilt_mesh_handle_map,
                       
                         &animated_materials_map,
                      
                         
                     ).unwrap();
 
-                    info!("loaded magic fx {:?}", file_stem.to_string());
+                    info!("loaded magic fx {:?}", file_stem );
 
-   				 built_vfx_resource.magic_fx_variants.insert(  file_stem.to_string() , magic_fx) ;
+                    let variant_name = file_stem.clone(); 
+
+   				 built_vfx_resource.magic_fx_variants.insert(  variant_name, magic_fx)   ;
 
    }	
 

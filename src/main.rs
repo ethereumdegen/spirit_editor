@@ -127,6 +127,7 @@ fn main() {
         .add_plugins(BevyFoliagePaintPlugin::default() )
 
         .add_plugins(doodads::doodad::DoodadPlugin)
+        .add_plugins(doodads::load_doodads::DoodadLoadPlugin)
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
         .add_plugins(foliage::FoliagePlugin  )
 

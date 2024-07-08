@@ -29,12 +29,14 @@ impl Plugin for DoodadPlugin {
     }
 }*/
 
+
+/*
 #[derive(Resource, Default)]
 pub struct LoadedGltfAssets {
     pub gltf_models: HashMap<String, Handle<Gltf>>,
 }
 
-
+*/
 
 
 
