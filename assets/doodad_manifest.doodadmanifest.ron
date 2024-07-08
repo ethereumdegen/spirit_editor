@@ -4217,7 +4217,8 @@
                  "teleporter": EmptyProp , 
                  "level_name": String("---")   ,
                  "waypoint_name": String("---")   
-                })
+                }),
+             tags: Some([ "elven" , "door"]),
         ),
 
 
