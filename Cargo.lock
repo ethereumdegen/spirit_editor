@@ -533,6 +533,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_asset_loader"
+version = "0.20.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ef5e87388367317b6799ccc408ebc553a2ed45bc4c6c06263d23306b397b55d3"
+dependencies = [
+ "anyhow",
+ "bevy 0.13.2",
+ "bevy_asset_loader_derive",
+ "path-slash",
+]
+
+[[package]]
+name = "bevy_asset_loader_derive"
+version = "0.20.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2660d1c142f8122ccbdbfbc2cc93ac4030c24815dcb16823615cb65941fb1fa3"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.48",
+]
+
+[[package]]
 name = "bevy_asset_macros"
 version = "0.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1218,6 +1241,7 @@ dependencies = [
  "anyhow",
  "bevy 0.13.2",
  "bevy-inspector-egui 0.24.0",
+ "bevy_asset_loader",
  "bevy_common_assets",
  "bevy_editor_pls",
  "bevy_editor_pls_core",
@@ -4265,6 +4289,12 @@ name = "paste"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c"
+
+[[package]]
+name = "path-slash"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e91099d4268b0e11973f036e885d652fb0b21fedcf69738c627f94db6a44f42"
 
 [[package]]
 name = "peeking_take_while"

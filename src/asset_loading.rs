@@ -1,4 +1,6 @@
 		
+use bevy_asset_loader::prelude::LoadingState;
+use bevy_asset_loader::loading_state::LoadingStateAppExt;
 use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
 use bevy_magic_fx::{animated_material::{build_animated_material, AnimatedMaterial}, magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}, shader_variant::ShaderVariantManifest};
 
@@ -14,18 +16,36 @@ pub fn asset_loading_plugin(app: &mut App) {
 		    app
 
 
-		      .init_state::<LoadingState>()
+		      .init_state::<AssetLoadState>()
 		      .init_resource::<BuiltVfxResource>()
 		       .init_resource::<AssetLoadingResource>()
 		        .init_resource::<FolderLoadingResource>()
-		      .add_systems(Startup, setup)
+		    //  .add_systems(Startup, setup)
 
-		      .add_systems(Update, update_load_folders)
+		   //   .add_systems(Update, update_load_folders)
 
-		      .add_systems(OnEnter(LoadingState::FundamentalAssetsLoad),  load_shader_variants )
+		     // .add_systems(OnEnter(LoadingState::FundamentalAssetsLoad),  load_shader_variants )
 
-		       .add_systems(OnEnter(LoadingState::ShadersLoad),  load_magic_fx )
-		        ;
+		       //.add_systems(OnEnter(LoadingState::ShadersLoad),  load_magic_fx )
+		        
+
+                 
+                .add_loading_state(
+                    LoadingState::new(AssetLoadState::Init)
+                        .continue_to_state(AssetLoadState::FundamentalAssetsLoad)
+                        .load_collection::<AudioAssets>(),
+                )
+                .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
+         ;
+
+
+
+
+
+                
+      
+
+
  }
 
 
@@ -73,7 +93,7 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 #[derive(States,Hash,Eq,PartialEq,Debug,Clone,Default)]
-pub enum LoadingState {
+pub enum AssetLoadState {
 	#[default]
 	Init,
     FundamentalAssetsLoad,
@@ -137,7 +157,7 @@ fn update_load_folders(
             for handle in &loaded_folder.handles {
                 let asset_path = asset_server.get_path( handle.id()  ).unwrap(); 
 
-                info!("asset path {:?}", asset_path); 
+               // info!("asset path {:?}", asset_path); 
 
               
                 if (&asset_path.path()).starts_with("models/meshes") { 
@@ -293,6 +313,8 @@ fn load_magic_fx(
    }	
 
 
-   next_state.set(LoadingState::Complete)
+   next_state.set(LoadingState::Complete);
+
+   info!("Asset loading complete.");
 
 }

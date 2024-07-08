@@ -1,3 +1,4 @@
+use asset_loading::LoadingState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
 use bevy_editor_pls_default_windows::zones::ZoneEvent;
@@ -139,7 +140,7 @@ fn main() {
         .fn_plugin(editor_ui_plugin)
         .fn_plugin(camera_plugin)
           .add_systems(Startup, set_window_icon)
-        .add_systems(Startup, setup)
+        .add_systems(OnEnter(LoadingState::Complete), setup)
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
          .add_systems(Update, regions::update_regions_plane_visibility)
@@ -162,6 +163,9 @@ mut zone_event_writer: EventWriter<ZoneEvent>
     
     let editor_config = EditorConfig::load();
 
+     
+    /*
+
     if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
    
         commands
@@ -173,7 +177,10 @@ mut zone_event_writer: EventWriter<ZoneEvent>
             .insert(TerrainData::new()); 
 
     }
+    */ 
 
+
+/*
     for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
 
 
@@ -206,7 +213,7 @@ mut zone_event_writer: EventWriter<ZoneEvent>
         .insert(RegionsData::new()) 
         .insert(Visibility::Hidden)  // only in editor 
         ;
-
+*/
     commands.spawn(  DirectionalLightBundle {
         directional_light: DirectionalLight {
            // shadow_depth_bias: 0.5,
