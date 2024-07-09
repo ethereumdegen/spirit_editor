@@ -101,7 +101,7 @@ fn main() {
             DefaultPlugins
                 .set(WindowPlugin {
                     primary_window: Some(Window {
-                        present_mode: bevy::window::PresentMode::AutoNoVsync, //improves latency
+                        //present_mode: bevy::window::PresentMode::AutoNoVsync, //improves latency
 
                         title: "Mesh Terrain Editor".to_string(),
                         ..Default::default()

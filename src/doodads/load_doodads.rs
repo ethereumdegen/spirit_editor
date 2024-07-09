@@ -83,6 +83,7 @@ fn build_doodad_data_from_manifest(
                             println!("loaded gltf {:?}", model_path);
                         }
                     }*/
+ 
 
                     //now that our manifest is loaded, lets populate the doodad tag map resource 
                     for (doodad_name,doodad_definition) in &manifest.doodad_definitions {
@@ -97,7 +98,7 @@ fn build_doodad_data_from_manifest(
                     }
 
                      // Sort tags and doodad names
-                  
+                    info!("sorting doodad keys");
                     let mut sorted_keys: Vec<_> = doodad_tag_map_resource.doodad_tag_map.keys().cloned().collect();
                     sorted_keys.sort();
                     doodad_tag_map_resource.doodad_tag_map = sorted_keys.into_iter().map(|k| (k.clone(), doodad_tag_map_resource.doodad_tag_map.remove(&k).unwrap())).collect();
@@ -105,6 +106,7 @@ fn build_doodad_data_from_manifest(
                       for doodads in doodad_tag_map_resource.doodad_tag_map.values_mut() {
                         doodads.sort();
                     }
+                      info!("sorted dooodad keys");
  
 
              
