@@ -174,7 +174,7 @@ fn attach_models_to_doodads(
 
                 let Some(magic_fx) = built_vfx_registry.magic_fx_variants.get(&magic_fx_name ) else {
 
-                    info!("spawn magic fx fallback for {:?}",magic_fx_name);
+                    info!("could not spawn magic fx  {:?}",magic_fx_name);
                
                /*     commands
                     .entity(new_doodad_entity)
@@ -266,7 +266,7 @@ fn get_loaded_model_from_name<'a>(
     let model_handle = gltf_assets
                     .doodad_models
                     .get(model_name.as_str())
-                    .context(format!(" no doodad model registered at "))?;
+                    .context(format!(" no doodad model registered at {:?}", model_name))?;
 
       let loaded_model = models
                     .get(model_handle)
