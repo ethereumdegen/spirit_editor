@@ -39,6 +39,7 @@ pub fn asset_loading_plugin(app: &mut App) {
                          .load_collection::<GltfAssets>() 
                          .load_collection::<MeshAssets>()
                           .load_collection::<ShaderVariantAssets>() 
+                          .load_collection::<MagicFxVariantAssets>()
                            //.load_collection::<AnimatedMaterialAssets>() 
                 )
                 .add_systems(OnEnter(AssetLoadState::FundamentalAssetsLoad), load_shader_variants)
@@ -56,19 +57,19 @@ pub fn asset_loading_plugin(app: &mut App) {
  }
 
 #[derive(AssetCollection, Resource)]
-struct TextureAssets {
+pub struct TextureAssets {
    
      #[asset(path = "textures", collection(typed, mapped))]
-    pub(crate) textures: HashMap<AssetFileName, Handle<Image>>,
+    pub(crate) textures: HashMap<String, Handle<Image>>,
 
 
 }
 
 #[derive(AssetCollection, Resource)]
-struct GltfAssets {
+pub struct GltfAssets {
    
-     #[asset(path = "models/meshes", collection(typed, mapped))]
-    pub(crate) doodad_models: HashMap<AssetFileName, Handle<Gltf>>,
+     #[asset(path = "models/doodads", collection(typed, mapped))]
+    pub(crate) doodad_models: HashMap<String, Handle<Gltf>>,
 
 
 }
@@ -76,10 +77,10 @@ struct GltfAssets {
 
 
 #[derive(AssetCollection, Resource)]
-struct MeshAssets {
+pub struct MeshAssets {
    
      #[asset(path = "models/meshes", collection(typed, mapped))]
-    pub(crate) meshes: HashMap<AssetFileName, Handle<Mesh>>,
+    pub(crate) meshes: HashMap<String, Handle<Mesh>>,
 
 
 }
@@ -87,14 +88,14 @@ struct MeshAssets {
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct ShaderVariantAssets {
     #[asset(path = "shader_variants", collection(typed, mapped))]
-    pub(crate) variants: HashMap<String, Handle<ShaderVariantManifest>>, //see bevy shader play
+    pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
 }
 
 
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct MagicFxVariantAssets {
     #[asset(path = "magic_fx", collection(typed, mapped))]
-    pub(crate) magic_fx_variants: HashMap<String, Handle<MagicFxVariantManifest>>, //see bevy shader play
+    pub(crate) magic_fx_variants: HashMap<AssetFileStem, Handle<MagicFxVariantManifest>>, //see bevy shader play
 }
 
 
@@ -392,22 +393,32 @@ fn load_magic_fx(
                     }
 
                     let animated_materials_map = &built_vfx_resource.animated_materials_map;
-  
-                    let magic_fx = MagicFxVariant::from_manifest(
+    
+
+                        info!("loading magic fx {:?}", file_stem );
+
+                    if let Some(magic_fx) = MagicFxVariant::from_manifest(
                         magic_fx_variant_manifest,
                       
-                        & rebuilt_mesh_handle_map,
+                        &rebuilt_mesh_handle_map,
                       
                         &animated_materials_map,
                      
                         
-                    ).unwrap();
+                    ) {
 
-                    info!("loaded magic fx {:?}", file_stem );
 
-                    let variant_name = file_stem.clone(); 
+                        info!("loaded magic fx {:?}", file_stem );
 
-   				 built_vfx_resource.magic_fx_variants.insert(  variant_name, magic_fx)   ;
+                        let variant_name = file_stem.clone(); 
+
+                         built_vfx_resource.magic_fx_variants.insert(  variant_name.into(), magic_fx)   ;
+
+                    }else {
+
+                        warn!("unable to load  magic fx {:?}", file_stem  );
+                    }
+
 
    }	
 

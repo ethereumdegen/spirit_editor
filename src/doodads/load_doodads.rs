@@ -1,5 +1,12 @@
 
+use crate::asset_loading::GltfAssets;
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
+use crate::AssetLoadState;
 use bevy::prelude::*;
+
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadTagMapResource;
+ use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
+use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::DoodadPlacementComponent;
 
 
 
@@ -13,7 +20,7 @@ impl Plugin for DoodadLoadPlugin {
     fn build(&self, app: &mut App) {
         app
            .add_systems(OnEnter(AssetLoadState::Complete), load_doodad_manifest)
-           .add_systems(Update, build_doodad_data_from_manifest);
+           .add_systems(Update, build_doodad_data_from_manifest.run_if(in_state(AssetLoadState::Complete)) );
 
     }
 }
@@ -42,7 +49,7 @@ fn build_doodad_data_from_manifest(
     mut doodad_tag_map_resource: ResMut<DoodadTagMapResource>, 
     doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 
-    mut loaded_gltf_resource: ResMut<LoadedGltfAssets>,
+    mut loaded_gltf_resource: ResMut< GltfAssets>,
 
     asset_server: ResMut<AssetServer>,
 ) {

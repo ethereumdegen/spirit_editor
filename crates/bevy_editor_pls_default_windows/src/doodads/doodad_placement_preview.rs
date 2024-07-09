@@ -50,7 +50,7 @@ impl Plugin for DoodadPlacementPlugin {
   struct WireframeMarker {}
 
 #[derive(Component, Default)]
-  struct GhostlyMaterialMarker {} 
+ pub struct GhostlyMaterialMarker {} 
  
 #[derive(Component,Default)]
 pub struct DoodadPlacementComponent {

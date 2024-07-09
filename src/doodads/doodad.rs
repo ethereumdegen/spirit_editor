@@ -1,3 +1,8 @@
+use crate::AssetLoadState;
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
+use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::DoodadPlacementComponent;
+use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use crate::asset_loading::BuiltVfxHandleRegistry;
 use bevy::utils::Duration;
 use bevy_editor_pls_default_windows::doodads::DoodadNeedsModelAttached;
@@ -7,7 +12,7 @@ use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 use bevy_mod_sysfail::*;
 use bevy_editor_pls_default_windows::doodads::{doodad::
-{DoodadComponent, LoadedGltfAssets}, doodad_manifest::RenderableType};
+{DoodadComponent,  }, doodad_manifest::RenderableType};
  
 
 use anyhow::{Context, Result};
@@ -26,6 +31,7 @@ use crate::{
     liquid::LiquidPlaneComponent};
 
 
+use crate::asset_loading::GltfAssets;
 
 
 #[derive(Default)]
@@ -36,13 +42,13 @@ impl Plugin for DoodadPlugin {
         app
           //.insert_resource(LoadedGltfAssets::default())
             .add_systems(Update, (
-                attach_models_to_doodads, 
+                attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
 
                 remove_recently_failed_to_load,
 
-                update_doodad_placement_preview_model
+                update_doodad_placement_preview_model.run_if(in_state(AssetLoadState::Complete))
               //  add_wireframe_to_children
 
                 ));
@@ -252,13 +258,13 @@ fn get_loaded_model_from_name<'a>(
     model_name:String,
 
    
-    gltf_assets: &Res<LoadedGltfAssets>,
+    gltf_assets: &Res< GltfAssets>,
      models: &'a Res<'_, Assets<bevy::gltf::Gltf>>,
 
      ) -> Result< &'a Gltf >{
 
     let model_handle = gltf_assets
-                    .gltf_models
+                    .doodad_models
                     .get(model_name.as_str())
                     .context(format!(" no doodad model registered at "))?;
 

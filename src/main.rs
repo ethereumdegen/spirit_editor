@@ -165,8 +165,7 @@ mut zone_event_writer: EventWriter<ZoneEvent>
     let editor_config = EditorConfig::load();
 
      
-    /*
-
+     
     if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
    
         commands
@@ -178,10 +177,9 @@ mut zone_event_writer: EventWriter<ZoneEvent>
             .insert(TerrainData::new()); 
 
     }
-    */ 
+    
 
-
-/*
+ 
     for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
 
 
@@ -214,7 +212,7 @@ mut zone_event_writer: EventWriter<ZoneEvent>
         .insert(RegionsData::new()) 
         .insert(Visibility::Hidden)  // only in editor 
         ;
-*/
+ 
     commands.spawn(  DirectionalLightBundle {
         directional_light: DirectionalLight {
            // shadow_depth_bias: 0.5,
