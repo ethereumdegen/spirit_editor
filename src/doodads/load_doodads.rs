@@ -1,5 +1,5 @@
 
-use crate::asset_loading::GltfAssets;
+ 
 use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
 use crate::AssetLoadState;
 use bevy::prelude::*;
@@ -49,9 +49,9 @@ fn build_doodad_data_from_manifest(
     mut doodad_tag_map_resource: ResMut<DoodadTagMapResource>, 
     doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 
-    mut loaded_gltf_resource: ResMut< GltfAssets>,
+   // mut loaded_gltf_resource: ResMut< GltfAssets>,
 
-    asset_server: ResMut<AssetServer>,
+    //asset_server: ResMut<AssetServer>,
 ) {
     let Some(doodad_manifest_handle) = &doodad_manifest_resource.manifest else {
         return;

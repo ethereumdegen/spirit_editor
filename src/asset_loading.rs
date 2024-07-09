@@ -19,31 +19,48 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 		      .init_state::<AssetLoadState>()
 		      .init_resource::<BuiltVfxHandleRegistry>()
-		      // .init_resource::<AssetLoadingResource>()
-		     //   .init_resource::<FolderLoadingResource>()
-		    //  .add_systems(Startup, setup)
 
-		   //   .add_systems(Update, update_load_folders)
-
-		     // .add_systems(OnEnter(LoadingState::FundamentalAssetsLoad),  load_shader_variants )
-
-		       //.add_systems(OnEnter(LoadingState::ShadersLoad),  load_magic_fx )
-		        
-
-                 
-                .add_loading_state(
+              .add_loading_state(
                     LoadingState::new(AssetLoadState::Init)
-                        .continue_to_state(AssetLoadState::FundamentalAssetsLoad)
-                        .load_collection::<TextureAssets>() 
+                        .continue_to_state(AssetLoadState::TextureAssetsLoad)
+                        
+                         
+                )
 
+
+		     .add_loading_state(
+                    LoadingState::new(AssetLoadState::TextureAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .load_collection::<TextureAssets>() 
+ 
+                          
+                )
+ 
+             /* .add_loading_state(
+                    LoadingState::new(AssetLoadState::GltfAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        
                          .load_collection::<GltfAssets>() 
+                         
+                )*/
+
+
+              .add_loading_state(
+                    LoadingState::new(AssetLoadState::ShaderAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderVariantsLoad)
+                        
+                    
                          .load_collection::<MeshAssets>()
                           .load_collection::<ShaderVariantAssets>() 
                           .load_collection::<MagicFxVariantAssets>()
                            //.load_collection::<AnimatedMaterialAssets>() 
                 )
-                .add_systems(OnEnter(AssetLoadState::FundamentalAssetsLoad), load_shader_variants)
+
+
+               .add_systems(OnEnter(AssetLoadState::ShaderVariantsLoad), load_shader_variants)
                  .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
+                 
+              
          ;
 
 
@@ -56,6 +73,22 @@ pub fn asset_loading_plugin(app: &mut App) {
 
  }
 
+ #[derive(States,Hash,Eq,PartialEq,Debug,Clone,Default)]
+pub enum AssetLoadState {
+    #[default]
+    Init,
+    TextureAssetsLoad,
+    //GltfAssetsLoad,
+    ShaderAssetsLoad,
+    ShaderVariantsLoad,
+    ShadersLoad,
+    Complete
+
+}
+
+
+
+
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
    
@@ -65,6 +98,7 @@ pub struct TextureAssets {
 
 }
 
+/*
 #[derive(AssetCollection, Resource)]
 pub struct GltfAssets {
    
@@ -73,7 +107,7 @@ pub struct GltfAssets {
 
 
 }
-
+*/
 
 
 #[derive(AssetCollection, Resource)]
@@ -112,174 +146,7 @@ pub struct BuiltVfxHandleRegistry {
 
     
 }
-
-
-/*
-#[derive(Resource, Default)]
- pub  struct MagicFxAssets {
-
-
-  pub   magic_fx_variants: HashMap<String, MagicFxVariant>      
-
-}
-
-
-#[derive(Resource, Default)]
- pub  struct MeshAssets {
-
-
-  pub   magic_fx_variants: HashMap<String, MagicFxVariant>      
-
-}
-
-*/
-
-
-/*
-#[derive(Resource, Default)]
-  struct AssetLoadingResource {
-    texture_handles_map: HashMap<String, Handle<Image>>,
-    mesh_handles_map: HashMap<String, Handle<Mesh>>,
-    shader_variants_map: HashMap<String, Handle<ShaderVariantManifest>>,
-
-     magic_fx_variants_map: HashMap<String, Handle<MagicFxVariantManifest>>,
-
-    
-     animated_material_map: HashMap<String, Handle<AnimatedMaterial>>,
  
-}
-*/
-
-
-
-
-
-/*
-#[derive(Resource, Default)]
-  struct FolderLoadingResource {
-   
-
-    textures_folder_handle: Handle<LoadedFolder>,
-    shadvars_folder_handle: Handle<LoadedFolder>,
-    meshes_folder_handle: Handle<LoadedFolder>,
-    magicfx_folder_handle: Handle<LoadedFolder>,
-
-
-   
-}*/
-
-
-#[derive(States,Hash,Eq,PartialEq,Debug,Clone,Default)]
-pub enum AssetLoadState {
-	#[default]
-	Init,
-    FundamentalAssetsLoad,
-    ShadersLoad,
-    Complete
-
-}
-
-/*
-fn setup(
- 
-    asset_server: ResMut<AssetServer>,
- 
-
-    mut folder_loading_resource: ResMut<FolderLoadingResource>,
- 
-) {
-  
-    let textures_folder = asset_server.load_folder("textures/");
-
-    let shadvars_folder = asset_server.load_folder("shader_variants/");
-
-    let meshes_folder = asset_server.load_folder("models/meshes/");
-
-    let magicfx_folder = asset_server.load_folder("magic_fx/");
-
-    folder_loading_resource.textures_folder_handle = textures_folder;
-    folder_loading_resource.shadvars_folder_handle = shadvars_folder;
-    folder_loading_resource.meshes_folder_handle = meshes_folder;
-    folder_loading_resource.magicfx_folder_handle = magicfx_folder;
-
-
- 
-   
-}
-*/
-
-
-/*
-fn update_load_folders(
-       mut ev_asset: EventReader<AssetEvent<LoadedFolder>>,
-
-       asset_server: ResMut<AssetServer>,
-
-       loaded_folder_assets: Res<Assets<LoadedFolder>>,
-
-      mut asset_loading_resource: ResMut<AssetLoadingResource>,
-
-      mut next_state: ResMut<NextState<LoadingState>>
-
-    ){
-
-
-  for ev in ev_asset.read() {
-        match ev {
-            AssetEvent::LoadedWithDependencies { id } => {
-             
-            let loaded_folder = loaded_folder_assets.get( *id  ).unwrap();  
-
-
-            for handle in &loaded_folder.handles {
-                let asset_path = asset_server.get_path( handle.id()  ).unwrap(); 
-
-               // info!("asset path {:?}", asset_path); 
-
-              
-                if (&asset_path.path()).starts_with("models/meshes") { 
-                         asset_loading_resource.mesh_handles_map.insert((&asset_path.path().to_str().unwrap().to_string()).clone(), asset_server.load(  &asset_path ) ) ;
-                }
- 
-                if (&asset_path.path()).starts_with("textures") { 
-                         asset_loading_resource.texture_handles_map.insert((&asset_path.path().to_str().unwrap().to_string()).clone(), asset_server.load(  &asset_path ) ) ;
-                }
-
-                if (&asset_path.path()).starts_with("shader_variants") { 
-                         asset_loading_resource.shader_variants_map.insert((&asset_path.path().to_str().unwrap().to_string()).clone(), asset_server.load(  &asset_path ) ) ;
-                }
-
-                 if (&asset_path.path()).starts_with("magic_fx") { 
-                         asset_loading_resource.magic_fx_variants_map.insert((&asset_path.path().to_str().unwrap().to_string()).clone(), asset_server.load(  &asset_path ) ) ;
-                }
-
-               
-            }
-
-
-            if  !asset_loading_resource.mesh_handles_map.is_empty() 
-            &&  !asset_loading_resource.texture_handles_map.is_empty()
-            &&  !asset_loading_resource.shader_variants_map.is_empty() 
-            &&  !asset_loading_resource.magic_fx_variants_map.is_empty() 
-            {             
-
-                
-                next_state.set(LoadingState::FundamentalAssetsLoad);
-            }
-
-
-
-
-         }
-         _ => {} 
-
-
-     }
-
-    }
-
-}
-*/
 
 
 fn load_shader_variants( 

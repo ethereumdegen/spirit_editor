@@ -31,8 +31,7 @@ use crate::{
     liquid::LiquidPlaneComponent};
 
 
-use crate::asset_loading::GltfAssets;
-
+ 
 
 #[derive(Default)]
 pub(crate) struct DoodadPlugin;
@@ -82,8 +81,10 @@ fn attach_models_to_doodads(
         ),
     >,
 
-    models: Res<Assets<Gltf>>,
-    gltf_assets: Res<GltfAssets>,
+   // models: Res<Assets<Gltf>>,
+  //  gltf_assets: Res<GltfAssets>,
+
+   asset_server: Res<AssetServer>,
 
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -111,7 +112,34 @@ fn attach_models_to_doodads(
         match (&doodad_component.definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
 
-               match get_loaded_model_from_name(model_name, &gltf_assets, &models){
+                let doodad_name_stem = format!("{}#Scene0", model_name);
+
+                 let model_handle = asset_server.load(doodad_name_stem);
+
+
+
+                 let scene = commands
+                    .spawn(SceneBundle {
+                        scene: model_handle,
+                        ..Default::default()
+                    })
+                   
+                    
+                  //  .insert(
+                   //     Visibility::Hidden, //make it hidden until we deal w the colliders
+                   // )
+                    .id();
+
+                       commands.entity(new_doodad_entity)
+                              .remove::<DoodadNeedsModelAttached>()
+                                .remove::<RecentlyFailedToLoadModel>()
+  
+                               .add_child( scene  )
+                               
+                                 ; 
+
+
+              /* match get_loaded_model_from_name(model_name, &gltf_assets, &models){
 
                         Ok(loaded_model)=> {
 
@@ -151,7 +179,7 @@ fn attach_models_to_doodads(
 
                        }
 
-                 };
+                 };*/
                 
 
                
@@ -254,11 +282,12 @@ fn remove_recently_failed_to_load(
     }
 }
 
+/*
 fn get_loaded_model_from_name<'a>(
     model_name:String,
 
    
-    gltf_assets: &Res< GltfAssets>,
+  //  gltf_assets: &Res< GltfAssets>,
      models: &'a Res<'_, Assets<bevy::gltf::Gltf>>,
 
      ) -> Result< &'a Gltf >{
@@ -274,7 +303,7 @@ fn get_loaded_model_from_name<'a>(
 
 
          Ok(loaded_model)
-}
+}*/
 
  
 
@@ -289,6 +318,8 @@ pub(crate) fn add_doodad_collider_markers(
             //With<Handle<Mesh>>,
         ),
     > ,
+
+    parent_query: Query< &Parent > , 
    mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
 
    
@@ -297,9 +328,10 @@ pub(crate) fn add_doodad_collider_markers(
     let _span = info_span!("add_doodad_collider_markers").entered();
 
     for evt in scene_instance_evt_reader.read(){
-        let parent = evt.parent;
-        
-        if let Some((new_doodad_entity, doodad_component)) = doodad_query.get(parent).ok() {
+
+          let parent = evt.parent;
+
+          if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent).ok() {
 
              
             commands
@@ -308,8 +340,36 @@ pub(crate) fn add_doodad_collider_markers(
             .insert(DoodadColliderMarker::default())
 
              ;
+             continue;
+        } 
 
-        }
+
+
+         for parent_entity in AncestorIter::new(&parent_query, parent) {
+
+
+            if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
+
+                 
+                commands
+                .entity(new_doodad_entity)
+                
+                .insert(DoodadColliderMarker::default())
+
+                 ;
+                 continue
+
+            } 
+
+         }
+
+
+
+      
+
+        //let grand_parent_option = parent_query.get( parent  ).ok();
+        
+        
 
     }
 
@@ -416,8 +476,11 @@ pub fn update_doodad_placement_preview_model (
     doodad_manifest_resource: Res<DoodadManifestResource>,
     doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 
-    gltf_assets: Res<GltfAssets>,
-     models:  Res< Assets<bevy::gltf::Gltf>>,
+   // gltf_assets: Res<GltfAssets>,
+    // models:  Res< Assets<bevy::gltf::Gltf>>,
+
+
+      asset_server: Res<AssetServer>,
 
 
      //this is happening too often !! 
@@ -466,7 +529,37 @@ pub fn update_doodad_placement_preview_model (
            match (&doodad_definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
 
-               match get_loaded_model_from_name(model_name, &gltf_assets, &models){
+                  let doodad_name_stem = format!("{}#Scene0", model_name);
+
+                 let model_handle = asset_server.load(doodad_name_stem);
+
+
+                  let gltf_scene = commands.spawn(
+                                SceneBundle {
+                                    scene: model_handle,
+                                    ..Default::default()
+                                } )
+                                          
+                             .insert(GhostlyMaterialMarker {})
+                             .id();
+
+
+                            commands 
+                              .entity(placement_preview_entity)
+                               .add_child(
+                                gltf_scene
+                                 )
+                           //    .insert( Wireframe )
+                              
+                           
+                                  ; 
+
+
+
+
+
+
+              /* match get_loaded_model_from_name(model_name, &gltf_assets, &models){
 
                         Ok(loaded_model)=> {
 
@@ -499,7 +592,7 @@ pub fn update_doodad_placement_preview_model (
                        }
 
                  };
-                
+                */
 
               
             },
