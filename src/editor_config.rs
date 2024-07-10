@@ -2,8 +2,11 @@
 use bevy::prelude::*;
 use serde::{Deserialize, Serialize};
 
+ 
 
-#[derive(Serialize,Deserialize,Clone,Debug)]
+
+
+#[derive( Asset, Serialize,Deserialize,Clone,Debug )]
 pub struct EditorConfig {
 
 
@@ -14,11 +17,23 @@ pub struct EditorConfig {
 }
 
 
+impl TypePath for EditorConfig {
+    fn short_type_path() -> &'static str {
+        "editorconfig.ron"
+    }
+    fn type_path() -> &'static str {
+        "editorconfig.ron"
+    }
+}
+
+
+
+
 impl EditorConfig{
 
 
 	//this is a super nice way to read a manifest file ! no need to wait for bevy asset server 
-	pub fn load (
+	/*pub fn load (
 
 	     
 	) -> Self{
@@ -33,7 +48,7 @@ impl EditorConfig{
 
 
 	   	editor_config
-	}
+	}*/
 
 
 	pub fn get_initial_terrain_path_full(&self) -> Option<String> { 

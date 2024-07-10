@@ -1,4 +1,7 @@
 		
+use bevy_common_assets::ron::RonAssetPlugin;
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
+use crate::EditorConfig;
 use bevy::gltf::Gltf;
 use bevy_asset_loader::prelude::*; 
 use bevy_asset_loader::loading_state::LoadingStateAppExt;
@@ -20,10 +23,15 @@ pub fn asset_loading_plugin(app: &mut App) {
 		      .init_state::<AssetLoadState>()
 		      .init_resource::<BuiltVfxHandleRegistry>()
 
+
+
+         .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
+
+
               .add_loading_state(
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::TextureAssetsLoad)
-                        
+                        .load_collection::<EditorConfigAssets>() 
                          
                 )
 
@@ -97,6 +105,18 @@ pub struct TextureAssets {
 
 
 }
+
+#[derive(AssetCollection, Resource)]
+pub struct EditorConfigAssets {
+   
+     #[asset(path = "editor_config.editorconfig.ron" )]
+    pub(crate) editor_config:   Handle<EditorConfig> ,
+
+     #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
+    pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
+}
+
+
 
 /*
 #[derive(AssetCollection, Resource)]

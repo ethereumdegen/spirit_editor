@@ -2,8 +2,12 @@
 
 ## Bevy Mesh Terrain Editor
 
-- maybe perform the loading in discrete well-defined stages ?
-- synty swamp has an issue with texcoords 
+- add vertical controls 
+- bug : when i type in command boxes, it moves WASD 
+- bug: doodad manifest isnt loaded properly from bevy 
+
+ 
+- synty swamp has an issue with texcoords ?
 
 
 ## Immediate todo 

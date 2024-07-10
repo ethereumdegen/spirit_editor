@@ -26,11 +26,23 @@ pub struct DoodadTagMapResource {
 }
 
 
-#[derive(Asset, TypePath, Clone, Debug, Serialize, Deserialize)]
+#[derive(Asset,  Clone, Debug, Serialize, Deserialize)]
 pub struct DoodadManifest {
   //  pub doodad_tags: Vec<String>,
     pub doodad_definitions: HashMap<DoodadName,DoodadDefinition>,
 }
+
+
+impl TypePath for DoodadManifest {
+    fn short_type_path() -> &'static str {
+        "doodadmanifest.ron"
+    }
+    fn type_path() -> &'static str {
+        "doodadmanifest.ron"
+    }
+}
+
+
 
 impl DoodadManifest {
     pub fn get_doodad_definition_by_name(&self, name: &str) -> Option<DoodadDefinition> {

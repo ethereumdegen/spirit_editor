@@ -1,3 +1,4 @@
+use crate::asset_loading::EditorConfigAssets;
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
@@ -153,17 +154,31 @@ fn main() {
 
 /// set up a simple 3D scene
 fn setup(
-mut commands: Commands,
 
-mut zone_event_writer: EventWriter<ZoneEvent>
+   mut commands: Commands,
+
+   mut zone_event_writer: EventWriter<ZoneEvent>,
+
+   editor_config: Res<EditorConfigAssets>,
+   editor_config_assets: Res<Assets<EditorConfig >>
+
 
 
  // asset_server: Res<AssetServer>
 ) {
  
     
-    let editor_config = EditorConfig::load();
+   // let mut editor_config = None;
 
+ 
+
+     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+
+        panic!("Unable to load editor config");
+         
+     };
+
+      
      
      
     if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
