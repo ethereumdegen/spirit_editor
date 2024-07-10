@@ -1,9 +1,7 @@
 
 
 ## Bevy Mesh Terrain Editor
-
-- add vertical controls 
-- bug : when i type in command boxes, it moves WASD 
+ 
 - bug: doodad manifest isnt loaded properly from bevy 
 
  
