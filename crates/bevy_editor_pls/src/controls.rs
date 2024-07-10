@@ -1,6 +1,19 @@
 use bevy::{prelude::*, utils::HashMap};
 use bevy_editor_pls_core::{editor_window::EditorWindow, Editor, EditorEvent};
 
+
+
+
+
+
+#[derive(States,Hash,PartialEq,Eq,Debug,Clone,Default)]
+pub enum ControlsInteractionState {
+    #[default]
+    MovementAllowed,
+    MovementDisallowed
+
+}
+
 #[derive(Debug)]
 pub enum Button {
     Keyboard(KeyCode),
@@ -191,6 +204,27 @@ impl EditorControls {
             .any(|binding| binding.just_pressed(keyboard_input, mouse_input, editor))
     }
 }
+
+
+
+pub fn update_controls_interaction_state(
+
+        editor: Res <Editor>,
+
+      mut controls_state: ResMut<NextState<ControlsInteractionState>>
+
+){
+
+    if editor.listening_for_text() {
+
+        controls_state.set(ControlsInteractionState::MovementDisallowed);
+    }else {
+        controls_state.set(ControlsInteractionState::MovementAllowed);
+    }
+
+}
+
+
 
 pub fn editor_controls_system(
     controls: Res<EditorControls>,

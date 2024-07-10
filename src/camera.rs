@@ -1,3 +1,4 @@
+use bevy_editor_pls::controls::ControlsInteractionState;
 use bevy::prelude::*;
 
 use bevy::input::mouse::MouseMotion;
@@ -51,6 +52,8 @@ pub fn update_camera_look(
 pub fn update_camera_move(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
+
+    controls_interact_state: Res<State<ControlsInteractionState>>
 ) {
     const MOVE_SPEED: f32 = 1.0; // You can adjust this value as needed
 
@@ -58,6 +61,10 @@ pub fn update_camera_move(
         true => 6.0,
         false => 1.0,
     };
+
+    if *controls_interact_state == ControlsInteractionState::MovementDisallowed {
+        return; 
+    }
 
     // Apply to each camera with the CameraTag
     for (mut transform, _) in query.iter_mut() {
@@ -70,6 +77,26 @@ pub fn update_camera_move(
         if keyboard_input.pressed(KeyCode::KeyS) {
             let forward = transform.forward();
             transform.translation -= forward * MOVE_SPEED * boost_multiplier;
+        }
+
+        if keyboard_input.pressed(KeyCode::KeyA) {
+            let left = transform.left();
+            transform.translation += left * MOVE_SPEED * boost_multiplier;
+        }
+
+        if keyboard_input.pressed(KeyCode::KeyD) {
+            let left = transform.left();
+            transform.translation -= left * MOVE_SPEED * boost_multiplier;
+        }
+
+         if keyboard_input.pressed(KeyCode::AltLeft) {
+            let up = transform.up();
+            transform.translation -= up * MOVE_SPEED * boost_multiplier;
+        }
+
+        if keyboard_input.pressed(KeyCode::Space) {
+            let up = transform.up();
+            transform.translation += up * MOVE_SPEED * boost_multiplier;
         }
     }
 }
