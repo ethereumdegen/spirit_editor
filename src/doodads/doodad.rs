@@ -407,10 +407,10 @@ pub(crate) fn hide_doodad_collision_volumes(
                     .entity(collision_volumes_root_entity)
                     .insert(Visibility::Hidden);
 
-                println!(
+               /* println!(
                     "found collision volumes root entity for {:?} -- hiding them ",
                     &doodad_component
-                );
+                );*/
 
 
 

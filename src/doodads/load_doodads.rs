@@ -20,7 +20,7 @@ impl Plugin for DoodadLoadPlugin {
     fn build(&self, app: &mut App) {
         app
            .add_systems(OnEnter(AssetLoadState::Complete), load_doodad_manifest)
-           .add_systems(Update, build_doodad_data_from_manifest.run_if(in_state(AssetLoadState::Complete)) );
+           .add_systems(Update, build_doodad_data_from_manifest  );
 
     }
 }
@@ -38,7 +38,7 @@ fn load_doodad_manifest(
     mut doodad_manifest_resource: ResMut<DoodadManifestResource>,
 ) {
     doodad_manifest_resource.manifest = Some(asset_server.load("doodad_manifest.doodadmanifest.ron"));
-
+    info!("load doodad manifest");
  
 }
 
@@ -53,13 +53,22 @@ fn build_doodad_data_from_manifest(
 
     //asset_server: ResMut<AssetServer>,
 ) {
+
+ 
     let Some(doodad_manifest_handle) = &doodad_manifest_resource.manifest else {
         return;
     };
 
+
+
+
     for evt in evt_asset.read() {
         match evt {
             AssetEvent::LoadedWithDependencies { id } => {
+
+                 info!("build_doodad_data_from_manifest 2");
+
+
                 if id == &doodad_manifest_handle.id() {
                     let manifest: &DoodadManifest = doodad_manifest_assets
                         .get(doodad_manifest_handle.id())

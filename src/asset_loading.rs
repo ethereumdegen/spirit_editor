@@ -112,8 +112,8 @@ pub struct EditorConfigAssets {
      #[asset(path = "editor_config.editorconfig.ron" )]
     pub(crate) editor_config:   Handle<EditorConfig> ,
 
-     #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
-    pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
+    // #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
+    //pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
 }
 
 
