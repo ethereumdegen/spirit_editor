@@ -6,7 +6,10 @@ use bevy::{
 
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::{bevy_inspector::hierarchy::SelectedEntities, egui};
-use egui_gizmo::GizmoMode;
+//use egui_gizmo::GizmoMode;
+
+use transform_gizmo_egui::{Gizmo,GizmoOrientation,GizmoMode};
+
 
 use crate::{
     cameras::{ActiveEditorCamera, CameraWindow, EditorCamera, EDITOR_RENDER_LAYER},
@@ -193,11 +196,11 @@ fn draw_gizmo(
         };
         let model_matrix = transform.compute_matrix();
 
-        let Some(result) = egui_gizmo::Gizmo::new(selected)
+        let Some(result) = Gizmo::new(selected)
             .model_matrix(model_matrix.into())
             .view_matrix(view_matrix.into())
             .projection_matrix(projection_matrix.into())
-            .orientation(egui_gizmo::GizmoOrientation::Local)
+            .orientation(GizmoOrientation::Local)
             .mode(gizmo_mode)
             .interact(ui)
         else {

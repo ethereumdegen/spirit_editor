@@ -148,7 +148,7 @@ fn configure_camera_custom(
         return;
     };
 
-    let render_layers = RenderLayers::default().with(EDITOR_RENDER_LAYER);
+    let render_layers = RenderLayers::default().with(EDITOR_RENDER_LAYER.into());
 
     let target = RenderTarget::Window(WindowRef::Entity(editor.window()));
 
