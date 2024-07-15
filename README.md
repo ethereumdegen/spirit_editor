@@ -68,7 +68,7 @@ Place doodads in zone files (sub-scenes) which can be saved and loaded.  These a
 - Using the Zones window, you can spawn a zone entity.  Right click on this zone entity in the hierarchy to set it as the primary zone.  When a zone is primary, placed doodads will become children of the zone
 
 
-- Right click on the zone entity in the hierarchy to save the zone to a file.  You can use the zone window to load zone files back in later.  
+- Right click on the zone entity in the hierarchy to **save the zone to a file**.  You can use the zone window to load zone files back in later.   This is the ONLY way to save the doodads that you place.  
 
 
 
