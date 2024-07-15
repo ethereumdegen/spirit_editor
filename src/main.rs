@@ -6,9 +6,9 @@ use bevy_editor_pls_default_windows::zones::ZoneEvent;
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
-use bevy_foliage_paint::foliage_config::FoliageConfig;
-use bevy_foliage_paint::foliage::FoliageData;
-use bevy_foliage_paint::BevyFoliagePaintPlugin;
+//use bevy_foliage_paint::foliage_config::FoliageConfig;
+//use bevy_foliage_paint::foliage::FoliageData;
+//use bevy_foliage_paint::BevyFoliagePaintPlugin;
 use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
@@ -50,7 +50,7 @@ mod liquid;
 
 mod doodads;
 mod terrain;
-mod foliage; 
+//mod foliage; 
 
 mod regions;
 
@@ -118,18 +118,20 @@ fn main() {
         )   
         
 
-      //  .add_plugins(DefaultRaycastingPlugin)
+        .add_plugins(CursorRayPlugin)
  
 
         .add_plugins(TerrainMeshPlugin::default())
 
         .add_plugins(BevyRegionsPlugin::default())
-        .add_plugins(BevyFoliagePaintPlugin::default() )
+       // .add_plugins(BevyFoliagePaintPlugin::default() )
+
+      // .add_plugins(foliage::FoliagePlugin  )
 
         .add_plugins(doodads::doodad::DoodadPlugin)
         .add_plugins(doodads::load_doodads::DoodadLoadPlugin)
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
-        .add_plugins(foliage::FoliagePlugin  )
+     
 
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )
@@ -205,7 +207,7 @@ fn setup(
 
 
               
-     commands
+     /*commands
         .spawn(SpatialBundle {
            transform: Transform::from_xyz(0.0, 0.0, 0.0) , 
             ..default()
@@ -213,7 +215,7 @@ fn setup(
         .insert(FoliageConfig::load_from_file("assets/foliage/foliage_config.ron").unwrap())
         .insert(FoliageData::new()) 
         //.insert(Visibility::Hidden)  // only in editor 
-        ;
+        ;*/
 
 
         //spawn regions painting plane 

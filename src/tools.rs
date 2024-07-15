@@ -10,12 +10,12 @@ use bevy_regions::edit::{
     EditRegionEvent, 
     EditingTool as RegionsEditingTool,
      RegionBrushEvent};
-
+/*
 use bevy_foliage_paint::edit::{
     BrushType as FoliageBrushType, 
     EditFoliageEvent, 
     EditingTool as FoliageEditingTool,
-     FoliageBrushEvent};
+     FoliageBrushEvent};*/
 
      
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
@@ -70,7 +70,7 @@ enum EditingTool {
 
     TerrainEditingTool(TerrainEditingTool),
     RegionsEditingTool(RegionsEditingTool),
-    FoliageEditingTool(FoliageEditingTool),
+   // FoliageEditingTool(FoliageEditingTool),
 
 }
 
@@ -99,10 +99,10 @@ impl From<EditorToolsState> for EditingTool {
                      ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
                         region_index: state.color.r as u8,
                     }),  
-                    ToolMode::Foliage => EditingTool::FoliageEditingTool( 
+                  /*  ToolMode::Foliage => EditingTool::FoliageEditingTool( 
                         FoliageEditingTool::SetFoliageDensity {
                         density: state.color.r as u8,
-                    }),  
+                    }),  */
             } 
        
     }
@@ -115,7 +115,7 @@ fn update_brush_paint(
     mut raycast: Raycast,
 
     mut edit_terrain_event_writer: EventWriter<EditTerrainEvent>,
-    mut edit_foliage_event_writer: EventWriter<EditFoliageEvent>,
+   // mut edit_foliage_event_writer: EventWriter<EditFoliageEvent>,
     mut edit_regions_event_writer: EventWriter<EditRegionEvent>,
     // command_event_writer: EventWriter<TerrainCommandEvent>,
     editor_tools_state: Res<EditorToolsState>,
@@ -197,7 +197,7 @@ fn update_brush_paint(
                   
 
                 },
-                EditingTool::FoliageEditingTool(foliage_edit_tool) => {
+               /* EditingTool::FoliageEditingTool(foliage_edit_tool) => {
 
                        let  foliage_brush_type = match &brush_type {
                             BrushType::SetExact => FoliageBrushType::SetExact,
@@ -215,7 +215,7 @@ fn update_brush_paint(
                             radius,
                         });
                       
-                },
+                },*/
                  EditingTool::RegionsEditingTool(region_edit_tool) => {
 
                        let  regions_brush_type = match &brush_type {

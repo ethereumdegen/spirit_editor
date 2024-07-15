@@ -3961,7 +3961,7 @@
 
          "vfx_leaves":  (
             name: "vfx_leaves",
-            model: CubeShape( (color: Rgba(
+            model: CubeShape( (color: LinearRgba(
                                         red: 0.1,
                                         green: 0.8,
                                         blue: 0.1,
@@ -4098,7 +4098,7 @@
 
        "trigger_volume": (
             name: "trigger_volume",
-            model:  CubeShape( (color: Rgba(
+            model:  CubeShape( (color: LinearRgba(
                                         red: 0.1,
                                         green: 0.4,
                                         blue: 0.8,
@@ -4119,7 +4119,7 @@
 
         "editor_notes": (
             name: "editor_notes",
-            model:  CubeShape( ( color: Rgba(
+            model:  CubeShape( ( color: LinearRgba(
                                         red: 0.1,
                                         green: 0.8,
                                         blue: 0.1,

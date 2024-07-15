@@ -14,14 +14,14 @@
 		  start_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
 		  end_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
 
-		  start_tint_color: Some(   Rgba(
+		  start_tint_color: Some(   LinearRgba(
 			        red: 1.0,
 			        green: 1.0,
 			        blue: 1.0,
 			        alpha: 1.0
 			    )),
 
-		  end_tint_color: Some(   Rgba(
+		  end_tint_color: Some(   LinearRgba(
 			        red: 1.0,
 			        green:1.0,
 			        blue: 1.0,

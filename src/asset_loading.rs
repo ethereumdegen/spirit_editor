@@ -214,7 +214,7 @@ fn load_shader_variants(
                     let Some(built_material) = build_animated_material(
                         shader_variant_manifest,
                         &rebuilt_texture_handle_map
-                     ) else {
+                     ).ok() else {
                         warn!("could not load {:?}", &shadvar_name);
                         continue;
                     };

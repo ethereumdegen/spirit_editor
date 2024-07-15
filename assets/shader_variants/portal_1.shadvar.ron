@@ -9,13 +9,13 @@
     distortion_amount: 0.07 , 
     
 
-    color: Rgba(
+    color: LinearRgba(
         red: 0.2,
         green: 0.3,
         blue: 0.2,
         alpha: 0.8
     ),
-     emissive: Rgba(
+     emissive: LinearRgba(
          red: 33.0,
         green: 0.3,
         blue: 33.0,

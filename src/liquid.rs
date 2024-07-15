@@ -44,8 +44,7 @@ pub struct LiquidPlaneComponent {
 //const WATER_SIZE:u32 = 256;
 
  
-
- #[sysfail]
+ 
   fn add_model_to_liquid_plane(
     mut commands: Commands,
     added_liquid_plane_query: Query<
@@ -67,8 +66,7 @@ pub struct LiquidPlaneComponent {
      
  
 )  {
-    #[cfg(feature = "tracing")]
-    let _span = info_span!("add_model_to_liquid_plane").entered();
+    
 
     for (new_entity,liquid_plane_component) in added_liquid_plane_query.iter() {
       
@@ -126,9 +124,9 @@ pub struct LiquidManifest {
 #[derive(Serialize,Deserialize,Clone,Debug)]
 pub struct LiquidDefinition {
 
-    pub shallow_color: Option<Color> ,
-     pub deep_color: Option<Color> ,
-     pub foam_color: Option<Color> ,
+    pub shallow_color: Option<LinearRgba> ,
+     pub deep_color: Option<LinearRgba> ,
+     pub foam_color: Option<LinearRgba> ,
 
 
 }
@@ -144,15 +142,15 @@ impl LiquidDefinition {
   
 
             if let Some(shallow_color) = self.shallow_color {
-                 liquid_material.extension.custom_uniforms.depth_gradient_shallow = shallow_color;
+                 liquid_material.extension.custom_uniforms.depth_gradient_shallow = shallow_color.into();
             }   
 
             if let Some(deep_color) = self.deep_color {
-                 liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color;
+                 liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color.into();
             }  
 
              if let Some(foam_color) = self.foam_color {
-                 liquid_material.extension.custom_uniforms.foam_color = foam_color;
+                 liquid_material.extension.custom_uniforms.foam_color = foam_color.into();
             }   
  
 

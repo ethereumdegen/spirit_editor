@@ -7,7 +7,7 @@ use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
-use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
+//use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
 
@@ -75,13 +75,13 @@ pub enum ToolMode {
     #[default]
     Height,
     Splat,
-    Foliage,
+  //  Foliage,
     Regions
 }
-const TOOL_MODES: [ToolMode; 4] = [
+const TOOL_MODES: [ToolMode; 3] = [
 ToolMode::Height, 
 ToolMode::Splat, 
-ToolMode::Foliage, 
+//ToolMode::Foliage, 
 ToolMode::Regions
 ];
 
@@ -113,7 +113,7 @@ impl Display for ToolMode {
         let label = match self {
             ToolMode::Height => "Height",
             ToolMode::Splat => "Splat",
-            ToolMode::Foliage => "Foliage",
+          //  ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions"
         };
 
@@ -125,7 +125,7 @@ fn editor_tools(
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
-    mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
+   // mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
 
     mut contexts: EguiContexts,
@@ -140,7 +140,7 @@ fn editor_tools(
         if ui.button("Save All   (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
-            foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
+         //   foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
         }
 
        // if ui.button("Save Splat and Height").clicked() {
@@ -276,7 +276,7 @@ fn editor_tools(
                         ,
                 );
             },
-            ToolMode::Foliage => {
+           /* ToolMode::Foliage => {
 
 
                  egui::ComboBox::new("brush_type", "")
@@ -306,7 +306,7 @@ fn editor_tools(
                 );
 
 
-            }
+            }*/
             ToolMode::Regions => {
 
 

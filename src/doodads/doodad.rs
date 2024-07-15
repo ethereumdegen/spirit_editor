@@ -17,7 +17,7 @@ use bevy_editor_pls_default_windows::doodads::{doodad::
 
 use anyhow::{Context, Result};
 
-use bevy_mod_sysfail::*;
+ 
 
 use bevy_mod_picking::prelude::*;
  use bevy_magic_fx::magic_fx::MagicFxVariantComponent;
@@ -68,7 +68,7 @@ pub struct DoodadColliderMarker {}
 
 const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 
-#[sysfail]
+ 
 fn attach_models_to_doodads(
     mut commands: Commands,
     added_doodad_query: Query<
@@ -92,9 +92,7 @@ fn attach_models_to_doodads(
       built_vfx_registry: Res<BuiltVfxHandleRegistry>,
     time: Res<Time>, 
 ) {
-    #[cfg(feature = "tracing")]
-    let _span = info_span!("add_model_to_doodads").entered();
-
+    
     for (new_doodad_entity,  doodad_component) in added_doodad_query.iter() {
      //   let doodad_name = &name_comp.to_string();
 
@@ -185,11 +183,15 @@ fn attach_models_to_doodads(
                
             }
             RenderableType::CubeShape(cube_shape_def) => {
+
+                let cube_def_color: Color = cube_shape_def.color.clone().into();
+
+
                 let spawned_entity = commands
                     .entity(new_doodad_entity)
                     .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
                      .remove::<DoodadNeedsModelAttached>()
-                    .insert(materials.add(cube_shape_def.color.clone())).id();
+                    .insert(materials.add( cube_def_color  )).id();
 
 
                 if cube_shape_def.wireframe {
@@ -307,7 +309,7 @@ fn get_loaded_model_from_name<'a>(
 
  
 
-#[sysfail]
+ 
 pub(crate) fn add_doodad_collider_markers(
     mut commands: Commands,
     doodad_query: Query<
@@ -324,9 +326,7 @@ pub(crate) fn add_doodad_collider_markers(
 
    
 )   {
-    #[cfg(feature = "tracing")]
-    let _span = info_span!("add_doodad_collider_markers").entered();
-
+  
     for evt in scene_instance_evt_reader.read(){
 
           let parent = evt.parent;
@@ -379,9 +379,7 @@ pub(crate) fn add_doodad_collider_markers(
 
 
 
-
-
- #[sysfail]
+ 
 pub(crate) fn hide_doodad_collision_volumes(
     mut commands: Commands,
     doodad_query: Query<(Entity, &DoodadComponent, &Children), (Added<DoodadColliderMarker> ) >,

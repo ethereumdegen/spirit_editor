@@ -7,13 +7,13 @@
     scroll_repeats: ( 1.0,1.0),
     distortion_amount: 0.002 , 
 
-    color: Rgba(
+    color: LinearRgba(
         red: 6.0,
         green:  6.0,
         blue:  1.0,
         alpha: 0.8
     ),
-     emissive: Rgba(
+     emissive: LinearRgba(
          red: 6.0,
         green: 6.0,
         blue: 1.0,
