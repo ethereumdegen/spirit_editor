@@ -11,7 +11,7 @@ use bevy::scene::SceneInstanceReady;
 use bevy_editor_pls_core::Editor;
 use bevy_inspector_egui::bevy_egui::EguiContexts;
 use bevy_mod_raycast::immediate::RaycastSettings;
-use bevy_mod_raycast::CursorRay;
+use bevy_mod_raycast::cursor::CursorRay;
 
 use bevy_mod_raycast::prelude::Raycast;
 
