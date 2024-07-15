@@ -38,7 +38,7 @@ Place doodads in zone files (sub-scenes) which can be saved and loaded.  These a
 
 ### Placing Doodads 
 
- - Create a file at assets/doodad_manifest.manifest.ron  and build your doodad definitions in there 
+ - Create a file at assets/doodad_manifest.manifest.ron  and build your doodad definitions in there.  By default, this file will be broken since model assets are gitignored out due to licensing.
 
 ```
  # this is an example doodad manifest file telling the editor how to render (preview) doodads 
