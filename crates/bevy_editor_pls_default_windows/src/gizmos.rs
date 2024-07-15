@@ -49,6 +49,7 @@ impl EditorWindow for GizmoWindow {
             if let (Some(hierarchy_state), Some(_camera_state)) =
                 (cx.state::<HierarchyWindow>(), cx.state::<CameraWindow>())
             {
+                apply_gizmo_component( ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
              //   draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
             }
         }
@@ -170,7 +171,35 @@ fn add_gizmo_markers(
     }
 }
 
+
+fn apply_gizmo_component(
+
+
+      ui: &mut egui::Ui,
+    world: &mut World,
+    selected_entities: &SelectedEntities,
+    gizmo_mode: EnumSet<GizmoMode>,
+    ){
+
+
+      for selected in selected_entities.iter() {
+        let Some(transform) = world.get::<Transform>(selected) else {
+            continue;
+        };
+
+
+        let mut commands = world.commands(); 
+
+        commands.entity(selected).insert ( GizmoTarget ::default() );
+
+
+    }
+
+
+}
 /*
+
+
 fn draw_gizmo(
     ui: &mut egui::Ui,
     world: &mut World,
