@@ -6,7 +6,7 @@ use bevy::prelude::*;
 use doodads::DoodadPlugin;
 use zones::{zone_file::{CustomProp, CustomPropsComponent},  ZoneEvent, ZoneResource};
 
- 
+ use transform_gizmo_bevy::TransformGizmoPlugin;
 
 
 pub mod add;
@@ -43,6 +43,7 @@ impl Plugin for StandardWindowsPlugin {
 
 
             .add_plugins(DoodadPlugin {})
+             .add_plugins(TransformGizmoPlugin)
           
             .add_systems(Update, placement::update_placement_tool_inputs)
             .add_systems(Update, placement::handle_placement_tool_events)

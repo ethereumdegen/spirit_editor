@@ -1,3 +1,4 @@
+use transform_gizmo_bevy::prelude::*;
 use bevy::{
     ecs::query::QueryFilter,
     prelude::*,
@@ -8,7 +9,7 @@ use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::{bevy_inspector::hierarchy::SelectedEntities, egui};
 //use egui_gizmo::GizmoMode;
 
-use transform_gizmo_egui::{Gizmo,GizmoOrientation,GizmoMode};
+use transform_gizmo_bevy::{Gizmo,GizmoOrientation,GizmoMode};
 
 
 use crate::{
@@ -18,14 +19,14 @@ use crate::{
 
 pub struct GizmoState {
     pub camera_gizmo_active: bool,
-    pub gizmo_mode: GizmoMode,
+    pub gizmo_mode: EnumSet<GizmoMode>,
 }
 
 impl Default for GizmoState {
     fn default() -> Self {
         Self {
             camera_gizmo_active: true,
-            gizmo_mode: GizmoMode::Translate,
+            gizmo_mode: GizmoMode::all(),
         }
     }
 }
@@ -48,7 +49,7 @@ impl EditorWindow for GizmoWindow {
             if let (Some(hierarchy_state), Some(_camera_state)) =
                 (cx.state::<HierarchyWindow>(), cx.state::<CameraWindow>())
             {
-                draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
+             //   draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
             }
         }
     }
@@ -169,11 +170,12 @@ fn add_gizmo_markers(
     }
 }
 
+/*
 fn draw_gizmo(
     ui: &mut egui::Ui,
     world: &mut World,
     selected_entities: &SelectedEntities,
-    gizmo_mode: GizmoMode,
+    gizmo_mode: EnumSet<GizmoMode>,
 ) {
     let Ok((cam_transform, projection)) = world
         .query_filtered::<(&GlobalTransform, &Projection), With<ActiveEditorCamera>>()
@@ -190,14 +192,27 @@ fn draw_gizmo(
         return;
     }
 
+    let gizmo = Gizmo::default();
+
+
     for selected in selected_entities.iter() {
         let Some(transform) = world.get::<Transform>(selected) else {
             continue;
         };
         let model_matrix = transform.compute_matrix();
 
-        let Some(result) = Gizmo::new(selected)
-            .model_matrix(model_matrix.into())
+        gizmo.update_config(GizmoConfig {
+            view_matrix: view_matrix.into(),
+            projection_matrix: projection_matrix.into(),
+            modes: GizmoMode::all(),
+            orientation: GizmoOrientation::Local,
+            ..Default::default()
+        });
+
+
+
+       /* let Some(result) = Gizmo::new(selected)
+       //     .model_matrix(model_matrix.into())
             .view_matrix(view_matrix.into())
             .projection_matrix(projection_matrix.into())
             .orientation(GizmoOrientation::Local)
@@ -205,7 +220,7 @@ fn draw_gizmo(
             .interact(ui)
         else {
             continue;
-        };
+        };*/
 
         let mut transform = world.get_mut::<Transform>(selected).unwrap();
         *transform = Transform {
@@ -215,3 +230,4 @@ fn draw_gizmo(
         };
     }
 }
+*/

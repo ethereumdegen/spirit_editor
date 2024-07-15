@@ -104,7 +104,7 @@ egui = "0.28"
 egui_dock = "0.13"
 # egui-gizmo = "0.16"  # deprecated ? 
 
- transform-gizmo-egui = "0.3"
+transform-gizmo-bevy= "0.3"
 
  
 [profile.dev.package."*"]

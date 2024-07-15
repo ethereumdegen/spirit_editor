@@ -11,6 +11,7 @@ use bevy_editor_pls_core::{
 };
 use bevy_inspector_egui::egui;
 // use bevy_mod_picking::prelude::PickRaycastSource;
+use transform_gizmo_bevy::GizmoCamera;
 
 use crate::hierarchy::{HideInEditor, HierarchyWindow};
 
@@ -156,6 +157,7 @@ fn configure_camera_custom(
 
     commands.entity(cam_entity)
     .insert( ActiveEditorCamera {} )
+    .insert(   GizmoCamera   )
     .insert( NotInScene {} )
      .insert( HideInEditor {} )
        .insert( EditorCamera {} )
