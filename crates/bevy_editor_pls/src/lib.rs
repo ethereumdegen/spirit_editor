@@ -5,6 +5,7 @@
 pub mod controls;
 
  
+use bevy::prelude::AppExtStates;
 
 
 use crate::controls::ControlsInteractionState;
@@ -101,7 +102,7 @@ impl Plugin for EditorPlugin {
                 if window.title == "Bevy App" {
                     window.title = "bevy_editor_pls".into();
                 }
-                let entity = app.world.spawn(window);
+                let entity = app.world_mut().spawn(window);
                 WindowRef::Entity(entity.id())
             }
             EditorWindowPlacement::Window(entity) => WindowRef::Entity(entity),

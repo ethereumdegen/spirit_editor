@@ -61,8 +61,7 @@ use crate::tools::brush_tools_plugin;
 
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
-
-use seldom_fn_plugin::FnPluginExt;
+ 
 
 
 
@@ -119,7 +118,7 @@ fn main() {
         )   
         
 
-        .add_plugins(DefaultRaycastingPlugin)
+      //  .add_plugins(DefaultRaycastingPlugin)
  
 
         .add_plugins(TerrainMeshPlugin::default())
@@ -137,10 +136,10 @@ fn main() {
         .add_plugins(asset_loading_plugin)
 
  
-        .fn_plugin(liquid_plugin)
-        .fn_plugin(brush_tools_plugin)
-        .fn_plugin(editor_ui_plugin)
-        .fn_plugin(camera_plugin)
+        .add_plugins(liquid_plugin)
+        .add_plugins(brush_tools_plugin)
+        .add_plugins(editor_ui_plugin)
+        .add_plugins(camera_plugin)
           .add_systems(Startup, set_window_icon)
         .add_systems(OnEnter(AssetLoadState::Complete), setup)
         //move to brushes and tools lib

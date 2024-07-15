@@ -64,12 +64,14 @@ fn save_world(
     name: &str,
     entities: std::collections::HashSet<Entity>,
 ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let type_registry = world.get_resource::<AppTypeRegistry>().unwrap();
+   /* let type_registry = world.get_resource::<AppTypeRegistry>().unwrap();
     let mut scene_builder = DynamicSceneBuilder::from_world(world);
     scene_builder = scene_builder.extract_entities(entities.into_iter());
     let scene = scene_builder.build();
 
     let ron = scene.serialize (type_registry)?;
-    std::fs::write(name, ron)?;
+    std::fs::write(name, ron)?;*/
+
+    warn!("Save world is deprecated-- save zone files and terrain files instead.");
     Ok(())
 }
