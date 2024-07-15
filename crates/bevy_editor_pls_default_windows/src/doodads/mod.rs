@@ -7,7 +7,6 @@ use rand::Rng;
 
 use bevy::utils::HashMap;
 
-use bevy::gltf::{Gltf, GltfMesh, GltfNode};
 
 use crate::doodads::doodad_manifest::RenderableType;
 use crate::placement::PlacementWindow;

@@ -1,3 +1,5 @@
+ 
+use bevy_editor_pls_core::Editor;
 use transform_gizmo_bevy::prelude::*;
 use bevy::{
     ecs::query::QueryFilter,
@@ -16,6 +18,25 @@ use crate::{
     cameras::{ActiveEditorCamera, CameraWindow, EditorCamera, EDITOR_RENDER_LAYER},
     hierarchy::HierarchyWindow,
 };
+
+
+/*
+pub struct GizmoPlugin {}
+impl Plugin for GizmoPlugin {
+    fn build(&self, app: &mut App) {
+        //put this inside of zone plugin ?
+         app
+
+            
+           .add_systems(Update, update_gizmo_components)
+         
+            
+            ;
+    }
+}
+
+*/
+
 
 pub struct GizmoState {
     pub camera_gizmo_active: bool,
@@ -49,7 +70,7 @@ impl EditorWindow for GizmoWindow {
             if let (Some(hierarchy_state), Some(_camera_state)) =
                 (cx.state::<HierarchyWindow>(), cx.state::<CameraWindow>())
             {
-                apply_gizmo_component( ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
+               apply_gizmo_component( ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
              //   draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
             }
         }
@@ -171,32 +192,81 @@ fn add_gizmo_markers(
     }
 }
 
+ /*
+fn update_gizmo_components(    
 
-fn apply_gizmo_component(
+    mut commands:Commands , 
+    selected_query: Query<Entity,( With<SelectedInHierarchy>,Without<GizmoTarget>)>,
+
+    deselected_query: Query<Entity,( Without<SelectedInHierarchy>,With  <GizmoTarget>)>
+
+   
+    ){
 
 
-      ui: &mut egui::Ui,
+
+     
+    for deselected_entity in deselected_query.iter(){
+
+         commands.entity(deselected_entity).remove::<GizmoTarget>();
+
+
+    }
+    
+
+ 
+    for selected_entity in selected_query.iter(){
+
+         commands.entity(selected_entity).insert ( GizmoTarget ::default() );
+
+
+    }
+
+
+
+}*/
+ 
+
+
+fn apply_gizmo_component (
+
+     ui: &mut egui::Ui,
     world: &mut World,
     selected_entities: &SelectedEntities,
     gizmo_mode: EnumSet<GizmoMode>,
     ){
 
 
-      for selected in selected_entities.iter() {
-        let Some(transform) = world.get::<Transform>(selected) else {
-            continue;
-        };
 
 
-        let mut commands = world.commands(); 
+        let mut gizmo_target_query = world.query_filtered::<Entity, With <GizmoTarget>  >(); 
+        let   gizmo_target_entities: Vec<_> = gizmo_target_query.iter(world).collect();         
 
-        commands.entity(selected).insert ( GizmoTarget ::default() );
+        for target in gizmo_target_entities.iter(){
+
+            if selected_entities.contains(*target) {
+                continue;
+            }
+
+              world.commands().entity(*target).remove::<GizmoTarget>();
+ 
+        }
 
 
-    }
+          for selected in selected_entities.iter() {
+            let Some(transform) = world.get::<Transform>(selected) else {
+                continue;
+            };
 
+     
+
+            world.commands().entity(selected).insert ( GizmoTarget ::default() );
+
+
+        }
 
 }
+
 /*
 
 
