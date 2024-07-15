@@ -69,7 +69,7 @@ fn save_world(
     scene_builder = scene_builder.extract_entities(entities.into_iter());
     let scene = scene_builder.build();
 
-    let ron = scene.serialize_ron(type_registry)?;
+    let ron = scene.serialize (type_registry)?;
     std::fs::write(name, ron)?;
     Ok(())
 }
