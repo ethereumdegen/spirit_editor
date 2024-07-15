@@ -1,6 +1,8 @@
-## Bevy Mesh Terrain Editor 
+##  Spirit Editor 
 
-Load, Edit, and Save terrain and other game data files for bevy_mesh_terrain in a standalone application.
+A level editor for 3D worlds for the Bevy game engine.  
+
+ 
 
 ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/9e32f8a0-e513-4ee0-8b4b-3e4d73ab8608)
 
@@ -9,25 +11,29 @@ Load, Edit, and Save terrain and other game data files for bevy_mesh_terrain in 
 ## Tool Modes 
 1. Terrain Height
 2. Terrain Splat
-3. Foliage (warbler grass)
+3. Foliage (warbler grass)  ( disabled for now )
 4. Regions
 5. Doodad Placement (Press ESC to toggle) 
 
 
+
+
+### Terrain Splat Map
+ 
+- When painting splat, the system supports up to 255 textures with high efficiency and very few draw calls. However, the tradeoff is you have to be careful how you blend and paint them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
+
+
+
+ 
 ## Doodads and zone files 
  
-Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.    
+Place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.    
 
 ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/cfea97c5-b73a-4a54-9e27-e1f0a5c36229)
 
 ![level_blockout_1](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/63988249-0758-4518-a51c-b0c6a25bf2b4)
 
 
-### Terrain Splat Map
- 
-- When painting, the system supports up to 255 textures with high efficiency and very few draw calls. However, the tradeoff is you have to be careful how you blend and paint them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
-
- 
 
 
 ### Placing Doodads 
@@ -54,10 +60,6 @@ Also, place doodads in zone files (sub-scenes) which can be saved and loaded.  T
 
 ```
 
-#### Coordinates 
-
-Rotation is   EulerRot::YXZ  - yaw pitch roll. 
-ex: Typically, trees will only have a yaw rotation. 
 
 
 
@@ -67,6 +69,13 @@ ex: Typically, trees will only have a yaw rotation.
 
 
 - Right click on the zone entity in the hierarchy to save the zone to a file.  You can use the zone window to load zone files back in later.  
+
+
+
+#### Coordinates 
+
+Rotation is   EulerRot::YXZ  - yaw pitch roll. 
+ex: Typically, trees will only have a yaw rotation. 
 
 
 ### Exporting files to your game 
