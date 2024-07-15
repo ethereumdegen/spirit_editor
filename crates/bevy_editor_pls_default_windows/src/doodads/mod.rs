@@ -20,7 +20,7 @@ use bevy_inspector_egui::egui::{self, ScrollArea};
 
 use bevy_common_assets::ron::RonAssetPlugin;
 
-use bevy_mod_raycast::CursorRay;
+use bevy_mod_raycast::cursor::CursorRay;
 
 use bevy_mod_raycast::prelude::Raycast;
 

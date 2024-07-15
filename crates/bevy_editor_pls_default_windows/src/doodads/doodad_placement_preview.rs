@@ -300,7 +300,7 @@ fn apply_ghostly_material(
                let mut  new_mat = mat.clone();
 
                new_mat.alpha_mode = AlphaMode::Blend;
-               new_mat.base_color = mat.base_color.clone().with_a( 0.25 );
+               new_mat.base_color = mat.base_color.clone().with_alpha( 0.25 );
 
                 let new_material_handle = standard_material_assets.add(new_mat);
                commands.entity(child_entity).insert( new_material_handle   );

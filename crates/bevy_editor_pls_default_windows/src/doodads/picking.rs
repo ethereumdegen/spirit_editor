@@ -2,7 +2,7 @@ use crate::hierarchy::HierarchyWindow;
 use bevy::{input::keyboard::KeyboardInput, prelude::*};
 use bevy_editor_pls_core::Editor;
 use bevy_inspector_egui::bevy_egui::EguiContexts;
-use bevy_mod_raycast::{immediate::Raycast, CursorRay};
+use bevy_mod_raycast::{immediate::Raycast, cursor::CursorRay};
 
 use super::{doodad::DoodadComponent, DoodadToolState, PlaceDoodadEvent};
 
@@ -17,7 +17,7 @@ pub struct PreventEditorSelection {}
 pub fn update_picking_doodads(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
-    key_input: Res<ButtonInput<KeyCode>>,
+  //  key_input: Res<ButtonInput<KeyCode>>,
 
     cursor_ray: Res<CursorRay>,
     mut raycast: Raycast,
