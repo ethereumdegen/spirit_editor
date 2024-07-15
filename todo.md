@@ -1,6 +1,8 @@
 
 
 ## Bevy Mesh Terrain Editor
+
+- bug: egui is flickering ? 
  
 - bug: doodad manifest isnt loaded properly from bevy 
 
