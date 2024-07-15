@@ -159,7 +159,7 @@ fn add_gizmo_markers(
                         material: gizmo_marker_meshes.camera_material.clone_weak(),
                         ..default()
                     },
-                    render_layers,
+                    render_layers.clone(),
                     Name::new("Camera Gizmo"),
                 ));
             });
@@ -179,7 +179,9 @@ fn draw_gizmo(
         return;
     };
     let view_matrix = Mat4::from(cam_transform.affine().inverse());
-    let projection_matrix = projection.get_projection_matrix();
+
+
+    let projection_matrix = projection.get_clip_from_view();  // was get projection matrix 
 
     if selected_entities.len() != 1 {
         return;
