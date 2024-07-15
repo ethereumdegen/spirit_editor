@@ -191,40 +191,6 @@ fn add_gizmo_markers(
             });
     }
 }
-
- /*
-fn update_gizmo_components(    
-
-    mut commands:Commands , 
-    selected_query: Query<Entity,( With<SelectedInHierarchy>,Without<GizmoTarget>)>,
-
-    deselected_query: Query<Entity,( Without<SelectedInHierarchy>,With  <GizmoTarget>)>
-
-   
-    ){
-
-
-
-     
-    for deselected_entity in deselected_query.iter(){
-
-         commands.entity(deselected_entity).remove::<GizmoTarget>();
-
-
-    }
-    
-
- 
-    for selected_entity in selected_query.iter(){
-
-         commands.entity(selected_entity).insert ( GizmoTarget ::default() );
-
-
-    }
-
-
-
-}*/
  
 
 
@@ -266,67 +232,4 @@ fn apply_gizmo_component (
         }
 
 }
-
-/*
-
-
-fn draw_gizmo(
-    ui: &mut egui::Ui,
-    world: &mut World,
-    selected_entities: &SelectedEntities,
-    gizmo_mode: EnumSet<GizmoMode>,
-) {
-    let Ok((cam_transform, projection)) = world
-        .query_filtered::<(&GlobalTransform, &Projection), With<ActiveEditorCamera>>()
-        .get_single(world)
-    else {
-        return;
-    };
-    let view_matrix = Mat4::from(cam_transform.affine().inverse());
-
-
-    let projection_matrix = projection.get_clip_from_view();  // was get projection matrix 
-
-    if selected_entities.len() != 1 {
-        return;
-    }
-
-    let gizmo = Gizmo::default();
-
-
-    for selected in selected_entities.iter() {
-        let Some(transform) = world.get::<Transform>(selected) else {
-            continue;
-        };
-        let model_matrix = transform.compute_matrix();
-
-        gizmo.update_config(GizmoConfig {
-            view_matrix: view_matrix.into(),
-            projection_matrix: projection_matrix.into(),
-            modes: GizmoMode::all(),
-            orientation: GizmoOrientation::Local,
-            ..Default::default()
-        });
-
-
-
-       /* let Some(result) = Gizmo::new(selected)
-       //     .model_matrix(model_matrix.into())
-            .view_matrix(view_matrix.into())
-            .projection_matrix(projection_matrix.into())
-            .orientation(GizmoOrientation::Local)
-            .mode(gizmo_mode)
-            .interact(ui)
-        else {
-            continue;
-        };*/
-
-        let mut transform = world.get_mut::<Transform>(selected).unwrap();
-        *transform = Transform {
-            translation: Vec3::from(<[f32; 3]>::from(result.translation)),
-            rotation: Quat::from_array(<[f32; 4]>::from(result.rotation)),
-            scale: Vec3::from(<[f32; 3]>::from(result.scale)),
-        };
-    }
-}
-*/
+ 
