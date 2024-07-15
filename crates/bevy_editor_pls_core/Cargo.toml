@@ -5,7 +5,7 @@ edition.workspace = true
 license.workspace = true 
 
 [dependencies]
-bevy = { version = "0.13", default-features = false }
+bevy = { version = "0.14", default-features = false }
 bevy-inspector-egui.workspace = true
 indexmap = "2"
 egui_dock.workspace = true

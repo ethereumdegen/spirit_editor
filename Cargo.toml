@@ -1,23 +1,23 @@
 [package]
 name = "bevy_mesh_terrain_editor"
-version = "0.13.12"
+version = "0.14.1"
 edition = "2021"
 default-run = "main"
 
 [dependencies]
-bevy = "0.13.1"
-bevy_egui = "0.25.0"
+bevy = "0.14.0"
+bevy_egui = "0.28.0"
 
 
   
-winit = { version = "0.29", default-features = false }
+winit = { version = "0.30", default-features = false }
  
-image = { version = "0.24", default-features = false }
+image = { version = "0.25.1", default-features = false }
 
 
 
 
- bevy_mesh_terrain = "0.13.24"  
+ bevy_mesh_terrain = "0.14.1"  
 
 #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
@@ -25,27 +25,29 @@ image = { version = "0.24", default-features = false }
 
 
 
- degen_toon_water = "0.13.9"
+ degen_toon_water = "0.14.1"
 
 #degen_toon_water =  {path="../degen_toon_water"}
 
 
- bevy_regions = "0.13.5"
+ bevy_regions = "0.14.1"
  
 
 
  
 
-bevy_magic_fx = "0.13.3"
+bevy_magic_fx = "0.14.1"
 
 
-bevy_mod_picking = {version="0.18.0", features=["backend_raycast",  "highlight","selection"]}
-bevy_mod_raycast = "0.17.0"
-seldom_fn_plugin = "0.6.0"
+bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
+bevy_mod_raycast = "0.18.0"
+
+
+ # seldom_fn_plugin = "0.6.0"  # deprecated 
 
 
 
- bevy_common_assets = {version="0.10.0", features= ["ron"]}
+ bevy_common_assets = {version="0.11.0", features= ["ron"]}
  
 
 serde = { version = "1", features = ["derive"] }
@@ -55,19 +57,19 @@ serde = { version = "1", features = ["derive"] }
 bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
-bevy_obj = "0.13.0"
+bevy_obj = "0.14.0"
  
 
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
-bevy-inspector-egui = "0.24.0"
-
+bevy-inspector-egui = "0.25.1"
+bevy_asset_loader = "0.21.0"
 
  
 #bevy_foliage_paint = "0.13.6"
 
-bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "16c0277050f1e1275f63a5e52925903b18d89b9a"}
-bevy_asset_loader = "0.20.1"
+#bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "16c0277050f1e1275f63a5e52925903b18d89b9a"}
+
 
 
 [workspace.package]
@@ -94,10 +96,15 @@ bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_edito
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 
-bevy-inspector-egui = "0.23.4"
-egui = "0.26"
-egui_dock = "0.11"
-egui-gizmo = "0.16"
+bevy-inspector-egui = "0.25.1"
+ 
+
+
+egui = "0.28"
+egui_dock = "0.13"
+egui-gizmo = "0.16"  # deprecated ? 
+
+#transform-gizmo-egui = "0.1"
 
  
 [profile.dev.package."*"]
