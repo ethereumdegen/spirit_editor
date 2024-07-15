@@ -165,7 +165,7 @@ impl Plugin for EditorPlugin {
                 ).chain()
                  .before(bevy_editor_pls_core::EditorSet::UI));
 
-            let mut internal_state = app.world.resource_mut::<editor::EditorInternalState>();
+            let mut internal_state = app.world_mut().resource_mut::<editor::EditorInternalState>();
 
             let root_node = egui_dock::NodeIndex::root();
             let [game, _inspector] = internal_state.split_many(

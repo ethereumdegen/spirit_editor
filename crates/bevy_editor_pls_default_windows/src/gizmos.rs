@@ -51,7 +51,7 @@ impl EditorWindow for GizmoWindow {
     }
 
     fn app_setup(app: &mut App) {
-        let mut materials = app.world.resource_mut::<Assets<StandardMaterial>>();
+        let mut materials = app.world_mut().resource_mut::<Assets<StandardMaterial>>();
         let material_light = materials.add(StandardMaterial {
             base_color: Color::rgba_u8(222, 208, 103, 255),
             unlit: true,
@@ -67,10 +67,10 @@ impl EditorWindow for GizmoWindow {
             ..default()
         });
 
-        let mut meshes = app.world.resource_mut::<Assets<Mesh>>();
+        let mut meshes = app.world_mut().resource_mut::<Assets<Mesh>>();
         let sphere = meshes.add(Sphere { radius: 0.3 });
 
-        app.world.insert_resource(GizmoMarkerConfig {
+        app.world_mut().insert_resource(GizmoMarkerConfig {
             point_light_mesh: sphere.clone(),
             point_light_material: material_light.clone(),
             directional_light_mesh: sphere.clone(),
@@ -113,13 +113,13 @@ fn add_gizmo_markers(
         name: &'static str,
         f: impl Fn() -> B,
     ) {
-        let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER);
+        let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER.into());
         for entity in &query {
             commands
                 .entity(entity)
                 .insert(HasGizmoMarker)
                 .with_children(|commands| {
-                    commands.spawn((f(), render_layers, Name::new(name)));
+                    commands.spawn((f(), render_layers.clone(), Name::new(name)));
                 });
         }
     }
@@ -142,7 +142,7 @@ fn add_gizmo_markers(
         },
     );
 
-    let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER);
+    let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER.into());
     for entity in &cameras {
         commands
             .entity(entity)
