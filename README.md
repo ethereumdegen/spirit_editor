@@ -1,6 +1,6 @@
 ## Bevy Mesh Terrain Editor 
 
-Deprecated Repo:  Please see https://github.com/ethereumdegen/bevy_mesh_terrain_editor
+Deprecated Repo:  Please see https://github.com/ethereumdegen/spirit_editor
 
 ---
 
