@@ -4107,11 +4107,12 @@
                                     wireframe:true 
                                     ))  ,
             initial_custom_props: Some({ 
+
                 "special_type": String("trigger_volume"),
-                 "interaction_trigger_script": String("---") 
+                "interaction_trigger_script": String("---") 
 
 
-                 }),
+             }),
 
 
                tags: Some([ "editor" ,"special" ]),
@@ -4270,6 +4271,16 @@
             model:  GltfModel("models/units/elf1.glb")  ,
              tags: Some([ "units"]),
         ),
+
+
+
+        "elven_ghoul_dead": (
+            name: "elven_ghoul_dead",
+            model:  GltfModel("models/units/elf1.glb")  ,
+             tags: Some([ "units" ]),
+        ),
+
+
 
 
         //special units 
