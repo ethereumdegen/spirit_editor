@@ -1618,33 +1618,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_mesh_terrain_editor"
-version = "0.14.1"
-dependencies = [
- "anyhow",
- "bevy 0.14.0",
- "bevy-inspector-egui",
- "bevy_asset_loader",
- "bevy_common_assets 0.11.0",
- "bevy_editor_pls",
- "bevy_editor_pls_core",
- "bevy_editor_pls_default_windows",
- "bevy_egui",
- "bevy_magic_fx",
- "bevy_mesh_terrain",
- "bevy_mod_picking",
- "bevy_mod_raycast",
- "bevy_mod_sysfail 7.0.0",
- "bevy_obj",
- "bevy_regions",
- "degen_toon_water",
- "image 0.25.1",
- "ron",
- "serde",
- "winit 0.30.3",
-]
-
-[[package]]
 name = "bevy_mikktspace"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5880,6 +5853,33 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
 dependencies = [
  "lock_api",
+]
+
+[[package]]
+name = "spirit_editor"
+version = "0.14.1"
+dependencies = [
+ "anyhow",
+ "bevy 0.14.0",
+ "bevy-inspector-egui",
+ "bevy_asset_loader",
+ "bevy_common_assets 0.11.0",
+ "bevy_editor_pls",
+ "bevy_editor_pls_core",
+ "bevy_editor_pls_default_windows",
+ "bevy_egui",
+ "bevy_magic_fx",
+ "bevy_mesh_terrain",
+ "bevy_mod_picking",
+ "bevy_mod_raycast",
+ "bevy_mod_sysfail 7.0.0",
+ "bevy_obj",
+ "bevy_regions",
+ "degen_toon_water",
+ "image 0.25.1",
+ "ron",
+ "serde",
+ "winit 0.30.3",
 ]
 
 [[package]]
