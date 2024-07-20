@@ -64,12 +64,21 @@ pub type CustomPropsMap = HashMap<String, CustomProp>;
 pub enum CustomProp {
     Vec3(Vec3),
     String(String),
+    //StringSpecial(StringSpecial),
     Float(f32),
     Integer(i32), 
     Boolean(bool),
     #[default]
     EmptyProp  
 }
+
+
+
+
+
+//pub struct StringSpecial; 
+
+
  
 
 

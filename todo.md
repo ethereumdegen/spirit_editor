@@ -2,10 +2,8 @@
 
 ## Bevy Mesh Terrain Editor
 
-- bug: egui is flickering ? 
+- bug: cant select units ? 
  
-- bug: doodad manifest isnt loaded properly from bevy 
-
  
 - synty swamp has an issue with texcoords ?
 

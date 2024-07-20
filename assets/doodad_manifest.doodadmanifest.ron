@@ -3677,6 +3677,12 @@
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_Bone_Skull_01.glb"),
              tags: Some(["swamp" ,"bones" ]),
     ),
+     "CemeteryFenceGate": (
+        name: "CemeteryFenceGate",
+        model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_01.glb"),
+             tags: Some(["swamp" ,"fence" ]),
+    ),
+
     "SM_Prop_CemeteryFence_01": (
         name: "SM_Prop_CemeteryFence_01",
         model: GltfModel("models/doodads/synty_swamp/SM_Prop_CemeteryFence_01.glb"),
