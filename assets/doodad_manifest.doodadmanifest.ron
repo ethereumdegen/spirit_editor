@@ -3258,6 +3258,726 @@
  
  
 
+    // polystyle dungeon 
+
+
+    "MDungeon_CrateClosed_01": (
+    name: "MDungeon_CrateClosed_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CrateClosed_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Flat_04": (
+    name: "MDungeon_CavernRock_Flat_04",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Flat_04.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_LowWallFloor_Corner_01": (
+    name: "MDungeon_LowWallFloor_Corner_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_LowWallFloor_Corner_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_LowerThirdSloped": (
+    name: "MDungeon_Walls_Base_LowerThirdSloped",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_LowerThirdSloped.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Half1": (
+    name: "MDungeon_StoneFloor_Half1",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Half1.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Tombstone_Cross_01": (
+    name: "MDungeon_Tombstone_Cross_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Tombstone_Cross_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Medium_02": (
+    name: "MDungeon_CavernRock_Medium_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Medium_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_LowWallFloor_Straight_01": (
+    name: "MDungeon_LowWallFloor_Straight_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_LowWallFloor_Straight_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CeilingArch_03": (
+    name: "MDungeon_CeilingArch_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CeilingArch_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_TombVIP_Cross_01": (
+    name: "MDungeon_TombVIP_Cross_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_TombVIP_Cross_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_MetalBars": (
+    name: "MDungeon_StoneFloor_MetalBars",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_MetalBars.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Pot_01": (
+    name: "MDungeon_Pot_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Pot_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_Curve_03": (
+    name: "MDungeon_Walls_Base_Curve_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_Curve_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Tombstone_Cross_02": (
+    name: "MDungeon_Tombstone_Cross_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Tombstone_Cross_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Half": (
+    name: "MDungeon_StoneFloor_Half",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Half.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CeilingArch_01": (
+    name: "MDungeon_CeilingArch_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CeilingArch_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Pillar_04": (
+    name: "MDungeon_Walls_Pillar_04",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Pillar_04.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalBars_02": (
+    name: "MDungeon_Walls_MetalBars_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalBars_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Door_01": (
+    name: "MDungeon_Walls_Door_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Door_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_LowerThird": (
+    name: "MDungeon_Walls_Base_LowerThird",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_LowerThird.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Book_02": (
+    name: "MDungeon_Book_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Book_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Sword_03": (
+    name: "MDungeon_Sword_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Sword_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneBoarder_01": (
+    name: "MDungeon_StoneBoarder_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneBoarder_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_KnightStatue": (
+    name: "MDungeon_KnightStatue",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_KnightStatue.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Plate_Sml_01": (
+    name: "MDungeon_Plate_Sml_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Plate_Sml_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Altar_Skull_01": (
+    name: "MDungeon_Altar_Skull_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Altar_Skull_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarTall_Med_01": (
+    name: "MDungeon_PillarTall_Med_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarTall_Med_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Baluster_02_Straight": (
+    name: "MDungeon_Baluster_02_Straight",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Baluster_02_Straight.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Bottle_01": (
+    name: "MDungeon_Bottle_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Bottle_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_LowWallFloor_Corner_01_1": (
+    name: "MDungeon_LowWallFloor_Corner_01_1",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_LowWallFloor_Corner_01_1.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_FloorTiles_Broken_02": (
+    name: "MDungeon_FloorTiles_Broken_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_FloorTiles_Broken_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor": (
+    name: "MDungeon_StoneFloor",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_GiantPillar_F2": (
+    name: "MDungeon_GiantPillar_F2",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_GiantPillar_F2.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Arch_Low": (
+    name: "MDungeon_Walls_Arch_Low",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Arch_Low.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_MBorder_CornerBroken": (
+    name: "MDungeon_StoneFloor_MBorder_CornerBroken",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_MBorder_CornerBroken.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Bookcase_02": (
+    name: "MDungeon_Bookcase_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Bookcase_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_PillarMid_Corner_01": (
+    name: "MDungeon_Walls_PillarMid_Corner_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_PillarMid_Corner_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Altar_01": (
+    name: "MDungeon_Altar_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Altar_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalBars_01": (
+    name: "MDungeon_Walls_MetalBars_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalBars_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Ruin_Lrg": (
+    name: "MDungeon_StoneFloor_Ruin_Lrg",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Ruin_Lrg.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarSmall_02": (
+    name: "MDungeon_PillarSmall_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarSmall_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarPedestral": (
+    name: "MDungeon_PillarPedestral",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarPedestral.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base": (
+    name: "MDungeon_Walls_Base",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Pillar_03": (
+    name: "MDungeon_Walls_Pillar_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Pillar_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_CornerBroken": (
+    name: "MDungeon_StoneFloor_CornerBroken",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_CornerBroken.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Baluster_01_Straight_Half": (
+    name: "MDungeon_Baluster_01_Straight_Half",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Baluster_01_Straight_Half.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Candle_Tall_01": (
+    name: "MDungeon_Candle_Tall_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Candle_Tall_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_LowerThirdSloped_02": (
+    name: "MDungeon_Walls_Base_LowerThirdSloped_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_LowerThirdSloped_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Tombstone_02": (
+    name: "MDungeon_Tombstone_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Tombstone_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Parts_02": (
+    name: "MDungeon_StoneFloor_Parts_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Parts_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_BookSet_02": (
+    name: "MDungeon_BookSet_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_BookSet_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarBase_Med_01": (
+    name: "MDungeon_PillarBase_Med_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarBase_Med_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Corner_MBorder": (
+    name: "MDungeon_StoneFloor_Corner_MBorder",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Corner_MBorder.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_BookSet_01": (
+    name: "MDungeon_BookSet_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_BookSet_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Bottle_02": (
+    name: "MDungeon_Bottle_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Bottle_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Arch_Low_Corner": (
+    name: "MDungeon_Walls_Arch_Low_Corner",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Arch_Low_Corner.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarTable_Small": (
+    name: "MDungeon_PillarTable_Small",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarTable_Small.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeons_Steps_Curved_90": (
+    name: "MDungeons_Steps_Curved_90",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeons_Steps_Curved_90.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Sword_02": (
+    name: "MDungeon_Sword_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Sword_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_Sidehalf": (
+    name: "MDungeon_Walls_Base_Sidehalf",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_Sidehalf.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Alcove_01": (
+    name: "MDungeon_Alcove_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Alcove_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_TrapDoor": (
+    name: "MDungeon_StoneFloor_TrapDoor",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_TrapDoor.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Baluster_01_Straight": (
+    name: "MDungeon_Baluster_01_Straight",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Baluster_01_Straight.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Tombstone_01": (
+    name: "MDungeon_Tombstone_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Tombstone_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Flat_01": (
+    name: "MDungeon_CavernRock_Flat_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Flat_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarTall_Med_01_Half": (
+    name: "MDungeon_PillarTall_Med_01_Half",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarTall_Med_01_Half.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Door_02": (
+    name: "MDungeon_Walls_Door_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Door_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalDoor_01": (
+    name: "MDungeon_Walls_MetalDoor_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalDoor_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_BottomHalf": (
+    name: "MDungeon_Walls_Base_BottomHalf",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_BottomHalf.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeons_Steps": (
+    name: "MDungeons_Steps",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeons_Steps.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_ArchGrill_Low": (
+    name: "MDungeon_Walls_ArchGrill_Low",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_ArchGrill_Low.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarShort_Med_01": (
+    name: "MDungeon_PillarShort_Med_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarShort_Med_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_FloorTiles_Broken_01": (
+    name: "MDungeon_FloorTiles_Broken_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_FloorTiles_Broken_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Arched_Corner_01": (
+    name: "MDungeon_Walls_Arched_Corner_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Arched_Corner_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Sword_01": (
+    name: "MDungeon_Sword_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Sword_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CeilingArch_02": (
+    name: "MDungeon_CeilingArch_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CeilingArch_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Flat_03": (
+    name: "MDungeon_CavernRock_Flat_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Flat_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_GiantPillar_01": (
+    name: "MDungeon_GiantPillar_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_GiantPillar_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarSmall_Base": (
+    name: "MDungeon_PillarSmall_Base",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarSmall_Base.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_SkullShortWall_01": (
+    name: "MDungeon_SkullShortWall_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_SkullShortWall_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalDoor_02": (
+    name: "MDungeon_Walls_MetalDoor_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalDoor_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_Curve": (
+    name: "MDungeon_Walls_Base_Curve",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_Curve.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_GiantPillar_F1": (
+    name: "MDungeon_GiantPillar_F1",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_GiantPillar_F1.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Flat_02": (
+    name: "MDungeon_CavernRock_Flat_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Flat_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Candelabras_Small_01": (
+    name: "MDungeon_Candelabras_Small_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Candelabras_Small_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_LowWallFloor_Straight_02": (
+    name: "MDungeon_LowWallFloor_Straight_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_LowWallFloor_Straight_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Large_01": (
+    name: "MDungeon_CavernRock_Large_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Large_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_PillarMid_01": (
+    name: "MDungeon_Walls_PillarMid_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_PillarMid_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalBars_03": (
+    name: "MDungeon_Walls_MetalBars_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalBars_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Medium_01": (
+    name: "MDungeon_CavernRock_Medium_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Medium_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Arch_Low_Half": (
+    name: "MDungeon_Walls_Arch_Low_Half",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Arch_Low_Half.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_GiantPillar_Base": (
+    name: "MDungeon_GiantPillar_Base",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_GiantPillar_Base.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Small_02": (
+    name: "MDungeon_CavernRock_Small_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Small_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_MBorder": (
+    name: "MDungeon_StoneFloor_MBorder",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_MBorder.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_MBorder_Corner": (
+    name: "MDungeon_StoneFloor_MBorder_Corner",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_MBorder_Corner.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Axe_01": (
+    name: "MDungeon_Axe_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Axe_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Parts_03": (
+    name: "MDungeon_StoneFloor_Parts_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Parts_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarSmall_Base_Quarter": (
+    name: "MDungeon_PillarSmall_Base_Quarter",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarSmall_Base_Quarter.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Tri": (
+    name: "MDungeon_StoneFloor_Tri",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Tri.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Pillar_02": (
+    name: "MDungeon_Walls_Pillar_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Pillar_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_IronMaiden": (
+    name: "MDungeon_IronMaiden",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_IronMaiden.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Base_Curve_02": (
+    name: "MDungeon_Walls_Base_Curve_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Base_Curve_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Chest_01_Lrg": (
+    name: "MDungeon_Chest_01_Lrg",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Chest_01_Lrg.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Medium_03": (
+    name: "MDungeon_CavernRock_Medium_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Medium_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Bookcase_01": (
+    name: "MDungeon_Bookcase_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Bookcase_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_StoneFloor_Parts_01": (
+    name: "MDungeon_StoneFloor_Parts_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_StoneFloor_Parts_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_KnightStatue_Low": (
+    name: "MDungeon_KnightStatue_Low",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_KnightStatue_Low.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarSmall_Full": (
+    name: "MDungeon_PillarSmall_Full",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarSmall_Full.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_FloorTiles_01_Corner": (
+    name: "MDungeon_FloorTiles_01_Corner",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_FloorTiles_01_Corner.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Small_03": (
+    name: "MDungeon_CavernRock_Small_03",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Small_03.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_GiantPillar_Top": (
+    name: "MDungeon_GiantPillar_Top",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_GiantPillar_Top.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_CavernRock_Small_01": (
+    name: "MDungeon_CavernRock_Small_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_CavernRock_Small_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_PillarSmall_Base_Half": (
+    name: "MDungeon_PillarSmall_Base_Half",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_PillarSmall_Base_Half.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Chest_01_Sml": (
+    name: "MDungeon_Chest_01_Sml",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Chest_01_Sml.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Shield_02": (
+    name: "MDungeon_Shield_02",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Shield_02.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_MetalBars_04": (
+    name: "MDungeon_Walls_MetalBars_04",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_MetalBars_04.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeons_Steps_Curved_90_Alt": (
+    name: "MDungeons_Steps_Curved_90_Alt",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeons_Steps_Curved_90_Alt.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_Walls_Pillar_01": (
+    name: "MDungeon_Walls_Pillar_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_Walls_Pillar_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+"MDungeon_FloorTiles_01": (
+    name: "MDungeon_FloorTiles_01",
+    model: GltfModel("models/doodads/polystyle_dungeon/MDungeon_FloorTiles_01.glb"),
+    tags: Some(["dungeon" ]),
+),
+
+
+
+
 
     // --- poly dungeon  
     // Thee are from arcbond / unreal engine 
@@ -4284,8 +5004,7 @@
             name: "elven_ghoul_dead",
             model:  GltfModel("models/units/elf1.glb")  ,
              tags: Some([ "units" ]),
-        ),
-
+        ), 
 
 
 
