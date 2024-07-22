@@ -4633,25 +4633,25 @@
     ),
     "waterfall_1": (
         name: "waterfall_1",
-        model: MagicFx("magic_fx/waterfall.magicfx.ron"),
+        model: MagicFx("waterfall.magicfx"),
           tags: Some([ "fx" ,"water"]),
     ),
     "portal_arch_fx": (
         name: "magic_fx_portal_arch",
-        model: MagicFx("magic_fx/portal_arch.magicfx.ron"),
+        model: MagicFx("portal_arch.magicfx"),
           tags: Some([ "fx" ,"portal"]),
     ),
 
     "sunshaft": (
         name: "sunshaft",
-        model: MagicFx("magic_fx/sunshaft.magicfx.ron"),
+        model: MagicFx("sunshaft.magicfx"),
         tags: Some([ "fx" ]),
     ),
 
 
        "exclamation_point": (
             name: "exclamation_point",
-            model:  MagicFx("magic_fx/exclamation.magicfx.ron")  ,
+            model:  MagicFx("exclamation.magicfx")  ,
 
                initial_custom_props: Some({ 
                //gets Interactable from the games doodad manifest 
@@ -4667,7 +4667,7 @@
 
          "glowy_corona": (
              
-            model:  MagicFx("magic_fx/glowy_corona.magicfx.ron")  ,
+            model:  MagicFx("glowy_corona.magicfx")  ,
 
                initial_custom_props: Some({ 
                //gets Interactable from the games doodad manifest 
