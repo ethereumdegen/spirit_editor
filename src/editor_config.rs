@@ -12,7 +12,9 @@ pub struct EditorConfig {
 
 	initial_terrain_to_load: Option<String> ,
 
-	initial_zones_to_load: Option<Vec<String>>
+	initial_zones_to_load: Option<Vec<String>>,
+
+	doodad_manifest: String, 
 
 }
 
@@ -32,24 +34,7 @@ impl TypePath for EditorConfig {
 impl EditorConfig{
 
 
-	//this is a super nice way to read a manifest file ! no need to wait for bevy asset server 
-	/*pub fn load (
-
-	     
-	) -> Self{
-
-	 //load the ron file 
-
-	  let ron_str = include_str!("../assets/editor_config.editorconfig.ron");
-
-	    // Parse the .ron string into the Config struct
-	 
-	   	let   editor_config  = ron::de::from_str::<EditorConfig>(ron_str).expect("Failed to parse RON file");
-
-
-	   	editor_config
-	}*/
-
+ 
 
 	pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
 
@@ -61,6 +46,13 @@ impl EditorConfig{
 		return self.initial_zones_to_load.as_ref().map(|zone_names|   
 			zone_names.iter().map(|z|  format!("{}", z)   ).collect()
 		 )
+	}
+
+
+
+	 pub fn get_doodad_manifest_path(&self) -> &String { 
+
+		return &self.doodad_manifest
 	}
 
 }

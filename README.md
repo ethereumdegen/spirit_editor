@@ -9,6 +9,33 @@ A level editor for 3D worlds for the Bevy game engine.
 
 
 
+## Getting Started 
+
+1. In order to boot up the editor successfully the first time, Make sure you go into assets/editorconfig and set it as follows:
+
+```
+
+( 
+
+initial_zones_to_load: Some([
+       
+      "sample_zone.zone"
+ ]), 
+
+
+doodad_manifest: "doodad_manifest_default.doodadmanifest.ron"
+ 
+
+) 
+
+```
+
+This will use a blank doodad manifest and sample zone with a single cube.   If you use a populated doodad manifest, you may not have the 3d model assets (due to gitignore) and you will encounter many errors related to not finding 3d models assets.
+
+
+
+
+
 ## Tool Modes 
 1. Terrain Height
 2. Terrain Splat

@@ -76,10 +76,10 @@ pub struct DoodadDefinition {
     pub tags: Option<Vec<String>> ,
     pub snap_dimensions: Option<Vec2>, 
 }
-
+/*
 impl DoodadManifest {
-    pub fn load() -> Result<Self, Box<dyn std::error::Error>> {
-        let file_path = get_doodad_manifest_file_path();
+    pub fn load(file_path:&String) -> Result<Self, Box<dyn std::error::Error>> {
+        //let file_path = get_doodad_manifest_file_path();
         let mut file = File::open(file_path)?;
         let mut contents = String::new();
         file.read_to_string(&mut contents)?;
@@ -88,6 +88,8 @@ impl DoodadManifest {
     }
 }
 
+
 fn get_doodad_manifest_file_path() -> String {
     format!("assets/doodad_manifest.ron")
 }
+*/

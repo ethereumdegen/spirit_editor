@@ -1,6 +1,8 @@
 
  
+use crate::EditorConfig;
 use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
+use crate::asset_loading::EditorConfigAssets;
 use crate::AssetLoadState;
 use bevy::prelude::*;
 
@@ -35,10 +37,23 @@ impl Plugin for DoodadLoadPlugin {
 
 fn load_doodad_manifest(
     asset_server: Res<AssetServer>,
+
+    editor_config_res: Res<EditorConfigAssets>,
+    editor_config_assets: Res<Assets<EditorConfig>>, 
+
     mut doodad_manifest_resource: ResMut<DoodadManifestResource>,
 ) {
-    doodad_manifest_resource.manifest = Some(asset_server.load("doodad_manifest.doodadmanifest.ron"));
-    info!("load doodad manifest");
+
+
+    //"doodad_manifest.doodadmanifest.ron"
+    let editor_config_handle = &editor_config_res.editor_config;
+
+    let  editor_config  = editor_config_assets.get(editor_config_handle).expect("Could not load doodad manifest. Is it specified properly in editor config?");
+
+    let doodad_manifest_path = editor_config.get_doodad_manifest_path();
+
+    doodad_manifest_resource.manifest = Some(asset_server.load(doodad_manifest_path));
+    info!("loading doodad manifest");
  
 }
 
