@@ -3,7 +3,8 @@
  
 A level editor for 3D worlds for the Bevy game engine.  
 
-  
+  ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/cfea97c5-b73a-4a54-9e27-e1f0a5c36229)
+
 
 ![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/9e32f8a0-e513-4ee0-8b4b-3e4d73ab8608)
 
@@ -57,7 +58,6 @@ This will use a blank doodad manifest and sample zone with a single cube.   If y
  
 Place doodads in zone files (sub-scenes) which can be saved and loaded.  These are spawnable entities, used for anything like rocks, trees, even structural GLTFs for your game.  These each have a name, a translation, and CustomProps (a hashmap of values: [ vec3,f32,i32,String ....]).  In this way, you can load them into your game the way that you need specifically.    
 
-![image](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/cfea97c5-b73a-4a54-9e27-e1f0a5c36229)
 
 ![level_blockout_1](https://github.com/ethereumdegen/bevy_mesh_terrain_editor/assets/6249263/63988249-0758-4518-a51c-b0c6a25bf2b4)
 
