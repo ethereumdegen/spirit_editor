@@ -129,7 +129,7 @@ fn main() {
       // .add_plugins(foliage::FoliagePlugin  )
 
         .add_plugins(doodads::doodad::DoodadPlugin)
-        .add_plugins(doodads::load_doodads::DoodadLoadPlugin)
+         
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
      
 

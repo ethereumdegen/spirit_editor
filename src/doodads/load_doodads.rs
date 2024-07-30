@@ -1,7 +1,7 @@
 
  
 use crate::EditorConfig;
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
+ 
 use crate::asset_loading::EditorConfigAssets;
 use crate::AssetLoadState;
 use bevy::prelude::*;
@@ -20,9 +20,9 @@ pub(crate) struct DoodadLoadPlugin;
 
 impl Plugin for DoodadLoadPlugin {
     fn build(&self, app: &mut App) {
-        app
-           .add_systems(OnEnter(AssetLoadState::Complete), load_doodad_manifest)
-           .add_systems(Update, build_doodad_data_from_manifest  );
+        app ;
+           //.add_systems(OnEnter(AssetLoadState::Complete), load_doodad_manifest)
+         //  .add_systems(Update, build_doodad_data_from_manifest  );
 
     }
 }
@@ -34,7 +34,7 @@ impl Plugin for DoodadLoadPlugin {
 
 
 
-
+/*
 fn load_doodad_manifest(
     asset_server: Res<AssetServer>,
 
@@ -56,6 +56,7 @@ fn load_doodad_manifest(
     info!("loading doodad manifest");
  
 }
+*/
 
 fn build_doodad_data_from_manifest(
     mut evt_asset: EventReader<AssetEvent<DoodadManifest>>,
@@ -91,23 +92,7 @@ fn build_doodad_data_from_manifest(
 
                     println!(" building doodad data  ");
 
-                   /* for (doodad_name,doodad_definition) in &manifest.doodad_definitions {
-                        let model_path_to_load = match &doodad_definition.model {
-                            RenderableType::GltfModel(model_path) => Some(model_path),
-                            _ => None, //other types dont need to have stuff preloaded
-                        };
-
-                        if let Some(model_path) = model_path_to_load {
-                            let gltf_model_handle: Handle<Gltf> = asset_server.load(model_path);
-
-                            loaded_gltf_resource
-                                .gltf_models
-                                .insert(model_path.clone(), gltf_model_handle);
-
-                            println!("loaded gltf {:?}", model_path);
-                        }
-                    }*/
- 
+                   
 
                     //now that our manifest is loaded, lets populate the doodad tag map resource 
                     for (doodad_name,doodad_definition) in &manifest.doodad_definitions {

@@ -1,5 +1,6 @@
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadDefinitionsResource;
 use crate::AssetLoadState;
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifestResource;
+ 
 use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
 use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::GhostlyMaterialMarker;
@@ -471,12 +472,9 @@ pub fn update_doodad_placement_preview_model (
  
 
 
-    doodad_manifest_resource: Res<DoodadManifestResource>,
-    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
-
-   // gltf_assets: Res<GltfAssets>,
-    // models:  Res< Assets<bevy::gltf::Gltf>>,
-
+    doodad_definitions_resource: Res < DoodadDefinitionsResource > ,
+   // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+ 
 
       asset_server: Res<AssetServer>,
 
@@ -502,20 +500,9 @@ pub fn update_doodad_placement_preview_model (
 
               let Some(doodad_name) =  &doodad_placement_comp.preview_doodad_name else {return};
 
+ 
 
-                  let Some(manifest_handle) = &doodad_manifest_resource.manifest else {
-                        println!("WARN: no doodad manifest file found");
-                        return;
-                    };
-
-
-                     let Some(manifest) = doodad_manifest_assets.get(manifest_handle) else {
-                        println!("WARN: no doodad manifest file found");
-                        return;
-                    };
-
-
-                   let Some(doodad_definition) = manifest.get_doodad_definition_by_name(doodad_name) else {
+                   let Some(doodad_definition) = doodad_definitions_resource.get_doodad_definition_by_name(doodad_name) else {
                         println!("WARN: Could not spawn doodad {:?}", doodad_name);
                         return;
                     };

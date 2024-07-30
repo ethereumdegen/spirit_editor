@@ -6,16 +6,11 @@
 //    ]), 
 
 initial_zones_to_load: Some([
-      // "wood_elf_temple_interior_01.zone"
+        "wood_elf_temple_interior_01.zone"
 
-      "sample_zone.zone"
+     // "sample_zone.zone"
  ]), 
 
-
-doodad_manifest: "doodad_manifest_default.doodadmanifest.ron"
-
-
-//doodad_manifest: "doodad_manifest.doodadmanifest.ron"
-
+ 
 
 ) 

@@ -14,7 +14,7 @@ pub struct EditorConfig {
 
 	initial_zones_to_load: Option<Vec<String>>,
 
-	doodad_manifest: String, 
+//	doodad_manifest: String, 
 
 }
 
@@ -49,12 +49,7 @@ impl EditorConfig{
 	}
 
 
-
-	 pub fn get_doodad_manifest_path(&self) -> &String { 
-
-		return &self.doodad_manifest
-	}
-
+ 
 }
 
 

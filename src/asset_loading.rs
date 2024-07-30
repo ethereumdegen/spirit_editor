@@ -1,4 +1,6 @@
 		
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadTagMapResource;
+use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadDefinitionsResource;
 use bevy_common_assets::ron::RonAssetPlugin;
 use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
 use crate::EditorConfig;
@@ -25,13 +27,15 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
-         .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
+            .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
+           // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) 
 
 
               .add_loading_state(
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::TextureAssetsLoad)
                         .load_collection::<EditorConfigAssets>() 
+                        .load_collection::<DoodadManifestAssets>() 
                          
                 )
 
@@ -57,8 +61,9 @@ pub fn asset_loading_plugin(app: &mut App) {
                     LoadingState::new(AssetLoadState::ShaderAssetsLoad)
                         .continue_to_state(AssetLoadState::ShaderVariantsLoad)
                         
-                    
+                        
                          .load_collection::<MeshAssets>()
+                        
                           .load_collection::<ShaderVariantAssets>() 
                           .load_collection::<MagicFxVariantAssets>()
                            //.load_collection::<AnimatedMaterialAssets>() 
@@ -66,7 +71,12 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
                .add_systems(OnEnter(AssetLoadState::ShaderVariantsLoad), load_shader_variants)
-                 .add_systems(OnEnter(AssetLoadState::ShadersLoad), load_magic_fx)
+              .add_systems(OnEnter(AssetLoadState::ShadersLoad), (
+               
+                populate_doodad_definitions,
+                populate_doodad_tag_map_data,
+                 load_magic_fx,
+                ).chain())
                  
               
          ;
@@ -115,6 +125,16 @@ pub struct EditorConfigAssets {
     // #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
     //pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
 }
+
+
+#[derive(AssetCollection, Resource)]
+pub struct DoodadManifestAssets {
+   
+    #[asset(path = "doodad_manifests", collection(typed, mapped))]
+    pub(crate) doodad_manifests: HashMap<String, Handle<DoodadManifest>>,
+}
+
+
 
 
 
@@ -314,4 +334,78 @@ fn load_magic_fx(
 
    info!("Asset loading complete.");
 
+}
+
+
+fn populate_doodad_definitions(
+
+    doodad_manifest_handles: Res<DoodadManifestAssets>,
+    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+
+    mut dooad_definitions: ResMut< DoodadDefinitionsResource > , //this is what is modified 
+
+
+){
+
+    let mut loaded_doodad_definitions = HashMap::new();
+
+
+    for (_, doodad_manifest_handle) in &doodad_manifest_handles.doodad_manifests {
+
+        if let Some(loaded_manifest) = doodad_manifest_assets.get(  doodad_manifest_handle ) {
+
+            for (doodad_name, doodad_definition) in &loaded_manifest.doodad_definitions {
+
+                loaded_doodad_definitions.insert(doodad_name.to_string(), doodad_definition.clone());
+            }
+
+        }
+
+    }
+
+
+    dooad_definitions.loaded_doodad_definitions = Some(loaded_doodad_definitions);
+
+
+}
+
+
+fn populate_doodad_tag_map_data(
+        doodad_definitions_resource: Res < DoodadDefinitionsResource > ,
+
+    mut doodad_tag_map_resource: ResMut<DoodadTagMapResource>, 
+    //doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+
+    
+) {
+ 
+
+
+            //now that our manifest is loaded, lets populate the doodad tag map resource 
+            for (doodad_name,doodad_definition) in  doodad_definitions_resource.loaded_doodad_definitions.as_ref().unwrap_or(&HashMap::new()) {
+
+                for tag in &doodad_definition.tags.clone().unwrap_or(Vec::new()){
+                    doodad_tag_map_resource.doodad_tag_map.entry(tag.clone()).or_default().push(doodad_name.to_string());
+                }
+
+
+                doodad_tag_map_resource.doodad_tag_map.entry("all_doodads".to_string()).or_default().push(doodad_name.to_string());
+
+            }
+
+             // Sort tags and doodad names
+            info!("sorting doodad keys");
+            let mut sorted_keys: Vec<_> = doodad_tag_map_resource.doodad_tag_map.keys().cloned().collect();
+            sorted_keys.sort();
+            doodad_tag_map_resource.doodad_tag_map = sorted_keys.into_iter().map(|k| (k.clone(), doodad_tag_map_resource.doodad_tag_map.remove(&k).unwrap())).collect();
+            
+              for doodads in doodad_tag_map_resource.doodad_tag_map.values_mut() {
+                doodads.sort();
+            }
+              info!("sorted dooodad keys");
+
+
+     
+ 
+     
 }

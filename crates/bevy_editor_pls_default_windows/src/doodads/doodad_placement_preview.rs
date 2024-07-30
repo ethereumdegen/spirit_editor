@@ -16,7 +16,7 @@ use bevy_mod_raycast::cursor::CursorRay;
 use bevy_mod_raycast::prelude::Raycast;
 
  
-use super::doodad_manifest::{DoodadManifest, DoodadManifestResource, RenderableType};
+use super::doodad_manifest::{DoodadManifest,  RenderableType};
 use super::DoodadToolState;
 
 

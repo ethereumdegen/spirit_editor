@@ -24,7 +24,7 @@ use bevy_mod_raycast::cursor::CursorRay;
 use bevy_mod_raycast::prelude::Raycast;
 
 use self::doodad::{DoodadComponent,    };
-use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadManifestResource, DoodadTagMapResource};
+use self::doodad_manifest::{DoodadDefinition, DoodadManifest, DoodadDefinitionsResource, DoodadTagMapResource};
 use self::doodad_placement_preview::DoodadPlacementComponent;
 
  
@@ -114,7 +114,7 @@ impl EditorWindow for DoodadsWindow {
     fn app_setup(app: &mut App) {
         app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"]))
             
-            .insert_resource(DoodadManifestResource::default())
+            .insert_resource(DoodadDefinitionsResource::default())
             .insert_resource(DoodadTagMapResource::default())
             .insert_resource(DoodadToolState::default())
           //  .insert_resource(LoadedGltfAssets::default())
@@ -124,7 +124,7 @@ impl EditorWindow for DoodadsWindow {
     }
 
     fn ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
-        let doodad_definition_resource = world.resource::<DoodadManifestResource>();
+        let doodad_definition_resource = world.resource::<DoodadDefinitionsResource>();
 
          let doodad_tag_map_resource = world.resource::<DoodadTagMapResource>();
 
@@ -132,14 +132,14 @@ impl EditorWindow for DoodadsWindow {
        
 
         //this releases the lock on World
-        let doodad_manifest_handle = &doodad_definition_resource.manifest.clone();
+       // let doodad_manifest_handle = &doodad_definition_resource.manifest.clone();
 
-        let doodad_manifests_map = world.resource::<Assets<DoodadManifest>>();
+      //  let doodad_manifests_map = world.resource::<Assets<DoodadManifest>>();
 
-        let doodad_manifest = doodad_manifest_handle
+        let doodad_definitions = &doodad_definition_resource.loaded_doodad_definitions;/* doodad_manifest_handle
             .as_ref()
             .and_then(|h| doodad_manifests_map.get(h))
-            .cloned();
+            .cloned();*/
 
         let   doodad_tool_resource = world.resource::<DoodadToolState>();
 
@@ -166,7 +166,7 @@ impl EditorWindow for DoodadsWindow {
         ScrollArea::vertical()
             .auto_shrink([false, false])
             .show(ui, |ui| {
-                let Some(doodad_manifest) = &doodad_manifest else {
+                if doodad_definitions.is_none()  {
                     ui.label(format!(" No doodad definitions found. "));
                     return;
                 };
@@ -347,19 +347,19 @@ pub fn replace_proto_doodads_with_doodads(
 
   //  zone_resource: Res<ZoneResource>,
 
-    doodad_manifest_resource: Res<DoodadManifestResource>,
-    doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+    doodad_definition_resource: Res<DoodadDefinitionsResource>,
+   // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 ) {
-    let manifest_handle = &doodad_manifest_resource.manifest;
+   // let manifest_handle = &doodad_manifest_resource.manifest;
 
 
-    let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
+    //let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
 
     for (doodad_entity,doodad_name,existing_custom_props_comp) in doodad_proto_query.iter_mut() {
        
-        let doodad_name = doodad_name.as_str();
+       let doodad_name = doodad_name.as_str().to_string();
 
-        let Some(doodad_definition) = manifest.map(|m| m.get_doodad_definition_by_name(doodad_name)).flatten() else {
+        let Some(doodad_definition) = doodad_definition_resource.get_doodad_definition_by_name(&doodad_name)  else {
             println!("WARN: Could not replace doodad proto {:?}", doodad_name);
  
             continue;

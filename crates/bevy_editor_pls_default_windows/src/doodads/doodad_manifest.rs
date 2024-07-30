@@ -14,9 +14,17 @@ use crate::zones::zone_file::CustomPropsMap;
 pub type DoodadName = String;
 
 #[derive(Resource, Default)]
-pub struct DoodadManifestResource {
-    pub manifest: Option<Handle<DoodadManifest>>,
+pub struct DoodadDefinitionsResource {
+    pub loaded_doodad_definitions: Option< HashMap<DoodadName,DoodadDefinition> >,
  
+}
+
+impl DoodadDefinitionsResource {
+
+    pub fn get_doodad_definition_by_name(&self, doodad_name: &String) -> Option<&DoodadDefinition>{
+
+        return self.loaded_doodad_definitions.as_ref().map(|d| d.get(doodad_name)).flatten()
+    }
 }
 
 #[derive(Resource, Default)]
