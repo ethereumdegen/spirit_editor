@@ -114,7 +114,7 @@ impl EditorWindow for PlacementWindow {
 
              ui.end_row();
               ui.label("Additional shortcuts");
-               ui.label("Clone selected doodad: [ key: ctrl+D ]");
+               ui.label("Clone selected doodad: [ key: ctrl+C ]");
 
         }); // ---- v
     }
@@ -155,7 +155,7 @@ pub fn update_placement_tool_inputs(
   }
 
 
-  if key_inputs.just_pressed(KeyCode::KeyD) {
+  if key_inputs.just_pressed(KeyCode::KeyC) {
      if key_inputs.pressed(KeyCode::ControlLeft) {
 
         placement_evt_writer.send(PlacementEvent::CloneSelectedDoodad);

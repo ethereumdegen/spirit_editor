@@ -28,7 +28,7 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
-           // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) 
+           // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
 
               .add_loading_state(
@@ -276,6 +276,9 @@ fn load_magic_fx(
 
      fx_variant_assets: ResMut<Assets<MagicFxVariantManifest>>,
 
+      animated_materials_assets: Res<Assets<AnimatedMaterial>>,
+    mut asset_server: ResMut<AssetServer>,
+
 
     mut built_vfx_resource: ResMut<BuiltVfxHandleRegistry>
 
@@ -310,7 +313,9 @@ fn load_magic_fx(
                         &rebuilt_mesh_handle_map,
                       
                         &animated_materials_map,
-                     
+                           &animated_materials_assets,
+                          &mut asset_server 
+     
                         
                     ) {
 
