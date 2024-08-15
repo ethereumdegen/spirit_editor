@@ -1,3 +1,4 @@
+
 use crate::asset_loading::EditorConfigAssets;
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
@@ -14,7 +15,7 @@ use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
 use asset_loading::asset_loading_plugin;
 use bevy::core_pipeline::bloom::BloomSettings;
-use bevy::input::mouse::MouseMotion;
+ 
 use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
 use ui::EditorToolsState;
@@ -39,6 +40,20 @@ use bevy::pbr::ShadowFilteringMethod;
 
 use bevy_mod_raycast::prelude::*;
 
+use crate::camera::camera_plugin;
+use crate::liquid::liquid_plugin;
+use bevy_clay_tiles;
+use bevy_clay_tiles::tiles::ClayTilesRoot;
+use bevy_clay_tiles::tiles_config::ClayTilesConfig;
+ 
+use crate::tools::brush_tools_plugin;
+
+use crate::commands::update_commands;
+use crate::ui::editor_ui_plugin;
+ 
+
+
+
 mod editor_config; 
 mod camera;
 mod commands;
@@ -53,15 +68,6 @@ mod terrain;
 //mod foliage; 
 
 mod regions;
-
-use crate::camera::camera_plugin;
-use crate::liquid::liquid_plugin;
-
-use crate::tools::brush_tools_plugin;
-
-use crate::commands::update_commands;
-use crate::ui::editor_ui_plugin;
- 
 
 
 
@@ -119,11 +125,15 @@ fn main() {
         
 
         .add_plugins(CursorRayPlugin)
- 
+
 
         .add_plugins(TerrainMeshPlugin::default())
 
         .add_plugins(BevyRegionsPlugin::default())
+
+        .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin::default())
+ 
+
        // .add_plugins(BevyFoliagePaintPlugin::default() )
 
       // .add_plugins(foliage::FoliagePlugin  )
@@ -181,7 +191,7 @@ fn setup(
 
       
      
-     
+    //initialize terrain root 
     if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
    
         commands
@@ -195,13 +205,11 @@ fn setup(
     }
     
 
- 
+    //initialize zones 
     for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
-
-
+ 
       zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
-
-
+ 
     }
 
 
@@ -228,6 +236,16 @@ fn setup(
         .insert(RegionsData::new()) 
         .insert(Visibility::Hidden)  // only in editor 
         ;
+
+
+        //initialize clay tiles root 
+     let clay_tiles_root =  commands
+        .spawn(SpatialBundle::default())
+        .insert(ClayTilesConfig::load_from_file("assets/tiles_config.ron").unwrap())
+        .insert(ClayTilesRoot::new())
+        .id();
+
+
  
     commands.spawn(  DirectionalLightBundle {
         directional_light: DirectionalLight {

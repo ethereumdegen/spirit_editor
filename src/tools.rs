@@ -1,3 +1,5 @@
+use bevy_clay_tiles::tile_edit::RectangleTileBuildTool;
+use bevy_clay_tiles::tile_edit::BuildTileTool;
 use bevy::prelude::*;
 
 use crate::editor_pls::bevy_pls_editor_is_active;
@@ -16,6 +18,8 @@ use bevy_foliage_paint::edit::{
     EditFoliageEvent, 
     EditingTool as FoliageEditingTool,
      FoliageBrushEvent};*/
+
+use bevy_clay_tiles::tile_edit::{EditingTool as TilesEditingTool} ;
 
      
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
@@ -70,6 +74,7 @@ enum EditingTool {
 
     TerrainEditingTool(TerrainEditingTool),
     RegionsEditingTool(RegionsEditingTool),
+    TilesEditingTool(TilesEditingTool)
    // FoliageEditingTool(FoliageEditingTool),
 
 }
@@ -88,14 +93,26 @@ impl From<EditorToolsState> for EditingTool {
  
 
         match state.tool_mode {
-                    ToolMode::Height => EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
+                    ToolMode::Terrain => EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
                         height: state.color.r,
                     }),
-                    ToolMode::Splat => EditingTool::TerrainEditingTool( TerrainEditingTool::SetSplatMap {
-                        r: state.color.r as u8,
-                        g: state.color.g as u8,
-                        b: state.color.b as u8,
-                    }) ,
+                    ToolMode::Tiles =>{ 
+
+
+                        let sub_tool = state.sub_tool; 
+                        // make this depend on sub tool ! 
+                        let tiles_edit_tool_mode = TilesEditingTool::BuildTile( 
+                         BuildTileTool::RectangleTileBuild( 
+                            //remove this?? depends on plugin states 
+                            RectangleTileBuildTool::PlaceOrigin
+                            ) ) ;
+                        EditingTool::TilesEditingTool(
+                            tiles_edit_tool_mode
+                    
+                                          ) 
+
+
+                    },
                      ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
                         region_index: state.color.r as u8,
                     }),  
@@ -233,6 +250,29 @@ fn update_brush_paint(
                             coordinates: hit_coordinates,
                             radius,
                         });
+                      
+                },
+
+                 EditingTool::TilesEditingTool(tiles_edit_tool) => {
+
+                    //the plugin handles this ..
+
+
+                       /*let  regions_brush_type = match &brush_type {
+                            BrushType::SetExact => RegionsBrushType::SetExact,
+                            BrushType::Smooth => RegionsBrushType::SetExact,
+                            BrushType::Noise => RegionsBrushType::SetExact,
+                            BrushType::EyeDropper => RegionsBrushType::EyeDropper,
+                        };
+
+                     edit_regions_event_writer.send(EditRegionEvent {   
+                            entity: intersection_entity.clone(),
+                            tool: region_edit_tool,
+                            brush_type:regions_brush_type,
+                            brush_hardness,
+                            coordinates: hit_coordinates,
+                            radius,
+                        });*/
                       
                 },
             }

@@ -33,6 +33,8 @@ image = { version = "0.25.1", default-features = false }
  bevy_regions = "0.14.1"
  
 
+bevy_clay_tiles = {path="../bevy_clay_tiles"}
+ 
 
  
 

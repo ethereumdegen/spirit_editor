@@ -29,7 +29,8 @@ pub struct LinearPixelColor {
 
 #[derive(Default, Resource, Clone)]
 pub struct EditorToolsState {
-    pub tool_mode: ToolMode,
+    pub tool_mode: ToolMode,    
+    pub sub_tool: Option<SubTool>,
     pub brush_type: BrushType,
     pub brush_radius: u32,
     pub brush_hardness: u32,
@@ -73,17 +74,63 @@ impl Default for BrushType {
 #[derive(Eq, PartialEq, Debug, Default, Clone)]
 pub enum ToolMode {
     #[default]
-    Height,
-    Splat,
-  //  Foliage,
-    Regions
+    //Height,
+    //Splat,
+    Terrain,
+  //  Foliage, //add me back in later 
+    Regions,
+    Tiles,
 }
+
+
+
+#[derive(Clone,Debug,PartialEq,Eq)]
+pub enum SubTool {
+
+    TerrainHeight,
+    TerrainSplat, 
+
+}
+
+
+impl SubTool{
+
+    pub fn to_string(&self) -> String{
+
+        match self {
+
+            Self::TerrainHeight  => "Terrain Height".into(),
+            Self::TerrainSplat  => "Terrain Splat".into(),
+             
+
+            
+
+        }
+
+    }
+}
+
+
+
+
 const TOOL_MODES: [ToolMode; 3] = [
-ToolMode::Height, 
-ToolMode::Splat, 
+ToolMode::Terrain,
+//ToolMode::Height, 
+//ToolMode::Splat, 
 //ToolMode::Foliage, 
-ToolMode::Regions
+ToolMode::Regions,
+ToolMode::Tiles
 ];
+
+const TERRAIN_SUBTOOLS : [SubTool; 2] = [
+SubTool::TerrainHeight,
+SubTool::TerrainSplat,
+
+
+];
+
+
+
 
 const BRUSH_TYPES_HEIGHT: [ BrushType; 4] = [
 BrushType::SetExact , 
@@ -111,8 +158,8 @@ BrushType::EyeDropper
 impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let label = match self {
-            ToolMode::Height => "Height",
-            ToolMode::Splat => "Splat",
+            ToolMode::Terrain => "Terrain",
+            ToolMode::Tiles => "Tiles",
           //  ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions"
         };
@@ -172,6 +219,7 @@ fn editor_tools(
                             .clicked()
                         {
                             tools_state.tool_mode = tool_mode;
+                            tools_state.sub_tool = None; //reset .. for now 
                         }
                     }
                 });
@@ -182,99 +230,140 @@ fn editor_tools(
         ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
         ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
 
+
+
         match tools_state.tool_mode {
-            ToolMode::Splat => {
+            ToolMode::Terrain => {
 
-                 egui::ComboBox::new("brush_type", "")
+
+                  egui::ComboBox::new("Terrain Tool", "")
                     .selected_text(tools_state.brush_type.to_string())
                     .show_ui(ui, |ui| {
-                        for brush_type in BRUSH_TYPES_SPLAT.into_iter() {
+                        for sub_tool in TERRAIN_SUBTOOLS.into_iter() {
                             if ui
                                 .selectable_label(
-                                    tools_state.brush_type == brush_type,
-                                    brush_type.to_string(),
+                                     Some(sub_tool.clone()) ==  tools_state.sub_tool  ,
+                                    sub_tool.to_string(),
                                 )
                                 .clicked()
                             {
-                                tools_state.brush_type = brush_type;
+                                tools_state.sub_tool = Some(sub_tool);
                             }
                         }
                     });
 
 
-                let terrain_index_A = tools_state.color.r.clone();
-                let terrain_index_B = tools_state.color.g.clone();
+            if let Some(sub_tool) = &tools_state.sub_tool {
+                match  sub_tool {
 
-                let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
- 
+                    SubTool::TerrainSplat => {
 
- 
-                  ui.spacing_mut().slider_width = 255.0;
- 
-                ui.add(
 
-                    egui::Slider::new(&mut tools_state.color.r, 0..=255)
-                        .text("Texture A (R_Channel")
-                        .step_by(1.0)
-                        .drag_value_speed(0.1)
+                          egui::ComboBox::new("brush_type", "")
+                                .selected_text(tools_state.brush_type.to_string())
+                                .show_ui(ui, |ui| {
+                                    for brush_type in BRUSH_TYPES_SPLAT.into_iter() {
+                                        if ui
+                                            .selectable_label(
+                                                tools_state.brush_type == brush_type,
+                                                brush_type.to_string(),
+                                            )
+                                            .clicked()
+                                        {
+                                            tools_state.brush_type = brush_type;
+                                        }
+                                    }
+                                });
 
-                        ,
-                );
 
-                if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
-                     ui.label( terrain_def.name.clone() );
+                            let terrain_index_A = tools_state.color.r.clone();
+                            let terrain_index_B = tools_state.color.g.clone();
+
+                            let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
+             
+
+             
+                              ui.spacing_mut().slider_width = 255.0;
+             
+                            ui.add(
+
+                                egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                    .text("Texture A (R_Channel")
+                                    .step_by(1.0)
+                                    .drag_value_speed(0.1)
+
+                                    ,
+                            );
+
+                            if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
+                                 ui.label( terrain_def.name.clone() );
+                            }
+                             ui.spacing_mut().slider_width = 255.0;
+                            ui.add(
+
+                                egui::Slider::new(&mut tools_state.color.g, 0..=255)
+                                    .text("Texture B (G_Channel")
+                                     .step_by(1.0)
+                                    .drag_value_speed(0.1)
+                                    ,
+                            );
+                             
+                            if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
+                                 ui.label( terrain_def.name.clone() );
+                            }
+                              ui.spacing_mut().slider_width = 255.0;
+                            ui.add(
+                                egui::Slider::new(&mut tools_state.color.b, 0..=255)
+                                    .text("Layer Fade (B_Channel")
+                                     .step_by(1.0)
+                                    .drag_value_speed(0.1)
+
+                                    ,
+                            );
+
+                    }
+
+                    SubTool::TerrainHeight => {
+
+
+                        egui::ComboBox::new("brush_type", "")
+                            .selected_text(tools_state.brush_type.to_string())
+                            .show_ui(ui, |ui| {
+                                for brush_type in BRUSH_TYPES_HEIGHT.into_iter() {
+                                    if ui
+                                        .selectable_label(
+                                            tools_state.brush_type == brush_type,
+                                            brush_type.to_string(),
+                                        )
+                                        .clicked()
+                                    {
+                                        tools_state.brush_type = brush_type;
+                                    }
+                                }
+                            });
+         
+
+
+                          ui.spacing_mut().slider_width = 300.0;
+         
+                        ui.add(
+                            egui::Slider::new(&mut tools_state.color.r, 0..=65535)
+                                .text("Height (R_Channel)")
+                               //  .step_by(1.0)
+                               // .drag_value_speed(1.0)
+                                ,
+                        );
+
+                    }
+
+
+                    _ => {}
                 }
-                 ui.spacing_mut().slider_width = 255.0;
-                ui.add(
-
-                    egui::Slider::new(&mut tools_state.color.g, 0..=255)
-                        .text("Texture B (G_Channel")
-                         .step_by(1.0)
-                        .drag_value_speed(0.1)
-                        ,
-                );
-                 
-                if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
-                     ui.label( terrain_def.name.clone() );
-                }
-                  ui.spacing_mut().slider_width = 255.0;
-                ui.add(
-                    egui::Slider::new(&mut tools_state.color.b, 0..=255)
-                        .text("Layer Fade (B_Channel")
-                         .step_by(1.0)
-                        .drag_value_speed(0.1)
-
-                        ,
-                );
+              }
+               
             }
-            ToolMode::Height => {
-                egui::ComboBox::new("brush_type", "")
-                    .selected_text(tools_state.brush_type.to_string())
-                    .show_ui(ui, |ui| {
-                        for brush_type in BRUSH_TYPES_HEIGHT.into_iter() {
-                            if ui
-                                .selectable_label(
-                                    tools_state.brush_type == brush_type,
-                                    brush_type.to_string(),
-                                )
-                                .clicked()
-                            {
-                                tools_state.brush_type = brush_type;
-                            }
-                        }
-                    });
- 
-
-
-                  ui.spacing_mut().slider_width = 300.0;
- 
-                ui.add(
-                    egui::Slider::new(&mut tools_state.color.r, 0..=65535)
-                        .text("Height (R_Channel)")
-                       //  .step_by(1.0)
-                       // .drag_value_speed(1.0)
-                        ,
-                );
+            ToolMode::Tiles => {
+                
             },
            /* ToolMode::Foliage => {
 

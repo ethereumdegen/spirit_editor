@@ -360,7 +360,7 @@ pub fn replace_proto_doodads_with_doodads(
        let doodad_name = doodad_name.as_str().to_string();
 
         let Some(doodad_definition) = doodad_definition_resource.get_doodad_definition_by_name(&doodad_name)  else {
-            println!("WARN: Could not replace doodad proto {:?}", doodad_name);
+          //  warn!("WARN: Could not replace doodad proto {:?}", doodad_name);
  
             continue;
         };
