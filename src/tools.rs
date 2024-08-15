@@ -1,5 +1,6 @@
+use bevy_clay_tiles::tile_edit::TileEditingResource;
 use crate::ui::SubTool;
-use bevy_clay_tiles::tile_edit::RectangleTileBuildTool;
+ 
 use bevy_clay_tiles::tile_edit::BuildTileTool;
 use bevy::prelude::*;
 
@@ -41,8 +42,11 @@ pub fn brush_tools_plugin(app: &mut App) {
     app.add_systems(
         Update,
         (
+            
+            update_clay_tiles_tool_state,
             update_brush_paint,
             handle_brush_events_from_terrain,
+
 
 
 
@@ -57,16 +61,16 @@ struct EditingToolData {
     brush_hardness: f32,
 }
 
-impl From<EditorToolsState> for EditingToolData {
-    fn from(state: EditorToolsState) -> Self {
-        let editing_tool = EditingTool::from(state.clone());
+impl   EditingToolData {
+    fn from_editor_tool_state(state: EditorToolsState) -> Option<Self> {
+        let editing_tool = EditingTool::from_editor_tool_state(state.clone())?;
 
-        Self {
+       Some(  Self {
             editing_tool,
             brush_radius: state.brush_radius as f32,
             brush_type: state.brush_type,
             brush_hardness: (state.brush_hardness as f32) / 100.0,
-        }
+        } )
     }
 }
 
@@ -89,8 +93,8 @@ make a system so when brush type changes, the editing tool will change ... to be
 */
 
 
-impl From<EditorToolsState> for EditingTool {
-    fn from(state: EditorToolsState) -> Option<Self> {
+impl   EditingTool {
+    fn from_editor_tool_state(state: EditorToolsState) -> Option<Self> {
  
 
         match state.tool_mode {
@@ -125,10 +129,10 @@ impl From<EditorToolsState> for EditingTool {
                         let sub_tool = state.sub_tool; 
                         // make this depend on sub tool ! 
                         let tiles_edit_tool_mode = TilesEditingTool::BuildTile( 
-                         BuildTileTool::RectangleTileBuild( 
-                            //remove this?? depends on plugin states 
-                            RectangleTileBuildTool::PlaceOrigin
-                            ) ) ;
+                           BuildTileTool::RectangleTileBuild  
+                        ) ;
+
+
 
                         Some(  EditingTool::TilesEditingTool(
                             tiles_edit_tool_mode  ) )
@@ -146,6 +150,49 @@ impl From<EditorToolsState> for EditingTool {
        
     }
 }
+
+
+
+fn update_clay_tiles_tool_state (
+    
+   // mut contexts: EguiContexts,
+
+     editor_tools_state: Res<EditorToolsState>,
+     mut tile_edit_resource: ResMut<TileEditingResource>,
+) {
+     
+    let mut selected_tile_tool = None ; 
+    
+
+        let tile_layer_height = editor_tools_state.color.r  as u32;
+        let tile_type = editor_tools_state.color.g ;
+
+
+
+
+      if let Some(tool_data)  = EditingToolData::from_editor_tool_state (editor_tools_state.clone())    {
+
+
+        
+         match tool_data.editing_tool {
+                EditingTool::TilesEditingTool(edit_tool) =>  {
+                    selected_tile_tool = Some(edit_tool) ;
+                }
+
+
+                _ => {}
+
+            }
+      };
+
+
+     tile_edit_resource.set_build_layer_height(  tile_layer_height );
+
+     tile_edit_resource.set_selected_tool ( selected_tile_tool  );
+
+ }
+
+
 
 fn update_brush_paint(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
@@ -176,7 +223,10 @@ fn update_brush_paint(
     //make me dynamic or whatever
     // let tool = EditingTool::SetHeightMap(125,25.0, false);
 
-    let tool_data: EditingToolData = (*editor_tools_state).clone().into();
+    let Some(tool_data)  = EditingToolData::from_editor_tool_state (editor_tools_state.clone())  else {
+
+        return 
+    };
 
     let radius = tool_data.brush_radius;
     let brush_hardness = tool_data.brush_hardness;

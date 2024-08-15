@@ -90,6 +90,9 @@ pub enum SubTool {
     TerrainHeight,
     TerrainSplat, 
 
+    BuildTileRectangle,
+    BuildTilePolygon
+
 }
 
 
@@ -101,10 +104,11 @@ impl SubTool{
 
             Self::TerrainHeight  => "Terrain Height".into(),
             Self::TerrainSplat  => "Terrain Splat".into(),
-             
 
-            
-
+            Self::BuildTileRectangle  => "Build: Rectangle".into(),
+            Self::BuildTilePolygon  => "Build: Polygon".into(),
+                
+  
         }
 
     }
@@ -123,11 +127,16 @@ ToolMode::Tiles
 ];
 
 const TERRAIN_SUBTOOLS : [SubTool; 2] = [
-SubTool::TerrainHeight,
-SubTool::TerrainSplat,
-
+    SubTool::TerrainHeight,
+    SubTool::TerrainSplat, 
 
 ];
+
+const TILE_SUBTOOLS : [SubTool; 2] = [
+    SubTool::BuildTileRectangle,
+    SubTool::BuildTilePolygon, 
+];
+
 
 
 
@@ -236,9 +245,7 @@ fn editor_tools(
 
              
                   ui.heading("Sub Tool");
-                info!("showing terrain tool combobox ");
-
-
+                
                 let subtool_name = match &tools_state.sub_tool {
 
                     Some(st) => st.to_string(),
@@ -399,6 +406,56 @@ fn editor_tools(
                
             }
             ToolMode::Tiles => {
+
+
+
+                  ui.heading("Sub Tool");
+                
+
+                let subtool_name = match &tools_state.sub_tool {
+
+                    Some(st) => st.to_string(),
+                    None => "None".to_string()
+                };
+
+                  egui::ComboBox::new("Tiles Tool", "")
+                    .selected_text(subtool_name)
+                    .show_ui(ui, |ui| {
+                        for sub_tool in TILE_SUBTOOLS.into_iter() {
+                            if ui
+                                .selectable_label(
+                                     Some(sub_tool.clone()) ==  tools_state.sub_tool  ,
+                                    sub_tool.to_string(),
+                                )
+                                .clicked()
+                            {
+                                tools_state.sub_tool = Some(sub_tool);
+                            }
+                        }
+                    });
+
+
+
+
+
+                   ui.add(
+                            egui::Slider::new(&mut tools_state.color.r, 0..=1024)
+                                .text("Tile Layer Height")
+                               //  .step_by(1.0)
+                               // .drag_value_speed(1.0)
+                                ,
+                        );
+
+                    ui.add(
+                            egui::Slider::new(&mut tools_state.color.g, 0..=64)
+                                .text("Tile Type")
+                               //  .step_by(1.0)
+                               // .drag_value_speed(1.0)
+                                ,
+                        );
+
+
+
                 
             },
            /* ToolMode::Foliage => {
