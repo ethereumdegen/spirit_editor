@@ -227,17 +227,26 @@ fn editor_tools(
         ui.spacing();
         ui.separator();
 
-        ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
-        ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
-
 
 
         match tools_state.tool_mode {
             ToolMode::Terrain => {
+                   ui.spacing();
+                 ui.separator();
 
+             
+                  ui.heading("Sub Tool");
+                info!("showing terrain tool combobox ");
+
+
+                let subtool_name = match &tools_state.sub_tool {
+
+                    Some(st) => st.to_string(),
+                    None => "None".to_string()
+                };
 
                   egui::ComboBox::new("Terrain Tool", "")
-                    .selected_text(tools_state.brush_type.to_string())
+                    .selected_text(subtool_name)
                     .show_ui(ui, |ui| {
                         for sub_tool in TERRAIN_SUBTOOLS.into_iter() {
                             if ui
@@ -253,11 +262,14 @@ fn editor_tools(
                     });
 
 
+                    ui.spacing();
+                        ui.separator();
+
+
             if let Some(sub_tool) = &tools_state.sub_tool {
                 match  sub_tool {
 
                     SubTool::TerrainSplat => {
-
 
                           egui::ComboBox::new("brush_type", "")
                                 .selected_text(tools_state.brush_type.to_string())
@@ -281,6 +293,14 @@ fn editor_tools(
 
                             let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
              
+
+                            
+                               ui.spacing();
+                          ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+                            ui.spacing();
+                            ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
+                            ui.spacing();
+                            
 
              
                               ui.spacing_mut().slider_width = 255.0;
@@ -321,6 +341,12 @@ fn editor_tools(
                                     ,
                             );
 
+
+
+
+                             
+                          
+
                     }
 
                     SubTool::TerrainHeight => {
@@ -344,6 +370,12 @@ fn editor_tools(
          
 
 
+                            ui.spacing();
+                            ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+                            ui.spacing();
+                            ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
+                            ui.spacing();
+
                           ui.spacing_mut().slider_width = 300.0;
          
                         ui.add(
@@ -353,6 +385,10 @@ fn editor_tools(
                                // .drag_value_speed(1.0)
                                 ,
                         );
+
+
+
+                              
 
                     }
 

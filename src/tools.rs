@@ -1,3 +1,4 @@
+use crate::ui::SubTool;
 use bevy_clay_tiles::tile_edit::RectangleTileBuildTool;
 use bevy_clay_tiles::tile_edit::BuildTileTool;
 use bevy::prelude::*;
@@ -89,13 +90,35 @@ make a system so when brush type changes, the editing tool will change ... to be
 
 
 impl From<EditorToolsState> for EditingTool {
-    fn from(state: EditorToolsState) -> Self {
+    fn from(state: EditorToolsState) -> Option<Self> {
  
 
         match state.tool_mode {
-                    ToolMode::Terrain => EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
-                        height: state.color.r,
-                    }),
+                    ToolMode::Terrain => {
+
+                         let sub_tool = state.sub_tool; 
+                       /* EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
+                                            height: state.color.r,
+                                        })*/
+
+                        match sub_tool{
+                          Some(SubTool::TerrainHeight) => Some(EditingTool::TerrainEditingTool( 
+                             TerrainEditingTool::SetHeightMap {
+                                height: state.color.r,
+                            }) ),
+                           Some(SubTool::TerrainSplat) => Some( EditingTool::TerrainEditingTool( 
+                                TerrainEditingTool::SetSplatMap {
+                                r: state.color.r as u8,
+                                g: state.color.g as u8,
+                                b: state.color.b as u8,
+                            }) ),
+
+                           _ => None 
+
+                        }
+
+
+                    },
                     ToolMode::Tiles =>{ 
 
 
@@ -106,16 +129,15 @@ impl From<EditorToolsState> for EditingTool {
                             //remove this?? depends on plugin states 
                             RectangleTileBuildTool::PlaceOrigin
                             ) ) ;
-                        EditingTool::TilesEditingTool(
-                            tiles_edit_tool_mode
-                    
-                                          ) 
+
+                        Some(  EditingTool::TilesEditingTool(
+                            tiles_edit_tool_mode  ) )
 
 
                     },
-                     ToolMode::Regions => EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
+                     ToolMode::Regions => Some( EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
                         region_index: state.color.r as u8,
-                    }),  
+                    }) ),  
                   /*  ToolMode::Foliage => EditingTool::FoliageEditingTool( 
                         FoliageEditingTool::SetFoliageDensity {
                         density: state.color.r as u8,
