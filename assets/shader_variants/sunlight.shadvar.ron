@@ -1,11 +1,11 @@
 (
    
     texture: "textures/SunBeam_Tex_01.png",
-    animation_speed: (0.0005,0.15),  
+    animation_speed: (0.015,0.0),  
 
-    distortion_speed: (0.2,0.01),
+    distortion_speed: (0.4,0.4),
     scroll_repeats: ( 1.0,1.0),
-    distortion_amount: 0.004 , 
+    distortion_amount: 0.014 , 
 
     color: LinearRgba(
         red: 1.0,
