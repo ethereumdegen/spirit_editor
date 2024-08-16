@@ -1,3 +1,4 @@
+use bevy_clay_tiles::tile_edit::ModifyTileTool;
 use bevy_clay_tiles::tile_edit::TileEditingResource;
 use crate::ui::SubTool;
  
@@ -127,15 +128,37 @@ impl   EditingTool {
 
 
                         let sub_tool = state.sub_tool; 
-                        // make this depend on sub tool ! 
-                        let tiles_edit_tool_mode = TilesEditingTool::BuildTile( 
-                           BuildTileTool::RectangleTileBuild  
-                        ) ;
 
 
 
-                        Some(  EditingTool::TilesEditingTool(
-                            tiles_edit_tool_mode  ) )
+                        let tiles_edit_tool_mode =  match sub_tool {
+                            
+    
+
+                            Some(SubTool::BuildTileRectangle) => Some( TilesEditingTool::BuildTile( 
+                               BuildTileTool::RectangleTileBuild  
+                            ) ),
+
+                                Some(SubTool::BuildTilePolygon) => Some( TilesEditingTool::BuildTile( 
+                               BuildTileTool::PolygonTileBuild  
+                            ) ),
+
+                            Some(SubTool::ModifyTileHeight) => Some( TilesEditingTool::ModifyTile(
+                                    ModifyTileTool::ModifyTileHeight)  ),
+
+                             Some(SubTool::ModifyTileBevel) => Some( TilesEditingTool::ModifyTile(
+                                    ModifyTileTool::ModifyTileBevel)  ),
+
+                                Some(SubTool::ModifyTileType) => Some( TilesEditingTool::ModifyTile(
+                                    ModifyTileTool::ModifyTileType)  ),
+
+
+                            _ => None 
+                        };
+
+
+                        tiles_edit_tool_mode.map(  |mode|  EditingTool::TilesEditingTool(mode)   )
+ 
 
 
                     },
@@ -165,7 +188,9 @@ fn update_clay_tiles_tool_state (
     
 
         let tile_layer_height = editor_tools_state.color.r  as u32;
-        let tile_type = editor_tools_state.color.g ;
+
+
+        let tile_type = editor_tools_state.color.g as u32;
 
 
 
@@ -187,6 +212,8 @@ fn update_clay_tiles_tool_state (
 
 
      tile_edit_resource.set_build_layer_height(  tile_layer_height );
+
+      tile_edit_resource.set_build_tile_type(  tile_type );
 
      tile_edit_resource.set_selected_tool ( selected_tile_tool  );
 

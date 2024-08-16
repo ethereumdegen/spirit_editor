@@ -91,7 +91,10 @@ pub enum SubTool {
     TerrainSplat, 
 
     BuildTileRectangle,
-    BuildTilePolygon
+    BuildTilePolygon,
+    ModifyTileHeight,
+    ModifyTileBevel,
+    ModifyTileType, 
 
 }
 
@@ -107,6 +110,9 @@ impl SubTool{
 
             Self::BuildTileRectangle  => "Build: Rectangle".into(),
             Self::BuildTilePolygon  => "Build: Polygon".into(),
+            Self::ModifyTileHeight  => "Modify: Height".into(),
+            Self::ModifyTileBevel  => "Modify: Bevel".into(),
+            Self::ModifyTileType  => "Modify: Tile Type".into(),
                 
   
         }
@@ -132,9 +138,12 @@ const TERRAIN_SUBTOOLS : [SubTool; 2] = [
 
 ];
 
-const TILE_SUBTOOLS : [SubTool; 2] = [
+const TILE_SUBTOOLS : [SubTool; 5] = [
     SubTool::BuildTileRectangle,
     SubTool::BuildTilePolygon, 
+    SubTool::ModifyTileHeight,
+    SubTool::ModifyTileBevel,
+    SubTool::ModifyTileType
 ];
 
 
