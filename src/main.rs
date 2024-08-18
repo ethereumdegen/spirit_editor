@@ -42,8 +42,7 @@ use bevy_mod_raycast::prelude::*;
 
 use crate::camera::camera_plugin;
 use crate::liquid::liquid_plugin;
-use bevy_clay_tiles;
-use bevy_clay_tiles::tiles::ClayTilesRoot;
+use bevy_clay_tiles; 
 use bevy_clay_tiles::tiles_config::ClayTilesConfig;
  
 use crate::tools::brush_tools_plugin;
@@ -131,7 +130,9 @@ fn main() {
 
         .add_plugins(BevyRegionsPlugin::default())
 
-        .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin::default())
+        .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin {
+             config: ClayTilesConfig::load_from_file("assets/tiles_config.ron").unwrap()
+        })
  
 
        // .add_plugins(BevyFoliagePaintPlugin::default() )
@@ -238,12 +239,7 @@ fn setup(
         ;
 
 
-        //initialize clay tiles root 
-     let clay_tiles_root =  commands
-        .spawn(SpatialBundle::default())
-        .insert(ClayTilesConfig::load_from_file("assets/tiles_config.ron").unwrap())
-        .insert(ClayTilesRoot::new())
-        .id();
+   
 
 
  
