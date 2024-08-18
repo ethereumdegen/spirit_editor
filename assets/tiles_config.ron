@@ -7,6 +7,6 @@ ClayTilesConfig(
     texture_image_sections: 4,
      
      
-     diffuse_folder_path: "textures/tiles_array_texture.tga", 
+     diffuse_folder_path: "clay_tiles/tiles_array_texture.tga", 
       
 )

@@ -806,6 +806,7 @@ dependencies = [
  "bevy 0.14.0",
  "bevy_mod_raycast",
  "bevy_mod_sysfail 7.0.0",
+ "earcutr",
  "futures-lite 1.13.0",
  "geo",
  "image 0.25.1",
