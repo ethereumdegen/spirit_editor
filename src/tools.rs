@@ -193,7 +193,7 @@ fn update_clay_tiles_tool_state (
         let tile_layer_height = editor_tools_state.color.r  as u32;
 
 
-        let tile_type = editor_tools_state.color.g as u32;
+        let tile_type = editor_tools_state.color.g as usize;
 
         let build_mesh_height = editor_tools_state.color.b as f32; 
 
@@ -218,7 +218,7 @@ fn update_clay_tiles_tool_state (
 
      tile_edit_resource.set_build_layer_height(  tile_layer_height );
 
-      tile_edit_resource.set_build_tile_type(  tile_type );
+     tile_edit_resource.set_build_tile_type(  tile_type );
 
      tile_edit_resource.set_selected_tool ( selected_tile_tool  );
  

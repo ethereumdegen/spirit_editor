@@ -1,0 +1,21 @@
+(
+
+  tile_types: [
+
+  	//texture index 0 
+  		(
+  		  name: "gray_bricks",
+        diffuse_texture_index:  0, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+  		)
+
+  ]
+
+
+)
