@@ -3,6 +3,7 @@
 ## Bevy Mesh Terrain Editor
 
 - bug: cant select units ? 
+ BUG : painting terrain makes it invisible ? 
  
  
 - synty swamp has an issue with texcoords ?

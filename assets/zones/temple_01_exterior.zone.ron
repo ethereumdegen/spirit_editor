@@ -1,0 +1,12 @@
+(entities:[
+
+
+	 
+
+	(name:"aria",transform:(translation:(962.4259,17.390978,528.95996),rotation:(0.0,-0.0,0.0),scale:(1.0,1.0,1.0)),custom_props:Some({"has_dialog_tree":String("aria"),"unique_name":String("aria")})),(name:"spiderweb_line_fx",transform:(translation:(962.4998,21.318224,529.2499),rotation:(0.0,-0.0,0.0),scale:(1.0,1.0,1.0)),custom_props:Some({"magicfx_beam_target_name":String("aria")})),(name:"trigger_volume",transform:(translation:(962.02386,13.664833,530.7239),rotation:(0.0,-0.0,0.0),scale:(6.0,6.0,6.0)),custom_props:Some({"special_type":String("trigger_volume"),"interaction_trigger_script":String("aria_talk")})),
+
+	(name:"player_waypoint",transform:(translation:(959.9756,13.055365,533.7239),rotation:(0.0,-0.0,0.0),scale:(1.0,1.0,1.0)),custom_props:Some({"special_type":String("player_waypoint"),"waypoint_name":String("player_talk_aria")})),
+
+	(name:"camera_waypoint",transform:(translation:(967.1458,16.718063,536.06024),rotation:(0.72508323,-0.118786745,-0.00000016132431),scale:(1.0,1.0,1.0)),custom_props:Some({"special_type":String("camera_waypoint"),"waypoint_name":String("camera_talk_aria")}))
+
+	])
