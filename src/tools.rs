@@ -1,5 +1,6 @@
 use bevy_clay_tiles::tile_edit::ModifyTileTool;
 use bevy_clay_tiles::tile_edit::TileEditingResource;
+use bevy_editor_pls_default_windows::zones::ZoneResource;
 use crate::ui::SubTool;
  
 use bevy_clay_tiles::tile_edit::BuildTileTool;
@@ -182,6 +183,8 @@ fn update_clay_tiles_tool_state (
 
      editor_tools_state: Res<EditorToolsState>,
      mut tile_edit_resource: ResMut<TileEditingResource>,
+
+     zone_resource: Res<ZoneResource> ,
 ) {
      
     let mut selected_tile_tool = None ; 
@@ -218,8 +221,15 @@ fn update_clay_tiles_tool_state (
       tile_edit_resource.set_build_tile_type(  tile_type );
 
      tile_edit_resource.set_selected_tool ( selected_tile_tool  );
-
+ 
      tile_edit_resource.set_build_mesh_height( build_mesh_height );
+ 
+     if let Some(primary_zone) = &zone_resource.primary_zone {
+         tile_edit_resource.set_new_tile_parent_entity ( Some(*primary_zone) );
+
+
+     }
+ 
 
  }
 

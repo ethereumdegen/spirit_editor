@@ -11,7 +11,7 @@ initial_zones_to_load: Some([
        // "wood_elf_temple_interior_01.zone"
 
       
-      "zone01.zone",
+        "zone01.zone",
         "test_units.zone",
         "test_stuff.zone",
         "ancient_islands.zone",
@@ -23,6 +23,9 @@ initial_zones_to_load: Some([
         "twisted_grove_power_runes.zone",
         "swamp_one.zone",
         "dungeon_01_exterior.zone",
+
+         "temple_exterior.zone",
+
 
  ]), 
 
