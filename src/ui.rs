@@ -449,7 +449,7 @@ fn editor_tools(
 
                    ui.add(
                             egui::Slider::new(&mut tools_state.color.r, 0..=1024)
-                                .text("Tile Layer Height")
+                                .text("Tile Height Offset")
                                //  .step_by(1.0)
                                // .drag_value_speed(1.0)
                                 ,
@@ -463,6 +463,13 @@ fn editor_tools(
                                 ,
                         );
 
+                     ui.add(
+                            egui::Slider::new(&mut tools_state.color.b, 0..=256)
+                                .text("Tile Mesh Height")
+                               //  .step_by(1.0)
+                               // .drag_value_speed(1.0)
+                                ,
+                        );
 
 
                 
