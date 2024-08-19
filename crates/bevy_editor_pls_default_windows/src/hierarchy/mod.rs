@@ -1,6 +1,7 @@
 // pub mod picking;
 
- use spirit_edit_core::zones::ZoneComponent;
+ use spirit_edit_core::zones::SaveZoneToFileEvent;
+use spirit_edit_core::zones::ZoneComponent;
 use spirit_edit_core::zones::ZoneEvent;
 
 
@@ -192,7 +193,7 @@ impl<'a> Hierarchy<'a> {
                         ui.close_menu();
                     }
                     if ui.button("Save zone file").clicked() {
-                        world.send_event::<ZoneEvent>(ZoneEvent::SaveZoneToFile(entity).into());
+                        world.send_event::<SaveZoneToFileEvent>(SaveZoneToFileEvent(entity).into());
                         ui.close_menu();
                     }
                 }

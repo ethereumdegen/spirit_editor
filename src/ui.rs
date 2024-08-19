@@ -7,6 +7,7 @@ use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
+use spirit_edit_core::zones::ZoneEvent;
 //use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
@@ -192,6 +193,7 @@ fn editor_tools(
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
    // mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
+    mut zone_event_writer: EventWriter<ZoneEvent>,
 
     mut contexts: EguiContexts,
 
@@ -205,6 +207,7 @@ fn editor_tools(
         if ui.button("Save All   (Ctrl+S)").clicked() {
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
+            zone_event_writer.send(ZoneEvent::SaveAllZones);
          //   foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
         }
 

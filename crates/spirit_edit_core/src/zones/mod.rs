@@ -1,3 +1,4 @@
+use crate::zones::zone_file::ZoneEntity;
 use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
 use std::fs;
 use bevy::prelude::*;
@@ -13,11 +14,18 @@ pub struct ZoneComponent {}
 #[derive(Event)]
 pub enum ZoneEvent {
     SetZoneAsPrimary(Entity),
-    SaveZoneToFile(Entity),
+   // SaveZoneToFile(Entity),
+    SaveAllZones,
     CreateNewZone(String),
     LoadZoneFile(String),
     ResetPrimaryZone,
 }
+
+
+#[derive(Event)]
+pub struct SaveZoneToFileEvent(pub Entity) ;
+
+
 
 #[derive(Resource, Default)]
 pub struct ZoneResource {
@@ -222,8 +230,15 @@ pub fn handle_zone_events(
 
     children_query: Query<&Children, With<Name>>,   
 
+
+
     //change me to entity ref ..
-    zone_entity_query: Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>, 
+    zone_entity_query: Query<
+      Entity,
+      //(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>),
+     With<ZoneComponent>>, 
+
+    mut save_zone_evt_writer: EventWriter<SaveZoneToFileEvent>,
 
     mut spawn_doodad_event_writer: EventWriter<PlaceDoodadEvent>,
 ) {
@@ -245,7 +260,22 @@ pub fn handle_zone_events(
             ZoneEvent::ResetPrimaryZone => {
                 zone_resource.primary_zone = None;
             }
-            ZoneEvent::SaveZoneToFile(ent) => {
+            ZoneEvent::SaveAllZones => {
+                
+                for zone_entity in zone_entity_query.iter(){
+
+                    save_zone_evt_writer.send(
+                        SaveZoneToFileEvent(zone_entity)
+                    );
+                }
+                //loop thru each  Zone entity 
+              //  and fire off an evt 
+
+
+
+            }
+
+           /* ZoneEvent::SaveZoneToFile(ent) => {
                 //this is kind of wacky but we are using this as a poor mans name query
                 let Some((zone_name_comp, _, _, _)) = zone_entity_query.get(ent.clone()).ok() else {
                     return;
@@ -283,7 +313,7 @@ pub fn handle_zone_events(
                 let file_saved = std::fs::write(zone_file_name, ron);
 
                 println!("exported zone ! {:?}", file_saved);
-            }
+            }*/
 
             ZoneEvent::LoadZoneFile(zone_name) => {
 
@@ -351,5 +381,94 @@ pub fn handle_zone_events(
                 }
             }
         }
+    }
+}
+
+
+
+pub fn handle_save_zone_events(
+  //  mut commands: Commands,
+    mut evt_reader: EventReader<SaveZoneToFileEvent>,
+
+    entity_ref_query: Query<EntityRef>  ,
+
+      //children_query: Query<&Children, With<Name>>, 
+
+   /* mut zone_resource: ResMut<ZoneResource>,
+
+    children_query: Query<&Children, With<Name>>,   
+
+    //change me to entity ref ..
+    zone_entity_query: Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>, 
+
+    mut spawn_doodad_event_writer: EventWriter<PlaceDoodadEvent>,*/
+) {
+    for evt in evt_reader.read() {
+
+        let ent = evt.0;
+
+        let Some(zone_entity_ref) = entity_ref_query.get(ent).ok() else {continue};
+          
+        //this is kind of wacky but we are using this as a poor mans name query
+        let Some(zone_name_comp) = zone_entity_ref.get::<Name>() else {
+            return;
+        };
+
+        let zone_name: &str = zone_name_comp.as_str();
+
+
+        let fixed_zone_name = match zone_name.ends_with( "zone.ron" ) || zone_name.ends_with( "zone" ){
+
+            true => {
+
+                  let   parts: Vec<&str> = zone_name.split('.').collect();
+                 
+                    parts.first().unwrap() .to_string()  
+                   
+
+              }, 
+            false => zone_name.to_string()
+
+        };
+        
+
+       // let mut all_children: Vec<Entity> = Vec::new();
+
+        /*for child in DescendantIter::new(&children_query, ent.clone()) {
+            all_children.push(child);
+        }*/
+
+        let mut zone_entities:Vec<ZoneEntity> = Vec::new();
+
+        let Some(zone_children) = zone_entity_ref.get::<Children>()  else {continue};
+
+        for child_entity in zone_children {
+
+
+            if let Some(child_entity_ref) = entity_ref_query.get( *child_entity ).ok() {
+
+                if let Some(zone_entity) = ZoneEntity::from_entity_ref( &child_entity_ref ) {
+                    zone_entities.push(zone_entity);
+                }
+            }
+
+
+        }
+
+
+
+
+        let zone_file = ZoneFile {
+
+            entities: zone_entities
+        };
+
+        let zone_file_name = format!("assets/zones/{}.zone.ron", fixed_zone_name);
+
+        let ron = ron::ser::to_string(&zone_file).unwrap();
+        let file_saved = std::fs::write(zone_file_name, ron);
+
+        println!("exported zone ! {:?}", file_saved);
+            
     }
 }
