@@ -99,7 +99,9 @@ anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.25.1"
+ bevy_clay_tiles = {path="../bevy_clay_tiles"}
  
+
 
 
 egui = "0.28"

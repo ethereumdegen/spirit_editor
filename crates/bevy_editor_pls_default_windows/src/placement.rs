@@ -229,8 +229,9 @@ pub fn handle_placement_tool_events(
                              scale: Some(simple_xform.scale), 
                              rotation_euler: Some(simple_xform.rotation), 
                              doodad_name: name_comp.to_string().clone(),
-                             custom_props: None ,
-                             zone: None 
+                             custom_props: None , 
+                             zone: None ,
+                             clay_tile_block_data: None , //for now .. 
                       });
 
 

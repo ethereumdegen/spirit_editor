@@ -1,6 +1,8 @@
 use bevy::{prelude::*, utils::HashMap};
 use serde::{Deserialize, Serialize};
 
+use bevy_clay_tiles::{ clay_tile_block:: ClayTileBlock }; 
+
 #[derive(Serialize, Deserialize)]
 pub struct ZoneFile {
     pub entities: Vec<ZoneEntity>, 
@@ -9,12 +11,12 @@ pub struct ZoneFile {
 impl ZoneFile {
     pub fn new(
         entities: Vec<Entity>,
-        zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>)>,
+        zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>,
     ) -> Self {
         let mut zone_entities = Vec::new();
 
         for entity in entities {
-            if let Some(zone_entity) = ZoneEntity::from_entity(entity, &zone_entity_query) {
+            if let Some(zone_entity) = ZoneEntity::from_entity(entity,  zone_entity_query) {
                 zone_entities.push(zone_entity);
             }
         }
@@ -91,6 +93,10 @@ pub struct ZoneEntity {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub custom_props: Option<CustomPropsMap>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub clay_tile_block_data: Option<ClayTileBlock>,
+
 }
 
 impl ZoneEntity {
@@ -110,17 +116,19 @@ impl ZoneEntity {
         &self.custom_props
     }
 
+    //clean this up and move to root .. 
     fn from_entity(
         entity: Entity,
-        zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>)>,
+        zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>,
     ) -> Option<Self> {
-        if let Some((name, xform, custom_props_component)) = zone_entity_query.get(entity).ok() {
+        if let Some((name, xform, custom_props_component, clay_tile_block_data)) = zone_entity_query.get(entity).ok() {
             let custom_props = custom_props_component.and_then(|comp| Some(comp.props.clone()));
 
             return Some(Self {
                 name: name.as_str().to_string(),
                 transform: xform.clone().into(),
                 custom_props,
+                clay_tile_block_data: clay_tile_block_data.cloned()
             });
         }
 

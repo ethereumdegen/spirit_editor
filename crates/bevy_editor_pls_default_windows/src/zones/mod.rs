@@ -1,3 +1,4 @@
+use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
 use std::fs;
 use bevy::prelude::*;
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
@@ -218,9 +219,10 @@ pub fn handle_zone_events(
 
     mut zone_resource: ResMut<ZoneResource>,
 
-    children_query: Query<&Children, With<Name>>,
+    children_query: Query<&Children, With<Name>>,   
 
-    zone_entity_query: Query<(&Name, &Transform, Option<&CustomPropsComponent>)>,
+    //change me to entity ref ..
+    zone_entity_query: Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>, 
 
     mut spawn_doodad_event_writer: EventWriter<PlaceDoodadEvent>,
 ) {
@@ -244,7 +246,7 @@ pub fn handle_zone_events(
             }
             ZoneEvent::SaveZoneToFile(ent) => {
                 //this is kind of wacky but we are using this as a poor mans name query
-                let Some((zone_name_comp, _, _)) = zone_entity_query.get(ent.clone()).ok() else {
+                let Some((zone_name_comp, _, _, _)) = zone_entity_query.get(ent.clone()).ok() else {
                     return;
                 };
 
@@ -272,7 +274,7 @@ pub fn handle_zone_events(
                     all_children.push(child);
                 }
 
-                let zone_file = ZoneFile::new(all_children, &zone_entity_query);
+                let zone_file = ZoneFile::new(all_children, &zone_entity_query );
 
                 let zone_file_name = format!("assets/zones/{}.zone.ron", fixed_zone_name);
 
@@ -341,6 +343,7 @@ pub fn handle_zone_events(
                             rotation_euler: Some(zone_entity.get_rotation_euler()),
                             scale: Some(zone_entity.get_scale()),
                             custom_props: zone_entity.get_custom_props().clone(),
+                            clay_tile_block_data: zone_entity.clay_tile_block_data.clone(), 
                             zone:Some(created_zone)
                         }
                     });

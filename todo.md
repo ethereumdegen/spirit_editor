@@ -11,9 +11,9 @@
 ## Immediate todo 
 
 
-- xform the clay tile by its origin and pass that offset into the mesh gen 
+- make a crate  spirit_edit_core  and move a bunch of stuff from default_windows into IT !!
 
--tool mode to edit height of a tile / select a tile
+
 -make SaveAll save all zones 
  
 

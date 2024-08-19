@@ -1,3 +1,4 @@
+use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
 use crate::doodads::doodad_placement_preview::DoodadPlacementPlugin;
 use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 
@@ -94,7 +95,9 @@ pub struct PlaceDoodadEvent {
     pub rotation_euler: Option<Vec3>,
     pub doodad_name: String,
     pub custom_props: Option<CustomPropsMap>,
-    pub zone: Option<Entity> 
+    pub zone: Option<Entity> ,
+
+    pub clay_tile_block_data: Option<ClayTileBlock >, //dont love this but its K 
     // pub doodad_definition: DoodadDefinition
 }
 
@@ -323,6 +326,13 @@ pub fn handle_place_doodad_events(
 
 
 
+         if let Some(clay_tile_block) = &evt.clay_tile_block_data {
+             commands
+                .entity(doodad_spawned)
+                .insert(    clay_tile_block.clone()   );
+
+        }
+
 
          if let Some(zone_override) = &evt.zone {
             if let Some(mut ent) = commands.get_entity(zone_override.clone()) {
@@ -529,7 +539,8 @@ pub fn update_place_doodads(
                 rotation_euler,
                 scale,
                 custom_props,
-                zone: None
+                zone: None,
+                clay_tile_block_data : None ,
             });
         }
     }

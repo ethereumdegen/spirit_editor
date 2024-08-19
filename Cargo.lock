@@ -1115,6 +1115,7 @@ name = "bevy_editor_pls"
 version = "0.8.2"
 dependencies = [
  "bevy 0.14.0",
+ "bevy_clay_tiles",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
  "bevy_mod_raycast",
@@ -1140,6 +1141,7 @@ dependencies = [
  "base64 0.21.7",
  "bevy 0.14.0",
  "bevy-inspector-egui",
+ "bevy_clay_tiles",
  "bevy_common_assets 0.11.0",
  "bevy_editor_pls_core",
  "bevy_mod_debugdump",
