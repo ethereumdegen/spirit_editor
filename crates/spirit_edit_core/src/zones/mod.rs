@@ -1,8 +1,7 @@
 use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
 use std::fs;
 use bevy::prelude::*;
-use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
-use bevy_inspector_egui::egui::{self, RichText};
+ 
 
 use std::path::Path;
 
@@ -36,6 +35,7 @@ const DEFAULT_FILENAME: &str = "zone01";
 #[derive(Default, Component)]
 pub struct NotInScene;
 
+/*
 #[derive(Default)]
 pub struct ZoneWindowState {
     create_filename: String,
@@ -151,8 +151,9 @@ impl EditorWindow for ZoneWindow {
         }
     }
 }
+*/
 
-fn create_zone(
+pub fn create_zone(
     //  world: &mut World,
     world: &mut World,
     name: &str,
@@ -162,7 +163,7 @@ fn create_zone(
     Ok(())
 }
 
-fn load_zone(
+pub fn load_zone(
     world: &mut World,
     name: &str,
 ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
@@ -171,7 +172,7 @@ fn load_zone(
     Ok(())
 }
 
-fn load_all_zones(
+pub fn load_all_zones(
     world: &mut World
 ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 
@@ -188,7 +189,7 @@ fn load_all_zones(
 }
 
 
-fn get_all_zone_file_names() -> Vec<String> {
+pub fn get_all_zone_file_names() -> Vec<String> {
     let zones_dir = Path::new("assets/zones");
 
     let file_names = match fs::read_dir(zones_dir) {

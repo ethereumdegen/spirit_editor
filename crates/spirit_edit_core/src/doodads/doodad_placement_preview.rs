@@ -9,7 +9,7 @@ use bevy::prelude::*;
 
 use bevy::scene::SceneInstanceReady;
 use bevy_editor_pls_core::Editor;
-use bevy_inspector_egui::bevy_egui::EguiContexts;
+use  bevy_egui::EguiContexts;
 use bevy_mod_raycast::immediate::RaycastSettings;
 use bevy_mod_raycast::cursor::CursorRay;
 
@@ -19,9 +19,7 @@ use bevy_mod_raycast::prelude::Raycast;
 use super::doodad_manifest::{DoodadManifest,  RenderableType};
 use super::DoodadToolState;
 
-
-
-use anyhow::{Context, Result};
+ 
 
 
 pub struct DoodadPlacementPlugin {}

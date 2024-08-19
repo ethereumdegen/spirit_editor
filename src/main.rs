@@ -1,9 +1,11 @@
 
+use spirit_edit_core::SpiritEditCorePlugin;
+use spirit_edit_core::zones::ZoneEvent;
 use crate::asset_loading::EditorConfigAssets;
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
-use bevy_editor_pls_default_windows::zones::ZoneEvent;
+ 
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
@@ -159,6 +161,9 @@ fn main() {
         .add_systems(Update, update_commands)
          .add_systems(Update, regions::update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
+
+
+        .add_plugins(SpiritEditCorePlugin {})
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
         .run();

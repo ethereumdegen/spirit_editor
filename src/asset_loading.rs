@@ -1,8 +1,9 @@
-		
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadTagMapResource;
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadDefinitionsResource;
+ 
+use spirit_edit_core::doodads::doodad_manifest::DoodadManifest;
+use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource;
+use spirit_edit_core::doodads::doodad_manifest::DoodadTagMapResource;
 use bevy_common_assets::ron::RonAssetPlugin;
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
+ 
 use crate::EditorConfig;
 use bevy::gltf::Gltf;
 use bevy_asset_loader::prelude::*; 

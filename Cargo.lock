@@ -1141,7 +1141,6 @@ dependencies = [
  "base64 0.21.7",
  "bevy 0.14.0",
  "bevy-inspector-egui",
- "bevy_clay_tiles",
  "bevy_common_assets 0.11.0",
  "bevy_editor_pls_core",
  "bevy_mod_debugdump",
@@ -1154,6 +1153,7 @@ dependencies = [
  "rand",
  "ron",
  "serde",
+ "spirit_edit_core",
  "transform-gizmo-bevy",
 ]
 
@@ -6024,6 +6024,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "spirit_edit_core"
+version = "0.8.2"
+dependencies = [
+ "bevy 0.14.0",
+ "bevy_clay_tiles",
+ "bevy_common_assets 0.11.0",
+ "bevy_editor_pls_core",
+ "bevy_egui",
+ "bevy_mod_picking",
+ "bevy_mod_raycast",
+ "rand",
+ "ron",
+ "serde",
+]
+
+[[package]]
 name = "spirit_editor"
 version = "0.14.3"
 dependencies = [
@@ -6048,6 +6064,7 @@ dependencies = [
  "image 0.25.1",
  "ron",
  "serde",
+ "spirit_edit_core",
  "winit 0.30.3",
 ]
 

@@ -1,22 +1,25 @@
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadDefinitionsResource;
+ 
+use spirit_edit_core::doodads::doodad::DoodadComponent;
+use spirit_edit_core::doodads::doodad_manifest::RenderableType;
+use spirit_edit_core::doodads::DoodadNeedsModelAttached;
+use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource;
+use spirit_edit_core::doodads::doodad_placement_preview::DoodadPlacementComponent;
+use spirit_edit_core::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use crate::AssetLoadState;
  
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
-use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::DoodadPlacementComponent;
-use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::GhostlyMaterialMarker;
+ 
 use crate::asset_loading::BuiltVfxHandleRegistry;
 use bevy::utils::Duration;
-use bevy_editor_pls_default_windows::doodads::DoodadNeedsModelAttached;
+ 
 use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 
 use bevy_mod_sysfail::*;
-use bevy_editor_pls_default_windows::doodads::{doodad::
-{DoodadComponent,  }, doodad_manifest::RenderableType};
+ 
  
 
-use anyhow::{Context, Result};
+//use anyhow::{Context, Result};
 
  
 

@@ -1,6 +1,6 @@
+use spirit_edit_core::zones::ZoneResource;
 use bevy_clay_tiles::tile_edit::ModifyTileTool;
-use bevy_clay_tiles::tile_edit::TileEditingResource;
-use bevy_editor_pls_default_windows::zones::ZoneResource;
+use bevy_clay_tiles::tile_edit::TileEditingResource; 
 use crate::ui::SubTool;
  
 use bevy_clay_tiles::tile_edit::BuildTileTool;
