@@ -1,5 +1,5 @@
 (
-   initial_terrain_to_load:  Some("default_terrain"),    
+  
 
 
 //  initial_terrain_to_load: None,    
@@ -7,16 +7,21 @@
 //        "dungeon_broken_elves_interior.zone"
 //    ]), 
 
-initial_zones_to_load: Some([
-       // "wood_elf_temple_interior_01.zone"
 
-      
+ initial_zones_to_load: Some([
+        "viridian_hideout_interior.zone"
+     ]), 
+
+/*
+ initial_terrain_to_load:  Some("default_terrain"),    
+initial_zones_to_load: Some([
+       
         "zone01.zone",
         "test_units.zone",
         "test_stuff.zone",
         "ancient_islands.zone",
-        "temple01.zone",
-        "temple_intro.zone", 
+        "viridian_temple01.zone",
+        "grove_intro.zone", 
         "forest_01.zone",
         "gabriella_intro.zone",
         "twisted_grove_wolf.zone", // cinematic 
@@ -28,7 +33,7 @@ initial_zones_to_load: Some([
 
 
  ]), 
-
+*/
  
 
 ) 
