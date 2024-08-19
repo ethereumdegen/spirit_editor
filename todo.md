@@ -13,6 +13,7 @@
 
 - make a crate  spirit_edit_core  and move a bunch of stuff from default_windows into IT !!
 
+ 1. add elf_bld_wall 01b  texture to clay tiles 
 
 -make SaveAll save all zones 
  
