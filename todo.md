@@ -16,7 +16,9 @@
 
  
 
- 1. add more   texture to clay tiles 
+ 1. add more   texture to clay tiles  (addd normal maps )
+
+ 2. add more cool rocks  
  
 
 - add visual grid snap dimensions (0.14 has grid gizmo)
