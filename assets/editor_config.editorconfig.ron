@@ -20,6 +20,8 @@ initial_zones_to_load: Some([
         "forest_01.zone",
         "gabriella_intro.zone",
         "twisted_grove_wolf.zone", // cinematic 
+         "twisted_grove_extension.zone", 
+         "viridian_path.zone", 
         "twisted_grove_power_runes.zone",
         "swamp_one.zone",
         "dungeon_01_exterior.zone",
