@@ -3,7 +3,7 @@ use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
 use bevy::prelude::*;
 
 use bevy_egui::EguiContexts;
-use bevy_egui::{egui, EguiContext, EguiPlugin};
+use bevy_egui::{egui };
 
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
@@ -15,9 +15,15 @@ use std::fmt::{self, Display, Formatter};
 use crate::editor_pls::bevy_pls_editor_is_active;
 
 pub fn editor_ui_plugin(app: &mut App) {
-    app.init_resource::<EditorToolsState>()
+    app
+        .init_resource::<EditorToolsState>()
        // .add_plugins(EguiPlugin)  // only add this if it hasnt been added 
-        .add_systems(Update, editor_tools.run_if(not(bevy_pls_editor_is_active)));
+        .add_systems(Update, editor_tools_ui.run_if(not(bevy_pls_editor_is_active))) 
+
+       //  .add_systems(Update, force_update_tool_mode )
+
+
+       ;
 }
 
 #[derive(Default, Resource, Clone)]
@@ -81,6 +87,7 @@ pub enum ToolMode {
   //  Foliage, //add me back in later 
     Regions,
     Tiles,
+    Doodads,
 }
 
 
@@ -124,13 +131,14 @@ impl SubTool{
 
 
 
-const TOOL_MODES: [ToolMode; 3] = [
+const TOOL_MODES: [ToolMode; 4] = [
 ToolMode::Terrain,
 //ToolMode::Height, 
 //ToolMode::Splat, 
 //ToolMode::Foliage, 
 ToolMode::Regions,
-ToolMode::Tiles
+ToolMode::Tiles,
+ToolMode::Doodads
 ];
 
 const TERRAIN_SUBTOOLS : [SubTool; 2] = [
@@ -180,14 +188,15 @@ impl Display for ToolMode {
             ToolMode::Terrain => "Terrain",
             ToolMode::Tiles => "Tiles",
           //  ToolMode::Foliage => "Foliage",
-            ToolMode::Regions => "Regions"
+            ToolMode::Regions => "Regions",
+              ToolMode::Doodads => "Doodads"
         };
 
         write!(f, "{}", label)
     }
 }
 
-fn editor_tools(
+fn editor_tools_ui(
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
@@ -477,6 +486,12 @@ fn editor_tools(
 
                 
             },
+
+             ToolMode::Doodads => {
+ 
+                  ui.heading("Placing Doodads (no tool)");
+
+              },
            /* ToolMode::Foliage => {
 
 
@@ -540,6 +555,23 @@ fn editor_tools(
 
 
             }
+
+
         }
     });
 }
+
+/*
+fn force_update_tool_mode(
+
+    mut editor_tools_state: ResMut<EditorToolsState> ,
+
+    pls_editor_resource: Res<bevy_editor_pls::editor::Editor> 
+
+){
+
+    if pls_editor_resource.active() {
+        editor_tools_state.tool_mode = ToolMode::Doodads; 
+    }
+
+}*/

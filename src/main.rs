@@ -53,6 +53,8 @@ use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
  
 
+ mod editor_state;
+
 
 
 mod editor_config; 
@@ -123,7 +125,8 @@ fn main() {
 
 
         )   
-        
+       
+
 
         .add_plugins(CursorRayPlugin)
 
@@ -144,8 +147,7 @@ fn main() {
         .add_plugins(doodads::doodad::DoodadPlugin)
          
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
-     
-
+       
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
@@ -166,6 +168,8 @@ fn main() {
         .add_plugins(SpiritEditCorePlugin {})
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
+          .add_plugins(editor_state::editor_state_plugin )
+          
         .run();
 }
 
