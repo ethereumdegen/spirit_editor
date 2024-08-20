@@ -6064,6 +6064,7 @@ dependencies = [
  "bevy_regions",
  "degen_toon_water",
  "image 0.25.1",
+ "rand",
  "ron",
  "serde",
  "spirit_edit_core",
