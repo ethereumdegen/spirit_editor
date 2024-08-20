@@ -32,8 +32,8 @@ image = { version = "0.25.1", default-features = false }
 
  bevy_regions = "0.14.1"
  
-
-bevy_clay_tiles = {path="../bevy_clay_tiles"}
+bevy_clay_tiles = "0.14.2"
+#bevy_clay_tiles = {path="../bevy_clay_tiles"}
  
 
  
@@ -104,7 +104,7 @@ anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.25.1"
- bevy_clay_tiles = {path="../bevy_clay_tiles"}
+ bevy_clay_tiles = "0.14.2"
  
 
 
