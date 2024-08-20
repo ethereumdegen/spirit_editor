@@ -20,10 +20,7 @@ pub fn editor_ui_plugin(app: &mut App) {
        // .add_plugins(EguiPlugin)  // only add this if it hasnt been added 
         .add_systems(Update, editor_tools_ui.run_if(not(bevy_pls_editor_is_active))) 
 
-       //  .add_systems(Update, force_update_tool_mode )
-
-
-       ;
+         .add_systems(Update, force_update_tool_mode );
 }
 
 #[derive(Default, Resource, Clone)]
@@ -561,7 +558,7 @@ fn editor_tools_ui(
     });
 }
 
-/*
+
 fn force_update_tool_mode(
 
     mut editor_tools_state: ResMut<EditorToolsState> ,
@@ -574,4 +571,4 @@ fn force_update_tool_mode(
         editor_tools_state.tool_mode = ToolMode::Doodads; 
     }
 
-}*/
+}
