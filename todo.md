@@ -2,6 +2,11 @@
 
 ## Bevy Mesh Terrain Editor
 
+- add a line draw draw mode !!  
+
+
+
+
 - bug: cant select units ? 
  BUG : painting terrain makes it invisible ? 
  

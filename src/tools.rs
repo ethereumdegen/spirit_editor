@@ -161,6 +161,11 @@ impl   EditingTool {
                                BuildTileTool::PolygonTileBuild  
                             ) ),
 
+
+                                Some(SubTool::BuildTileLinear) => Some( TilesEditingTool::BuildTile( 
+                               BuildTileTool::LinearTileBuild  
+                            ) ),
+
                             Some(SubTool::ModifyTileHeight) => Some( TilesEditingTool::ModifyTile(
                                     ModifyTileTool::ModifyTileHeight)  ),
 
@@ -184,7 +189,7 @@ impl   EditingTool {
                         region_index: state.color.r as u8,
                     }) ),  
 
-                      ToolMode::Doodads =>  None ,  
+                     // ToolMode::Doodads =>  None ,  
 
 
                   /*  ToolMode::Foliage => EditingTool::FoliageEditingTool( 
@@ -204,6 +209,12 @@ impl   EditingTool {
 
 
 
+
+ 
+
+
+
+
 fn update_clay_tiles_tool_state (
     
    // mut contexts: EguiContexts,
@@ -212,6 +223,8 @@ fn update_clay_tiles_tool_state (
      mut tile_edit_resource: ResMut<TileEditingResource>,
      
      editor_state_resource: Res<EditorStateResource>,
+
+     pls_editor_resource: Res<bevy_editor_pls::editor::Editor> ,
 
      zone_resource: Res<ZoneResource> ,
 ) {
@@ -250,6 +263,12 @@ fn update_clay_tiles_tool_state (
     if  editor_state_resource.cursor_overlaps_gui {
        tool_enabled = false ;
     }
+
+     if pls_editor_resource.active() {
+        tool_enabled = false ;
+    }
+
+
 
 
 

@@ -1,4 +1,5 @@
  
+use bevy_clay_tiles::tiles::ClayTilesTypesConfigResource; 
 use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
 use bevy::prelude::*;
 
@@ -20,7 +21,9 @@ pub fn editor_ui_plugin(app: &mut App) {
        // .add_plugins(EguiPlugin)  // only add this if it hasnt been added 
         .add_systems(Update, editor_tools_ui.run_if(not(bevy_pls_editor_is_active))) 
 
-         .add_systems(Update, force_update_tool_mode );
+         //.add_systems(Update, force_update_tool_mode )
+
+         ;
 }
 
 #[derive(Default, Resource, Clone)]
@@ -84,7 +87,7 @@ pub enum ToolMode {
   //  Foliage, //add me back in later 
     Regions,
     Tiles,
-    Doodads,
+    //Doodads,
 }
 
 
@@ -96,6 +99,7 @@ pub enum SubTool {
     TerrainSplat, 
 
     BuildTileRectangle,
+    BuildTileLinear,
     BuildTilePolygon,
     ModifyTileHeight,
     ModifyTileBevel,
@@ -114,6 +118,7 @@ impl SubTool{
             Self::TerrainSplat  => "Terrain Splat".into(),
 
             Self::BuildTileRectangle  => "Build: Rectangle".into(),
+            Self::BuildTileLinear  => "Build: Linear".into(),
             Self::BuildTilePolygon  => "Build: Polygon".into(),
             Self::ModifyTileHeight  => "Modify: Height".into(),
             Self::ModifyTileBevel  => "Modify: Bevel".into(),
@@ -128,14 +133,14 @@ impl SubTool{
 
 
 
-const TOOL_MODES: [ToolMode; 4] = [
+const TOOL_MODES: [ToolMode; 3] = [
 ToolMode::Terrain,
 //ToolMode::Height, 
 //ToolMode::Splat, 
 //ToolMode::Foliage, 
 ToolMode::Regions,
 ToolMode::Tiles,
-ToolMode::Doodads
+ //ToolMode::Doodads
 ];
 
 const TERRAIN_SUBTOOLS : [SubTool; 2] = [
@@ -144,8 +149,9 @@ const TERRAIN_SUBTOOLS : [SubTool; 2] = [
 
 ];
 
-const TILE_SUBTOOLS : [SubTool; 5] = [
+const TILE_SUBTOOLS : [SubTool; 6] = [
     SubTool::BuildTileRectangle,
+    SubTool::BuildTileLinear, 
     SubTool::BuildTilePolygon, 
     SubTool::ModifyTileHeight,
     SubTool::ModifyTileBevel,
@@ -186,7 +192,7 @@ impl Display for ToolMode {
             ToolMode::Tiles => "Tiles",
           //  ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions",
-              ToolMode::Doodads => "Doodads"
+          //    ToolMode::Doodads => "Doodads"
         };
 
         write!(f, "{}", label)
@@ -204,7 +210,10 @@ fn editor_tools_ui(
     mut contexts: EguiContexts,
 
     terrain_manifest_res: Res<TerrainManifestResource>,
-    terrain_manifest_asset: Res<Assets<TerrainManifest>>
+    terrain_manifest_asset: Res<Assets<TerrainManifest>>,
+
+
+    clay_tiles_config_resource: Res<ClayTilesTypesConfigResource>, 
 ) {
     egui::Window::new("Editor Tools").show(contexts.ctx_mut(), |ui| {
 
@@ -366,11 +375,7 @@ fn editor_tools_ui(
                                     ,
                             );
 
-
-
-
-                             
-                          
+ 
 
                     }
 
@@ -464,6 +469,21 @@ fn editor_tools_ui(
                                 ,
                         );
 
+
+
+
+                      let tile_index = tools_state.color.g.clone()  as usize;
+                          
+                  
+                     let tile_data = clay_tiles_config_resource.tile_type_data.get(  &tile_index ) ;
+
+                     if let Some ( tile_data ) = tile_data { 
+
+                        ui.label( tile_data.name.clone()  ) ;
+
+                     }
+
+
                     ui.add(
                             egui::Slider::new(&mut tools_state.color.g, 0..=64)
                                 .text("Tile Type")
@@ -484,11 +504,11 @@ fn editor_tools_ui(
                 
             },
 
-             ToolMode::Doodads => {
+             /*ToolMode::Doodads => {
  
                   ui.heading("Placing Doodads (no tool)");
 
-              },
+              },*/
            /* ToolMode::Foliage => {
 
 
@@ -558,7 +578,7 @@ fn editor_tools_ui(
     });
 }
 
-
+/*
 fn force_update_tool_mode(
 
     mut editor_tools_state: ResMut<EditorToolsState> ,
@@ -571,4 +591,4 @@ fn force_update_tool_mode(
         editor_tools_state.tool_mode = ToolMode::Doodads; 
     }
 
-}
+}*/

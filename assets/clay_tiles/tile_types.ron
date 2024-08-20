@@ -15,7 +15,7 @@
                       )  )
   		),
 
-        (
+    (
         name: "gray_brickwall",
         diffuse_texture_index:  1, //use the texture at this index 
         diffuse_uv_expansion_factor: 0.25,
@@ -25,7 +25,111 @@
                           blue:  0.9,
                           alpha:  1.0,
                       )  )
-      )
+      ),
+
+
+     (
+        name: "stucco_1",
+        diffuse_texture_index:  2, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+      (
+        name: "wood_1",
+        diffuse_texture_index:  3, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+      (
+        name: "promenade",
+        diffuse_texture_index:  4, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+       (
+        name: "roof_tiles",
+        diffuse_texture_index:  5, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+         (
+        name: "mezzanine",
+        diffuse_texture_index:  6, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+
+         (
+        name: "marble",
+        diffuse_texture_index:  7, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.8,
+                          green: 0.8,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+          (
+        name: "stucco_dark",
+        diffuse_texture_index:  2, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.10,
+                          green: 0.10,
+                          blue:  0.10,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+         (
+        name: "marble_dark",
+        diffuse_texture_index:  7, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.15,
+                          green: 0.15,
+                          blue:  0.15,
+                          alpha:  1.0,
+                      )  )
+      ),
+
 
   ]
 
