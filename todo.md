@@ -2,8 +2,6 @@
 
 ## Bevy Mesh Terrain Editor
 
-- add a line draw draw mode !!  
-
 
 
 
