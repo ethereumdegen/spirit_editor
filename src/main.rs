@@ -145,6 +145,7 @@ fn main() {
       // .add_plugins(foliage::FoliagePlugin  )
 
         .add_plugins(doodads::doodad::DoodadPlugin)
+        .add_plugins(doodads::doodad_placement_preview::DoodadPlacementPlugin {}  )
          
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
        

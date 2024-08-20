@@ -6027,12 +6027,12 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.8.2"
+version = "0.14.1"
+source = "git+https://github.com/ethereumdegen/spirit_edit_core#29285a41824a0cc7b5bb09a871caa42229547ee2"
 dependencies = [
  "bevy 0.14.0",
  "bevy_clay_tiles",
  "bevy_common_assets 0.11.0",
- "bevy_editor_pls_core",
  "bevy_egui",
  "bevy_mod_picking",
  "bevy_mod_raycast",
