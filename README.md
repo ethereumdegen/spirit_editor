@@ -109,7 +109,9 @@ Place doodads in zone files (sub-scenes) which can be saved and loaded.  These a
 
 
 
+### Warning : Assets
 
+Any texture or GLTF assets (in the assets folder) that are in this repo (that may have been checked in on purpose or accidentally) are NOT to be used by you in any way due to licensing.  You are responsible for adding your own texture and GLTF assets to the manifests. 
 
 
 
