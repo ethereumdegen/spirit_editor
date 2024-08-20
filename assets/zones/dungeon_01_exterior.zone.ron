@@ -1,8 +1,1 @@
-(entities:[
-
-
-	(name:"entrance_stairs_ruins",transform:(translation:(807.0385,8.722314,184.73878),rotation:(0.0,-0.0,0.0),scale:(4.1666074,4.1666074,4.1666074)),custom_props:Some({})),(name:"hatch_door_1",transform:(translation:(806.67505,9.81769,184.4132),rotation:(0.0,-0.0,0.0),scale:(2.0,2.0,2.0)),custom_props:Some({"teleporter":EmptyProp,"level_name":String("dungeon_01"),"waypoint_name":String("entrance_main")})) 
-
-
-
-	])
+(entities:[(name:"entrance_stairs_ruins",transform:(translation:(807.0385,8.722314,184.73878),rotation:(0.0,-0.0,0.0),scale:(4.1666074,4.1666074,4.1666074)),custom_props:Some({})),(name:"hatch_door_1",transform:(translation:(806.67505,9.81769,184.4132),rotation:(0.0,-0.0,0.0),scale:(2.0,2.0,2.0)),custom_props:Some({"level_name":String("dungeon_01"),"waypoint_name":String("entrance_main"),"teleporter":EmptyProp}))])

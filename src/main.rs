@@ -1,9 +1,11 @@
 
+use spirit_edit_core::SpiritEditCorePlugin;
+use spirit_edit_core::zones::ZoneEvent;
 use crate::asset_loading::EditorConfigAssets;
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
-use bevy_editor_pls_default_windows::zones::ZoneEvent;
+ 
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
@@ -50,6 +52,8 @@ use crate::tools::brush_tools_plugin;
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
  
+
+ mod editor_state;
 
 
 
@@ -121,7 +125,8 @@ fn main() {
 
 
         )   
-        
+       
+
 
         .add_plugins(CursorRayPlugin)
 
@@ -142,8 +147,7 @@ fn main() {
         .add_plugins(doodads::doodad::DoodadPlugin)
          
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
-     
-
+       
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
@@ -159,8 +163,13 @@ fn main() {
         .add_systems(Update, update_commands)
          .add_systems(Update, regions::update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
+
+
+        .add_plugins(SpiritEditCorePlugin {})
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
+          .add_plugins(editor_state::editor_state_plugin )
+          
         .run();
 }
 

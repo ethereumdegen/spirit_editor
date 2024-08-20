@@ -1,43 +1,26 @@
+use spirit_edit_core::doodads::PlaceDoodadEvent;
+use spirit_edit_core::doodads::doodad::DoodadComponent;
+use spirit_edit_core::zones::zone_file::TransformSimple;
+use spirit_edit_core::placement::PlacementEvent;
+use spirit_edit_core::placement::PlacementResource;
 use std::time::Duration;
 
 use bevy::prelude::*;
 use bevy_editor_pls_core::{editor_window::{EditorWindow, EditorWindowContext}, Editor};
 use bevy_inspector_egui::egui::{self, RichText};
 
-use crate::{doodads::{doodad::DoodadComponent, PlaceDoodadEvent}, hierarchy::HierarchyWindow, zones::zone_file::TransformSimple};
+use crate::{   hierarchy::HierarchyWindow   };
 
  
-
-#[derive(Resource)]
-pub struct PlacementResource {
-
-    pub grid_lock_delay_timer: Timer 
-    
-}
-
-impl Default for PlacementResource {
-    fn default() -> Self {
-        PlacementResource {
-            // Initialize the Timer with some default value, for example 0.5 seconds
-            grid_lock_delay_timer: Timer::new(Duration::from_secs(1), TimerMode::Once)
-        }
-    }
-}
-
-#[derive(Event)]
-pub enum PlacementEvent {
-
-    CloneSelectedDoodad,
-    GridLockSelectedDoodad(Vec3)
-
-}
-
+ 
 #[derive(Default)]
 pub struct PlacementWindowState {
     pub randomize_yaw: bool,
     pub random_scale_multiplier: f32,
     pub translation_grid_lock_step: Vec3,
 }
+
+//need to make this update PlacementToolsState !! 
 
 pub struct PlacementWindow;
 
@@ -123,7 +106,6 @@ impl EditorWindow for PlacementWindow {
 
 
 
- 
 
 pub fn update_placement_tool_inputs(
   key_inputs: Res<ButtonInput<KeyCode> >,
@@ -166,25 +148,7 @@ pub fn update_placement_tool_inputs(
 
 }
 
-
-/*
-
-    mut contexts: EguiContexts,
-
-    editor: Res<Editor>,
-) {
-    //we can tell if we are clicking in viewport
-    let egui_ctx = contexts.ctx_mut();
-
-    let pointer_pos = egui_ctx.input(|input| input.pointer.interact_pos());
-    let clicking_in_viewport = pointer_pos.map_or(false, |pos| editor.is_in_viewport(pos));
-
-    if !clicking_in_viewport {
-        return;
-    }
-
-
-*/
+  
 
 pub fn handle_placement_tool_events(  
  

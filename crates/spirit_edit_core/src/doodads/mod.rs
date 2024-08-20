@@ -1,6 +1,11 @@
+use crate::placement::PlacementToolsState;
+use bevy_editor_pls_core::EditorEvent;
+use bevy_editor_pls_core::Editor;
 use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
 use crate::doodads::doodad_placement_preview::DoodadPlacementPlugin;
 use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
+
+use bevy_egui::EguiContexts;
 
 use bevy::prelude::*;
 use bevy_mod_raycast::immediate::RaycastSettings;
@@ -10,13 +15,15 @@ use bevy::utils::HashMap;
 
 
 use crate::doodads::doodad_manifest::RenderableType;
-use crate::placement::PlacementWindow;
+ 
 use crate::zones::zone_file::{CustomPropsComponent,CustomPropsMap};
 use crate::zones::ZoneResource;
+
+/*
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_editor_pls_core::{Editor, EditorEvent};
 use bevy_inspector_egui::bevy_egui::EguiContexts;
-use bevy_inspector_egui::egui::{self, ScrollArea};
+use bevy_inspector_egui::egui::{self, ScrollArea};*/
 
 use bevy_common_assets::ron::RonAssetPlugin;
 
@@ -54,7 +61,7 @@ impl Plugin for DoodadPlugin {
            
             .add_systems(Update, reset_place_doodads)
             .add_systems(Update, (handle_place_doodad_events,handle_doodad_tool_events , replace_proto_doodads_with_doodads).chain()  )
-            .add_systems(Update, picking::update_picking_doodads)
+        //     .add_systems(Update, picking::update_picking_doodads)
            
 
             ;
@@ -101,148 +108,6 @@ pub struct PlaceDoodadEvent {
     // pub doodad_definition: DoodadDefinition
 }
 
-#[derive(Default)]
-pub struct DoodadWindowState {
-    //  pub selected: Option<DoodadDefinition> ,
-    //  rename_info: Option<RenameInfo>,
-}
-
-pub struct DoodadsWindow;
-
-impl EditorWindow for DoodadsWindow {
-    type State = DoodadWindowState;
-    const NAME: &'static str = "Doodads";
-
-    /// Necessary setup (resources, systems) for the window.
-    fn app_setup(app: &mut App) {
-        app.add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"]))
-            
-            .insert_resource(DoodadDefinitionsResource::default())
-            .insert_resource(DoodadTagMapResource::default())
-            .insert_resource(DoodadToolState::default())
-          //  .insert_resource(LoadedGltfAssets::default())
-
-           ;
-        
-    }
-
-    fn ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
-        let doodad_definition_resource = world.resource::<DoodadDefinitionsResource>();
-
-         let doodad_tag_map_resource = world.resource::<DoodadTagMapResource>();
-
-
-       
-
-        //this releases the lock on World
-       // let doodad_manifest_handle = &doodad_definition_resource.manifest.clone();
-
-      //  let doodad_manifests_map = world.resource::<Assets<DoodadManifest>>();
-
-        let doodad_definitions = &doodad_definition_resource.loaded_doodad_definitions;/* doodad_manifest_handle
-            .as_ref()
-            .and_then(|h| doodad_manifests_map.get(h))
-            .cloned();*/
-
-        let   doodad_tool_resource = world.resource::<DoodadToolState>();
-
-
-
-
-        /*
-                 let doodad_row_state = match cx.state_mut::<DoodadsWindow >() {
-                        Some(a) => a,
-                        None => {
-                            let a = cx
-                                .state_mut ::<DoodadsWindow   >()
-                                .unwrap();
-                            a
-                        }
-                    };
-        */
-
-
-
-        let mut events_to_send=  Vec::new();
-
-
-        ScrollArea::vertical()
-            .auto_shrink([false, false])
-            .show(ui, |ui| {
-                if doodad_definitions.is_none()  {
-                    ui.label(format!(" No doodad definitions found. "));
-                    return;
-                };
-
-                  
-
-
-
-
-                if let Some(selected_doodad_name) = &doodad_tool_resource.selected {
-                    ui.label(format!("Placing: {:?}", selected_doodad_name.clone()));
-
-                    ui.separator();
-
-                    if ui.button("reset").clicked() {
-                       //    doodad_tool_resource.selected = None;
-
-                      events_to_send.push(  DoodadToolEvent::SetSelectedDoodad( None )    );
-                    }
-                } else {
-                    ui.label("---");
-                }
-
-                ui.separator();
-
-
-
-
-                let doodad_tag_map = &doodad_tag_map_resource.doodad_tag_map;
-                
-                for doodad_tag in doodad_tag_map.keys() {
-
-                    if let Some(doodads_with_tag) = &doodad_tag_map.get(doodad_tag) {
-                    egui::CollapsingHeader::new(doodad_tag)
-                        .default_open(false)
-                        .show(ui, |ui| {
-                            for doodad_name in doodads_with_tag.iter() {
-
-
-
-
-                                 let label_text = doodad_name.clone();
-                                    let checked = false;
-
-                                    if ui.selectable_label(checked, label_text.clone()).clicked() {
-                                        //*selection = InspectorSelection::Entities ;
-
-                                        println!("detected a doodad click  !! {:?}", label_text);
-                                         events_to_send.push(  DoodadToolEvent::SetSelectedDoodad( Some( doodad_name.clone() ) )    );
-
-                                      //  doodad_tool_resource.selected = Some(doodad_name.clone());
-                                    }
-
-
-
-
-                                 
-                            }
-                        });
-                    }
-
-
-
-
-                }
-
-
-            }); //end ui 
-
-
-        world.send_event_batch( events_to_send );
-    }
-}
 
 // --------------------------------------------------------
 
@@ -439,6 +304,8 @@ pub fn update_place_doodads(
 
     doodad_tool_resource: Res<DoodadToolState>,
 
+    placement_tools_state: Res<PlacementToolsState>,
+
     mut contexts: EguiContexts,
 
     editor: Res<Editor>,
@@ -457,10 +324,10 @@ pub fn update_place_doodads(
     }
 
     // ------- compute our rotation and scale from placement properties
-    let placement_window_state = editor.window_state::<PlacementWindow>().unwrap();
+ //   let placement_tools_state = editor.window_state::<PlacementWindow>().unwrap();
 
-    let using_random_yaw = placement_window_state.randomize_yaw;
-    let random_scale_multiplier = placement_window_state.random_scale_multiplier;
+    let using_random_yaw = placement_tools_state.randomize_yaw;
+    let random_scale_multiplier = placement_tools_state.random_scale_multiplier;
 
     let mut rng = rand::thread_rng();
 

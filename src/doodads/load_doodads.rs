@@ -5,10 +5,7 @@ use crate::EditorConfig;
 use crate::asset_loading::EditorConfigAssets;
 use crate::AssetLoadState;
 use bevy::prelude::*;
-
-use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadTagMapResource;
- use bevy_editor_pls_default_windows::doodads::doodad_manifest::DoodadManifest;
-use bevy_editor_pls_default_windows::doodads::doodad_placement_preview::DoodadPlacementComponent;
+ 
 
 
 

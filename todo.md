@@ -11,12 +11,9 @@
 
 ## Immediate todo 
 
+ 
 
-- make a crate  spirit_edit_core  and move a bunch of stuff from default_windows into IT !!
-
- 1. add elf_bld_wall 01b  texture to clay tiles 
-
--make SaveAll save all zones 
+ 1. add more   texture to clay tiles 
  
 
 - add visual grid snap dimensions (0.14 has grid gizmo)
@@ -41,8 +38,7 @@
 ## LATER  
 
 
-- BIG  upgrade to UI -- put ui tools in Root and get rid of egui (PLS)
-- Move all doodads code to root, all zones code
+- BIG  upgrade to UI -- put ui tools in Root and get rid of egui (PLS) 
 
 -build a separate ActiveZone window (click to select active zone) - dont use hierarchy for this 
 

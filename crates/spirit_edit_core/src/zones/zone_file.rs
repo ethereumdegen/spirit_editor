@@ -8,6 +8,7 @@ pub struct ZoneFile {
     pub entities: Vec<ZoneEntity>, 
 }
 
+/*
 impl ZoneFile {
     pub fn new(
         entities: Vec<Entity>,
@@ -25,7 +26,7 @@ impl ZoneFile {
             entities: zone_entities,
         }
     }
-}
+}*/
 
 //reflect makes this show up in the inspector
 #[derive(Component, Reflect,Default)]
@@ -116,8 +117,32 @@ impl ZoneEntity {
         &self.custom_props
     }
 
+    pub fn from_entity_ref(
+        entity_ref: &EntityRef 
+        ) -> Option<Self> {
+
+        let Some(name_comp) = entity_ref.get::<Name>() else {return None};
+        let Some(xform) = entity_ref.get::<Transform>() else {return None};
+        let custom_props_component = entity_ref.get::<CustomPropsComponent>() ;
+        let clay_tile_block_data = entity_ref.get::<ClayTileBlock>() ;
+
+      //  if let Some((name, xform, custom_props_component, clay_tile_block_data)) = zone_entity_query.get(entity).ok() {
+            let custom_props = custom_props_component.and_then(|comp| Some(comp.props.clone()));
+
+            return Some(Self {
+                name: name_comp.as_str().to_string(),
+                transform: xform.clone().into(),
+                custom_props,
+                clay_tile_block_data: clay_tile_block_data.cloned()
+            });
+     //   }
+
+      //  None
+
+    }
+
     //clean this up and move to root .. 
-    fn from_entity(
+    /*fn from_entity(
         entity: Entity,
         zone_entity_query: &Query<(&Name, &Transform, Option<&CustomPropsComponent>, Option<&ClayTileBlock>)>,
     ) -> Option<Self> {
@@ -133,7 +158,7 @@ impl ZoneEntity {
         }
 
         None
-    }
+    }*/
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

@@ -1,14 +1,15 @@
+use spirit_edit_core::zones::zone_file::CustomProp;
+use spirit_edit_core::doodads::picking::PreventEditorSelection;
 use bevy::prelude::*;
 
 use bevy_editor_pls::controls;
 use bevy_editor_pls::controls::EditorControls;
-use bevy_editor_pls::default_windows::doodads::picking::PreventEditorSelection;
+ 
 use bevy_editor_pls::EditorPlugin;
 //use bevy_editor_pls_default_windows::hierarchy::picking::EditorRayCastSource;
 
 use bevy_editor_pls::editor;
-
-use bevy_editor_pls_default_windows::zones::zone_file::CustomProp;
+ 
 use bevy_mesh_terrain::chunk::Chunk;
 use bevy_mesh_terrain::chunk::TerrainChunkMesh;
 

@@ -1,6 +1,7 @@
+use spirit_edit_core::zones::ZoneResource;
 use bevy_clay_tiles::tile_edit::ModifyTileTool;
-use bevy_clay_tiles::tile_edit::TileEditingResource;
-use bevy_editor_pls_default_windows::zones::ZoneResource;
+use bevy_clay_tiles::tile_edit::TileEditingResource; 
+use crate::editor_state::EditorStateResource;
 use crate::ui::SubTool;
  
 use bevy_clay_tiles::tile_edit::BuildTileTool;
@@ -23,6 +24,7 @@ use bevy_foliage_paint::edit::{
     EditingTool as FoliageEditingTool,
      FoliageBrushEvent};*/
 
+
 use bevy_clay_tiles::tile_edit::{EditingTool as TilesEditingTool} ;
 
      
@@ -41,11 +43,14 @@ use bevy_egui::EguiContexts;
 use bevy_mod_raycast::prelude::*;
 
 pub fn brush_tools_plugin(app: &mut App) {
-    app.add_systems(
+    app
+
+
+    .add_systems(
         Update,
         (
             
-            update_clay_tiles_tool_state,
+            
             update_brush_paint,
             handle_brush_events_from_terrain,
 
@@ -53,6 +58,17 @@ pub fn brush_tools_plugin(app: &mut App) {
 
 
             ).chain().run_if(not(bevy_pls_editor_is_active)),
+    )
+
+
+    .add_systems(
+        Update,
+        (
+            
+            update_clay_tiles_tool_state,
+            
+
+            ).chain() ,
     );
 }
 
@@ -81,7 +97,8 @@ enum EditingTool {
 
     TerrainEditingTool(TerrainEditingTool),
     RegionsEditingTool(RegionsEditingTool),
-    TilesEditingTool(TilesEditingTool)
+    TilesEditingTool(TilesEditingTool),
+  //  PlaceDoodads, 
    // FoliageEditingTool(FoliageEditingTool),
 
 }
@@ -166,6 +183,10 @@ impl   EditingTool {
                      ToolMode::Regions => Some( EditingTool::RegionsEditingTool( RegionsEditingTool::SetRegionMap {
                         region_index: state.color.r as u8,
                     }) ),  
+
+                      ToolMode::Doodads =>  None ,  
+
+
                   /*  ToolMode::Foliage => EditingTool::FoliageEditingTool( 
                         FoliageEditingTool::SetFoliageDensity {
                         density: state.color.r as u8,
@@ -177,16 +198,24 @@ impl   EditingTool {
 
 
 
+
+
+ 
+
+
+
 fn update_clay_tiles_tool_state (
     
    // mut contexts: EguiContexts,
 
      editor_tools_state: Res<EditorToolsState>,
      mut tile_edit_resource: ResMut<TileEditingResource>,
+     
+     editor_state_resource: Res<EditorStateResource>,
 
      zone_resource: Res<ZoneResource> ,
 ) {
-     
+        
     let mut selected_tile_tool = None ; 
     
 
@@ -214,6 +243,20 @@ fn update_clay_tiles_tool_state (
 
             }
       };
+
+
+      let mut tool_enabled = true;
+      
+    if  editor_state_resource.cursor_overlaps_gui {
+       tool_enabled = false ;
+    }
+
+
+
+    tile_edit_resource.set_tool_enabled(tool_enabled);
+
+
+
 
 
      tile_edit_resource.set_build_layer_height(  tile_layer_height );
@@ -250,12 +293,13 @@ fn update_brush_paint(
     mut terrain_tool_preview_state: ResMut<TerrainToolPreviewResource>,
     mut regions_tool_preview_state: ResMut<RegionsToolPreviewResource>,
 
-    mut contexts: EguiContexts,
+    editor_state_resource: Res<EditorStateResource>,
+ //   mut contexts: EguiContexts,
 ) {
      
 
-    let egui_ctx = contexts.ctx_mut();
-    if egui_ctx.is_pointer_over_area() {
+    
+    if  editor_state_resource.cursor_overlaps_gui {
         return;
     }
 
@@ -371,23 +415,10 @@ fn update_brush_paint(
                     //the plugin handles this ..
 
 
-                       /*let  regions_brush_type = match &brush_type {
-                            BrushType::SetExact => RegionsBrushType::SetExact,
-                            BrushType::Smooth => RegionsBrushType::SetExact,
-                            BrushType::Noise => RegionsBrushType::SetExact,
-                            BrushType::EyeDropper => RegionsBrushType::EyeDropper,
-                        };
-
-                     edit_regions_event_writer.send(EditRegionEvent {   
-                            entity: intersection_entity.clone(),
-                            tool: region_edit_tool,
-                            brush_type:regions_brush_type,
-                            brush_hardness,
-                            coordinates: hit_coordinates,
-                            radius,
-                        });*/
-                      
+                                           
                 },
+
+               
             }
 
          

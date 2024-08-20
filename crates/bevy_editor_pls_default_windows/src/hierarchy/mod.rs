@@ -1,6 +1,9 @@
 // pub mod picking;
 
-use std::any::Any;
+ use spirit_edit_core::zones::SaveZoneToFileEvent;
+use spirit_edit_core::zones::ZoneComponent;
+use spirit_edit_core::zones::ZoneEvent;
+
 
 use bevy::ecs::entity::Entities;
 use bevy::pbr::wireframe::Wireframe;
@@ -23,7 +26,7 @@ use bevy_editor_pls_core::{
 use crate::add::{add_ui, AddWindow, AddWindowState};
 use crate::debug_settings::DebugSettingsWindow;
 use crate::inspector::{InspectorSelection, InspectorWindow};
-use crate::zones::{ZoneComponent, ZoneEvent};
+ 
 
 #[derive(Component)]
 pub struct HideInEditor;
@@ -190,7 +193,7 @@ impl<'a> Hierarchy<'a> {
                         ui.close_menu();
                     }
                     if ui.button("Save zone file").clicked() {
-                        world.send_event::<ZoneEvent>(ZoneEvent::SaveZoneToFile(entity).into());
+                        world.send_event::<SaveZoneToFileEvent>(SaveZoneToFileEvent(entity).into());
                         ui.close_menu();
                     }
                 }
