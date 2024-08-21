@@ -1,4 +1,5 @@
  
+use crate::material_overrides::MaterialOverrideRequestComponent;
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
@@ -136,6 +137,13 @@ fn attach_models_to_doodads(
 
             ;
 
+
+        let material_overrides = &doodad_component.definition.material_overrides; 
+
+        if let Some(material_overrides) = material_overrides {
+            info!("found mat overrides {:?}", material_overrides);
+        }
+
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
         match (&doodad_component.definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
@@ -158,6 +166,9 @@ fn attach_models_to_doodads(
                    // )
                     .id();
 
+
+
+
                        commands.entity(new_doodad_entity)
                               .remove::<DoodadNeedsModelAttached>()
                                 .remove::<RecentlyFailedToLoadModel>()
@@ -165,6 +176,21 @@ fn attach_models_to_doodads(
                                .add_child( scene  )
                                
                                  ; 
+
+
+
+
+                    if let Some( material_overrides ) = material_overrides {
+
+
+                        commands.entity(new_doodad_entity).insert(
+                            MaterialOverrideRequestComponent {
+                                material_overrides: material_overrides.clone() 
+                            }
+
+                        );
+
+                    }
 
 
               /* match get_loaded_model_from_name(model_name, &gltf_assets, &models){
@@ -424,11 +450,12 @@ pub(crate) fn hide_doodad_collision_volumes(
         // `children` is a component that contains the direct children of the current entity.
         for child in children.iter() {
             if let Ok((collision_volumes_root_entity, _name)) = find_node_by_name_recursive(
-                &mut commands,
+                //&mut commands,
                 &name_query,
                 &children_query,
                 *child,
                 "collision_volumes",
+                false
             ) {
                 // If you want to make the node invisible instead of removing it:
                 commands
@@ -456,17 +483,22 @@ pub(crate) fn hide_doodad_collision_volumes(
 }
 
 // Recursive function to find a node by name in the scene graph.
-fn find_node_by_name_recursive(
-    commands: &mut Commands,
+pub fn find_node_by_name_recursive(
+    //commands: &mut Commands,
 
     name_query: &Query<&Name>,
     children_query: &Query<&Children>,
 
     current_entity: Entity,
     target_name: &str,
+    log_output : bool 
 ) -> Result<(Entity, String), &'static str> {
     if let Ok(name) = name_query.get(current_entity) {
-   //     info!("find node {:?}",name);
+
+        if log_output {
+                   info!("find node {:?}",name);
+        }
+   
         if name.as_str() == target_name {
             return Ok((current_entity, name.to_string()));
         }
@@ -475,11 +507,12 @@ fn find_node_by_name_recursive(
     if let Ok(children) = children_query.get(current_entity) {
         for child in children.iter() {
             if let Ok(result) = find_node_by_name_recursive(
-                commands,
+               // commands,
                 &name_query,
                 &children_query,
                 *child,
                 target_name,
+                log_output
             ) {
                 return Ok(result);
             }

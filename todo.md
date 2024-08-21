@@ -16,9 +16,16 @@
 
  
 
+
+
+
+
  1. add more   texture to clay tiles  (addd normal maps )
 
  2. add more cool rocks  
+
+ 3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
+ 4. make the terrain not disappear while painting .. 
  
 
 - add visual grid snap dimensions (0.14 has grid gizmo)

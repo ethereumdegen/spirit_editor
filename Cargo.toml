@@ -59,7 +59,7 @@ bevy_mod_raycast = "0.18.0"
 serde = { version = "1", features = ["derive"] }
    ron = "0.8.1"
 rand = "0.8"
-spirit_edit_core = { git = "https://github.com/ethereumdegen/spirit_edit_core" }  
+spirit_edit_core.workspace=true 
 
  
 bevy_editor_pls.workspace = true
@@ -101,7 +101,8 @@ resolver = "2"
 bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
-spirit_edit_core = { git = "https://github.com/ethereumdegen/spirit_edit_core" }  
+# spirit_edit_core = { git = "https://github.com/ethereumdegen/spirit_edit_core" }  
+spirit_edit_core = { path="../spirit_edit_core" }  
 bevy_egui = "0.28.0"
 rand = "0.8"
 

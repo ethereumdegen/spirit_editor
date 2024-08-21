@@ -8,11 +8,12 @@
 //    ]), 
 
 
+/*
  initial_zones_to_load: Some([
         "viridian_hideout_interior.zone"
-     ]), 
+     ]), */
 
-/*
+
  initial_terrain_to_load:  Some("default_terrain"),    
 initial_zones_to_load: Some([
        
@@ -35,7 +36,7 @@ initial_zones_to_load: Some([
 
 
  ]), 
-*/
+
  
 
 ) 

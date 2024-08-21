@@ -127,6 +127,7 @@ fn main() {
         )   
        
 
+
         .add_plugins(loading::loading_plugin)
         .add_plugins(CursorRayPlugin)
 
@@ -138,7 +139,10 @@ fn main() {
         .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin {
              config: ClayTilesConfig::load_from_file("assets/tiles_config.ron").unwrap()
         })
- 
+    
+
+    
+        .add_plugins(SpiritEditCorePlugin {})
 
        // .add_plugins(BevyFoliagePaintPlugin::default() )
 
@@ -166,7 +170,6 @@ fn main() {
         .add_systems(Update, update_directional_light_position)
 
 
-        .add_plugins(SpiritEditCorePlugin {})
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
           .add_plugins(editor_state::editor_state_plugin )

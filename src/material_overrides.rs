@@ -1,10 +1,12 @@
 
+use crate::doodads::doodad::find_node_by_name_recursive;
 use bevy::prelude::*;
 use bevy::utils::HashMap;
 
 use crate::loading::EditorLoadingState;
 
-
+use spirit_edit_core::doodads::material_overrides::{MaterialOverrideLayer,MaterialOverrideType };
+use bevy::scene::SceneInstanceReady; 
 
 pub fn material_overrides_plugin(app: &mut App) {
     app 	
@@ -14,6 +16,9 @@ pub fn material_overrides_plugin(app: &mut App) {
        .add_systems(OnEnter(EditorLoadingState::LoadMaterialOverrides), load_material_overrides)
 
        .add_systems(Update, extract_material_overrides )
+
+
+       .add_systems(Update, handle_material_overrides )
 
       //  .add_systems(Update, update_camera_move)
 
@@ -42,6 +47,15 @@ pub struct MaterialOverridesResource {
 
 	extracted_materials_map :HashMap< String, Handle<StandardMaterial> >
 
+}
+
+impl MaterialOverridesResource{
+
+	pub fn find_material_by_name(&self, mat_name: &String ) -> Option<&Handle<StandardMaterial>> {
+
+
+		self.extracted_materials_map.get(mat_name)
+	}
 
 }
 
@@ -49,44 +63,15 @@ pub struct MaterialOverridesResource {
 
 
 //attach this to signal that the material is supposed to be replaced 
-#[derive(Component)]
+#[derive(Component,Debug)]
 pub struct MaterialOverrideRequestComponent {
 
 
 	// material node name => material name
-	material_overrides: HashMap< MaterialOverrideLayer , MaterialOverrideType >
+	pub material_overrides: HashMap< MaterialOverrideLayer , MaterialOverrideType >
 }
 
 
-
-#[derive(Clone,Debug,PartialEq,Eq,Hash)]
-pub enum MaterialOverrideLayer {
-
-	Base
-
-}
-
-#[derive(Clone,Debug,PartialEq,Eq,Hash)]
-pub enum MaterialOverrideType {
-	Stone1,
-	Stone2,
-	Stone3, 
-}
-
-impl MaterialOverrideType {
-
-	fn get_material_name(&self) -> String {
-
-
-		match &self {
-			Self::Stone1 => "Stone1",
-			Self::Stone2 => "Stone2",
-			Self::Stone3 => "Stone3"
-		}.into()
-
-	}
-
-}
 
 fn load_material_overrides(
 
@@ -112,7 +97,7 @@ fn load_material_overrides(
 
 
 fn extract_material_overrides(
-	 mut asset_ready_event: EventReader<AssetEvent<Gltf>>,
+	  mut asset_ready_event: EventReader<AssetEvent<Gltf>>,
      mut material_overrides_resource: ResMut<MaterialOverridesResource>,
      mut next_state: ResMut<NextState<MaterialOverridesLoadingState>>,
 
@@ -149,5 +134,85 @@ fn extract_material_overrides(
 
 
 	
+
+}
+
+fn handle_material_overrides(
+	mut commands:Commands, 
+	mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,  
+
+	material_override_request_query: Query<&MaterialOverrideRequestComponent>,
+
+	parent_query : Query<&Parent>, 
+	name_query: Query<&Name>,
+	children_query: Query<&Children>,
+
+	material_handle_query: Query<&Handle<StandardMaterial>>,
+
+	material_overrides_resource: Res<MaterialOverridesResource>
+){
+
+
+
+
+    for evt in scene_instance_evt_reader.read(){
+
+          let parent = evt.parent; //the scene 
+
+          let Some(doodad_entity) = parent_query.get(parent).ok().map( |p| p.get() ) else {continue};
+
+          if let Some(mat_override_request) = material_override_request_query.get(doodad_entity).ok(){
+
+                	commands
+	                    .entity(doodad_entity)
+	                    .remove::<MaterialOverrideRequestComponent>( ); 
+
+
+
+             	info!("about to handle material override {:?}", mat_override_request);
+
+             	let Some(children) = children_query.get(doodad_entity).ok() else {continue};
+
+
+             	for (mat_base,mat_type) in mat_override_request.material_overrides.iter() {
+
+             		let mat_base_name = mat_base.get_material_layer_name();
+             		let Some(new_material_handle) = material_overrides_resource
+             		   .find_material_by_name(&mat_type.get_material_name()) else {
+             		   	warn!("could not get override material");
+             		   	continue
+             		     }; 
+
+ 
+
+             		 	 for child in DescendantIter::new(&children_query, doodad_entity) {
+
+             		 	 	if let Some( _mat_handle) = material_handle_query.get(child).ok(){
+ 
+
+             		 	 		 commands
+				                    .entity(child)
+				                    .insert(new_material_handle.clone()); 
+
+				                  info!("inserted new material as override");
+
+
+             		 	 	}
+						     
+						    }
+
+
+				             
+
+
+
+             	}
+
+
+
+          }
+           
+
+      }
 
 }
