@@ -56,7 +56,7 @@ use crate::ui::editor_ui_plugin;
  mod editor_state;
 
 
-
+mod material_overrides;
 mod editor_config; 
 mod camera;
 mod commands;
@@ -148,12 +148,12 @@ fn main() {
         .add_plugins(doodads::doodad_placement_preview::DoodadPlacementPlugin {}  )
          
         .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
-       
+        
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
- 
+        .add_plugins(material_overrides::material_overrides_plugin)
         .add_plugins(liquid_plugin)
         .add_plugins(brush_tools_plugin)
         .add_plugins(editor_ui_plugin)
