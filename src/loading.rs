@@ -1,5 +1,7 @@
 
-use bevy::prelude::*; 
+use bevy::prelude::*;
+
+use crate::material_overrides::MaterialOverridesLoadingState; 
 
 
 
@@ -23,22 +25,27 @@ pub enum EditorLoadingState{
 
 
 fn update_loading_state(
-	state: Res<State<EditorLoadingState>>,
+	editor_load_state: Res<State<EditorLoadingState>>,
+	material_overrides_load_state: Res<State<MaterialOverridesLoadingState>>,
     mut next_state: ResMut<NextState<EditorLoadingState>>,
 
 	){
 
-	if *state == EditorLoadingState::Init{
+	if *editor_load_state == EditorLoadingState::Init{
 
 		next_state.set( EditorLoadingState::LoadMaterialOverrides ) ;
 	
-	}else if *state == EditorLoadingState::LoadMaterialOverrides {
+	}else if *editor_load_state == EditorLoadingState::LoadMaterialOverrides {
 
 		//if the stuff is loaded....
+		if *material_overrides_load_state == MaterialOverridesLoadingState::Complete {
 
+			next_state.set( EditorLoadingState::Complete ) ;
 
-		next_state.set( EditorLoadingState::Complete ) ;
+			
+		}
 
+		
 	}
 
 
