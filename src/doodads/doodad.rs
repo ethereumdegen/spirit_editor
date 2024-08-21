@@ -168,7 +168,7 @@ fn attach_models_to_doodads(
 
 
 
-
+                    
                        commands.entity(new_doodad_entity)
                               .remove::<DoodadNeedsModelAttached>()
                                 .remove::<RecentlyFailedToLoadModel>()
