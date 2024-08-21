@@ -16,13 +16,9 @@
 
  
 
-
-
-
-
  1. add more   texture to clay tiles  (addd normal maps )
 
- 2. add more cool rocks  
+ 2. add more cool rocks  ( make sure all rocks have uv ! and get their materials swapped )
 
  3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
  4. make the terrain not disappear while painting .. 
