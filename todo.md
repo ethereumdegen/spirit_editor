@@ -23,6 +23,7 @@
  3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
  4. make the terrain not disappear while painting .. 
  
+5.  fix anceint forest trees and bushes 
 
 - add visual grid snap dimensions (0.14 has grid gizmo)
 
