@@ -800,9 +800,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_clay_tiles"
-version = "0.14.7"
+version = "0.14.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "939a351109fee14fb566990bafd860ad361e4f868de6055c1b08e3e871287561"
+checksum = "026389569c457796cab2eb8dc685aec2c1fa164c3d3ab92f7f9182e7babf9b0c"
 dependencies = [
  "anyhow",
  "bevy 0.14.0",
@@ -1142,6 +1142,7 @@ dependencies = [
  "base64 0.21.7",
  "bevy 0.14.0",
  "bevy-inspector-egui",
+ "bevy_clay_tiles",
  "bevy_common_assets 0.11.0",
  "bevy_editor_pls_core",
  "bevy_mod_debugdump",

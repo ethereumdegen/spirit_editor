@@ -131,6 +131,82 @@
       ),
 
 
+
+       (
+        name: "ornate_tiles_1",
+        diffuse_texture_index:  8, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.25,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+     (
+        name: "ornate_tiles_2",
+        diffuse_texture_index:  9, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.50,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+     (
+        name: "simple_tiles_1",
+        diffuse_texture_index:  10, //use the texture at this index 
+        diffuse_uv_expansion_factor: 1.0,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+     (
+        name: "simple_tiles_2",
+        diffuse_texture_index:  11, //use the texture at this index 
+        diffuse_uv_expansion_factor: 1.0,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+     (
+        name: "wood_2",
+        diffuse_texture_index:  12, //use the texture at this index 
+        diffuse_uv_expansion_factor: 0.5,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+     (
+        name: "wood_3",
+        diffuse_texture_index:  13, //use the texture at this index 
+        diffuse_uv_expansion_factor: 1.0,
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.9,
+                          green: 0.9,
+                          blue:  0.9,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
   ]
 
 

@@ -142,6 +142,11 @@ impl Default for AddWindowState {
             AddItem::component::<crate::scenes::NotInScene>(),
         );
 
+        state.add(
+            "ClayTiles",
+            AddItem::component::<bevy_clay_tiles::clay_tile_block::RebuildTileBlock>(),
+        );
+
         state.add("Core", AddItem::component::<Name>());
         state.add(
             "Core",
