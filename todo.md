@@ -14,11 +14,12 @@
 
 ## Immediate todo 
 
+
  - make a dirt material  -- use for dirt cliffs !! 
 
  1. add more   texture to clay tiles  (addd normal maps )
 
- 2. finish up the  cool rocks  ( make sure all rocks have uv ! and get their materials swapped )
+ 2. stone walls are missing on pc ? 
 
  3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
  4. make the terrain not disappear while painting .. 
