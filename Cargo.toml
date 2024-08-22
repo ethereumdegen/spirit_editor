@@ -35,11 +35,11 @@ image = { version = "0.25.1", default-features = false }
 
 
  bevy_regions = "0.14.1"
- 
-bevy_clay_tiles = "0.14.2"
-#bevy_clay_tiles = {path="../bevy_clay_tiles"}
- 
+  
 
+  #make sure this matches the version in spirit_edit_core 
+ bevy_clay_tiles = "0.14.7"
+#bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
 bevy_magic_fx = "0.14.2"
@@ -105,15 +105,13 @@ bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_edito
 spirit_edit_core = { path="../spirit_edit_core" }  
 bevy_egui = "0.28.0"
 rand = "0.8"
-
-
-
+ 
 
 anyhow = "1"
 bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.25.1"
- bevy_clay_tiles = "0.14.2"
+
  
 
 

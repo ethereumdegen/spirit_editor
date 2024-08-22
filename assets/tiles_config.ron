@@ -6,7 +6,8 @@ ClayTilesConfig(
     texture_image_sections: 8,
      
      
-     diffuse_folder_path: "clay_tiles/tiles_array_texture.tga", 
+     diffuse_texture_path: "clay_tiles/tiles_diffuse_texture.tga", 
+     normal_texture_path: "clay_tiles/tiles_normal_texture.tga", 
       tile_types_config_path: "clay_tiles/tile_types.ron"
       
 )

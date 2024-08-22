@@ -1,5 +1,5 @@
  
-use bevy_clay_tiles::tiles::ClayTilesTypesConfigResource; 
+use bevy_clay_tiles::tiles_texturing::ClayTilesTypesConfigResource; 
 use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
 use bevy::prelude::*;
 
