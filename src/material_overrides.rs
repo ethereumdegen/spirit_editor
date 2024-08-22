@@ -143,7 +143,7 @@ fn handle_material_overrides(
 	mut commands:Commands, 
 	mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,  
 
-	material_override_request_query: Query<&MaterialOverrideRequestComponent>,
+	material_override_request_query: Query<&MaterialOverrideRequestComponent,Added<MaterialOverrideRequestComponent>>,
 
 	parent_query : Query<&Parent>, 
 	name_query: Query<&Name>,
@@ -165,9 +165,9 @@ fn handle_material_overrides(
 
           if let Some(mat_override_request) = material_override_request_query.get(doodad_entity).ok(){
 
-                	commands
+                	/*commands
 	                    .entity(doodad_entity)
-	                    .remove::<MaterialOverrideRequestComponent>( ); 
+	                    .remove::<MaterialOverrideRequestComponent>( ); */
 
 
 

@@ -163,7 +163,13 @@ fn main() {
         .add_plugins(editor_ui_plugin)
         .add_plugins(camera_plugin)
           .add_systems(Startup, set_window_icon)
-        .add_systems(OnEnter(AssetLoadState::Complete), setup)
+        .add_systems(OnEnter(AssetLoadState::Complete),   (
+            setup,
+            load_all_zones )
+
+             .chain()  ) 
+
+
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
          .add_systems(Update, regions::update_regions_plane_visibility)
@@ -218,14 +224,6 @@ fn setup(
 
     }
     
-
-    //initialize zones 
-    for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
- 
-      zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
- 
-    }
-
 
 
               
@@ -305,6 +303,44 @@ fn setup(
 }
 
  
+
+
+fn load_all_zones(
+
+   //   mut commands: Commands,
+
+   mut zone_event_writer: EventWriter<ZoneEvent>,
+
+   editor_config: Res<EditorConfigAssets>,
+   editor_config_assets: Res<Assets<EditorConfig >>
+
+
+){
+
+
+     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+
+        panic!("Unable to load editor config");
+         
+     };
+
+      
+    //initialize zones 
+    for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
+ 
+      zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
+ 
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 fn update_directional_light_position(
