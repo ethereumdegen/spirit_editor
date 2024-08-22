@@ -143,7 +143,7 @@ fn handle_material_overrides(
 	mut commands:Commands, 
 	mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,  
 
-	material_override_request_query: Query<&MaterialOverrideRequestComponent,Added<MaterialOverrideRequestComponent>>,
+	material_override_request_query: Query<&MaterialOverrideRequestComponent >,
 
 	parent_query : Query<&Parent>, 
 	name_query: Query<&Name>,
