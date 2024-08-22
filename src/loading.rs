@@ -27,22 +27,26 @@ pub enum EditorLoadingState{
 fn update_loading_state(
 	editor_load_state: Res<State<EditorLoadingState>>,
 	material_overrides_load_state: Res<State<MaterialOverridesLoadingState>>,
-    mut next_state: ResMut<NextState<EditorLoadingState>>,
+	mut next_material_overrides_load_state: ResMut<NextState<MaterialOverridesLoadingState>>,
+    mut next_load_state: ResMut<NextState<EditorLoadingState>>,
 
 	){
 
 	if *editor_load_state == EditorLoadingState::Init{
 
-		next_state.set( EditorLoadingState::LoadMaterialOverrides ) ;
+		next_load_state.set( EditorLoadingState::LoadMaterialOverrides ) ;
 	
 	}else if *editor_load_state == EditorLoadingState::LoadMaterialOverrides {
 
 		//if the stuff is loaded....
 		if *material_overrides_load_state == MaterialOverridesLoadingState::Complete {
 
-			next_state.set( EditorLoadingState::Complete ) ;
+			next_load_state.set( EditorLoadingState::Complete ) ;
 
 			
+		}else if *material_overrides_load_state == MaterialOverridesLoadingState::Init {
+
+			next_material_overrides_load_state.set(MaterialOverridesLoadingState::Extracting);
 		}
 
 		

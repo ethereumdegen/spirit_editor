@@ -13,7 +13,9 @@ pub fn material_overrides_plugin(app: &mut App) {
 
     	.init_resource::<MaterialOverridesResource>()
     	.init_state::<MaterialOverridesLoadingState>()
-       .add_systems(OnEnter(EditorLoadingState::LoadMaterialOverrides), load_material_overrides)
+    	  .add_systems(OnEnter(MaterialOverridesLoadingState::Extracting), load_material_overrides)
+
+     //  .add_systems(OnEnter(EditorLoadingState::LoadMaterialOverrides), load_material_overrides)
 
        .add_systems(Update, extract_material_overrides )
 
@@ -90,7 +92,7 @@ fn load_material_overrides(
 
 	material_overrides_resource.doodad_materials_gltf = Some(doodad_materials_gltf);
 
-	next_state.set(MaterialOverridesLoadingState::Extracting);
+//	next_state.set(MaterialOverridesLoadingState::Extracting);
 
 
 }
