@@ -3,7 +3,7 @@ ClayTilesConfig(
     
     
      
-    texture_image_sections: 8,
+    texture_image_sections: 16,
      
      
      diffuse_texture_path: "clay_tiles/tiles_diffuse_texture.tga", 
