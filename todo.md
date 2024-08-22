@@ -14,7 +14,7 @@
 
 ## Immediate todo 
 
- 
+ - make a dirt material  -- use for dirt cliffs !! 
 
  1. add more   texture to clay tiles  (addd normal maps )
 

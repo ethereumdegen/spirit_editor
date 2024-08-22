@@ -25,7 +25,7 @@ impl Default for LightingWindowState {
 
 	fn default() -> Self { 
 		Self{ 
-            ambient_light_illumination: 100.0 ,
+            ambient_light_illumination: 600.0 ,
             enable_dynamic_shadows: true 
 
         } 
@@ -80,7 +80,7 @@ fn initialize_ambient_lighting(
 
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
-        brightness: 100.0 ,
+        brightness: 600.0 ,
     });
  
 } 
