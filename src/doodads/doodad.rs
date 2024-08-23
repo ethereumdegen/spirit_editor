@@ -138,11 +138,9 @@ fn attach_models_to_doodads(
             ;
 
 
-        let material_overrides = &doodad_component.definition.material_overrides; 
+        let material_override = &doodad_component.definition.material_override; 
 
-        if let Some(material_overrides) = material_overrides {
-            info!("found mat overrides {:?}", material_overrides);
-        }
+         
 
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
         match (&doodad_component.definition.model).clone() {
@@ -180,12 +178,12 @@ fn attach_models_to_doodads(
 
 
 
-                    if let Some( material_overrides ) = material_overrides {
-
+                    if let Some( material_override  ) = material_override  {
+                         info!("found mat override  {:?}", material_override );
 
                         commands.entity(new_doodad_entity).insert(
                             MaterialOverrideRequestComponent {
-                                material_overrides: material_overrides.clone() 
+                                material_override: material_override.clone() 
                             }
 
                         );

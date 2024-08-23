@@ -5,7 +5,7 @@ use bevy::utils::HashMap;
 
 use crate::loading::EditorLoadingState;
 
-use spirit_edit_core::doodads::material_overrides::{MaterialOverrideLayer,MaterialOverrideType };
+//use spirit_edit_core::doodads::material_overrides::{MaterialOverrideLayer,MaterialOverrideType };
 use bevy::scene::SceneInstanceReady; 
 
 pub fn material_overrides_plugin(app: &mut App) {
@@ -69,8 +69,8 @@ impl MaterialOverridesResource{
 pub struct MaterialOverrideRequestComponent {
 
 
-	// material node name => material name
-	pub material_overrides: HashMap< MaterialOverrideLayer , MaterialOverrideType >
+	//  material name
+	pub material_override: String
 }
 
 
@@ -151,6 +151,9 @@ fn handle_material_overrides(
 
 	material_handle_query: Query<&Handle<StandardMaterial>>,
 
+	  mut materials: ResMut<Assets<StandardMaterial>>,
+
+
 	material_overrides_resource: Res<MaterialOverridesResource>
 ){
 
@@ -173,14 +176,16 @@ fn handle_material_overrides(
 
              	info!("about to handle material override {:?}", mat_override_request);
 
-             	let Some(children) = children_query.get(doodad_entity).ok() else {continue};
+           //  	let Some(children) = children_query.get(doodad_entity).ok() else {continue};
+
+             	let material_name = &mat_override_request.material_override ;
 
 
-             	for (mat_base,mat_type) in mat_override_request.material_overrides.iter() {
+             //	for (mat_base,mat_type) in mat_override_request.material_overrides.iter() {
 
-             		let mat_base_name = mat_base.get_material_layer_name();
+             		//let mat_base_name = mat_base.get_material_layer_name();
              		let Some(new_material_handle) = material_overrides_resource
-             		   .find_material_by_name(&mat_type.get_material_name()) else {
+             		   .find_material_by_name(&material_name) else {
              		   	warn!("could not get override material");
              		   	continue
              		     }; 
@@ -199,6 +204,18 @@ fn handle_material_overrides(
 				                  info!("inserted new material as override");
 
 
+             		 	 	}else {
+             		 	 		//insert pink material 
+
+             		 	 		let warning_material = materials.add(Color::srgb(1.0, 0.0, 0.0)) ;
+
+             		 	 		 commands
+				                    .entity(child)
+				                    .insert(warning_material.clone()); 
+
+				                  info!("inserted new material as override");
+
+
              		 	 	}
 						     
 						    }
@@ -208,7 +225,7 @@ fn handle_material_overrides(
 
 
 
-             	}
+             	//}
 
 
 
