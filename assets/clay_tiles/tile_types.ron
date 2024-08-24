@@ -5,7 +5,7 @@
   	//texture index 0 
   		(
   		  name: "gray_bricks",
-         material_name:  "Wall1", 
+         material_name:  "TiledWall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.3,
@@ -17,193 +17,102 @@
 
     (
         name: "gray_brickwall",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+        
       ),
 
 
      (
         name: "stucco_1",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+         
       ),
 
 
       (
         name: "wood_1",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
-      ),
+         material_name:  "TiledWall1", 
+             ),
 
 
       (
         name: "promenade",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+        
       ),
 
        (
         name: "roof_tiles",
-       material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+       material_name:  "TiledWall1", 
+       
       ),
 
 
          (
         name: "mezzanine",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+         
       ),
 
 
 
          (
         name: "marble",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.8,
-                          green: 0.8,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+         
       ),
 
 
-          (
+      (
         name: "stucco_dark",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.10,
-                          green: 0.10,
-                          blue:  0.10,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+       
       ),
 
          (
         name: "marble_dark",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.15,
-                          green: 0.15,
-                          blue:  0.15,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+       
       ),
 
 
 
        (
         name: "ornate_tiles_1",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+        
       ),
 
      (
         name: "ornate_tiles_2",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.50,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+         
       ),
 
 
      (
         name: "simple_tiles_1",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 1.0,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+        
       ),
 
      (
         name: "simple_tiles_2",
-         material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 1.0,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+         material_name:  "TiledWall1", 
+        
       ),
 
 
      (
         name: "wood_2",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 0.5,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+       
       ),
 
      (
         name: "wood_3",
-        material_name:  "Wall1", 
-        diffuse_uv_expansion_factor: 1.0,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.9,
-                          green: 0.9,
-                          blue:  0.9,
-                          alpha:  1.0,
-                      )  )
+        material_name:  "TiledWall1", 
+         
       ),
 
 

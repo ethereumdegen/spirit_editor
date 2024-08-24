@@ -13,7 +13,45 @@
                           blue:  1.0,
                           alpha:  1.0,
                       )  )
-  		)
+  		),
+
+
+       "StoneToon1":(
+        
+        material_name:  "StoneToon1",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+       "StoneToon2":(
+        
+        material_name:  "StoneToon2",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+        "DirtToon1":(
+        
+        material_name:  "DirtToon1",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+
+
+      // Clay Tiles Materials 
+
+
+  	  "TiledWall1":(
+        
+        material_name:  "Wall1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
+
+
+
 
   }
 

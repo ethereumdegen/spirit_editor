@@ -1,6 +1,6 @@
 
 
-## Bevy Mesh Terrain Editor
+## Spirit Editor
 
 
 
@@ -14,19 +14,15 @@
 
 ## Immediate todo 
 
-
-- the models need the UV scale to be 16.0 
-- the tiles need it to be 1.0 
-
-
  
-
- 1.  be able to configure UV factor for each mat ?? 
-
- 3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
+ 
+ 1.  add materials for clay tiles to the glb 
+ 2. 
+ 3. 
+  
  4. make the terrain not disappear while painting .. 
  
-5.  fix anceint forest   bushes  (like the trees) 
+ 5.  fix anceint forest   bushes  (like the trees) 
 
 
 
