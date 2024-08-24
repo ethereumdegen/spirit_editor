@@ -36,8 +36,10 @@ image = { version = "0.25.1", default-features = false }
 
  bevy_regions = "0.14.1"
   
-
- bevy_clay_tiles.workspace=true
+   #make sure this matches the version in spirit_edit_core 
+ bevy_clay_tiles = "0.14.10"
+ #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
+ 
 
 bevy_magic_fx = "0.14.2"
 
@@ -98,8 +100,9 @@ resolver = "2"
 bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
-# spirit_edit_core = { git = "https://github.com/ethereumdegen/spirit_edit_core" }  
-spirit_edit_core =  "0.14.8"
+ 
+#spirit_edit_core =  "0.14.8"
+spirit_edit_core =   {path = "../spirit_edit_core"}
 bevy_egui = "0.28.0"
 rand = "0.8"
  
@@ -109,10 +112,6 @@ bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.25.1"
 
-   #make sure this matches the version in spirit_edit_core 
-# bevy_clay_tiles = "0.14.9"
- bevy_clay_tiles =  {path="../bevy_clay_tiles"}
- 
 
 
 

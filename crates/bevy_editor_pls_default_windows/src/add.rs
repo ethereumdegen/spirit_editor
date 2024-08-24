@@ -144,7 +144,7 @@ impl Default for AddWindowState {
 
         state.add(
             "ClayTiles",
-            AddItem::component::<bevy_clay_tiles::clay_tile_block::RebuildTileBlock>(),
+            AddItem::component::<spirit_edit_core::doodads::RebuildDoodad>(),
         );
 
         state.add("Core", AddItem::component::<Name>());

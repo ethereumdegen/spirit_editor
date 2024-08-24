@@ -171,6 +171,9 @@ fn main() {
         .add_plugins(editor_ui_plugin)
         .add_plugins(camera_plugin)
           .add_systems(Startup, set_window_icon)
+
+
+
         .add_systems(OnEnter(AssetLoadState::Complete),   (
             setup,
             load_all_zones )
@@ -180,6 +183,7 @@ fn main() {
 
         //move to brushes and tools lib
         .add_systems(Update, update_commands)
+        .add_systems(Update, handle_rebuild_doodads)
          .add_systems(Update, regions::update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
 
