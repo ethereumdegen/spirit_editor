@@ -1587,9 +1587,11 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_tool"
-version = "0.14.2"
+version = "0.14.3"
 dependencies = [
  "bevy 0.14.0",
+ "ron",
+ "serde",
 ]
 
 [[package]]

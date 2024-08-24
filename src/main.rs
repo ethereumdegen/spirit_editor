@@ -24,7 +24,6 @@ use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
 use ui::EditorToolsState;
 
-use std::f32::consts::PI;
 
 use crate::doodads::doodad::handle_rebuild_doodads;
 
@@ -143,6 +142,7 @@ fn main() {
 
 
         .add_plugins(BevyMaterialToolPlugin{
+            material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
               material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
             }  )
 

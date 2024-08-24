@@ -1,6 +1,6 @@
  
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
-use bevy_clay_tiles::bevy_material_tool::material_overrides::MaterialOverrideComponent;
+use bevy_clay_tiles::bevy_material_tool::material_overrides::{MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent};
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
@@ -76,7 +76,7 @@ impl Plugin for DoodadPlugin {
                 handle_doodad_tool_events,
                 replace_proto_doodads_with_doodads,
 
-                handle_doodad_scene_ready
+               // handle_doodad_scene_ready
 
 
 
@@ -188,7 +188,7 @@ fn attach_models_to_doodads(
                          info!("found mat override  {:?}", material_override );
 
                         commands.entity(new_doodad_entity).insert(
-                            MaterialOverrideComponent {
+                            MaterialOverrideWhenSceneReadyComponent {
                                 material_override: material_override.clone() 
                             }
 
@@ -1054,34 +1054,3 @@ pub fn handle_doodad_tool_events(
 }
 
 
-fn handle_doodad_scene_ready(
-
-    mut commands:Commands, 
-    mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,  
-
-    parent_query : Query<&Parent>,
-
-    material_override_query: Query<&MaterialOverrideComponent >,
-
-
-    ){
-
-
-     for evt in scene_instance_evt_reader.read(){
-
-          let scene_entity = evt.parent; //the scene 
-
-          let Some(parent_entity) = parent_query.get(scene_entity).ok().map( |p| p.get() ) else {continue};
-
-          if let Some(mat_override ) = material_override_query.get(parent_entity).ok(){
-
-            commands.entity(parent_entity).insert( RefreshMaterialOverride  );
-            info!("insert refresh material override");
-              
-
-          }
-      }
-   
-
-
-}

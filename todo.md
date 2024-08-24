@@ -15,11 +15,13 @@
 ## Immediate todo 
 
 
- - make a dirt material  -- use for dirt cliffs !! 
+- the models need the UV scale to be 16.0 
+- the tiles need it to be 1.0 
 
- 1. add more   texture to clay tiles  (addd normal maps )
 
- 2. stone walls are missing on pc ? 
+ 
+
+ 1.  be able to configure UV factor for each mat ?? 
 
  3. add terrain manifest to bevy_mesh_terrain and make it so each tile type has individually different UV expansion factor 
  4. make the terrain not disappear while painting .. 
