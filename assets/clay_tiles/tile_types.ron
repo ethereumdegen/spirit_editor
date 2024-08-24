@@ -5,33 +5,26 @@
   	//texture index 0 
   		(
   		  name: "gray_bricks",
-         material_name:  "TiledWall1", 
-        diffuse_uv_expansion_factor: 0.25,
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 0.3,
-                          green: 0.3,
-                          blue:  0.33,
-                          alpha:  1.0,
-                      )  )
-  		),
-
+         material_name:  "TiledBricks1", 
+         ), 
+       
     (
         name: "gray_brickwall",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledBricks2", 
         
       ),
 
 
      (
         name: "stucco_1",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledStuccoLight", 
          
       ),
 
 
       (
         name: "wood_1",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledWood3", 
              ),
 
 
@@ -58,20 +51,20 @@
 
          (
         name: "marble",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledMarble", 
          
       ),
 
 
       (
         name: "stucco_dark",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledStuccoDark", 
        
       ),
 
          (
         name: "marble_dark",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledMarbleDark", 
        
       ),
 
@@ -79,39 +72,39 @@
 
        (
         name: "ornate_tiles_1",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledTiles3", 
         
       ),
 
      (
         name: "ornate_tiles_2",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledTiles4", 
          
       ),
 
 
      (
         name: "simple_tiles_1",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledTiles1", 
         
       ),
 
      (
         name: "simple_tiles_2",
-         material_name:  "TiledWall1", 
+         material_name:  "TiledTiles2", 
         
       ),
 
 
      (
         name: "wood_2",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledWood4", 
        
       ),
 
      (
         name: "wood_3",
-        material_name:  "TiledWall1", 
+        material_name:  "TiledWood5", 
          
       ),
 

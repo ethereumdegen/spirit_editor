@@ -45,9 +45,124 @@
   	  "TiledWall1":(
         
         material_name:  "Wall1",  // load from glb 
-        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        uv_scale_factor: 1.0,  
+      ),
+
+
+
+      "TiledBricks1":(
+        
+        material_name:  "Bricks1",  // load from glb 
+        uv_scale_factor: 0.25,  
+      ),
+
+       "TiledBricks2":(
+        
+        material_name:  "Bricks2",  // load from glb 
+        uv_scale_factor: 0.25,  
+      ),
+
+
+       "TiledStuccoLight":(
+        
+        material_name:  "Stucco",  // load from glb 
+        uv_scale_factor: 0.125,   
         
       ),
+
+       "TiledStuccoDark":(
+        
+        material_name:  "Stucco",  // load from glb 
+        uv_scale_factor: 0.125,   
+
+          diffuse_color_tint: Some( LinearRgba(
+                          red: 0.15,
+                          green: 0.15,
+                          blue:  0.15,
+                          alpha:  1.0,
+                      )  )
+
+        
+      ),
+
+
+         "TiledTiles1":(
+        
+        material_name:  "Tiles1",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+
+         "TiledTiles2":(
+        
+        material_name:  "Tiles2",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+        "TiledTiles3":(
+        
+        material_name:  "Tiles3",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+        "TiledTiles4":(
+        
+        material_name:  "Tiles4",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+
+
+      "TiledWood3":(
+        
+        material_name:  "Wood3",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+       "TiledMarble":(
+        
+        material_name:  "Marble1",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+
+
+         "TiledMarbleDark":(
+        
+        material_name:  "Marble1",  // load from glb 
+        uv_scale_factor: 1.0,  
+
+       diffuse_color_tint: Some( LinearRgba(
+                          red: 0.5,
+                          green: 0.5,
+                          blue:  0.5,
+                          alpha:  1.0,
+                      )  ) 
+        
+      ),
+
+
+        "TiledWood4":(
+        
+        material_name:  "Wood4",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+        "TiledWood5":(
+        
+        material_name:  "Wood5",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
+      ),
+
+
 
 
 
