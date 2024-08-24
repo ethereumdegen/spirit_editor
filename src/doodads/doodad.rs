@@ -1,4 +1,5 @@
  
+use spirit_edit_core::doodads::doodad::RebuildDoodad;
 use bevy_clay_tiles::bevy_material_tool::material_overrides::MaterialOverrideComponent;
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
@@ -780,6 +781,28 @@ pub fn handle_place_doodad_events(
 
 
 
+
+
+
+
+
+
+pub fn handle_rebuild_doodads(
+
+    mut commands:Commands,
+
+    doodad_query: Query<Entity, With<RebuildDoodad>>
+){
+
+    for doodad_entity in doodad_query.iter(){
+
+        commands.entity(doodad_entity).remove::<RebuildDoodad>();
+
+
+    }
+
+
+}
 
 
 

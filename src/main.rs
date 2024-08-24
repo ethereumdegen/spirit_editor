@@ -26,6 +26,9 @@ use ui::EditorToolsState;
 
 use std::f32::consts::PI;
 
+use crate::doodads::doodad::handle_rebuild_doodads;
+
+
 use bevy::prelude::*;
 use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
 use bevy::render::RenderPlugin;
