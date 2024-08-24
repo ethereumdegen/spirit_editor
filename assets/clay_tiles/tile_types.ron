@@ -5,7 +5,7 @@
   	//texture index 0 
   		(
   		  name: "gray_bricks",
-        diffuse_texture_index:  0, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.3,
@@ -17,7 +17,7 @@
 
     (
         name: "gray_brickwall",
-        diffuse_texture_index:  1, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -30,7 +30,7 @@
 
      (
         name: "stucco_1",
-        diffuse_texture_index:  2, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -43,7 +43,7 @@
 
       (
         name: "wood_1",
-        diffuse_texture_index:  3, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -56,7 +56,7 @@
 
       (
         name: "promenade",
-        diffuse_texture_index:  4, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -68,7 +68,7 @@
 
        (
         name: "roof_tiles",
-        diffuse_texture_index:  5, //use the texture at this index 
+       material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -81,7 +81,7 @@
 
          (
         name: "mezzanine",
-        diffuse_texture_index:  6, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -95,7 +95,7 @@
 
          (
         name: "marble",
-        diffuse_texture_index:  7, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.8,
@@ -108,7 +108,7 @@
 
           (
         name: "stucco_dark",
-        diffuse_texture_index:  2, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.10,
@@ -120,7 +120,7 @@
 
          (
         name: "marble_dark",
-        diffuse_texture_index:  7, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.15,
@@ -134,7 +134,7 @@
 
        (
         name: "ornate_tiles_1",
-        diffuse_texture_index:  8, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.25,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,
@@ -146,7 +146,7 @@
 
      (
         name: "ornate_tiles_2",
-        diffuse_texture_index:  9, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.50,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,
@@ -159,7 +159,7 @@
 
      (
         name: "simple_tiles_1",
-        diffuse_texture_index:  10, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 1.0,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,
@@ -171,7 +171,7 @@
 
      (
         name: "simple_tiles_2",
-        diffuse_texture_index:  11, //use the texture at this index 
+         material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 1.0,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,
@@ -184,7 +184,7 @@
 
      (
         name: "wood_2",
-        diffuse_texture_index:  12, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 0.5,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,
@@ -196,7 +196,7 @@
 
      (
         name: "wood_3",
-        diffuse_texture_index:  13, //use the texture at this index 
+        material_name:  "Wall1", 
         diffuse_uv_expansion_factor: 1.0,
         diffuse_color_tint: Some( LinearRgba(
                           red: 0.9,

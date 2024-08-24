@@ -110,8 +110,8 @@ bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.25.1"
 
    #make sure this matches the version in spirit_edit_core 
- bevy_clay_tiles = "0.14.8"
- #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
+# bevy_clay_tiles = "0.14.9"
+ bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
 

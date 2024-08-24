@@ -1,5 +1,5 @@
  
-use crate::material_overrides::MaterialOverrideRequestComponent;
+use bevy_clay_tiles::bevy_material_tool::material_overrides::MaterialOverrideComponent;
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
@@ -182,7 +182,7 @@ fn attach_models_to_doodads(
                          info!("found mat override  {:?}", material_override );
 
                         commands.entity(new_doodad_entity).insert(
-                            MaterialOverrideRequestComponent {
+                            MaterialOverrideComponent {
                                 material_override: material_override.clone() 
                             }
 

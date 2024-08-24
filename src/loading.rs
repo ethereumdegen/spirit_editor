@@ -1,8 +1,9 @@
 
 use bevy::prelude::*;
 
-use crate::material_overrides::MaterialOverridesLoadingState; 
-
+//use crate::material_overrides::MaterialOverridesLoadingState; 
+ 
+use bevy_clay_tiles::bevy_material_tool::material_overrides::MaterialOverridesLoadingState;
 
 
 pub fn loading_plugin(app: &mut App) {

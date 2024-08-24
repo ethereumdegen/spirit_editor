@@ -6,6 +6,8 @@ use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
  
+ use bevy_clay_tiles::bevy_material_tool::BevyMaterialToolPlugin;
+
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
@@ -56,7 +58,7 @@ use crate::ui::editor_ui_plugin;
 mod editor_state;
 mod loading;
 
-mod material_overrides;
+//mod material_overrides;
 mod editor_config; 
 mod camera;
 mod commands;
@@ -136,6 +138,12 @@ fn main() {
 
         .add_plugins(BevyRegionsPlugin::default())
 
+
+        .add_plugins(BevyMaterialToolPlugin{
+              material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
+            }  )
+
+
         .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin {
              config: ClayTilesConfig::load_from_file("assets/tiles_config.ron").unwrap()
         })
@@ -157,7 +165,7 @@ fn main() {
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
-        .add_plugins(material_overrides::material_overrides_plugin)
+        //.add_plugins(material_overrides::material_overrides_plugin)
         .add_plugins(liquid_plugin)
         .add_plugins(brush_tools_plugin)
         .add_plugins(editor_ui_plugin)

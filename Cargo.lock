@@ -800,12 +800,35 @@ dependencies = [
 
 [[package]]
 name = "bevy_clay_tiles"
-version = "0.14.8"
+version = "0.14.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "026389569c457796cab2eb8dc685aec2c1fa164c3d3ab92f7f9182e7babf9b0c"
+checksum = "dfae81b415e11445090e3d2867ef7c7a7c4cdac3377136177c08b13c2da571a3"
 dependencies = [
  "anyhow",
  "bevy 0.14.0",
+ "bevy_material_tool",
+ "bevy_mod_raycast",
+ "bevy_mod_sysfail 7.0.0",
+ "futures-lite 1.13.0",
+ "geo",
+ "image 0.25.1",
+ "lyon",
+ "png",
+ "rand",
+ "ron",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "transform-gizmo-bevy",
+]
+
+[[package]]
+name = "bevy_clay_tiles"
+version = "0.14.10"
+dependencies = [
+ "anyhow",
+ "bevy 0.14.0",
+ "bevy_material_tool",
  "bevy_mod_raycast",
  "bevy_mod_sysfail 7.0.0",
  "futures-lite 1.13.0",
@@ -1142,7 +1165,7 @@ dependencies = [
  "base64 0.21.7",
  "bevy 0.14.0",
  "bevy-inspector-egui",
- "bevy_clay_tiles",
+ "bevy_clay_tiles 0.14.10",
  "bevy_common_assets 0.11.0",
  "bevy_editor_pls_core",
  "bevy_mod_debugdump",
@@ -1585,6 +1608,15 @@ dependencies = [
  "ron",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "bevy_material_tool"
+version = "0.14.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e4921725bb04901afe64fb55428271498e7664ec5da27c67a25f02405674374"
+dependencies = [
+ "bevy 0.14.0",
 ]
 
 [[package]]
@@ -6032,7 +6064,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "116220119a508ff1f091f0e332f35b1d430ba8ffd7cde2531afdb33b4ec45886"
 dependencies = [
  "bevy 0.14.0",
- "bevy_clay_tiles",
+ "bevy_clay_tiles 0.14.9",
  "bevy_common_assets 0.11.0",
  "bevy_egui",
  "bevy_mod_picking",
@@ -6050,7 +6082,7 @@ dependencies = [
  "bevy 0.14.0",
  "bevy-inspector-egui",
  "bevy_asset_loader",
- "bevy_clay_tiles",
+ "bevy_clay_tiles 0.14.10",
  "bevy_common_assets 0.11.0",
  "bevy_editor_pls",
  "bevy_editor_pls_core",

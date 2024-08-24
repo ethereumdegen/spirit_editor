@@ -3,11 +3,11 @@ ClayTilesConfig(
     
     
      
-    texture_image_sections: 16,
+   // texture_image_sections: 16,
      
      
-     diffuse_texture_path: "clay_tiles/tiles_diffuse_texture.tga", 
-     normal_texture_path: "clay_tiles/tiles_normal_texture.tga", 
+   //  diffuse_texture_path: "clay_tiles/tiles_diffuse_texture.tga", 
+  //   normal_texture_path: "clay_tiles/tiles_normal_texture.tga", 
       tile_types_config_path: "clay_tiles/tile_types.ron"
       
 )
