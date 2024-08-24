@@ -19,6 +19,9 @@ use spirit_edit_core::doodads::doodad_manifest::RenderableType;
 use spirit_edit_core::doodads::DoodadNeedsModelAttached;
 use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource; 
 use crate::AssetLoadState;
+
+
+use bevy_clay_tiles::bevy_material_tool::material_overrides::RefreshMaterialOverride;
  
  
 use crate::asset_loading::BuiltVfxHandleRegistry;
@@ -72,6 +75,8 @@ impl Plugin for DoodadPlugin {
                 reset_place_doodads,
                 handle_doodad_tool_events,
                 replace_proto_doodads_with_doodads,
+
+                handle_doodad_scene_ready
 
 
 
@@ -1046,4 +1051,37 @@ pub fn handle_doodad_tool_events(
 
 
     }
+}
+
+
+fn handle_doodad_scene_ready(
+
+    mut commands:Commands, 
+    mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,  
+
+    parent_query : Query<&Parent>,
+
+    material_override_query: Query<&MaterialOverrideComponent >,
+
+
+    ){
+
+
+     for evt in scene_instance_evt_reader.read(){
+
+          let scene_entity = evt.parent; //the scene 
+
+          let Some(parent_entity) = parent_query.get(scene_entity).ok().map( |p| p.get() ) else {continue};
+
+          if let Some(mat_override ) = material_override_query.get(parent_entity).ok(){
+
+            commands.entity(parent_entity).insert( RefreshMaterialOverride  );
+            info!("insert refresh material override");
+              
+
+          }
+      }
+   
+
+
 }
