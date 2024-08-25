@@ -16,16 +16,11 @@
 
  
  
- 1.  add materials for clay tiles to the glb 
- 2. 
- 3. 
+ 1. add a transform offset to a zone 
+
   
  4. make the terrain not disappear while painting .. 
- 
- 5.  fix anceint forest   bushes  (like the trees) 
-
-
-
+  
 
 - add visual grid snap dimensions (0.14 has grid gizmo)
 
