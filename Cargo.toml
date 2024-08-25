@@ -37,8 +37,8 @@ image = { version = "0.25.1", default-features = false }
  bevy_regions = "0.14.1"
   
    #make sure this matches the version in spirit_edit_core 
- #bevy_clay_tiles = "0.14.10"
- bevy_clay_tiles =  {path="../bevy_clay_tiles"}
+ bevy_clay_tiles = "0.14.12"
+ #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
 bevy_magic_fx = "0.14.2"
