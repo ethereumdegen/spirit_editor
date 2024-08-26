@@ -59,6 +59,7 @@ use crate::ui::editor_ui_plugin;
 
 mod editor_state;
 mod loading;
+mod clay_tiles;
 
 //mod material_overrides;
 mod editor_config; 
@@ -173,7 +174,7 @@ fn main() {
         .add_plugins(brush_tools_plugin)
         .add_plugins(editor_ui_plugin)
         .add_plugins(camera_plugin)
-          .add_systems(Startup, set_window_icon)
+        .add_systems(Startup, set_window_icon)
 
 
 
@@ -190,10 +191,11 @@ fn main() {
          .add_systems(Update, regions::update_regions_plane_visibility)
         .add_systems(Update, update_directional_light_position)
 
+        .add_plugins( clay_tiles::clay_tiles_plugin )
 
         //move to camera lib
         .add_plugins(editor_pls::editor_ui_plugin)
-          .add_plugins(editor_state::editor_state_plugin )
+        .add_plugins(editor_state::editor_state_plugin )
           
         .run();
 }

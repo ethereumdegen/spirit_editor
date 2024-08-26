@@ -157,15 +157,51 @@
 
         "TiledWood5":(
         
-        material_name:  "Wood5",  // load from glb 
+        material_name:  "Wood5",   
         uv_scale_factor: 1.0,   
         
       ),
 
+       "TiledCobbles1":(
+        
+        material_name:  "Cobbles1",  
+        uv_scale_factor: 0.25,   
+        
+      ),
 
+      "TiledCobbles2":(
+        
+        material_name:  "Cobbles2",   
+        uv_scale_factor: 0.25,   
+        
+      ),
+      "TiledCobbles3":(
+        
+        material_name:  "Cobbles3",  
+        uv_scale_factor: 0.25,   
+        
+      ),
 
+      "TiledCobbles4":(
+        
+        material_name:  "Cobbles4",  
+        uv_scale_factor: 0.25,   
+        
+      ),
 
+      "TiledRocks1":(
+        
+        material_name:  "Rocks1",   
+        uv_scale_factor: 0.25,   
+        
+      ),
 
+       "TiledRocks2":(
+        
+        material_name:  "Rocks2",   
+        uv_scale_factor: 0.25,   
+        
+      ),
 
 
   }

@@ -108,6 +108,43 @@
          
       ),
 
+      (
+        name: "cobbles1",
+        material_name:  "TiledCobbles1", 
+         
+      ),
+
+       (
+        name: "cobbles2",
+        material_name:  "TiledCobbles2", 
+         
+      ),
+
+
+      (
+        name: "cobbles3",
+        material_name:  "TiledCobbles3", 
+         
+      ),
+
+      (
+        name: "cobbles4",
+        material_name:  "TiledCobbles4", 
+         
+      ),
+
+       (
+        name: "rocks1",
+        material_name:  "TiledRocks1", 
+         
+      ),
+
+       (
+        name: "rocks2",
+        material_name:  "TiledRocks2", 
+         
+      ),
+
 
   ]
 
