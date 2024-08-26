@@ -101,9 +101,9 @@ pub enum SubTool {
     BuildTileRectangle,
     BuildTileLinear,
     BuildTilePolygon,
-    ModifyTileHeight,
-    ModifyTileBevel,
-    ModifyTileType, 
+    ModifyTileDragSides,
+    ModifyTileDragVertices,
+ //   ModifyTileType, 
 
 }
 
@@ -120,9 +120,13 @@ impl SubTool{
             Self::BuildTileRectangle  => "Build: Rectangle".into(),
             Self::BuildTileLinear  => "Build: Linear".into(),
             Self::BuildTilePolygon  => "Build: Polygon".into(),
-            Self::ModifyTileHeight  => "Modify: Height".into(),
+
+            Self::ModifyTileDragSides => "Modify: Drag Sides".into(),
+            Self::ModifyTileDragVertices => "Modify: Drag Vertices".into(),
+
+           /* Self::ModifyTileHeight  => "Modify: Height".into(),
             Self::ModifyTileBevel  => "Modify: Bevel".into(),
-            Self::ModifyTileType  => "Modify: Tile Type".into(),
+            Self::ModifyTileType  => "Modify: Tile Type".into(),*/
                 
   
         }
@@ -149,13 +153,12 @@ const TERRAIN_SUBTOOLS : [SubTool; 2] = [
 
 ];
 
-const TILE_SUBTOOLS : [SubTool; 6] = [
+const TILE_SUBTOOLS : [SubTool; 5] = [
     SubTool::BuildTileRectangle,
     SubTool::BuildTileLinear, 
     SubTool::BuildTilePolygon, 
-    SubTool::ModifyTileHeight,
-    SubTool::ModifyTileBevel,
-    SubTool::ModifyTileType
+    SubTool::ModifyTileDragSides,
+    SubTool::ModifyTileDragVertices
 ];
 
 

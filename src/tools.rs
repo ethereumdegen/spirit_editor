@@ -166,14 +166,18 @@ impl   EditingTool {
                                BuildTileTool::LinearTileBuild  
                             ) ),
 
-                            Some(SubTool::ModifyTileHeight) => Some( TilesEditingTool::ModifyTile(
-                                    ModifyTileTool::ModifyTileHeight)  ),
+                            Some(SubTool::ModifyTileDragSides) => Some( TilesEditingTool::ModifyTile(
+                                    ModifyTileTool::ModifyDragSides)  ),
 
+                            Some(SubTool::ModifyTileDragVertices) => Some( TilesEditingTool::ModifyTile(
+                                    ModifyTileTool::ModifyDragVertices)  ),
+
+                            /*
                              Some(SubTool::ModifyTileBevel) => Some( TilesEditingTool::ModifyTile(
                                     ModifyTileTool::ModifyTileBevel)  ),
 
                                 Some(SubTool::ModifyTileType) => Some( TilesEditingTool::ModifyTile(
-                                    ModifyTileTool::ModifyTileType)  ),
+                                    ModifyTileTool::ModifyTileType)  ),*/
 
 
                             _ => None 
