@@ -462,6 +462,21 @@ fn editor_tools_ui(
 
 
 
+                let show_tile_build_sliders = match &tools_state.sub_tool {
+
+                     Some(SubTool::BuildTileRectangle) => true,
+                     Some(SubTool::BuildTilePolygon) => true,
+                     Some(SubTool::BuildTileLinear) => true,
+                     _ => false 
+
+
+                };
+ 
+
+                if show_tile_build_sliders {
+
+
+
 
 
                    ui.add(
@@ -503,6 +518,8 @@ fn editor_tools_ui(
                                 ,
                         );
 
+
+                }
 
                 
             },
