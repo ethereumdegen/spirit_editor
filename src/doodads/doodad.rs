@@ -1,6 +1,9 @@
  
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
-use bevy_clay_tiles::bevy_material_tool::material_overrides::{MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent};
+use bevy_material_tool::material_overrides::{
+    MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
+
+};
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
@@ -20,8 +23,7 @@ use spirit_edit_core::doodads::DoodadNeedsModelAttached;
 use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource; 
 use crate::AssetLoadState;
 
-
-use bevy_clay_tiles::bevy_material_tool::material_overrides::RefreshMaterialOverride;
+ 
  
  
 use crate::asset_loading::BuiltVfxHandleRegistry;

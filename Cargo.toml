@@ -27,7 +27,7 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-
+bevy_material_tool = "0.14.3"
 
  degen_toon_water = "0.14.1"
 
@@ -37,7 +37,7 @@ image = { version = "0.25.1", default-features = false }
  bevy_regions = "0.14.1"
   
    #make sure this matches the version in spirit_edit_core 
- bevy_clay_tiles = "0.14.15"
+ bevy_clay_tiles = "0.14.16"
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 

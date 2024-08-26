@@ -6,7 +6,7 @@ use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
  
- use bevy_clay_tiles::bevy_material_tool::BevyMaterialToolPlugin;
+ use bevy_material_tool::BevyMaterialToolPlugin;
 
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;

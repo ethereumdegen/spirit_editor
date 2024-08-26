@@ -1,4 +1,5 @@
-use bevy_clay_tiles::clay_tile_block::ClayTileBlock;
+use bevy_material_tool::material_overrides::MaterialOverrideComponent;
+use bevy_clay_tiles::clay_tile_block::{ClayTileBlock,ClayTileMaterial};
 use bevy::prelude::*; 
 
 
@@ -9,9 +10,10 @@ use bevy::prelude::*;
 pub(crate) fn clay_tiles_plugin(app: &mut App) {
     app
     
-     // .add_systems(Update, remove_invalid_clay_tiles)
+      .add_systems(Update, remove_invalid_clay_tiles)
+      .add_systems(Update, add_material_handles)
 
-   
+   	
       
       ;
 
@@ -22,9 +24,8 @@ pub(crate) fn clay_tiles_plugin(app: &mut App) {
 
 fn remove_invalid_clay_tiles(  
 	mut commands:Commands,
-
-
-clay_tile_query: Query<(Entity, &ClayTileBlock) >
+ 
+	clay_tile_query: Query<(Entity, &ClayTileBlock) >
 ){
 
 	for (clay_tile_entity, clay_tile_block) in clay_tile_query.iter(){
@@ -38,5 +39,30 @@ clay_tile_query: Query<(Entity, &ClayTileBlock) >
  
 	}
 
+
+}
+
+
+
+
+fn add_material_handles(
+    mut commands:Commands,
+
+    block_query: Query<(Entity, &ClayTileMaterial), Added<ClayTileMaterial>>
+){
+
+    for (tile_entity, tile_material_comp) in block_query.iter(){
+
+        let material_name = &tile_material_comp.material_name; 
+
+
+        commands.get_entity(tile_entity).map( |mut cmd| { 
+        	cmd.insert( MaterialOverrideComponent {
+      	      material_override:  material_name.clone()
+      		  } );
+
+         } );
+
+    }
 
 }
