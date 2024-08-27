@@ -1,10 +1,14 @@
 (
   
 
+
+/*
 initial_terrain_to_load: Some("raven_woods_terrain"),    
     initial_zones_to_load: Some([
         "raven_woods/ravenwoods.zone"
     ]), 
+
+    */
 
 /*
  
@@ -30,29 +34,29 @@ initial_terrain_to_load: Some("raven_woods_terrain"),
 
 */
 
-/*
+ 
  initial_terrain_to_load:  Some("default_terrain"),    
 initial_zones_to_load: Some([
        
-        "zone01.zone",
+        "grove/zone01.zone",
         "test_units.zone",
         "test_stuff.zone",
         "ancient_islands.zone",
         "viridian_temple01.zone",
-        "grove_intro.zone", 
-        "forest_01.zone",
-        "gabriella_intro.zone",
-        "twisted_grove_wolf.zone", // cinematic 
-         "twisted_grove_extension.zone", 
+        "grove/grove_intro.zone", 
+        "grove/forest_01.zone",
+        "grove/gabriella_intro.zone",
+        "grove/twisted_grove_wolf.zone", // cinematic 
+         "grove/twisted_grove_extension.zone", 
          "viridian_path.zone", 
-        "twisted_grove_power_runes.zone",
+        "grove/twisted_grove_power_runes.zone",
         "swamp_one.zone",
         "dungeon_01_exterior.zone",
 
          "temple_exterior.zone",
 
 
- ]), */
+ ]),  
 
  
 
