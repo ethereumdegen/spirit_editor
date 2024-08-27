@@ -152,6 +152,9 @@ pub enum Action {
     ClearSelection,
     DeleteSelectedEntities, 
 
+    RotateDoodadYawCW,
+    RotateDoodadYawCCW,
+
     #[cfg(feature = "default_windows")]
     SetGizmoModeTranslate,
     #[cfg(feature = "default_windows")]
@@ -168,6 +171,8 @@ impl std::fmt::Display for Action {
             Action::FocusSelected => write!(f, "Focus Selected Entity"),
             Action::DeleteSelectedEntities => write!(f, "Delete Selected Entities"), 
             Action::ClearSelection => write!(f, "Clear Selection"),
+            Action::RotateDoodadYawCW => write!(f, "RotateDoodadYawCW"),
+            Action::RotateDoodadYawCCW => write!(f, "RotateDoodadYawCCw"),
             #[cfg(feature = "default_windows")]
             Action::SetGizmoModeTranslate => write!(f, "Activate translation gizmo"),
             #[cfg(feature = "default_windows")]
@@ -267,6 +272,26 @@ pub fn editor_controls_system(
     ) {
         editor_events.send(EditorEvent::FocusSelected);
     }
+
+
+    if controls.just_pressed(
+        Action::RotateDoodadYawCW,
+        &keyboard_input,
+        &mouse_input,
+        &editor,
+    ) {
+        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(45.0));
+    }
+
+    if controls.just_pressed(
+        Action::RotateDoodadYawCCW,
+        &keyboard_input,
+        &mouse_input,
+        &editor,
+    ) {
+        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(-45.0));
+    }
+
 
 
      if controls.just_pressed(
@@ -374,9 +399,27 @@ impl EditorControls {
             Action::FocusSelected,
             Binding {
                 input: UserInput::Single(Button::Keyboard(KeyCode::KeyF)),
-                conditions: vec![BindingCondition::EditorActive(true)],
+                conditions: vec![BindingCondition::EditorActive(true),BindingCondition::ListeningForText(false)],
             },
         );
+
+          controls.insert(
+            Action::RotateDoodadYawCW,
+            Binding {
+                input: UserInput::Single(Button::Keyboard(KeyCode::KeyJ)),
+                conditions: vec![BindingCondition::ListeningForText(false)],
+            },
+        );
+
+           controls.insert(
+            Action::RotateDoodadYawCCW,
+            Binding {
+                input: UserInput::Single(Button::Keyboard(KeyCode::KeyK)),
+                conditions: vec![BindingCondition::ListeningForText(false)],
+            },
+        );
+
+
 
        controls.insert(
             Action::ClearSelection,

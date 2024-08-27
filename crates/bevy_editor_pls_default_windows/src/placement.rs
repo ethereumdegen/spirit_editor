@@ -98,6 +98,7 @@ impl EditorWindow for PlacementWindow {
              ui.end_row();
               ui.label("Additional shortcuts");
                ui.label("Clone selected doodad: [ key: ctrl+C ]");
+               ui.label("Rotate selected doodad: [ keys: [J , K] ]");
 
         }); // ---- v
     }

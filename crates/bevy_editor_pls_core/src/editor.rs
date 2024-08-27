@@ -15,6 +15,9 @@ pub enum EditorEvent {
     FocusSelected,
     SetSelectedEntities(Option<Vec<Entity>>),
 
+
+    RotateSelectedDoodadByDegrees(f32),
+
     DeleteSelectedEntities
 }
 

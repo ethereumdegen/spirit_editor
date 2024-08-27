@@ -143,7 +143,7 @@ impl Default for AddWindowState {
         );
 
         state.add(
-            "ClayTiles",
+            "Doodads",
             AddItem::component::<spirit_edit_core::doodads::doodad::RebuildDoodad>(),
         );
 

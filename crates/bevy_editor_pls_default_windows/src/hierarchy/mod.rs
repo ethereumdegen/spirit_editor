@@ -1,6 +1,7 @@
 // pub mod picking;
 
- use spirit_edit_core::zones::SaveZoneToFileEvent;
+ use spirit_edit_core::doodads::doodad::RotateByDegrees;
+use spirit_edit_core::zones::SaveZoneToFileEvent;
 use spirit_edit_core::zones::ZoneComponent;
 use spirit_edit_core::zones::ZoneEvent;
 
@@ -309,6 +310,22 @@ pub fn listen_for_select_entities_events(
                 for entity in entities_to_select.clone().unwrap_or(Vec::new()){
                        state.selected.select_maybe_add( entity, true );  
                 } 
+
+
+            }
+
+
+             EditorEvent::RotateSelectedDoodadByDegrees(degrees) => {
+                 let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
+
+                 
+                    for entity in  state.selected.iter() {
+                        if let Some(mut cmd) = commands.get_entity( entity ){
+
+                            cmd.insert(RotateByDegrees(degrees.clone () ));
+                        }
+                   
+                    }
 
 
             }

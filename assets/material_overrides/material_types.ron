@@ -38,6 +38,24 @@
       ),
 
 
+       "Rocks1":(
+        
+        material_name:  "Rocks1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
+
+
+       "Rocks2":(
+        
+        material_name:  "Rocks2",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+
+
 
       // Clay Tiles Materials 
 
