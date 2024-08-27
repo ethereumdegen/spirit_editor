@@ -1,15 +1,18 @@
 (
   
 
+initial_terrain_to_load: Some("raven_woods_terrain"),    
+    initial_zones_to_load: Some([
+        "raven_woods/ravenwoods.zone"
+    ]), 
 
-
-
+/*
  
-  initial_terrain_to_load: Some("fae_castle_terrain"),    
+  initial_terrain_to_load: Some("fae_terrain"),    
     initial_zones_to_load: Some([
         "fae_castle/fae_castle_1.zone"
     ]), 
- 
+ */
 
 /*
   initial_terrain_to_load: None,    
