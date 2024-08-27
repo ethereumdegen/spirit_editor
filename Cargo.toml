@@ -9,7 +9,7 @@ default-run = "main"
 
 
 [dependencies]
-bevy = "0.14.0"
+bevy = "0.14.1"
 bevy_egui = "0.28.0"
 
 
@@ -74,11 +74,8 @@ bevy-inspector-egui = "0.25.1"
 bevy_asset_loader = "0.21.0"
 
  
-#bevy_foliage_paint = "0.13.6"
-
-#bevy_foliage_paint = { git = "https://github.com/ethereumdegen/bevy_foliage_paint", rev = "16c0277050f1e1275f63a5e52925903b18d89b9a"}
-
-
+bevy_foliage_paint =  {path = "../bevy_foliage_paint"}
+ 
 
 [workspace.package]
 version = "0.8.2"
