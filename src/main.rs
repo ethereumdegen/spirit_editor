@@ -13,7 +13,7 @@ use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
 //use bevy_foliage_paint::foliage_config::FoliageConfig;
 //use bevy_foliage_paint::foliage::FoliageData;
-use bevy_foliage_paint::BevyFoliagePaintPlugin;
+use bevy_foliage_tool::BevyFoliageToolPlugin;
 use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
@@ -143,9 +143,9 @@ fn main() {
 
 
         .add_plugins(BevyMaterialToolPlugin{
-            material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
+              material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
               material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
-            }  )
+        }  )
 
 
         .add_plugins(bevy_clay_tiles::BevyClayTilesPlugin {
@@ -156,7 +156,11 @@ fn main() {
     
         .add_plugins(SpiritEditCorePlugin {})
 
-        .add_plugins(BevyFoliagePaintPlugin::default() )
+        .add_plugins(BevyFoliageToolPlugin {
+
+            foliage_config_path: "assets/foliage/foliage_config.ron"
+
+        } )
 
       // .add_plugins(foliage::FoliagePlugin  )
 
