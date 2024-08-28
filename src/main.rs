@@ -1,5 +1,6 @@
 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
+use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
 use spirit_edit_core::SpiritEditCorePlugin;
 use spirit_edit_core::zones::ZoneEvent;
@@ -351,8 +352,10 @@ fn setup(
         })
        .insert( BloomSettings::OLD_SCHOOL )
         .insert(TerrainViewer::default())
+         .insert( FoliageViewer )
         .insert( DepthPrepass )
         .insert( NormalPrepass)
+
         // .insert(ShadowFilteringMethod::Jimenez14)
        ;
 }
