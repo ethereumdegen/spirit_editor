@@ -1,5 +1,6 @@
 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
+use bevy_foliage_tool::BevyFoliageProtoPlugin;
 use spirit_edit_core::SpiritEditCorePlugin;
 use spirit_edit_core::zones::ZoneEvent;
 use crate::asset_loading::EditorConfigAssets;
@@ -74,7 +75,7 @@ mod liquid;
 
 mod doodads;
 mod terrain;
-//mod foliage; 
+ mod foliage; 
 
 mod regions;
 
@@ -156,6 +157,8 @@ fn main() {
 
     
         .add_plugins(SpiritEditCorePlugin {})
+ 
+
 
         .add_plugins(BevyFoliageToolPlugin {
 
@@ -163,7 +166,12 @@ fn main() {
 
         } )
 
-      // .add_plugins(foliage::FoliagePlugin  )
+ 
+
+        
+        .add_plugins(BevyFoliageProtoPlugin )
+
+         .add_plugins(foliage::FoliagePlugin  )
 
         .add_plugins(doodads::doodad::DoodadPlugin)
         .add_plugins(doodads::doodad_placement_preview::DoodadPlacementPlugin {}  )

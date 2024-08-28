@@ -1,19 +1,12 @@
 
 
+use bevy_foliage_tool::foliage_assets::FoliageAssetsResource;
+use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
 use bevy_mesh_terrain::chunk::Chunk;
 use bevy_mesh_terrain::chunk::CachedHeightmapData;
 use crate::ui::ToolMode;
 use crate::EditorToolsState;
-use bevy_foliage_paint::foliage::FoliageData;
-use bevy_foliage_paint::foliage_chunk;
-use bevy_mesh_terrain::chunk::ChunkHeightMapResource;
-use bevy_foliage_paint::foliage_chunk::FoliageChunkYOffsetData;
-use bevy_foliage_paint::foliage_chunk::FoliageChunkYOffsetTexture;
-use bevy_foliage_paint::density_map::DensityMap;
-use bevy_foliage_paint::foliage_chunk::FoliageChunkDensityTexture;
-use bevy_foliage_paint::density_map::DensityMapU8;
-use bevy_foliage_paint::foliage_chunk::FoliageChunkDensityData;
-use bevy_foliage_paint::foliage_chunk::FoliageChunk;
+ 
 use bevy::prelude::*;
 
 
@@ -24,11 +17,14 @@ impl Plugin for FoliagePlugin {
     fn build(&self, app: &mut App) {
         //put this inside of zone plugin ?
          app
-             .add_systems(Update, add_data_for_foliage_chunks)
 
-             .add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
+            .add_systems(Startup, register_foliage_assets)
 
-             .add_systems(Update, update_foliage_root_visibility )
+            // .add_systems(Update, add_data_for_foliage_chunks)
+
+             //.add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
+
+           //  .add_systems(Update, update_foliage_root_visibility )
            
 
             ;
@@ -36,10 +32,33 @@ impl Plugin for FoliagePlugin {
 }
 
 
-#[derive(Component)]
-pub struct FoliageChunkNeedsRebuild ;   // from height or density edit .. ? 
+//#[derive(Component)]
+//pub struct FoliageChunkNeedsRebuild ;   // from height or density edit .. ? 
 
-  
+
+
+fn register_foliage_assets(
+
+    asset_server: Res <AssetServer>, 
+
+    mut assets_resource: ResMut<FoliageAssetsResource>, 
+
+    mut next_state: ResMut<NextState<FoliageAssetsState>>, 
+
+) {
+
+
+    let green_material: StandardMaterial = Color::srgb(0.4, 0.7, 0.6) .into();
+
+    assets_resource.register_foliage_mesh("grass1", asset_server.load( "foliage/meshes/grass1.obj" ));
+
+    assets_resource.register_foliage_material("standard_green", asset_server.add( green_material ));
+
+
+    next_state.set( FoliageAssetsState::Loaded );
+}
+
+  /*
 fn add_data_for_foliage_chunks (   
 
     mut commands:Commands,
@@ -185,4 +204,4 @@ fn update_foliage_root_visibility (
         _ => Visibility::Hidden
     }
 
-}
+}*/
