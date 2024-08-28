@@ -31,7 +31,7 @@ fn update_terrain_load_state(
 
 ){		
 
-	let Some( (terrain_data, terrain_config) ) = terrain_data_query.get_single().ok() else {return};
+	let Some( (_terrain_data, terrain_config) ) = terrain_data_query.get_single().ok() else {return};
 
 	let  chunk_rows = terrain_config.chunk_rows; 
 	let expected_height_maps_count = chunk_rows * chunk_rows;
