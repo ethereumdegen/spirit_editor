@@ -9,7 +9,7 @@ use bevy_egui::{egui };
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
 use spirit_edit_core::zones::ZoneEvent;
-//use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
+use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
 
@@ -84,7 +84,7 @@ pub enum ToolMode {
     //Height,
     //Splat,
     Terrain,
-  //  Foliage, //add me back in later 
+    Foliage, 
     Regions,
     Tiles,
     //Doodads,
@@ -137,11 +137,11 @@ impl SubTool{
 
 
 
-const TOOL_MODES: [ToolMode; 3] = [
+const TOOL_MODES: [ToolMode; 4] = [
 ToolMode::Terrain,
 //ToolMode::Height, 
 //ToolMode::Splat, 
-//ToolMode::Foliage, 
+ToolMode::Foliage, 
 ToolMode::Regions,
 ToolMode::Tiles,
  //ToolMode::Doodads
@@ -193,7 +193,7 @@ impl Display for ToolMode {
         let label = match self {
             ToolMode::Terrain => "Terrain",
             ToolMode::Tiles => "Tiles",
-          //  ToolMode::Foliage => "Foliage",
+            ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions",
           //    ToolMode::Doodads => "Doodads"
         };
@@ -206,7 +206,7 @@ fn editor_tools_ui(
     mut tools_state: ResMut<EditorToolsState>,
 
     mut command_event_writer: EventWriter<TerrainCommandEvent>,
-   // mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
+    mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
     mut zone_event_writer: EventWriter<ZoneEvent>,
 
@@ -226,7 +226,7 @@ fn editor_tools_ui(
             command_event_writer.send(TerrainCommandEvent::SaveAllChunks(true, true, true));
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
             zone_event_writer.send(ZoneEvent::SaveAllZones);
-         //   foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
+            foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
         }
 
        // if ui.button("Save Splat and Height").clicked() {
@@ -529,7 +529,7 @@ fn editor_tools_ui(
                   ui.heading("Placing Doodads (no tool)");
 
               },*/
-           /* ToolMode::Foliage => {
+            ToolMode::Foliage => {
 
 
                  egui::ComboBox::new("brush_type", "")
@@ -551,15 +551,23 @@ fn editor_tools_ui(
                      ui.spacing_mut().slider_width = 256.0;  
  
                 ui.add(
-                    egui::Slider::new(&mut tools_state.color.r, 0..=256)
+                    egui::Slider::new(&mut tools_state.color.r, 0..=64)
                         .text("Foliage Index (R_Channel)")
                          .step_by(1.0)
                         .drag_value_speed(1.0)
                         ,
                 );
 
+                  ui.add(
+                    egui::Slider::new(&mut tools_state.color.g, 0..=256)
+                        .text("Foliage Density (G_Channel)")
+                         .step_by(1.0)
+                        .drag_value_speed(1.0)
+                        ,
+                );
 
-            }*/
+
+            }  
             ToolMode::Regions => {
 
 

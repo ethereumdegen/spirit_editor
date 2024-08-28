@@ -13,7 +13,7 @@ use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
 //use bevy_foliage_paint::foliage_config::FoliageConfig;
 //use bevy_foliage_paint::foliage::FoliageData;
-//use bevy_foliage_paint::BevyFoliagePaintPlugin;
+use bevy_foliage_paint::BevyFoliagePaintPlugin;
 use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
@@ -156,7 +156,7 @@ fn main() {
     
         .add_plugins(SpiritEditCorePlugin {})
 
-       // .add_plugins(BevyFoliagePaintPlugin::default() )
+        .add_plugins(BevyFoliagePaintPlugin::default() )
 
       // .add_plugins(foliage::FoliagePlugin  )
 
