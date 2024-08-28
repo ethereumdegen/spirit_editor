@@ -14,6 +14,8 @@ pub struct EditorConfig {
 
 	initial_zones_to_load: Option<Vec<String>>,
 
+	initial_foliage_scene_to_load: Option<String>, 
+
 //	doodad_manifest: String, 
 
 }
@@ -48,6 +50,11 @@ impl EditorConfig{
 		 )
 	}
 
+	pub fn get_foliage_scene_name(&self) -> Option<String> {
+
+
+		return self.initial_foliage_scene_to_load.clone()
+	}
 
  
 }

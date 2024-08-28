@@ -19,7 +19,7 @@ use bevy_regions::edit::{
      RegionBrushEvent};
  
 
-use bevy_foliage_paint::edit::{
+use bevy_foliage_tool::edit::{
     BrushType as FoliageBrushType, 
     EditFoliageEvent, 
     EditingTool as FoliageEditingTool,
@@ -404,7 +404,7 @@ fn update_brush_paint(
                             BrushType::Noise => FoliageBrushType::SetExact,
                             BrushType::EyeDropper => FoliageBrushType::EyeDropper,
                         };
-
+                        info!("send edit foliage event ");
                      edit_foliage_event_writer.send(EditFoliageEvent {   
                             entity: intersection_entity.clone(),
                             tool: foliage_edit_tool,

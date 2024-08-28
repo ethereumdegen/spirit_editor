@@ -9,7 +9,7 @@ use bevy_egui::{egui };
 use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
 use spirit_edit_core::zones::ZoneEvent;
-use bevy_foliage_paint::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
+use bevy_foliage_tool::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
 
 use std::fmt::{self, Display, Formatter};
 
@@ -547,7 +547,18 @@ fn editor_tools_ui(
                             }
                         }
                     });
- 
+    
+
+
+                        ui.spacing();
+                         ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+                         ui.spacing();
+                         ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
+                        ui.spacing();
+                                
+                       ui.separator();
+
+
                      ui.spacing_mut().slider_width = 256.0;  
  
                 ui.add(

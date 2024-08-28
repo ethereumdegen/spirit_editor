@@ -1,4 +1,5 @@
 
+use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use spirit_edit_core::SpiritEditCorePlugin;
 use spirit_edit_core::zones::ZoneEvent;
 use crate::asset_loading::EditorConfigAssets;
@@ -158,7 +159,7 @@ fn main() {
 
         .add_plugins(BevyFoliageToolPlugin {
 
-            foliage_config_path: "assets/foliage/foliage_config.ron"
+            foliage_config_path: "assets/foliage/foliage_config.ron".to_string()
 
         } )
 
@@ -244,6 +245,30 @@ fn setup(
             .insert(TerrainData::new()); 
 
     }
+
+
+     if let Some(foliage_scene_name) = &editor_config.get_foliage_scene_name() {
+        
+
+        let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
+
+
+        
+
+
+        commands
+            .spawn(SpatialBundle::default())
+            .insert( 
+                FoliageSceneData::create_or_load(  
+                foliage_scenes_folder_path, 
+                foliage_scene_name  
+                ) //this will be unpacked automagically 
+            ).insert(
+                Name::new( foliage_scene_name.clone() )
+            ) ; 
+
+    }
+    
     
 
 
