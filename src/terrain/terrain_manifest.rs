@@ -10,22 +10,18 @@ use serde::{Serialize,Deserialize} ;
 use bevy_common_assets::ron::RonAssetPlugin;
  
 
- 
- 
+pub fn terrain_manifest_plugin(app: &mut App) {
 
-#[derive(Default)]
-pub(crate) struct TerrainManifestPlugin;
 
-impl Plugin for TerrainManifestPlugin {
-    fn build(&self, app: &mut App) {
-        app.add_plugins(RonAssetPlugin::<TerrainManifest>::new(&["terrainmanifest.ron"]))
+     app.add_plugins(RonAssetPlugin::<TerrainManifest>::new(&["terrainmanifest.ron"]))
             
             .insert_resource(TerrainManifestResource::default())
            
             .add_systems(Startup, load_terrain_manifest)
              ;
-    }
+ 
 }
+ 
  
    
 

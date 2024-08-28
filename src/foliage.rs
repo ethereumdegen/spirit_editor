@@ -1,9 +1,17 @@
 
 
+use bevy_mesh_terrain::chunk::ChunkHeightMapResource;
+use bevy::utils::HashMap;
 use bevy_foliage_tool::foliage_assets::FoliageAssetsResource;
 use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
+use bevy_foliage_tool::foliage_layer;
+use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;
+use bevy_foliage_tool::foliage_layer::FoliageLayer;
+use bevy_foliage_tool::foliage_layer::FoliageLayerNeedsRebuild;
 use bevy_mesh_terrain::chunk::Chunk;
 use bevy_mesh_terrain::chunk::CachedHeightmapData;
+use bevy_mesh_terrain::terrain_loading_state;
+use bevy_mesh_terrain::terrain_loading_state::TerrainLoadingState;
 use crate::ui::ToolMode;
 use crate::EditorToolsState;
  
@@ -19,7 +27,9 @@ impl Plugin for FoliagePlugin {
          app
 
             .add_systems(Startup, register_foliage_assets)
-
+            .add_systems(Update, add_height_maps_to_foliage_layers
+                .run_if(in_state(TerrainLoadingState::Complete))
+                )
             // .add_systems(Update, add_data_for_foliage_chunks)
 
              //.add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
@@ -57,6 +67,86 @@ fn register_foliage_assets(
 
     next_state.set( FoliageAssetsState::Loaded );
 }
+
+
+/*
+
+To rebuild foliage layer , just remove the old foliageBaseHeightMap ? 
+*/
+fn add_height_maps_to_foliage_layers(  
+     mut commands:  Commands,
+    foliage_layer_query: Query<(Entity,&FoliageLayer),    
+        Without<FoliageBaseHeightMapU16>
+     >, 
+
+    chunk_height_maps_resource: Res<ChunkHeightMapResource>,
+
+    //terrain_loading_state: Res<State<TerrainLoadingState>>
+
+){  
+
+     
+
+   
+    for (foliage_layer_entity,foliage_layer) in foliage_layer_query.iter(){
+
+        let dimensions = foliage_layer.dimensions.clone();
+
+
+        let combined_height_map: Vec<Vec<u16>> =  get_combined_heightmap_data( &chunk_height_maps_resource.chunk_height_maps );
+
+        /*if combined_height_map.is_empty() {
+            warn!("no chunk height data to provide to foliage system");
+            continue
+        }; */
+
+        let base_height_comp = FoliageBaseHeightMapU16 (  combined_height_map   );
+
+        info!("attaching base height comp {:?}", base_height_comp);
+
+        commands.entity(foliage_layer_entity).try_insert(
+            base_height_comp
+        ); 
+
+         commands.entity(foliage_layer_entity).try_insert(
+            FoliageLayerNeedsRebuild
+        ); 
+
+
+    }
+ 
+
+
+}
+ 
+    
+
+    // chunk_height_maps is a collection of 16 maps, each being 256x256 
+    //the output should be one big map, at 1024x1024  
+    
+    fn get_combined_heightmap_data( chunk_height_maps: &HashMap<u32, Vec<Vec<u16>> > ) -> Vec<Vec<u16>>{
+        // Initialize a 1024x1024 heightmap filled with zeros
+        let mut combined_heightmap = vec![vec![0u16; 1024]; 1024];
+
+        // Iterate over each chunk in the heightmap
+        for (&chunk_index, heightmap) in chunk_height_maps.iter() {
+            // Determine the starting x and y positions in the combined map
+            let chunk_x = (chunk_index % 4) * 256;
+            let chunk_y = (chunk_index / 4) * 256;
+
+            // Place the 256x256 chunk into the appropriate position in the 1024x1024 map
+            for (y, row) in heightmap.iter().enumerate() {
+                for (x, &value) in row.iter().enumerate() {
+                    combined_heightmap[chunk_y as usize + y][chunk_x as usize + x] = value;
+                }
+            }
+        }
+
+        combined_heightmap
+
+    }
+ 
+
 
   /*
 fn add_data_for_foliage_chunks (   

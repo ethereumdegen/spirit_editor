@@ -176,7 +176,8 @@ fn main() {
         .add_plugins(doodads::doodad::DoodadPlugin)
         .add_plugins(doodads::doodad_placement_preview::DoodadPlacementPlugin {}  )
          
-        .add_plugins(terrain::terrain_manifest::TerrainManifestPlugin)
+        .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
+        .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
         
         .add_plugins(bevy_obj::ObjPlugin)
         .add_plugins( MagicFxPlugin )

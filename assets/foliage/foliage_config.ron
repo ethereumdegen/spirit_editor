@@ -5,7 +5,11 @@ FoliageConfig(
     boundary_dimensions: (1024, 1024), // IVec2(x, y)
     chunk_rows: 16, // 16 x 16 .. 64 units each 
 
-   // height_scale: 0.0004,
+   
+    render_distance: 100.0,
+   
+    height_scale: 0.001,
+
 
   
 
