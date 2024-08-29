@@ -1,5 +1,7 @@
 
 
+use bevy_foliage_tool::foliage_material::FoliageMaterial;
+use bevy_foliage_tool::foliage_material::FoliageMaterialExtension;
 use bevy_mesh_terrain::terrain::TerrainData;
 use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::chunk::ChunkHeightMapResource;
@@ -15,6 +17,8 @@ use bevy_mesh_terrain::terrain_loading_state;
 use bevy_mesh_terrain::terrain_loading_state::TerrainLoadingState;
 use crate::ui::ToolMode;
 use crate::EditorToolsState;
+
+use  bevy_foliage_tool::foliage_assets::FoliageMaterialHandle;
  
 use bevy::prelude::*;
 
@@ -63,11 +67,34 @@ fn register_foliage_assets(
 ) {
 
 
-    let green_material: StandardMaterial = Color::srgb(0.4, 0.7, 0.6) .into();
+    let foliage_material = FoliageMaterialExtension {
+        base: StandardMaterial { 
+            base_color:  Color::srgb(0.13, 0.37, 0.11) .into() ,  // not needed ? 
+            //double_sided: true ,
+            cull_mode: None, 
+             ..default()
+         },
+
+
+        ..default()
+
+ 
+       
+    };
+
+    let mut green_material: StandardMaterial = Color::srgb(0.13, 0.37, 0.11) .into();
+    green_material.unlit = true;
+    green_material.double_sided = true ;
+    //ideally, normals will point UP 
+
 
     assets_resource.register_foliage_mesh("grass1", asset_server.load( "foliage/meshes/grass1.obj" ));
 
-    assets_resource.register_foliage_material("standard_green", asset_server.add( green_material ));
+    assets_resource.register_foliage_mesh("grass2", asset_server.load( "foliage/meshes/grass2.obj" ));
+
+
+    assets_resource.register_foliage_material("standard_green",   FoliageMaterialHandle::Standard(   asset_server.add( green_material )  ));
+     assets_resource.register_foliage_material("foliage_green",  FoliageMaterialHandle::Extended(   asset_server.add( foliage_material )  ) );
 
 
     next_state.set( FoliageAssetsState::Loaded );

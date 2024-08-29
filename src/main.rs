@@ -1,6 +1,7 @@
 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
+use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
 use spirit_edit_core::SpiritEditCorePlugin;
 use spirit_edit_core::zones::ZoneEvent;
@@ -167,7 +168,7 @@ fn main() {
 
         } )
 
- 
+        .add_plugins(BevyFoliageMaterialPlugin) 
 
         
         .add_plugins(BevyFoliageProtoPlugin )
