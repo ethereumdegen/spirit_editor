@@ -15,10 +15,10 @@ TerrainConfig(
     
      
     
-     height_folder_path: "terrain/default_terrain/height", 
-     splat_folder_path: "terrain/default_terrain/splat", 
-     diffuse_folder_path: "terrain/default_terrain/diffuse/array_texture_lg.tga", 
-       normal_folder_path: "terrain/default_terrain/diffuse/normal_texture_lg.tga", 
-       collider_data_folder_path: "terrain/default_terrain/collision",  
+     height_folder_path: "terrain/raven_woods_terrain/height", 
+     splat_folder_path: "terrain/raven_woods_terrain/splat", 
+     diffuse_folder_path: "terrain/raven_woods_terrain/diffuse/array_texture_lg.tga", 
+       normal_folder_path: "terrain/raven_woods_terrain/diffuse/normal_texture_lg.tga", 
+       collider_data_folder_path: "terrain/raven_woods_terrain/collision",  
      
 )
