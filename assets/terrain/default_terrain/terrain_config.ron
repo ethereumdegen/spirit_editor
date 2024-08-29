@@ -13,6 +13,8 @@ TerrainConfig(
     // Assuming the addition of fields for paths to the height and splat folders
     
      
+       // be sure to update these !! 
+    
     
      height_folder_path: "terrain/default_terrain/height", 
      splat_folder_path: "terrain/default_terrain/splat", 
