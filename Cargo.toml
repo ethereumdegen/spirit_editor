@@ -77,6 +77,10 @@ bevy_asset_loader = "0.21.0"
 bevy_foliage_tool =   "0.14.3"
  
 
+  
+
+
+
 [workspace.package]
 version = "0.8.2"
 edition = "2021"
@@ -135,3 +139,7 @@ path = "src/main.rs"
 [[bin]]
 name = "generate_doodad_manifests"
 path = "scripts/generate_doodad_manifests.rs"
+
+[[bin]]
+name = "upgrade_zone_files"
+path = "scripts/upgrade_zone_files.rs"
