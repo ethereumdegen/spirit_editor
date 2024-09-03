@@ -15,7 +15,6 @@ use bevy_foliage_tool::foliage_layer::FoliageLayerNeedsRebuild;
 use bevy_mesh_terrain::chunk::CachedHeightmapData;
 use bevy_mesh_terrain::terrain_loading_state;
 use bevy_mesh_terrain::terrain_loading_state::TerrainLoadingState;
-use crate::ui::ToolMode;
 use crate::EditorToolsState;
 
 use  bevy_foliage_tool::foliage_assets::FoliageMaterialHandle;

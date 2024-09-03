@@ -21,7 +21,7 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-  bevy_mesh_terrain = "0.14.3"  
+  bevy_mesh_terrain = "0.14.4"  
 
  #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
@@ -75,6 +75,7 @@ bevy_asset_loader = "0.21.0"
 
  
 bevy_foliage_tool =   "0.14.3"
+ #bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
  
 
   

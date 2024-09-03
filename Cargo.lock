@@ -1106,9 +1106,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_foliage_tool"
-version = "0.14.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a172a826164d154ad432e7f73126afe1788b766ff93859fb5ab34bf65370f2b8"
+version = "0.14.4"
 dependencies = [
  "anyhow",
  "bevy 0.14.1",
