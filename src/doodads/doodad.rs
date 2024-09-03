@@ -1,9 +1,11 @@
  
+use bevy_clay_tiles::clay_tile_block;
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
 use bevy_material_tool::material_overrides::{
     MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
 
 };
+use spirit_edit_core::doodads::PlaceClayTileEvent;
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
 use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
@@ -54,14 +56,10 @@ use crate::{
     liquid::LiquidPlaneComponent};
 
 
- 
+ pub fn doodad_plugin(  app: &mut App ){
 
-#[derive(Default)]
-pub(crate) struct DoodadPlugin;
 
-impl Plugin for DoodadPlugin {
-    fn build(&self, app: &mut App) {
-        app
+    app
           //.insert_resource(LoadedGltfAssets::default())
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
@@ -73,6 +71,7 @@ impl Plugin for DoodadPlugin {
                 update_doodad_placement_preview_model.run_if(in_state(AssetLoadState::Complete)),
 
                 handle_place_doodad_events,
+                handle_place_clay_tile_block_events,
                 update_place_doodads,
                 reset_place_doodads,
                 handle_doodad_tool_events,
@@ -87,11 +86,9 @@ impl Plugin for DoodadPlugin {
 
                 ) .chain()  );
 
- 
-            
 
-    }
-}
+ }
+ 
 
 #[derive(Component, Default)]
 pub struct RecentlyFailedToLoadModel {
@@ -766,14 +763,27 @@ pub fn handle_place_doodad_events(
 
 
 
-         if let Some(clay_tile_block) = &evt.clay_tile_block_data {
+        /* if let Some(clay_tile_block) = &evt.clay_tile_block_data {
              commands
                 .entity(doodad_spawned)
                 .insert(    clay_tile_block.clone()   );
 
-        }
+        }*/
+
+        let mut parent = None ;
 
 
+         if let Some(zone_override) = &evt.zone {
+            parent = Some(zone_override);
+         } else if let Some(primary_zone) = &zone_resource.primary_zone {
+            parent = Some(primary_zone);
+         }
+
+         if let Some(parent) = parent {
+            commands.entity( doodad_spawned ).set_parent( *parent );
+         }
+
+         /*
          if let Some(zone_override) = &evt.zone {
             if let Some(mut ent) = commands.get_entity(zone_override.clone()) {
                 ent.add_child(doodad_spawned);
@@ -782,9 +792,126 @@ pub fn handle_place_doodad_events(
             if let Some(mut ent) = commands.get_entity(primary_zone.clone()) {
                 ent.add_child(doodad_spawned);
             }
-        }
+        }*/
     }
 }
+
+
+
+
+
+
+pub fn handle_place_clay_tile_block_events(
+    mut commands: Commands,
+
+    mut evt_reader: EventReader<PlaceClayTileEvent>,
+
+    mut editor_event_writer: EventWriter<EditorEvent>,
+    mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
+
+    zone_resource: Res<ZoneResource>,
+
+   // doodad_manifest_resource: Res<DoodadManifestResource>,
+   // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
+) {
+   // let manifest_handle = &doodad_manifest_resource.manifest;
+
+
+   // let manifest = manifest_handle.as_ref().map( |handle| doodad_manifest_assets.get(handle) ).flatten();
+
+    for evt in evt_reader.read() {
+        let position = &evt.position;
+       // let doodad_name = &evt.doodad_name;
+
+
+ 
+
+        let mut transform = Transform::from_xyz(position.x, position.y, position.z);
+
+        if let Some(rot) = evt.rotation_euler {
+            transform =
+                transform.with_rotation(Quat::from_euler(EulerRot::YXZ, rot.x, rot.y, rot.z))
+        }
+        if let Some(scale) = evt.scale {
+            transform = transform.with_scale(scale)
+        }
+
+        let doodad_spawned = commands
+            .spawn(SpatialBundle {
+                transform,
+                ..default()
+            })
+            .insert(Name::new( "ClayTileBlock" )  )
+            .insert( DoodadProto )
+            .id();
+
+
+        editor_event_writer.send( 
+            EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+         );
+
+        doodad_tool_event_writer.send(
+            DoodadToolEvent::SetSelectedDoodad(None) 
+        );
+
+        println!("doodad spawned {:?}", doodad_spawned);
+
+        
+            //from cloning ! 
+       /* let proto_custom_props_to_attach = match &evt.custom_props {
+            Some(props) => Some( props ),
+            None  => None
+        };
+
+
+         if let Some(custom_props) = proto_custom_props_to_attach {
+          //  println!("insert custom props {:?}", init_custom_props);
+
+            commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent {
+                    props: custom_props.clone(),
+                });
+        }else{
+             commands
+                .entity(doodad_spawned)
+                .insert( CustomPropsComponent::default()  );
+        }*/
+
+
+
+           let clay_tile_block = &evt.clay_tile_block_data ;
+             commands
+                .entity(doodad_spawned)
+                .insert(    clay_tile_block.clone()   );
+
+        
+
+        let mut parent   = None ;
+
+         if let Some(zone_override) = &evt.zone {
+            parent = Some(zone_override);
+         } else if let Some(primary_zone) = &zone_resource.primary_zone {
+            parent = Some(primary_zone);
+         }
+
+         if let Some(parent) = parent {
+            commands.entity( doodad_spawned ).set_parent( * parent );
+         }
+
+         /*
+         if let Some(zone_override) = &evt.zone {
+            if let Some(mut ent) = commands.get_entity(zone_override.clone()) {
+                ent.add_child(doodad_spawned);
+            }
+        }else  if let Some(primary_zone) = &zone_resource.primary_zone {
+            if let Some(mut ent) = commands.get_entity(primary_zone.clone()) {
+                ent.add_child(doodad_spawned);
+            }
+        }*/
+    }
+}
+
 
 
 
@@ -1006,7 +1133,7 @@ pub fn update_place_doodads(
                 scale,
                 custom_props,
                 zone: None,
-                clay_tile_block_data : None ,
+                //clay_tile_block_data : None ,
             });
         }
     }

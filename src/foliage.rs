@@ -23,13 +23,10 @@ use  bevy_foliage_tool::foliage_assets::FoliageMaterialHandle;
 use bevy::prelude::*;
 
 
-pub struct FoliagePlugin ;  
+pub fn foliage_plugin(app:&mut App){
 
 
-impl Plugin for FoliagePlugin {
-    fn build(&self, app: &mut App) {
-        //put this inside of zone plugin ?
-         app
+          app
 
             .add_systems(Startup, register_foliage_assets)
             .add_systems(Update, (
@@ -39,17 +36,9 @@ impl Plugin for FoliagePlugin {
                 .run_if(in_state(TerrainLoadingState::Complete))
                 )
 
-            // .add_systems(Update, add_data_for_foliage_chunks)
-
-             //.add_systems(Update, mark_needs_rebuild_for_foliage_chunks) 
-
-           //  .add_systems(Update, update_foliage_root_visibility )
-           
-
             ;
-    }
 }
-
+ 
 
 //#[derive(Component)]
 //pub struct FoliageChunkNeedsRebuild ;   // from height or density edit .. ? 

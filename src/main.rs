@@ -173,11 +173,12 @@ fn main() {
         
         .add_plugins(BevyFoliageProtoPlugin )
 
-         .add_plugins(foliage::FoliagePlugin  )
+        .add_plugins(foliage::foliage_plugin   )
 
-        .add_plugins(doodads::doodad::DoodadPlugin)
-        .add_plugins(doodads::doodad_placement_preview::DoodadPlacementPlugin {}  )
-         
+        .add_plugins(doodads::doodad::doodad_plugin)
+        .add_plugins(doodads::doodad_placement_preview::doodad_placement_plugin  )
+        .add_plugins(doodads::prefabs::prefabs_plugin )    
+
         .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
         .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
         

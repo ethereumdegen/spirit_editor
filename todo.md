@@ -18,9 +18,7 @@
  
  1. add a transform offset to a zone 
 
-  
- 4. make the terrain not disappear while painting .. 
-  
+
 
 - add visual grid snap dimensions (0.14 has grid gizmo)
 

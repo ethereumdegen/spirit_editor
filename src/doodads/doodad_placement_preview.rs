@@ -20,13 +20,10 @@ use bevy_mod_raycast::prelude::Raycast;
   
 
  
+pub fn doodad_placement_plugin(app: &mut App){
 
 
-pub struct DoodadPlacementPlugin {}
-impl Plugin for DoodadPlacementPlugin {
-    fn build(&self, app: &mut App) {
-        //put this inside of zone plugin ?
-         app
+          app
             
             .add_systems(Startup, spawn_doodad_placement_component)
             .add_systems(Update, update_doodad_placement_preview_position)
@@ -38,9 +35,9 @@ impl Plugin for DoodadPlacementPlugin {
 
            
             ;
-    }
-}
 
+}
+ 
 
  
 

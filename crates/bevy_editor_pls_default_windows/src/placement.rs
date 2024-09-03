@@ -174,7 +174,7 @@ pub fn handle_placement_tool_events(
     for evt in placement_evt_reader.read() {
 
 
-
+            //be able to clone prefab ? 
         match evt {
             PlacementEvent::CloneSelectedDoodad =>  {
 
@@ -196,7 +196,7 @@ pub fn handle_placement_tool_events(
                              doodad_name: name_comp.to_string().clone(),
                              custom_props: None , 
                              zone: None ,
-                             clay_tile_block_data: None , //for now .. 
+                           //  clay_tile_block_data: None , //for now .. 
                       });
 
 
