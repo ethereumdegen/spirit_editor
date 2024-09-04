@@ -3,12 +3,12 @@
 
 
         (
-            name: "grass",
+            name: "grass1",
            
         ),
 
          (
-            name: "stone leaves",
+            name: "grass2",
            
         ),
 
@@ -24,26 +24,26 @@
         ),
 
          (
-            name: "dirt",
+            name: "dirt1",
            
         ),
 
          (
-            name: "mud",
+            name: "dirt2",
            
         ),
 
          (
-            name: "mud rocks",
+            name: "dirt3",
            
         ),
          (
-            name: "rooted earth",
+            name: "gravel1",
            
         ),
 
          (
-            name: "cracked mud",
+            name: "gravel2",
            
         ),
 
@@ -129,12 +129,12 @@
         ),
 
         (
-            name: "scorched earth",
+            name: "leafy",
            
         ),
 
            (
-            name: "mud earth",
+            name: "sand",
            
         ),
 
