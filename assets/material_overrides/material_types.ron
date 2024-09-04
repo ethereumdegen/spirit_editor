@@ -71,9 +71,9 @@
         uv_scale_factor: 1.0,  // do this in the material override lib ?
     
           diffuse_color_tint: Some( LinearRgba(
-                          red: 0.10,
-                          green: 0.42,
-                          blue:  0.12,
+                          red: 0.04,
+                          green: 0.28,
+                          blue:  0.05,
                           alpha:  1.0,
                       )  )
       ),
@@ -88,9 +88,9 @@
         uv_scale_factor: 1.0,  // do this in the material override lib ?
     
           diffuse_color_tint: Some( LinearRgba(
-                           red: 0.10,
-                          green: 0.42,
-                          blue:  0.12,
+                              red: 0.04,
+                          green: 0.28,
+                          blue:  0.05,
 
                           alpha:  1.0,
                       )  )

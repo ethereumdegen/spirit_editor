@@ -3,7 +3,14 @@ use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
-use spirit_edit_core::SpiritEditCorePlugin;
+
+
+use bevy::{
+    core_pipeline::{
+        fxaa:: Fxaa, }
+};
+
+        use spirit_edit_core::SpiritEditCorePlugin;
 use spirit_edit_core::zones::ZoneEvent;
 use crate::asset_loading::EditorConfigAssets;
 use asset_loading::AssetLoadState;
@@ -232,7 +239,7 @@ fn setup(
    editor_config_assets: Res<Assets<EditorConfig >>,
 
 
-   mut msaa: ResMut<Msaa>,
+    
 
  // asset_server: Res<AssetServer>
 ) {
@@ -341,7 +348,7 @@ fn setup(
 
 
         //efficient for low poly 
-    *msaa = Msaa::Sample4; 
+   // *msaa = Msaa::Sample4; 
 
     // camera
 
@@ -362,7 +369,7 @@ fn setup(
          .insert( FoliageViewer )
         .insert( DepthPrepass )
         .insert( NormalPrepass)
-
+        .insert(Fxaa::default()) 
         // .insert(ShadowFilteringMethod::Jimenez14)
        ;
 }
