@@ -1,6 +1,10 @@
 
  
+use spirit_edit_core::doodads::PlaceDoodadEvent;
 use spirit_edit_core::placement::PlacementToolsState;
+use spirit_edit_core::prefabs::prefab_definitions;
+use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinitionsResource;
+use spirit_edit_core::zones::zone_file::ZoneEntityV2;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
 use spirit_edit_core::prefabs::PrefabToolState;
 use spirit_edit_core::prefabs::PrefabToolEvent;
@@ -24,7 +28,9 @@ pub fn prefabs_plugin(app: &mut App){
                 handle_place_prefabs, 
                 handle_spawn_prefab_events,
 
-                reset_place_prefabs 
+                reset_place_prefabs ,
+
+                spawn_children_for_new_prefabs , 
                
 
 
@@ -35,6 +41,98 @@ pub fn prefabs_plugin(app: &mut App){
 	;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+fn spawn_children_for_new_prefabs (
+
+
+    mut commands: Commands, 
+
+    prefab_definitions: Res<PrefabDefinitionsResource>,
+
+    added_prefabs_query: Query<(Entity, &Name ), Added<PrefabComponent>>,
+
+
+
+     mut place_doodad_evt_writer: EventWriter<PlaceDoodadEvent>,
+
+
+){
+
+
+
+
+    for (prefab_root_entity, prefab_name) in added_prefabs_query.iter() {
+
+
+       // let prefab_def_name = prefab_name.to_string(); 
+
+
+       commands.entity(prefab_root_entity).despawn_descendants(); 
+
+
+        if let Some( prefab_def  ) = prefab_definitions.get_prefab_definition_by_name( &prefab_name.to_string()  ) {
+
+            for prefab_entity_def in &prefab_def.entities {
+
+                match prefab_entity_def {
+
+                    ZoneEntityV2::Doodad { name, transform, custom_props } => {
+
+
+                        let position = &transform.translation;
+                        let scale = &transform.scale;
+                        let rotation_euler = &transform.rotation;
+
+                        place_doodad_evt_writer.send(
+                            PlaceDoodadEvent { 
+                                position: position.clone(), 
+                                scale: Some(scale.clone()), 
+                                rotation_euler: Some(rotation_euler.clone()), 
+                                doodad_name: name.clone() , 
+                                custom_props: custom_props.clone(), 
+                                force_parent: Some(  prefab_root_entity   ) }
+                         );
+
+
+
+                    }
+
+                    _ => {}
+                }
+
+            }
+
+
+        }else {
+
+
+            warn!("no prefab def found:  {}",&prefab_name.to_string()  );
+
+        }
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
 
 fn handle_spawn_prefab_events(
 

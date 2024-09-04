@@ -775,8 +775,8 @@ pub fn handle_place_doodad_events(
         let mut parent = None ;
 
 
-         if let Some(zone_override) = &evt.zone {
-            parent = Some(zone_override);
+         if let Some(parent_override) = &evt.force_parent {
+            parent = Some(parent_override);
          } else if let Some(primary_parent) = &placement_resource.placement_parent {
             parent = Some(primary_parent);
          }
@@ -1093,7 +1093,7 @@ pub fn update_place_doodads(
                 rotation_euler,
                 scale,
                 custom_props,
-                zone: None,
+                force_parent: None,
                 //clay_tile_block_data : None ,
       
 

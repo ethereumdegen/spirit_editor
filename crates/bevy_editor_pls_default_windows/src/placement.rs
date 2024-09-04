@@ -218,7 +218,7 @@ pub fn handle_placement_tool_events(
                              rotation_euler: Some(simple_xform.rotation), 
                              doodad_name: name_comp.to_string().clone(),
                              custom_props: None , 
-                             zone: None ,
+                             force_parent: None ,
                            //  clay_tile_block_data: None , //for now .. 
                       });
 
