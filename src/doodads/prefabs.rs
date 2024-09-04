@@ -7,6 +7,7 @@ use spirit_edit_core::prefabs::PrefabToolEvent;
 use spirit_edit_core::placement::PlacementResource;
 use bevy::prelude::*;
 use spirit_edit_core::prefabs::{PrefabComponent, SpawnPrefabEvent};
+use spirit_edit_core::doodads::DoodadToolState;
 
 
 
@@ -133,9 +134,9 @@ pub fn handle_place_prefabs(
 
 
 
-       let selected_doodad_definition = &doodad_tool_resource.selected;
+    let selected_doodad_definition = &doodad_tool_resource.selected;
 
-   if selected_doodad_definition.is_some() {
+    if selected_doodad_definition.is_some() {
         return;
     };
 

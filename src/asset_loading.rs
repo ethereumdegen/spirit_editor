@@ -1,8 +1,15 @@
  
+use std::path::Path;
+use crate::utils::{walk_dir};
 use spirit_edit_core::doodads::doodad_manifest::DoodadManifest;
 use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource;
 use spirit_edit_core::doodads::doodad_manifest::DoodadTagMapResource;
 use bevy_common_assets::ron::RonAssetPlugin;
+
+use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinition;
+use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinitionsResource ;
+
+
  
 use crate::EditorConfig;
 use bevy::gltf::Gltf;
@@ -73,7 +80,8 @@ pub fn asset_loading_plugin(app: &mut App) {
 
                .add_systems(OnEnter(AssetLoadState::ShaderVariantsLoad), load_shader_variants)
               .add_systems(OnEnter(AssetLoadState::ShadersLoad), (
-               
+                
+                populate_prefab_definitions,
                 populate_doodad_definitions,
                 populate_doodad_tag_map_data,
                  load_magic_fx,
@@ -134,6 +142,8 @@ pub struct DoodadManifestAssets {
     #[asset(path = "doodad_manifests", collection(typed, mapped))]
     pub(crate) doodad_manifests: HashMap<String, Handle<DoodadManifest>>,
 }
+
+ 
 
 
 
@@ -343,12 +353,71 @@ fn load_magic_fx(
 }
 
 
+fn populate_prefab_definitions (
+
+      mut prefab_definitions: ResMut< PrefabDefinitionsResource > ,  
+
+
+){
+
+
+    let folder_path = "assets/prefabs";
+
+    let mut definitions_array = HashMap::new();
+
+    let mut file_names_array : Vec<String> = Vec::new();
+
+     walk_dir( folder_path, "ron" , &mut file_names_array) ;
+ 
+
+
+    for file_path in file_names_array {
+
+        let Some(prefab_def) = PrefabDefinition::load_from_path( Path::new(&file_path) )  else {
+            eprintln!("could not parse {:?}", file_path);
+            continue;
+        };  
+
+        let file_path_parts = file_path.split("/");
+
+        let Some(file_name) = file_path_parts.last() else {continue};
+
+
+         let fixed_prefab_name = match file_name.ends_with( "prefab.ron" ) || file_name.ends_with( "prefab" ){
+
+            true => {
+
+                  let   parts: Vec<&str> = file_name.split('.').collect();
+                 
+                    parts.first().unwrap() .to_string()  
+                   
+
+              }, 
+            false => file_name.to_string()
+
+        };
+
+        definitions_array .insert(
+            fixed_prefab_name,
+
+            prefab_def 
+        );  
+       
+
+    }
+
+
+      prefab_definitions.loaded_prefab_definitions = Some(definitions_array) ;
+
+}
+
+
 fn populate_doodad_definitions(
 
     doodad_manifest_handles: Res<DoodadManifestAssets>,
     doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 
-    mut dooad_definitions: ResMut< DoodadDefinitionsResource > , //this is what is modified 
+    mut doodad_definitions: ResMut< DoodadDefinitionsResource > , //this is what is modified 
 
 
 ){
@@ -370,7 +439,7 @@ fn populate_doodad_definitions(
     }
 
 
-    dooad_definitions.loaded_doodad_definitions = Some(loaded_doodad_definitions);
+    doodad_definitions.loaded_doodad_definitions = Some(loaded_doodad_definitions);
 
 
 }
