@@ -57,6 +57,17 @@
 
         //foliage 
 
+        "Flowers1":(
+        
+        material_name:  "Flowers1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+    
+         
+      ),
+
+
+
+
        "TreeLeavesFir":(
         
         material_name:  "TreeLeavesFir",  // load from glb 
