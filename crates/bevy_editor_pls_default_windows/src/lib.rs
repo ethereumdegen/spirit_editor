@@ -20,7 +20,8 @@ pub mod scenes;
 pub mod lighting;
 
  pub mod doodads;
-pub mod placement;
+ pub mod prefabs;
+ pub mod placement;
  pub mod zones;
 
 pub struct StandardWindowsPlugin {}
