@@ -18,7 +18,7 @@ pub use bevy_editor_pls_core::egui_dock;
 #[doc(inline)]
 pub use bevy_editor_pls_core::{editor, editor_window, AddEditorWindow};
 
-use default_windows::{placement::PlacementWindow, StandardWindowsPlugin};
+use default_windows::{placement::PlacementWindow, prefabs::PrefabsWindow, StandardWindowsPlugin};
 pub use egui;
 
 #[cfg(feature = "default_windows")]
@@ -135,11 +135,13 @@ impl Plugin for EditorPlugin {
             use bevy_editor_pls_default_windows::lighting::LightingWindow;
 
             use bevy_editor_pls_default_windows::doodads::DoodadsWindow;
+            use bevy_editor_pls_default_windows::prefabs::PrefabsWindow;
             use bevy_editor_pls_default_windows::zones::ZoneWindow;
 
             app.add_editor_window::<HierarchyWindow>();
             app.add_editor_window::<AssetsWindow>();
             app.add_editor_window::<DoodadsWindow>();
+            app.add_editor_window::<PrefabsWindow>();
             app.add_editor_window::<InspectorWindow>();
             app.add_editor_window::<DebugSettingsWindow>();
             app.add_editor_window::<AddWindow>();
@@ -187,6 +189,7 @@ impl Plugin for EditorPlugin {
                 &[
                     std::any::TypeId::of::<HierarchyWindow>(),
                     std::any::TypeId::of::<DoodadsWindow>(),
+                    std::any::TypeId::of::<PrefabsWindow>(),
                 ],
             );
             let [_game, _bottom] = internal_state.split_many(

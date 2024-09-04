@@ -1,4 +1,6 @@
  
+use crate::doodads::doodad_placement::RequestPlaceDoodad;
+use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
 use bevy_material_tool::material_overrides::{
@@ -1021,33 +1023,23 @@ pub fn replace_proto_doodads_with_doodads(
 
 
 pub fn update_place_doodads(
-    mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
-
-    cursor_ray: Res<CursorRay>,
-    mut raycast: Raycast,
+   mut event_reader: EventReader<RequestPlaceDoodad>,
 
     mut event_writer: EventWriter<PlaceDoodadEvent>,
 
     doodad_tool_resource: Res<DoodadToolState>,
 
+      
     placement_tools_state: Res<PlacementToolsState>,
 
-    mut contexts: EguiContexts,
-
-    editor: Res<Editor>,
-
-     doodad_placement_component_query: Query<&Transform, With<DoodadPlacementComponent>>,
-       parent_query: Query<&Parent >
+      
+      
 ) {
-    //we can tell if we are clicking in viewport
-    let egui_ctx = contexts.ctx_mut();
 
-    let pointer_pos = egui_ctx.input(|input| input.pointer.interact_pos());
-    let clicking_in_viewport = pointer_pos.map_or(false, |pos| editor.is_in_viewport(pos));
+    for evt in event_reader.read(){
 
-    if !clicking_in_viewport {
-        return;
-    }
+
+ 
 
     // ------- compute our rotation and scale from placement properties
  //   let placement_tools_state = editor.window_state::<PlacementWindow>().unwrap();
@@ -1083,42 +1075,11 @@ pub fn update_place_doodads(
         return;
     };
 
-    if !mouse_input.just_pressed(MouseButton::Left) {
-        return;
-    }
-
-
-    let raycast_filter = |entity: Entity| {
-
-        
-         let mut current_entity = entity;
-        loop {
-            if doodad_placement_component_query.get(current_entity).is_ok() {
-                return false;
-            }
-            match parent_query.get(current_entity).ok() {
-                Some(parent) => current_entity = parent.get(),
-                None => break,
-            }
-        }
-        true
-    };
-
-    let raycast_settings = RaycastSettings {
-        filter: &raycast_filter,
-        ..default()
-    };
-
-
-
-    if let Some(cursor_ray) = **cursor_ray {
-        if let Some((_intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &raycast_settings).first()
-        {
-            let hit_point = intersection_data.position();
+    
+ 
 
             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
-            let hit_coordinates = Vec3::new(hit_point.x, hit_point.y, hit_point.z);
+            let place_at_coordinates = & evt.position;
 
             //use an event to pass the entity and hit coords to the terrain plugin so it can edit stuff there
 
@@ -1127,15 +1088,18 @@ pub fn update_place_doodads(
             let custom_props = None; 
 
             event_writer.send(PlaceDoodadEvent {
-                position: hit_coordinates,
+                position: *place_at_coordinates,
                 doodad_name: doodad_definition_name,
                 rotation_euler,
                 scale,
                 custom_props,
                 zone: None,
                 //clay_tile_block_data : None ,
+      
+
             });
-        }
+
+        
     }
 }
 
@@ -1143,21 +1107,17 @@ pub fn reset_place_doodads(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
     mut doodad_tool_resource: ResMut<DoodadToolState>,
-    //  mut contexts: EguiContexts,
+     
 ) {
-    //let egui_ctx = contexts.ctx_mut();
-    /*
-    if egui_ctx.is_pointer_over_area() {
-        return;
-    }
-
-    */
+    
 
     if !mouse_input.pressed(MouseButton::Right) {
         return;
     }
 
     doodad_tool_resource.selected = None;
+
+    
 }
 
 

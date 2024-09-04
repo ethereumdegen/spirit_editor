@@ -1,3 +1,5 @@
+use spirit_edit_core::prefabs::PrefabToolState;
+use spirit_edit_core::prefabs::PrefabToolEvent;
 use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinitionsResource;
 use spirit_edit_core::doodads::doodad::DoodadComponent;
  
@@ -62,6 +64,7 @@ impl EditorWindow for PrefabsWindow {
             .insert_resource(PrefabDefinitionsResource::default())
            // .insert_resource(DoodadTagMapResource::default())
             .insert_resource(PrefabToolState::default())
+             
           //  .insert_resource(LoadedGltfAssets::default())
 
            ;
