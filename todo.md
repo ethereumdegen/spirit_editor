@@ -15,6 +15,8 @@
 ## Immediate todo 
 
  
+
+ - be able to create and save a tree prefab ! 
  
  1. add a transform offset to a zone 
  2. when a prefab component is spawned on an entity,  read that prefab file and spawn doodad children ! (only the prefab root is saved of course ) 

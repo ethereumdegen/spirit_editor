@@ -1,6 +1,7 @@
 // pub mod picking;
 
  use spirit_edit_core::doodads::doodad::RotateByDegrees;
+use spirit_edit_core::prefabs::{PrefabComponent,SavePrefabToFileEvent};
 use spirit_edit_core::zones::SaveZoneToFileEvent;
 use spirit_edit_core::zones::ZoneComponent;
 use spirit_edit_core::zones::ZoneEvent;
@@ -16,6 +17,9 @@ use bevy_inspector_egui::bevy_inspector::guess_entity_name;
 use bevy_inspector_egui::bevy_inspector::hierarchy::SelectedEntities;
 use bevy_inspector_egui::egui::text::CCursorRange;
 use bevy_inspector_egui::egui::{self, ScrollArea};
+
+ use spirit_edit_core::placement::PlacementEvent;
+
 
 use bevy_editor_pls_core::{
     editor_window::{EditorWindow, EditorWindowContext},
@@ -169,6 +173,7 @@ impl<'a> Hierarchy<'a> {
             selected,
             context_menu: Some(&mut |ui, entity, world, rename_info| {
                 let entity_is_zone = world.entity(entity).get::<ZoneComponent>().is_some();
+                let entity_is_prefab = world.entity(entity).get::<PrefabComponent>().is_some();
 
                 if ui.button("Despawn").clicked() {
                     despawn_recursive = Some(entity);
@@ -189,14 +194,29 @@ impl<'a> Hierarchy<'a> {
                 }
 
                 if entity_is_zone {
-                    if ui.button("Set as primary zone").clicked() {
-                        world.send_event::<ZoneEvent>(ZoneEvent::SetZoneAsPrimary(entity).into());
-                        ui.close_menu();
-                    }
+                   
                     if ui.button("Save zone file").clicked() {
                         world.send_event::<SaveZoneToFileEvent>(SaveZoneToFileEvent(entity).into());
                         ui.close_menu();
                     }
+                     if ui.button("Set as placement parent").clicked() {
+                        world.send_event::<PlacementEvent>(PlacementEvent::SetPlacementParent(Some( entity ) ) );
+                        ui.close_menu();
+                    }
+
+                }
+
+                 if entity_is_prefab {
+                        
+                    if ui.button("Save prefab file").clicked() {
+                        world.send_event::<SavePrefabToFileEvent>(SavePrefabToFileEvent(entity).into());
+                        ui.close_menu();
+                    }
+                     if ui.button("Set as placement parent").clicked() {
+                        world.send_event::<PlacementEvent>(PlacementEvent::SetPlacementParent(Some( entity ) ) );
+                        ui.close_menu();
+                    }
+
                 }
 
                 if let Some(add_state) = self.add_state {

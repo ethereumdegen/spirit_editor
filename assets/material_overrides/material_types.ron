@@ -55,6 +55,32 @@
       ),
 
 
+        //foliage 
+
+       "TreeLeavesFir":(
+        
+        material_name:  "TreeLeavesFir",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+    
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.30,
+                          green: 0.60,
+                          blue:  0.30,
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+
+       "TreeBark1":(
+        
+        material_name:  "Wood5",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+    
+         
+      ),
+
+
 
 
       // Clay Tiles Materials 

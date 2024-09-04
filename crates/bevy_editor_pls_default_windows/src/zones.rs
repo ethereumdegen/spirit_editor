@@ -7,7 +7,7 @@ use spirit_edit_core::zones::NotInScene;
 use bevy_editor_pls_core::editor_window::EditorWindow;
 use bevy_editor_pls_core::editor_window::EditorWindowContext;
 use bevy_inspector_egui::egui;
-use spirit_edit_core::zones::ZoneResource;
+//use spirit_edit_core::zones::ZoneResource;
 use spirit_edit_core::zones::ZoneEvent;
 use std::fs;
 use bevy::prelude::*;
@@ -37,25 +37,12 @@ impl EditorWindow for ZoneWindow {
     fn ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
         let state = cx.state_mut::<ZoneWindow>().unwrap();
 
-        let zone_resource = world.resource::<ZoneResource>();
-        let primary_zone_entity = zone_resource.primary_zone;
-
-        let primary_zone_name = primary_zone_entity
-            .and_then(|ent| {
-                // Temporarily fetch the component to avoid holding the borrow
-                world.get::<Name>(ent).map(|n| n.as_str().to_owned())
-            })
-            .unwrap_or_else(|| "None".to_owned());
+       
 
       ui.horizontal(|ui| {
 
         ui.vertical(|ui| {
-            ui.horizontal(|ui| {
-                ui.label(format!("Primary zone: {:?}", primary_zone_name.clone()));
-                if ui.button("Reset").clicked() {
-                    world.send_event::<ZoneEvent>(ZoneEvent::ResetPrimaryZone);
-                }
-            });
+            
 
             //create zone
             ui.horizontal(|ui| {

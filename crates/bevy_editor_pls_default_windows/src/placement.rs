@@ -28,12 +28,35 @@ impl EditorWindow for PlacementWindow {
     type State = PlacementWindowState;
     const NAME: &'static str = "Placement";
 
-    fn ui(_world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
+    fn ui( world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
         let state = cx.state_mut::<PlacementWindow>().unwrap();
 
         //  let placement_resource = world.resource::<PlacementResource>();
 
+
+        let placement_resource = world.resource::<PlacementResource>();
+        let placement_parent_entity = placement_resource.placement_parent;
+
+        let placement_parent_name = placement_parent_entity
+            .and_then(|ent| {
+                // Temporarily fetch the component to avoid holding the borrow
+                world.get::<Name>(ent).map(|n| n.as_str().to_owned())
+            })
+            .unwrap_or_else(|| "None".to_owned());
+
+
+
         ui.vertical(|ui| {
+
+            ui.horizontal(|ui| {
+                ui.label(format!("Placement Parent: {:?}", placement_parent_name.clone()));
+                if ui.button("Reset").clicked() {
+                    world.send_event::<PlacementEvent>(PlacementEvent::SetPlacementParent(None));
+                }
+            });
+
+
+
             ui.label("Randomize Rotation (Yaw)");
             if ui.checkbox(&mut state.randomize_yaw, "").changed() {
                 // state.randomize_yaw = !state.randomize_yaw;
@@ -239,6 +262,10 @@ pub fn handle_placement_tool_events(
 
 
             }
+
+
+            //set placement parent is done by core 
+            _ => {} 
         }
 
 

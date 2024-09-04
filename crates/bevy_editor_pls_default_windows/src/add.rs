@@ -9,6 +9,7 @@ use bevy::{
 use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::egui;
 use indexmap::IndexMap;
+use spirit_edit_core::prefabs::PrefabComponent;
 
 use crate::hierarchy::HierarchyWindow;
 
@@ -147,6 +148,7 @@ impl Default for AddWindowState {
             AddItem::component::<spirit_edit_core::doodads::doodad::RebuildDoodad>(),
         );
 
+
         state.add("Core", AddItem::component::<Name>());
         state.add(
             "Core",
@@ -198,6 +200,20 @@ impl Default for AddWindowState {
                 });
             }),
         );
+
+         state.add(
+            "3D",
+            AddItem::new("PrefabRoot".into(), |world, entity| {
+                world.entity_mut(entity)
+                .insert(SpatialBundle::default())
+                .insert(PrefabComponent )
+                .insert(Name::new("NewPrefab"))
+
+                ;
+            }),
+        );
+
+
         state.add("3D", AddItem::bundle::<PointLightBundle>());
         state.add("3D", AddItem::bundle::<DirectionalLightBundle>());
         state.add("3D", AddItem::bundle_named::<PbrBundle>("PbrBundle".into()));

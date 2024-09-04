@@ -1,6 +1,6 @@
 
-
-use spirit_edit_core::zones::ZoneResource;
+ 
+use spirit_edit_core::placement::PlacementResource;
 use bevy::prelude::*;
 use spirit_edit_core::prefabs::{PrefabComponent, SpawnPrefabEvent};
 
@@ -30,7 +30,7 @@ fn handle_place_prefab_events(
 
     mut evt_reader: EventReader<SpawnPrefabEvent>,
 
-      zone_resource: Res<ZoneResource>,
+      placement_resource: Res<PlacementResource>,
 
 
 ){
@@ -66,7 +66,7 @@ fn handle_place_prefab_events(
 
          if let Some(zone_override) = &evt.zone {
             parent = Some(zone_override);
-         } else if let Some(primary_zone) = &zone_resource.primary_zone {
+         } else if let Some(primary_zone) = &placement_resource.placement_parent {
             parent = Some(primary_zone);
          }
 

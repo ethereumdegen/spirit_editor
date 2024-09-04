@@ -14,7 +14,7 @@ use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
 use bevy_mod_raycast::prelude::*;
 use spirit_edit_core::doodads::DoodadToolEvent;
-use spirit_edit_core::zones::ZoneResource;
+use spirit_edit_core::placement::PlacementResource;
 use spirit_edit_core::doodads::DoodadProto;
 use spirit_edit_core::zones::zone_file::CustomPropsComponent;
 use spirit_edit_core::doodads::PlaceDoodadEvent;
@@ -692,7 +692,7 @@ pub fn handle_place_doodad_events(
     mut editor_event_writer: EventWriter<EditorEvent>,
     mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
 
-    zone_resource: Res<ZoneResource>,
+    placement_resource: Res<PlacementResource>,
 
    // doodad_manifest_resource: Res<DoodadManifestResource>,
    // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
@@ -775,8 +775,8 @@ pub fn handle_place_doodad_events(
 
          if let Some(zone_override) = &evt.zone {
             parent = Some(zone_override);
-         } else if let Some(primary_zone) = &zone_resource.primary_zone {
-            parent = Some(primary_zone);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
          }
 
          if let Some(parent) = parent {
@@ -809,7 +809,7 @@ pub fn handle_place_clay_tile_block_events(
     mut editor_event_writer: EventWriter<EditorEvent>,
     mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
 
-    zone_resource: Res<ZoneResource>,
+    placement_resource: Res<PlacementResource>,
 
    // doodad_manifest_resource: Res<DoodadManifestResource>,
    // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
@@ -891,8 +891,8 @@ pub fn handle_place_clay_tile_block_events(
 
          if let Some(zone_override) = &evt.zone {
             parent = Some(zone_override);
-         } else if let Some(primary_zone) = &zone_resource.primary_zone {
-            parent = Some(primary_zone);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
          }
 
          if let Some(parent) = parent {

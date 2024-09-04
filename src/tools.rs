@@ -1,4 +1,5 @@
-use spirit_edit_core::zones::ZoneResource;
+ 
+use spirit_edit_core::placement::PlacementResource;
 use bevy_clay_tiles::tile_edit::ModifyTileTool;
 use bevy_clay_tiles::tile_edit::TileEditingResource; 
 use crate::editor_state::EditorStateResource;
@@ -232,7 +233,7 @@ fn update_clay_tiles_tool_state (
 
      pls_editor_resource: Res<bevy_editor_pls::editor::Editor> ,
 
-     zone_resource: Res<ZoneResource> ,
+    placement_resource: Res<PlacementResource> ,
 ) {
         
     let mut selected_tile_tool = None ; 
@@ -279,10 +280,7 @@ fn update_clay_tiles_tool_state (
 
 
     tile_edit_resource.set_tool_enabled(tool_enabled);
-
-
-
-
+ 
 
      tile_edit_resource.set_build_layer_height(  tile_layer_height );
 
@@ -292,8 +290,8 @@ fn update_clay_tiles_tool_state (
  
      tile_edit_resource.set_build_mesh_height( build_mesh_height );
  
-     if let Some(primary_zone) = &zone_resource.primary_zone {
-         tile_edit_resource.set_new_tile_parent_entity ( Some(*primary_zone) );
+     if let Some(primary_parent) = &placement_resource.placement_parent {
+         tile_edit_resource.set_new_tile_parent_entity ( Some(*primary_parent) );
 
 
      }
