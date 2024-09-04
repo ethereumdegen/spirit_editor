@@ -229,9 +229,10 @@ fn setup(
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
    editor_config: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >>
+   editor_config_assets: Res<Assets<EditorConfig >>,
 
 
+   mut msaa: ResMut<Msaa>,
 
  // asset_server: Res<AssetServer>
 ) {
@@ -339,8 +340,8 @@ fn setup(
     }  ).insert(Sun); 
 
 
-
-
+        //efficient for low poly 
+    *msaa = Msaa::Sample4; 
 
     // camera
 
