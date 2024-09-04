@@ -3,11 +3,11 @@
 
     
         (
-            name: "Grass",
+            name: "highland_grass1",
 
-            mesh_name: Some("grass2"),
+          //  mesh_name: Some("grass2"),
 
-            material_name: Some("foliage_green")
+          //  material_name: Some("foliage_green")
             
            
         ),

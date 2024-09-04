@@ -6,7 +6,7 @@ FoliageConfig(
     chunk_rows: 16, // 16 x 16 .. 64 units each 
 
    
-    render_distance: Some(400.0),
+    render_distance: Some(200.0),
    
     height_scale: 0.001,
 

@@ -57,13 +57,27 @@
 
         //foliage 
 
-        "Flowers1":(
+      "Flowers1":(
         
         material_name:  "Flowers1",  // load from glb 
         uv_scale_factor: 1.0,  // do this in the material override lib ?
     
          
       ),
+
+       "Grass1":(
+        
+        material_name:  "Grass1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+    
+          diffuse_color_tint: Some( LinearRgba(
+                          red: 0.10,
+                          green: 0.42,
+                          blue:  0.12,
+                          alpha:  1.0,
+                      )  )
+      ),
+
 
 
 
@@ -73,10 +87,11 @@
         material_name:  "TreeLeavesFir",  // load from glb 
         uv_scale_factor: 1.0,  // do this in the material override lib ?
     
-         diffuse_color_tint: Some( LinearRgba(
-                          red: 0.30,
-                          green: 0.60,
-                          blue:  0.30,
+          diffuse_color_tint: Some( LinearRgba(
+                           red: 0.10,
+                          green: 0.42,
+                          blue:  0.12,
+
                           alpha:  1.0,
                       )  )
       ),

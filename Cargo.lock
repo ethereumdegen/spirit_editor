@@ -1403,9 +1403,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_tool"
-version = "0.14.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf547969277dc2a1694e227eac38ebb0514469bd5424dc436e601e699b8b1ae5"
+version = "0.14.5"
 dependencies = [
  "bevy 0.14.1",
  "ron",
@@ -5696,6 +5694,8 @@ dependencies = [
 [[package]]
 name = "spirit_edit_core"
 version = "0.14.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7929e2903c5bf9ac2d4bf93522a1a52cb82662fb0d0f7a7254f792df02240e69"
 dependencies = [
  "bevy 0.14.1",
  "bevy_clay_tiles",

@@ -1,5 +1,7 @@
 
 
+use spirit_edit_core::doodads::PlaceDoodadEvent;
+use bevy_foliage_tool::foliage_proto::FoliageProto;
 use bevy_foliage_tool::foliage_material::FoliageMaterial;
 use bevy_foliage_tool::foliage_material::FoliageMaterialExtension;
 use bevy_mesh_terrain::terrain::TerrainData;
@@ -27,10 +29,13 @@ pub fn foliage_plugin(app:&mut App){
 
           app
 
-            .add_systems(Startup, register_foliage_assets)
+            //.add_systems(Startup, register_foliage_assets)
             .add_systems(Update, (
                 add_height_maps_to_foliage_layers,
-                propogate_height_data_change_to_foliage
+                propogate_height_data_change_to_foliage,
+
+                spawn_foliage_doodads, 
+
                 ).chain()
                 .run_if(in_state(TerrainLoadingState::Complete))
                 )
@@ -43,7 +48,7 @@ pub fn foliage_plugin(app:&mut App){
 //pub struct FoliageChunkNeedsRebuild ;   // from height or density edit .. ? 
 
 
-
+/*
 fn register_foliage_assets(
 
     asset_server: Res <AssetServer>, 
@@ -86,6 +91,39 @@ fn register_foliage_assets(
 
 
     next_state.set( FoliageAssetsState::Loaded );
+}*/
+
+
+
+fn spawn_foliage_doodads (
+
+   // mut commands :Commands , 
+    foliage_proto_query: Query< (Entity, &FoliageProto ), Added<FoliageProto> >,
+     mut event_writer: EventWriter<PlaceDoodadEvent>,
+
+){
+
+
+    for (foliage_proto_entity, foliage_proto) in foliage_proto_query.iter() {
+
+
+        let foliage_def = &foliage_proto.foliage_definition;
+        let foliage_type_name = &foliage_def.name ; 
+
+         event_writer.send(PlaceDoodadEvent {
+                position: Vec3::default(),
+                doodad_name: foliage_type_name.clone(),
+                scale: None,
+                rotation_euler: None,
+                custom_props:None     ,
+                  force_parent: Some(foliage_proto_entity),
+                //clay_tile_block_data : None ,
+      
+
+            });
+
+    }
+
 }
 
 

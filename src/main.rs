@@ -173,7 +173,7 @@ fn main() {
         .add_plugins(BevyFoliageMaterialPlugin) 
 
         
-        .add_plugins(BevyFoliageProtoPlugin )
+        //.add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
 
