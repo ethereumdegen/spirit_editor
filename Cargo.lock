@@ -1400,15 +1400,7 @@ dependencies = [
  "serde",
  "serde_json",
 ]
-
-[[package]]
-name = "bevy_material_tool"
-version = "0.14.6"
-dependencies = [
- "bevy 0.14.1",
- "ron",
- "serde",
-]
+ 
 
 [[package]]
 name = "bevy_math"
