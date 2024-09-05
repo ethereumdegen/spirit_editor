@@ -137,13 +137,12 @@ fn attach_models_to_doodads(
       //  let doodad_name_clone = doodad_name.clone();
       //  let name_comp = Name::new(doodad_name_clone);
 
-        commands
-            .entity(new_doodad_entity)
-        //    .insert(name_comp)
-            .insert(PickableBundle::default()) 
 
-            ;
-
+      if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+ 
+        cmd.try_insert(PickableBundle::default()) ;
+      }
+      
 
         let material_override = &doodad_component.definition.material_override; 
 
@@ -159,28 +158,34 @@ fn attach_models_to_doodads(
 
 
 
-                 let scene = commands
-                    .spawn(SceneBundle {
-                        scene: model_handle,
-                        ..Default::default()
-                    })
-                   
-                    
-                  //  .insert(
-                   //     Visibility::Hidden, //make it hidden until we deal w the colliders
-                   // )
-                    .id();
+
+
+               
 
 
 
-                    
-                       commands.entity(new_doodad_entity)
-                              .remove::<DoodadNeedsModelAttached>()
+                        
+
+                    if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                        
+                        
+                          let scene = cmd.commands()
+                                .spawn(SceneBundle {
+                                    scene: model_handle,
+                                    ..Default::default()
+                                })
+                                
+                                .id();
+
+
+                            cmd .remove::<DoodadNeedsModelAttached>()
                                 .remove::<RecentlyFailedToLoadModel>()
   
-                               .add_child( scene  )
-                               
-                                 ; 
+                               .add_child( scene  );
+                    }
+      
+
+                      
 
 
 
@@ -188,7 +193,7 @@ fn attach_models_to_doodads(
                     if let Some( material_override  ) = material_override  {
                          info!("found mat override  {:?}", material_override );
 
-                        commands.entity(new_doodad_entity).insert(
+                        commands.entity(new_doodad_entity).try_insert(
                             MaterialOverrideWhenSceneReadyComponent {
                                 material_override: material_override.clone() 
                             }
@@ -198,48 +203,7 @@ fn attach_models_to_doodads(
                     }
 
 
-              /* match get_loaded_model_from_name(model_name, &gltf_assets, &models){
-
-                        Ok(loaded_model)=> {
-
-                             commands.entity(new_doodad_entity)
-                               .insert(
-                                loaded_model.named_scenes["Scene"].clone()
-                                 )
-                               .remove::<DoodadNeedsModelAttached>()
-                                .remove::<RecentlyFailedToLoadModel>()
- 
-                           
-                                  ; 
-
-
-                         }
-                        ,
-                       Err(err) =>  {
-                       
-                        eprintln!("{}",err);
-
-
-                          commands.entity(new_doodad_entity)
-                               .insert(
-                                RecentlyFailedToLoadModel {
-                                    created_at: time.elapsed() 
-                                }
-                             ) ;
-                               
-
-                        /*
-                         commands
-                            .entity(new_doodad_entity)
-                           //   .insert(Visibility::Hidden)  
-                            .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
-                            .insert(materials.add(MISSING_MODEL_CUBE_COLOR ) );
-                            */
-
-                       }
-
-                 };*/
-                
+               
 
                
             }
