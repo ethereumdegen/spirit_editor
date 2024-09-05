@@ -75,7 +75,10 @@
                           green: 0.28,
                           blue:  0.05,
                           alpha:  1.0,
-                      )  )
+                      )  ),
+
+
+        shader_type: Some( FoliageMaterial ),
       ),
 
 
