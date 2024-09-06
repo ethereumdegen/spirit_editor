@@ -1,7 +1,14 @@
  
+use bevy_material_tool::material_replacements::MaterialReplacementApplySetWhenSceneReadyComponent;
+use bevy_material_tool::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
+
+
+use spirit_edit_core::gltf_models::AddGltfModelComponent; 
+
+
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
 use bevy_material_tool::material_overrides::{
     MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
@@ -127,6 +134,8 @@ fn attach_models_to_doodads(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
+
+
       built_vfx_registry: Res<BuiltVfxHandleRegistry>,
     time: Res<Time>, 
 ) {
@@ -145,6 +154,7 @@ fn attach_models_to_doodads(
       
 
         let material_override = &doodad_component.definition.material_override; 
+        let material_replacement_set = &doodad_component.definition.material_replacement_set; 
 
          
 
@@ -152,15 +162,10 @@ fn attach_models_to_doodads(
         match (&doodad_component.definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
 
-                let doodad_name_stem = format!("{}#Scene0", model_name);
+                //let doodad_name_stem = format!("{}#Scene0", model_name);
+                 let doodad_name_stem = format!("{}", model_name);
 
-                 let model_handle = asset_server.load(doodad_name_stem);
-
-
-
-
-
-               
+                 let model_handle:Handle<Gltf> = asset_server.load(doodad_name_stem);
 
 
 
@@ -170,10 +175,12 @@ fn attach_models_to_doodads(
                         
                         
                           let scene = cmd.commands()
-                                .spawn(SceneBundle {
-                                    scene: model_handle,
-                                    ..Default::default()
-                                })
+                                .spawn( 
+                                   ( 
+                                     SpatialBundle::default(),  
+                                     AddGltfModelComponent( model_handle ) )
+                                   )
+                                
                                 
                                 .id();
 
@@ -191,12 +198,21 @@ fn attach_models_to_doodads(
 
 
                     if let Some( material_override  ) = material_override  {
-                         info!("found mat override  {:?}", material_override );
+                         //info!("found mat override  {:?}", material_override );
 
                         commands.entity(new_doodad_entity).try_insert(
                             MaterialOverrideWhenSceneReadyComponent {
                                 material_override: material_override.clone() 
                             }
+
+                        );
+
+                    } else  if let Some( material_replacement_set  ) = material_replacement_set  {
+                        // info!("found   material_replacements  {:?}", material_replacements );
+
+                        commands.entity(new_doodad_entity).try_insert(
+                            MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
+                               
 
                         );
 

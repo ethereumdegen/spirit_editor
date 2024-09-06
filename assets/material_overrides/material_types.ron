@@ -192,9 +192,9 @@
       
 
           diffuse_color_tint: Some( LinearRgba(
-                              red: 0.04,
-                          green: 0.28,
-                          blue:  0.05,
+                          red: 0.28,
+                          green: 0.20,
+                          blue:  0.10,
 
                           alpha:  1.0,
                       )  )
@@ -462,7 +462,29 @@
       ),
 
 
-  }
+  },
+
+  material_replacement_sets: Some( {
+
+
+    "tree_fir" : {
+
+        "bark" : "TreeBark1",
+        "leaves" : "TreeLeavesFir",
+        "branches": "Branches1"
+
+    },
+
+    "tree_suntail" : {
+
+        "bark" : "Wood1",
+        "leaves" : "Leaves3",
+        "branches": "Branches1"
+
+
+    }
+
+  } )
 
 
 )

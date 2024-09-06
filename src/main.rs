@@ -81,7 +81,8 @@ mod tools;
 mod ui;
 mod asset_loading;
 mod liquid;
-
+mod materials; 
+ 
 mod doodads;
 mod terrain;
  mod foliage; 
@@ -183,7 +184,8 @@ fn main() {
         //.add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-
+        .add_plugins(materials::materials_plugin   )
+      
 
         .add_plugins(doodads::doodad::doodad_plugin)
         .add_plugins(doodads::doodad_placement_preview::doodad_placement_plugin  )
@@ -291,7 +293,7 @@ fn setup(
                 Name::new( foliage_scene_name.clone() )
             ) ; 
 
-    }
+         }
     
     
 
