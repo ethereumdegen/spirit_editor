@@ -7,6 +7,8 @@
 
 - bug: cant select units ? 
  BUG : painting terrain makes it invisible ? 
+
+ BUG: Gizmo is offset 
  
  
 - synty swamp has an issue with texcoords ?
@@ -15,8 +17,9 @@
 ## Immediate todo 
 
  
-- fix gizmo !!
-
+ 
+-  need to build prefabs at 0,0,0 until gizmo is fixed.. 
+- if a prefab is Saved,  refresh other ones like it 
 
  - onc a prefab is placed, reset  selected prefab 
  

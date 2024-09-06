@@ -44,10 +44,10 @@ pub fn update_gizmo_options (
     mut gizmo_options: ResMut<GizmoOptions>
 ){
 
-    // gizmo_options.gizmo_orientation = GizmoOrientation::Local; 
+     gizmo_options.gizmo_orientation = GizmoOrientation::Local; 
    // gizmo_options.pivot_point = TransformPivotPoint::
 
-    
+
 
 }
 

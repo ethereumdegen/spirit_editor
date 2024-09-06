@@ -123,6 +123,7 @@ egui_dock = "0.13"
 # egui-gizmo = "0.16"  # deprecated ? 
 
 transform-gizmo-bevy= "0.3"
+#transform-gizmo-bevy= {path="../transform-gizmo/crates/transform-gizmo-bevy"}
 
  
 [profile.dev.package."*"]

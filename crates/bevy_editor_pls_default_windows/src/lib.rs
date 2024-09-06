@@ -32,7 +32,7 @@ impl Plugin for StandardWindowsPlugin {
             
  
              .add_plugins(TransformGizmoPlugin)
-              .add_systems(Startup, (
+              .add_systems(Update, (
                gizmos::update_gizmo_options
                 ) .chain()
             )
