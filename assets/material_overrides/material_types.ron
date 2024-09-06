@@ -7,33 +7,62 @@
   		  
         material_name:  "Wall1",  // load from glb 
         uv_scale_factor: 1.0,  // do this in the material override lib ?
-        diffuse_color_tint: Some( LinearRgba(
-                          red: 1.0,
-                          green: 1.0,
-                          blue:  1.0,
-                          alpha:  1.0,
-                      )  )
+       
   		),
+
+
+
+      "Wall2":(
+        
+        material_name:  "Wall2",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+         
+      ),
+
 
 
        "StoneToon1":(
         
-        material_name:  "StoneToon1",  // load from glb 
+        material_name:  "StoneToon",  // load from glb 
         uv_scale_factor: 2.0,  // do this in the material override lib ?
+
+
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.80,
+                          green: 0.80,
+                          blue:  0.80,
+                          alpha:  1.0,
+                      )  )
         
       ),
 
        "StoneToon2":(
         
-        material_name:  "StoneToon2",  // load from glb 
+        material_name:  "StoneToon",  // load from glb 
         uv_scale_factor: 2.0,  // do this in the material override lib ?
+
+
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.30,
+                          green: 0.30,
+                          blue:  0.30,
+                          alpha:  1.0,
+                      )  )
         
       ),
 
         "DirtToon1":(
         
-        material_name:  "DirtToon1",  // load from glb 
-        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        material_name:  "StoneToon",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?  
+
+        //brown tint 
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.26,
+                          green: 0.22,
+                          blue:  0.15,
+                          alpha:  1.0,
+                      )  )
         
       ),
 
@@ -50,6 +79,51 @@
        "Rocks2":(
         
         material_name:  "Rocks2",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
+
+       "Rocks3":(
+        
+        material_name:  "Rocks3",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
+
+       "RockToon":(
+        
+        material_name:  "RockToon",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+       "Cobbles1":(
+        
+        material_name:  "Cobbles1",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+
+       "Cobbles2":(
+        
+        material_name:  "Cobbles2",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+      "Cobbles3":(
+        
+        material_name:  "Cobbles3",  // load from glb 
+        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        
+      ),
+
+      "Cobbles4":(
+        
+        material_name:  "Cobbles4",  // load from glb 
         uv_scale_factor: 2.0,  // do this in the material override lib ?
         
       ),
@@ -111,12 +185,114 @@
 
 
 
+       "Branches1":(
+        
+        material_name:  "Branches1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+      
+
+          diffuse_color_tint: Some( LinearRgba(
+                              red: 0.04,
+                          green: 0.28,
+                          blue:  0.05,
+
+                          alpha:  1.0,
+                      )  )
+
+         
+      ),
+
+        "Leaves1":(
+        
+        material_name:  "Leaves1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+       
+      ),
+
+        "Leaves2":(
+        
+        material_name:  "Leaves2",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+       
+      ),
+
+        "Leaves3":(
+        
+        material_name:  "Leaves3",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+
+          diffuse_color_tint: Some( LinearRgba(
+                              red: 0.04,
+                          green: 0.28,
+                          blue:  0.05,
+
+                          alpha:  1.0,
+                      )  )
+       
+      ),
+
+        "Leaves4":(
+        
+        material_name:  "Leaves4",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+          diffuse_color_tint: Some( LinearRgba(
+                              red: 0.04,
+                          green: 0.28,
+                          blue:  0.05,
+
+                          alpha:  1.0,
+                      )  )
+      ),
+
+
+
+
        "Wood1":(
         
         material_name:  "Wood1",  // load from glb 
         uv_scale_factor: 1.0,   
     
          
+      ),
+
+         "Wood2":(
+        
+        material_name:  "Wood2",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+      "Wood5":(
+        
+        material_name:  "Wood5",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+        "Shingles1":(
+        
+        material_name:  "Shingles1",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+        "Shingles2":(
+        
+        material_name:  "Shingles2",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+        "Marble1":(
+        
+        material_name:  "Marble1",  // load from glb 
+        uv_scale_factor: 1.0,   
+        
       ),
 
 
