@@ -1,6 +1,6 @@
  
 use bevy_editor_pls_core::Editor;
-use transform_gizmo_bevy::prelude::*;
+use transform_gizmo_bevy::{config::TransformPivotPoint, prelude::*};
 use bevy::{
     ecs::query::QueryFilter,
     prelude::*,
@@ -36,6 +36,20 @@ impl Plugin for GizmoPlugin {
 }
 
 */
+
+
+
+pub fn update_gizmo_options (
+
+    mut gizmo_options: ResMut<GizmoOptions>
+){
+
+    // gizmo_options.gizmo_orientation = GizmoOrientation::Local; 
+   // gizmo_options.pivot_point = TransformPivotPoint::
+
+    
+
+}
 
 
 pub struct GizmoState {

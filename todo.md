@@ -15,12 +15,15 @@
 ## Immediate todo 
 
  
+- fix gizmo !!
 
- - be able to create and save a tree prefab ! 
+
+ - onc a prefab is placed, reset  selected prefab 
  
  1. add a transform offset to a zone 
- 2. when a prefab component is spawned on an entity,  read that prefab file and spawn doodad children ! (only the prefab root is saved of course ) 
-
+  
+ 2. duplicating a prefab child should place the new one in the prefab 
+ 3. translating a prefab child should put the gizmo in the correct spot ...
 
 
 - add visual grid snap dimensions (0.14 has grid gizmo)

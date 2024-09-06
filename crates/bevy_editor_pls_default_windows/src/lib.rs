@@ -32,6 +32,11 @@ impl Plugin for StandardWindowsPlugin {
             
  
              .add_plugins(TransformGizmoPlugin)
+              .add_systems(Startup, (
+               gizmos::update_gizmo_options
+                ) .chain()
+            )
+
             .add_systems(Update, (
                 doodads::update_picking_doodads ,
                 placement::update_placement_tool_inputs,

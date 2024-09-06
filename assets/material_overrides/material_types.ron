@@ -111,6 +111,15 @@
 
 
 
+       "Wood1":(
+        
+        material_name:  "Wood1",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+
 
       // Clay Tiles Materials 
 
