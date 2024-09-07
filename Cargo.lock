@@ -1403,7 +1403,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_tool"
-version = "0.14.6"
+version = "0.14.7"
 dependencies = [
  "bevy 0.14.1",
  "ron",
@@ -5693,7 +5693,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.14.13"
+version = "0.14.14"
 dependencies = [
  "bevy 0.14.1",
  "bevy_clay_tiles",
