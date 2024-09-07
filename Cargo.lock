@@ -1400,18 +1400,7 @@ dependencies = [
  "serde",
  "serde_json",
 ]
-
-[[package]]
-name = "bevy_material_tool"
-version = "0.14.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a17e7e0da96e3cd5ea99048b81100d70ab258d0038832f2631b8dfce64f54ef5"
-dependencies = [
- "bevy 0.14.1",
- "ron",
- "serde",
-]
-
+ 
 [[package]]
 name = "bevy_math"
 version = "0.13.2"
@@ -5692,23 +5681,7 @@ checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
 dependencies = [
  "lock_api",
 ]
-
-[[package]]
-name = "spirit_edit_core"
-version = "0.14.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0206f92a7d02b6e83fc04106806b60cc78d2dba3ace6b2e68d660f592154a7ed"
-dependencies = [
- "bevy 0.14.1",
- "bevy_clay_tiles",
- "bevy_common_assets 0.11.0",
- "bevy_egui",
- "bevy_mod_picking",
- "bevy_mod_raycast",
- "rand",
- "ron",
- "serde",
-]
+ 
 
 [[package]]
 name = "spirit_editor"
