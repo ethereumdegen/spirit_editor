@@ -272,10 +272,27 @@
          
       ),
 
+
+      "WoodTrim":(
+        
+        material_name:  "Wood5",  // load from glb 
+        uv_scale_factor: 1.0,   
+    
+         
+      ),
+
+
         "Shingles1":(
         
         material_name:  "Shingles1",  // load from glb 
         uv_scale_factor: 1.0,   
+
+          diffuse_color_tint: Some( LinearRgba(
+                          red: 0.40,
+                          green: 0.50,
+                          blue:  0.80,
+                          alpha:  1.0,
+                      )  )
     
          
       ),
@@ -284,6 +301,14 @@
         
         material_name:  "Shingles2",  // load from glb 
         uv_scale_factor: 1.0,   
+
+
+          diffuse_color_tint: Some( LinearRgba(
+                          red: 0.40,
+                          green: 0.50,
+                          blue:  0.80,
+                          alpha:  1.0,
+                      )  )
     
          
       ),
@@ -481,6 +506,14 @@
         "leaves" : "Leaves3",
         "branches": "Branches1"
 
+
+    },
+
+    "suntail_frame_wood" : {
+
+        "wall" : "Wood2",
+        "trim" : "WoodTrim",
+         
 
     }
 

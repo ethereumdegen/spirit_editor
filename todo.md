@@ -24,9 +24,8 @@
  - onc a prefab is placed, reset  selected prefab 
  
  1. add a transform offset to a zone 
-  
- 2. duplicating a prefab child should place the new one in the prefab 
- 3. translating a prefab child should put the gizmo in the correct spot ...
+   
+ 3. translating a prefab child should put the gizmo in the correct spot ... (bug in bevy_transform_gizmo)
 
 
 - add visual grid snap dimensions (0.14 has grid gizmo)

@@ -1,5 +1,6 @@
 use spirit_edit_core::doodads::PlaceDoodadEvent;
 use spirit_edit_core::doodads::doodad::DoodadComponent;
+use spirit_edit_core::prefabs::PrefabComponent;
 use spirit_edit_core::zones::zone_file::TransformSimple;
 use spirit_edit_core::placement::PlacementEvent;
 use spirit_edit_core::placement::PlacementResource;
@@ -179,11 +180,11 @@ pub fn handle_placement_tool_events(
   mut placement_evt_reader: EventReader<PlacementEvent>,
   mut place_doodad_evt_writer: EventWriter<PlaceDoodadEvent>, 
 
-  mut  doodad_query: Query< (Entity, &Name, &DoodadComponent, &mut Transform), With<DoodadComponent>  >,
+  mut  doodad_query: Query< (Entity, &Name, &DoodadComponent, &mut Transform, Option<&Parent>), With<DoodadComponent>  >,
 
 
- 
-    editor: Res<Editor>,
+  prefab_query: Query< &PrefabComponent >,
+   editor: Res<Editor>,
 
 
 ) {
@@ -205,9 +206,14 @@ pub fn handle_placement_tool_events(
 
                 let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((entity, name_comp, doodad_comp, doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
+                if let Some((entity, name_comp, doodad_comp, doodad_xform, doodad_parent)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
 
                   //  let mut translation = doodad_xform.translation ;
+
+
+                  let doodad_parent_entity = doodad_parent.map(|p| p.get() );
+
+
 
                     let simple_xform:TransformSimple = doodad_xform.clone().into();
 
@@ -218,7 +224,7 @@ pub fn handle_placement_tool_events(
                              rotation_euler: Some(simple_xform.rotation), 
                              doodad_name: name_comp.to_string().clone(),
                              custom_props: None , 
-                             force_parent: None ,
+                             force_parent:  doodad_parent_entity  ,
                            //  clay_tile_block_data: None , //for now .. 
                       });
 
@@ -235,7 +241,7 @@ pub fn handle_placement_tool_events(
 
                   let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((_, _, _, mut doodad_xform)) = first_selected_entity.and_then(|ent|  doodad_query.get_mut(ent).ok() ) {
+                if let Some((_, _, _, mut doodad_xform, _)) = first_selected_entity.and_then(|ent|  doodad_query.get_mut(ent).ok() ) {
 
                     let mut translation = doodad_xform.translation ; 
 
