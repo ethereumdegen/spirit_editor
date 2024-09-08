@@ -16,6 +16,7 @@
 
 ## Immediate todo 
 
+ - halve the scale of the house and complete it 
  
  
 -  need to build prefabs at 0,0,0 until gizmo is fixed.. 
