@@ -515,6 +515,14 @@
         "trim" : "WoodTrim",
          
 
+    },
+    "suntail_roof" : {
+
+        "shingles" : "Shingles2",
+        "trim" : "WoodTrim",
+        "wood" : "Wood2",
+         
+
     }
 
   } )

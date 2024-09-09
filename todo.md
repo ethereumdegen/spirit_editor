@@ -4,6 +4,7 @@
 
 
 
+    //BUG: loading model twice + override  breaks materials 
 
 - bug: cant select units ? 
  BUG : painting terrain makes it invisible ? 
@@ -16,7 +17,7 @@
 
 ## Immediate todo 
 
- - halve the scale of the house and complete it 
+ - improve look of house trim ! 
  
  
 -  need to build prefabs at 0,0,0 until gizmo is fixed.. 
