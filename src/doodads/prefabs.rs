@@ -23,7 +23,7 @@ pub fn prefabs_plugin(app: &mut App){
 
 	  .add_systems(Update, (
 
-	             handle_prefab_tool_events,
+	            handle_prefab_tool_events,
 
                 handle_place_prefabs, 
                 handle_spawn_prefab_events,
