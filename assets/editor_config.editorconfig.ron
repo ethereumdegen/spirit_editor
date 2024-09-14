@@ -2,13 +2,13 @@
   
 
 
- 
+ /*
     initial_terrain_to_load: Some("raven_woods_terrain"),    
     initial_zones_to_load: Some([
         "raven_woods/ravenwoods.zone"
     ]), 
     initial_foliage_scene_to_load: Some("raven_woods_foliage.foliage"), 
-
+*/
   
 /*
  
@@ -35,7 +35,7 @@
 */
 
  
- /*
+ 
  initial_terrain_to_load:  Some("default_terrain"),    
 initial_zones_to_load: Some([
        
@@ -57,7 +57,8 @@ initial_zones_to_load: Some([
          "temple_exterior.zone",
 
 
- ]),  */
+ ]),  
+ initial_foliage_scene_to_load: Some("default_foliage.foliage"), 
 
  
 

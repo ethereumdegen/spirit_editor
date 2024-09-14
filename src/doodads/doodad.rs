@@ -200,21 +200,26 @@ fn attach_models_to_doodads(
                     if let Some( material_override  ) = material_override  {
                          //info!("found mat override  {:?}", material_override );
 
-                        commands.entity(new_doodad_entity).try_insert(
-                            MaterialOverrideWhenSceneReadyComponent {
-                                material_override: material_override.clone() 
-                            }
 
-                        );
+                        if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                            cmd.try_insert(
+                                MaterialOverrideWhenSceneReadyComponent {
+                                    material_override: material_override.clone() 
+                                }
+
+                            );
+                        }
 
                     } else  if let Some( material_replacement_set  ) = material_replacement_set  {
                         // info!("found   material_replacements  {:?}", material_replacements );
 
-                        commands.entity(new_doodad_entity).try_insert(
-                            MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
-                               
+                         if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                            cmd.try_insert(
+                                MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
+                                   
 
-                        );
+                            );
+                        }
 
                     }
 
@@ -719,7 +724,7 @@ pub fn handle_place_doodad_events(
             DoodadToolEvent::SetSelectedDoodad(None) 
         );
 
-        println!("doodad spawned {:?}", doodad_spawned);
+    //    println!("doodad spawned {:?}", doodad_spawned);
 
         
             //from cloning ! 
@@ -836,7 +841,7 @@ pub fn handle_place_clay_tile_block_events(
             DoodadToolEvent::SetSelectedDoodad(None) 
         );
 
-        println!("doodad spawned {:?}", doodad_spawned);
+     //    println!("doodad spawned {:?}", doodad_spawned);
 
         
             //from cloning ! 
@@ -964,7 +969,7 @@ pub fn replace_proto_doodads_with_doodads(
 
     
 
-        println!("doodad spawned {:?}", doodad_spawned);
+       //  println!("doodad spawned {:?}", doodad_spawned);
 
         if let Some( mut existing_custom_props_comp ) = existing_custom_props_comp {
              if let Some(custom_props) = custom_props_from_manifest {  
