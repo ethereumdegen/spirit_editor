@@ -75,7 +75,7 @@ bevy-inspector-egui = "0.25.1"
 bevy_asset_loader = "0.21.0"
 
  
-bevy_foliage_tool =   "0.14.3"
+bevy_foliage_tool =   "0.14.4"
  #bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
  
 
