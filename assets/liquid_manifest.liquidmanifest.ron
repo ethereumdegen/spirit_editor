@@ -22,6 +22,26 @@
 
     	 ),
 
+      "water_pond" : (
+
+       shallow_color: Some( LinearRgba(
+                   red: 0.35,
+                         green:  0.55,
+                         blue:  0.66,
+                         alpha: 0.8
+        ) ),
+
+        deep_color: Some( LinearRgba(
+                       red: 0.12,
+                         green:  0.45,
+                         blue:  0.63,
+                         alpha: 0.9
+        ) ),
+
+
+
+       ),
+
     	 "water_swamp_green" : (
 
     	 	shallow_color: Some( LinearRgba(
