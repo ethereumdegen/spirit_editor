@@ -1,0 +1,37 @@
+(
+
+
+//on player enter 
+  triggers_on_activate: Some( [
+
+
+
+                  (
+                    action: PlayCinematic( 
+                      cinematic_name: "twisted_grove_bush.cine" 
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "twisted_grove_bush.encounter" , state_name: "init" )
+                    ]),
+                  ),
+
+
+                    (
+                    action: SetEncounterState( 
+                      key: "twisted_grove_bush.encounter" ,
+
+                       new_state: "interacted"
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "twisted_grove_bush.encounter" , state_name: "init" )
+                    ])
+
+
+
+                  )
+
+              ] )
+
+
+
+)

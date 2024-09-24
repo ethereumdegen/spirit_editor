@@ -1,0 +1,30 @@
+ (
+
+
+ 
+  triggers_on_activate: Some( [
+ 
+ 		 
+
+                   (
+                    action: SetEncounterState( 
+                      key:  "courtyard_gate.encounter" ,
+
+                      new_state: "gate_closed"
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "courtyard_gate.encounter" , state_name: "init" )
+                    ])
+
+
+
+                  )
+
+     ] )
+
+
+
+ )
+
+
+ // courtyard_gate -- assert

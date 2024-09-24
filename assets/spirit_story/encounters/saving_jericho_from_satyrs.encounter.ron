@@ -1,0 +1,10 @@
+(  
+  initial_state:"captured",
+  encounter_states: { 
+            "captured": (),
+            "rescued": (  )  ,
+             "sacrificed": (  )  
+
+         }
+
+    )

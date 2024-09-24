@@ -1,0 +1,10 @@
+( 
+initial_state:"unknown",
+ encounter_states: { 
+            "unknown": (),
+            "learned": (  )  ,
+            "forgotten": (  )  
+
+         }  
+
+    )

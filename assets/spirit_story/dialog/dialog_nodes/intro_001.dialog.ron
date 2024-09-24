@@ -1,0 +1,43 @@
+(
+    steps: [
+        (
+            body: "It has been such a long, difficult journey so far in the wilderness with Gabriella. I really need to rest.",
+            end_trigger_actions: None,
+            start_trigger_actions:None, //if none, we assume we jump to the next step 
+            
+            dialog_choice_architecture: Continue ,
+            
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        (
+            body: "I really wish she would just tell me more about this artifact she wants to find..",
+            end_trigger_actions: None,
+            start_trigger_actions: None,
+            dialog_choice_architecture: Continue,
+        ),
+      (
+            body: "I also hope we never run into those horrible venomous swamp creatures again..",
+            end_trigger_actions: None,
+
+              dialog_choice_architecture:   Choices([
+                ( body: "Yearn about mastering a stronger weapon" )  ,
+                ( body: "Ponder the magic of the stars and the mysterious fae" )  ,
+                ( body: "Dream about mystical worlds beyond this one and those who are in need in these dark times" )  
+            ] ),
+        ),
+             
+        (
+            body: "Wake up, Spirit!  I think I heard something in the woods and we had better get moving from camp ..", 
+
+           
+            end_trigger_actions: Some([    
+
+                // this is not necessary !? 
+              AdvanceCinematicStep(new_step_index: 4)
+           ]),
+            dialog_choice_architecture: Continue,
+           //  fallback_dialog_action: Some(ExitDialog)
+        ),
+    ],
+)
+

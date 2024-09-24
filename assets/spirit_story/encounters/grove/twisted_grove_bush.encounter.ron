@@ -1,0 +1,9 @@
+(  
+  initial_state:"init",
+  encounter_states: { 
+            "init": (),
+            "interacted" : ()
+
+         }
+
+    )

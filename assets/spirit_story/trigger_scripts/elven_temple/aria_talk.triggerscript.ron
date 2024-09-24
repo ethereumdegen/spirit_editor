@@ -1,0 +1,25 @@
+(
+ 
+  triggers_on_activate: Some( [
+  				
+
+  				    (
+                   action: SetEncounterState( 
+                      key: "aria_intro.encounter" ,
+
+                      new_state: "talk_with"
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "aria_intro.encounter" , state_name: "init" )
+                   ]) 
+                )
+
+
+                  
+
+     ] )
+
+
+
+)
+

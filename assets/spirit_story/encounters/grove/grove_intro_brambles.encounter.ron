@@ -1,0 +1,24 @@
+( 
+  initial_state:"init",
+  encounter_states: { 
+            "init": (),
+            "past_brambles": ( 
+
+                triggers_on_enter_state: Some([
+
+            	    (
+                    action: SetEncounterState( 
+                      key: "gabriella_intro.encounter" ,
+
+                       new_state: "walk_to_bushes"
+                      ),
+                    conditions:  None 
+                    )
+                 ])
+
+
+             )  ,
+          
+         }  
+
+    )

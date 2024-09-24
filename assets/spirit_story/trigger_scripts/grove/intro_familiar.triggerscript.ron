@@ -1,0 +1,27 @@
+(
+
+
+//on player enter 
+  triggers_on_activate: Some( [
+
+
+ 
+                    (
+                    action: SetEncounterState( 
+                      key: "intro_familiar.encounter" ,
+
+                       new_state: "interacted"
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "intro_familiar.encounter" , state_name: "init" )
+                    ])
+
+
+
+                  )
+
+              ] )
+
+
+
+)

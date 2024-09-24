@@ -1,0 +1,64 @@
+(
+    steps: [
+        (
+            body: "Legend has it that a long time ago, the forests here danced with all species of wildlife and the woodelves lived in harmony with them.",
+            end_trigger_actions: None,
+            start_trigger_actions: Some([
+            
+            SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_1.png", material_node: "paper" )
+            //play sound 
+
+            ]), //if none, we assume we jump to the next step 
+            dialog_choice_architecture:  Continue,
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        (
+            body: "All of that changed slowly, with the seasons. First my people started having terrible nightmares...",
+            end_trigger_actions: None,
+            start_trigger_actions: Some([
+            
+              SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_2.png", material_node: "paper" )
+            ]),
+            dialog_choice_architecture:  Continue,
+        ),
+      (
+            body: "Shadow beasts, seemingly those from the feywilds, depicted ruling over cursed lands.  ",
+            end_trigger_actions: None,
+            start_trigger_actions: Some([
+            
+               SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_3.png", material_node: "paper" )
+            ]),
+            dialog_choice_architecture:  Continue,
+        ),
+              (
+            body: "The high prince of the woodelves, Braun, swore to find an end to this madness, gathering his champions to save our people.",
+            end_trigger_actions: None,
+
+             start_trigger_actions: Some([
+                    //make a new one 
+               SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_3.png", material_node: "paper" )
+            ]),
+
+           // start_trigger_actions: Some([            
+           // AdvanceCinematicStep(new_step_index: 5)
+           // ]),
+            dialog_choice_architecture:  Continue,
+        ),
+        (
+            body: "Wake up, Spirit.  Your friends need you.  This land needs you...  ",
+           // start_trigger_actions: Some([
+          //       PlaySpecialAnimationOnUniqueNamedUnit (  unit_unique_name: "elf1" , clip_type: Frustrated )
+           //      ]),
+
+           
+            end_trigger_actions: Some([    
+
+              SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_0.png", material_node: "paper" )  ,
+              AdvanceCinematicStep(new_step_index: 5)
+           ]),
+            dialog_choice_architecture:  Continue,
+           //  fallback_dialog_action: Some(ExitDialog)
+        ),
+    ],
+)
+

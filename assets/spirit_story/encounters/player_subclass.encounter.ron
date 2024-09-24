@@ -1,0 +1,10 @@
+(  
+  initial_state:"init",
+	encounter_states: { 
+            "init": (),
+            "war": (
+                triggers_on_enter_state: None
+              ) 
+
+      }
+  )  

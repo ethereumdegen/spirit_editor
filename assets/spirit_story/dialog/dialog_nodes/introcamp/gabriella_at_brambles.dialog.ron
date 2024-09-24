@@ -1,0 +1,15 @@
+(
+    steps: [
+        (
+            body: "It looks like these brambles up ahead are brittle and dry.  Try using my blade to burn them away.",
+            end_trigger_actions: None,
+            start_trigger_actions:None, //if none, we assume we jump to the next step 
+            
+            dialog_choice_architecture: Continue ,
+            
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        
+    ],
+)
+

@@ -1,0 +1,40 @@
+(  
+  initial_state:"init",
+	encounter_states: { 
+            "init": (),
+            "picked_up": (
+                triggers_on_enter_state: Some([
+
+                  (
+                    action: AddEntityFromSpawnable (
+		                  entity_spawn:  (
+		                      entity_spawn_type: Item(item_type:"brushfire_dagger.item"),
+		                     
+		                      additional_spawnable_components: Some([
+		                       
+		                            InstantlyShowcaseItem
+		                            
+		                        ])
+		                    ),
+		                 
+		                )
+                  ) , 
+
+
+                  (
+                   action: SetEncounterState( 
+                      key: "gabriella_intro.encounter" ,
+
+                      new_state: "walk_to_brambles"
+                    ),
+                    conditions: None
+                   )
+                 
+
+                  ])//some
+
+
+              ) 
+
+      }
+  )  

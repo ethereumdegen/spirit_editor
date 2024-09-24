@@ -1,0 +1,52 @@
+( 
+  initial_state:"init",
+  encounter_states: { 
+            "init": (),
+            "gate_closed": (  
+                triggers_on_enter_state: Some([
+
+            	     	//add to me !
+
+                     (
+                      action: SetInteractionAsserted( 
+                        target: UnitUniqueName("courtyard_gate") ,
+
+                        asserted: false
+                      ),
+                      conditions: None
+
+                    )
+
+
+
+                 ])
+
+
+             )  ,
+
+
+              "gate_open": (  
+                triggers_on_enter_state: Some([
+
+                    //add to me !
+
+                     (
+                      action: SetInteractionAsserted( 
+                        target: UnitUniqueName("courtyard_gate") ,
+
+                        asserted: true
+                      ),
+                      conditions: None
+
+                    )
+
+
+
+                 ])
+
+
+             )  ,
+          
+         }  
+
+    )

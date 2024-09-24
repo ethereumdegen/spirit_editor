@@ -1,0 +1,78 @@
+(
+    steps: [
+        (
+            body: "Oh good! You are awake.  It has been spooky in this wilderness so far and I am getting tired myself..",
+            start_trigger_actions: None,
+            end_trigger_actions: None, //if none, we assume we jump to the next step 
+            dialog_choice_architecture:   Choices([
+                ( 
+                    body: "What are we doing here again? " ,
+                    dialog_action: Some( JumpToNode( step_index: Some( 1 ) )  )  
+                   ),
+
+                 ( 
+                    body: "I am ready for it. Lets go." ,
+                    trigger_actions: Some( [
+
+                        SetEncounterState( key:"gabriella_intro.encounter", new_state:"hiking_to_temple"    )
+
+
+                    ]  ) , // set waypoint for elf  ?
+                    dialog_action: Some( ExitDialog )
+                   ),
+
+                 ( 
+                    body: "I don't think this is safe for you.  I am going to go ahead alone." ,
+                    dialog_action: Some( JumpToNode( step_index: Some( 3 ) )  )  
+                   ),
+
+                 ( 
+                    body: "I changed my mind.. I don't think this is a particularly good idea for us.." ,
+                    dialog_action: Some( JumpToNode( step_index: Some( 4 ) )  )  
+                  ) 
+
+                  
+                
+            ] ),
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        (   
+            //will make his attitude to you fall
+
+            body: "I know you can hardly stand me but you don't have to be like that about it..",
+            start_trigger_actions: None,
+            end_trigger_actions: None,
+            dialog_choice_architecture:  Continue,
+
+            fallback_dialog_action: Some( JumpToNode( step_index: Some( 2 ) ) )  
+        ),
+        (   
+            
+
+            body: "You offered to help me and this amulet is very important to me and my people.  The keep should be just over that ridgeline and through that valley we are almost there.   ",
+            start_trigger_actions: None,
+            end_trigger_actions: None,
+            dialog_choice_architecture:  Continue,
+
+            fallback_dialog_action: Some( JumpToNode( step_index: Some( 0) ) )  
+        ),
+
+
+
+        (
+            body: "No way Spirit, I am coming with you.  This is much more important to me than that.  I will see it through.  Let's go.",
+            start_trigger_actions: None,
+            end_trigger_actions: Some( [SetEncounterState( key:"gabriella_intro.encounter", new_state:"hiking_to_temple"  )] ),  // set waypoint for elf  
+            dialog_choice_architecture: Continue,
+             fallback_dialog_action: Some(ExitDialog)
+        ),
+
+        (
+            body: "You don't have to come with me but I am going no matter what.  We have already made it this far. I will recover this amulet for my people, for the woodelves, if it is the last thing I do.",
+            start_trigger_actions: None,
+               end_trigger_actions: Some( [SetEncounterState( key:"gabriella_intro.encounter", new_state:"hiking_to_temple"  )] ),  // set waypoint for elf  
+            dialog_choice_architecture: Continue,
+             fallback_dialog_action: Some(ExitDialog)
+        ),
+    ],
+)

@@ -1,0 +1,28 @@
+(
+    steps: [
+        (
+            body: "... do not worry so much, Spirit.  There is a saying of my people.  ",
+            end_trigger_actions: None,
+            start_trigger_actions:None, //if none, we assume we jump to the next step 
+            
+            dialog_choice_architecture: Continue ,
+            
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        (
+            body: " \"The more tangled the forests, the more noble the quest.\" ",
+            end_trigger_actions: None,
+            start_trigger_actions: None,
+            dialog_choice_architecture: Continue,
+        ),
+      (
+            body: "Wait!  I think I heard something in the woods behind us.  Follow me and stay close..",
+            end_trigger_actions: None,
+
+              dialog_choice_architecture:   Continue ,
+        ),
+             
+        
+    ],
+)
+

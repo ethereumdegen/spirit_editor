@@ -1,0 +1,25 @@
+(
+ 
+  triggers_on_activate: Some( [
+ 
+ 		 
+
+                   (
+                    action: SetEncounterState( 
+                      key: "loot_intro_backpack.encounter" ,
+
+                       new_state: "picked_up"
+                    ),
+                    conditions: Some([
+                      EncounterStateEquals (key: "loot_intro_backpack.encounter" , state_name: "init" )
+                    ])
+
+
+
+                  )
+
+     ] )
+
+
+
+)

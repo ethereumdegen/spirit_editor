@@ -1,0 +1,33 @@
+(
+    steps: [
+        (
+            body: "Welcome to the adventure!  ",
+            start_trigger_actions: None,
+            end_trigger_actions: None, //if none, we assume we jump to the next step 
+             dialog_choice_architecture: Continue ,
+         //   fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        (
+            body: "Do you go left or right?",
+            start_trigger_actions: None,
+            end_trigger_actions: None,
+            dialog_choice_architecture: Choices([
+                (
+                    body: "Left",
+                    trigger_actions: None,  //jump to  step?  jump to node ?? 
+                ),
+                (
+                    body: "Right",
+                    trigger_actions: None,
+                ),
+            ]),
+        ),
+        (
+            body: "You've found a treasure chest!",
+            start_trigger_actions: None,
+            end_trigger_actions: None,
+             dialog_choice_architecture: Continue ,
+           //  fallback_dialog_action: Some(ExitDialog)
+        ),
+    ],
+)

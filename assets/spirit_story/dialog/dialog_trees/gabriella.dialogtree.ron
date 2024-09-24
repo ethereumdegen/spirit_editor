@@ -1,0 +1,58 @@
+ (
+
+
+	dialog_tree_nodes: [
+
+		( 
+			dialog_node: "introcamp_gabriella.dialog" ,
+			requirements: [  
+				EncounterStateMatchesAny (
+				  encounter_title:"gabriella_intro.encounter" ,
+				  state_names: ["init"]  
+
+				) 
+			 ]  
+
+		 ),
+
+
+		 ( 
+			dialog_node: "gabriella_pick_up_dagger.dialog" ,
+			requirements: [  
+				EncounterStateMatchesAny (
+				  encounter_title:"gabriella_intro.encounter" ,
+				  state_names: ["wait_for_dagger_pickup"]  
+
+				) 
+			 ]  
+
+		 ),
+
+
+        ( 
+			dialog_node: "gabriella_at_brambles.dialog" ,
+			requirements: [  
+				EncounterStateMatchesAny (
+				  encounter_title:"gabriella_intro.encounter" ,
+				  state_names: ["at_brambles"]  
+
+				) 
+			 ]  
+
+		 ),
+
+		 ( 
+			dialog_node: "gabriella_at_bushes.dialog" ,
+			requirements: [  
+				EncounterStateMatchesAny (
+				  encounter_title:"gabriella_intro.encounter" ,
+				  state_names: ["at_bushes"]  
+
+				) 
+			 ]  
+
+		 ),
+
+
+	]
+)

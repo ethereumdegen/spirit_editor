@@ -1,0 +1,37 @@
+(
+    steps: [
+        (
+            body: "Oh ..! I come in peace, please don't hurt me!",
+            start_trigger_actions: None,
+            end_trigger_actions: None, //if none, we assume we jump to the next step 
+            dialog_choice_architecture:  Choices([
+                ( 
+                    body: " Option 1  " ,
+                     dialog_action: Some( ExitDialog )
+                   ),
+ 
+                
+            ] ),
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+
+
+                (
+            body: "Oh ..! I come in peace, please don't hurt me!",
+            start_trigger_actions: None,
+            end_trigger_actions: None, //if none, we assume we jump to the next step 
+            dialog_choice_architecture:  Choices([
+                ( 
+                    body: "Try to calm the wolf down " ,
+                     dialog_action: Some( ExitDialog )
+                   ),
+ 
+                
+            ] ),
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+        
+
+  
+    ],
+)
