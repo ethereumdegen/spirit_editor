@@ -1,0 +1,128 @@
+Cinematic(
+    steps: [
+
+     (
+            duration:  0, // This represents 0.5 seconds.
+            actions: [ 
+
+            //put char to sleep w condition 
+
+       
+
+               SwapMaterialTexture( unique_name: "story_book_1", texture:"book_tex_1.png", material_node: "paper" ),
+             PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "temple_intro_camera_1" ),
+             SetDayNightCycleTime( day_time_seconds: 0  )
+
+             ] //just wait 
+        ),
+
+          (
+            duration: 500, // This represents 0.5 seconds.
+            actions: [ 
+
+             PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "temple_intro_camera_1" )
+
+             ] //just wait 
+        ),
+         (
+            duration: 0,    //this duration adds to a register which signifies how long to wait until we perform the following action 
+            actions: 
+                 [
+                 
+                  LoadStage ( stage_name:"stage_001.stg" ),
+                  
+               
+                    PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "temple_intro_camera_1" ) 
+            ]
+        ),
+        
+       
+        (
+             
+                duration: 2000, 
+                actions: [  
+                       //zoom in to the story book  
+                    PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "temple_intro_camera_2" )
+                    ], 
+         ),
+
+              
+                 
+        (
+            duration: 500, 
+            actions: [
+                  StartDialogHeadless (  node: "story_book_001.dialog"  ) 
+              ]  
+        ),
+        
+     
+        
+       //  (
+      //      duration: 400, 
+       //     actions: [  
+      //          PanCinematicCameraToUniqueNamedUnit (unit_unique_name: "elf1")
+      //          ],  
+     //   ),
+
+          (
+            duration: 200, 
+            actions: [  
+                
+                      AddConditionToEntity ( source: UnitUniqueName("player"), condition_type:"layingdown.condition" ),  
+                   
+                ],
+            
+               
+        ),
+
+        (
+            duration: 400,  
+            actions: [  
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "temple_intro_camera_4" )
+
+
+               
+                   ],
+            
+               
+        ),
+
+
+
+        (
+            duration: 1000,  
+            actions: [  
+                
+
+                // StartDialogHeadless (  node: "cinematic_001a.dialog" ) 
+                //add a dialog here of you sleeping and saying zzzz and the end trigger action is removing the 'sleeping cond' from you 
+                   ],
+            
+               
+        ),
+
+         (
+            duration: 1000,  
+            actions: [  
+              //RemoveConditionFromEntity ( source: UnitUniqueName("player"), condition_type:"layingdown.condition" ),  
+                    //remove sleeping 
+
+                // StartDialogHeadless (  node: "cinematic_001a.dialog"  ) 
+                //add a dialog here of you sleeping and saying zzzz and the end trigger action is removing the 'sleeping cond' from you 
+                   ],
+            
+               
+        ),
+        
+        
+        (
+            duration: 0,  
+            actions: [
+              
+                 UnloadStage  ( stage_name:"stage_001.stg" ), 
+                 EndCinematic
+                                 
+             ]
+        ) 
+    ]
+)

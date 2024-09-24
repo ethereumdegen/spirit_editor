@@ -52,7 +52,7 @@
 
                "at_brambles": (),
 
-
+/*
                 "walk_to_bushes": (
                 triggers_on_enter_state: Some([
 
@@ -95,7 +95,7 @@
 
 
               ) ,
-
+*/
               "at_bushes": (),
 
 

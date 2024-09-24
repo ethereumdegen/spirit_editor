@@ -6,12 +6,12 @@
 
                    (
                     action: SetEncounterState( 
-                      key: "grove_intro_brambles.encounter" ,
+                      key: "grove_intro_pond.encounter" ,
 
-                       new_state: "past_brambles"
+                       new_state: "in_pond"
                     ),
                     conditions: Some([
-                      EncounterStateEquals (key: "grove_intro_brambles.encounter" , state_name: "init" )
+                      EncounterStateEquals (key: "grove_intro_pond.encounter" , state_name: "init" )
                     ])
 
 

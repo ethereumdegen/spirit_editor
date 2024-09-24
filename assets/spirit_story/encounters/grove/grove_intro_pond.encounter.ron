@@ -2,18 +2,28 @@
   initial_state:"init",
   encounter_states: { 
             "init": (),
-            "past_brambles": ( 
+            "in_pond": ( 
 
                 triggers_on_enter_state: Some([
 
-            	    (
+            	   /* (
                     action: SetEncounterState( 
                       key: "gabriella_intro.encounter" ,
 
                        new_state: "walk_to_bushes"
                       ),
                     conditions:  None 
-                    )
+                    )*/
+
+
+                  (
+                    action: PlayCinematic( 
+                      cinematic_name: "grove_intro_pond.cine" 
+                    ),
+                    
+                  ),
+
+
                  ])
 
 

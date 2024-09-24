@@ -1,0 +1,79 @@
+Cinematic(
+
+ 
+/*
+    Waypoints of interest 
+
+
+     camera_talk_aria
+     player_talk_aria 
+     
+
+*/
+
+
+
+
+// make the !  go away ! 
+    steps: [
+
+       (
+            duration:  0, // This represents 0.5 seconds.
+            actions: [ 
+                TeleportUnit (
+                    source: UnitUniqueName("player"),
+                    target_waypoint_name: Some("player_talk_aria"),
+
+                ),
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "camera_talk_aria" )
+        
+                
+             ]  
+        ),
+
+        (
+            duration:  1000, // This represents 0.5 seconds.
+            actions: [ 
+
+
+               
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "camera_talk_aria" )
+        
+               
+
+             ]  
+        ),
+
+          
+ 
+
+         // do dialog !! 
+
+
+        (	
+
+        	 
+            duration:  2000,  
+            actions: [ 
+
+              StartDialogWithEntity (  has_dialog_entity: UnitUniqueName("aria")  ) 
+              //this freezes the cinematic .. 
+          ]),
+
+
+ 
+        	//need this here as a buffer  !  Hold cam in place 
+        
+
+        (
+            duration: 0,  
+            actions: [
+               
+                 EndCinematic
+                                 
+             ]
+        ) 
+
+        ]
+
+ )

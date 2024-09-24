@@ -1,0 +1,129 @@
+Cinematic(
+
+//pan to a camera 
+
+// spawn a stage with the greblin and then the wolf , they are running/animating
+
+//dialog with gabriella 
+
+
+/*
+    Waypoints of interest 
+
+
+     grove_pond_player_stand
+    grove_pond_friend_stand
+
+    grove_pond_cam_1
+    grove_pond_cam_2
+
+    grove_enter_pond 
+
+*/
+
+
+
+
+// make the !  go away ! 
+    steps: [
+
+       (
+            duration:  0, // This represents 0.5 seconds.
+            actions: [ 
+                SetCinematicAiCommands (
+                    source: UnitUniqueName("player"),
+                    cinematic_ai_commands:  Some( [
+                                  SetWalkDestination (Waypoint(
+                                    "grove_pond_player_stand"
+                                    ) ) 
+
+                               ] ) ,
+
+                ),
+
+                 SetCinematicAiCommands (
+                    source: UnitUniqueName("gabriella"),
+                    cinematic_ai_commands:  Some( [
+                                  SetWalkDestination (Waypoint(
+                                    "grove_pond_friend_stand"
+                                    ) ) 
+
+                               ] ) ,
+
+                ),
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_pond_cam_1" )
+        
+               //SetDayNightCycleTime( day_time_seconds: 900  )
+
+             ]  
+        ),
+
+        (
+            duration:  2000, // This represents 0.5 seconds.
+            actions: [ 
+
+
+                //rustling noise of bush ?? 
+
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_pond_cam_2" )
+        
+               
+
+             ]  
+        ),
+
+         /*(
+            duration:  1000,  
+            actions: [ 
+ 
+               
+               AddEntityFromSpawnable (
+                  entity_spawn:  (
+                      entity_spawn_type: Unit(unit_type:"wood_elemental"),
+                      unique_name: Some( "jericho" ),  
+
+                      additional_spawnable_components: Some([
+                            SpawnsAtWaypoint("twisted_grove_wolf_spawn_1"),
+                            CinematicAiCommands( [
+                                  SetWalkDestination (Waypoint(
+                                    "twisted_grove_greblin_fall"
+                                    ) )
+
+
+                               ]  )
+                        ])
+                    ),
+                 
+                )
+             ]  
+        ),*/
+    
+ 
+
+         // do dialog !! 
+
+         //gabriella will tell you to call upon your diety 
+         // this is where you get your powers and try to use them (kneel at pond?)
+
+
+        (
+            duration:  1000,  
+            actions: [ 
+
+              StartDialogHeadless (  node: "twisted_grove_wood_elemental.dialog"  ) 
+
+          ]),
+
+
+        (
+            duration: 0,  
+            actions: [
+               
+                 EndCinematic
+                                 
+             ]
+        ) 
+
+        ]
+
+ )

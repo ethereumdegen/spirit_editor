@@ -1,0 +1,39 @@
+ 
+
+
+ Cinematic(
+    steps: [
+
+        (
+            duration:  0, // This represents 0.5 seconds.
+            actions: [ 
+ 
+             ] //just wait 
+        ),
+
+          (
+            duration: 500, // This represents 0.5 seconds.
+            actions: [ 
+
+             PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_intro_camera_2" ),
+
+               StartDialogHeadless( 
+                      node:  "introcamp_gabriella_follow_me.dialog" 
+                    )
+
+             ] //just wait 
+        ),
+
+         (
+            duration: 0,  
+            actions: [
+               
+                 EndCinematic
+                                 
+             ]
+        ) 
+         
+          
+  
+    ]
+)
