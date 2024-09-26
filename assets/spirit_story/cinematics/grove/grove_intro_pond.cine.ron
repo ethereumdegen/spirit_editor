@@ -72,6 +72,23 @@ Cinematic(
              ]  
         ),
 
+
+
+        (
+            duration:  6000, // This represents 0.5 seconds.
+            actions: [ 
+
+
+                //rustling noise of bush ?? 
+
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_pond_cam_3" )
+        
+               
+
+             ]  
+        ),
+
+
          /*(
             duration:  1000,  
             actions: [ 
