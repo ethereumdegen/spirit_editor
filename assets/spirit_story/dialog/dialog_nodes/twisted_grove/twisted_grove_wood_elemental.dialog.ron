@@ -1,28 +1,36 @@
 (
     steps: [
         (
-            body: "Oh ..! I come in peace, please don't hurt me!",
+            body: "  ... ?",
             start_trigger_actions: None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
-            dialog_choice_architecture:  Choices([
-                ( 
-                    body: " Option 1  " ,
-                     dialog_action: Some( ExitDialog )
-                   ),
- 
-                
-            ] ),
+            dialog_choice_architecture: Continue,
+           // fallback_dialog_action: None //if this none, we just go to the next step 
+        ),
+
+         (
+            body: " This poor creature. What happened?? This looks like a wood elemental or a tree spirit. ",
+            start_trigger_actions: None,
+            end_trigger_actions: None, //if none, we assume we jump to the next step 
+            dialog_choice_architecture: Continue,
            // fallback_dialog_action: None //if this none, we just go to the next step 
         ),
 
 
+
+
                 (
-            body: "Oh ..! I come in peace, please don't hurt me!",
+            body: "We must help him. What can we do? You are   ",
             start_trigger_actions: None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
             dialog_choice_architecture:  Choices([
                 ( 
-                    body: "Try to calm the wolf down " ,
+                    body: "Call for help from the divine" ,
+                     dialog_action: Some( ExitDialog )
+                   ),
+
+                ( 
+                    body: "Let the spirit rest" ,
                      dialog_action: Some( ExitDialog )
                    ),
  
