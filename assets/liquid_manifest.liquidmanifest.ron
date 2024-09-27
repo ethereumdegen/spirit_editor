@@ -28,16 +28,18 @@
                    red: 0.35,
                          green:  0.55,
                          blue:  0.66,
-                         alpha: 0.8
+                         alpha: 0.6
         ) ),
 
         deep_color: Some( LinearRgba(
                        red: 0.12,
                          green:  0.45,
                          blue:  0.63,
-                         alpha: 0.9
+                         alpha: 0.7
         ) ),
 
+        surface_noise_scroll: Some( (0.02,0.02) ),
+        depth_max_distance: Some( 1.0 ) ,
 
 
        ),

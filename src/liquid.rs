@@ -125,8 +125,12 @@ pub struct LiquidManifest {
 pub struct LiquidDefinition {
 
     pub shallow_color: Option<LinearRgba> ,
-     pub deep_color: Option<LinearRgba> ,
-     pub foam_color: Option<LinearRgba> ,
+    pub deep_color: Option<LinearRgba> ,
+    pub foam_color: Option<LinearRgba> ,
+
+    pub surface_noise_scroll: Option<Vec2>, //default is Vec2::new(0.1,0.1)
+
+    pub depth_max_distance: Option<f32>, //default is 2.0 
 
 
 }
@@ -149,11 +153,18 @@ impl LiquidDefinition {
                  liquid_material.extension.custom_uniforms.depth_gradient_deep = deep_color.into();
             }  
 
-             if let Some(foam_color) = self.foam_color {
+            if let Some(foam_color) = self.foam_color {
                  liquid_material.extension.custom_uniforms.foam_color = foam_color.into();
             }   
  
+            if let Some(surface_noise_scroll) = self.surface_noise_scroll {
+                 liquid_material.extension.custom_uniforms.surface_noise_scroll = surface_noise_scroll.into();
+            }   
 
+            if let Some(depth_max_distance) = self.depth_max_distance {
+                 liquid_material.extension.custom_uniforms.depth_max_distance = depth_max_distance.into();
+            }   
+ 
 
     }
 }

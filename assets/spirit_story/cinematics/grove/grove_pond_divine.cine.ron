@@ -1,0 +1,91 @@
+Cinematic(
+
+//pan to a camera 
+
+// spawn a stage with the greblin and then the wolf , they are running/animating
+
+//dialog with gabriella 
+
+
+/*
+    Waypoints of interest 
+
+
+    grove_against_pond
+
+*/
+
+
+
+
+// make the !  go away ! 
+    steps: [
+
+       (
+            duration:  0, // This represents 0.5 seconds.
+            actions: [ 
+                SetCinematicAiCommands (
+                    source: UnitUniqueName("player"),
+                    cinematic_ai_commands:  Some( [
+                                  SetWalkDestination (Waypoint(
+                                    "grove_against_pond"
+                                    ) ) 
+
+                               ] ) ,
+
+                ),
+
+                 
+                PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_from_pond" )
+        
+               //SetDayNightCycleTime( day_time_seconds: 900  )
+
+             ]  
+        ),
+
+        (
+            duration:  4000, // This represents 0.5 seconds.
+            actions: [ 
+
+ 
+
+               PanCinematicCameraToVirtualCameraSetpoint (camera_unique_name: "grove_from_pond" )
+        
+               
+
+             ]  
+        ),
+
+
+
+         
+    
+ 
+
+         // do dialog !! 
+
+         //gabriella will tell you to call upon your diety 
+         // this is where you get your powers and try to use them (kneel at pond?)
+
+
+        (
+            duration:  1000,  
+            actions: [ 
+
+              StartDialogHeadless (  node: "twisted_grove_pond.dialog"  ) 
+
+          ]),
+
+
+        (
+            duration: 0,  
+            actions: [
+               
+                 EndCinematic
+                                 
+             ]
+        ) 
+
+        ]
+
+ )
