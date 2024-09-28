@@ -4,30 +4,16 @@
             body: "Moon Mistress, Goddess of Life, we call upon you for help!",
             start_trigger_actions: None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
-            dialog_choice_architecture:  Choices([
-                ( 
-                    body: " Option 1  " ,
-                     dialog_action: Some( ExitDialog )
-                   ),
- 
-                
-            ] ),
+            dialog_choice_architecture: Continue,
            // fallback_dialog_action: None //if this none, we just go to the next step 
         ),
 
 
                 (
-            body: "Oh ..! I come in peace, please don't hurt me!",
+            body: " You do not hear a response... ",
             start_trigger_actions: None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
-            dialog_choice_architecture:  Choices([
-                ( 
-                    body: "Try to calm the wolf down " ,
-                     dialog_action: Some( ExitDialog )
-                   ),
- 
-                
-            ] ),
+            dialog_choice_architecture:  Continue,
            // fallback_dialog_action: None //if this none, we just go to the next step 
         ),
         

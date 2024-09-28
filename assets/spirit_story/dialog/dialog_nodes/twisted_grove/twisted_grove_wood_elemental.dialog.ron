@@ -26,8 +26,13 @@
             dialog_choice_architecture:  Choices([
                 ( 
                     body: "Call for help from the divine" ,
-                     dialog_action: Some( ExitDialog )
-                   ),
+
+                     dialog_action: Some( PlayCinematic (
+                            //this no work 
+                        "grove_pond_divine.cine"  
+
+                        ) )
+                ),
 
                 ( 
                     body: "Let the spirit rest" ,
