@@ -29,8 +29,10 @@ pub fn foliage_plugin(app:&mut App){
 
           app
 
-            //.add_systems(Startup, register_foliage_assets)
+             
             .add_systems(Update, (
+
+
                 add_height_maps_to_foliage_layers,
                 propogate_height_data_change_to_foliage,
 
