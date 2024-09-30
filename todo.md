@@ -4,6 +4,10 @@
 
 
 
+- during boot up , move stuff from stack to memory (try not to use stack as much) 
+
+
+
     //BUG: loading model twice + override  breaks materials 
 
 - bug: cant select units ? 
