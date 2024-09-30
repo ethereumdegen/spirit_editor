@@ -36,7 +36,7 @@
             body: " Wait.. what was that?   ",
                start_trigger_actions: Some([
                     PlaySoundSpecial(
-                      Stem("audio/sound_effects/story/meow_reverb.ogg")
+                      audio_clip_type: Stem("audio/sound_effects/story/meow_reverb.ogg")
                     )
                ]),
             end_trigger_actions: None, //if none, we assume we jump to the next step 
@@ -48,7 +48,7 @@
             body: " < You hear a faint sound coming from the cave nearby... > ",
                start_trigger_actions: Some([
                PlaySoundSpecial(
-                      Stem("audio/sound_effects/story/meow_reverb.ogg")
+                      audio_clip_type: Stem("audio/sound_effects/story/meow_reverb.ogg")
                     ),
                SetSpecialAnimationStateOnUniqueNamedUnit ( 
                 unit_unique_name: "player" , 
