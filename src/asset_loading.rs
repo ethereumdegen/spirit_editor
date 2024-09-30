@@ -139,7 +139,7 @@ pub struct EditorConfigAssets {
 #[derive(AssetCollection, Resource)]
 pub struct DoodadManifestAssets {
    
-    #[asset(path = "doodad_manifests", collection(typed, mapped))]
+    #[asset(path = "doodad_manifests/healing_spirit", collection(typed, mapped))]
     pub(crate) doodad_manifests: HashMap<String, Handle<DoodadManifest>>,
 }
 
