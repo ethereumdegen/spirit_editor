@@ -3,7 +3,7 @@ TerrainConfig(
     terrain_dimensions: (1024.0, 1024.0), // Vec2(x, y)
     chunk_rows: 8,
     render_distance: 2000.0,
-    lod_distance: 200.0,
+    lod_distance: 2000.0,
     lod_level_offset: 0,
     collider_lod_level: 0,
     height_scale: 0.001,
