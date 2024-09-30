@@ -136,18 +136,21 @@ pub struct EditorConfigAssets {
 }
 
 
+#[cfg(feature = "healing_spirit_assets")]
 #[derive(AssetCollection, Resource)]
 pub struct DoodadManifestAssets {
    
     #[asset(path = "doodad_manifests/healing_spirit", collection(typed, mapped))]
     pub(crate) doodad_manifests: HashMap<String, Handle<DoodadManifest>>,
 }
-
  
-
-
-
-
+#[cfg(not(feature = "healing_spirit_assets"))]
+#[derive(AssetCollection, Resource)]
+pub struct DoodadManifestAssets {
+   
+    #[asset(path = "doodad_manifests", collection(typed, mapped))]
+    pub(crate) doodad_manifests: HashMap<String, Handle<DoodadManifest>>,
+}
 
 /*
 #[derive(AssetCollection, Resource)]

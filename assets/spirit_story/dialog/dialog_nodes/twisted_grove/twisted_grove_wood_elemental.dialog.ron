@@ -19,8 +19,8 @@
 
 
 
-                (
-            body: "We must help him. What can we do? You are   ",
+      (
+            body: "We must help him. Can you do something?",
             start_trigger_actions: None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
             dialog_choice_architecture:  Choices([

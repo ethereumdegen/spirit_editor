@@ -135,6 +135,10 @@ opt-level = 3
  
 
 
+[features]
+# Define features for conditional compilation
+default = ["healing_spirit_assets"]  
+healing_spirit_assets = []  
 
 
 
