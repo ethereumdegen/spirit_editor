@@ -1,5 +1,7 @@
 (
-  
+
+    //this gets copied to artifacts 
+  external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
 
 
  /*

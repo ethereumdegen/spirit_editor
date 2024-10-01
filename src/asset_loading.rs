@@ -1,4 +1,5 @@
  
+use crate::utils::copy_dir_recursive;
 use std::path::Path;
 use crate::utils::{walk_dir};
 use spirit_edit_core::doodads::doodad_manifest::DoodadManifest;
@@ -35,8 +36,11 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
+
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
+
+              .add_systems(OnExit(AssetLoadState::Init), import_game_assets)
 
 
               .add_loading_state(
@@ -352,6 +356,41 @@ fn load_magic_fx(
    next_state.set(AssetLoadState::Complete);
 
    info!("Asset loading complete.");
+
+}
+
+fn import_game_assets(
+
+    editor_config_res: Res<EditorConfigAssets>,
+    editor_config_assets: Res<Assets<EditorConfig>>,
+
+){
+
+  let editor_config_handle  = &editor_config_res.editor_config;
+
+   let local_artifacts_path = "./artifacts/game_assets";
+
+
+   if let Some( editor_config  ) = editor_config_assets.get( editor_config_handle ){
+
+
+      if let Some(external_folder) = editor_config.get_external_game_assets_folder() {
+
+        let _copied = copy_dir_recursive( 
+             Path::new(&external_folder),
+             Path::new(local_artifacts_path)
+            );
+
+
+      }
+
+    }else {
+        panic!("could not copy external files ");
+    }
+
+
+
+
 
 }
 

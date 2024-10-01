@@ -5,6 +5,15 @@ use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
 
 
+
+use bevy::{
+    asset::{
+        io::{AssetSourceBuilder, AssetSourceId},
+        AssetPath,
+    } 
+};
+
+
 use bevy::{
     core_pipeline::{
         fxaa:: Fxaa, }
@@ -125,6 +134,14 @@ fn main() {
     wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
 
     App::new()
+
+
+      .register_asset_source(
+            "game_assets",
+            AssetSourceBuilder::platform_default("artifacts/game_assets", None),
+        )
+
+
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {

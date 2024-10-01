@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive( Asset, Serialize,Deserialize,Clone,Debug )]
 pub struct EditorConfig {
-
+	external_game_assets_folder: Option<String>,
 
 	initial_terrain_to_load: Option<String> ,
 
@@ -36,7 +36,10 @@ impl TypePath for EditorConfig {
 impl EditorConfig{
 
 
- 
+ 	pub fn get_external_game_assets_folder(&self) -> Option<&String> { 
+
+		return self.external_game_assets_folder.as_ref()
+	}
 
 	pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
 

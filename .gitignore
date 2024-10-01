@@ -1,6 +1,6 @@
 /target
  
- 
+artifacts/**
 assets/models/doodads_broken/**
 assets/models/doodads/**
 assets/models/units/**
