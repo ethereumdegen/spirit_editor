@@ -348,14 +348,14 @@
 
        "TiledStuccoLight":(
         
-        material_name:  "Stucco",  // load from glb 
+        material_name:  "Marble1",  // load from glb 
         uv_scale_factor: 0.125,   
         
       ),
 
        "TiledStuccoDark":(
         
-        material_name:  "Stucco",  // load from glb 
+        material_name:  "Marble1",  // load from glb 
         uv_scale_factor: 0.125,   
 
           diffuse_color_tint: Some( LinearRgba(
