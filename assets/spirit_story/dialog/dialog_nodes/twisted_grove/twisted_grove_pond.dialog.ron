@@ -20,12 +20,7 @@
 
        (
             body: " < You do not hear any response... > ",
-               start_trigger_actions: Some([
-               SetSpecialAnimationStateOnUniqueNamedUnit ( 
-                unit_unique_name: "player" , 
-                animation_state: None  
-                )
-               ]),
+               start_trigger_actions:  None,
             end_trigger_actions: None, //if none, we assume we jump to the next step 
             dialog_choice_architecture:  Continue,
            // fallback_dialog_action: None //if this none, we just go to the next step 
@@ -35,6 +30,10 @@
           (
             body: " Wait.. what was that?   ",
                start_trigger_actions: Some([
+                    SetSpecialAnimationStateOnUniqueNamedUnit ( 
+                    unit_unique_name: "player" , 
+                    animation_state: None  
+                    ),
                     PlaySoundSpecial(
                       audio_clip_type: Stem("audio/sound_effects/story/meow_reverb.ogg")
                     )
