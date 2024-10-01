@@ -133,14 +133,7 @@ transform-gizmo-bevy= "0.3"
 opt-level = 3
 
  
-
-
-[features]
-# Define features for conditional compilation
-default = ["healing_spirit_assets"]  
-healing_spirit_assets = []  
-
-
+ 
 
 [[bin]]
 name = "main"
