@@ -4,7 +4,12 @@
 
 
 
-- during boot up , move stuff from stack to memory (try not to use stack as much) 
+- The way that material name importing works FOR MATERIAL SWAP  is borked.... the way it uses hashmap ? 
+ -  I want to use the same glb file for multiple doodads 
+ - in the next versiion of bevy, try to use the built in GltfMaterialName comp to fix this . 
+
+
+
 
 
 
