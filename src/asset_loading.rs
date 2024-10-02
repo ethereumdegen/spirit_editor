@@ -40,13 +40,25 @@ pub fn asset_loading_plugin(app: &mut App) {
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
+
+            
+
+            //  .add_systems(OnExit(AssetLoadState::Init), import_game_assets)
+
+
+             .add_loading_state(
+                    LoadingState::new(AssetLoadState::Init)
+                        .continue_to_state(AssetLoadState::DoodadManifestsLoad)
+                        .load_collection::<EditorConfigAssets>() 
+                          
+                )
+
               .add_systems(OnExit(AssetLoadState::Init), import_game_assets)
 
-
               .add_loading_state(
-                    LoadingState::new(AssetLoadState::Init)
+                    LoadingState::new(AssetLoadState::DoodadManifestsLoad)
                         .continue_to_state(AssetLoadState::TextureAssetsLoad)
-                        .load_collection::<EditorConfigAssets>() 
+                       
                         .load_collection::<DoodadManifestAssets>() 
                          
                 )
@@ -107,7 +119,8 @@ pub fn asset_loading_plugin(app: &mut App) {
  #[derive(States,Hash,Eq,PartialEq,Debug,Clone,Default)]
 pub enum AssetLoadState {
     #[default]
-    Init,
+    Init, //editor config load 
+    DoodadManifestsLoad,
     TextureAssetsLoad,
     //GltfAssetsLoad,
     ShaderAssetsLoad,
@@ -360,7 +373,13 @@ fn import_game_assets(
 
   let editor_config_handle  = &editor_config_res.editor_config;
 
+
+
    let local_artifacts_path = "./artifacts/game_assets";
+
+   info!("creating dir ");
+   std::fs::create_dir_all(Path::new(local_artifacts_path)).expect("Could not create artifacts dir");
+
 
 
    if let Some( editor_config  ) = editor_config_assets.get( editor_config_handle ){
