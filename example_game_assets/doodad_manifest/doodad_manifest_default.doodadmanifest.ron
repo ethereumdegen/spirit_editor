@@ -1,0 +1,23 @@
+  (
+
+
+
+
+    doodad_definitions: {
+
+ 
+        "blank_block": (
+            name: "blank_block", 
+            model: GltfModel("models/editor/blank_block.glb"),
+            tags: Some([ "editor" ]),
+            snap_dimensions: Some( (2.0,2.0) ),
+        ) 
+ 
+  
+
+
+
+    }
+  )
+
+ 
