@@ -372,16 +372,16 @@ fn editor_tools_ui(
                                 /*
                             if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
                                  ui.label( terrain_def.name.clone() );
-                            }
+                            }*/
                               ui.spacing_mut().slider_width = 255.0;
                             ui.add(
-                                egui::Slider::new(&mut tools_state.color.b, 0..=255)
-                                    .text("Layer Fade (B_Channel")
+                                egui::Slider::new(&mut tools_state.color.b, 0..=4)
+                                    .text("Layer (B_Channel")
                                      .step_by(1.0)
                                     .drag_value_speed(0.1)
 
                                     ,
-                            );*/
+                            );
 
  
 
