@@ -381,6 +381,7 @@ fn update_brush_paint(
                     BrushType::Smooth => TerrainBrushType::Smooth,
                     BrushType::Noise => TerrainBrushType::Noise,
                     BrushType::EyeDropper => TerrainBrushType::EyeDropper,
+                     BrushType::ClearAll => TerrainBrushType::ClearAll,
                 };
 
                        edit_terrain_event_writer.send(EditTerrainEvent {
@@ -397,32 +398,35 @@ fn update_brush_paint(
                EditingTool::FoliageEditingTool(foliage_edit_tool) => {
 
                        let  foliage_brush_type = match &brush_type {
-                            BrushType::SetExact => FoliageBrushType::SetExact,
-                            BrushType::Smooth => FoliageBrushType::SetExact,
-                            BrushType::Noise => FoliageBrushType::SetExact,
-                            BrushType::EyeDropper => FoliageBrushType::EyeDropper,
+                            BrushType::SetExact => Some(FoliageBrushType::SetExact),
+                             BrushType::EyeDropper => Some(FoliageBrushType::EyeDropper),
+                            _ => None 
                         };
                         info!("send edit foliage event ");
-                     edit_foliage_event_writer.send(EditFoliageEvent {   
-                            entity: intersection_entity.clone(),
-                            tool: foliage_edit_tool,
-                            brush_type:foliage_brush_type,
-                            brush_hardness,
-                            coordinates: hit_coordinates,
-                            radius,
-                        });
+
+                    if let Some(foliage_brush_type) = foliage_brush_type {
+                         edit_foliage_event_writer.send(EditFoliageEvent {   
+                                entity: intersection_entity.clone(),
+                                tool: foliage_edit_tool,
+                                brush_type:foliage_brush_type,
+                                brush_hardness,
+                                coordinates: hit_coordinates,
+                                radius,
+                            });
+                     }
                       
                 }, 
                  EditingTool::RegionsEditingTool(region_edit_tool) => {
 
                        let  regions_brush_type = match &brush_type {
-                            BrushType::SetExact => RegionsBrushType::SetExact,
-                            BrushType::Smooth => RegionsBrushType::SetExact,
-                            BrushType::Noise => RegionsBrushType::SetExact,
-                            BrushType::EyeDropper => RegionsBrushType::EyeDropper,
+                            BrushType::SetExact => Some(RegionsBrushType::SetExact),
+                            BrushType::EyeDropper => Some(RegionsBrushType::EyeDropper),
+                            _ => None,
+                            
                         };
 
-                     edit_regions_event_writer.send(EditRegionEvent {   
+                    if let Some(regions_brush_type) = regions_brush_type {
+                        edit_regions_event_writer.send(EditRegionEvent {   
                             entity: intersection_entity.clone(),
                             tool: region_edit_tool,
                             brush_type:regions_brush_type,
@@ -430,6 +434,8 @@ fn update_brush_paint(
                             coordinates: hit_coordinates,
                             radius,
                         });
+                    }
+                    
                       
                 },
 

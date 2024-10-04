@@ -49,6 +49,7 @@ pub struct EditorToolsState {
 pub enum BrushType {
  
     SetExact,
+    ClearAll,
     Smooth,
     Noise,
     EyeDropper
@@ -61,6 +62,7 @@ impl BrushType{
         match self {
 
             BrushType::SetExact  => "Set Exact".into(),
+            BrushType::ClearAll => "Clear All".into(),
              BrushType::Smooth  => "Smooth".into(),
              BrushType::Noise  => "Noise".into(),
              BrushType::EyeDropper  => "Eyedropper".into(),
@@ -171,9 +173,11 @@ BrushType::Smooth ,
 BrushType::Noise , 
 BrushType::EyeDropper
 ];
-const BRUSH_TYPES_SPLAT: [ BrushType; 2] = [
+
+
+const BRUSH_TYPES_SPLAT: [ BrushType; 3] = [
 BrushType::SetExact , 
- 
+ BrushType::ClearAll , 
  BrushType::EyeDropper
 ];
 const BRUSH_TYPES_REGION: [BrushType; 2] = [
@@ -326,7 +330,7 @@ fn editor_tools_ui(
 
 
                             let terrain_index_A = tools_state.color.r.clone();
-                            let terrain_index_B = tools_state.color.g.clone();
+                           // let terrain_index_B = tools_state.color.g.clone();
 
                             let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
              
@@ -345,7 +349,7 @@ fn editor_tools_ui(
                             ui.add(
 
                                 egui::Slider::new(&mut tools_state.color.r, 0..=255)
-                                    .text("Texture A (R_Channel")
+                                    .text("Texture Index (R_Channel")
                                     .step_by(1.0)
                                     .drag_value_speed(0.1)
 
@@ -359,12 +363,13 @@ fn editor_tools_ui(
                             ui.add(
 
                                 egui::Slider::new(&mut tools_state.color.g, 0..=255)
-                                    .text("Texture B (G_Channel")
+                                    .text("Texture Strength (G_Channel")
                                      .step_by(1.0)
                                     .drag_value_speed(0.1)
                                     ,
                             );
-                             
+                                
+                                /*
                             if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
                                  ui.label( terrain_def.name.clone() );
                             }
@@ -376,7 +381,7 @@ fn editor_tools_ui(
                                     .drag_value_speed(0.1)
 
                                     ,
-                            );
+                            );*/
 
  
 
