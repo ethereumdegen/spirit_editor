@@ -1,6 +1,6 @@
 [package]
 name = "spirit_editor"
-version = "0.14.3"
+version = "0.14.5"
 edition = "2021"
 default-run = "main"
 
@@ -21,14 +21,14 @@ image = { version = "0.25.1", default-features = false }
 
 
 
- #bevy_mesh_terrain = "0.14.7"  
+ bevy_mesh_terrain = "0.14.12"  
 
-  bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+  #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
 
 
- #bevy_material_tool = "0.14.7"
-  bevy_material_tool = {path="../bevy_material_tool"}
+  bevy_material_tool = "0.14.7"
+  #bevy_material_tool = {path="../bevy_material_tool"}
 
  degen_toon_water = "0.14.1"
 

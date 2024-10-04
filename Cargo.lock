@@ -1403,7 +1403,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_tool"
-version = "0.14.7"
+version = "0.14.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b747e31e40dc83a47d2d7d0c8243957689e9a8ec860cfcf18de1853a1699eb0e"
 dependencies = [
  "bevy 0.14.1",
  "ron",
@@ -1436,7 +1438,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.14.11"
+version = "0.14.12"
 dependencies = [
  "anyhow",
  "avian3d",
@@ -5709,7 +5711,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_editor"
-version = "0.14.3"
+version = "0.14.5"
 dependencies = [
  "anyhow",
  "bevy 0.14.1",
