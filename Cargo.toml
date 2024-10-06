@@ -21,9 +21,9 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-   bevy_mesh_terrain = "0.14.14"  
+#  bevy_mesh_terrain = "0.14.14"  
 
- #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+  bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
 
 
