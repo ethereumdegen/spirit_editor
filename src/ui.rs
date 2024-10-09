@@ -375,7 +375,7 @@ fn editor_tools_ui(
                             }*/
                               ui.spacing_mut().slider_width = 255.0;
                             ui.add(
-                                egui::Slider::new(&mut tools_state.color.b, 0..=4)
+                                egui::Slider::new(&mut tools_state.color.b, 0..=3)
                                     .text("Layer (B_Channel")
                                      .step_by(1.0)
                                     .drag_value_speed(0.1)

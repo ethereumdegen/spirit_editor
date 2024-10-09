@@ -2,13 +2,13 @@
 
   material_types: {
 
-  	 
-  		"Wall1":(
-  		  
+     
+      "Wall1":(
+        
         material_name:  "Wall1",  // load from glb 
         uv_scale_factor: 1.0,  // do this in the material override lib ?
        
-  		),
+      ),
 
 
 
@@ -84,20 +84,44 @@
       ),
 
 
-       "Rocks3":(
+
+       "Cliff1":(
         
-        material_name:  "Rocks3",  // load from glb 
+        material_name:  "Cliff1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),  
+
+        "Cliff2":(
+        
+        material_name:  "Cliff2",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
+         "Cliff3":(
+        
+        material_name:  "Cliff3",  // load from glb 
         uv_scale_factor: 1.0,  // do this in the material override lib ?
         
       ),
 
 
-       "RockToon":(
+  
+       "Cliff4":(
         
-        material_name:  "RockToon",  // load from glb 
-        uv_scale_factor: 2.0,  // do this in the material override lib ?
+        material_name:  "Cliff4",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
         
       ),
+
+        "Cliff5":(
+        
+        material_name:  "Cliff5",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+      ),
+
 
        "Cobbles1":(
         
@@ -120,13 +144,7 @@
         uv_scale_factor: 2.0,  // do this in the material override lib ?
         
       ),
-
-      "Cobbles4":(
-        
-        material_name:  "Cobbles4",  // load from glb 
-        uv_scale_factor: 2.0,  // do this in the material override lib ?
-        
-      ),
+ 
 
 
         //foliage 
@@ -325,7 +343,7 @@
       // Clay Tiles Materials 
 
 
-  	  "TiledWall1":(
+      "TiledWall1":(
         
         material_name:  "Wall1",  // load from glb 
         uv_scale_factor: 1.0,  
@@ -465,13 +483,7 @@
         
       ),
 
-      "TiledCobbles4":(
-        
-        material_name:  "Cobbles4",  
-        uv_scale_factor: 0.25,   
-        
-      ),
-
+      
       "TiledRocks1":(
         
         material_name:  "Rocks1",   
