@@ -7,7 +7,7 @@
 
   (
     shader_variant_name: "corona_blue.shadvar",
-	  mesh_name:  "models/meshes/FX_glowy_circle.obj", 
+	  mesh_name:  "FX_glowy_circle.obj", 
 	    fx_style: Standard, 
 		  start_time_offset: 0.0,
 		  end_time_offset: 1.0,

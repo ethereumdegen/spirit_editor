@@ -5,7 +5,7 @@
 ( 
 
      shader_variant_name: "waterfall.shadvar",
-	  mesh_name:  "models/meshes/waterfall01.obj", 
+	  mesh_name:  "waterfall01.obj", 
 		  start_time_offset: 0.0,
 		  end_time_offset: 300.0,
 		  start_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),

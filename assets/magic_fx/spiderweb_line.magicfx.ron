@@ -6,7 +6,7 @@
 
   (
       shader_variant_name: "spider_web.shadvar",
-	    mesh_name:  "models/meshes/plane_vertical.obj", 
+	    mesh_name:  "plane_vertical.obj", 
 	    fx_style: Beam,
 		  start_time_offset: 0.0,
 		  end_time_offset: 1.0,

@@ -5,7 +5,7 @@
 ( 
 
      shader_variant_name: "yellow.shadvar",
-	  mesh_name:  "models/meshes/exclamation.obj", 
+	  mesh_name:  "exclamation.obj", 
 		  start_time_offset: 0.0,
 		  end_time_offset: 300.0,
 		  start_transform: (translation: (0.0,2.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),

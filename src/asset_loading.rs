@@ -176,8 +176,8 @@ pub struct GltfAssets {
 #[derive(AssetCollection, Resource)]
 pub struct MeshAssets {
    
-     #[asset(path = "models/meshes", collection(typed, mapped))]
-    pub(crate) meshes: HashMap<String, Handle<Mesh>>,
+     #[asset(path = "../artifacts/game_assets/models/meshes", collection(typed, mapped))]
+    pub(crate) meshes: HashMap<AssetFileName, Handle<Mesh>>,
 
 
 }
@@ -322,6 +322,8 @@ fn load_magic_fx(
                     let mut rebuilt_mesh_handle_map: HashMap<String, Handle<Mesh>> = HashMap::new();
 
                     for (key, value) in mesh_handles_map.iter() {
+
+                        info!("loaded mesh {:?} {:?}", key,value);
                         rebuilt_mesh_handle_map.insert(key.clone().into(), value.clone());
                     }
 

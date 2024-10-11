@@ -163,7 +163,7 @@ fn attach_models_to_doodads(
             RenderableType::GltfModel(model_name) => {
 
                 //let doodad_name_stem = format!("{}#Scene0", model_name);
-                 let doodad_name_stem = format!("{}", model_name);
+                 let doodad_name_stem = format!("../artifacts/game_assets/{}", model_name);
 
                  let model_handle:Handle<Gltf> = asset_server.load(doodad_name_stem);
 
@@ -566,7 +566,7 @@ pub fn update_doodad_placement_preview_model (
            match (&doodad_definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
 
-                  let doodad_name_stem = format!("{}#Scene0", model_name);
+                  let doodad_name_stem = format!("../artifacts/game_assets/{}#Scene0", model_name);
 
                  let model_handle = asset_server.load(doodad_name_stem);
 
