@@ -4,13 +4,12 @@
 
 
 
-- The way that material name importing works FOR MATERIAL SWAP  is borked.... the way it uses hashmap ? 
+- The way that material name importing works FOR MATERIAL SWAP  is borked.... the way it uses hashmap ? (use the new built in GltfMaterialName comp in next bevy version )
  -  I want to use the same glb file for multiple doodads 
  - in the next versiion of bevy, try to use the built in GltfMaterialName comp to fix this . 
 
 
-
-
+ 
 
 
     //BUG: loading model twice + override  breaks materials 
@@ -18,7 +17,7 @@
 - bug: cant select units ? 
  BUG : painting terrain makes it invisible ? 
 
- BUG: Gizmo is offset 
+ BUG: Gizmo local offset is busted for making prefabs 
  
  
 - synty swamp has an issue with texcoords ?
