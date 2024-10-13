@@ -487,7 +487,7 @@ fn populate_doodad_definitions(
 
         if let Some(loaded_manifest) = doodad_manifest_assets.get(  doodad_manifest_handle ) {
 
-            for (doodad_name, doodad_definition) in &loaded_manifest.doodad_definitions {
+            for (doodad_name, doodad_definition) in &loaded_manifest.spawnables {
 
                 loaded_doodad_definitions.insert(doodad_name.to_string(), doodad_definition.clone());
             }
