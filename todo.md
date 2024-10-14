@@ -3,6 +3,8 @@
 ## Spirit Editor
 
 
+- move prefabs to game assets + load from artifacts 
+
 
 - The way that material name importing works FOR MATERIAL SWAP  is borked.... the way it uses hashmap ? (use the new built in GltfMaterialName comp in next bevy version )
  -  I want to use the same glb file for multiple doodads 

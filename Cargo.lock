@@ -5713,7 +5713,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_editor"
-version = "0.14.5"
+version = "0.14.6"
 dependencies = [
  "anyhow",
  "bevy 0.14.1",

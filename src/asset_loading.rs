@@ -419,7 +419,7 @@ fn populate_prefab_definitions (
 ){
 
 
-    let folder_path = "assets/prefabs";
+    let folder_path = "./artifacts/game_assets/prefabs";
 
     let mut definitions_array = HashMap::new();
 
