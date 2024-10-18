@@ -3,6 +3,9 @@
 ## Spirit Editor
 
 
+
+
+
 - move prefabs to game assets + load from artifacts 
 
 
@@ -10,6 +13,10 @@
  -  I want to use the same glb file for multiple doodads 
  - in the next versiion of bevy, try to use the built in GltfMaterialName comp to fix this . 
 
+
+
+
+- if a custom props component ever has a 'target_unique_name' then look for the thing w that unique name.. add a component for virtually linking 
 
  
 

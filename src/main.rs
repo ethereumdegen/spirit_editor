@@ -101,7 +101,7 @@ mod terrain;
 mod regions;
 
 mod utils;
-
+mod virtual_link;
 
 
 use bevy::winit::WinitWindows;
@@ -168,6 +168,7 @@ fn main() {
 
         .add_plugins(loading::loading_plugin)
         .add_plugins(CursorRayPlugin)
+        .add_plugins(virtual_link::virtual_links_plugin)
 
 
         .add_plugins(TerrainMeshPlugin{
