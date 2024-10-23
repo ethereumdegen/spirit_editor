@@ -18,7 +18,11 @@ pub use bevy_editor_pls_core::egui_dock;
 #[doc(inline)]
 pub use bevy_editor_pls_core::{editor, editor_window, AddEditorWindow};
 
-use default_windows::{placement::PlacementWindow, prefabs::PrefabsWindow, StandardWindowsPlugin};
+use default_windows::{
+    materials::MaterialsWindow, 
+    placement::PlacementWindow, 
+    prefabs::PrefabsWindow, 
+    StandardWindowsPlugin};
 pub use egui;
 
 #[cfg(feature = "default_windows")]
@@ -153,6 +157,7 @@ impl Plugin for EditorPlugin {
             app.add_editor_window::<ZoneWindow>();
             app.add_editor_window::<GizmoWindow>();
             app.add_editor_window::<PlacementWindow>();
+            app.add_editor_window::<MaterialsWindow>();
             app.add_editor_window::<controls::ControlsWindow>();
 
             if self.enable_camera_controls {
@@ -178,6 +183,7 @@ impl Plugin for EditorPlugin {
                 &[
                     std::any::TypeId::of::<InspectorWindow>(),
                     std::any::TypeId::of::<PlacementWindow>(),
+                    std::any::TypeId::of::<MaterialsWindow>(),
                 ],
             );
             //   internal_state.split_right::<InspectorWindow>(egui_dock::NodeIndex::root(), 0.75);

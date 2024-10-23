@@ -18,6 +18,7 @@ pub mod renderer;
 pub mod resources;
 pub mod scenes;
 pub mod lighting;
+pub mod materials; 
 
  pub mod doodads;
  pub mod prefabs;
@@ -32,6 +33,9 @@ impl Plugin for StandardWindowsPlugin {
             
  
              .add_plugins(TransformGizmoPlugin)
+
+             .add_event::<materials::MaterialEvent>()  // move to core ? 
+
               .add_systems(Update, (
                gizmos::update_gizmo_options
                 ) .chain()
@@ -40,7 +44,8 @@ impl Plugin for StandardWindowsPlugin {
             .add_systems(Update, (
                 doodads::update_picking_doodads ,
                 placement::update_placement_tool_inputs,
-                placement::handle_placement_tool_events
+                placement::handle_placement_tool_events,
+                materials::handle_selected_material_events
                 ) .chain()
             )
 
