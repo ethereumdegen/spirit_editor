@@ -102,7 +102,7 @@ mod regions;
 
 mod utils;
 mod virtual_link;
-
+mod material_override_link;
 
 use bevy::winit::WinitWindows;
 use winit::window::Icon;
@@ -169,7 +169,7 @@ fn main() {
         .add_plugins(loading::loading_plugin)
         .add_plugins(CursorRayPlugin)
         .add_plugins(virtual_link::virtual_links_plugin)
-
+        .add_plugins(material_override_link::material_overrides_link_plugin)
 
         .add_plugins(TerrainMeshPlugin{
 

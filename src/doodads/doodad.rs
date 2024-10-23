@@ -134,6 +134,7 @@ fn attach_models_to_doodads(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
+    custom_props_query: Query< &CustomPropsComponent , Changed<CustomPropsComponent>>,
 
 
       built_vfx_registry: Res<BuiltVfxHandleRegistry>,
@@ -150,12 +151,21 @@ fn attach_models_to_doodads(
       if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
  
         cmd.try_insert(PickableBundle::default()) ;
-      }
-      
+      } 
 
-        let material_override = &doodad_component.definition.material_override; 
+
+       let custom_props_comp = custom_props_query.get(new_doodad_entity).ok();
+        let material_override_from_props = custom_props_comp.map(|c| c.props.get("material_override")).flatten();
+
+
+        let mut material_override = doodad_component.definition.material_override.clone(); 
         let material_replacement_set = &doodad_component.definition.material_replacement_set; 
 
+
+        if let Some(material_override_from_props) = material_override_from_props {
+
+            material_override =  Some(material_override_from_props.to_string() );
+        }
          
 
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
