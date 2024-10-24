@@ -20,6 +20,14 @@
       ),
 
 
+      "VillageProps":(
+        
+        material_name:  "VillageProps",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+         
+      ),
+
+
 
        "StoneToon1":(
         
