@@ -138,7 +138,7 @@ fn attach_models_to_doodads(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
-    custom_props_query: Query< &CustomPropsComponent , Changed<CustomPropsComponent>>,
+    custom_props_query: Query< &CustomPropsComponent  >,
 
 
       built_vfx_registry: Res<BuiltVfxHandleRegistry>,
