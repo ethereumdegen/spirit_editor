@@ -62,6 +62,7 @@ impl EditorWindow for MaterialsWindow {
 		"Cliff3",
 		"Cliff4",
 		"Cliff5",
+        "Cliff5_blue",
 		"Cobbles1",
 		"Cobbles2",
 		"Cobbles3",

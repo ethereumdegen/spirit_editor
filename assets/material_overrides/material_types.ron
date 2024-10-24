@@ -123,6 +123,23 @@
       ),
 
 
+
+        "Cliff5_blue":(
+        
+        material_name:  "Cliff5",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+          
+              diffuse_color_tint: Some( LinearRgba(
+                          red: 0.24,
+                          green: 0.58,
+                          blue:  0.75,
+                          alpha:  1.0,
+                      )  ),
+
+
+      ),
+
+
        "Cobbles1":(
         
         material_name:  "Cobbles1",  // load from glb 
