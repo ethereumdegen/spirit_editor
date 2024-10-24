@@ -3,8 +3,13 @@
 ## Spirit Editor
 
 
+- build a system that , when meshes are loaded, will tell me if they have texcoord 2 in a warning
 
--dont load doodads until terrain is finished ? ? 
+
+Figure out 
+2024-10-24T21:30:00.740142Z  WARN bevy_gltf::loader: Unknown vertex attribute TEXCOORD_2
+
+
 
 bevy_material_tool::material_name_map: registered material name   is causing crash ! 
 - need to make it use a better strat in V15! *** MaterialName component thingy 
