@@ -5,6 +5,11 @@ use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
 
 
+use bevy::tasks::AsyncComputeTaskPool;
+use bevy::tasks::TaskPoolBuilder;
+
+
+
 
 use bevy::{
     asset::{
@@ -132,6 +137,13 @@ fn set_window_icon(
 
 
 fn main() {
+
+        //maybe not necessary 
+     AsyncComputeTaskPool::get_or_init(|| TaskPoolBuilder::new()
+       .num_threads(32).stack_size(16 * 1024 * 1024).build());
+
+
+
     let mut wgpu_settings = WgpuSettings::default();
     wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
 

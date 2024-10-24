@@ -71,7 +71,8 @@ use crate::{
     app
           //.insert_resource(LoadedGltfAssets::default())
             .add_systems(Update, (
-                attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
+              attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
+               
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
 
@@ -131,6 +132,9 @@ fn attach_models_to_doodads(
 
    asset_server: Res<AssetServer>,
 
+   global_xform_query: Query<&GlobalTransform>,
+   camera_query: Query<Entity, With<Camera3d> >, 
+
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 
@@ -140,12 +144,27 @@ fn attach_models_to_doodads(
       built_vfx_registry: Res<BuiltVfxHandleRegistry>,
     time: Res<Time>, 
 ) {
+
+    let Some(camera_entity) = camera_query.get_single().ok() else {return};
+
+    let Some(camera_xform)  = global_xform_query.get(camera_entity).ok() else {return};
     
     for (new_doodad_entity,  doodad_component) in added_doodad_query.iter() {
      //   let doodad_name = &name_comp.to_string();
 
       //  let doodad_name_clone = doodad_name.clone();
       //  let name_comp = Name::new(doodad_name_clone);
+
+
+
+
+
+        let Some(doodad_xform)  = global_xform_query.get(new_doodad_entity).ok() else {continue};
+
+            //THIS HELPS PREVENT CRASHES BY THROTTLING DOODAD LOAD 
+         let doodad_cam_distance =  doodad_xform.translation().distance( camera_xform.translation() ) ;
+         if doodad_cam_distance > 300.0 {continue};      
+
 
 
       if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
@@ -175,11 +194,10 @@ fn attach_models_to_doodads(
                 //let doodad_name_stem = format!("{}#Scene0", model_name);
                  let doodad_name_stem = format!("../artifacts/game_assets/{}", model_name);
 
+
                  let model_handle:Handle<Gltf> = asset_server.load(doodad_name_stem);
 
-
-
-                        
+                  
 
                     if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                         

@@ -502,7 +502,7 @@ fn populate_doodad_definitions(
 
 }
 
-
+/*
 fn populate_doodad_tag_map_data(
         doodad_definitions_resource: Res < DoodadDefinitionsResource > ,
 
@@ -541,4 +541,51 @@ fn populate_doodad_tag_map_data(
      
  
      
+}*/
+
+fn populate_doodad_tag_map_data(
+    doodad_definitions_resource: Res<DoodadDefinitionsResource>,
+    mut doodad_tag_map_resource: ResMut<DoodadTagMapResource>, 
+) {
+    // Box the HashMap to move it to the heap
+    let mut temp_tag_map: Box<HashMap<String, Vec<String>>> = Box::new(HashMap::new());
+
+    // Now that our manifest is loaded, populate the doodad tag map resource
+    for (doodad_name, doodad_definition) in doodad_definitions_resource
+        .loaded_doodad_definitions
+        .as_ref()
+        .unwrap_or(&HashMap::new())
+    {
+        // Use `.to_owned()` to avoid cloning the entire Vec at once, only individual tags
+        for tag in &doodad_definition.tags.clone().unwrap_or_else(Vec::new) {
+            temp_tag_map
+                .entry(tag.clone())
+                .or_default()
+                .push(doodad_name.to_string());
+        }
+
+        // Add all doodads under "all_doodads" tag
+        temp_tag_map
+            .entry("all_doodads".to_string())
+            .or_default()
+            .push(doodad_name.to_string());
+    }
+
+    // Sort the tag keys and the doodad names under each tag
+    info!("Sorting doodad keys");
+    let mut sorted_keys: Box<Vec<String>> = Box::new(temp_tag_map.keys().cloned().collect());
+    sorted_keys.sort();
+
+    // Rebuild the final tag map, moving from temp_tag_map to doodad_tag_map_resource
+    doodad_tag_map_resource.doodad_tag_map = sorted_keys
+        .into_iter()
+        .map(|k| (k.clone(), temp_tag_map.remove(&k).unwrap()))
+        .collect();
+
+    // Sort the doodad names under each tag
+    for doodads in doodad_tag_map_resource.doodad_tag_map.values_mut() {
+        doodads.sort();
+    }
+
+    info!("Sorted doodad keys");
 }
