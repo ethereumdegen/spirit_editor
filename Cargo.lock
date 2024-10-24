@@ -1403,9 +1403,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_tool"
-version = "0.14.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b747e31e40dc83a47d2d7d0c8243957689e9a8ec860cfcf18de1853a1699eb0e"
+version = "0.14.9"
 dependencies = [
  "bevy 0.14.1",
  "ron",

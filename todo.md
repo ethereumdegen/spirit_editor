@@ -4,6 +4,11 @@
 
 
 
+-dont load doodads until terrain is finished ? ? 
+
+bevy_material_tool::material_name_map: registered material name   is causing crash ! 
+- need to make it use a better strat in V15! *** MaterialName component thingy 
+
 
 
 - move prefabs to game assets + load from artifacts 
