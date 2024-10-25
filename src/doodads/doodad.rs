@@ -137,6 +137,9 @@ pub struct DoodadColliderMarker {}
 const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 
  
+
+
+
 fn attach_models_to_doodads(
     mut commands: Commands,
     mut doodad_load_tracking_resource: ResMut<DoodadGltfLoadTrackingResource>,
