@@ -1,6 +1,7 @@
 use spirit_edit_core::doodads::PlaceDoodadEvent;
 use spirit_edit_core::doodads::doodad::DoodadComponent;
 use spirit_edit_core::prefabs::PrefabComponent;
+use spirit_edit_core::zones::zone_file::CustomPropsComponent;
 use spirit_edit_core::zones::zone_file::TransformSimple;
 use spirit_edit_core::placement::PlacementEvent;
 use spirit_edit_core::placement::PlacementResource;
@@ -182,6 +183,7 @@ pub fn handle_placement_tool_events(
 
   mut  doodad_query: Query< (Entity, &Name, &DoodadComponent, &mut Transform, Option<&Parent>), With<DoodadComponent>  >,
 
+  custom_props_query: Query<&CustomPropsComponent>,
 
   prefab_query: Query< &PrefabComponent >,
    editor: Res<Editor>,
@@ -214,6 +216,9 @@ pub fn handle_placement_tool_events(
                   let doodad_parent_entity = doodad_parent.map(|p| p.get() );
 
 
+                  let duplicated_custom_props = custom_props_query.get( entity ) .ok()
+                  .map(  |c|  c.duplicated().props );
+
 
                     let simple_xform:TransformSimple = doodad_xform.clone().into();
 
@@ -223,7 +228,7 @@ pub fn handle_placement_tool_events(
                              scale: Some(simple_xform.scale), 
                              rotation_euler: Some(simple_xform.rotation), 
                              doodad_name: name_comp.to_string().clone(),
-                             custom_props: None , 
+                             custom_props: duplicated_custom_props , 
                              force_parent:  doodad_parent_entity  ,
                            //  clay_tile_block_data: None , //for now .. 
                       });
