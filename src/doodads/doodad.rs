@@ -22,6 +22,9 @@ use spirit_edit_core::doodads::DoodadToolState;
 use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
 use bevy_mod_raycast::prelude::*;
+
+
+use bevy::utils::HashSet; 
 use spirit_edit_core::doodads::DoodadToolEvent;
 use spirit_edit_core::placement::PlacementResource;
 use spirit_edit_core::doodads::DoodadProto;
@@ -69,9 +72,11 @@ use crate::{
 
 
     app
-          //.insert_resource(LoadedGltfAssets::default())
+            .init_resource::<DoodadGltfLoadTrackingResource>()
             .add_systems(Update, (
-              attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
+                attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
+
+                decrement_doodad_gltf_load_tracker, 
                
                 add_doodad_collider_markers, 
                 hide_doodad_collision_volumes,
@@ -98,7 +103,24 @@ use crate::{
 
 
  }
+
+
+ const DOODAD_MAX_LOAD_DISTANCE:f32 = 1000.0;
  
+
+#[derive(Resource,Default)]
+pub struct DoodadGltfLoadTrackingResource {
+
+    pub doodad_scenes_loading:  HashSet<AssetId<Gltf>  >
+}
+impl DoodadGltfLoadTrackingResource{
+
+    pub fn is_overloaded (&self) -> bool {
+        return self.doodad_scenes_loading.len() >= 10 
+
+    }
+}
+
 
 #[derive(Component, Default)]
 pub struct RecentlyFailedToLoadModel {
@@ -117,6 +139,8 @@ const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
  
 fn attach_models_to_doodads(
     mut commands: Commands,
+    mut doodad_load_tracking_resource: ResMut<DoodadGltfLoadTrackingResource>,
+
     added_doodad_query: Query<
         (Entity,   &DoodadComponent),
         (
@@ -163,7 +187,7 @@ fn attach_models_to_doodads(
 
             //THIS HELPS PREVENT CRASHES BY THROTTLING DOODAD LOAD 
          let doodad_cam_distance =  doodad_xform.translation().distance( camera_xform.translation() ) ;
-         if doodad_cam_distance > 300.0 {continue};      
+         if doodad_cam_distance > DOODAD_MAX_LOAD_DISTANCE {continue};      
 
 
 
@@ -191,13 +215,17 @@ fn attach_models_to_doodads(
         match (&doodad_component.definition.model).clone() {
             RenderableType::GltfModel(model_name) => {
 
+                if doodad_load_tracking_resource.is_overloaded() {
+                    continue
+                }
+
                 //let doodad_name_stem = format!("{}#Scene0", model_name);
                  let doodad_name_stem = format!("../artifacts/game_assets/{}", model_name);
 
 
                  let model_handle:Handle<Gltf> = asset_server.load(doodad_name_stem);
 
-                  
+                     doodad_load_tracking_resource.doodad_scenes_loading.insert( model_handle.id() );
 
                     if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                         
@@ -217,11 +245,14 @@ fn attach_models_to_doodads(
                                 .remove::<RecentlyFailedToLoadModel>()
   
                                .add_child( scene  );
+
+
+
+                          
                     }
       
 
                       
-
 
 
 
@@ -327,6 +358,37 @@ fn attach_models_to_doodads(
     }
 }
 
+
+
+
+//may want to do this in the main game in case NOT doing it causes crashes 
+fn decrement_doodad_gltf_load_tracker(
+
+    mut asset_events: EventReader<AssetEvent<Gltf>>,
+
+    mut doodad_load_tracking_resource: ResMut<DoodadGltfLoadTrackingResource>,
+
+){
+
+    for evt in asset_events.read() {
+
+        match evt {
+             
+            AssetEvent::LoadedWithDependencies { id } =>  {
+
+
+                  let _removed =  doodad_load_tracking_resource.doodad_scenes_loading.remove( id ); 
+ 
+
+            }
+
+            _ => {}
+        }
+ 
+      
+    }   
+ 
+}
 
  
 fn remove_recently_failed_to_load(
