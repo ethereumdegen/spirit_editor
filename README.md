@@ -44,6 +44,8 @@ If you set it to None, then it will work but will only load a default sample doo
 
 On boot up of the editor, the contents of this external game assets repo will be copied into the 'artifacts' folder which is .gitignored.  In this way, the assets for the game you are building can remain separate from the assets of the editor itself. 
 
+See 'example_game_assets' for an example of how this private repo should be set up.  Typically, it contains doodad_manifest files and all models for those doodads for your game.  For example, the doodad manifest would specify "tree_1" as a doodad type and then you would have a model "tree_1.glb" in the models folder.  When the editor boots, all of that gets copied to /artifacts/game_assets automatically and all of that data is used to build the "doodads pane".  
+
 
 ## Tool Modes 
 1. Terrain Height
