@@ -59,7 +59,7 @@ See 'example_game_assets' for an example of how this private repo should be set 
 
 ### Terrain Splat Map
  
-- When painting splat, the system supports up to 255 textures with high efficiency and very few draw calls. However, the tradeoff is you have to be careful how you blend and paint them.  To blend, be sure that you use the 'layer fade' and fade between two textures at every transition or you will get artifact lines.  This technique does make painting slightly more tedius but offers extreme splat map optimization and texture capacity in your game. 
+- You can configure the look and feel of your terrain that you paint by editing the contents of assets/terrain/TERRAIN_NAME .  Once you are happy with your terrain configuration and painted/heightmapped data, simply copy the terrain files to your game assets and load it the same way in your game.  
 
 
 
