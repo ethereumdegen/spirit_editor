@@ -62,6 +62,7 @@ initial_zones_to_load: Some([
          "village1.zone",
         "dungeon_01_exterior.zone",
          "temple_exterior.zone",
+          "test_monsters.zone",
 
 
  ]),  
