@@ -36,7 +36,7 @@
 
 */
 
- /*
+ /*s
  initial_zones_to_load: Some([
         "grove/grove_cave_interior.zone"
 ]),  
@@ -62,7 +62,7 @@ initial_zones_to_load: Some([
          "village1.zone",
         "dungeon_01_exterior.zone",
          "temple_exterior.zone",
-          "whispering_forest.zone",
+          "whispering_woods.zone",
         //  "test_monsters.zone",
 
 
