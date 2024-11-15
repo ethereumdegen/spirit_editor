@@ -4,10 +4,21 @@
     
         (
             name: "highland_grass1",
+ 
+           
+        ),
 
-          //  mesh_name: Some("grass2"),
 
-          //  material_name: Some("foliage_green")
+
+        (
+            name: "highland_grass2",
+ 
+            
+           
+        ),
+         (
+            name: "highland_grass3",
+ 
             
            
         ),
