@@ -5,6 +5,10 @@ use bevy::render::view::RenderLayers;
 use bevy::utils::HashSet;
 use bevy::window::WindowRef;
 use bevy::{prelude::*, render::primitives::Aabb};
+
+use bevy::core_pipeline::tonemapping::Tonemapping;
+use bevy::render::view::ColorGrading;
+
 use bevy_editor_pls_core::{
     editor_window::{EditorWindow, EditorWindowContext},
     Editor, EditorEvent,
@@ -12,6 +16,8 @@ use bevy_editor_pls_core::{
 use bevy_inspector_egui::egui;
 // use bevy_mod_picking::prelude::PickRaycastSource;
 use transform_gizmo_bevy::GizmoCamera;
+
+use bevy::core_pipeline::bloom::BloomSettings;
 
 use crate::hierarchy::{HideInEditor, HierarchyWindow};
 
@@ -153,11 +159,21 @@ fn configure_camera_custom(
 
     let target = RenderTarget::Window(WindowRef::Entity(editor.window()));
 
+
+      let mut color_grading = ColorGrading::default();
+
+    color_grading.global.exposure = 1.05;
+
+
     camera_config.target = target.clone();
+    camera_config.hdr = true ; 
 
     commands.entity(cam_entity)
+    .insert( Tonemapping::AcesFitted )
+    .insert( color_grading ) 
     .insert( ActiveEditorCamera {} )
     .insert(   GizmoCamera   )
+    .insert(   BloomSettings::OLD_SCHOOL )
     .insert( NotInScene {} )
      .insert( HideInEditor {} )
        .insert( EditorCamera {} )
