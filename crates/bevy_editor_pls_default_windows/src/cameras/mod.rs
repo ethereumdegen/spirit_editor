@@ -160,7 +160,7 @@ fn configure_camera_custom(
     let target = RenderTarget::Window(WindowRef::Entity(editor.window()));
 
 
-      let mut color_grading = ColorGrading::default();
+    let mut color_grading = ColorGrading::default();
 
     color_grading.global.exposure = 1.05;
 
