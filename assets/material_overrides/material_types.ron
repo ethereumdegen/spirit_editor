@@ -29,6 +29,41 @@
 
 
 
+      "Fern1":(
+        
+        material_name:  "Fern1",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+         
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.90,
+                          green: 0.96,
+                          blue:  1.0,
+                          alpha:  1.0,
+                      )  )
+         
+      ),
+
+
+
+
+      "Fern2":(
+        
+        material_name:  "Fern2",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+          
+
+         diffuse_color_tint: Some( LinearRgba(
+                          red: 0.90,
+                          green: 0.96,
+                          blue:  1.0,
+                          alpha:  1.0,
+                      )  )
+
+      ),
+
+
+
+
        "StoneToon1":(
         
         material_name:  "StoneToon",  // load from glb 
@@ -115,6 +150,22 @@
       ),
 
 
+           "Cliff3_blue":(
+        
+        material_name:  "Cliff3",  // load from glb 
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+          
+
+              diffuse_color_tint: Some( LinearRgba(
+                          red: 0.34,
+                          green: 0.62,
+                          blue:  0.75,
+                          alpha:  1.0,
+                      )  ),
+              
+      ),
+
+
   
        "Cliff4":(
         
@@ -138,8 +189,8 @@
         uv_scale_factor: 1.0,  // do this in the material override lib ?
           
               diffuse_color_tint: Some( LinearRgba(
-                          red: 0.24,
-                          green: 0.58,
+                          red: 0.34,
+                          green: 0.62,
                           blue:  0.75,
                           alpha:  1.0,
                       )  ),
