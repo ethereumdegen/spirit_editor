@@ -30,9 +30,9 @@ image = { version = "0.25.1", default-features = false }
 #  bevy_material_tool = "0.14.7"
  #  bevy_material_tool = {path="../bevy_material_tool"}
 
- bevy_material_wizard = "0.14.4"
+ #bevy_material_wizard = "0.14.4"
 
-  # bevy_material_wizard = {path="../bevy_material_wizard"}
+  bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
  degen_toon_water = "0.14.1"

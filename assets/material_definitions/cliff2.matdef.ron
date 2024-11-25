@@ -12,7 +12,7 @@
 
 
 
-        uv_scale_factor: 16.0,  // do this in the material override lib ?
+        uv_scale_factor: 1.0,   // do this in the material override lib ?
          
 
 
