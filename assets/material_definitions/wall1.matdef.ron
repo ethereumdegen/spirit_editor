@@ -1,0 +1,26 @@
+(
+	
+	 material_name:  "Wall1",   
+
+	diffuse_texture: Some("textures/wall1.png"),
+	normal_texture: Some("textures/wall1_normal.png"),
+
+	roughness: 1.0,
+
+  emissive_texture: None ,
+
+
+
+        uv_scale_factor: 16.0,  // do this in the material override lib ?
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 1.0,
+                          green: 1.0,
+                          blue:  1.0,
+                          alpha:  1.0,
+                      )  )
+
+
+
+
+
+)

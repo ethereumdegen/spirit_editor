@@ -1,6 +1,8 @@
  
-use bevy_material_tool::material_replacements::MaterialReplacementApplySetWhenSceneReadyComponent;
-use bevy_material_tool::material_replacements::MaterialReplacementWhenSceneReadyComponent;
+//use bevy_material_wizard::material_replacements::MaterialReplacementApplySetWhenSceneReadyComponent;
+//use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
+
+
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
@@ -10,7 +12,7 @@ use spirit_edit_core::gltf_models::AddGltfModelComponent;
 
 
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
-use bevy_material_tool::material_overrides::{
+use bevy_material_wizard::material_overrides::{
     MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
 
 };
@@ -275,13 +277,14 @@ fn attach_models_to_doodads(
                     } else  if let Some( material_replacement_set  ) = material_replacement_set  {
                         // info!("found   material_replacements  {:?}", material_replacements );
 
-                         if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                        warn!("not adding component for material replacement set ");
+                        /* if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                             cmd.try_insert(
                                 MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
                                    
 
                             );
-                        }
+                        }*/
 
                     }
 

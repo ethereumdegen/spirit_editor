@@ -1,4 +1,4 @@
-use bevy_material_tool::material_overrides::MaterialOverrideComponent;
+use bevy_material_wizard::material_overrides::MaterialOverrideComponent;
 use bevy_clay_tiles::clay_tile_block::{ClayTileBlock,ClayTileMaterial};
 use bevy::prelude::*; 
 

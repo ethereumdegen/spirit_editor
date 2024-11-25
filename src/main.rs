@@ -33,7 +33,7 @@ use bevy_editor_pls_default_windows::lighting::Sun;
  
  use bevy_mesh_terrain::TerrainEditMode;
 
- use bevy_material_tool::BevyMaterialToolPlugin;
+ use bevy_material_wizard::BevyMaterialWizardPlugin;
 
 use crate::editor_config::EditorConfig;
 use bevy::core_pipeline::prepass::NormalPrepass;
@@ -191,9 +191,10 @@ fn main() {
         .add_plugins(BevyRegionsPlugin::default())
 
 
-        .add_plugins(BevyMaterialToolPlugin{
-              material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
-              material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
+        .add_plugins(BevyMaterialWizardPlugin{
+              material_defs_folder_path: "assets/material_definitions".to_string(),
+              //material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
+              //material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
         }  )
 
 
