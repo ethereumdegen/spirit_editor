@@ -6,6 +6,7 @@
 	normal_texture: Some("textures/material_overrides/cliff4_normal.png"),
 
 	roughness: 0.8,
+  metallic:Some(0.4),
 
      emissive_texture: None ,
 

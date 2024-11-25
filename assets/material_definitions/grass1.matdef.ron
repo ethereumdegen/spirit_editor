@@ -1,0 +1,26 @@
+(
+	
+	 material_name:  "Grass1",   
+
+	diffuse_texture: Some("textures/material_overrides/grass1_diffuse.png"),
+	 
+	roughness: 0.8,
+
+     emissive_texture: None ,
+
+     alpha_mode: AlphaBlend, 
+
+
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        diffuse_color_tint: Some( LinearRgba(
+                          red: 0.2,
+                          green: 0.7,
+                          blue:  0.5,
+                          alpha:  1.0,
+                      )  )
+
+
+
+
+
+)

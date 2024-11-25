@@ -1,0 +1,18 @@
+(
+	
+	 material_name:  "Leaves1",   
+
+ 	diffuse_texture: Some("textures/material_overrides/leaves1_diffuse.png"),
+ 	 
+	roughness: 0.8,
+
+  alpha_mode: AlphaBlend,
+
+    
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+
+
+
+
+)
