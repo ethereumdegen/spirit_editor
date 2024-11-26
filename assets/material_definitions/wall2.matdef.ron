@@ -2,8 +2,8 @@
 	
 	 material_name:  "Wall2",   
 
-	diffuse_texture: Some("textures/wall2.png"),
-	normal_texture: Some("textures/wall2_normal.png"),
+	diffuse_texture: Some("textures/material_overrides/wall2_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/wall2_normal.png"),
 
 	roughness: 1.0,
 
@@ -11,7 +11,7 @@
 
 
 
-        uv_scale_factor: 16.0,  // do this in the material override lib ?
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
         diffuse_color_tint: Some( LinearRgba(
                           red: 1.0,
                           green: 1.0,
