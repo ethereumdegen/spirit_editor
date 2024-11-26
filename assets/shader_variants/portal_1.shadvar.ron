@@ -1,6 +1,6 @@
 (
    
-    texture: "textures/NoiseElectro01b.png",
+    texture: "textures/vfx_textures/NoiseElectro01b.png",
     texture_mask: None , //add me 
     animation_speed: (0.8,0.2),  
 

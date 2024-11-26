@@ -1,6 +1,6 @@
 (
    
-    texture: "textures/SunBeam_Tex_01.png",
+    texture: "textures/vfx_textures/SunBeam_Tex_01.png",
     animation_speed: (0.015,0.0),  
 
     distortion_speed: (0.4,0.4),

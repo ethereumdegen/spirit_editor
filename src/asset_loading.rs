@@ -136,8 +136,8 @@ pub enum AssetLoadState {
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
    
-     #[asset(path = "textures", collection(typed, mapped))]
-    pub(crate) textures: HashMap<String, Handle<Image>>,
+     #[asset(path = "textures/vfx_textures", collection(typed, mapped))]
+    pub(crate) vfx_textures: HashMap<String, Handle<Image>>,
 
 
 }
@@ -243,7 +243,7 @@ fn load_shader_variants(
                         .expect(format!("could not load {:?}", &file_stem).as_str());
 
                     //finish loading and building the shader variant and add it to the map 
-                    let texture_handles_map = &loaded_textures.textures;
+                    let texture_handles_map = &loaded_textures.vfx_textures;
                     let mut rebuilt_texture_handle_map: HashMap<String, Handle<Image>> = HashMap::new();
 
                     for (key, value) in texture_handles_map.iter() {

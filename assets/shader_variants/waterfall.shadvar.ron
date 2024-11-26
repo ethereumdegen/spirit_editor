@@ -1,6 +1,6 @@
 (
    
-    texture: "textures/water_01.png",
+    texture: "textures/vfx_textures/water_01.png",
     animation_speed: (0.0005,0.5),  
 
     distortion_speed: (0.02,0.01),
