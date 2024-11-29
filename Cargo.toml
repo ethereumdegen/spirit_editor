@@ -81,6 +81,9 @@ bevy_asset_loader = "0.21.0"
 
  
 bevy_foliage_tool =   "0.14.6"
+
+
+ # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
 #  bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
  
 

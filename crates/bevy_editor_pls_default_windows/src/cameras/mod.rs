@@ -160,20 +160,15 @@ fn configure_camera_custom(
     let target = RenderTarget::Window(WindowRef::Entity(editor.window()));
 
 
-    let mut color_grading = ColorGrading::default();
-
-    color_grading.global.exposure = 1.05;
-
-
+   
     camera_config.target = target.clone();
-    camera_config.hdr = true ; 
+    
 
     commands.entity(cam_entity)
-    .insert( Tonemapping::AcesFitted )
-    .insert( color_grading ) 
+ 
     .insert( ActiveEditorCamera {} )
     .insert(   GizmoCamera   )
-    .insert(   BloomSettings::OLD_SCHOOL )
+
     .insert( NotInScene {} )
      .insert( HideInEditor {} )
        .insert( EditorCamera {} )

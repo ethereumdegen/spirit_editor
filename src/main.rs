@@ -1,4 +1,6 @@
 
+use bevy::render::view::ColorGrading;
+//use bevy_toon_shader::{ToonShaderPlugin,ToonShaderSun,ToonShaderMainCamera}; 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use bevy_foliage_tool::BevyFoliageMaterialPlugin;
@@ -177,7 +179,7 @@ fn main() {
         )   
        
 
-
+          // .add_plugins(ToonShaderPlugin)
         .add_plugins(loading::loading_plugin)
         .add_plugins(CursorRayPlugin)
         .add_plugins(virtual_link::virtual_links_plugin)
@@ -358,7 +360,9 @@ fn setup(
         ;
 
 
-   
+    
+
+    //add toon shader 
 
 
  
@@ -369,7 +373,7 @@ fn setup(
 
 
             illuminance: light_consts::lux::OVERCAST_DAY,
-            shadows_enabled: false,
+            shadows_enabled: true,
 
             color: Color::WHITE,
             ..default()
@@ -382,13 +386,23 @@ fn setup(
         },
 
         ..default()
-    }  ).insert(Sun); 
+    }  )
+    .insert(Sun)
+   // .insert( ToonShaderSun )
+
+    ; 
 
 
         //efficient for low poly 
    // *msaa = Msaa::Sample4; 
 
     // camera
+      let mut color_grading = ColorGrading::default();
+
+    color_grading.global.exposure = 1.05;
+ 
+
+  
 
     commands
         .spawn(Camera3dBundle {
@@ -396,19 +410,21 @@ fn setup(
                  hdr: true, // 1. HDR must be enabled on the camera
                 ..default()
             },
-            tonemapping: Tonemapping::TonyMcMapface,
+            tonemapping: Tonemapping::AcesFitted,
 
             transform: Transform::from_xyz(20.0, 162.5, 20.0)
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
             ..default()
         })
        .insert( BloomSettings::OLD_SCHOOL )
+     //  .insert( ToonShaderMainCamera )
+         .insert( color_grading ) 
         .insert(TerrainViewer::default())
          .insert( FoliageViewer )
         .insert( DepthPrepass )
         .insert( NormalPrepass)
         .insert(Fxaa::default()) 
-        // .insert(ShadowFilteringMethod::Jimenez14)
+          .insert(ShadowFilteringMethod::Hardware2x2)
        ;
 }
 
