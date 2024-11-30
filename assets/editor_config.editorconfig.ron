@@ -36,19 +36,19 @@
 
 */
 
+/*
   
  initial_zones_to_load: Some([
         "grove/grove_cave_interior.zone"
 ]),  
-  
+  */
 
 /*
   initial_zones_to_load: Some([
         "dungeons/shallow_cave_interior.zone"
 ]), 
 */
-
-  /*
+ 
  
 
   initial_terrain_to_load:  Some("default_terrain"),    
@@ -76,6 +76,6 @@ initial_zones_to_load: Some([
 
  ]),  
  initial_foliage_scene_to_load: Some("default_foliage.foliage"), 
- */
+  
 
 )

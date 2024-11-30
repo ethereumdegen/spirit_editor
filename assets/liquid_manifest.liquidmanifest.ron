@@ -38,7 +38,8 @@
                          alpha: 0.7
         ) ),
 
-        surface_noise_scroll: Some( (0.02,0.02) ),
+        surface_noise_scroll: Some( (0.002,0.002) ),
+        surface_distortion_amount: Some( 0.2 ),
         depth_max_distance: Some( 1.0 ) ,
 
 

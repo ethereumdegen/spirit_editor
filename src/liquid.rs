@@ -17,7 +17,7 @@ pub(crate) fn liquid_plugin(app: &mut App) {
    
       .add_plugins(DegenToonWaterPlugin)
 
-
+      .register_type::<LiquidPlaneComponent>()
       .init_resource::<LiquidManifest>()
 
       .add_systems(Startup, load_liquid_manifest)
@@ -34,7 +34,8 @@ pub(crate) fn liquid_plugin(app: &mut App) {
  
 
 
-#[derive(Component)]
+#[derive(Component,Reflect)]
+#[reflect(Component)]
 pub struct LiquidPlaneComponent {
   pub liquid_type: String //"water" is default 
 }
@@ -60,6 +61,8 @@ pub struct LiquidPlaneComponent {
     mut meshes: ResMut<Assets<Mesh>>,
     mut toon_water_materials: ResMut<Assets<ToonWaterMaterial>>,
 
+     mut standard_materials: ResMut<Assets<StandardMaterial>>,
+
 
     liquid_manifest_res : Res<LiquidManifest>
 
@@ -72,38 +75,68 @@ pub struct LiquidPlaneComponent {
       
  
 
-  let liquid_type = &liquid_plane_component.liquid_type ;
+      let liquid_type = &liquid_plane_component.liquid_type ;
 
- 
- //  let base_color = Color::rgba(0.2,0.2,0.6,1.0);
-  // let emissive = Color::rgba(0.2,0.2,0.6,1.0);
-
-
-  let mut liquid_material =  build_toon_water_material (  );
+     
+     //  let base_color = Color::rgba(0.2,0.2,0.6,1.0);
+      // let emissive = Color::rgba(0.2,0.2,0.6,1.0);
 
 
-  if let Some( liquid_definition ) =  liquid_manifest_res.liquid_definitions.get(  liquid_type ) {
-
-         liquid_definition.apply_to_liquid_material(&mut liquid_material);
-  }
+      let mut liquid_material = None; // build_toon_water_material (  );
 
 
-  
+      if let Some( liquid_definition ) =  liquid_manifest_res.liquid_definitions.get(  liquid_type ) {
+            let mut water_mat = build_toon_water_material();
+            liquid_definition.apply_to_liquid_material(&mut water_mat);  
 
-  let liquid_material_handle = toon_water_materials.add( 
-    liquid_material
-         );   
+            liquid_material = Some(water_mat);
+            // liquid_definition.apply_to_liquid_material(&mut liquid_material);
+      } 
 
-  let water_mesh =  commands.spawn(MaterialMeshBundle {
-            mesh: meshes.add(Plane3d::default().mesh().size(1.0, 1.0)),
-            material:  liquid_material_handle,
-            ..default()
-        } )
-        .id();
+      if let Some( liquid_material ) = liquid_material {
 
-    commands.entity(new_entity).add_child(
-        water_mesh 
-        );
+
+             let liquid_material_handle = toon_water_materials.add( 
+                liquid_material
+             );   
+
+              let water_mesh =  commands.spawn(MaterialMeshBundle {
+                        mesh: meshes.add(Plane3d::default().mesh().size(1.0, 1.0)),
+                        material:  liquid_material_handle,
+                        ..default()
+                    } )
+                    .id();
+
+            commands.entity(new_entity).add_child(
+                water_mesh 
+            );
+
+
+
+      } else {
+
+                let warning_material_handle = standard_materials.add( 
+                      Color::srgb(1.0,0.0,0.0) 
+                 );   
+
+
+
+              let water_mesh =  commands.spawn(MaterialMeshBundle {
+                        mesh: meshes.add(Plane3d::default().mesh().size(1.0, 1.0)),
+                        material:  warning_material_handle,
+                        ..default()
+                    } )
+                    .id();
+
+            commands.entity(new_entity).add_child(
+                water_mesh 
+            );
+
+
+      }
+      
+
+      
 
     }
 
