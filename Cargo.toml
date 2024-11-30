@@ -9,8 +9,8 @@ default-run = "main"
 
 
 [dependencies]
-bevy = "0.14.1"
-bevy_egui = "0.28.0"
+bevy = "0.15.0"
+bevy_egui = "0.29.0"
 
 
   
@@ -21,44 +21,37 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-   bevy_mesh_terrain = "0.14.15"  
+   bevy_mesh_terrain = "0.15.1"  
 
    #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
 
-
-#  bevy_material_tool = "0.14.7"
- #  bevy_material_tool = {path="../bevy_material_tool"}
-
-   bevy_material_wizard = "0.14.6"
+ 
+   bevy_material_wizard = "0.15.0"
 
   # bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
- degen_toon_water = "0.14.1"
-
+ degen_toon_water = "0.15.0" 
 #degen_toon_water =  {path="../degen_toon_water"}
 
 
- bevy_regions = "0.14.1"
+ bevy_regions = "0.15.0"
   
    
- bevy_clay_tiles = "0.14.17"
+ bevy_clay_tiles = "0.15.0"
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
-bevy_magic_fx = "0.14.2"
+bevy_magic_fx = "0.15.0"
 
+# vendored into new bevy ! 
+#bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
+#bevy_mod_raycast = "0.18.0"
 
-bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
-bevy_mod_raycast = "0.18.0"
+ 
 
-
- # seldom_fn_plugin = "0.6.0"  # deprecated 
-
-
-
- bevy_common_assets = {version="0.11.0", features= ["ron"]}
+ bevy_common_assets = {version="0.12.0", features= ["ron"]}
  
 
 serde = { version = "1", features = ["derive"] }
@@ -71,16 +64,16 @@ bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
-bevy_obj = "0.14.0"
+bevy_obj = "0.15.0"
  
 
 anyhow = "1"
-bevy_mod_sysfail = "7.0.0"
+#bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.25.1"
 bevy_asset_loader = "0.21.0"
 
  
-bevy_foliage_tool =   "0.14.6"
+bevy_foliage_tool =   "0.15.0"
 
 
  # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
@@ -112,7 +105,7 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
-  spirit_edit_core =  "0.14.17"
+  spirit_edit_core =  "0.15.0"
  #spirit_edit_core =   {path = "../spirit_edit_core"}
 
 
@@ -122,7 +115,7 @@ rand = "0.8"
  
 
 anyhow = "1"
-bevy_mod_sysfail = "7.0.0"
+#bevy_mod_sysfail = "7.0.0"
 
 bevy-inspector-egui = "0.25.1"
 
