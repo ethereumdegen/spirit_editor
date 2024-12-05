@@ -110,24 +110,23 @@ bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_edito
 
 
  
-bevy_egui = "0.31.0"
+
 rand = "0.8"
  
 
 anyhow = "1"
-#bevy_mod_sysfail = "7.0.0"
+ 
+bevy_egui = "0.31.1"
+bevy-inspector-egui = "0.28.0"
 
-bevy-inspector-egui = "0.25.1"
+ 
 
-
-
-
-egui = "0.28"
-egui_dock = "0.13"
+egui = "0.29"
+  egui_dock = "0.14"
 # egui-gizmo = "0.16"  # deprecated ? 
 
-transform-gizmo-bevy= "0.3"
-#transform-gizmo-bevy= {path="../transform-gizmo/crates/transform-gizmo-bevy"}
+#transform-gizmo-bevy= "0.3"
+ transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
 
  
 [profile.dev.package."*"]
