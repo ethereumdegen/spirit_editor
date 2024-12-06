@@ -205,7 +205,7 @@ impl Default for AddWindowState {
             "3D",
             AddItem::new("PrefabRoot".into(), |world, entity| {
                 world.entity_mut(entity)
-                .insert(SpatialBundle::default())
+                .insert(Transform::default())
                 .insert(PrefabComponent )
                 .insert(Name::new("NewPrefab"))
 
@@ -226,13 +226,13 @@ impl Default for AddWindowState {
                 let mut materials = world
                     .get_resource_mut::<Assets<StandardMaterial>>()
                     .unwrap();
-                let material = materials.add(StandardMaterial::default());
+                let material = materials.add( StandardMaterial::default() ) ;
 
-                world.entity_mut(entity).insert(PbrBundle {
-                    mesh,
-                    material,
-                    ..Default::default()
-                });
+                world.entity_mut(entity).insert( (
+                    Mesh3d( mesh) ,
+                    MeshMaterial3d( material ),
+                    
+                ) );
             }),
         );
 

@@ -164,22 +164,22 @@ fn add_gizmo_markers(
         }
     }
 
-    add(&mut commands, point_lights, "PointLight Gizmo", || {
-        PbrBundle {
-            mesh: gizmo_marker_meshes.point_light_mesh.clone_weak(),
-            material: gizmo_marker_meshes.point_light_material.clone_weak(),
-            ..default()
-        }
-    });
+    add(&mut commands, point_lights, "PointLight Gizmo", || (
+         
+             Mesh3d(gizmo_marker_meshes.point_light_mesh.clone_weak() ),
+            MeshMaterial3d ( gizmo_marker_meshes.point_light_material.clone_weak() ), 
+            
+        
+    ));
     add(
         &mut commands,
         directional_lights,
         "DirectionalLight Gizmo",
-        || PbrBundle {
-            mesh: gizmo_marker_meshes.directional_light_mesh.clone_weak(),
-            material: gizmo_marker_meshes.directional_light_material.clone_weak(),
-            ..default()
-        },
+        ||  (
+            Mesh3d( gizmo_marker_meshes.directional_light_mesh.clone_weak()),
+            MeshMaterial3d( gizmo_marker_meshes.directional_light_material.clone_weak() ),
+            
+        ),
     );
 
     let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER.into());
@@ -194,11 +194,11 @@ fn add_gizmo_markers(
             ))
             .with_children(|commands| {
                 commands.spawn((
-                    PbrBundle {
-                        mesh: gizmo_marker_meshes.camera_mesh.clone_weak(),
-                        material: gizmo_marker_meshes.camera_material.clone_weak(),
-                        ..default()
-                    },
+                     
+                    Mesh3d(   gizmo_marker_meshes.camera_mesh.clone_weak() ),
+                    MeshMaterial3d( gizmo_marker_meshes.camera_material.clone_weak() ),
+                   
+                    
                     render_layers.clone(),
                     Name::new("Camera Gizmo"),
                 ));
