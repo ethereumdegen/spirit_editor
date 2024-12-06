@@ -198,7 +198,7 @@ fn attach_models_to_doodads(
 
       if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
  
-        cmd.try_insert(Pickable ::default()) ;
+          cmd.try_insert( PickingBehavior::default() ) ;  //optional
       } 
 
 

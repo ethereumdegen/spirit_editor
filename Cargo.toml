@@ -55,7 +55,7 @@ bevy_magic_fx = "0.15.0"
  
 
 serde = { version = "1", features = ["derive"] }
-   ron = "0.8.1"
+  ron = "0.8.1"
 rand = "0.8"
 spirit_edit_core.workspace=true 
 

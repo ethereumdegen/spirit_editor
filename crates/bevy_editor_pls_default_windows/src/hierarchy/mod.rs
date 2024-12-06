@@ -80,8 +80,8 @@ impl EditorWindow for HierarchyWindow {
 
         // .add_system(handle_events);
 
-        app.sub_app_mut(RenderApp)
-            .add_systems(ExtractSchedule, extract_wireframe_for_selected);
+      //  app.sub_app_mut(RenderApp)
+      //      .add_systems(ExtractSchedule, extract_wireframe_for_selected);
     }
 }
 
@@ -130,12 +130,12 @@ fn extract_wireframe_for_selected(editor: Extract<Res<Editor>>, mut commands: Co
         .window_state::<DebugSettingsWindow>()
         .map_or(false, |settings| settings.highlight_selected);
 
-    if wireframe_for_selected {
+    /* if wireframe_for_selected {
         let selected = &editor.window_state::<HierarchyWindow>().unwrap().selected;
         for selected in selected.iter() {
-            commands.get_or_spawn(selected).insert(Wireframe);
+            commands.spawn(selected).insert(Wireframe);
         }
-    }
+    }*/
 }
 
 #[derive(Default)]
