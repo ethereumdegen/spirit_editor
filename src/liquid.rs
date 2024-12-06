@@ -8,7 +8,7 @@ use degen_toon_water::toonwater_material::{build_toon_water_material,  ToonWater
 
 use bevy::{pbr::NotShadowCaster, prelude::*};
 
-use bevy_mod_sysfail::sysfail;
+ 
 use serde::{Deserialize, Serialize};
  
  
@@ -94,11 +94,12 @@ pub struct LiquidPlaneComponent {
     liquid_material
          );   
 
-  let water_mesh =  commands.spawn(MaterialMeshBundle {
-            mesh: meshes.add(Plane3d::default().mesh().size(1.0, 1.0)),
-            material:  liquid_material_handle,
-            ..default()
-        } )
+      let water_mesh =  commands.spawn( (
+
+              Mesh3d( meshes.add(Plane3d::default().mesh().size(1.0, 1.0)) )  ,
+              MeshMaterial3d( liquid_material_handle ),
+            
+         ) )
         .id();
 
     commands.entity(new_entity).add_child(

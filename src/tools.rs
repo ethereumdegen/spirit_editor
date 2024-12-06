@@ -4,6 +4,9 @@ use bevy_clay_tiles::tile_edit::ModifyTileTool;
 use bevy_clay_tiles::tile_edit::TileEditingResource; 
 use crate::editor_state::EditorStateResource;
 use crate::ui::SubTool;
+
+
+use bevy::picking::backend::ray::RayMap;
  
 use bevy_clay_tiles::tile_edit::BuildTileTool;
 use bevy::prelude::*;
@@ -42,7 +45,7 @@ use bevy_regions::tool_preview::{ToolPreviewResource as RegionsToolPreviewResour
 
 use bevy_egui::EguiContexts;
 
-use bevy_mod_raycast::prelude::*;
+ 
 
 pub fn brush_tools_plugin(app: &mut App) {
     app
@@ -304,8 +307,8 @@ fn update_clay_tiles_tool_state (
 fn update_brush_paint(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
-    cursor_ray: Res<CursorRay>,
-    mut raycast: Raycast,
+    ray_map: Res<RayMap>,
+    mut raycast: MeshRayCast,
 
     mut edit_terrain_event_writer: EventWriter<EditTerrainEvent>,
     mut edit_foliage_event_writer: EventWriter<EditFoliageEvent>,
@@ -344,11 +347,11 @@ fn update_brush_paint(
 
 
 
-    if let Some(cursor_ray) = **cursor_ray {
+     for (_, cursor_ray) in ray_map.iter() {
         if let Some((intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &default()).first()
+            raycast.cast_ray(*cursor_ray, &default()).first()
         {
-            let hit_point = intersection_data.position();
+            let hit_point = intersection_data.point;
 
             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
             let hit_coordinates = Vec2::new(hit_point.x, hit_point.z);
@@ -374,7 +377,7 @@ fn update_brush_paint(
 
 
             match tool_data.editing_tool {
-                EditingTool::TerrainEditingTool(terrain_edit_tool) =>  {
+                EditingTool::TerrainEditingTool(ref terrain_edit_tool) =>  {
 
                  let  terrain_brush_type = match &brush_type {
                     BrushType::SetExact => TerrainBrushType::SetExact,
@@ -386,7 +389,7 @@ fn update_brush_paint(
 
                        edit_terrain_event_writer.send(EditTerrainEvent {
                             entity: intersection_entity.clone(),
-                            tool: terrain_edit_tool,
+                            tool: terrain_edit_tool.clone(),
                             brush_type: terrain_brush_type,
                             brush_hardness,
                             coordinates: hit_coordinates,
@@ -395,7 +398,7 @@ fn update_brush_paint(
                   
 
                 },
-               EditingTool::FoliageEditingTool(foliage_edit_tool) => {
+               EditingTool::FoliageEditingTool(ref foliage_edit_tool) => {
 
                        let  foliage_brush_type = match &brush_type {
                             BrushType::SetExact => Some(FoliageBrushType::SetExact),
@@ -407,7 +410,7 @@ fn update_brush_paint(
                     if let Some(foliage_brush_type) = foliage_brush_type {
                          edit_foliage_event_writer.send(EditFoliageEvent {   
                                 entity: intersection_entity.clone(),
-                                tool: foliage_edit_tool,
+                                tool: foliage_edit_tool.clone(),
                                 brush_type:foliage_brush_type,
                                 brush_hardness,
                                 coordinates: hit_coordinates,
@@ -416,7 +419,7 @@ fn update_brush_paint(
                      }
                       
                 }, 
-                 EditingTool::RegionsEditingTool(region_edit_tool) => {
+                 EditingTool::RegionsEditingTool(ref region_edit_tool) => {
 
                        let  regions_brush_type = match &brush_type {
                             BrushType::SetExact => Some(RegionsBrushType::SetExact),
@@ -428,7 +431,7 @@ fn update_brush_paint(
                     if let Some(regions_brush_type) = regions_brush_type {
                         edit_regions_event_writer.send(EditRegionEvent {   
                             entity: intersection_entity.clone(),
-                            tool: region_edit_tool,
+                            tool: region_edit_tool.clone(),
                             brush_type:regions_brush_type,
                             brush_hardness,
                             coordinates: hit_coordinates,
@@ -439,7 +442,7 @@ fn update_brush_paint(
                       
                 },
 
-                 EditingTool::TilesEditingTool(tiles_edit_tool) => {
+                 EditingTool::TilesEditingTool(ref tiles_edit_tool) => {
 
                     //the plugin handles this ..
 

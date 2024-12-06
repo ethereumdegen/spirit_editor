@@ -722,21 +722,21 @@ dependencies = [
 
 [[package]]
 name = "bevy_asset_loader"
-version = "0.21.0"
+version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "47863215e4454e0142cc7e0f7801ad256d44e690f43186743e3e2bc9da2de870"
+checksum = "d806c255faca43ace03fe99889dd322e295a55ed4dd478a5d8ea6efe523158fe"
 dependencies = [
  "anyhow",
- "bevy 0.14.1",
+ "bevy 0.15.0",
  "bevy_asset_loader_derive",
  "path-slash",
 ]
 
 [[package]]
 name = "bevy_asset_loader_derive"
-version = "0.21.0"
+version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b12bd14ec1f3e57760d01b239bd27ab5dd13547379e5a83c167c7162525f646"
+checksum = "b758b06fa9ec729c925f1fc256b503ca438f1ea345636af362b5fae71f5d8868"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1081,6 +1081,7 @@ dependencies = [
  "bevy-inspector-egui 0.28.0",
  "bevy_common_assets",
  "bevy_editor_pls_core",
+ "bevy_mod_debugdump",
  "indexmap",
  "opener",
  "pretty-type-name",
@@ -1388,7 +1389,6 @@ dependencies = [
  "bevy_reflect 0.14.1",
  "bevy_render 0.14.1",
  "bevy_scene 0.14.1",
- "bevy_state 0.14.1",
  "bevy_tasks 0.14.1",
  "bevy_time 0.14.1",
  "bevy_transform 0.14.1",
@@ -1608,6 +1608,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "da5ea3ad25d74ea36ea45418ad799f135d046db35c322b9704c4a8934eb65ce9"
 dependencies = [
  "glam 0.29.2",
+]
+
+[[package]]
+name = "bevy_mod_debugdump"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2855a39000ecb45c94f1b44ca14133398b8e6c6a0913d80d932037b7c1c016f5"
+dependencies = [
+ "bevy_app 0.15.0",
+ "bevy_color 0.15.1",
+ "bevy_ecs 0.15.0",
+ "bevy_render 0.15.0",
+ "bevy_utils 0.15.0",
+ "lexopt",
+ "once_cell",
+ "petgraph",
+ "pretty-type-name",
 ]
 
 [[package]]
@@ -4294,6 +4311,12 @@ dependencies = [
  "ogg",
  "tinyvec",
 ]
+
+[[package]]
+name = "lexopt"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baff4b617f7df3d896f97fe922b64817f6cd9a756bb81d40f8883f2f66dcb401"
 
 [[package]]
 name = "libc"

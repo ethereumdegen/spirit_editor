@@ -47,7 +47,7 @@ use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
 use asset_loading::asset_loading_plugin;
-use bevy::core_pipeline::bloom::BloomSettings;
+use bevy::core_pipeline::bloom::Bloom ;
  
 use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
@@ -72,8 +72,7 @@ use bevy_mesh_terrain::{
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use bevy::pbr::ShadowFilteringMethod;
-
-use bevy_mod_raycast::prelude::*;
+ 
 
 use crate::camera::camera_plugin;
 use crate::liquid::liquid_plugin;
@@ -181,7 +180,7 @@ fn main() {
 
           // .add_plugins(ToonShaderPlugin)
         .add_plugins(loading::loading_plugin)
-        .add_plugins(CursorRayPlugin)
+   //      .add_plugins(CursorRayPlugin)
         .add_plugins(virtual_link::virtual_links_plugin)
         .add_plugins(material_override_link::material_overrides_link_plugin)
 
@@ -301,7 +300,8 @@ fn setup(
     if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
    
         commands
-            .spawn(SpatialBundle::default())
+            .spawn(Transform::default())
+             .insert(Visibility::Inherited)
             .insert(
                 TerrainConfig::load_from_file(terrain_path)
                     .unwrap(),
@@ -321,7 +321,8 @@ fn setup(
 
 
         commands
-            .spawn(SpatialBundle::default())
+            .spawn(Transform::default())
+            .insert(Visibility::Inherited)
             .insert( 
                 FoliageSceneData::create_or_load(  
                 foliage_scenes_folder_path, 
@@ -350,10 +351,8 @@ fn setup(
 
         //spawn regions painting plane 
      commands
-        .spawn(SpatialBundle {
-           transform: Transform::from_xyz(0.0, 40.0, 0.0) , 
-            ..default()
-        } )
+        .spawn( Transform::from_xyz(0.0, 40.0, 0.0) )
+          .insert(Visibility::Inherited)
         .insert(RegionsConfig::load_from_file("assets/regions/regions_config.ron").unwrap())
         .insert(RegionsData::new()) 
         .insert(Visibility::Hidden)  // only in editor 
@@ -366,8 +365,7 @@ fn setup(
 
 
  
-    commands.spawn(  DirectionalLightBundle {
-        directional_light: DirectionalLight {
+    commands.spawn(  DirectionalLight {
            // shadow_depth_bias: 0.5,
            // shadow_normal_bias: 0.5,
 
@@ -377,16 +375,7 @@ fn setup(
 
             color: Color::WHITE,
             ..default()
-        },
-
-        transform: Transform {
-            translation: Vec3::new(7.0, 20.0, 2.0),
-            
-            ..default()
-        },
-
-        ..default()
-    }  )
+        }   )
     .insert(Sun)
    // .insert( ToonShaderSun )
 
@@ -405,18 +394,19 @@ fn setup(
   
 
     commands
-        .spawn(Camera3dBundle {
-            camera: Camera {
+        .spawn( ( Camera3d::default()  ,
+
+                 Camera {
                  hdr: true, // 1. HDR must be enabled on the camera
                 ..default()
-            },
-            tonemapping: Tonemapping::AcesFitted,
+               },
+            Tonemapping::AcesFitted,
 
-            transform: Transform::from_xyz(20.0, 162.5, 20.0)
+            Transform::from_xyz(20.0, 162.5, 20.0)
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
-            ..default()
-        })
-       .insert( BloomSettings::OLD_SCHOOL )
+            
+        ) )
+       .insert( Bloom  ::OLD_SCHOOL )
      //  .insert( ToonShaderMainCamera )
          .insert( color_grading ) 
         .insert(TerrainViewer::default())

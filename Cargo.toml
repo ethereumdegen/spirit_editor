@@ -70,7 +70,7 @@ bevy_obj = "0.15.0"
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.25.1"
-bevy_asset_loader = "0.21.0"
+bevy_asset_loader = "0.22.0"
 
  
 bevy_foliage_tool =   "0.15.0"

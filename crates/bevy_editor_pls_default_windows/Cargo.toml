@@ -31,6 +31,8 @@ spirit_edit_core.workspace = true
 # ] }
 indexmap = "2"
 pretty-type-name = "1.0"
+
+bevy_mod_debugdump = "0.12.0"
  
 opener = "0.6.0"
 transform-gizmo-bevy.workspace = true

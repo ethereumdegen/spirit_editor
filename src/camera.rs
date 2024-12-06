@@ -2,17 +2,9 @@ use bevy_editor_pls::controls::ControlsInteractionState;
 use bevy::prelude::*;
 
 use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::edit::EditingTool;
-use bevy_mesh_terrain::terrain_config::TerrainConfig;
-use bevy_mesh_terrain::{
-    edit::{EditTerrainEvent, TerrainCommandEvent},
-    terrain::{TerrainData, TerrainViewer},
-    TerrainMeshPlugin,
-};
 
-use bevy_mod_raycast::prelude::*;
+ 
 
-use crate::editor_pls::bevy_pls_editor_is_active;
 
 pub fn camera_plugin(app: &mut App) {
     app.add_systems(Update, update_camera_look)

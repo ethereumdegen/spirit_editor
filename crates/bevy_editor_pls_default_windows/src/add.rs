@@ -26,7 +26,7 @@ impl AddItem {
         }
     }
 
-    pub fn bundle<T: FromWorld + Bundle>() -> Self {
+    /*pub fn bundle<T: FromWorld + Bundle>() -> Self {
         AddItem::bundle_named::<T>(pretty_type_name::pretty_type_name::<T>().into())
     }
 
@@ -35,7 +35,7 @@ impl AddItem {
             let bundle = T::from_world(world);
             world.entity_mut(entity).insert(bundle);
         })
-    }
+    }*/
 
     pub fn component<T: FromWorld + Component>() -> Self {
         AddItem::component_named::<T>(pretty_type_name::pretty_type_name::<T>().into())
@@ -136,7 +136,7 @@ impl Default for AddWindowState {
             sections: IndexMap::default(),
         };
 
-        state.add("", AddItem::bundle_named::<()>("Empty".into()));
+        //  state.add("", AddItem::component_named::<()>("Empty".into()));
 
         state.add(
             "NotInScene",
@@ -152,7 +152,7 @@ impl Default for AddWindowState {
         state.add("Core", AddItem::component::<Name>());
         state.add(
             "Core",
-            AddItem::bundle_named::<(Transform, GlobalTransform)>("Transform".into()),
+            AddItem::component_named::< Transform >("Transform".into()),
         );
 
         state.add("Rendering", AddItem::component::<RenderLayers>());
@@ -174,31 +174,35 @@ impl Default for AddWindowState {
         state.add(
             "2D",
             AddItem::new("Orthographic Camera".into(), |world, entity| {
-                world.entity_mut(entity).insert(Camera3dBundle::default());
+                world.entity_mut(entity).insert(Camera3d ::default());
             }),
         );
-        state.add("2D", AddItem::bundle::<SpriteBundle>());
-        state.add("2D", AddItem::bundle::<Text2dBundle>());
+        state.add("2D", AddItem::component::<Sprite>());
+        state.add("2D", AddItem::component::<Text2d>());
 
         state.add(
             "3D",
             AddItem::new("Perspective Camera".into(), |world, entity| {
-                world.entity_mut(entity).insert(Camera3dBundle::default());
+                world.entity_mut(entity).insert(Camera3d ::default());
             }),
         );
         state.add(
             "3D",
             AddItem::new("Orthographic Camera".into(), |world, entity| {
-                world.entity_mut(entity).insert(Camera3dBundle {
-                    projection: OrthographicProjection {
-                        scale: 3.0,
-                        scaling_mode: ScalingMode::FixedVertical(1.0),
-                        ..default()
-                    }
-                    .into(),
-                    ..default()
-                });
-            }),
+                world.entity_mut(entity).insert(
+
+
+                    (
+
+                        Camera3d::default(),
+                         OrthographicProjection ::default_3d()
+                    )
+
+                    );
+
+
+                    
+             }),
         );
 
          state.add(
@@ -214,9 +218,9 @@ impl Default for AddWindowState {
         );
 
 
-        state.add("3D", AddItem::bundle::<PointLightBundle>());
-        state.add("3D", AddItem::bundle::<DirectionalLightBundle>());
-        state.add("3D", AddItem::bundle_named::<PbrBundle>("PbrBundle".into()));
+        state.add("3D", AddItem::component::< PointLight >());
+        state.add("3D", AddItem::component::<DirectionalLight >());
+        // state.add("3D",  AddItem::bundle_named::<PbrBundle>("PbrBundle".into())    );
         state.add(
             "3D",
             AddItem::new("Cube".into(), |world, entity| {
@@ -236,10 +240,10 @@ impl Default for AddWindowState {
             }),
         );
 
-        state.add("UI", AddItem::bundle::<NodeBundle>());
-        state.add("UI", AddItem::bundle::<TextBundle>());
-        state.add("UI", AddItem::bundle::<ImageBundle>());
-        state.add("UI", AddItem::bundle::<ButtonBundle>());
+        state.add("UI", AddItem::component::<Node>());
+        state.add("UI", AddItem::component::<Text>());
+        state.add("UI", AddItem::component::<ImageNode>());
+        state.add("UI", AddItem::component::<Button >());
 
         state
     }

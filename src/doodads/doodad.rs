@@ -23,7 +23,7 @@ use bevy_editor_pls_core::Editor;
 use spirit_edit_core::doodads::DoodadToolState;
 use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
-use bevy_mod_raycast::prelude::*;
+ 
 
 
 use bevy::utils::HashSet; 
@@ -49,7 +49,7 @@ use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 
-use bevy_mod_sysfail::*;
+ 
  
  use rand::Rng;
 
@@ -57,8 +57,7 @@ use bevy_mod_sysfail::*;
 //use anyhow::{Context, Result};
 
  
-
-use bevy_mod_picking::prelude::*;
+ 
  use bevy_magic_fx::magic_fx::MagicFxVariantComponent;
 
 use bevy::{
@@ -75,12 +74,13 @@ use crate::{
 
     app
             .init_resource::<DoodadGltfLoadTrackingResource>()
+            .add_observer(   add_doodad_collider_markers )
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
 
                 decrement_doodad_gltf_load_tracker, 
                
-                add_doodad_collider_markers, 
+              
                 hide_doodad_collision_volumes,
 
                 remove_recently_failed_to_load,
@@ -151,7 +151,7 @@ fn attach_models_to_doodads(
         (
             With<DoodadNeedsModelAttached>,
             With<GlobalTransform>,
-            Without<Handle<Mesh>>,
+            Without<Mesh3d>,
             Without<RecentlyFailedToLoadModel>,
         ),
     >,
@@ -198,7 +198,7 @@ fn attach_models_to_doodads(
 
       if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
  
-        cmd.try_insert(PickableBundle::default()) ;
+        cmd.try_insert(Pickable ::default()) ;
       } 
 
 
@@ -238,7 +238,8 @@ fn attach_models_to_doodads(
                           let scene = cmd.commands()
                                 .spawn( 
                                    ( 
-                                     SpatialBundle::default(),  
+                                     Transform::default(),  
+                                     Visibility::default(),
                                      AddGltfModelComponent( model_handle ) )
                                    )
                                 
@@ -300,9 +301,9 @@ fn attach_models_to_doodads(
 
                 let spawned_entity = commands
                     .entity(new_doodad_entity)
-                    .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                    .insert(Mesh3d( meshes.add(Cuboid::new(1.0, 1.0, 1.0)) ))
                      .remove::<DoodadNeedsModelAttached>()
-                    .insert(materials.add( cube_def_color  )).id();
+                    .insert(MeshMaterial3d( materials.add( cube_def_color  ) )  ).id();
 
 
                 if cube_shape_def.wireframe {
@@ -453,6 +454,9 @@ fn get_loaded_model_from_name<'a>(
 
  
 pub(crate) fn add_doodad_collider_markers(
+
+    scene_instance_evt_trigger: Trigger<SceneInstanceReady>  ,
+
     mut commands: Commands,
     doodad_query: Query<
         (Entity, &DoodadComponent),
@@ -464,16 +468,17 @@ pub(crate) fn add_doodad_collider_markers(
     > ,
 
     parent_query: Query< &Parent > , 
-   mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
+ //  mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
 
    
 )   {
   
-    for evt in scene_instance_evt_reader.read(){
+   let trig_entity = scene_instance_evt_trigger.entity();
 
-          let parent = evt.parent;
+    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
 
-          if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent).ok() {
+
+          if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
 
              
             commands
@@ -482,12 +487,12 @@ pub(crate) fn add_doodad_collider_markers(
             .insert(DoodadColliderMarker::default())
 
              ;
-             continue;
+             return;
         } 
 
 
 
-         for parent_entity in AncestorIter::new(&parent_query, parent) {
+         for parent_entity in AncestorIter::new(&parent_query, parent_entity) {
 
 
             if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
@@ -499,7 +504,7 @@ pub(crate) fn add_doodad_collider_markers(
                 .insert(DoodadColliderMarker::default())
 
                  ;
-                 continue
+                 return
 
             } 
 
@@ -513,7 +518,7 @@ pub(crate) fn add_doodad_collider_markers(
         
         
 
-    }
+     
 
 
    
@@ -668,10 +673,7 @@ pub fn update_doodad_placement_preview_model (
 
 
                   let gltf_scene = commands.spawn(
-                                SceneBundle {
-                                    scene: model_handle,
-                                    ..Default::default()
-                                } )
+                                 SceneRoot( model_handle ))
                                           
                              .insert(GhostlyMaterialMarker {})
                              .id();
@@ -803,10 +805,8 @@ pub fn handle_place_doodad_events(
         }
 
         let doodad_spawned = commands
-            .spawn(SpatialBundle {
-                transform,
-                ..default()
-            })
+            .spawn( transform )
+            .insert( Visibility::default() )
             .insert(Name::new(doodad_name.clone())  )
             .insert( DoodadProto )
             .id();
@@ -920,10 +920,8 @@ pub fn handle_place_clay_tile_block_events(
         }
 
         let doodad_spawned = commands
-            .spawn(SpatialBundle {
-                transform,
-                ..default()
-            })
+            .spawn(transform)
+            .insert(Visibility::default())
             .insert(Name::new( "ClayTileBlock" )  )
             .insert( DoodadProto )
             .id();
