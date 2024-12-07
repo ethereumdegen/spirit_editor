@@ -42,10 +42,11 @@ pub struct EditorToolsState {
     pub brush_type: BrushType,
     pub brush_radius: u32,
     pub brush_hardness: u32,
-    pub color: LinearPixelColor, //brush mode
+    pub color: LinearPixelColor, //brush mode, for simple brush data  
 
-        // this is a hack for now .. 
-    pub layered_eyedropper_data: LayeredEyedropperData 
+ 
+
+    pub layered_splatmap_data: LayeredSplatMapData   //for splat map ultra 
 }
 
 
@@ -85,7 +86,7 @@ impl Default for BrushType {
 } 
 
 #[derive(  Debug, Default, Clone)]
-pub struct LayeredEyedropperData {
+pub struct LayeredSplatMapData {
     pub texture_indices: [u8;4],
     pub texture_strengths: [u8;4] , 
 
@@ -109,6 +110,7 @@ pub enum SubTool {
 
     TerrainHeight,
     TerrainSplat, 
+    TerrainSplatUltra, 
 
     BuildTileRectangle,
     BuildTileLinear,
@@ -128,6 +130,7 @@ impl SubTool{
 
             Self::TerrainHeight  => "Terrain Height".into(),
             Self::TerrainSplat  => "Terrain Splat".into(),
+            Self::TerrainSplatUltra  => "Terrain Splat Ultra".into(),
 
             Self::BuildTileRectangle  => "Build: Rectangle".into(),
             Self::BuildTileLinear  => "Build: Linear".into(),
@@ -158,9 +161,10 @@ ToolMode::Tiles,
  
 ];
 
-const TERRAIN_SUBTOOLS : [SubTool; 2] = [
+const TERRAIN_SUBTOOLS : [SubTool; 3] = [
     SubTool::TerrainHeight,
     SubTool::TerrainSplat, 
+    SubTool::TerrainSplatUltra, 
 
 ];
 
@@ -323,10 +327,7 @@ fn editor_tools_ui(
                 match  sub_tool {
 
                     SubTool::TerrainSplat => {
-
-
-                       
-
+ 
 
 
                           egui::ComboBox::new("brush_type", "")
@@ -358,93 +359,41 @@ fn editor_tools_ui(
                                 BrushType::EyeDropper => {
 
 
+                                    for idx in 0..4 {
 
-                                    ui.add(
+                                         ui.add(
 
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[0], 0..=255)
-                                            .text("Texture Index 0")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_indices[idx], 0..=255)
+                                                    .text(format!("Texture Index {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
 
-                                            ,
-                                    );
+                                                     
+                                            ); 
 
-                                    ui.add(
+                                    }
 
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[1], 0..=255)
-                                            .text("Texture Index 1")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
+                                     for idx in 0..4 {
 
-                                            ,
-                                    );
+                                         ui.add(
 
-                                     ui.add(
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_strengths[idx], 0..=255)
+                                                    .text(format!("Texture Strength {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
 
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[2], 0..=255)
-                                            .text("Texture Index 2")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
+                                                     
+                                            ); 
 
-                                            ,
-                                    );
-
-                                      ui.add(
-
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[3], 0..=255)
-                                            .text("Texture Index 3")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
-
-                                            ,
-                                    );
-
-
-                                      ui.add(
-
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[0], 0..=255)
-                                            .text("Texture Strength 0")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
-
-                                            ,
-                                    );
-
-                                          ui.add(
-
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[1], 0..=255)
-                                            .text("Texture Strength 1")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
-
-                                            ,
-                                    );
-
-                                              ui.add(
-
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[2], 0..=255)
-                                            .text("Texture Strength 2")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
-
-                                            ,
-                                    );
-
-                                                  ui.add(
-
-                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[3], 0..=255)
-                                            .text("Texture Strength 3")
-                                            .step_by(1.0)
-                                            .drag_value_speed(0.1)
-
-                                            ,
-                                    );
-
+                                    } 
 
 
 
 
                                 }
+
+
+
 
                                 _ => {
 
@@ -507,6 +456,147 @@ fn editor_tools_ui(
  
 
                     }
+
+
+
+                       SubTool::TerrainSplatUltra => {
+ 
+
+
+                          egui::ComboBox::new("brush_type", "")
+                                .selected_text(tools_state.brush_type.to_string())
+                                .show_ui(ui, |ui| {
+                                    for brush_type in BRUSH_TYPES_SPLAT.into_iter() {
+                                        if ui
+                                            .selectable_label(
+                                                tools_state.brush_type == brush_type,
+                                                brush_type.to_string(),
+                                            )
+                                            .clicked()
+                                        {
+                                            tools_state.brush_type = brush_type;
+                                        }
+                                    }
+                                });
+
+
+                           // let terrain_index_A = tools_state.color.r.clone();
+                           // let terrain_index_B = tools_state.color.g.clone();
+
+                            let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
+             
+
+
+                            match brush_type {
+
+                                BrushType::EyeDropper => {
+
+
+                                    for idx in 0..4 {
+
+                                             if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type( tools_state.layered_splatmap_data.texture_indices[idx] .into() ) ).flatten() {
+                                                 ui.label( terrain_def.name.clone() );
+                                            }
+
+
+                                         ui.add(
+
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_indices[idx], 0..=255)
+                                                    .text(format!("Texture Index {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
+
+                                                     
+                                            ); 
+
+                                    }
+
+                                     for idx in 0..4 {
+
+                                         ui.add(
+
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_strengths[idx], 0..=255)
+                                                    .text(format!("Texture Strength {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
+
+                                                     
+                                            ); 
+
+                                    } 
+
+
+
+
+                                }
+
+
+                                
+
+                                _ => {
+
+
+
+
+                                    ui.spacing();
+                                    ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+                                    ui.spacing();
+                                    ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
+                                    ui.spacing();
+                                        
+
+                     
+                                     
+                     
+                                      for idx in 0..4 {
+
+                                          if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type( tools_state.layered_splatmap_data.texture_indices[idx] .into() ) ).flatten() {
+                                                 ui.label( terrain_def.name.clone() );
+                                            }
+
+
+
+                                         ui.spacing_mut().slider_width = 255.0;
+                                         ui.add(
+
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_indices[idx], 0..=255)
+                                                    .text(format!("Texture Index {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
+
+                                                     
+                                            ); 
+
+                                    }
+
+                                     for idx in 0..4 {
+                                         ui.spacing_mut().slider_width = 255.0;
+                                         ui.add(
+
+                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_strengths[idx], 0..=255)
+                                                    .text(format!("Texture Strength {}", idx) )
+                                                    .step_by(1.0)
+                                                    .drag_value_speed(0.1)
+
+                                                     
+                                            ); 
+
+                                    } 
+
+
+
+
+
+                                }
+
+                            }
+                            
+
+ 
+
+                    }
+
+
 
                     SubTool::TerrainHeight => {
 
