@@ -38,10 +38,14 @@ pub struct LinearPixelColor {
 pub struct EditorToolsState {
     pub tool_mode: ToolMode,    
     pub sub_tool: Option<SubTool>,
+
     pub brush_type: BrushType,
     pub brush_radius: u32,
     pub brush_hardness: u32,
     pub color: LinearPixelColor, //brush mode
+
+        // this is a hack for now .. 
+    pub layered_eyedropper_data: LayeredEyedropperData 
 }
 
 
@@ -80,16 +84,22 @@ impl Default for BrushType {
     }
 } 
 
+#[derive(  Debug, Default, Clone)]
+pub struct LayeredEyedropperData {
+    pub texture_indices: [u8;4],
+    pub texture_strengths: [u8;4] , 
+
+}
+
 #[derive(Eq, PartialEq, Debug, Default, Clone)]
 pub enum ToolMode {
     #[default]
-    //Height,
-    //Splat,
+    
     Terrain,
     Foliage, 
     Regions,
     Tiles,
-    //Doodads,
+     
 }
 
 
@@ -141,12 +151,11 @@ impl SubTool{
 
 const TOOL_MODES: [ToolMode; 4] = [
 ToolMode::Terrain,
-//ToolMode::Height, 
-//ToolMode::Splat, 
+ 
 ToolMode::Foliage, 
 ToolMode::Regions,
 ToolMode::Tiles,
- //ToolMode::Doodads
+ 
 ];
 
 const TERRAIN_SUBTOOLS : [SubTool; 2] = [
@@ -307,10 +316,18 @@ fn editor_tools_ui(
                         ui.separator();
 
 
+
+           let  brush_type  =  tools_state.brush_type.clone() ;
+
             if let Some(sub_tool) = &tools_state.sub_tool {
                 match  sub_tool {
 
                     SubTool::TerrainSplat => {
+
+
+                       
+
+
 
                           egui::ComboBox::new("brush_type", "")
                                 .selected_text(tools_state.brush_type.to_string())
@@ -335,53 +352,157 @@ fn editor_tools_ui(
                             let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
              
 
-                            
-                               ui.spacing();
-                          ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
-                            ui.spacing();
-                            ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
-                            ui.spacing();
-                            
 
-             
-                              ui.spacing_mut().slider_width = 255.0;
-             
-                            ui.add(
+                            match brush_type {
 
-                                egui::Slider::new(&mut tools_state.color.r, 0..=255)
-                                    .text("Texture Index (R_Channel")
-                                    .step_by(1.0)
-                                    .drag_value_speed(0.1)
+                                BrushType::EyeDropper => {
 
-                                    ,
-                            );
 
-                            if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
-                                 ui.label( terrain_def.name.clone() );
+
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[0], 0..=255)
+                                            .text("Texture Index 0")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[1], 0..=255)
+                                            .text("Texture Index 1")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                     ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[2], 0..=255)
+                                            .text("Texture Index 2")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                      ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_indices[3], 0..=255)
+                                            .text("Texture Index 3")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+
+                                      ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[0], 0..=255)
+                                            .text("Texture Strength 0")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                          ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[1], 0..=255)
+                                            .text("Texture Strength 1")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                              ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[2], 0..=255)
+                                            .text("Texture Strength 2")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                                  ui.add(
+
+                                        egui::Slider::new(&mut tools_state.layered_eyedropper_data.texture_strengths[3], 0..=255)
+                                            .text("Texture Strength 3")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+
+
+
+
+                                }
+
+                                _ => {
+
+
+
+
+                                      ui.spacing();
+                                     ui.add(egui::Slider::new(&mut tools_state.brush_radius, 0..=100).text("Brush Radius"));
+                                    ui.spacing();
+                                    ui.add(egui::Slider::new(&mut tools_state.brush_hardness, 0..=100).text("Brush Hardness"));
+                                    ui.spacing();
+                                        
+
+                     
+                                      ui.spacing_mut().slider_width = 255.0;
+                     
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                            .text("Texture Index (R_Channel")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+                                    if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_A) ).flatten() {
+                                         ui.label( terrain_def.name.clone() );
+                                    }
+                                     ui.spacing_mut().slider_width = 255.0;
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.color.g, 0..=255)
+                                            .text("Texture Strength (G_Channel")
+                                             .step_by(1.0)
+                                            .drag_value_speed(0.1)
+                                            ,
+                                    );
+                                        
+                                        /*
+                                    if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
+                                         ui.label( terrain_def.name.clone() );
+                                    }*/
+                                      ui.spacing_mut().slider_width = 255.0;
+                                    ui.add(
+                                        egui::Slider::new(&mut tools_state.color.b, 0..=3)
+                                            .text("Layer (B_Channel")
+                                             .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+
+                                }
+
                             }
-                             ui.spacing_mut().slider_width = 255.0;
-                            ui.add(
-
-                                egui::Slider::new(&mut tools_state.color.g, 0..=255)
-                                    .text("Texture Strength (G_Channel")
-                                     .step_by(1.0)
-                                    .drag_value_speed(0.1)
-                                    ,
-                            );
-                                
-                                /*
-                            if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
-                                 ui.label( terrain_def.name.clone() );
-                            }*/
-                              ui.spacing_mut().slider_width = 255.0;
-                            ui.add(
-                                egui::Slider::new(&mut tools_state.color.b, 0..=3)
-                                    .text("Layer (B_Channel")
-                                     .step_by(1.0)
-                                    .drag_value_speed(0.1)
-
-                                    ,
-                            );
+                            
 
  
 

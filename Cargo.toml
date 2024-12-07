@@ -21,19 +21,19 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-   bevy_mesh_terrain = "0.15.1"  
+  #bevy_mesh_terrain = "0.15.1"  
 
-   #bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
+   bevy_mesh_terrain =  {path="../bevy_mesh_terrain"}
 
 
  
-   bevy_material_wizard = "0.15.0"
+  bevy_material_wizard = "0.15.0"
 
   # bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
  degen_toon_water = "0.15.0" 
-#degen_toon_water =  {path="../degen_toon_water"}
+ # degen_toon_water =  {path="../degen_toon_water"}
 
 
  bevy_regions = "0.15.0"
@@ -46,8 +46,8 @@ image = { version = "0.25.1", default-features = false }
 bevy_magic_fx = "0.15.0"
 
 # vendored into new bevy ! 
-#bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
-#bevy_mod_raycast = "0.18.0"
+# bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
+# bevy_mod_raycast = "0.18.0"
 
  
 
@@ -55,7 +55,7 @@ bevy_magic_fx = "0.15.0"
  
 
 serde = { version = "1", features = ["derive"] }
-  ron = "0.8.1"
+ron = "0.8.1"
 rand = "0.8"
 spirit_edit_core.workspace=true 
 
@@ -76,12 +76,10 @@ bevy_asset_loader = "0.22.0"
 bevy_foliage_tool =   "0.15.0"
 
 
- # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
-#  bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+# bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
+# bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
  
-
-  
-
+ 
 
 
 [workspace.package]
@@ -126,8 +124,10 @@ egui = "0.29"
 # egui-gizmo = "0.16"  # deprecated ? 
 
 #transform-gizmo-bevy= "0.3"
- transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
+# transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
+transform-gizmo-bevy= {path = "../transform-gizmo/crates/transform-gizmo-bevy"}
 
+ 
  
 [profile.dev.package."*"]
 opt-level = 3

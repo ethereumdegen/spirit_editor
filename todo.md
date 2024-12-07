@@ -2,6 +2,7 @@
 
 ## Spirit Editor
 
+- BUG: grass is missing ? 
 
 - build a system that , when meshes are loaded, will tell me if they have texcoord 2 in a warning
 

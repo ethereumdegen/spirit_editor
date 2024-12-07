@@ -84,7 +84,7 @@ impl EditorWindow for GizmoWindow {
             if let (Some(hierarchy_state), Some(_camera_state)) =
                 (cx.state::<HierarchyWindow>(), cx.state::<CameraWindow>())
             {
-               apply_gizmo_component( ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
+               apply_gizmo_component( world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
              //   draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
             }
         }
@@ -189,8 +189,8 @@ fn add_gizmo_markers(
             .insert((
                 HasGizmoMarker,
                 Visibility::Visible,
-                InheritedVisibility::VISIBLE,
-                ViewVisibility::default(),
+               // InheritedVisibility::VISIBLE,
+              //  ViewVisibility::default(),
             ))
             .with_children(|commands| {
                 commands.spawn((
@@ -210,7 +210,7 @@ fn add_gizmo_markers(
 
 fn apply_gizmo_component (
 
-     ui: &mut egui::Ui,
+     // ui: &mut egui::Ui,
     world: &mut World,
     selected_entities: &SelectedEntities,
     gizmo_mode: EnumSet<GizmoMode>,
@@ -228,7 +228,11 @@ fn apply_gizmo_component (
                 continue;
             }
 
-              world.commands().entity(*target).remove::<GizmoTarget>();
+            if let Some(mut cmd) = world.commands().get_entity(*target){
+                cmd.remove::<GizmoTarget>();
+            }
+              
+             
  
         }
 
@@ -240,8 +244,10 @@ fn apply_gizmo_component (
 
      
 
-            world.commands().entity(selected).insert ( GizmoTarget ::default() );
-
+            if let Some(mut cmd) = world.commands().get_entity(selected){
+                cmd .insert ( GizmoTarget ::default() ) ;
+            }
+          
 
         }
 

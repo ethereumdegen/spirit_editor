@@ -1574,9 +1574,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.15.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b97b8442042382cd4dce2a800dbd564cae963a88cdbd4545ae986818f7089c9d"
+version = "0.15.2"
 dependencies = [
  "anyhow",
  "bevy 0.15.0",
@@ -6366,7 +6364,6 @@ dependencies = [
 [[package]]
 name = "transform-gizmo"
 version = "0.5.0"
-source = "git+https://github.com/ethereumdegen/transform-gizmo#867dc54d804d924c3c61b3e782bc0d6b2f999adc"
 dependencies = [
  "ahash",
  "ecolor 0.29.1",
@@ -6381,7 +6378,6 @@ dependencies = [
 [[package]]
 name = "transform-gizmo-bevy"
 version = "0.5.0"
-source = "git+https://github.com/ethereumdegen/transform-gizmo#867dc54d804d924c3c61b3e782bc0d6b2f999adc"
 dependencies = [
  "bevy 0.15.0",
  "bevy_app 0.15.0",

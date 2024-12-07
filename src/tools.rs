@@ -475,11 +475,11 @@ fn handle_brush_events_from_terrain(
                 editor_tools_state.color.r = * height ; 
 
             },
-            TerrainBrushEvent::EyeDropSplatMap { r, g, b } => {
+            TerrainBrushEvent::EyeDropSplatMap { texture_indices, texture_strengths } => {
 
-                editor_tools_state.color.r = * r as u16 ;
-                editor_tools_state.color.g = * g as u16 ;
-                editor_tools_state.color.b = * b as u16 ; 
+                editor_tools_state.layered_eyedropper_data.texture_indices = texture_indices.clone();
+                editor_tools_state.layered_eyedropper_data.texture_strengths = texture_strengths.clone(); 
+              
 
             }
         }
