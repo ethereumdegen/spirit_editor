@@ -184,7 +184,7 @@ pub struct GltfAssets {
 #[derive(AssetCollection, Resource)]
 pub struct MeshAssets {
    
-     #[asset(path = "../artifacts/game_assets/models/obj2", collection(typed, mapped))]
+     #[asset(path = "../artifacts/game_assets/models/meshes", collection(typed, mapped))]
     pub(crate) meshes: HashMap<AssetFileName, Handle<Mesh>>,
 
 
