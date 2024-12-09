@@ -64,8 +64,8 @@ bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
-bevy_obj = {version = "0.15.0",  default-features = false , features= ["mesh"]}
- 
+#bevy_obj = {version = "0.15.0",  default-features = false , features= ["mesh"]}
+bevy_obj=  {path="../bevy_obj" ,  default-features = false , features= ["mesh"] }  #properly uses bevy 0.15 
 
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
