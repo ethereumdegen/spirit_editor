@@ -71,6 +71,7 @@ initial_zones_to_load: Some([
         "dungeon_01_exterior.zone",
          "temple_exterior.zone",
           "whispering_woods.zone",
+        "sola.zone",
         //  "test_monsters.zone",
 
 
