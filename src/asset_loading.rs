@@ -9,8 +9,7 @@ use bevy_common_assets::ron::RonAssetPlugin;
 
 use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinition;
 use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinitionsResource ;
-
-
+ 
  
 use crate::EditorConfig;
 use bevy::gltf::Gltf;
@@ -36,7 +35,8 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
-
+    
+            .add_plugins(  bevy_obj::ObjPlugin  ) 
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
@@ -66,8 +66,17 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 		     .add_loading_state(
                     LoadingState::new(AssetLoadState::TextureAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .continue_to_state(AssetLoadState::MeshAssetsLoad)
                         .load_collection::<TextureAssets>() 
+ 
+                          
+                )
+                
+                
+                  .add_loading_state(
+                    LoadingState::new(AssetLoadState::MeshAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .load_collection::<MeshAssets>() 
  
                           
                 )
@@ -84,9 +93,7 @@ pub fn asset_loading_plugin(app: &mut App) {
               .add_loading_state(
                     LoadingState::new(AssetLoadState::ShaderAssetsLoad)
                         .continue_to_state(AssetLoadState::ShaderVariantsLoad)
-                        
-                        
-                         .load_collection::<MeshAssets>()
+                         
                         
                           .load_collection::<ShaderVariantAssets>() 
                           .load_collection::<MagicFxVariantAssets>()
@@ -122,6 +129,7 @@ pub enum AssetLoadState {
     Init, //editor config load 
     DoodadManifestsLoad,
     TextureAssetsLoad,
+    MeshAssetsLoad,
     //GltfAssetsLoad,
     ShaderAssetsLoad,
     ShaderVariantsLoad,

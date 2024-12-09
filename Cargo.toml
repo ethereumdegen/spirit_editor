@@ -1,6 +1,6 @@
 [package]
 name = "spirit_editor"
-version = "0.14.7"
+version = "0.15.0"
 edition = "2021"
 default-run = "main"
 
@@ -39,7 +39,7 @@ image = { version = "0.25.1", default-features = false }
  bevy_regions = "0.15.0"
   
    
- bevy_clay_tiles = "0.15.0"
+ bevy_clay_tiles = "0.15.1"
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
@@ -64,12 +64,12 @@ bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
-bevy_obj = "0.15.0"
+bevy_obj = {version = "0.15.0",  default-features = false , features= ["mesh"]}
  
 
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
-bevy-inspector-egui = "0.25.1"
+bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
@@ -103,8 +103,8 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
-  spirit_edit_core =  "0.15.0"
- #spirit_edit_core =   {path = "../spirit_edit_core"}
+  # spirit_edit_core =  "0.15.0"
+ spirit_edit_core =   {path = "../spirit_edit_core"}
 
 
  

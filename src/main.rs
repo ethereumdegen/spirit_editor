@@ -232,7 +232,7 @@ fn main() {
         .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
         .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
         
-        .add_plugins(bevy_obj::ObjPlugin)
+      
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
