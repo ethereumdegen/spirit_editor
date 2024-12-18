@@ -849,9 +849,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_foliage_tool"
-version = "0.15.0"
+version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fc73b714749f58a1068a05b3f2c848a08cee4309df6296e1c5487e4d84be11b"
+checksum = "cf86fa8e78c6a33c2c1abc1cd8d0515a47607f0ab93961bad56582ba54e43cac"
 dependencies = [
  "anyhow",
  "bevy",
@@ -1090,9 +1090,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_wizard"
-version = "0.15.0"
+version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ddbae57d2d289c88ff342643820ac7b5e799ced22e75e93004beb89a7569b101"
+checksum = "cc5d00b76c14e7b1bfe9e32b54d37b270776de6c6783d2971a9fca6feacb72bb"
 dependencies = [
  "bevy",
  "ron",
@@ -1140,7 +1140,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh_terrain"
-version = "0.15.4"
+version = "0.15.5"
 dependencies = [
  "anyhow",
  "bevy",
@@ -5492,7 +5492,9 @@ dependencies = [
  "bevy_asset",
  "bevy_core",
  "bevy_core_pipeline",
+ "bevy_derive",
  "bevy_ecs",
+ "bevy_image",
  "bevy_input",
  "bevy_log",
  "bevy_math",

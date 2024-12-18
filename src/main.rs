@@ -193,9 +193,8 @@ fn main() {
 
 
         .add_plugins(BevyMaterialWizardPlugin{
-              material_defs_folder_path: "assets/material_definitions".to_string(),
-              //material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
-              //material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
+            material_defs_folder_path: "assets/material_definitions".to_string(),
+            material_replacements_folder_path: "assets/material_replacements".to_string(), 
         }  )
 
 

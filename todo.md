@@ -2,8 +2,11 @@
 
 ## Spirit Editor
 
-- BUG: grass is missing ? 
 
+
+- fix doodad placement so  we CHECK the global transform of the 'placement parent'  and we use that to offset 
+   our cursor collision location to determine the  local tranform of the newly placed doodad.  
+ 
 - build a system that , when meshes are loaded, will tell me if they have texcoord 2 in a warning
 
 

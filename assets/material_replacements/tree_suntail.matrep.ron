@@ -1,0 +1,18 @@
+
+(
+
+
+     replacement_set_name: "tree_suntail",
+
+	 material_replacements : {
+ 
+        "bark" : "Wood1",
+        "leaves" : "Leaves3",
+        "branches": "Branches1"
+
+
+    },
+
+)
+   
+ 
