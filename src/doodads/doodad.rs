@@ -783,6 +783,8 @@ pub fn handle_place_doodad_events(
 
     placement_resource: Res<PlacementResource>,
 
+    global_xform_query: Query<&GlobalTransform>, 
+
    // doodad_manifest_resource: Res<DoodadManifestResource>,
    // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 ) {
@@ -798,7 +800,37 @@ pub fn handle_place_doodad_events(
 
  
 
-        let mut transform = Transform::from_xyz(position.x, position.y, position.z);
+        
+
+
+        // ----
+        // determine the doodad parent, if there will be one
+
+        let mut parent = None ;
+
+         if let Some(parent_override) = &evt.force_parent {
+            parent = Some(parent_override);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
+         }
+
+        // ------
+
+
+        // if there is a parent, the relative position will be offset by the parent global translation 
+
+
+        let parent_global_translation = parent.map( |p| global_xform_query.get(p)  ).flatten().map(|x| x.translation() ) ; 
+        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+
+
+        // -----
+
+
+
+
+
+        let mut transform = Transform::from_translation(position_relative_to_parent) ; 
 
         if let Some(rot) = evt.rotation_euler {
             transform =
@@ -807,6 +839,14 @@ pub fn handle_place_doodad_events(
         if let Some(scale) = evt.scale {
             transform = transform.with_scale(scale)
         }
+
+
+
+
+
+
+
+
 
         let doodad_spawned = commands
             .spawn( transform )
@@ -857,14 +897,7 @@ pub fn handle_place_doodad_events(
 
         }*/
 
-        let mut parent = None ;
-
-
-         if let Some(parent_override) = &evt.force_parent {
-            parent = Some(parent_override);
-         } else if let Some(primary_parent) = &placement_resource.placement_parent {
-            parent = Some(primary_parent);
-         }
+        
 
          if let Some(parent) = parent {
             commands.entity( doodad_spawned ).set_parent( *parent );
