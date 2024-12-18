@@ -820,7 +820,7 @@ pub fn handle_place_doodad_events(
         // if there is a parent, the relative position will be offset by the parent global translation 
 
 
-        let parent_global_translation = parent.map( |p| global_xform_query.get(p)  ).flatten().map(|x| x.translation() ) ; 
+        let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
         let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
 
 
