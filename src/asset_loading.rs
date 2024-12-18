@@ -1,4 +1,7 @@
  
+use bevy_editor_pls_default_windows::placement::PlacementWindow;
+use bevy_editor_pls_core::Editor;
+use crate::editor_config;
 use crate::utils::copy_dir_recursive;
 use std::path::Path;
 use crate::utils::{walk_dir};
@@ -108,6 +111,12 @@ pub fn asset_loading_plugin(app: &mut App) {
                 populate_doodad_definitions,
                 populate_doodad_tag_map_data,
                  load_magic_fx,
+                ).chain())
+
+
+                .add_systems(OnEnter(AssetLoadState::Complete), (
+                
+                  apply_editor_config
                 ).chain())
                  
               
@@ -596,4 +605,34 @@ fn populate_doodad_tag_map_data(
     }
 
     info!("Sorted doodad keys");
+}
+
+fn apply_editor_config(
+
+
+    mut editor_cx: ResMut<Editor>,
+    editor_config_handles: Res<EditorConfigAssets>,
+    editor_config_assets: Res<Assets<EditorConfig>>, 
+
+
+){
+
+
+    let editor_config_handle = &editor_config_handles.editor_config;
+    let Some(editor_config) = editor_config_assets.get(editor_config_handle) else {return} ;
+
+   let Some( mut state ) = editor_cx.window_state_mut::<PlacementWindow>() else {return};
+        
+
+        if let Some( placement_config ) = editor_config.get_default_placement_settings() {
+
+
+          state.translation_grid_lock_step = placement_config.translation_grid_lock_step
+                    .clone().unwrap_or(Vec3::splat(0.0));
+
+
+        }
+
+
+
 }

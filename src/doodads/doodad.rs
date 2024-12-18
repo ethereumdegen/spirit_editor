@@ -798,7 +798,7 @@ pub fn handle_place_doodad_events(
         let doodad_name = &evt.doodad_name;
 
 
- 
+        let auto_select = &evt.auto_select;
 
         
 
@@ -856,13 +856,18 @@ pub fn handle_place_doodad_events(
             .id();
 
 
-        editor_event_writer.send( 
-            EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
-         );
+        if *auto_select {
 
-        doodad_tool_event_writer.send(
-            DoodadToolEvent::SetSelectedDoodad(None) 
-        );
+            //why are these different.. ? 
+             editor_event_writer.send( 
+                EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+             );
+
+            doodad_tool_event_writer.send(
+                DoodadToolEvent::SetSelectedDoodad(None) 
+            );
+        }
+        
 
     //    println!("doodad spawned {:?}", doodad_spawned);
 
@@ -1210,6 +1215,7 @@ pub fn update_place_doodads(
                 scale,
                 custom_props,
                 force_parent: None,
+                 auto_select: true,
                 //clay_tile_block_data : None ,
       
 

@@ -18,6 +18,11 @@ pub struct EditorConfig {
 
 //	doodad_manifest: String, 
 
+
+    default_placement_settings: Option<EditorConfigPlacementSettings>,
+
+ 
+
 }
 
 
@@ -59,8 +64,20 @@ impl EditorConfig{
 		return self.initial_foliage_scene_to_load.clone()
 	}
 
+	pub fn get_default_placement_settings(&self) -> Option<EditorConfigPlacementSettings> {
+
+
+		return self.default_placement_settings.clone()
+	}
+
  
 }
 
 
 
+
+#[derive(  Serialize,Deserialize,Clone,Debug )]
+pub struct EditorConfigPlacementSettings{
+
+	pub translation_grid_lock_step: Option<Vec3>,
+}

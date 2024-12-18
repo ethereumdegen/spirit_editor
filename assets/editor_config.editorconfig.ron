@@ -77,6 +77,13 @@ initial_zones_to_load: Some([
 
  ]),  
  initial_foliage_scene_to_load: Some("default_foliage.foliage"), 
+
+
+
+ default_placement_settings: Some((
+    translation_grid_lock_step: Some( (1.0,1.0,1.0) ) ,
+
+ )),
  
 
 )

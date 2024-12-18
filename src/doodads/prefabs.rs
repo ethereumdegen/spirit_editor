@@ -100,7 +100,10 @@ fn spawn_children_for_new_prefabs (
                                 rotation_euler: Some(rotation_euler.clone()), 
                                 doodad_name: name.clone() , 
                                 custom_props: custom_props.clone(), 
-                                force_parent: Some(  prefab_root_entity   ) }
+                                force_parent: Some(  prefab_root_entity   ) ,
+                                 auto_select: false ,
+                          },
+
                          );
 
 
@@ -163,10 +166,15 @@ fn handle_spawn_prefab_events(
         
 
         let prefab_spawned = commands
-            .spawn(SpatialBundle {
-                transform : transform.clone(),
-                ..default()
-            })
+            .spawn( (
+
+                transform.clone(),
+                Visibility::default(),
+
+                )
+
+
+              )
             .insert(Name::new( prefab_name.clone() )  )
             .insert( PrefabComponent )
             .id();

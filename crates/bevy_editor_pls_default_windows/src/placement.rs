@@ -235,6 +235,7 @@ pub fn handle_placement_tool_events(
                              doodad_name: name_comp.to_string().clone(),
                              custom_props: duplicated_custom_props , 
                              force_parent:  doodad_parent_entity  ,
+                              auto_select: false,
                            //  clay_tile_block_data: None , //for now .. 
                       });
 
