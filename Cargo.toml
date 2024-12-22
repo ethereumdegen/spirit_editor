@@ -64,8 +64,8 @@ bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
-#bevy_obj = {version = "0.15.0",  default-features = false , features= ["mesh"]}
-bevy_obj=  {path="../bevy_obj" ,  default-features = false , features= ["mesh"] }  #properly uses bevy 0.15 
+  #bevy_obj=  {version = "0.15",  default-features = false , features= ["mesh"] }   
+ bevy_obj=  {git="https://github.com/ethereumdegen/bevy_obj" ,  default-features = false , features= ["mesh"] }   
 
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
@@ -73,11 +73,11 @@ bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
-bevy_foliage_tool =   "0.15.1"
-
+#bevy_foliage_tool =   "0.15.1"
+bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
-# bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+ 
  
  
 
@@ -104,17 +104,9 @@ bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core"
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
  spirit_edit_core =  "0.15.2"
- #spirit_edit_core =   {path = "../spirit_edit_core"}
-
-
- 
-
-rand = "0.8"
  
 
 anyhow = "1"
- 
-bevy_egui = "0.31.1"
 bevy-inspector-egui = "0.28.0"
 
  

@@ -883,8 +883,6 @@ dependencies = [
 [[package]]
 name = "bevy_foliage_tool"
 version = "0.15.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf86fa8e78c6a33c2c1abc1cd8d0515a47607f0ab93961bad56582ba54e43cac"
 dependencies = [
  "anyhow",
  "bevy",
@@ -1229,6 +1227,8 @@ dependencies = [
 [[package]]
 name = "bevy_obj"
 version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b4ab78247d8e47e43295fe971d10842d4fcbed89c36d6388755e69a37c8723d"
 dependencies = [
  "bevy",
  "serde",
@@ -1239,8 +1239,7 @@ dependencies = [
 [[package]]
 name = "bevy_obj"
 version = "0.15.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3b4ab78247d8e47e43295fe971d10842d4fcbed89c36d6388755e69a37c8723d"
+source = "git+https://github.com/ethereumdegen/bevy_obj#41873d07a955f26e33c4c07ee7cda9a550d60025"
 dependencies = [
  "bevy",
  "serde",
@@ -1709,7 +1708,7 @@ dependencies = [
  "bitflags 2.6.0",
  "cexpr",
  "clang-sys",
- "itertools 0.13.0",
+ "itertools 0.11.0",
  "log",
  "prettyplease",
  "proc-macro2",
@@ -5348,7 +5347,7 @@ dependencies = [
  "bevy_magic_fx",
  "bevy_material_wizard",
  "bevy_mesh_terrain",
- "bevy_obj 0.15.0",
+ "bevy_obj 0.15.0 (git+https://github.com/ethereumdegen/bevy_obj)",
  "bevy_regions",
  "degen_toon_water",
  "image",
@@ -6322,7 +6321,7 @@ version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.48.0",
 ]
 
 [[package]]
