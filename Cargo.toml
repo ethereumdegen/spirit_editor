@@ -64,8 +64,8 @@ bevy_editor_pls.workspace = true
 bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
-  i want to dclare it like this but it errors 
-   bevy_obj=  {version = "0.15",  default-features = false , features= ["mesh"] }   
+  #i want to dclare it like this but it errors 
+  # bevy_obj=  {version = "0.15",  default-features = false , features= ["mesh"] }   
 
   bevy_obj=  {git="https://github.com/ethereumdegen/bevy_obj" ,  default-features = false , features= ["mesh"] }   
 
