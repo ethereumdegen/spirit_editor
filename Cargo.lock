@@ -1125,7 +1125,7 @@ checksum = "5e7d54eb778c0968e247e911f15b65bed4914d5d84bb94bd97fedd36c6da2751"
 dependencies = [
  "bevy",
  "bevy_common_assets",
- "bevy_obj 0.15.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bevy_obj",
  "ron",
  "serde",
  "serde_json",
@@ -1229,17 +1229,6 @@ name = "bevy_obj"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3b4ab78247d8e47e43295fe971d10842d4fcbed89c36d6388755e69a37c8723d"
-dependencies = [
- "bevy",
- "serde",
- "thiserror",
- "tobj",
-]
-
-[[package]]
-name = "bevy_obj"
-version = "0.15.0"
-source = "git+https://github.com/ethereumdegen/bevy_obj#41873d07a955f26e33c4c07ee7cda9a550d60025"
 dependencies = [
  "bevy",
  "serde",
@@ -5347,7 +5336,7 @@ dependencies = [
  "bevy_magic_fx",
  "bevy_material_wizard",
  "bevy_mesh_terrain",
- "bevy_obj 0.15.0 (git+https://github.com/ethereumdegen/bevy_obj)",
+ "bevy_obj",
  "bevy_regions",
  "degen_toon_water",
  "image",
