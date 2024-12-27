@@ -1,6 +1,7 @@
 (
 
     //this gets copied to artifacts 
+    //if just getting started, set to None
   external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
 
  

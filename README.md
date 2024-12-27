@@ -40,7 +40,7 @@ This will use load the sample zone with a single cube.   If you try to load the 
 
 ```
 
-If you set it to None, then it will work but will only load a default sample doodad manifest.  In order to actually place doodads in your editor, you will need to make it point at a repo which contains a subfolder "doodad_manifests" which contains all of your doodad manifest files.  (spirit_edit_core/src/doodads/doodad_manifest.rs has the struct to show you the architecture for this RON file ) (an example is found in example_game_assets).
+For now, set it to None. If you set it to None, then it will work and will only load a default sample doodad manifest.  In order to actually place more types of doodads in your editor, you will need to point this at a repo path which contains a subfolder "doodad_manifests" which contains all of your doodad manifest files.  (spirit_edit_core/src/doodads/doodad_manifest.rs has the struct to show you the architecture for this RON file ) (an example is found in example_game_assets).
 
 On boot up of the editor, the contents of this external game assets repo will be copied into the 'artifacts' folder which is .gitignored.  In this way, the assets for the game you are building can remain separate from the assets of the editor itself. 
 
