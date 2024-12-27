@@ -2,7 +2,18 @@
 
 ## Spirit Editor
 
+// MODEL ISSUES 
 
+
+mdungeon walls and mdungeon balaster need to be 4x4 to match the tilesi  like 
+
+need to UV wrap the knnight  AND floor tiles 
+
+slightly lower the height of the stairs 
+
+
+
+// ------ 
 
 - BUG:   Duplicating an asset of a prefab should make the local transform match... not put it way the helll out 
 
