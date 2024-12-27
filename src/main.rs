@@ -1,4 +1,44 @@
 
+
+
+
+
+
+mod editor_state;
+mod loading;
+mod clay_tiles;
+
+//mod material_overrides;
+mod editor_config; 
+mod camera;
+mod commands;
+mod editor_pls;
+mod tools;
+mod ui;
+mod asset_loading;
+mod liquid;
+mod materials; 
+
+mod level_config;
+ 
+mod doodads;
+mod terrain;
+ mod foliage; 
+
+mod regions;
+
+mod utils;
+mod virtual_link;
+mod material_override_link;
+
+use bevy::winit::WinitWindows;
+use level_config::LevelConfig;
+use winit::window::Icon;
+
+
+
+
+
 use bevy::render::view::ColorGrading;
 //use bevy_toon_shader::{ToonShaderPlugin,ToonShaderSun,ToonShaderMainCamera}; 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
@@ -38,6 +78,7 @@ use bevy_editor_pls_default_windows::lighting::Sun;
  use bevy_material_wizard::BevyMaterialWizardPlugin;
 
 use crate::editor_config::EditorConfig;
+
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
 //use bevy_foliage_paint::foliage_config::FoliageConfig;
@@ -83,35 +124,6 @@ use crate::tools::brush_tools_plugin;
 
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
- 
-
-mod editor_state;
-mod loading;
-mod clay_tiles;
-
-//mod material_overrides;
-mod editor_config; 
-mod camera;
-mod commands;
-mod editor_pls;
-mod tools;
-mod ui;
-mod asset_loading;
-mod liquid;
-mod materials; 
- 
-mod doodads;
-mod terrain;
- mod foliage; 
-
-mod regions;
-
-mod utils;
-mod virtual_link;
-mod material_override_link;
-
-use bevy::winit::WinitWindows;
-use winit::window::Icon;
 
 fn set_window_icon(
     // we have to use `NonSend` here
@@ -273,8 +285,10 @@ fn setup(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config: Res<EditorConfigAssets>,
+   editor_config_handles: Res<EditorConfigAssets>,
    editor_config_assets: Res<Assets<EditorConfig >>,
+
+   level_config_assets: Res<Assets<LevelConfig >>,
 
 
     
@@ -287,66 +301,66 @@ fn setup(
 
  
 
-     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
 
         panic!("Unable to load editor config");
          
      };
 
-      
-     
-    //initialize terrain root 
-    if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
+    
+
+    if let Some(level_name) = &editor_config.get_initial_level_name(){
+
+        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+
+        .map(|h| level_config_assets.get(h)  )  .flatten() {
+
+
+
+             if let Some(terrain_path) = &level_config.get_initial_terrain_path_full(){
    
-        commands
-            .spawn(Transform::default())
-             .insert(Visibility::Inherited)
-            .insert(
-                TerrainConfig::load_from_file(terrain_path)
-                    .unwrap(),
-            )
-            .insert(TerrainData::new()); 
+                commands
+                    .spawn(Transform::default())
+                     .insert(Visibility::Inherited)
+                    .insert(
+                        TerrainConfig::load_from_file(terrain_path)
+                            .unwrap(),
+                    )
+                    .insert(TerrainData::new()); 
+
+            }
+
+
+            if let Some(foliage_scene_name) = &level_config.get_foliage_scene_name() {
+        
+
+                let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
+         
+         
+                commands
+                    .spawn(Transform::default())
+                    .insert(Visibility::Inherited)
+                    .insert( 
+                        FoliageSceneData::create_or_load(  
+                        foliage_scenes_folder_path, 
+                        foliage_scene_name  
+                        ) //this will be unpacked automagically 
+                    ).insert(
+                        Name::new( foliage_scene_name.clone() )
+                    ) ; 
+
+             }
+
+
+
+        }
+    
+        
 
     }
-
-
-     if let Some(foliage_scene_name) = &editor_config.get_foliage_scene_name() {
-        
-
-        let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
-
-
-        
-
-
-        commands
-            .spawn(Transform::default())
-            .insert(Visibility::Inherited)
-            .insert( 
-                FoliageSceneData::create_or_load(  
-                foliage_scenes_folder_path, 
-                foliage_scene_name  
-                ) //this will be unpacked automagically 
-            ).insert(
-                Name::new( foliage_scene_name.clone() )
-            ) ; 
-
-         }
-    
-    
-
-
-              
-     /*commands
-        .spawn(SpatialBundle {
-           transform: Transform::from_xyz(0.0, 0.0, 0.0) , 
-            ..default()
-        } )
-        .insert(FoliageConfig::load_from_file("assets/foliage/foliage_config.ron").unwrap())
-        .insert(FoliageData::new()) 
-        //.insert(Visibility::Hidden)  // only in editor 
-        ;*/
-
+     
+      
+ 
 
         //spawn regions painting plane 
      commands
@@ -426,30 +440,40 @@ fn load_all_zones(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >>
+   editor_config_handles: Res<EditorConfigAssets>,
+   editor_config_assets: Res<Assets<EditorConfig >> ,
 
+    level_config_assets: Res<Assets<LevelConfig >>,
 
 ){
 
 
-     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
 
         panic!("Unable to load editor config");
          
      };
 
-      
-    //initialize zones 
-    for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
- 
-      zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
- 
+
+
+       if let Some(level_name) = &editor_config.get_initial_level_name(){
+
+        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+
+        .map(|h| level_config_assets.get(h)  )  .flatten() {
+
+              
+            //initialize zones 
+            for zone_name in level_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
+         
+              zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
+         
+            }
+
+
+
+        }
     }
-
-
-
-
 
 
 

@@ -1,0 +1,34 @@
+(
+
+
+	initial_terrain_to_load:  Some("grove_terrain"),    
+    initial_foliage_scene_to_load: Some("grove_foliage.foliage"), 
+
+
+
+	initial_zones_to_load: Some([
+
+		"grove/zone01.zone",
+        "test_units.zone",
+        "test_stuff.zone",
+        "ancient_islands.zone",
+        "viridian_temple01.zone",
+        "grove/grove_intro.zone", 
+        "grove/forest_01.zone",
+        "grove/gabriella_intro.zone",
+        "grove/twisted_grove_wolf.zone", // cinematic 
+         "grove/twisted_grove_extension.zone", 
+         "viridian_path.zone", 
+        "grove/twisted_grove_power_runes.zone",
+        "swamp_one.zone",
+        
+         
+        "dungeon_01_exterior.zone",
+         "temple_exterior.zone", 
+	]),
+
+
+
+
+
+)

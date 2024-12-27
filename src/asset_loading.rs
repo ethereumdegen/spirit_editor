@@ -1,7 +1,8 @@
  
+use crate::level_config::LevelConfig;
 use bevy_editor_pls_default_windows::placement::PlacementWindow;
 use bevy_editor_pls_core::Editor;
-use crate::editor_config;
+
 use crate::utils::copy_dir_recursive;
 use std::path::Path;
 use crate::utils::{walk_dir};
@@ -41,6 +42,7 @@ pub fn asset_loading_plugin(app: &mut App) {
     
             .add_plugins(  bevy_obj::ObjPlugin  ) 
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
+            .add_plugins(RonAssetPlugin::<LevelConfig>::new(&["level.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
 
@@ -53,6 +55,7 @@ pub fn asset_loading_plugin(app: &mut App) {
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::DoodadManifestsLoad)
                         .load_collection::<EditorConfigAssets>() 
+
                           
                 )
 
@@ -76,12 +79,12 @@ pub fn asset_loading_plugin(app: &mut App) {
                 )
                 
                 
-                  .add_loading_state(
+             .add_loading_state(
                     LoadingState::new(AssetLoadState::MeshAssetsLoad)
                         .continue_to_state(AssetLoadState::ShaderAssetsLoad)
                         .load_collection::<MeshAssets>() 
  
-                          
+                
                 )
  
              /* .add_loading_state(
@@ -164,6 +167,9 @@ pub struct EditorConfigAssets {
    
      #[asset(path = "editor_config.editorconfig.ron" )]
     pub(crate) editor_config:   Handle<EditorConfig> ,
+
+     #[asset(path = "levels", collection(typed, mapped))]
+    pub(crate) levels:  HashMap<AssetFileStem, Handle<LevelConfig> > ,
 
     // #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
     //pub(crate) doodad_manifest:   Handle<DoodadManifest> ,

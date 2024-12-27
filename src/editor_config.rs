@@ -10,13 +10,13 @@ use serde::{Deserialize, Serialize};
 pub struct EditorConfig {
 	external_game_assets_folder: Option<String>,
 
-	initial_terrain_to_load: Option<String> ,
 
-	initial_zones_to_load: Option<Vec<String>>,
-
-	initial_foliage_scene_to_load: Option<String>, 
 
 //	doodad_manifest: String, 
+	
+
+	initial_level_to_load: Option<String>, 
+
 
 
     default_placement_settings: Option<EditorConfigPlacementSettings>,
@@ -24,6 +24,7 @@ pub struct EditorConfig {
  
 
 }
+
 
 
 impl TypePath for EditorConfig {
@@ -46,7 +47,15 @@ impl EditorConfig{
 		return self.external_game_assets_folder.as_ref()
 	}
 
-	pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
+
+	pub fn get_initial_level_name(&self) -> Option<String> {
+
+		return self.initial_level_to_load.clone()
+	}
+
+
+
+	/*pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
 
 		return self.initial_terrain_to_load.as_ref().map(|t| format!("assets/terrain/{}/terrain_config.ron", t)  )
 	}
@@ -62,7 +71,7 @@ impl EditorConfig{
 
 
 		return self.initial_foliage_scene_to_load.clone()
-	}
+	}*/
 
 	pub fn get_default_placement_settings(&self) -> Option<EditorConfigPlacementSettings> {
 

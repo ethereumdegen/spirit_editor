@@ -13,15 +13,15 @@ A level editor for 3D worlds for the Bevy game engine.
 
 ## Getting Started 
 
-1. In order to boot up the editor successfully the first time, Make sure you go into assets/editorconfig and set it to load the sample zone as follows:
+1. In order to boot up the editor successfully the first time, Make sure you go into assets/editorconfig and set it to load the sample level as follows:
 
 ```
 
 ( 
 
-initial_zones_to_load: Some([
+initial_level_to_load: Some([
        
-      "sample_zone.zone"
+      "default_level.level"
  ]), 
   
 
@@ -33,7 +33,7 @@ This will use load the sample zone with a single cube.   If you try to load the 
 
 
 
-2. You will also need to edit the "external_game_assets_folder" parameter in editorconfig. 
+2. Eventually, you need to edit the "external_game_assets_folder" parameter in editorconfig:
 
 ```
  external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
