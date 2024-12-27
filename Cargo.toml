@@ -118,8 +118,8 @@ egui = "0.29"
 # egui-gizmo = "0.16"  # deprecated ? 
 
 #transform-gizmo-bevy= "0.3"
-# transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
-transform-gizmo-bevy= {path = "../transform-gizmo/crates/transform-gizmo-bevy"}
+transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
+# transform-gizmo-bevy= {path = "../transform-gizmo/crates/transform-gizmo-bevy"}
 
  
  

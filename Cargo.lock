@@ -1708,7 +1708,7 @@ dependencies = [
  "bitflags 2.6.0",
  "cexpr",
  "clang-sys",
- "itertools 0.11.0",
+ "itertools 0.13.0",
  "log",
  "prettyplease",
  "proc-macro2",
@@ -5735,7 +5735,8 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo"
-version = "0.5.0"
+version = "0.5.1"
+source = "git+https://github.com/ethereumdegen/transform-gizmo#2e22bc02a80abbcdd945e70d0e71155c30835995"
 dependencies = [
  "ahash",
  "ecolor",
@@ -5749,7 +5750,8 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo-bevy"
-version = "0.5.0"
+version = "0.5.1"
+source = "git+https://github.com/ethereumdegen/transform-gizmo#2e22bc02a80abbcdd945e70d0e71155c30835995"
 dependencies = [
  "bevy",
  "bevy_app",
@@ -6321,7 +6323,7 @@ version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
 dependencies = [
- "windows-sys 0.48.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
