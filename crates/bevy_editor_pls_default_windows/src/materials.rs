@@ -60,9 +60,13 @@ impl EditorWindow for MaterialsWindow {
 
         "ToonStone",
         "StoneWall",
+        "StoneWall2",
+        "StoneWall3",
+
         "StoneFloor",
         "Slate1",
         "WoodFloor",
+        "RockyEarth",
 
 		"Cliff1",
 		"Cliff2",
