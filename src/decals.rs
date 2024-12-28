@@ -69,6 +69,9 @@ fn build_decals(
  		let diffuse_texture_name = &decal_type_data.diffuse_texture;
  		let base_color = &decal_type_data.base_color;
 
+ 		let emissive_texture_name = &decal_type_data.emissive_texture ;
+ 		let emissive_color = decal_type_data.emissive_color.clone().unwrap_or( LinearRgba::BLACK ) ;
+
 
  		let diffuse_texture_handle  = texture_asset_handles.decal_textures.get( diffuse_texture_name.as_str() ) ;
 
@@ -78,6 +81,10 @@ fn build_decals(
  			continue;
 
  		}
+
+ 		let emissive_texture_handle = emissive_texture_name.as_ref()
+ 			.map(|n| texture_asset_handles.decal_textures.get( n.as_str() )  )
+ 				.flatten();
 
  
  		if let Some(mut cmd) = commands.get_entity(decal_entity) {
@@ -91,6 +98,9 @@ fn build_decals(
 	                            base_color_texture: diffuse_texture_handle.cloned(),
 	                            base_color:   base_color.clone() .into() ,
 	                            alpha_mode: AlphaMode::Blend,
+	                            unlit: decal_type_data.unlit.clone(), 
+	                            emissive : emissive_color.into(),
+	                            emissive_texture : emissive_texture_handle.cloned() ,
 	                            ..default()
 	                        },
 	                        extension: DecalMaterial {
