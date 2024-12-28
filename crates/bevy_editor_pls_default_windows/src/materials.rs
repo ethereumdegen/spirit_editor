@@ -57,6 +57,13 @@ impl EditorWindow for MaterialsWindow {
 		"Wall1",
 		"Wall2",
 		"Rocks2",
+
+        "ToonStone",
+        "StoneWall",
+        "StoneFloor",
+        "Slate1",
+        "WoodFloor",
+
 		"Cliff1",
 		"Cliff2",
 		"Cliff3",
@@ -69,6 +76,7 @@ impl EditorWindow for MaterialsWindow {
 		"Cobbles3",
 		"Wood2",
 		"Wood5",
+      
 
 		];
 

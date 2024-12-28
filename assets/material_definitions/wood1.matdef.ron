@@ -10,7 +10,7 @@
    emissive_texture: None ,
 
 
-   alpha_mode: AlphaBlend ,
+   
 
    uv_scale_factor: 1.0,  // do this in the material override lib ?
         
