@@ -1,4 +1,5 @@
  
+use crate::decal_manifest::DecalManifest;
 use crate::level_config::LevelConfig;
 use bevy_editor_pls_default_windows::placement::PlacementWindow;
 use bevy_editor_pls_core::Editor;
@@ -39,10 +40,13 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
+
     
             .add_plugins(  bevy_obj::ObjPlugin  ) 
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
             .add_plugins(RonAssetPlugin::<LevelConfig>::new(&["level.ron"])) 
+
+            .add_plugins(RonAssetPlugin::<DecalManifest>::new(&["decal.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
 
@@ -78,23 +82,27 @@ pub fn asset_loading_plugin(app: &mut App) {
                           
                 )
                 
+
+
                 
              .add_loading_state(
                     LoadingState::new(AssetLoadState::MeshAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .continue_to_state(AssetLoadState::DecalAssetsLoad)
                         .load_collection::<MeshAssets>() 
  
                 
                 )
- 
-             /* .add_loading_state(
-                    LoadingState::new(AssetLoadState::GltfAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
-                        
-                         .load_collection::<GltfAssets>() 
-                         
-                )*/
 
+
+             .add_loading_state(
+                    LoadingState::new(AssetLoadState::DecalAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .load_collection::<DecalAssets>() 
+ 
+                          
+                )
+                
+ 
 
               .add_loading_state(
                     LoadingState::new(AssetLoadState::ShaderAssetsLoad)
@@ -142,6 +150,7 @@ pub enum AssetLoadState {
     DoodadManifestsLoad,
     TextureAssetsLoad,
     MeshAssetsLoad,
+    DecalAssetsLoad, 
     //GltfAssetsLoad,
     ShaderAssetsLoad,
     ShaderVariantsLoad,
@@ -155,9 +164,12 @@ pub enum AssetLoadState {
 
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
+
+     #[asset(path = "../artifacts/game_assets/textures/decal_textures", collection(typed, mapped))]
+    pub(crate) decal_textures: HashMap<AssetFileName, Handle<Image>>,
    
-     #[asset(path = "textures/vfx_textures", collection(typed, mapped))]
-    pub(crate) vfx_textures: HashMap<String, Handle<Image>>,
+     #[asset(path = "../artifacts/game_assets/textures/vfx_textures", collection(typed, mapped))]
+    pub(crate) vfx_textures: HashMap<AssetFileName, Handle<Image>>,
 
 
 }
@@ -205,9 +217,19 @@ pub struct MeshAssets {
 
 }
 
+
+#[derive(AssetCollection, Resource)]
+pub struct DecalAssets {
+
+  #[asset(path = "../artifacts/game_assets/decals", collection(typed, mapped))]
+    pub(crate) decals: HashMap<AssetFileStem, Handle<DecalManifest>>, //see bevy shader play
+
+}
+
+
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct ShaderVariantAssets {
-    #[asset(path = "shader_variants", collection(typed, mapped))]
+    #[asset(path = "../artifacts/game_assets/shader_variants", collection(typed, mapped))]
     pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
 }
 

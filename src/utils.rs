@@ -59,3 +59,18 @@ pub fn copy_dir_recursive(src_dir: &Path, dst_dir: &Path) -> io::Result<()> {
 
     Ok(())
 }
+
+
+pub trait StringUtilsExt {
+    fn ensure_ends_with(&self, suffix: &str) -> String;
+}
+
+impl StringUtilsExt for String {
+    fn ensure_ends_with(&self, suffix: &str) -> String {
+        if self.ends_with(suffix) {
+            self.to_string()
+        } else {
+            format!("{}{}", self, suffix)
+        }
+    }
+}

@@ -8,6 +8,10 @@ mod editor_state;
 mod loading;
 mod clay_tiles;
 
+
+mod decals; 
+mod decal_manifest; 
+
 //mod material_overrides;
 mod editor_config; 
 mod camera;
@@ -45,6 +49,8 @@ use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
+
+
 
 
 use bevy::tasks::AsyncComputeTaskPool;
@@ -233,6 +239,9 @@ fn main() {
 
         .add_plugins(foliage::foliage_plugin   )
         .add_plugins(materials::materials_plugin   )
+
+        .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
+        .add_plugins(decals::decals_plugin)
       
 
         .add_plugins(doodads::doodad::doodad_plugin)

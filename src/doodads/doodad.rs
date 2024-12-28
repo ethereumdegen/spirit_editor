@@ -3,6 +3,7 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
@@ -315,6 +316,26 @@ fn attach_models_to_doodads(
                     commands.entity(spawned_entity).insert(Wireframe); 
                 }
             }
+
+
+             RenderableType::Decal(decal_name) => {
+ 
+
+                let spawned_entity = commands
+                    .entity(new_doodad_entity)
+
+                     .insert(DecalComponent { 
+                        decal_name: decal_name.clone()
+                       })
+                      .remove::<DoodadNeedsModelAttached>()
+
+                        .id(); 
+
+
+                
+            }
+
+
 
             RenderableType::MagicFx(magic_fx_name) => {
 

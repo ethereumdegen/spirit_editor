@@ -1,6 +1,6 @@
 [package]
 name = "spirit_editor"
-version = "0.15.0"
+version = "0.15.1"
 edition = "2021"
 default-run = "main"
 
@@ -81,6 +81,8 @@ bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  
  
+bevy_contact_projective_decals = {git= " https://github.com/ethereumdegen/bevy_contact_projective_decals "}
+ 
  
 
 
@@ -105,8 +107,8 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
- spirit_edit_core =  "0.15.2"
- 
+ #spirit_edit_core =  "0.15.2"
+ spirit_edit_core = {path="../spirit_edit_core"}
 
 anyhow = "1"
 bevy-inspector-egui = "0.28.0"
@@ -121,7 +123,7 @@ egui = "0.29"
 transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
 # transform-gizmo-bevy= {path = "../transform-gizmo/crates/transform-gizmo-bevy"}
 
- 
+
  
 [profile.dev.package."*"]
 opt-level = 3

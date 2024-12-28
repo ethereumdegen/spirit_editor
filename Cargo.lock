@@ -679,6 +679,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_contact_projective_decals"
+version = "0.1.0"
+source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#ec10ec06766f02bd71cc3ef74c02a2fdf79ef292"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "bevy_core"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5320,9 +5328,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.15.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "527148537e12f4cc5cad980fb63d7cef819cac31457e1d03476242ab2c282e75"
+version = "0.15.3"
 dependencies = [
  "bevy",
  "bevy_clay_tiles",
@@ -5335,7 +5341,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_editor"
-version = "0.15.0"
+version = "0.15.1"
 dependencies = [
  "anyhow",
  "bevy",
@@ -5343,6 +5349,7 @@ dependencies = [
  "bevy_asset_loader",
  "bevy_clay_tiles",
  "bevy_common_assets",
+ "bevy_contact_projective_decals",
  "bevy_editor_pls",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
