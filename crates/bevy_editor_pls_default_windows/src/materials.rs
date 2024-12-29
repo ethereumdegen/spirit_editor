@@ -68,6 +68,11 @@ impl EditorWindow for MaterialsWindow {
         "WoodFloor",
         "RockyEarth",
 
+        "OrnateTiles1",
+        "OrnateTiles2",
+        "OrnateTiles3",
+        "OrnateTiles4",
+
 		"Cliff1",
 		"Cliff2",
 		"Cliff3",
