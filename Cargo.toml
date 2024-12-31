@@ -43,7 +43,7 @@ image = { version = "0.25.1", default-features = false }
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
-bevy_magic_fx = "0.15.0"
+bevy_magic_fx = "0.15.3"
 
 # vendored into new bevy ! 
 # bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
