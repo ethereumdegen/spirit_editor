@@ -18,6 +18,13 @@
                          alpha: 0.9
         ) ),
 
+           foam_color: Some( LinearRgba(
+                       red: 2.4,
+                         green:  2.4,
+                         blue:  2.4,
+                         alpha: 2.9
+        ) ),
+
 
 
     	 ),

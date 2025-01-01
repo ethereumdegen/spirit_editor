@@ -33,7 +33,7 @@ image = { version = "0.25.1", default-features = false }
    #bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
- degen_toon_water = "0.15.0" 
+ degen_toon_water = "0.15.1" 
  # degen_toon_water =  {path="../degen_toon_water"}
 
 
