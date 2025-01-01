@@ -3,6 +3,7 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use spirit_edit_core::zones::zone_file::CustomPropsMap;
 use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
 use spirit_edit_core::prefabs::PrefabToolState;
@@ -79,6 +80,7 @@ use crate::{
 
     app
             .init_resource::<DoodadGltfLoadTrackingResource>()
+            .add_event::<SpawnDoodadEvent>()
             .add_observer(   add_doodad_collider_markers )
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
@@ -93,6 +95,7 @@ use crate::{
                 update_doodad_placement_preview_model.run_if(in_state(AssetLoadState::Complete)),
 
                 handle_place_doodad_events,
+                handle_spawn_doodad_events,
                 handle_place_clay_tile_block_events,
                 update_place_doodads,
                 reset_place_doodads,
@@ -144,6 +147,20 @@ pub struct DoodadColliderMarker {}
 const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 
  
+
+
+
+#[derive(Event)]
+pub struct SpawnDoodadEvent {
+ pub position: Vec3,
+    pub scale: Option<Vec3>,
+    pub rotation_euler: Option<Vec3>,
+    pub doodad_name: String,
+    pub custom_props: Option<CustomPropsMap>,
+    pub force_parent: Option<Entity> ,
+    pub auto_select: bool
+}
+
 
 
 
@@ -860,6 +877,121 @@ pub fn handle_place_doodad_events(
         if let Some(scale) = evt.scale {
             transform = transform.with_scale(scale)
         }
+ 
+
+
+
+
+        let doodad_spawned = commands
+            .spawn( transform )
+            .insert( Visibility::default() )
+            .insert(Name::new(doodad_name.clone())  )
+            .insert( DoodadProto )
+            .id();
+
+
+        if *auto_select {
+
+            //why are these different.. ? 
+             editor_event_writer.send( 
+                EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+             );
+
+            doodad_tool_event_writer.send(
+                DoodadToolEvent::SetSelectedDoodad(None) 
+            );
+        }
+        
+
+    
+        
+          
+        let proto_custom_props_to_attach = match &evt.custom_props {
+            Some(props) => Some( props ),
+            None  => None
+        };
+
+
+         if let Some(custom_props) = proto_custom_props_to_attach {
+          
+
+            commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent {
+                    props: custom_props.clone(),
+                });
+        }else{
+             commands
+                .entity(doodad_spawned)
+                .insert( CustomPropsComponent::default()  );
+        }
+
+ 
+        
+
+         if let Some(parent) = parent {
+            commands.entity( doodad_spawned ).set_parent( *parent );
+         }
+ 
+    }
+}
+
+
+
+
+pub fn handle_spawn_doodad_events(
+    mut commands: Commands,
+
+    mut evt_reader: EventReader<SpawnDoodadEvent>,
+
+    mut editor_event_writer: EventWriter<EditorEvent>,
+    mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
+
+    placement_resource: Res<PlacementResource>,
+
+  //  global_xform_query: Query<&GlobalTransform>, 
+
+
+){
+
+
+
+    for evt in evt_reader.read() {
+        let position = &evt.position;
+        let doodad_name = &evt.doodad_name;
+
+
+        let auto_select = &evt.auto_select;
+
+        
+
+
+        // ----
+        // determine the doodad parent, if there will be one
+
+        let mut parent = None ;
+
+         if let Some(parent_override) = &evt.force_parent {
+            parent = Some(parent_override);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
+         }
+
+        // ------
+
+
+    
+
+
+        let mut transform = Transform::from_translation(*position) ; 
+
+        if let Some(rot) = evt.rotation_euler {
+            transform =
+                transform.with_rotation(Quat::from_euler(EulerRot::YXZ, rot.x, rot.y, rot.z))
+        }
+        if let Some(scale) = evt.scale {
+            transform = transform.with_scale(scale)
+        }
 
 
 
@@ -940,8 +1072,10 @@ pub fn handle_place_doodad_events(
             }
         }*/
     }
-}
 
+
+
+}
 
 
 

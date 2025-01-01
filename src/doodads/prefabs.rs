@@ -89,6 +89,19 @@ fn spawn_children_for_new_prefabs (
                     ZoneEntityV2::Doodad { name, transform, custom_props } => {
 
 
+
+
+
+                        //    global_xform_query: Query<&GlobalTransform>, 
+                          // if there is a parent, the relative position will be offset by the parent global translation 
+
+
+                          //  let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
+                         //   let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+
+
+
+
                         let position = &transform.translation;
                         let scale = &transform.scale;
                         let rotation_euler = &transform.rotation;
@@ -264,7 +277,8 @@ pub fn handle_place_prefabs(
 
             //   println!("place doodad 4 {:?}", doodad_definition);
 
-            
+                
+
 
             event_writer.send(SpawnPrefabEvent {
                 position: *place_at_coordinates,

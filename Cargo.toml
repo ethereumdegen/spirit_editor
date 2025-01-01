@@ -21,9 +21,10 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-   bevy_mesh_terrain = {version = "0.15.6", features=["physics"]  }
+    bevy_mesh_terrain = {version = "0.15.7", features=["physics"]  }
 
-   # bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
+ 
+   #bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
 
 
  
@@ -75,8 +76,8 @@ bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
-#bevy_foliage_tool =   "0.15.1"
-bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+ bevy_foliage_tool =   "0.15.1"
+ #bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  

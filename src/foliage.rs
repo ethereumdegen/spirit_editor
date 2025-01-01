@@ -1,5 +1,6 @@
 
 
+use crate::doodads::doodad::SpawnDoodadEvent;
 use spirit_edit_core::doodads::PlaceDoodadEvent;
 use bevy_foliage_tool::foliage_proto::FoliageProto;
 use bevy_foliage_tool::foliage_material::FoliageMaterial;
@@ -101,7 +102,7 @@ fn spawn_foliage_doodads (
 
    // mut commands :Commands , 
     foliage_proto_query: Query< (Entity, &FoliageProto ), Added<FoliageProto> >,
-     mut event_writer: EventWriter<PlaceDoodadEvent>,
+     mut event_writer: EventWriter<SpawnDoodadEvent>,
 
 ){
 
@@ -112,7 +113,10 @@ fn spawn_foliage_doodads (
         let foliage_def = &foliage_proto.foliage_definition;
         let foliage_type_name = &foliage_def.name ; 
 
-         event_writer.send(PlaceDoodadEvent {
+
+
+        info!("spawn foliage doodad" );
+         event_writer.send(SpawnDoodadEvent {
                 position: Vec3::default(),
                 doodad_name: foliage_type_name.clone(),
                 scale: None,
