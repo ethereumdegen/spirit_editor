@@ -124,6 +124,9 @@ fn spawn_foliage_doodads (
                 custom_props:None     ,
                   force_parent: Some(foliage_proto_entity),
                   auto_select: false,
+
+
+                  is_foliage: true, 
                 //clay_tile_block_data : None ,
       
 

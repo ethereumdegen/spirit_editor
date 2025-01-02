@@ -6,6 +6,7 @@
 use spirit_edit_core::zones::zone_file::CustomPropsMap;
 use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
+use crate::render::{CascadedNotShadowCaster, CascadedNotShadowReceiver};
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
 
@@ -152,13 +153,15 @@ const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 
 #[derive(Event)]
 pub struct SpawnDoodadEvent {
- pub position: Vec3,
+    pub position: Vec3,
     pub scale: Option<Vec3>,
     pub rotation_euler: Option<Vec3>,
     pub doodad_name: String,
     pub custom_props: Option<CustomPropsMap>,
     pub force_parent: Option<Entity> ,
-    pub auto_select: bool
+    pub auto_select: bool,
+
+    pub is_foliage: bool // hack for now 
 }
 
 
@@ -262,7 +265,15 @@ fn attach_models_to_doodads(
                                    ( 
                                      Transform::default(),  
                                      Visibility::default(),
-                                     AddGltfModelComponent( model_handle ) )
+
+                                   //  CascadedNotShadowCaster,
+                                     CascadedNotShadowReceiver,
+
+                                     AddGltfModelComponent( model_handle ) 
+
+
+                                     ),
+                                     
                                    )
                                 
                                 
@@ -964,7 +975,7 @@ pub fn handle_spawn_doodad_events(
         let auto_select = &evt.auto_select;
 
         
-
+        let is_foliage = &evt.is_foliage; 
 
         // ----
         // determine the doodad parent, if there will be one
@@ -1008,6 +1019,7 @@ pub fn handle_spawn_doodad_events(
             .insert( DoodadProto )
             .id();
 
+ 
 
         if *auto_select {
 

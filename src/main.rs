@@ -29,6 +29,8 @@ mod doodads;
 mod terrain;
  mod foliage; 
 
+ mod render;
+
 mod regions;
 
 mod utils;
@@ -208,6 +210,9 @@ fn main() {
         })
 
         .add_plugins(BevyRegionsPlugin::default())
+
+
+        .add_plugins(render::rendering_plugin) 
 
 
         .add_plugins(BevyMaterialWizardPlugin{

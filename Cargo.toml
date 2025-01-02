@@ -76,8 +76,8 @@ bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
- bevy_foliage_tool =   "0.15.1"
- #bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+ #bevy_foliage_tool =   "0.15.1"
+ bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  
