@@ -21,10 +21,10 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-    bevy_mesh_terrain = {version = "0.15.7", features=["physics"]  }
+   bevy_mesh_terrain = {version = "0.15.9", features=["physics"]  }
 
  
-   #bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
+    # bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
 
 
  
