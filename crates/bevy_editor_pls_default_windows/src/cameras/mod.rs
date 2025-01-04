@@ -167,10 +167,10 @@ fn configure_camera_custom(
     commands.entity(cam_entity)
  
     .insert( ActiveEditorCamera {} )
-    .insert(   GizmoCamera   )
+   .insert(   GizmoCamera   )
 
     .insert( NotInScene {} )
-     .insert( HideInEditor {} )
+     .insert( HideInEditor {} ) //hides from hierarchy 
        .insert( EditorCamera {} )
          .insert( EditorCamera3dFree {} )
          .insert( render_layers )

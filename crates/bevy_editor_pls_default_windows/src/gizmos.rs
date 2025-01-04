@@ -183,26 +183,33 @@ fn add_gizmo_markers(
     );
 
     let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER.into());
+
+
+    let add_gizmo_to_cameras = false; // disabled for now !  Was annoying w wireframes. 
+
+    if add_gizmo_to_cameras {
+
     for entity in &cameras {
-        commands
-            .entity(entity)
-            .insert((
-                HasGizmoMarker,
-                Visibility::Visible,
-               // InheritedVisibility::VISIBLE,
-              //  ViewVisibility::default(),
-            ))
-            .with_children(|commands| {
-                commands.spawn((
-                     
-                    Mesh3d(   gizmo_marker_meshes.camera_mesh.clone_weak() ),
-                    MeshMaterial3d( gizmo_marker_meshes.camera_material.clone_weak() ),
-                   
-                    
-                    render_layers.clone(),
-                    Name::new("Camera Gizmo"),
-                ));
-            });
+            commands
+                .entity(entity)
+                .insert((
+                    HasGizmoMarker,
+                    Visibility::Visible,
+                   // InheritedVisibility::VISIBLE,
+                  //  ViewVisibility::default(),
+                ))
+                .with_children(|commands| {
+                    commands.spawn((
+                         
+                        Mesh3d(   gizmo_marker_meshes.camera_mesh.clone_weak() ),
+                        MeshMaterial3d( gizmo_marker_meshes.camera_material.clone_weak() ),
+                       
+                        
+                        render_layers.clone(),
+                        Name::new("Camera Gizmo"),
+                    ));
+                });
+        }
     }
 }
  
