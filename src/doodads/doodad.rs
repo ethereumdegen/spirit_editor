@@ -3,7 +3,10 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use spirit_edit_core::zones::zone_file::CustomPropsMap;
+use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
+use crate::render::{CascadedNotShadowCaster, CascadedNotShadowReceiver};
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
 
@@ -12,6 +15,10 @@ use spirit_edit_core::gltf_models::AddGltfModelComponent;
 
 
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
+
+
+use bevy_material_wizard::material_replacements::MaterialReplacementApplySetWhenSceneReadyComponent;
+
 use bevy_material_wizard::material_overrides::{
     MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
 
@@ -23,7 +30,7 @@ use bevy_editor_pls_core::Editor;
 use spirit_edit_core::doodads::DoodadToolState;
 use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
-use bevy_mod_raycast::prelude::*;
+ 
 
 
 use bevy::utils::HashSet; 
@@ -49,7 +56,7 @@ use bevy::pbr::wireframe::WireframeColor;
 use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
 
 
-use bevy_mod_sysfail::*;
+ 
  
  use rand::Rng;
 
@@ -57,8 +64,7 @@ use bevy_mod_sysfail::*;
 //use anyhow::{Context, Result};
 
  
-
-use bevy_mod_picking::prelude::*;
+ 
  use bevy_magic_fx::magic_fx::MagicFxVariantComponent;
 
 use bevy::{
@@ -75,12 +81,14 @@ use crate::{
 
     app
             .init_resource::<DoodadGltfLoadTrackingResource>()
+            .add_event::<SpawnDoodadEvent>()
+            .add_observer(   add_doodad_collider_markers )
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
 
                 decrement_doodad_gltf_load_tracker, 
                
-                add_doodad_collider_markers, 
+              
                 hide_doodad_collision_volumes,
 
                 remove_recently_failed_to_load,
@@ -88,6 +96,7 @@ use crate::{
                 update_doodad_placement_preview_model.run_if(in_state(AssetLoadState::Complete)),
 
                 handle_place_doodad_events,
+                handle_spawn_doodad_events,
                 handle_place_clay_tile_block_events,
                 update_place_doodads,
                 reset_place_doodads,
@@ -142,6 +151,22 @@ const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
 
 
 
+#[derive(Event)]
+pub struct SpawnDoodadEvent {
+    pub position: Vec3,
+    pub scale: Option<Vec3>,
+    pub rotation_euler: Option<Vec3>,
+    pub doodad_name: String,
+    pub custom_props: Option<CustomPropsMap>,
+    pub force_parent: Option<Entity> ,
+    pub auto_select: bool,
+
+    pub is_foliage: bool // hack for now 
+}
+
+
+
+
 fn attach_models_to_doodads(
     mut commands: Commands,
     mut doodad_load_tracking_resource: ResMut<DoodadGltfLoadTrackingResource>,
@@ -151,7 +176,7 @@ fn attach_models_to_doodads(
         (
             With<DoodadNeedsModelAttached>,
             With<GlobalTransform>,
-            Without<Handle<Mesh>>,
+            Without<Mesh3d>,
             Without<RecentlyFailedToLoadModel>,
         ),
     >,
@@ -198,7 +223,7 @@ fn attach_models_to_doodads(
 
       if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
  
-        cmd.try_insert(PickableBundle::default()) ;
+          cmd.try_insert( PickingBehavior::default() ) ;  //optional
       } 
 
 
@@ -238,8 +263,17 @@ fn attach_models_to_doodads(
                           let scene = cmd.commands()
                                 .spawn( 
                                    ( 
-                                     SpatialBundle::default(),  
-                                     AddGltfModelComponent( model_handle ) )
+                                     Transform::default(),  
+                                     Visibility::default(),
+
+                                   //  CascadedNotShadowCaster,
+                                     CascadedNotShadowReceiver,
+
+                                     AddGltfModelComponent( model_handle ) 
+
+
+                                     ),
+                                     
                                    )
                                 
                                 
@@ -277,14 +311,14 @@ fn attach_models_to_doodads(
                     } else  if let Some( material_replacement_set  ) = material_replacement_set  {
                         // info!("found   material_replacements  {:?}", material_replacements );
 
-                        warn!("not adding component for material replacement set ");
-                        /* if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                       
+                         if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                             cmd.try_insert(
                                 MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
                                    
 
                             );
-                        }*/
+                        } 
 
                     }
 
@@ -300,9 +334,9 @@ fn attach_models_to_doodads(
 
                 let spawned_entity = commands
                     .entity(new_doodad_entity)
-                    .insert(meshes.add(Cuboid::new(1.0, 1.0, 1.0)))
+                    .insert(Mesh3d( meshes.add(Cuboid::new(1.0, 1.0, 1.0)) ))
                      .remove::<DoodadNeedsModelAttached>()
-                    .insert(materials.add( cube_def_color  )).id();
+                    .insert(MeshMaterial3d( materials.add( cube_def_color  ) )  ).id();
 
 
                 if cube_shape_def.wireframe {
@@ -310,6 +344,26 @@ fn attach_models_to_doodads(
                     commands.entity(spawned_entity).insert(Wireframe); 
                 }
             }
+
+
+             RenderableType::Decal(decal_name) => {
+ 
+
+                let spawned_entity = commands
+                    .entity(new_doodad_entity)
+
+                     .insert(DecalComponent { 
+                        decal_name: decal_name.clone()
+                       })
+                      .remove::<DoodadNeedsModelAttached>()
+
+                        .id(); 
+
+
+                
+            }
+
+
 
             RenderableType::MagicFx(magic_fx_name) => {
 
@@ -453,6 +507,9 @@ fn get_loaded_model_from_name<'a>(
 
  
 pub(crate) fn add_doodad_collider_markers(
+
+    scene_instance_evt_trigger: Trigger<SceneInstanceReady>  ,
+
     mut commands: Commands,
     doodad_query: Query<
         (Entity, &DoodadComponent),
@@ -464,16 +521,17 @@ pub(crate) fn add_doodad_collider_markers(
     > ,
 
     parent_query: Query< &Parent > , 
-   mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
+ //  mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
 
    
 )   {
   
-    for evt in scene_instance_evt_reader.read(){
+   let trig_entity = scene_instance_evt_trigger.entity();
 
-          let parent = evt.parent;
+    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
 
-          if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent).ok() {
+
+          if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
 
              
             commands
@@ -482,12 +540,12 @@ pub(crate) fn add_doodad_collider_markers(
             .insert(DoodadColliderMarker::default())
 
              ;
-             continue;
+             return;
         } 
 
 
 
-         for parent_entity in AncestorIter::new(&parent_query, parent) {
+         for parent_entity in AncestorIter::new(&parent_query, parent_entity) {
 
 
             if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
@@ -499,7 +557,7 @@ pub(crate) fn add_doodad_collider_markers(
                 .insert(DoodadColliderMarker::default())
 
                  ;
-                 continue
+                 return
 
             } 
 
@@ -513,7 +571,7 @@ pub(crate) fn add_doodad_collider_markers(
         
         
 
-    }
+     
 
 
    
@@ -668,10 +726,7 @@ pub fn update_doodad_placement_preview_model (
 
 
                   let gltf_scene = commands.spawn(
-                                SceneBundle {
-                                    scene: model_handle,
-                                    ..Default::default()
-                                } )
+                                 SceneRoot( model_handle ))
                                           
                              .insert(GhostlyMaterialMarker {})
                              .id();
@@ -777,6 +832,8 @@ pub fn handle_place_doodad_events(
 
     placement_resource: Res<PlacementResource>,
 
+    global_xform_query: Query<&GlobalTransform>, 
+
    // doodad_manifest_resource: Res<DoodadManifestResource>,
    // doodad_manifest_assets: Res<Assets<DoodadManifest>>,
 ) {
@@ -790,9 +847,154 @@ pub fn handle_place_doodad_events(
         let doodad_name = &evt.doodad_name;
 
 
+        let auto_select = &evt.auto_select;
+
+        
+
+
+        // ----
+        // determine the doodad parent, if there will be one
+
+        let mut parent = None ;
+
+         if let Some(parent_override) = &evt.force_parent {
+            parent = Some(parent_override);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
+         }
+
+        // ------
+
+
+        // if there is a parent, the relative position will be offset by the parent global translation 
+
+
+        let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
+        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+
+
+        // -----
+
+
+
+
+
+        let mut transform = Transform::from_translation(position_relative_to_parent) ; 
+
+        if let Some(rot) = evt.rotation_euler {
+            transform =
+                transform.with_rotation(Quat::from_euler(EulerRot::YXZ, rot.x, rot.y, rot.z))
+        }
+        if let Some(scale) = evt.scale {
+            transform = transform.with_scale(scale)
+        }
  
 
-        let mut transform = Transform::from_xyz(position.x, position.y, position.z);
+
+
+
+        let doodad_spawned = commands
+            .spawn( transform )
+            .insert( Visibility::default() )
+            .insert(Name::new(doodad_name.clone())  )
+            .insert( DoodadProto )
+            .id();
+
+
+        if *auto_select {
+
+            //why are these different.. ? 
+             editor_event_writer.send( 
+                EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+             );
+
+            doodad_tool_event_writer.send(
+                DoodadToolEvent::SetSelectedDoodad(None) 
+            );
+        }
+        
+
+    
+        
+          
+        let proto_custom_props_to_attach = match &evt.custom_props {
+            Some(props) => Some( props ),
+            None  => None
+        };
+
+
+         if let Some(custom_props) = proto_custom_props_to_attach {
+          
+
+            commands
+                .entity(doodad_spawned)
+                .insert(CustomPropsComponent {
+                    props: custom_props.clone(),
+                });
+        }else{
+             commands
+                .entity(doodad_spawned)
+                .insert( CustomPropsComponent::default()  );
+        }
+
+ 
+        
+
+         if let Some(parent) = parent {
+            commands.entity( doodad_spawned ).set_parent( *parent );
+         }
+ 
+    }
+}
+
+
+
+
+pub fn handle_spawn_doodad_events(
+    mut commands: Commands,
+
+    mut evt_reader: EventReader<SpawnDoodadEvent>,
+
+    mut editor_event_writer: EventWriter<EditorEvent>,
+    mut doodad_tool_event_writer: EventWriter<DoodadToolEvent>,
+
+    placement_resource: Res<PlacementResource>,
+
+  //  global_xform_query: Query<&GlobalTransform>, 
+
+
+){
+
+
+
+    for evt in evt_reader.read() {
+        let position = &evt.position;
+        let doodad_name = &evt.doodad_name;
+
+
+        let auto_select = &evt.auto_select;
+
+        
+        let is_foliage = &evt.is_foliage; 
+
+        // ----
+        // determine the doodad parent, if there will be one
+
+        let mut parent = None ;
+
+         if let Some(parent_override) = &evt.force_parent {
+            parent = Some(parent_override);
+         } else if let Some(primary_parent) = &placement_resource.placement_parent {
+            parent = Some(primary_parent);
+         }
+
+        // ------
+
+
+    
+
+
+        let mut transform = Transform::from_translation(*position) ; 
 
         if let Some(rot) = evt.rotation_euler {
             transform =
@@ -802,23 +1004,35 @@ pub fn handle_place_doodad_events(
             transform = transform.with_scale(scale)
         }
 
+
+
+
+
+
+
+
+
         let doodad_spawned = commands
-            .spawn(SpatialBundle {
-                transform,
-                ..default()
-            })
+            .spawn( transform )
+            .insert( Visibility::default() )
             .insert(Name::new(doodad_name.clone())  )
             .insert( DoodadProto )
             .id();
 
+ 
 
-        editor_event_writer.send( 
-            EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
-         );
+        if *auto_select {
 
-        doodad_tool_event_writer.send(
-            DoodadToolEvent::SetSelectedDoodad(None) 
-        );
+            //why are these different.. ? 
+             editor_event_writer.send( 
+                EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
+             );
+
+            doodad_tool_event_writer.send(
+                DoodadToolEvent::SetSelectedDoodad(None) 
+            );
+        }
+        
 
     //    println!("doodad spawned {:?}", doodad_spawned);
 
@@ -853,14 +1067,7 @@ pub fn handle_place_doodad_events(
 
         }*/
 
-        let mut parent = None ;
-
-
-         if let Some(parent_override) = &evt.force_parent {
-            parent = Some(parent_override);
-         } else if let Some(primary_parent) = &placement_resource.placement_parent {
-            parent = Some(primary_parent);
-         }
+        
 
          if let Some(parent) = parent {
             commands.entity( doodad_spawned ).set_parent( *parent );
@@ -877,8 +1084,10 @@ pub fn handle_place_doodad_events(
             }
         }*/
     }
-}
 
+
+
+}
 
 
 
@@ -920,10 +1129,8 @@ pub fn handle_place_clay_tile_block_events(
         }
 
         let doodad_spawned = commands
-            .spawn(SpatialBundle {
-                transform,
-                ..default()
-            })
+            .spawn(transform)
+            .insert(Visibility::default())
             .insert(Name::new( "ClayTileBlock" )  )
             .insert( DoodadProto )
             .id();
@@ -1175,6 +1382,7 @@ pub fn update_place_doodads(
                 scale,
                 custom_props,
                 force_parent: None,
+                 auto_select: true,
                 //clay_tile_block_data : None ,
       
 

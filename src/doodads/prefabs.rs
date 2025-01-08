@@ -89,6 +89,19 @@ fn spawn_children_for_new_prefabs (
                     ZoneEntityV2::Doodad { name, transform, custom_props } => {
 
 
+
+
+
+                        //    global_xform_query: Query<&GlobalTransform>, 
+                          // if there is a parent, the relative position will be offset by the parent global translation 
+
+
+                          //  let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
+                         //   let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+
+
+
+
                         let position = &transform.translation;
                         let scale = &transform.scale;
                         let rotation_euler = &transform.rotation;
@@ -100,7 +113,10 @@ fn spawn_children_for_new_prefabs (
                                 rotation_euler: Some(rotation_euler.clone()), 
                                 doodad_name: name.clone() , 
                                 custom_props: custom_props.clone(), 
-                                force_parent: Some(  prefab_root_entity   ) }
+                                force_parent: Some(  prefab_root_entity   ) ,
+                                 auto_select: false ,
+                          },
+
                          );
 
 
@@ -163,10 +179,15 @@ fn handle_spawn_prefab_events(
         
 
         let prefab_spawned = commands
-            .spawn(SpatialBundle {
-                transform : transform.clone(),
-                ..default()
-            })
+            .spawn( (
+
+                transform.clone(),
+                Visibility::default(),
+
+                )
+
+
+              )
             .insert(Name::new( prefab_name.clone() )  )
             .insert( PrefabComponent )
             .id();
@@ -256,7 +277,8 @@ pub fn handle_place_prefabs(
 
             //   println!("place doodad 4 {:?}", doodad_definition);
 
-            
+                
+
 
             event_writer.send(SpawnPrefabEvent {
                 position: *place_at_coordinates,

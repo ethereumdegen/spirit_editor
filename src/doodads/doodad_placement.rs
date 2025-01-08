@@ -1,34 +1,19 @@
 
 
+use bevy::picking::backend::ray::RayMap;
 use rand::Rng;
 use bevy::prelude::*;
 
 
-use spirit_edit_core::doodads::PlaceClayTileEvent;
 use crate::doodads::doodad_placement_preview::DoodadPlacementComponent;
-use crate::doodads::doodad_placement_preview::GhostlyMaterialMarker;
 use bevy_editor_pls_core::Editor;
-use spirit_edit_core::doodads::DoodadToolState;
-use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
-use bevy_mod_raycast::prelude::*;
-use spirit_edit_core::doodads::DoodadToolEvent;
-use spirit_edit_core::placement::PlacementResource;
-use spirit_edit_core::doodads::DoodadProto;
-use spirit_edit_core::zones::zone_file::CustomPropsComponent;
-use spirit_edit_core::doodads::PlaceDoodadEvent;
-use bevy_editor_pls_core::EditorEvent;
-use spirit_edit_core::doodads::doodad::DoodadComponent;
-use spirit_edit_core::doodads::doodad_manifest::RenderableType;
-use spirit_edit_core::doodads::DoodadNeedsModelAttached;
-use spirit_edit_core::doodads::doodad_manifest::DoodadDefinitionsResource; 
-use crate::AssetLoadState;
+ 
+ 
 
  
  
  
-use crate::asset_loading::BuiltVfxHandleRegistry;
-use bevy::utils::Duration;
 
 
  pub fn doodad_placement_plugin(  app: &mut App ){
@@ -60,8 +45,8 @@ pub struct RequestPlaceDoodad {
 pub fn update_doodad_placement_raycast(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
-    cursor_ray: Res<CursorRay>,
-    mut raycast: Raycast,
+    ray_map: Res<RayMap>,
+    mut raycast: MeshRayCast,
 
     mut event_writer: EventWriter<RequestPlaceDoodad>,
 
@@ -115,18 +100,18 @@ pub fn update_doodad_placement_raycast(
         true
     };
 
-    let raycast_settings = RaycastSettings {
+    let raycast_settings = RayCastSettings {
         filter: &raycast_filter,
         ..default()
     };
 
 
 
-    if let Some(cursor_ray) = **cursor_ray {
+     for (_, cursor_ray) in ray_map.iter() {
         if let Some((_intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &raycast_settings).first()
+            raycast.cast_ray(*cursor_ray, &raycast_settings).first()
         {
-            let hit_point = intersection_data.position();
+            let hit_point = intersection_data.point;
 
             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
             let hit_coordinates = Vec3::new(hit_point.x, hit_point.y, hit_point.z);

@@ -1,4 +1,9 @@
  
+use crate::decal_manifest::DecalManifest;
+use crate::level_config::LevelConfig;
+use bevy_editor_pls_default_windows::placement::PlacementWindow;
+use bevy_editor_pls_core::Editor;
+
 use crate::utils::copy_dir_recursive;
 use std::path::Path;
 use crate::utils::{walk_dir};
@@ -9,8 +14,7 @@ use bevy_common_assets::ron::RonAssetPlugin;
 
 use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinition;
 use spirit_edit_core::prefabs::prefab_definitions::PrefabDefinitionsResource ;
-
-
+ 
  
 use crate::EditorConfig;
 use bevy::gltf::Gltf;
@@ -37,7 +41,12 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 
 
+    
+            .add_plugins(  bevy_obj::ObjPlugin  ) 
             .add_plugins(RonAssetPlugin::<EditorConfig>::new(&["editorconfig.ron"])) 
+            .add_plugins(RonAssetPlugin::<LevelConfig>::new(&["level.ron"])) 
+
+            .add_plugins(RonAssetPlugin::<DecalManifest>::new(&["decal.ron"])) 
            // .add_plugins(RonAssetPlugin::<DoodadManifest>::new(&["doodadmanifest.ron"])) //not needed ? 
 
 
@@ -50,6 +59,7 @@ pub fn asset_loading_plugin(app: &mut App) {
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::DoodadManifestsLoad)
                         .load_collection::<EditorConfigAssets>() 
+
                           
                 )
 
@@ -66,27 +76,38 @@ pub fn asset_loading_plugin(app: &mut App) {
 
 		     .add_loading_state(
                     LoadingState::new(AssetLoadState::TextureAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .continue_to_state(AssetLoadState::MeshAssetsLoad)
                         .load_collection::<TextureAssets>() 
  
                           
                 )
- 
-             /* .add_loading_state(
-                    LoadingState::new(AssetLoadState::GltfAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
-                        
-                         .load_collection::<GltfAssets>() 
-                         
-                )*/
+                
 
+
+                
+             .add_loading_state(
+                    LoadingState::new(AssetLoadState::MeshAssetsLoad)
+                        .continue_to_state(AssetLoadState::DecalAssetsLoad)
+                        .load_collection::<MeshAssets>() 
+ 
+                
+                )
+
+
+             .add_loading_state(
+                    LoadingState::new(AssetLoadState::DecalAssetsLoad)
+                        .continue_to_state(AssetLoadState::ShaderAssetsLoad)
+                        .load_collection::<DecalAssets>() 
+ 
+                          
+                )
+                
+ 
 
               .add_loading_state(
                     LoadingState::new(AssetLoadState::ShaderAssetsLoad)
                         .continue_to_state(AssetLoadState::ShaderVariantsLoad)
-                        
-                        
-                         .load_collection::<MeshAssets>()
+                         
                         
                           .load_collection::<ShaderVariantAssets>() 
                           .load_collection::<MagicFxVariantAssets>()
@@ -101,6 +122,12 @@ pub fn asset_loading_plugin(app: &mut App) {
                 populate_doodad_definitions,
                 populate_doodad_tag_map_data,
                  load_magic_fx,
+                ).chain())
+
+
+                .add_systems(OnEnter(AssetLoadState::Complete), (
+                
+                  apply_editor_config
                 ).chain())
                  
               
@@ -122,6 +149,8 @@ pub enum AssetLoadState {
     Init, //editor config load 
     DoodadManifestsLoad,
     TextureAssetsLoad,
+    MeshAssetsLoad,
+    DecalAssetsLoad, 
     //GltfAssetsLoad,
     ShaderAssetsLoad,
     ShaderVariantsLoad,
@@ -135,9 +164,12 @@ pub enum AssetLoadState {
 
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
+
+     #[asset(path = "../artifacts/game_assets/textures/decal_textures", collection(typed, mapped))]
+    pub(crate) decal_textures: HashMap<AssetFileName, Handle<Image>>,
    
-     #[asset(path = "textures/vfx_textures", collection(typed, mapped))]
-    pub(crate) vfx_textures: HashMap<String, Handle<Image>>,
+     #[asset(path = "../artifacts/game_assets/textures/vfx_textures", collection(typed, mapped))]
+    pub(crate) vfx_textures: HashMap<AssetFileName, Handle<Image>>,
 
 
 }
@@ -147,6 +179,9 @@ pub struct EditorConfigAssets {
    
      #[asset(path = "editor_config.editorconfig.ron" )]
     pub(crate) editor_config:   Handle<EditorConfig> ,
+
+     #[asset(path = "levels", collection(typed, mapped))]
+    pub(crate) levels:  HashMap<AssetFileStem, Handle<LevelConfig> > ,
 
     // #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
     //pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
@@ -182,9 +217,19 @@ pub struct MeshAssets {
 
 }
 
+
+#[derive(AssetCollection, Resource)]
+pub struct DecalAssets {
+
+  #[asset(path = "../artifacts/game_assets/decals", collection(typed, mapped))]
+    pub(crate) decals: HashMap<AssetFileStem, Handle<DecalManifest>>, //see bevy shader play
+
+}
+
+
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct ShaderVariantAssets {
-    #[asset(path = "shader_variants", collection(typed, mapped))]
+    #[asset(path = "../artifacts/game_assets/shader_variants", collection(typed, mapped))]
     pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
 }
 
@@ -588,4 +633,34 @@ fn populate_doodad_tag_map_data(
     }
 
     info!("Sorted doodad keys");
+}
+
+fn apply_editor_config(
+
+
+    mut editor_cx: ResMut<Editor>,
+    editor_config_handles: Res<EditorConfigAssets>,
+    editor_config_assets: Res<Assets<EditorConfig>>, 
+
+
+){
+
+
+    let editor_config_handle = &editor_config_handles.editor_config;
+    let Some(editor_config) = editor_config_assets.get(editor_config_handle) else {return} ;
+
+   let Some( mut state ) = editor_cx.window_state_mut::<PlacementWindow>() else {return};
+        
+
+        if let Some( placement_config ) = editor_config.get_default_placement_settings() {
+
+
+          state.translation_grid_lock_step = placement_config.translation_grid_lock_step
+                    .clone().unwrap_or(Vec3::splat(0.0));
+
+
+        }
+
+
+
 }

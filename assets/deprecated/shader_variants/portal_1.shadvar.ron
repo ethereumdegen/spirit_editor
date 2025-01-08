@@ -1,0 +1,27 @@
+(
+   
+    texture: "textures/vfx_textures/NoiseElectro01b.png",
+    texture_mask: None , //add me 
+    animation_speed: (0.8,0.2),  
+
+    distortion_speed: (0.04,0.04),
+    scroll_repeats: ( 1.0,1.0),
+    distortion_amount: 0.07 , 
+    
+
+    color: LinearRgba(
+        red: 0.2,
+        green: 0.3,
+        blue: 0.2,
+        alpha: 0.8
+    ),
+     emissive: LinearRgba(
+         red: 33.0,
+        green: 0.3,
+        blue: 33.0,
+        alpha: 3.6
+    )
+      
+)
+
+ 

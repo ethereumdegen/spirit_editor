@@ -12,10 +12,8 @@ use bevy::prelude::*;
 use bevy::scene::SceneInstanceReady;
 //use bevy_editor_pls_core::Editor;
 use  bevy_egui::EguiContexts;
-use bevy_mod_raycast::immediate::RaycastSettings;
-use bevy_mod_raycast::cursor::CursorRay;
-
-use bevy_mod_raycast::prelude::Raycast;
+ 
+ use bevy::  picking::backend::ray::RayMap; 
 
   
 
@@ -23,13 +21,16 @@ use bevy_mod_raycast::prelude::Raycast;
 pub fn doodad_placement_plugin(app: &mut App){
 
 
+
           app
+
+             .add_observer( apply_ghostly_material )
             
             .add_systems(Startup, spawn_doodad_placement_component)
             .add_systems(Update, update_doodad_placement_preview_position)
              .add_systems(Update, update_doodad_placement_preview_state)
              // .add_systems(Update, update_doodad_placement_preview_model)
-              .add_systems(Update, apply_ghostly_material )
+             
             // .add_systems(Update, doodad_placement_preview::update_doodad_placement_preview)
 
 
@@ -59,7 +60,7 @@ pub fn spawn_doodad_placement_component(
 	mut commands: Commands
 	){
 
-	commands.spawn(SpatialBundle::default())
+	commands.spawn((Transform::default(),Visibility::default()))
 	.insert(DoodadPlacementComponent::default());
 
 }
@@ -68,8 +69,8 @@ pub fn spawn_doodad_placement_component(
 pub fn update_doodad_placement_preview_position (
   //  mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
 
-    cursor_ray: Res<CursorRay>,
-    mut raycast: Raycast,
+    ray_map: Res<RayMap>,
+    mut raycast: MeshRayCast,
 
     
 
@@ -122,19 +123,19 @@ pub fn update_doodad_placement_preview_position (
         true
     };
 
-    let raycast_settings = RaycastSettings {
+    let raycast_settings = RayCastSettings {
         filter: &raycast_filter,
         ..default()
     };
 
-    if let Some(cursor_ray) = **cursor_ray {
+     for (_, cursor_ray) in ray_map.iter() {
         if let Some((_intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &raycast_settings
+            raycast.cast_ray(*cursor_ray, &raycast_settings
 
             	
             	).first()
         {
-            let hit_point = intersection_data.position();
+            let hit_point = intersection_data.point;
 
             //offset this by the world psn offset of the entity !? would need to query its transform ?  for now assume 0 offset.
             let hit_coordinates = Vec3::new(hit_point.x, hit_point.y, hit_point.z);
@@ -223,20 +224,22 @@ pub fn update_doodad_placement_preview_state (
 
 
 fn add_wireframe_to_children( 
+    scene_instance_evt_trigger: Trigger<SceneInstanceReady>  ,
+
         mut commands: Commands ,
 
        doodad_query: Query<   (Entity,  &WireframeMarker) >,
          children_query: Query<&Children>,           
   
-      mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
+         parent_query: Query<&Parent >
 
     ) {
 
+    let trig_entity = scene_instance_evt_trigger.entity();
+    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
 
- for evt in scene_instance_evt_reader.read(){
-        let parent = evt.parent;
-        
-        if let Some((new_doodad_entity,wireframe_marker)) = doodad_query.get(parent).ok() {
+  
+        if let Some((new_doodad_entity,wireframe_marker)) = doodad_query.get(parent_entity).ok() {
          
           for child_entity in DescendantIter::new(&children_query, new_doodad_entity) { 
  
@@ -249,14 +252,7 @@ fn add_wireframe_to_children(
                     }
              
         }
-
-    }
-
-       
-
-
-
-
+ 
 
 
 }
@@ -266,26 +262,31 @@ fn add_wireframe_to_children(
 
 
 fn apply_ghostly_material( 
+
+    scene_instance_evt_trigger: Trigger<SceneInstanceReady>  ,
+
         mut commands: Commands ,
 
        doodad_query: Query<   (Entity,  &GhostlyMaterialMarker), With<GhostlyMaterialMarker> >,
        children_query: Query<&Children>,           
   
-      mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,
+    //  mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>,
 
 
-      	standard_material_query: Query<&Handle<StandardMaterial>>,
+      	standard_material_query: Query<&MeshMaterial3d<StandardMaterial>>,
 
      mut   standard_material_assets : ResMut<Assets<StandardMaterial>>,
+
+           parent_query: Query<&Parent >
 
 
     ) {
 
+       let trig_entity = scene_instance_evt_trigger.entity();
+        let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
 
- for evt in scene_instance_evt_reader.read(){
-        let parent = evt.parent;
         
-        if let Some((new_doodad_entity,_marker )) = doodad_query.get(parent).ok() {
+        if let Some((new_doodad_entity,_marker )) = doodad_query.get(parent_entity).ok() {
          
           for child_entity in DescendantIter::new(&children_query, new_doodad_entity) { 
  
@@ -298,14 +299,14 @@ fn apply_ghostly_material(
                new_mat.base_color = mat.base_color.clone().with_alpha( 0.25 );
 
                 let new_material_handle = standard_material_assets.add(new_mat);
-               commands.entity(child_entity).insert( new_material_handle   );
+               commands.entity(child_entity).insert(  MeshMaterial3d( new_material_handle  ) );
 
                    
            	}
              
         }
 
-    }
+    
 
        
 

@@ -1,16 +1,14 @@
 //use bevy_foliage_paint::edit::FoliageCommandEvent;
 use bevy::prelude::*;
 
-use bevy::input::mouse::MouseMotion;
 use bevy_mesh_terrain::edit::EditingTool;
-use bevy_mesh_terrain::terrain_config::TerrainConfig;
 use bevy_mesh_terrain::{
     edit::{EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
     TerrainMeshPlugin,
 };
 
-use bevy_mod_raycast::prelude::*;
+ 
 use bevy_regions::edit::RegionCommandEvent;
 
 pub fn update_commands(

@@ -84,7 +84,7 @@ impl EditorWindow for GizmoWindow {
             if let (Some(hierarchy_state), Some(_camera_state)) =
                 (cx.state::<HierarchyWindow>(), cx.state::<CameraWindow>())
             {
-               apply_gizmo_component( ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
+               apply_gizmo_component( world, &hierarchy_state.selected, gizmo_state.gizmo_mode );
              //   draw_gizmo(ui, world, &hierarchy_state.selected, gizmo_state.gizmo_mode);
             }
         }
@@ -164,45 +164,52 @@ fn add_gizmo_markers(
         }
     }
 
-    add(&mut commands, point_lights, "PointLight Gizmo", || {
-        PbrBundle {
-            mesh: gizmo_marker_meshes.point_light_mesh.clone_weak(),
-            material: gizmo_marker_meshes.point_light_material.clone_weak(),
-            ..default()
-        }
-    });
+    add(&mut commands, point_lights, "PointLight Gizmo", || (
+         
+             Mesh3d(gizmo_marker_meshes.point_light_mesh.clone_weak() ),
+            MeshMaterial3d ( gizmo_marker_meshes.point_light_material.clone_weak() ), 
+            
+        
+    ));
     add(
         &mut commands,
         directional_lights,
         "DirectionalLight Gizmo",
-        || PbrBundle {
-            mesh: gizmo_marker_meshes.directional_light_mesh.clone_weak(),
-            material: gizmo_marker_meshes.directional_light_material.clone_weak(),
-            ..default()
-        },
+        ||  (
+            Mesh3d( gizmo_marker_meshes.directional_light_mesh.clone_weak()),
+            MeshMaterial3d( gizmo_marker_meshes.directional_light_material.clone_weak() ),
+            
+        ),
     );
 
     let render_layers = RenderLayers::layer(EDITOR_RENDER_LAYER.into());
+
+
+    let add_gizmo_to_cameras = false; // disabled for now !  Was annoying w wireframes. 
+
+    if add_gizmo_to_cameras {
+
     for entity in &cameras {
-        commands
-            .entity(entity)
-            .insert((
-                HasGizmoMarker,
-                Visibility::Visible,
-                InheritedVisibility::VISIBLE,
-                ViewVisibility::default(),
-            ))
-            .with_children(|commands| {
-                commands.spawn((
-                    PbrBundle {
-                        mesh: gizmo_marker_meshes.camera_mesh.clone_weak(),
-                        material: gizmo_marker_meshes.camera_material.clone_weak(),
-                        ..default()
-                    },
-                    render_layers.clone(),
-                    Name::new("Camera Gizmo"),
-                ));
-            });
+            commands
+                .entity(entity)
+                .insert((
+                    HasGizmoMarker,
+                    Visibility::Visible,
+                   // InheritedVisibility::VISIBLE,
+                  //  ViewVisibility::default(),
+                ))
+                .with_children(|commands| {
+                    commands.spawn((
+                         
+                        Mesh3d(   gizmo_marker_meshes.camera_mesh.clone_weak() ),
+                        MeshMaterial3d( gizmo_marker_meshes.camera_material.clone_weak() ),
+                       
+                        
+                        render_layers.clone(),
+                        Name::new("Camera Gizmo"),
+                    ));
+                });
+        }
     }
 }
  
@@ -210,7 +217,7 @@ fn add_gizmo_markers(
 
 fn apply_gizmo_component (
 
-     ui: &mut egui::Ui,
+     // ui: &mut egui::Ui,
     world: &mut World,
     selected_entities: &SelectedEntities,
     gizmo_mode: EnumSet<GizmoMode>,
@@ -228,7 +235,11 @@ fn apply_gizmo_component (
                 continue;
             }
 
-              world.commands().entity(*target).remove::<GizmoTarget>();
+            if let Some(mut cmd) = world.commands().get_entity(*target){
+                cmd.remove::<GizmoTarget>();
+            }
+              
+             
  
         }
 
@@ -240,8 +251,10 @@ fn apply_gizmo_component (
 
      
 
-            world.commands().entity(selected).insert ( GizmoTarget ::default() );
-
+            if let Some(mut cmd) = world.commands().get_entity(selected){
+                cmd .insert ( GizmoTarget ::default() ) ;
+            }
+          
 
         }
 

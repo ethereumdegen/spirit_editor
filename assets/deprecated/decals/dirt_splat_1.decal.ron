@@ -1,0 +1,16 @@
+(
+
+
+
+	diffuse_texture:  "textures/vfx_textures/fx_fireskill/grad10_09.png", 
+	base_color: LinearRgba(
+        red: 0.8,
+        green: 0.8,
+        blue: 0.8,
+        alpha: 0.8
+    )
+
+
+
+
+)

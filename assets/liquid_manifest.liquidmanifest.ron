@@ -1,8 +1,8 @@
-  (
+(
     liquid_definitions:  {
  
 
-    	"water" : (
+      "water" : (
 
        shallow_color: Some( LinearRgba(
                    red: 0.35,
@@ -18,9 +18,16 @@
                          alpha: 0.9
         ) ),
 
+           foam_color: Some( LinearRgba(
+                       red: 2.4,
+                         green:  2.4,
+                         blue:  2.4,
+                         alpha: 2.9
+        ) ),
 
 
-    	 ),
+
+       ),
 
       "water_pond" : (
 
@@ -38,28 +45,27 @@
                          alpha: 0.7
         ) ),
 
-        surface_noise_scroll: Some( (0.002,0.002) ),
-        surface_distortion_amount: Some( 0.2 ),
+        surface_noise_scroll: Some( (0.02,0.02) ),
         depth_max_distance: Some( 1.0 ) ,
 
 
        ),
 
-    	 "water_swamp_green" : (
+       "water_swamp_green" : (
 
-    	 	shallow_color: Some( LinearRgba(
-    	 	 		     	 red: 0.5,
+        shallow_color: Some( LinearRgba(
+                   red: 0.5,
                          green:  0.6,
                          blue:  0.5,
                          alpha: 0.8
-    	 	) ),
+        ) ),
 
-    	 	deep_color: Some( LinearRgba(
-    	 	 		     	     red: 0.3,
+        deep_color: Some( LinearRgba(
+                       red: 0.3,
                          green:  0.4,
                          blue:  0.3,
                          alpha: 0.9
-    	 	) ),
+        ) ),
 
          foam_color: Some( LinearRgba(
                        red: 0.4,
@@ -68,7 +74,7 @@
                          alpha: 0.9
         ) ),
 
-    	 )
+       )
 
     }
 

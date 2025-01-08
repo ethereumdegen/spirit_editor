@@ -1,6 +1,7 @@
 // pub mod picking;
 
- use spirit_edit_core::doodads::doodad::RotateByDegrees;
+ use crate::debug_settings::DebugSettingsWindow;
+use spirit_edit_core::doodads::doodad::RotateByDegrees;
 use spirit_edit_core::prefabs::{PrefabComponent,SavePrefabToFileEvent};
 use spirit_edit_core::zones::SaveZoneToFileEvent;
 use spirit_edit_core::zones::ZoneComponent;
@@ -29,7 +30,7 @@ use bevy_editor_pls_core::{
 // use bevy_mod_picking::prelude::{IsPointerEvent, PointerClick, PointerButton};
 
 use crate::add::{add_ui, AddWindow, AddWindowState};
-use crate::debug_settings::DebugSettingsWindow;
+//use crate::debug_settings::DebugSettingsWindow;
 use crate::inspector::{InspectorSelection, InspectorWindow};
  
 
@@ -79,8 +80,8 @@ impl EditorWindow for HierarchyWindow {
 
         // .add_system(handle_events);
 
-        app.sub_app_mut(RenderApp)
-            .add_systems(ExtractSchedule, extract_wireframe_for_selected);
+      //  app.sub_app_mut(RenderApp)
+      //      .add_systems(ExtractSchedule, extract_wireframe_for_selected);
     }
 }
 
@@ -129,12 +130,12 @@ fn extract_wireframe_for_selected(editor: Extract<Res<Editor>>, mut commands: Co
         .window_state::<DebugSettingsWindow>()
         .map_or(false, |settings| settings.highlight_selected);
 
-    if wireframe_for_selected {
+    /* if wireframe_for_selected {
         let selected = &editor.window_state::<HierarchyWindow>().unwrap().selected;
         for selected in selected.iter() {
-            commands.get_or_spawn(selected).insert(Wireframe);
+            commands.spawn(selected).insert(Wireframe);
         }
-    }
+    }*/
 }
 
 #[derive(Default)]
@@ -243,7 +244,7 @@ impl<'a> Hierarchy<'a> {
         .show::<Without<HideInEditor>>(ui);
 
         if let Some(entity) = despawn_recursive {
-            bevy::hierarchy::despawn_with_children_recursive(self.world, entity);
+            bevy::hierarchy::despawn_with_children_recursive(self.world, entity, false);
         }
         if let Some(entity) = despawn {
             self.world.entity_mut(entity).despawn();
@@ -272,7 +273,7 @@ fn rename_entity_ui(ui: &mut egui::Ui, rename_info: &mut RenameInfo, world: &mut
     if response.lost_focus() {
         rename_info.renaming = false;
 
-        match world.get_entity_mut(rename_info.entity) {
+        match world.get_entity_mut(rename_info.entity).ok() {
             Some(mut ent_mut) => match ent_mut.get_mut::<Name>() {
                 Some(mut name) => {
                     name.set(rename_info.current_rename.clone());

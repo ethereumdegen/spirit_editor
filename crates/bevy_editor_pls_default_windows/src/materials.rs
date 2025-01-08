@@ -55,8 +55,26 @@ impl EditorWindow for MaterialsWindow {
 
 		let material_names = vec![
 		"Wall1",
+        "Wall1Dark",
+        
 		"Wall2",
 		"Rocks2",
+
+        "ToonStone",
+        "StoneWall",
+        "StoneWall2",
+        "StoneWall3",
+
+        "StoneFloor",
+        "Slate1",
+        "WoodFloor",
+        "RockyEarth",
+
+        "OrnateTiles1",
+        "OrnateTiles2",
+        "OrnateTiles3",
+        "OrnateTiles4",
+
 		"Cliff1",
 		"Cliff2",
 		"Cliff3",
@@ -69,6 +87,7 @@ impl EditorWindow for MaterialsWindow {
 		"Cobbles3",
 		"Wood2",
 		"Wood5",
+      
 
 		];
 

@@ -1,0 +1,25 @@
+(
+   
+    texture: "textures/vfx_textures/water_01.png",
+    animation_speed: (0.0005,0.5),  
+
+    distortion_speed: (0.02,0.01),
+    scroll_repeats: ( 1.0,1.0),
+    distortion_amount: 0.002 , 
+
+    color: LinearRgba(
+        red: 1.0,
+        green:  1.0,
+        blue:  1.0,
+        alpha: 0.8
+    ),
+     emissive: LinearRgba(
+         red: 1.0,
+        green: 1.0,
+        blue: 6.0,
+        alpha: 1.0
+    )
+      
+)
+
+ 

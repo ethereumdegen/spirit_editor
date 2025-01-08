@@ -8,12 +8,13 @@ use spirit_edit_core::doodads::picking::SelectDoodadEvent;
 use spirit_edit_core::doodads::picking::PreventEditorSelection;
 use crate::hierarchy::HierarchyWindow;
   
+  use bevy::picking::backend::ray::RayMap; 
  
   
 use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 
 use bevy::prelude::*;
-use bevy_mod_raycast::immediate::RaycastSettings;
+//use bevy_mod_raycast::immediate::RaycastSettings;
 use rand::Rng;
 
 use bevy::utils::HashMap;
@@ -31,9 +32,9 @@ use bevy_inspector_egui::egui::{self, ScrollArea};
 
 use bevy_common_assets::ron::RonAssetPlugin;
 
-use bevy_mod_raycast::cursor::CursorRay;
+//use bevy_mod_raycast::cursor::CursorRay;
 
-use bevy_mod_raycast::prelude::Raycast;
+//use bevy_mod_raycast::prelude::Raycast;
  
 
   
@@ -193,8 +194,8 @@ pub fn update_picking_doodads(
 
   //  key_input: Res<ButtonInput<KeyCode>>,
 
-    cursor_ray: Res<CursorRay>,
-    mut raycast: Raycast,
+    ray_map: Res<RayMap>,
+    mut raycast: MeshRayCast,
 
     mut event_writer: EventWriter<SelectDoodadEvent>,
 
@@ -220,11 +221,11 @@ pub fn update_picking_doodads(
         return;
     }
 
-    if let Some(cursor_ray) = **cursor_ray {
+    for (_, cursor_ray) in ray_map.iter() {
         if let Some((intersection_entity, intersection_data)) =
-            raycast.cast_ray(cursor_ray, &default()).first()
+            raycast.cast_ray(*cursor_ray, &default()).first()
         {
-            let hit_point = intersection_data.position();
+            let hit_point = intersection_data.point; 
 
             if unpickable_query.get(*intersection_entity).ok().is_some() {
                 println!("This entity is marked as non-selectable");
@@ -256,4 +257,5 @@ pub fn update_picking_doodads(
             //
         }
     }
+    
 }

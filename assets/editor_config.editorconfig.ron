@@ -1,81 +1,23 @@
 (
 
     //this gets copied to artifacts 
+    //if just getting started, set to None
   external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
 
-
- /*
-    initial_terrain_to_load: Some("raven_woods_terrain"),    
-    initial_zones_to_load: Some([
-        "raven_woods/ravenwoods.zone"
-    ]), 
-    initial_foliage_scene_to_load: Some("raven_woods_foliage.foliage"), 
-*/
-  
-/*
  
-  initial_terrain_to_load: Some("fae_terrain"),    
-    initial_zones_to_load: Some([
-        "fae_castle/fae_castle_1.zone"
-    ]), 
- */
+   
+  //initial_level_to_load: Some( "crypt_1.level" ),
 
-/*
-  initial_terrain_to_load: None,    
-    initial_zones_to_load: Some([
-        "dungeon_broken_elves_interior.zone"
-    ]), 
-*/
+  initial_level_to_load: Some( "world.level" ),
 
-/*
+ // initial_level_to_load: Some( "academy_1.level" ),
 
+ //initial_level_to_load: Some( "default_level.level" ),
 
- initial_zones_to_load: Some([
-        "viridian_hideout_interior.zone"
-]), 
+ default_placement_settings: Some((
+    translation_grid_lock_step: Some( (1.0,1.0,1.0) ) ,
 
-*/
+ )),
 
-/*
-  
- initial_zones_to_load: Some([
-        "grove/grove_cave_interior.zone"
-]),  
-  */
-
-/*
-  initial_zones_to_load: Some([
-        "dungeons/shallow_cave_interior.zone"
-]), 
-*/
- 
- 
-
-  initial_terrain_to_load:  Some("default_terrain"),    
-initial_zones_to_load: Some([
-       
-        "grove/zone01.zone",
-        "test_units.zone",
-        "test_stuff.zone",
-        "ancient_islands.zone",
-        "viridian_temple01.zone",
-        "grove/grove_intro.zone", 
-        "grove/forest_01.zone",
-        "grove/gabriella_intro.zone",
-        "grove/twisted_grove_wolf.zone", // cinematic 
-         "grove/twisted_grove_extension.zone", 
-         "viridian_path.zone", 
-        "grove/twisted_grove_power_runes.zone",
-        "swamp_one.zone",
-         "village1.zone",
-        "dungeon_01_exterior.zone",
-         "temple_exterior.zone",
-          "whispering_woods.zone",
-        //  "test_monsters.zone",
-
-
- ]),  
- initial_foliage_scene_to_load: Some("default_foliage.foliage"), 
-  
 
 )

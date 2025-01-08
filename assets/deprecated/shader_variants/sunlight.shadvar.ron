@@ -1,0 +1,25 @@
+(
+   
+    texture: "textures/vfx_textures/SunBeam_Tex_01.png",
+    animation_speed: (0.015,0.0),  
+
+    distortion_speed: (0.4,0.4),
+    scroll_repeats: ( 1.0,1.0),
+    distortion_amount: 0.014 , 
+
+    color: LinearRgba(
+        red: 1.0,
+        green:  1.0,
+        blue: 0.8,
+        alpha: 0.3
+    ),
+     emissive: LinearRgba(
+         red: 6.0,
+        green: 6.0,
+        blue: 5.2,
+        alpha: 0.3
+    )
+      
+)
+
+ 

@@ -181,7 +181,10 @@ pub fn handle_placement_tool_events(
   mut placement_evt_reader: EventReader<PlacementEvent>,
   mut place_doodad_evt_writer: EventWriter<PlaceDoodadEvent>, 
 
-  mut  doodad_query: Query< (Entity, &Name, &DoodadComponent, &mut Transform, Option<&Parent>), With<DoodadComponent>  >,
+    doodad_query: Query< (Entity, &Name, &DoodadComponent,  Option<&Parent>), With<DoodadComponent>  >,
+
+ global_xform_query: Query<&GlobalTransform>,
+ mut local_xform_query: Query<&mut Transform>,
 
   custom_props_query: Query<&CustomPropsComponent>,
 
@@ -208,7 +211,7 @@ pub fn handle_placement_tool_events(
 
                 let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((entity, name_comp, doodad_comp, doodad_xform, doodad_parent)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
+                if let Some((entity, name_comp, doodad_comp, doodad_parent)) = first_selected_entity.and_then(|ent|  doodad_query.get(ent).ok() ) {
 
                   //  let mut translation = doodad_xform.translation ;
 
@@ -218,6 +221,8 @@ pub fn handle_placement_tool_events(
 
                   let duplicated_custom_props = custom_props_query.get( entity ) .ok()
                   .map(  |c|  c.duplicated().props );
+
+                  let doodad_xform = global_xform_query.get(entity).map(|x| x.compute_transform()  ).ok().unwrap_or(Transform::default()) ; 
 
 
                     let simple_xform:TransformSimple = doodad_xform.clone().into();
@@ -230,6 +235,7 @@ pub fn handle_placement_tool_events(
                              doodad_name: name_comp.to_string().clone(),
                              custom_props: duplicated_custom_props , 
                              force_parent:  doodad_parent_entity  ,
+                              auto_select: false,
                            //  clay_tile_block_data: None , //for now .. 
                       });
 
@@ -246,7 +252,7 @@ pub fn handle_placement_tool_events(
 
                   let first_selected_entity = selected_entities.iter().next();
 
-                if let Some((_, _, _, mut doodad_xform, _)) = first_selected_entity.and_then(|ent|  doodad_query.get_mut(ent).ok() ) {
+                if let Some(  mut doodad_xform ) = first_selected_entity.and_then(|ent|  local_xform_query.get_mut(ent).ok() ) {
 
                     let mut translation = doodad_xform.translation ; 
 

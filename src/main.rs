@@ -1,10 +1,58 @@
 
+
+
+
+
+
+mod editor_state;
+mod loading;
+mod clay_tiles;
+
+
+mod decals; 
+mod decal_manifest; 
+
+//mod material_overrides;
+mod editor_config; 
+mod camera;
+mod commands;
+mod editor_pls;
+mod tools;
+mod ui;
+mod asset_loading;
+mod liquid;
+mod materials; 
+
+mod level_config;
+ 
+mod doodads;
+mod terrain;
+ mod foliage; 
+
+ mod render;
+
+mod regions;
+
+mod utils;
+mod virtual_link;
+mod material_override_link;
+
+use bevy::winit::WinitWindows;
+use level_config::LevelConfig;
+use winit::window::Icon;
+
+
+
+
+
 use bevy::render::view::ColorGrading;
 //use bevy_toon_shader::{ToonShaderPlugin,ToonShaderSun,ToonShaderMainCamera}; 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use bevy_foliage_tool::BevyFoliageMaterialPlugin;
 use bevy_foliage_tool::BevyFoliageProtoPlugin;
+
+
 
 
 use bevy::tasks::AsyncComputeTaskPool;
@@ -38,6 +86,7 @@ use bevy_editor_pls_default_windows::lighting::Sun;
  use bevy_material_wizard::BevyMaterialWizardPlugin;
 
 use crate::editor_config::EditorConfig;
+
 use bevy::core_pipeline::prepass::NormalPrepass;
 use bevy::core_pipeline::prepass::DepthPrepass;
 //use bevy_foliage_paint::foliage_config::FoliageConfig;
@@ -47,7 +96,7 @@ use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
 use asset_loading::asset_loading_plugin;
-use bevy::core_pipeline::bloom::BloomSettings;
+use bevy::core_pipeline::bloom::Bloom ;
  
 use bevy::pbr::wireframe::WireframePlugin;
 use bevy_magic_fx::MagicFxPlugin;
@@ -72,8 +121,7 @@ use bevy_mesh_terrain::{
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use bevy::pbr::ShadowFilteringMethod;
-
-use bevy_mod_raycast::prelude::*;
+ 
 
 use crate::camera::camera_plugin;
 use crate::liquid::liquid_plugin;
@@ -84,35 +132,6 @@ use crate::tools::brush_tools_plugin;
 
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
- 
-
-mod editor_state;
-mod loading;
-mod clay_tiles;
-
-//mod material_overrides;
-mod editor_config; 
-mod camera;
-mod commands;
-mod editor_pls;
-mod tools;
-mod ui;
-mod asset_loading;
-mod liquid;
-mod materials; 
- 
-mod doodads;
-mod terrain;
- mod foliage; 
-
-mod regions;
-
-mod utils;
-mod virtual_link;
-mod material_override_link;
-
-use bevy::winit::WinitWindows;
-use winit::window::Icon;
 
 fn set_window_icon(
     // we have to use `NonSend` here
@@ -181,7 +200,7 @@ fn main() {
 
           // .add_plugins(ToonShaderPlugin)
         .add_plugins(loading::loading_plugin)
-        .add_plugins(CursorRayPlugin)
+   //      .add_plugins(CursorRayPlugin)
         .add_plugins(virtual_link::virtual_links_plugin)
         .add_plugins(material_override_link::material_overrides_link_plugin)
 
@@ -193,10 +212,12 @@ fn main() {
         .add_plugins(BevyRegionsPlugin::default())
 
 
+        .add_plugins(render::rendering_plugin) 
+
+
         .add_plugins(BevyMaterialWizardPlugin{
-              material_defs_folder_path: "assets/material_definitions".to_string(),
-              //material_types_config_path: "assets/material_overrides/material_types.ron".to_string(),
-              //material_overrides_gltf_path : "material_overrides/doodad_material_overrides.glb".to_string()
+            material_defs_folder_path: "assets/material_definitions".to_string(),
+            material_replacements_folder_path: "assets/material_replacements".to_string(), 
         }  )
 
 
@@ -223,6 +244,9 @@ fn main() {
 
         .add_plugins(foliage::foliage_plugin   )
         .add_plugins(materials::materials_plugin   )
+
+        .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
+        .add_plugins(decals::decals_plugin)
       
 
         .add_plugins(doodads::doodad::doodad_plugin)
@@ -233,7 +257,7 @@ fn main() {
         .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
         .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
         
-        .add_plugins(bevy_obj::ObjPlugin)
+      
         .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
@@ -275,8 +299,10 @@ fn setup(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config: Res<EditorConfigAssets>,
+   editor_config_handles: Res<EditorConfigAssets>,
    editor_config_assets: Res<Assets<EditorConfig >>,
+
+   level_config_assets: Res<Assets<LevelConfig >>,
 
 
     
@@ -289,71 +315,71 @@ fn setup(
 
  
 
-     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
 
         panic!("Unable to load editor config");
          
      };
 
-      
-     
-    //initialize terrain root 
-    if let Some(terrain_path) = &editor_config.get_initial_terrain_path_full(){
+    
+
+    if let Some(level_name) = &editor_config.get_initial_level_name(){
+
+        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+
+        .map(|h| level_config_assets.get(h)  )  .flatten() {
+
+
+
+             if let Some(terrain_path) = &level_config.get_initial_terrain_path_full(){
    
-        commands
-            .spawn(SpatialBundle::default())
-            .insert(
-                TerrainConfig::load_from_file(terrain_path)
-                    .unwrap(),
-            )
-            .insert(TerrainData::new()); 
+                commands
+                    .spawn(Transform::default())
+                     .insert(Visibility::Inherited)
+                    .insert(
+                        TerrainConfig::load_from_file(terrain_path)
+                            .unwrap(),
+                    )
+                    .insert(TerrainData::new()); 
+
+            }
+
+
+            if let Some(foliage_scene_name) = &level_config.get_foliage_scene_name() {
+        
+
+                let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
+         
+         
+                commands
+                    .spawn(Transform::default())
+                    .insert(Visibility::Inherited)
+                    .insert( 
+                        FoliageSceneData::create_or_load(  
+                        foliage_scenes_folder_path, 
+                        foliage_scene_name  
+                        ) //this will be unpacked automagically 
+                    ).insert(
+                        Name::new( foliage_scene_name.clone() )
+                    ) ; 
+
+             }
+
+
+
+        }
+    
+        
 
     }
-
-
-     if let Some(foliage_scene_name) = &editor_config.get_foliage_scene_name() {
-        
-
-        let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
-
-
-        
-
-
-        commands
-            .spawn(SpatialBundle::default())
-            .insert( 
-                FoliageSceneData::create_or_load(  
-                foliage_scenes_folder_path, 
-                foliage_scene_name  
-                ) //this will be unpacked automagically 
-            ).insert(
-                Name::new( foliage_scene_name.clone() )
-            ) ; 
-
-         }
-    
-    
-
-
-              
-     /*commands
-        .spawn(SpatialBundle {
-           transform: Transform::from_xyz(0.0, 0.0, 0.0) , 
-            ..default()
-        } )
-        .insert(FoliageConfig::load_from_file("assets/foliage/foliage_config.ron").unwrap())
-        .insert(FoliageData::new()) 
-        //.insert(Visibility::Hidden)  // only in editor 
-        ;*/
-
+     
+      
+ 
 
         //spawn regions painting plane 
      commands
-        .spawn(SpatialBundle {
-           transform: Transform::from_xyz(0.0, 40.0, 0.0) , 
-            ..default()
-        } )
+        .spawn( Transform::from_xyz(0.0, 40.0, 0.0) )
+          .insert(Visibility::Inherited)
         .insert(RegionsConfig::load_from_file("assets/regions/regions_config.ron").unwrap())
         .insert(RegionsData::new()) 
         .insert(Visibility::Hidden)  // only in editor 
@@ -366,8 +392,7 @@ fn setup(
 
 
  
-    commands.spawn(  DirectionalLightBundle {
-        directional_light: DirectionalLight {
+    commands.spawn(  DirectionalLight {
            // shadow_depth_bias: 0.5,
            // shadow_normal_bias: 0.5,
 
@@ -377,16 +402,7 @@ fn setup(
 
             color: Color::WHITE,
             ..default()
-        },
-
-        transform: Transform {
-            translation: Vec3::new(7.0, 20.0, 2.0),
-            
-            ..default()
-        },
-
-        ..default()
-    }  )
+        }   )
     .insert(Sun)
    // .insert( ToonShaderSun )
 
@@ -405,18 +421,19 @@ fn setup(
   
 
     commands
-        .spawn(Camera3dBundle {
-            camera: Camera {
+        .spawn( ( Camera3d::default()  ,
+
+                 Camera {
                  hdr: true, // 1. HDR must be enabled on the camera
                 ..default()
-            },
-            tonemapping: Tonemapping::AcesFitted,
+               },
+            Tonemapping::AcesFitted,
 
-            transform: Transform::from_xyz(20.0, 162.5, 20.0)
+            Transform::from_xyz(20.0, 162.5, 20.0)
                 .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
-            ..default()
-        })
-       .insert( BloomSettings::OLD_SCHOOL )
+            
+        ) )
+       .insert( Bloom  ::OLD_SCHOOL )
      //  .insert( ToonShaderMainCamera )
          .insert( color_grading ) 
         .insert(TerrainViewer::default())
@@ -437,30 +454,40 @@ fn load_all_zones(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >>
+   editor_config_handles: Res<EditorConfigAssets>,
+   editor_config_assets: Res<Assets<EditorConfig >> ,
 
+    level_config_assets: Res<Assets<LevelConfig >>,
 
 ){
 
 
-     let Some(editor_config) = editor_config_assets.get( &editor_config.editor_config   ) else {
+     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
 
         panic!("Unable to load editor config");
          
      };
 
-      
-    //initialize zones 
-    for zone_name in editor_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
- 
-      zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
- 
+
+
+       if let Some(level_name) = &editor_config.get_initial_level_name(){
+
+        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+
+        .map(|h| level_config_assets.get(h)  )  .flatten() {
+
+              
+            //initialize zones 
+            for zone_name in level_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
+         
+              zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
+         
+            }
+
+
+
+        }
     }
-
-
-
-
 
 
 

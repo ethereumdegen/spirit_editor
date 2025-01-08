@@ -167,10 +167,10 @@ fn configure_camera_custom(
     commands.entity(cam_entity)
  
     .insert( ActiveEditorCamera {} )
-    .insert(   GizmoCamera   )
+   .insert(   GizmoCamera   )
 
     .insert( NotInScene {} )
-     .insert( HideInEditor {} )
+     .insert( HideInEditor {} ) //hides from hierarchy 
        .insert( EditorCamera {} )
          .insert( EditorCamera3dFree {} )
          .insert( render_layers )
@@ -222,7 +222,9 @@ fn toggle_editor_cam(
 }
 
 fn set_main_pass_viewport(
-    egui_settings: Res<bevy_inspector_egui::bevy_egui::EguiSettings>,
+
+    egui_settings_query: Query<&bevy_inspector_egui::bevy_egui::EguiSettings>, // better way to do this ? 
+    //egui_settings: Res<bevy_inspector_egui::bevy_egui::EguiSettings>,
     editor: Res<Editor>,
     window: Query<&Window>,
     mut cameras: Query<&mut Camera, With<EditorCamera>>,
@@ -234,6 +236,8 @@ fn set_main_pass_viewport(
     let Ok(window) = window.get(editor.window()) else {
         return;
     };
+
+    let Ok(egui_settings) = egui_settings_query.get_single() else {return;};
 
     let viewport = editor.active().then(|| {
         let scale_factor = window.scale_factor() * egui_settings.scale_factor;

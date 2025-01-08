@@ -12,6 +12,15 @@
 
    alpha_mode: AlphaBlend ,
 
+
+
+     diffuse_color_tint: Some( LinearRgba(
+                          red: 0.6,
+                          green: 0.4,
+                          blue:  0.2,
+                          alpha:  1.0,
+                      )  ), 
+
    uv_scale_factor: 1.0,  // do this in the material override lib ?
         
 )
