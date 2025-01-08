@@ -1,0 +1,19 @@
+
+(
+
+
+     replacement_set_name: "tree_birch",
+
+	 material_replacements : {
+ 	
+ 	//fix me 
+        "bark" : "Bark1",
+        "leaves" : "Leaves2",
+        "branches": "Branches1"
+
+
+    },
+
+)
+   
+ 
