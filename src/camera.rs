@@ -1,3 +1,4 @@
+use bevy_edge_detection::EdgeDetection;
 use bevy_editor_pls::controls::ControlsInteractionState;
 use bevy::prelude::*;
 
@@ -7,11 +8,43 @@ use bevy::input::mouse::MouseMotion;
 
 
 pub fn camera_plugin(app: &mut App) {
-    app.add_systems(Update, update_camera_look)
+    app
+
+        .add_systems(Update, init_camera)
+        .add_systems(Update, update_camera_look)
         .add_systems(Update, update_camera_move);
 }
 
-pub fn update_camera_look(
+#[derive(Component)]
+struct CameraInitialized;
+
+fn init_camera (
+    mut commands: Commands , 
+    camera_query: Query<Entity, (With<Camera3d>, Without< CameraInitialized> )>
+){
+
+    for  camera_entity  in camera_query.iter() {
+
+        if let Some(mut cmd) = commands.get_entity( camera_entity ){
+
+            cmd
+            .insert (  EdgeDetection { 
+                normal_threshold: 1.9, 
+                enable_depth: false, 
+               
+                ..default()
+            }  )
+            .insert( CameraInitialized ) 
+
+
+            ; 
+        }
+
+    }
+
+}
+
+  fn update_camera_look(
     mut event_reader: EventReader<MouseMotion>,
     mouse_input: Res<ButtonInput<MouseButton>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
@@ -41,7 +74,7 @@ pub fn update_camera_look(
     }
 }
 
-pub fn update_camera_move(
+  fn update_camera_move(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut query: Query<(&mut Transform, &Camera3d)>,
 

@@ -1,7 +1,8 @@
 
 
+use bevy_foliage_tool::foliage_layer::FoliageBaseNormalMapU16;
 use crate::doodads::doodad::SpawnDoodadEvent;
-use spirit_edit_core::doodads::PlaceDoodadEvent;
+ 
 use bevy_foliage_tool::foliage_proto::FoliageProto;
 use bevy_foliage_tool::foliage_material::FoliageMaterial;
 use bevy_foliage_tool::foliage_material::FoliageMaterialExtension;
@@ -36,6 +37,8 @@ pub fn foliage_plugin(app:&mut App){
 
                 add_height_maps_to_foliage_layers,
                 propogate_height_data_change_to_foliage,
+
+               
 
                 spawn_foliage_doodads, 
 
@@ -263,6 +266,11 @@ fn add_height_maps_to_foliage_layers(
 
     }
  
+
+// ------------------
+
+
+
 
 
   /*

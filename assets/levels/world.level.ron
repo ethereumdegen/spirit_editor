@@ -2,7 +2,7 @@
 
 
 	initial_terrain_to_load: Some("default_terrain"),    
-    initial_foliage_scene_to_load: Some("default_foliage.foliage"),  
+    initial_foliage_scene_to_load: Some("world_foliage.foliage"),  
 
 
 	initial_zones_to_load: Some([

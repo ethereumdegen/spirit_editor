@@ -1,7 +1,8 @@
 
 
 
-use crate::loading::EditorLoadingState;
+use crate::AssetLoadState;
+ 
 use crate::{asset_loading::TextureAssets, utils::StringUtilsExt};
 use bevy::prelude::*; 
 
@@ -15,7 +16,7 @@ pub(crate) fn decals_plugin(app: &mut App) {
     app
     
       .register_type::< DecalComponent >()
-      .add_systems(Update, build_decals .run_if(in_state(   EditorLoadingState::Complete )  ) )
+      .add_systems(Update, build_decals .run_if(in_state(   AssetLoadState::Complete )  ) )
 
    	
       

@@ -6,7 +6,7 @@
  	 
 	roughness: 0.8,
 
-  alpha_mode: AlphaBlend,
+     alpha_mode: AlphaMask(0.5),
 
     
    uv_scale_factor: 1.0,  // do this in the material override lib ?

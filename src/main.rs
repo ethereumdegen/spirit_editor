@@ -434,6 +434,7 @@ fn setup(
             
         ) )
        .insert( Bloom  ::OLD_SCHOOL )
+       
      //  .insert( ToonShaderMainCamera )
          .insert( color_grading ) 
         .insert(TerrainViewer::default())
