@@ -24,6 +24,8 @@ mod liquid;
 mod materials; 
 
 mod level_config;
+
+mod clouds;
  
 mod doodads;
 mod terrain;
@@ -38,6 +40,7 @@ mod virtual_link;
 mod material_override_link;
 
 use bevy::winit::WinitWindows;
+use degen_toon_clouds::DegenToonCloudsPlugin;
 use level_config::LevelConfig;
 use winit::window::Icon;
 
@@ -213,6 +216,9 @@ fn main() {
 
 
         .add_plugins(render::rendering_plugin) 
+
+        
+        .add_plugins(clouds::clouds_plugin)
 
 
         .add_plugins(BevyMaterialWizardPlugin{

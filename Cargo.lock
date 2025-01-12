@@ -2327,6 +2327,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e8566979429cf69b49a5c740c60791108e86440e8be149bbea4fe54d2c32d6e2"
 
 [[package]]
+name = "degen_toon_clouds"
+version = "0.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6f0fcc14f862b94d312859e7a5e0d8654752c8f01e5689fdcba92d06a8fc1204"
+dependencies = [
+ "bevy",
+ "bevy_common_assets",
+ "ron",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "degen_toon_water"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5374,6 +5387,7 @@ dependencies = [
  "bevy_mesh_terrain",
  "bevy_obj 0.15.0 (git+https://github.com/ethereumdegen/bevy_obj)",
  "bevy_regions",
+ "degen_toon_clouds",
  "degen_toon_water",
  "image",
  "rand",
