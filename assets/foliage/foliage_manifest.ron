@@ -5,14 +5,21 @@
         (
             name: "highland_grass1",
  
-           
+               mesh_name: Some("grass_1"),
+
+               material_name: Some("foliage_green"),
+
         ),
 
 
 
         (
             name: "highland_grass2",
- 
+    
+               mesh_name: Some("grass_1"),
+
+               material_name: Some("foliage_green"),
+
             
            
         ),
@@ -20,6 +27,10 @@
             name: "highland_grass3",
  
             
+               mesh_name: Some("grass_1"),
+
+               material_name: Some("foliage_green"),
+
            
         ),
         
@@ -28,9 +39,38 @@
             name: "highland_pebbles_1",
 
        
+               mesh_name: Some("grass_1"),
+
+               material_name: Some("foliage_green"),
+
            
         ),
         
 
-	]
+	],
+
+
+    foliage_mesh_definitions: {
+
+        "grass_1" : "models/foliage/grass4.obj",
+
+    },
+
+
+    //uses the special foliage shader that supports wind 
+    foliage_material_definitions: {
+
+
+        "foliage_green" :  (
+
+            material_preset: Foliage, 
+            base_color: Some( LinearRgba( red: 0.09, green: 0.22, blue: 0.08, alpha: 1.0 )  ),
+            base_color_texture: Some("textures/foliage/flat/sprite_0017.png"),
+
+
+        )
+
+
+    }
+
 )

@@ -901,7 +901,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_foliage_tool"
-version = "0.15.5"
+version = "0.15.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "278d48a5987f04620e6c46dce63a4877098bc115cb0cfcd8e3b4deb0e34d3d25"
 dependencies = [
  "anyhow",
  "bevy",
@@ -2326,9 +2328,9 @@ checksum = "e8566979429cf69b49a5c740c60791108e86440e8be149bbea4fe54d2c32d6e2"
 
 [[package]]
 name = "degen_toon_clouds"
-version = "0.15.1"
+version = "0.15.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f0fcc14f862b94d312859e7a5e0d8654752c8f01e5689fdcba92d06a8fc1204"
+checksum = "d93ebea54b58b535f75082f12cd13a9c56778977a3805dfb5aa2259935172cd1"
 dependencies = [
  "bevy",
  "bevy_common_assets",
@@ -2339,9 +2341,9 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_water"
-version = "0.15.1"
+version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "379cc48f52d704a8147f089d3dae734e802219b94d4f9efeba0f9d34636d15b5"
+checksum = "bfa4c00573f199076f024c7eb8268e9260f8895c5924fe948a1e257c8cae2e72"
 dependencies = [
  "bevy",
  "bevy_common_assets",

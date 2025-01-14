@@ -40,7 +40,7 @@ pub fn foliage_plugin(app:&mut App){
 
                
 
-                spawn_foliage_doodads, 
+             //   spawn_foliage_doodads,  //plugin should do this 
 
                 ).chain()
                 .run_if(in_state(TerrainLoadingState::Complete))

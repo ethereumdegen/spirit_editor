@@ -9,7 +9,7 @@ default-run = "main"
 
 
 [dependencies]
-bevy = "0.15.0"
+bevy = "0.15.1"
 bevy_egui = "0.31.0"
 
 
@@ -21,7 +21,7 @@ image = { version = "0.25.1", default-features = false }
 
 
 
-   #bevy_mesh_terrain = {version = "0.15.9", features=["physics"]  }
+   #bevy_mesh_terrain = {version = "0.15.11", features=["physics"]  }
   bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
 
 
@@ -31,11 +31,11 @@ image = { version = "0.25.1", default-features = false }
    #bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
- degen_toon_water = "0.15.1" 
+ degen_toon_water = "0.15.2" 
  # degen_toon_water =  {path="../degen_toon_water"}
 
 
- degen_toon_clouds = "0.15.1" 
+ degen_toon_clouds = "0.15.3" 
 
 
  bevy_regions = "0.15.0"
@@ -77,8 +77,8 @@ bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
- #bevy_foliage_tool =   "0.15.5"
- bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+ bevy_foliage_tool =   "0.15.7"
+  #bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  

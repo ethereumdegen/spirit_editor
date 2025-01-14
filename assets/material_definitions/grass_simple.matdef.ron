@@ -1,6 +1,6 @@
 (
 	
-	 material_name:  "Grass1",   
+	 material_name:  "GrassSimple",   
 
 	diffuse_texture: Some("textures/material_overrides/grass1_diffuse.png"),
 	 

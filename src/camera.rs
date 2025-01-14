@@ -28,12 +28,13 @@ fn init_camera (
         if let Some(mut cmd) = commands.get_entity( camera_entity ){
 
             cmd
-            .insert (  EdgeDetection { 
-                normal_threshold: 1.9, 
-                enable_depth: false, 
+          /*  .insert (  EdgeDetection { 
+                normal_threshold: 2.2, 
+                steep_angle_threshold: 0.9, 
+                enable_depth: true, 
                
                 ..default()
-            }  )
+            }  ) */
             .insert( CameraInitialized ) 
 
 

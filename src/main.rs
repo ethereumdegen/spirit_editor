@@ -52,8 +52,8 @@ use bevy::render::view::ColorGrading;
 //use bevy_toon_shader::{ToonShaderPlugin,ToonShaderSun,ToonShaderMainCamera}; 
 use bevy_foliage_tool::foliage_scene::FoliageSceneData;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
-use bevy_foliage_tool::BevyFoliageMaterialPlugin;
-use bevy_foliage_tool::BevyFoliageProtoPlugin;
+ 
+
 
 
 
@@ -95,6 +95,9 @@ use bevy::core_pipeline::prepass::DepthPrepass;
 //use bevy_foliage_paint::foliage_config::FoliageConfig;
 //use bevy_foliage_paint::foliage::FoliageData;
 use bevy_foliage_tool::BevyFoliageToolPlugin;
+use bevy_foliage_tool::BevyFoliageMaterialPlugin; 
+use bevy_foliage_tool::BevyFoliageProtoPlugin;
+
 use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
@@ -243,10 +246,9 @@ fn main() {
 
         } )
 
-        .add_plugins(BevyFoliageMaterialPlugin) 
-
+        .add_plugins(BevyFoliageMaterialPlugin)  
         
-        //.add_plugins(BevyFoliageProtoPlugin )
+        .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
         .add_plugins(materials::materials_plugin   )
