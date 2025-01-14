@@ -345,6 +345,8 @@ fn attach_models_to_doodads(
                 }
             }
 
+             
+
 
              RenderableType::Decal(decal_name) => {
  
@@ -413,6 +415,11 @@ fn attach_models_to_doodads(
                       .remove::<DoodadNeedsModelAttached>()
                       ;
 
+            }
+
+            RenderableType::NoModel => {
+
+               // nothing at all :D 
             }
         };
     }
