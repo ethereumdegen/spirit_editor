@@ -17,6 +17,7 @@ pub fn virtual_links_plugin(  app: &mut App) {
 				(	
 					add_unique_name_components, 
 					add_virtual_link_from_custom_props, 
+					add_virtual_link_from_unique_name, 
 					render_gizmo_lines
 				).chain()
 
@@ -120,32 +121,88 @@ fn add_virtual_link_from_custom_props(
 
 	custom_props_query: Query<(Entity,&CustomPropsComponent), Changed<CustomPropsComponent>>,
 
-	unique_name_query: Query<(Entity, &UniqueNameComponent)>
+//	unique_name_query: Query<(Entity, &UniqueNameComponent)>
 
  
 
 ){
 
 
-for (  entity, custom_props_comp ) in custom_props_query.iter(){ 
+	for (  entity, custom_props_comp ) in custom_props_query.iter(){ 
+				commands.entity(entity).queue(RefreshVirtualLink);
 
 
-	   if let Some(mut cmd) = commands.get_entity( entity ){
+	}
+ 
+
+
+}
+
+
+
+fn add_virtual_link_from_unique_name(
+	mut commands:Commands, 
+
+	custom_props_query: Query<Entity, With<CustomPropsComponent> >,
+
+	unique_name_query: Query<(Entity, &UniqueNameComponent), Changed<UniqueNameComponent>>
+
+ 
+
+){
+
+
+
+
+for (  _unique_name_entity, unique_name_comp ) in unique_name_query.iter(){ 
+
+
+	for custom_prop_entity in &custom_props_query {
+
+
+		commands.entity(custom_prop_entity).queue( RefreshVirtualLink );
+
+	}
+ 
+	 
+}
+
+ 
+
+
+}
+
+
+struct RefreshVirtualLink; 
+
+impl EntityCommand for RefreshVirtualLink  { 
+
+
+	fn apply(self, script_entity: Entity, world: &mut World) { 
+
+
+		let mut unique_name_query = world.query::<(Entity, &UniqueNameComponent)>();
+
+
+	   if let Some(mut cmd) = world.commands().get_entity( script_entity ){
 
 			cmd.remove::<VirtualLinkComponent>();
 
 		}
 
 
+		let Some(custom_props_comp) = world.get::<CustomPropsComponent>(script_entity) else {return};
+
+
 
 		if let Some(target_unique_name) =  custom_props_comp.props.get("target_unique_name") {
 				//use registry? 
-			for (target_entity, unique_name_comp) in unique_name_query.iter(){
+			for (target_entity, unique_name_comp) in unique_name_query.iter(  world  ){
 
 				if unique_name_comp.0 == target_unique_name.to_string() {
 
  
-				    if let Some(mut cmd) = commands.get_entity( entity ){
+				    if let Some(mut cmd) = world.commands().get_entity( script_entity ){
 
 						cmd.try_insert( 
 							VirtualLinkComponent {
@@ -162,9 +219,7 @@ for (  entity, custom_props_comp ) in custom_props_query.iter(){
 
 
 		}
-}
 
 
-
-
+	}
 }

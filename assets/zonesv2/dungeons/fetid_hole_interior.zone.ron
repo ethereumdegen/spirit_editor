@@ -1,0 +1,5 @@
+(translation_offset:None,entities:[
+
+Doodad(name:"player_waypoint",transform:(translation:(64.80492,17.658634,42.096832),rotation:(1.607139,0.0000000031764813,-0.00000017478784),scale:(1.0,1.0,1.0)),custom_props:Some({"waypoint_name":String("entrance"),"special_type":String("player_waypoint")})),Doodad(name:"MDungeons_Steps",transform:(translation:(76.0,10.0,57.0),rotation:(-3.141425,-0.0054541645,0.00895134),scale:(1.0,1.0,1.0)),custom_props:Some({"material_override":String("Rocks2")})),Doodad(name:"MDungeon_KnightStatue",transform:(translation:(83.11399,10.605654,44.218376),rotation:(-1.5707963,0.0,0.0),scale:(1.0,1.0001441,1.0)),custom_props:Some({"material_override":String("Rocks2")}))
+
+])

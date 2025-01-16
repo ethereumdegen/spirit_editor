@@ -65,10 +65,11 @@
 
             material_preset: Foliage, 
             base_color: Some( LinearRgba( red: 0.09, green: 0.22, blue: 0.08, alpha: 1.0 )  ),
-            base_color_texture: Some("textures/foliage/flat/sprite_0017.png"),
-
+         //  base_color_texture: Some("textures/foliage/flat/sprite_0017.png"),
+                 base_color_texture: Some("textures/foliage/grass_pixel_1.png"),
 
         )
+
 
 
     }
