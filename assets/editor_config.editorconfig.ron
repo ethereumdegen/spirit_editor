@@ -8,7 +8,10 @@
    
   //initial_level_to_load: Some( "crypt_1.level" ),
 
-  initial_level_to_load: Some( "world.level" ),
+
+  initial_level_to_load: Some( "fetid_hole.level" ),
+
+ // initial_level_to_load: Some( "world.level" ),
 
   //initial_level_to_load: Some( "academy_1.level" ),
 
