@@ -42,9 +42,11 @@ pub struct VirtualLinkComponent {
 
 
 	pub target_entity: Entity, 
-
-	//link type ? 
+	pub secondary_target_entity: Option<Entity>, 
+	 
 }
+
+
 
 fn render_gizmo_lines (
 
@@ -64,6 +66,15 @@ fn render_gizmo_lines (
 
  
 		 gizmos.arrow(source_xform.translation(), target_xform.translation(), YELLOW);
+
+
+		 if let Some( secondary_target ) = virtual_link.secondary_target_entity {
+
+		 		if let Some(secondary_target_xform) = global_xform_query.get( secondary_target ).ok()  {
+		 				 gizmos.arrow(source_xform.translation(), secondary_target_xform.translation(), BLUE);
+		 		}
+
+		 }
 
  
 
@@ -192,10 +203,37 @@ impl EntityCommand for RefreshVirtualLink  {
 
 
 		let Some(custom_props_comp) = world.get::<CustomPropsComponent>(script_entity) else {return};
+		let custom_props = custom_props_comp.props.clone(); 
 
 
 
-		if let Some(target_unique_name) =  custom_props_comp.props.get("target_unique_name") {
+		//-----
+
+		let mut secondary_target_entity = None; 
+
+
+		if let Some(source_unique_name) =  custom_props.get("source_unique_name") {
+				//use registry? 
+			for (target_entity, unique_name_comp) in unique_name_query.iter(  world  ){
+
+				if unique_name_comp.0 == source_unique_name.to_string() {
+ 
+
+					secondary_target_entity = Some(target_entity.clone());
+
+					  
+
+					break;
+				}
+			} 
+
+
+		}
+
+		// ------
+
+
+		if let Some(target_unique_name) =  custom_props.get("target_unique_name") {
 				//use registry? 
 			for (target_entity, unique_name_comp) in unique_name_query.iter(  world  ){
 
@@ -207,6 +245,7 @@ impl EntityCommand for RefreshVirtualLink  {
 						cmd.try_insert( 
 							VirtualLinkComponent {
 						        target_entity,
+						        secondary_target_entity,
 						    } 
 						 );
 
@@ -219,6 +258,10 @@ impl EntityCommand for RefreshVirtualLink  {
 
 
 		}
+
+
+
+		
 
 
 	}
