@@ -1,5 +1,6 @@
  
 use bevy_clay_tiles::tile_types_config::ClayTilesTypesConfigResource;
+use spirit_edit_core::prefabs::PrefabEvent;
 use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
 use bevy::prelude::*;
 
@@ -226,6 +227,7 @@ fn editor_tools_ui(
     mut foliage_command_event_writer: EventWriter<FoliageCommandEvent>,
     mut region_command_event_writer: EventWriter<RegionCommandEvent>,
     mut zone_event_writer: EventWriter<ZoneEvent>,
+    mut prefab_event_writer: EventWriter<PrefabEvent>,
 
     mut contexts: EguiContexts,
 
@@ -244,6 +246,8 @@ fn editor_tools_ui(
             region_command_event_writer.send(RegionCommandEvent::SaveAll );
             zone_event_writer.send(ZoneEvent::SaveAllZones);
             foliage_command_event_writer.send(FoliageCommandEvent::SaveAll );
+
+            prefab_event_writer.send(PrefabEvent::SaveAllPrefabs);
         }
 
        // if ui.button("Save Splat and Height").clicked() {
