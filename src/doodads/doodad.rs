@@ -365,6 +365,24 @@ fn attach_models_to_doodads(
                 
             }
 
+              RenderableType::ParticleFx(hvfx_name) => {
+ 
+
+                 let cube_def_color: Color = Color::srgba(0.3,0.7,0.2,0.5);
+
+
+                let spawned_entity = commands
+                    .entity(new_doodad_entity)
+                    .insert(Mesh3d( meshes.add(Cuboid::new(1.0, 1.0, 1.0)) ))
+                     .remove::<DoodadNeedsModelAttached>()
+                    .insert(MeshMaterial3d( materials.add( cube_def_color  ) )  ).id();
+
+
+
+                
+            }
+
+
 
 
             RenderableType::MagicFx(magic_fx_name) => {
