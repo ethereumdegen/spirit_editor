@@ -9,15 +9,14 @@ use bevy::utils::HashSet;
 
 use bevy::scene::SceneInstanceReady;
 
-use bevy_edge_detection::EdgeDetectionPlugin;
+ 
 
 
 pub(crate) fn rendering_plugin(app: &mut App) {
     app.register_type::<SceneBundleLink>()
         .register_type::<HeadModelSceneLink>()
 
-       .add_plugins(EdgeDetectionPlugin::default() )
-
+      
         .add_observer(listen_for_scene_loaded)
         .add_systems(
             Update,

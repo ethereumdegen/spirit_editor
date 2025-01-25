@@ -1,9 +1,9 @@
 
 
  
-use bevy_mesh_terrain::{chunk::ChunkHeightMapResource, terrain::TerrainData, terrain_config::TerrainConfig};
+use degen_toon_terrain::{chunk::ChunkHeightMapResource, terrain::TerrainData, terrain_config::TerrainConfig};
 use bevy::prelude::*;
-use bevy_mesh_terrain::terrain_loading_state::TerrainLoadingState;
+use degen_toon_terrain::terrain_loading_state::TerrainLoadingState;
 
 
 pub fn terrain_loading_plugin(app: &mut App){

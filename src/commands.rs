@@ -4,8 +4,8 @@ use spirit_edit_core::zones::ZoneEvent;
 use bevy_foliage_tool::edit::FoliageCommandEvent;
 use bevy::prelude::*;
 
-use bevy_mesh_terrain::edit::EditingTool;
-use bevy_mesh_terrain::{
+use degen_toon_terrain::edit::EditingTool;
+use degen_toon_terrain::{
     edit::{EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
     TerrainMeshPlugin,

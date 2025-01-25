@@ -7,7 +7,7 @@
 mod editor_state;
 mod loading;
 mod clay_tiles;
-
+mod shaders;
 
 mod decals; 
 mod decal_manifest; 
@@ -84,7 +84,7 @@ use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
  
- use bevy_mesh_terrain::TerrainEditMode;
+ use degen_toon_terrain::TerrainEditMode;
 
  use bevy_material_wizard::BevyMaterialWizardPlugin;
 
@@ -115,9 +115,9 @@ use crate::doodads::doodad::handle_rebuild_doodads;
 use bevy::prelude::*;
 use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
 use bevy::render::RenderPlugin;
-use bevy_mesh_terrain::edit::EditingTool;
-use bevy_mesh_terrain::terrain_config::TerrainConfig;
-use bevy_mesh_terrain::{
+use degen_toon_terrain::edit::EditingTool;
+use degen_toon_terrain::terrain_config::TerrainConfig;
+use degen_toon_terrain::{
     edit::{EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
     TerrainMeshPlugin,
@@ -197,7 +197,11 @@ fn main() {
                 .set(RenderPlugin {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
-                }),
+                })
+
+               .set(ImagePlugin::default_nearest())   // no linear filter ! 
+
+
 
 
 
@@ -219,7 +223,8 @@ fn main() {
 
 
         .add_plugins(render::rendering_plugin) 
-
+        .add_plugins(shaders::shaders_plugin) 
+         .add_plugins(terrain::terrain_plugin) 
         
         .add_plugins(clouds::clouds_plugin)
 

@@ -13,8 +13,7 @@ use bevy::prelude::*;
 
 use crate::editor_pls::bevy_pls_editor_is_active;
 use crate::ui::{BrushType, EditorToolsState, ToolMode};
-use bevy::input::mouse::MouseMotion;
-use bevy_mesh_terrain::edit::{ BrushType as TerrainBrushType,  EditingTool as TerrainEditingTool , TerrainBrushEvent};
+use degen_toon_terrain::edit::{ BrushType as TerrainBrushType,  EditingTool as TerrainEditingTool , TerrainBrushEvent};
 
 use bevy_regions::edit::{
     BrushType as RegionsBrushType, 
@@ -33,8 +32,8 @@ use bevy_foliage_tool::edit::{
 use bevy_clay_tiles::tile_edit::{EditingTool as TilesEditingTool} ;
 
      
-use bevy_mesh_terrain::terrain_config::TerrainConfig;
-use bevy_mesh_terrain::{
+use degen_toon_terrain::terrain_config::TerrainConfig;
+use degen_toon_terrain::{
     edit::{  EditTerrainEvent, TerrainCommandEvent},
     terrain::{TerrainData, TerrainViewer},
     tool_preview::{ToolPreviewResource as TerrainToolPreviewResource},
@@ -122,6 +121,25 @@ impl   EditingTool {
  
 
         match state.tool_mode {
+                    
+
+                   ToolMode::TerrainGen => {
+
+                         let sub_tool = state.sub_tool; 
+                       /* EditingTool::TerrainEditingTool( TerrainEditingTool::SetHeightMap {
+                                            height: state.color.r,
+                                        })*/
+
+                                        // ???? 
+                        match sub_tool{
+                       //   Some(SubTool::TerrainGeneration) => Some(EditingTool::TerrainGenerationTool  ),
+                          
+                           _ => None 
+
+                        }
+
+
+                    },
                     ToolMode::Terrain => {
 
                          let sub_tool = state.sub_tool; 

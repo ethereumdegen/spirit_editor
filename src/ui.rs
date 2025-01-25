@@ -1,4 +1,5 @@
  
+use crate::terrain::terrain_generation::GenerateTerrainEvent;
 use bevy_clay_tiles::tile_types_config::ClayTilesTypesConfigResource;
 use spirit_edit_core::prefabs::PrefabEvent;
 use crate::terrain::terrain_manifest::{TerrainManifestResource,TerrainManifest};
@@ -7,7 +8,7 @@ use bevy::prelude::*;
 use bevy_egui::EguiContexts;
 use bevy_egui::{egui };
 
-use bevy_mesh_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
+use degen_toon_terrain::edit::{BrushType as TerrainBrushType, TerrainCommandEvent};
 use bevy_regions::edit::{BrushType as RegionsBrushType, RegionCommandEvent};
 use spirit_edit_core::zones::ZoneEvent;
 use bevy_foliage_tool::edit::{BrushType as FoliageBrushType, FoliageCommandEvent};
@@ -98,6 +99,7 @@ pub enum ToolMode {
     #[default]
     
     Terrain,
+    TerrainGen,
     Foliage, 
     Regions,
     Tiles,
@@ -109,9 +111,13 @@ pub enum ToolMode {
 #[derive(Clone,Debug,PartialEq,Eq)]
 pub enum SubTool {
 
+   
+
     TerrainHeight,
     TerrainSplat, 
     TerrainSplatUltra, 
+
+    TerrainGeneration,
 
     BuildTileRectangle,
     BuildTileLinear,
@@ -128,8 +134,8 @@ impl SubTool{
     pub fn to_string(&self) -> String{
 
         match self {
-
-            Self::TerrainHeight  => "Terrain Height".into(),
+             Self::TerrainGeneration  => "Terrain Generation".into(),
+             Self::TerrainHeight  => "Terrain Height".into(),   
             Self::TerrainSplat  => "Terrain Splat".into(),
             Self::TerrainSplatUltra  => "Terrain Splat Ultra".into(),
 
@@ -153,9 +159,9 @@ impl SubTool{
 
 
 
-const TOOL_MODES: [ToolMode; 4] = [
+const TOOL_MODES: [ToolMode; 5] = [
 ToolMode::Terrain,
- 
+ ToolMode::TerrainGen,
 ToolMode::Foliage, 
 ToolMode::Regions,
 ToolMode::Tiles,
@@ -166,6 +172,14 @@ const TERRAIN_SUBTOOLS : [SubTool; 3] = [
     SubTool::TerrainHeight,
     SubTool::TerrainSplat, 
     SubTool::TerrainSplatUltra, 
+
+];
+
+
+
+const TERRAIN_GEN_SUBTOOLS : [SubTool; 1] = [
+    SubTool::TerrainGeneration,
+  
 
 ];
 
@@ -210,6 +224,7 @@ impl Display for ToolMode {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let label = match self {
             ToolMode::Terrain => "Terrain",
+            ToolMode::TerrainGen => "TerrainGen",
             ToolMode::Tiles => "Tiles",
             ToolMode::Foliage => "Foliage",
             ToolMode::Regions => "Regions",
@@ -233,6 +248,8 @@ fn editor_tools_ui(
 
     terrain_manifest_res: Res<TerrainManifestResource>,
     terrain_manifest_asset: Res<Assets<TerrainManifest>>,
+
+    mut commands: Commands , 
 
 
     clay_tiles_config_resource: Res<ClayTilesTypesConfigResource>, 
@@ -290,6 +307,91 @@ fn editor_tools_ui(
 
 
         match tools_state.tool_mode {
+                       ToolMode::TerrainGen => {
+                   ui.spacing();
+                 ui.separator();
+
+             
+                  ui.heading("Sub Tool");
+                
+                let subtool_name = match &tools_state.sub_tool {
+
+                    Some(st) => st.to_string(),
+                    None => "None".to_string()
+                };
+
+                  egui::ComboBox::new("Terrain Gen", "")
+                    .selected_text(subtool_name)
+                    .show_ui(ui, |ui| {
+                        for sub_tool in TERRAIN_GEN_SUBTOOLS.into_iter() {
+                            if ui
+                                .selectable_label(
+                                     Some(sub_tool.clone()) ==  tools_state.sub_tool  ,
+                                    sub_tool.to_string(),
+                                )
+                                .clicked()
+                            {
+                                tools_state.sub_tool = Some(sub_tool);
+                            }
+                        }
+                    });
+
+
+                    ui.spacing();
+                    ui.separator();
+
+
+
+           let  brush_type  =  tools_state.brush_type.clone() ;
+
+            if let Some(sub_tool) = &tools_state.sub_tool {
+                match  sub_tool {
+ 
+
+
+                                SubTool::TerrainGeneration => {
+ 
+
+                                        ui.spacing();
+                                        
+
+
+                                  
+
+
+ 
+                                    ui.add(
+                                        egui::Slider::new(&mut tools_state.color.r, 0..=65535)
+                                            .text("Seed  ")
+                                           
+                                            ,
+                                    );
+                                      if ui.button(" Generate ").clicked() { 
+
+
+                                        commands.trigger( GenerateTerrainEvent );
+
+
+                                    }
+
+
+                                          
+
+                                }
+
+
+                    _ => {}
+                }
+              }
+               
+            }
+
+
+
+
+
+
+
             ToolMode::Terrain => {
                    ui.spacing();
                  ui.separator();

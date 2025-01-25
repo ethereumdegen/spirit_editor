@@ -791,15 +791,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_edge_detection"
-version = "0.15.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "132168f4a72b3b885db50252fd444444a66015422a24afef66542825433b08ff"
-dependencies = [
- "bevy",
-]
-
-[[package]]
 name = "bevy_editor_pls"
 version = "0.8.2"
 dependencies = [
@@ -1200,25 +1191,6 @@ dependencies = [
  "hexasphere",
  "serde",
  "wgpu",
-]
-
-[[package]]
-name = "bevy_mesh_terrain"
-version = "0.15.11"
-dependencies = [
- "anyhow",
- "avian3d",
- "bevy",
- "bincode",
- "futures-lite 1.13.0",
- "half",
- "image",
- "png",
- "rand",
- "ron",
- "serde",
- "serde_json",
- "thiserror",
 ]
 
 [[package]]
@@ -2337,6 +2309,25 @@ dependencies = [
  "ron",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "degen_toon_terrain"
+version = "0.15.11"
+dependencies = [
+ "anyhow",
+ "avian3d",
+ "bevy",
+ "bincode",
+ "futures-lite 1.13.0",
+ "half",
+ "image",
+ "png",
+ "rand",
+ "ron",
+ "serde",
+ "serde_json",
+ "thiserror",
 ]
 
 [[package]]
@@ -5353,6 +5344,8 @@ dependencies = [
 [[package]]
 name = "spirit_edit_core"
 version = "0.15.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cfa9f2bd9e2d43583796989ef19c3a6bae25b11d365c07b8411dd3fb37d8be4b"
 dependencies = [
  "bevy",
  "bevy_clay_tiles",
@@ -5374,7 +5367,6 @@ dependencies = [
  "bevy_clay_tiles",
  "bevy_common_assets",
  "bevy_contact_projective_decals",
- "bevy_edge_detection",
  "bevy_editor_pls",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
@@ -5382,12 +5374,13 @@ dependencies = [
  "bevy_foliage_tool",
  "bevy_magic_fx",
  "bevy_material_wizard",
- "bevy_mesh_terrain",
  "bevy_obj 0.15.0 (git+https://github.com/ethereumdegen/bevy_obj)",
  "bevy_regions",
  "degen_toon_clouds",
+ "degen_toon_terrain",
  "degen_toon_water",
  "image",
+ "noise",
  "rand",
  "ron",
  "serde",

@@ -10,8 +10,8 @@ use bevy_editor_pls::EditorPlugin;
 
 use bevy_editor_pls::editor;
  
-use bevy_mesh_terrain::chunk::Chunk;
-use bevy_mesh_terrain::chunk::TerrainChunkMesh;
+use degen_toon_terrain::chunk::Chunk;
+use degen_toon_terrain::chunk::TerrainChunkMesh;
 
 pub fn editor_ui_plugin(app: &mut App) {
     app

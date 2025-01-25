@@ -1,4 +1,4 @@
-use bevy_edge_detection::EdgeDetection;
+ 
 use bevy_editor_pls::controls::ControlsInteractionState;
 use bevy::prelude::*;
 

@@ -22,7 +22,7 @@ image = { version = "0.25.1", default-features = false }
 
 
    #bevy_mesh_terrain = {version = "0.15.11", features=["physics"]  }
-  bevy_mesh_terrain =  {path="../bevy_mesh_terrain", features=["physics"]}
+  degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
  
@@ -46,6 +46,11 @@ image = { version = "0.25.1", default-features = false }
  
 
 bevy_magic_fx = "0.15.3"
+
+
+noise = "0.9"
+
+
 
 # vendored into new bevy ! 
 # bevy_mod_picking = {version="0.20.0", features=["backend_raycast",  "highlight","selection"]}
@@ -82,8 +87,6 @@ bevy_asset_loader = "0.22.0"
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  
-
- bevy_edge_detection = "0.15.1"
  
  
 bevy_contact_projective_decals = {git= " https://github.com/ethereumdegen/bevy_contact_projective_decals "}
