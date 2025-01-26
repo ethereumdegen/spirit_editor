@@ -58,6 +58,7 @@ impl EditorWindow for MaterialsWindow {
         "Wall1Dark",
         
 		"Wall2",
+        "Rocks1",
 		"Rocks2",
 
         "ToonStone",

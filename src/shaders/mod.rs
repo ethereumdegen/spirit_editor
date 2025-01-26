@@ -1,21 +1,12 @@
 
 use bevy::prelude::*; 
 
+pub mod rock_magic; 
+pub mod magic_rock_material;
 
 pub fn shaders_plugin(app: &mut App) {
     app
-
+      .add_plugins(rock_magic::rock_magic_plugin)
+        .add_plugins(magic_rock_material::magic_rock_material_plugin)
        ;
 }
-
-/*
-
-Listen for trigger of material override occuring 
-
-when  an override is complete, look up the corresponding matdef file 
-
-if it has a custom prop of  MagicRockShader,  we are going to upgrade to an extension material- magic rock shader ! 
-
-
-
-*/

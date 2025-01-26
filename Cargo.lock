@@ -1145,9 +1145,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_material_wizard"
-version = "0.15.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9da302eeb23d632831deb50aa0f29e550c121aea552331e44ea462deef4640ae"
+version = "0.15.7"
 dependencies = [
  "bevy",
  "ron",
@@ -5358,7 +5356,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_editor"
-version = "0.15.1"
+version = "0.15.2"
 dependencies = [
  "anyhow",
  "bevy",

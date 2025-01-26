@@ -115,7 +115,7 @@ pub enum SubTool {
 
     TerrainHeight,
     TerrainSplat, 
-    TerrainSplatUltra, 
+   
 
     TerrainGeneration,
 
@@ -137,7 +137,7 @@ impl SubTool{
              Self::TerrainGeneration  => "Terrain Generation".into(),
              Self::TerrainHeight  => "Terrain Height".into(),   
             Self::TerrainSplat  => "Terrain Splat".into(),
-            Self::TerrainSplatUltra  => "Terrain Splat Ultra".into(),
+          
 
             Self::BuildTileRectangle  => "Build: Rectangle".into(),
             Self::BuildTileLinear  => "Build: Linear".into(),
@@ -168,10 +168,10 @@ ToolMode::Tiles,
  
 ];
 
-const TERRAIN_SUBTOOLS : [SubTool; 3] = [
+const TERRAIN_SUBTOOLS : [SubTool; 2] = [
     SubTool::TerrainHeight,
     SubTool::TerrainSplat, 
-    SubTool::TerrainSplatUltra, 
+   
 
 ];
 
@@ -454,7 +454,7 @@ fn editor_tools_ui(
 
 
                             let terrain_index_A = tools_state.color.r.clone();
-                           // let terrain_index_B = tools_state.color.g.clone();
+                            let terrain_index_B = tools_state.color.g.clone();
 
                             let terrain_manifest:Option<&TerrainManifest> =  terrain_manifest_res.manifest.as_ref().map(|m| terrain_manifest_asset.get( m )).flatten();
              
@@ -519,7 +519,7 @@ fn editor_tools_ui(
                                     ui.add(
 
                                         egui::Slider::new(&mut tools_state.color.r, 0..=255)
-                                            .text("Texture Index (R_Channel")
+                                            .text("Texture Index A (R_Channel")
                                             .step_by(1.0)
                                             .drag_value_speed(0.1)
 
@@ -533,20 +533,20 @@ fn editor_tools_ui(
                                     ui.add(
 
                                         egui::Slider::new(&mut tools_state.color.g, 0..=255)
-                                            .text("Texture Strength (G_Channel")
+                                            .text("Texture Index B (G_Channel")
                                              .step_by(1.0)
                                             .drag_value_speed(0.1)
                                             ,
                                     );
                                         
-                                        /*
+                                     
                                     if let Some(terrain_def) = terrain_manifest.map(|m| m.get_terrain_type(terrain_index_B) ).flatten() {
                                          ui.label( terrain_def.name.clone() );
-                                    }*/
+                                    } 
                                       ui.spacing_mut().slider_width = 255.0;
                                     ui.add(
-                                        egui::Slider::new(&mut tools_state.color.b, 0..=3)
-                                            .text("Layer (B_Channel")
+                                        egui::Slider::new(&mut tools_state.color.b, 0..=255)
+                                            .text("Texture Index B Strength (B_Channel")
                                              .step_by(1.0)
                                             .drag_value_speed(0.1)
 
@@ -564,7 +564,7 @@ fn editor_tools_ui(
                     }
 
 
-
+/*
                        SubTool::TerrainSplatUltra => {
  
 
@@ -702,7 +702,7 @@ fn editor_tools_ui(
 
                     }
 
-
+*/
 
                     SubTool::TerrainHeight => {
 

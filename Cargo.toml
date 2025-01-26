@@ -1,6 +1,6 @@
 [package]
 name = "spirit_editor"
-version = "0.15.1"
+version = "0.15.2"
 edition = "2021"
 default-run = "main"
 
@@ -26,9 +26,9 @@ image = { version = "0.25.1", default-features = false }
 
 
  
-   bevy_material_wizard = "0.15.5"
+   #bevy_material_wizard = "0.15.5"
 
-   #bevy_material_wizard = {path="../bevy_material_wizard"}
+  bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
  degen_toon_water = "0.15.2" 

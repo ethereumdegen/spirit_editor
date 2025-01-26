@@ -2,7 +2,7 @@
 	
 	 material_name:  "Rocks1",   
 
-	diffuse_texture: Some("textures/material_overrides/rocks1_diffuse.png"),
+	diffuse_texture: Some("textures/material_overrides/rock_magic_1.png"),
 	normal_texture: Some("textures/material_overrides/rocks1_normal.png"),
 
 	roughness: 0.8,
@@ -11,7 +11,7 @@
    emissive_texture: None ,
 
 
-   custom_props:  [ "MagicRockShader" ]
+   custom_props:  [ "MagicRockShader" ],
 
 
 

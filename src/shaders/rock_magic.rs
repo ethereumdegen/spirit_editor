@@ -1,0 +1,125 @@
+
+
+use crate::shaders::magic_rock_material::build_magic_rock_material;
+use crate::shaders::magic_rock_material::MagicRockMaterial;
+use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
+use bevy::prelude::*; 
+
+
+use bevy_material_wizard::material_overrides::MaterialOverrideCompleted;
+
+/*
+
+Listen for trigger of material override occuring 
+
+when  an override is complete, look up the corresponding matdef file 
+
+if it has a custom prop of  MagicRockShader,  we are going to upgrade to an extension material- magic rock shader ! 
+
+
+
+*/
+
+pub fn rock_magic_plugin(app: &mut App) {
+    app
+      .add_observer( handle_material_override_performed  )
+       ;
+}
+
+
+
+
+fn handle_material_override_performed (
+
+	trigger: Trigger< MaterialOverrideCompleted >,
+
+	 material_definitions_res: Res<MaterialDefinitionsMap>,
+
+ 
+   mut commands : Commands, 
+
+
+
+) {
+
+
+	let material_override_entity = trigger.entity();
+
+	let material_def_name = &trigger.0; 
+
+
+
+	let Some(material_def) = material_definitions_res.material_definitions.get( material_def_name ) else {return};
+
+	if material_def.custom_props.contains( "MagicRockShader" ) {
+
+
+		// need to upgrade the material into an extension here 
+
+
+		 if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
+
+	    	cmd.queue( UpgradeToMagicRockExtensionMaterial );
+	    }
+
+
+
+	}
+
+
+
+}
+
+
+
+
+
+pub struct UpgradeToMagicRockExtensionMaterial ;
+
+impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
+
+
+
+		fn apply(self, mat_entity: Entity, world: &mut World) { 
+
+		//	let ext_material_type = world.get::<ExtensionMaterialType>(mat_entity);
+
+
+
+			let Some(original_mesh_material_component) = world.get::<MeshMaterial3d<StandardMaterial>>( mat_entity ) else {return };
+
+			let original_mesh_material_handle = original_mesh_material_component .0.clone() ;
+
+
+ 
+			let standard_material_assets = world.resource::< Assets<StandardMaterial> > ();
+
+
+			
+				//how can i make this generic like with  ::T ?
+			let Some(original_material) = standard_material_assets.get( &original_mesh_material_handle  ) else {return};
+			let char_mat = build_magic_rock_material(original_material.clone());
+
+
+
+			let mut character_material_assets = world.resource_mut::< Assets<MagicRockMaterial> >();
+            let char_mat_handle = character_material_assets.add(char_mat.clone());
+
+
+			if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
+                cmd.remove::<MeshMaterial3d<StandardMaterial>>() 
+                .insert(MeshMaterial3d(char_mat_handle)) ;
+
+                info!( "refreshed linked ext materials !" );
+
+            }
+
+
+
+
+		}
+}
+
+
+
+

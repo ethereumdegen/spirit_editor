@@ -3,7 +3,7 @@
 use degen_toon_terrain::chunk::TerrainImageDataNeedsReload;
 use degen_toon_terrain::terrain::TerrainImageDataLoadStatus;
 use degen_toon_terrain::heightmap::HeightMap;
-use degen_toon_terrain::hypersplat::ChunkSplatDataRaw;
+use degen_toon_terrain::splat::ChunkSplatDataRaw;
 use degen_toon_terrain::chunk::ChunkHeightMapResource;
 use degen_toon_terrain::terrain::TerrainData;
 use degen_toon_terrain::terrain_config::TerrainConfig;

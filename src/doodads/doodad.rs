@@ -20,7 +20,7 @@ use spirit_edit_core::doodads::doodad::RebuildDoodad;
 use bevy_material_wizard::material_replacements::MaterialReplacementApplySetWhenSceneReadyComponent;
 
 use bevy_material_wizard::material_overrides::{
-    MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent,RefreshMaterialOverride
+    MaterialOverrideComponent,MaterialOverrideWhenSceneReadyComponent, 
 
 };
 use spirit_edit_core::doodads::PlaceClayTileEvent;

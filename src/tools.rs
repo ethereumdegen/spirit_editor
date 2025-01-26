@@ -159,11 +159,11 @@ impl   EditingTool {
                                 b: state.color.b as u8,
                             }) ),
 
-                           Some(SubTool::TerrainSplatUltra) => Some( EditingTool::TerrainEditingTool( 
+                         /*  Some(SubTool::TerrainSplatUltra) => Some( EditingTool::TerrainEditingTool( 
                                 TerrainEditingTool::SetSplatMapUltra {
                                 texture_indices: state.layered_splatmap_data.texture_indices.clone(),
-                                texture_strengths: state.layered_splatmap_data.texture_strengths.clone(),  
-                            }) ),
+                            //    texture_strengths: state.layered_splatmap_data.texture_strengths.clone(),  
+                            }) ),*/
 
                            _ => None 
 
@@ -499,10 +499,10 @@ fn handle_brush_events_from_terrain(
                 editor_tools_state.color.r = * height ; 
 
             },
-            TerrainBrushEvent::EyeDropSplatMap { texture_indices, texture_strengths } => {
+            TerrainBrushEvent::EyeDropSplatMap { texture_indices } => {
 
                 editor_tools_state.layered_splatmap_data.texture_indices = texture_indices.clone();
-                editor_tools_state.layered_splatmap_data.texture_strengths = texture_strengths.clone(); 
+             //   editor_tools_state.layered_splatmap_data.texture_strengths = texture_strengths.clone(); 
               
 
             }

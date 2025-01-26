@@ -102,6 +102,8 @@ use bevy_regions::regions::RegionsData;
 use bevy_regions::regions_config::RegionsConfig;
 use bevy_regions::BevyRegionsPlugin;
 use asset_loading::asset_loading_plugin;
+
+
 use bevy::core_pipeline::bloom::Bloom ;
  
 use bevy::pbr::wireframe::WireframePlugin;
@@ -116,6 +118,8 @@ use bevy::prelude::*;
 use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
 use bevy::render::RenderPlugin;
 use degen_toon_terrain::edit::EditingTool;
+
+use degen_toon_terrain::terrain_material::ToonShaderSun; 
 use degen_toon_terrain::terrain_config::TerrainConfig;
 use degen_toon_terrain::{
     edit::{EditTerrainEvent, TerrainCommandEvent},
@@ -417,7 +421,7 @@ fn setup(
             ..default()
         }   )
     .insert(Sun)
-   // .insert( ToonShaderSun )
+    .insert( ToonShaderSun )
 
     ; 
 
