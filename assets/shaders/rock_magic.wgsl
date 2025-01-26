@@ -10,7 +10,7 @@
 
        pbr_bindings,
       pbr_types,
-        
+       mesh_view_bindings as view_bindings,
 
     forward_io::{VertexOutput, FragmentOutput},
     pbr_functions::{apply_pbr_lighting, main_pass_post_lighting_processing},
@@ -56,7 +56,8 @@ fn fragment(
 
 
          var uv_A = in.world_position.xy * 0.125;
-         var uv_B = in.world_position.yz * 0.125;
+         var uv_B = in.world_position.zy * 0.125;
+         var uv_flat = vec2<f32>(0.0,0.0);
 
          let color_A = textureSample(
                 pbr_bindings::base_color_texture,
@@ -69,10 +70,16 @@ fn fragment(
                 uv_B, 
             );
 
+         let flat_color = textureSample(
+                pbr_bindings::base_color_texture,
+                pbr_bindings::base_color_sampler,
+                uv_flat, 
+            );
+
           
           let triplanar_color  =  triplanar_weights.x * color_B
 
-         + triplanar_weights.y * color_B //this is for the top and bottom ...w
+         + triplanar_weights.y * flat_color //this is for the top and bottom ...w
 
          + triplanar_weights.z *  color_A
            ;
@@ -86,11 +93,21 @@ fn fragment(
             var out: FragmentOutput;
             
             //can i change this up ?? toon lighting ? 
+            //https://github.com/bevyengine/bevy/blob/main/crates/bevy_pbr/src/render/pbr_functions.wgsl
            out.color = apply_pbr_lighting(pbr_input);  //shadows 
  
-           out.color = main_pass_post_lighting_processing(pbr_input, out.color);  // fog 
+            
+
+           /* let rim_color = vec4<f32>(1.0,1.0,1.0,0.2);
+
+           //apply rim highlights 
+            let eye = normalize(view_bindings::view.world_position.xyz - in.world_position.xyz);
+            let rim = 1.0 - abs(dot(eye, in.world_normal));
+            let rim_factor = rim * rim * rim * rim;
+            out.color = mix(out.color, rim_color, rim_factor);*/
 
 
+             out.color = main_pass_post_lighting_processing(pbr_input, out.color);  // fog 
 
         //let toon_lighting = calculate_toon_lighting( normal_mixed , view_dir, toon_material.sun_dir, toon_material.sun_color );
  
