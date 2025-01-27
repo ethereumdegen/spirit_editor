@@ -59,7 +59,10 @@ pub enum BrushType {
     ClearAll,
     Smooth,
     Noise,
-    EyeDropper
+    EyeDropper,
+
+    RaiseLower,
+    
 }
 
 impl BrushType{
@@ -73,6 +76,9 @@ impl BrushType{
              BrushType::Smooth  => "Smooth".into(),
              BrushType::Noise  => "Noise".into(),
              BrushType::EyeDropper  => "Eyedropper".into(),
+
+              BrushType::RaiseLower  => "Raise/Lower".into(),
+             
 
             
 
@@ -195,11 +201,14 @@ const TILE_SUBTOOLS : [SubTool; 5] = [
 
 
 
-const BRUSH_TYPES_HEIGHT: [ BrushType; 4] = [
+const BRUSH_TYPES_HEIGHT: [ BrushType; 5] = [
 BrushType::SetExact , 
 BrushType::Smooth , 
 BrushType::Noise , 
-BrushType::EyeDropper
+BrushType::EyeDropper,
+
+BrushType::RaiseLower, 
+
 ];
 
 

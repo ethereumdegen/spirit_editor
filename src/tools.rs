@@ -409,6 +409,10 @@ fn update_brush_paint(
                     BrushType::Noise => TerrainBrushType::Noise,
                     BrushType::EyeDropper => TerrainBrushType::EyeDropper,
                      BrushType::ClearAll => TerrainBrushType::ClearAll,
+
+                       BrushType::RaiseLower => TerrainBrushType::RaiseLower,
+
+                         
                 };
 
                        edit_terrain_event_writer.send(EditTerrainEvent {
