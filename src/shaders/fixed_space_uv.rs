@@ -87,19 +87,15 @@ impl EntityCommand for DowngradeToStandardMaterial {
   		fn apply(self, mat_entity: Entity, world: &mut World) { 
 				if let Some(extension_mat_handle) = world.get::< MeshMaterial3d<FixedSpaceUvMaterial> >(mat_entity){
   
-						  			let   character_material_assets = world.resource ::< Assets<FixedSpaceUvMaterial> >();
+						  			let   ext_material_assets = world.resource ::< Assets<FixedSpaceUvMaterial> >();
 
-						  				if	let Some(_ext_mat) = character_material_assets.get( extension_mat_handle ){
+						  				if	let Some(_ext_mat) = ext_material_assets.get( extension_mat_handle ){
 
-						  				  // 	let inner_base_material = ext_mat.base.clone(); 
+						  			 
 
+								  			 if let Some(mut cmd) = world.commands().get_entity(mat_entity) { 
 
-								  			 if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
-
-									  			  //   	let std_mat = extension_mat.0 ;
-
-									  			 	 cmd
-									  			 //	 .insert( MeshMaterial3d( inner_base_material ) )
+									  			 	 cmd 
 									  			 	 .remove::<MeshMaterial3d<FixedSpaceUvMaterial>>()   ;  
 									  		 } 
 
@@ -118,7 +114,7 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
 
 		fn apply(self, mat_entity: Entity, world: &mut World) { 
 
-		//	let ext_material_type = world.get::<ExtensionMaterialType>(mat_entity);
+
 
 
 
@@ -138,17 +134,17 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
 			
 				//how can i make this generic like with  ::T ?
 			let Some(original_material) = standard_material_assets.get( &original_mesh_material_handle  ) else {return};
-			let char_mat = build_fixed_space_uv_material(original_material.clone());
+			let ext_mat = build_fixed_space_uv_material(original_material.clone());
 
 
 
-			let mut character_material_assets = world.resource_mut::< Assets<FixedSpaceUvMaterial> >();
-            let char_mat_handle = character_material_assets.add(char_mat.clone());
+			let mut ext_material_assets = world.resource_mut::< Assets<FixedSpaceUvMaterial> >();
+            let ext_mat_handle = ext_material_assets.add(ext_mat.clone());
 
 
 				  if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
                 cmd.remove::<MeshMaterial3d<StandardMaterial>>() 
-                .insert(MeshMaterial3d(char_mat_handle)) ;
+                .insert(MeshMaterial3d(ext_mat_handle)) ;
 
                 info!( "refreshed linked ext materials !" );
 
