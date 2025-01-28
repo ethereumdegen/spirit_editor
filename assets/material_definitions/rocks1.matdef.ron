@@ -11,7 +11,7 @@
    emissive_texture: None ,
 
 
-   custom_props:  [ "MagicRockShader" ],
+   custom_props:  [ "FixedSpaceUvShader" ],
 
 
 

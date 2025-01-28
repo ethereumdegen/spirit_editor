@@ -9,12 +9,12 @@ use bevy::pbr::{ExtendedMaterial, MaterialExtension};
 
 */
 
-pub fn magic_rock_material_plugin(app: &mut App) {
+pub fn fixed_space_uv_material_plugin(app: &mut App) {
     app
         //.init_asset::<CharacterMaterial>()
         .add_plugins(MaterialPlugin::<
             //NEED THIS
-            MagicRockMaterial,
+            FixedSpaceUvMaterial,
         >::default());
 
     /* load_internal_asset!(
@@ -26,12 +26,12 @@ pub fn magic_rock_material_plugin(app: &mut App) {
     */
 }
 
-pub type MagicRockMaterial = ExtendedMaterial<StandardMaterial, MagicRockMaterialBase>;
+pub type FixedSpaceUvMaterial = ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialBase>;
 
-pub fn build_magic_rock_material(original_material: StandardMaterial) -> MagicRockMaterial {
+pub fn build_fixed_space_uv_material(original_material: StandardMaterial) -> FixedSpaceUvMaterial {
     ExtendedMaterial {
         base: original_material, //from blender
-        extension: MagicRockMaterialBase::default(),
+        extension: FixedSpaceUvMaterialBase::default(),
     }
 }
 
@@ -39,12 +39,12 @@ pub fn build_magic_rock_material(original_material: StandardMaterial) -> MagicRo
 //pub type CharacterMaterialBundle = MaterialMeshBundle<CharacterMaterial >;
 
 #[derive(Clone, ShaderType, Debug)]
-pub struct MagicRockMaterialUniforms {
+pub struct FixedSpaceUvMaterialUniforms {
     pub tint_color: LinearRgba,
 
    
 }
-impl Default for MagicRockMaterialUniforms {
+impl Default for FixedSpaceUvMaterialUniforms {
     fn default() -> Self {
 
         
@@ -56,17 +56,17 @@ impl Default for MagicRockMaterialUniforms {
 }
 
 #[derive(Asset, AsBindGroup, TypePath, Debug, Clone, Default)]
-pub struct MagicRockMaterialBase {
+pub struct FixedSpaceUvMaterialBase {
     // We need to ensure that the bindings of the base material and the extension do not conflict,
     // so we start from binding slot 100, leaving slots 0-99 for the base material.
     #[uniform(20)]
-    pub custom_uniforms: MagicRockMaterialUniforms,
+    pub custom_uniforms: FixedSpaceUvMaterialUniforms,
 
 
 
 }
 
-impl MagicRockMaterialBase {
+impl FixedSpaceUvMaterialBase {
     pub fn set_tint_alpha(&mut self, alpha: f32) {
         self.custom_uniforms.tint_color.alpha = alpha;
     }
@@ -78,10 +78,10 @@ impl MagicRockMaterialBase {
     }
 }
 
-impl MaterialExtension for MagicRockMaterialBase {
+impl MaterialExtension for FixedSpaceUvMaterialBase {
     fn fragment_shader() -> ShaderRef {
         // CHARACTER_MATERIAL_SHADER_HANDLE.into()
-        "shaders/rock_magic.wgsl".into()
+        "shaders/fixed_space_uv.wgsl".into()
     }
 
   /*   fn prepass_fragment_shader() -> ShaderRef {

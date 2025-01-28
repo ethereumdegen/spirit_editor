@@ -1,7 +1,7 @@
 
 
-use crate::shaders::magic_rock_material::build_magic_rock_material;
-use crate::shaders::magic_rock_material::MagicRockMaterial;
+use crate::shaders::fixed_space_uv_material::build_fixed_space_uv_material;
+use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
 use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
 use bevy::prelude::*; 
 
@@ -20,7 +20,7 @@ if it has a custom prop of  MagicRockShader,  we are going to upgrade to an exte
 
 */
 
-pub fn rock_magic_plugin(app: &mut App) {
+pub fn fixed_space_uv_plugin(app: &mut App) {
     app
       .add_observer( handle_material_override_performed  )
        ;
@@ -51,7 +51,7 @@ fn handle_material_override_performed (
 
 	let Some(material_def) = material_definitions_res.material_definitions.get( material_def_name ) else {return};
 
-	if material_def.custom_props.contains( "MagicRockShader" ) {
+	if material_def.custom_props.contains( "FixedSpaceUvShader" ) {
 
 
 		// need to upgrade the material into an extension here 
@@ -98,11 +98,11 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
 			
 				//how can i make this generic like with  ::T ?
 			let Some(original_material) = standard_material_assets.get( &original_mesh_material_handle  ) else {return};
-			let char_mat = build_magic_rock_material(original_material.clone());
+			let char_mat = build_fixed_space_uv_material(original_material.clone());
 
 
 
-			let mut character_material_assets = world.resource_mut::< Assets<MagicRockMaterial> >();
+			let mut character_material_assets = world.resource_mut::< Assets<FixedSpaceUvMaterial> >();
             let char_mat_handle = character_material_assets.add(char_mat.clone());
 
 

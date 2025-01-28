@@ -1,12 +1,12 @@
 
 use bevy::prelude::*; 
 
-pub mod rock_magic; 
-pub mod magic_rock_material;
+pub mod fixed_space_uv; 
+pub mod fixed_space_uv_material;
 
 pub fn shaders_plugin(app: &mut App) {
     app
-      .add_plugins(rock_magic::rock_magic_plugin)
-        .add_plugins(magic_rock_material::magic_rock_material_plugin)
+      .add_plugins(fixed_space_uv::fixed_space_uv_plugin)
+        .add_plugins(fixed_space_uv_material::fixed_space_uv_material_plugin)
        ;
 }
