@@ -64,6 +64,14 @@ fn handle_material_override_performed (
 
 
 
+	}else {
+
+
+		 if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
+
+	    	cmd.queue( DowngradeToStandardMaterial );
+	    }
+
 	}
 
 
@@ -71,7 +79,35 @@ fn handle_material_override_performed (
 }
 
 
+pub struct DowngradeToStandardMaterial ;
 
+
+impl EntityCommand for DowngradeToStandardMaterial {
+
+  		fn apply(self, mat_entity: Entity, world: &mut World) { 
+				if let Some(extension_mat_handle) = world.get::< MeshMaterial3d<FixedSpaceUvMaterial> >(mat_entity){
+  
+						  			let   character_material_assets = world.resource ::< Assets<FixedSpaceUvMaterial> >();
+
+						  				if	let Some(_ext_mat) = character_material_assets.get( extension_mat_handle ){
+
+						  				  // 	let inner_base_material = ext_mat.base.clone(); 
+
+
+								  			 if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
+
+									  			  //   	let std_mat = extension_mat.0 ;
+
+									  			 	 cmd
+									  			 //	 .insert( MeshMaterial3d( inner_base_material ) )
+									  			 	 .remove::<MeshMaterial3d<FixedSpaceUvMaterial>>()   ;  
+									  		 } 
+
+							  		}
+		            }
+		 }
+
+}
 
 
 pub struct UpgradeToMagicRockExtensionMaterial ;
@@ -86,7 +122,11 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
 
 
 
-			let Some(original_mesh_material_component) = world.get::<MeshMaterial3d<StandardMaterial>>( mat_entity ) else {return };
+			let Some(original_mesh_material_component) = world.get::<MeshMaterial3d<StandardMaterial>>( mat_entity ) else {
+   
+				return
+
+			};
 
 			let original_mesh_material_handle = original_mesh_material_component .0.clone() ;
 
@@ -106,7 +146,7 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
             let char_mat_handle = character_material_assets.add(char_mat.clone());
 
 
-			if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
+				  if let Some(mut cmd) = world.commands().get_entity(mat_entity) {
                 cmd.remove::<MeshMaterial3d<StandardMaterial>>() 
                 .insert(MeshMaterial3d(char_mat_handle)) ;
 

@@ -2,7 +2,7 @@
 	
 	 material_name:  "Leaves1",   
 
- 	diffuse_texture: Some("textures/material_overrides/leaves1_diffuse.png"),
+ 	diffuse_texture: Some("textures/material_overrides/leaves1_diffuse_pixelated.png"),
  	 
 	roughness: 0.8,
 

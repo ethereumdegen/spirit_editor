@@ -5,6 +5,12 @@
 // MODEL ISSUES 
 
 
+- material override is kind of like.. busted now ? 
+- build city vessara 
+- build the orcish horde cities / encampments  (need tents, palisade walls , etc ) 
+
+
+
 mdungeon walls and mdungeon balaster need to be 4x4 to match the tilesi  like 
 
 need to UV wrap the knnight  AND floor tiles 

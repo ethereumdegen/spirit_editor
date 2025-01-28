@@ -8,13 +8,17 @@ cargo run --bin generate_doodad_manifests
 */
 
 
+
+const SUB_FOLDER :&str = "nature";
+const TAGS :&str = " [\"nature\"   ] ";
+
 fn generate_model_definitions(file_names: Vec<String>) -> Vec<String> {
     file_names.iter().map(|file_name| {
         let name = file_name.replace(".glb", "");
-        let model_path = format!("models/doodads/proto_rgs/{}", file_name);
+        let model_path = format!("models/doodads/{}/{}", SUB_FOLDER, file_name);
         format!(
-            "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    tags: Some([\"proto\" , \"proto_rgs\" ]),\n),\n",
-            name, name, model_path
+            "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    tags: Some({}),\n),\n",
+            name, name, model_path, TAGS
         )
     }).collect::<Vec<String>>() //.join("\n")
 }
@@ -23,7 +27,7 @@ fn generate_model_definitions(file_names: Vec<String>) -> Vec<String> {
 
 fn main() {
 
-	let folder_path = "artifacts/game_assets/models/doodads/proto_rgs";
+	let folder_path = format!("artifacts/game_assets/models/doodads/{}",SUB_FOLDER);
 
     let file_names_in_folder: Vec<String> = fs::read_dir(folder_path)
         .expect("Could not read directory")
