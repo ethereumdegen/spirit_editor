@@ -138,13 +138,13 @@ impl EditorWindow for DoodadsWindow {
                 ui.separator();
 
 
-
-
                 let doodad_tag_map = &doodad_tag_map_resource.doodad_tag_map;
+                for (doodad_tag, doodads_with_tag) in doodad_tag_map {
+             //   let doodad_tag_map = &doodad_tag_map_resource.doodad_tag_map;
                 
-                for doodad_tag in doodad_tag_map.keys() {
+             //   for doodad_tag in doodad_tag_map.keys() {
 
-                    if let Some(doodads_with_tag) = &doodad_tag_map.get(doodad_tag) {
+                    //if let Some(doodads_with_tag) = &doodad_tag_map.get(doodad_tag) {
                     egui::CollapsingHeader::new(doodad_tag)
                         .default_open(false)
                         .show(ui, |ui| {
@@ -169,9 +169,9 @@ impl EditorWindow for DoodadsWindow {
 
 
                                  
-                            }
+                           }
                         });
-                    }
+                  //  }
 
 
 
