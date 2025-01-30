@@ -1,3 +1,4 @@
+use serde::Deserialize;
 use crate::materials::egui::ScrollArea;
 use spirit_edit_core::zones::zone_file::CustomProp;
 use spirit_edit_core::zones::zone_file::CustomPropsComponent;
@@ -29,15 +30,42 @@ pub enum MaterialEvent {
 }
 
 
+#[derive(Deserialize)]
+pub struct MaterialNamesManifest {
+     pub override_materials: Vec<String> , 
+}
+
+#[derive(Resource,Default)]
+pub struct MaterialNamesResource ( MaterialNamesManifest );
+
+impl Default for MaterialNamesManifest{
+
+
+
+fn default() -> Self {
+
+
+     let data_str = include_str!("../../../assets/material_manifest.materialmanifest.ron");
+    let override_materials: MaterialNamesManifest = ron::from_str(data_str).expect("Failed to parse RON data for material manifest");
+
+     override_materials
+
+     }
+}
+
+
 pub struct MaterialsWindow;
 
 impl EditorWindow for MaterialsWindow {
     type State = MaterialsWindowState;
     const NAME: &'static str = "Materials";
 
-    fn ui( world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
+    fn ui( world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui,) {
         let state = cx.state_mut::<MaterialsWindow>().unwrap();
 
+        let material_names_array = world.get_resource::<MaterialNamesResource>()
+           .as_ref() .map(|r| r.0.override_materials.clone() ) .unwrap_or_default() 
+         ;
         //  let placement_resource = world.resource::<PlacementResource>();
 
 
@@ -52,45 +80,7 @@ impl EditorWindow for MaterialsWindow {
             .unwrap_or_else(|| "None".to_owned());
 
 				*/
-
-		let material_names = vec![
-		"Wall1",
-        "Wall1Dark",
-        
-		"Wall2",
-        "Rocks1",
-		"Rocks2",
-
-        "ToonStone",
-        "StoneWall",
-        "StoneWall2",
-        "StoneWall3",
-
-        "StoneFloor",
-        "Slate1",
-        "WoodFloor",
-        "RockyEarth",
-
-        "OrnateTiles1",
-        "OrnateTiles2",
-        "OrnateTiles3",
-        "OrnateTiles4",
-
-		"Cliff1",
-		"Cliff2",
-		"Cliff3",
-        "Cliff3_blue",
-		"Cliff4",
-		"Cliff5",
-        "Cliff5_blue",
-		"Cobbles1",
-		"Cobbles2",
-		"Cobbles3",
-		"Wood2",
-		"Wood5",
-      
-
-		];
+ 
 
 		let mut events_to_send=  Vec::new();
 
@@ -98,7 +88,7 @@ impl EditorWindow for MaterialsWindow {
         ScrollArea::vertical()
             .auto_shrink([false, false])
             .show(ui, |ui| {
-                if material_names.is_empty()  {
+                if material_names_array.is_empty()  {
                     ui.label(format!(" No material types found. "));
                     return;
                 };
@@ -106,7 +96,7 @@ impl EditorWindow for MaterialsWindow {
  
                 ui.separator();
  
-                for material_name in material_names.iter() {
+                for material_name in material_names_array.iter() {
   
 
                  let label_text = material_name.clone();

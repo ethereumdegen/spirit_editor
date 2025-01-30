@@ -1,0 +1,48 @@
+(
+    override_materials: [
+
+      "CaveGround",
+      "CaveWall",
+
+      "DwarvenRock",
+      "DwarvenStone",
+      "DwarvenTile",
+
+      "Wall1",
+      "Wall1Dark",
+      
+      "Wall2",
+      "Rocks1",
+      "Rocks2",
+
+      "ToonStone",
+      "StoneWall",
+      "StoneWall2",
+      "StoneWall3",
+
+      "StoneFloor",
+      "Slate1",
+      "WoodFloor",
+      "RockyEarth",
+
+      "OrnateTiles1",
+      "OrnateTiles2",
+      "OrnateTiles3",
+      "OrnateTiles4",
+
+      "Cliff1",
+      "Cliff2",
+      "Cliff3",
+      "Cliff3_blue",
+      "Cliff4",
+      "Cliff5",
+      "Cliff5_blue",
+      "Cobbles1",
+      "Cobbles2",
+      "Cobbles3",
+      "Wood2",
+      "Wood5",
+
+
+    ]
+  )

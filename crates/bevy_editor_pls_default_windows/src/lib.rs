@@ -3,7 +3,8 @@
 
 use bevy::prelude::*;
  
- use transform_gizmo_bevy::TransformGizmoPlugin;
+ use materials::MaterialNamesResource;
+use transform_gizmo_bevy::TransformGizmoPlugin;
 
 
 pub mod add;
@@ -30,7 +31,7 @@ impl Plugin for StandardWindowsPlugin {
     fn build(&self, app: &mut App) {
         
          app
-            
+             .init_resource::<MaterialNamesResource>()
  
              .add_plugins(TransformGizmoPlugin)
 
