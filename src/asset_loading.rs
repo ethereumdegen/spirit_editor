@@ -411,6 +411,17 @@ fn load_magic_fx(
 
 }
 
+
+
+
+
+const COPY_DIR_ARRAY: [ [&str; 2]  ; 1] =  [  [
+
+        "textures/material_overrides",  //relative to the external assets folder 
+        "textures/material_overrides",  //relative to local assets
+
+  ]];
+
 fn import_game_assets(
 
     editor_config_res: Res<EditorConfigAssets>,
@@ -421,7 +432,7 @@ fn import_game_assets(
   let editor_config_handle  = &editor_config_res.editor_config;
 
 
-
+  let local_assets_path = "./assets";
    let local_artifacts_path = "./artifacts/game_assets";
 
    info!("creating dir ");
@@ -433,17 +444,24 @@ fn import_game_assets(
 
     let default_external_assets_path = "./example_game_assets".to_string();
     let external_assets_folder = editor_config.get_external_game_assets_folder().unwrap_or(   &default_external_assets_path   );
+  
+
+        // copy all external assets into our artifacts folder 
+      let _copied = copy_dir_recursive( 
+         Path::new(&external_assets_folder),
+         Path::new(local_artifacts_path)
+        );
 
 
-     // if let Some(external_folder) = editor_config.get_external_game_assets_folder() {
+      // copy external assets into our assets folder 
+      for copy_dir_props in COPY_DIR_ARRAY {
+        let _ = copy_dir_recursive( 
+         &Path::new(&external_assets_folder).join(copy_dir_props[0]),
+         &Path::new(local_assets_path).join(copy_dir_props[1])
+        ) ;
+    }
 
-        let _copied = copy_dir_recursive( 
-             Path::new(&external_assets_folder),
-             Path::new(local_artifacts_path)
-            );
-
-
-     // }
+    
 
     }else {
         panic!("could not copy external game assets in to artifacts ");
