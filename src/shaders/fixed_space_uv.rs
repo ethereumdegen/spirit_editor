@@ -1,12 +1,14 @@
 
 
-use crate::shaders::fixed_space_uv_material::build_fixed_space_uv_material;
-use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
+use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
+  
 use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
 use bevy::prelude::*; 
-
+use std::marker::PhantomData;
 
 use bevy_material_wizard::material_overrides::MaterialOverrideCompleted;
+
+use bevy::pbr::{ExtendedMaterial,MaterialExtension}; 
 
 /*
 
@@ -59,7 +61,7 @@ fn handle_material_override_performed (
 
 		 if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
 
-	    	cmd.queue( UpgradeToMagicRockExtensionMaterial );
+	    	cmd.queue( UpgradeToExtensionMaterial::< FixedSpaceUvMaterialBase > ::default() );
 	    }
 
 
@@ -69,7 +71,7 @@ fn handle_material_override_performed (
 
 		 if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
 
-	    	cmd.queue( DowngradeToStandardMaterial );
+	    	cmd.queue( DowngradeToStandardMaterial::< FixedSpaceUvMaterialBase > ::default() );
 	    }
 
 	}
@@ -79,24 +81,26 @@ fn handle_material_override_performed (
 }
 
 
-pub struct DowngradeToStandardMaterial ;
+#[derive(Default)]
+pub struct DowngradeToStandardMaterial<T : MaterialExtension>{
+    _marker: PhantomData<T>, // Helps the compiler know T is used
+ 
+}
 
-
-impl EntityCommand for DowngradeToStandardMaterial {
+impl<T:  MaterialExtension> EntityCommand for DowngradeToStandardMaterial<T> {
 
   		fn apply(self, mat_entity: Entity, world: &mut World) { 
-				if let Some(extension_mat_handle) = world.get::< MeshMaterial3d<FixedSpaceUvMaterial> >(mat_entity){
+				if let Some(extension_mat_handle) = world.get::< MeshMaterial3d< ExtendedMaterial<StandardMaterial, T > > >(mat_entity){
   
-						  			let   ext_material_assets = world.resource ::< Assets<FixedSpaceUvMaterial> >();
+						  			let ext_material_assets = world.resource ::< Assets< ExtendedMaterial<StandardMaterial, T > > >();
 
 						  				if	let Some(_ext_mat) = ext_material_assets.get( extension_mat_handle ){
-
-						  			 
+ 
 
 								  			 if let Some(mut cmd) = world.commands().get_entity(mat_entity) { 
 
 									  			 	 cmd 
-									  			 	 .remove::<MeshMaterial3d<FixedSpaceUvMaterial>>()   ;  
+									  			 	 .remove::<MeshMaterial3d< ExtendedMaterial<StandardMaterial, T > >>()   ;  
 									  		 } 
 
 							  		}
@@ -105,10 +109,13 @@ impl EntityCommand for DowngradeToStandardMaterial {
 
 }
 
+#[derive(Default)]
+pub struct UpgradeToExtensionMaterial <T : MaterialExtension + Default >{
+    _marker: PhantomData<T>, // Helps the compiler know T is used
+ 
+}
 
-pub struct UpgradeToMagicRockExtensionMaterial ;
-
-impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
+impl<T:  MaterialExtension + Default >  EntityCommand for UpgradeToExtensionMaterial<T> {
 
 
 
@@ -130,15 +137,16 @@ impl EntityCommand for UpgradeToMagicRockExtensionMaterial {
  
 			let standard_material_assets = world.resource::< Assets<StandardMaterial> > ();
 
-
-			
-				//how can i make this generic like with  ::T ?
+ 
 			let Some(original_material) = standard_material_assets.get( &original_mesh_material_handle  ) else {return};
-			let ext_mat = build_fixed_space_uv_material(original_material.clone());
+		
+	 
+		 let ext_mat =  ExtendedMaterial {
+	        base: original_material.clone(),  
+	        extension: T::default(),
+	    };
 
-
-
-			let mut ext_material_assets = world.resource_mut::< Assets<FixedSpaceUvMaterial> >();
+			let mut ext_material_assets = world.resource_mut::< Assets< ExtendedMaterial<StandardMaterial, T >  > >();
             let ext_mat_handle = ext_material_assets.add(ext_mat.clone());
 
 

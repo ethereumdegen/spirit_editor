@@ -28,12 +28,13 @@ pub fn fixed_space_uv_material_plugin(app: &mut App) {
 
 pub type FixedSpaceUvMaterial = ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialBase>;
 
+/*
 pub fn build_fixed_space_uv_material(original_material: StandardMaterial) -> FixedSpaceUvMaterial {
     ExtendedMaterial {
         base: original_material, //from blender
         extension: FixedSpaceUvMaterialBase::default(),
     }
-}
+}*/
 
 //pub type AnimatedMaterialExtension = ExtendedMaterial<StandardMaterial, AnimatedMaterial>;
 //pub type CharacterMaterialBundle = MaterialMeshBundle<CharacterMaterial >;
