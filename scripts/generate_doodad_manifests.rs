@@ -9,8 +9,8 @@ cargo run --bin generate_doodad_manifests
 
 
 
-const SUB_FOLDER :&str = "nature";
-const TAGS :&str = " [\"nature\"   ] ";
+const SUB_FOLDER :&str = "caves";
+const TAGS :&str = " [\"caves\"   ] ";
 
 fn generate_model_definitions(file_names: Vec<String>) -> Vec<String> {
     file_names.iter().map(|file_name| {

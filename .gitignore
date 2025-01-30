@@ -5,4 +5,5 @@ assets/models/doodads_broken/**
 assets/models/doodads/**
 assets/models/units/**
 assets/textures/vfx_textures/**
+assets/textures/material_overrides/**
 # assets/**/manifest.ron
