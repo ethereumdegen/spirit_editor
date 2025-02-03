@@ -10,10 +10,15 @@
 
       "Wall1",
       "Wall1Dark",
-      
       "Wall2",
-      "Rocks1",
-      "Rocks2",
+
+      "RocksFixedWhite",
+      "RocksFixedDark",
+
+      "RocksAdamantite",
+      
+      
+
 
       "ToonStone",
       "StoneWall",
@@ -23,7 +28,7 @@
       "StoneFloor",
       "Slate1",
       "WoodFloor",
-      "RockyEarth",
+      "RockyEarthFixed",
 
       "OrnateTiles1",
       "OrnateTiles2",

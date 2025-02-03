@@ -1,8 +1,8 @@
 (
 	
-	 material_name:  "Rocks1",   
+	 material_name:  "RocksFixedWhite",   
 
-	diffuse_texture: Some("textures/material_overrides/rock_magic_1.png"),
+	diffuse_texture: Some("textures/material_overrides/rock_magic_white.png"),
 	normal_texture: Some("textures/material_overrides/rocks1_normal.png"),
 
 	roughness: 0.8,

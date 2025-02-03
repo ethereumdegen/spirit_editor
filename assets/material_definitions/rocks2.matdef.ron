@@ -1,6 +1,6 @@
 (
   
-   material_name:  "Rocks2",   
+   material_name:  "RocksAdamantite",   
 
   diffuse_texture: Some("textures/material_overrides/rocks2_diffuse.png"),
   normal_texture: Some("textures/material_overrides/rocks2_normal.png"),
