@@ -1,12 +1,12 @@
 // terrain_config.ron
 TerrainConfig(
     terrain_dimensions: (1024.0, 1024.0), // Vec2(x, y)
-    chunk_rows: 4,
+    chunk_rows: 8,
     render_distance: 2000.0,
-    lod_distance: 1000.0,
+    lod_distance: 200.0,
     lod_level_offset: 0,
     height_scale: 0.001,
-    
+    collider_lod_level: 0,
     use_greedy_mesh: false,   
     texture_uv_expansion_factor: 16, 
     
@@ -17,8 +17,15 @@ TerrainConfig(
     
      height_folder_path: "terrain/fae_terrain/height", 
      splat_folder_path: "terrain/fae_terrain/splat", 
-     diffuse_folder_path: "terrain/fae_terrain/diffuse/array_texture_lg.tga", 
-     normal_folder_path: "terrain/fae_terrain/diffuse/normal_texture_lg.tga", 
+     diffuse_texture_path: "terrain/fae_terrain/diffuse/array_texture_lg.tga", 
+     normal_texture_path: "terrain/fae_terrain/diffuse/normal_texture_lg.tga", 
      collider_data_folder_path: "terrain/fae_terrain/collision",  
+      
+     secondary_diffuse_texture_path: "terrain/fae_terrain/diffuse/diffuse_secondary_array_texture_lg.tga", 
+ 
+     blend_height_texture_path: "terrain/fae_terrain/diffuse/blend_height_lg.tga", 
+
      
+
+
 )
