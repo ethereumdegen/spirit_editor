@@ -10,14 +10,14 @@ cargo run --bin generate_doodad_manifests
 
 
 
-const SUB_FOLDER :&str = "polystyle_castle";
-const TAGS :&str = " [\"polystyle_castle\"   ] ";
+const SUB_FOLDER :&str = "dark_elven";
+const TAGS :&str = " [\"dark_elven\"   ] ";
 
 
 
 // This function now takes full paths and the base folder to handle paths correctly.
 fn generate_model_definitions(base_folder: &str, file_paths: Vec<PathBuf>) -> Vec<String> {
-    file_paths.iter().map(|file_path| {
+    /*file_paths.iter().map(|file_path| {
         let name = file_path.file_stem().unwrap().to_str().unwrap();
         let relative_path = file_path.strip_prefix(base_folder).unwrap().to_str().unwrap();
         let full_path = format!("models/doodads/{}", relative_path);
@@ -25,13 +25,51 @@ fn generate_model_definitions(base_folder: &str, file_paths: Vec<PathBuf>) -> Ve
             "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    tags: Some({}),\n),\n",
             name, name, full_path, TAGS
         )
-    }).collect()
+    }).collect()*/
+
+
+    let mut definitions: Vec<String> = file_paths.iter().map(|file_path| {
+        let name = file_path.file_stem().unwrap().to_str().unwrap();
+        let relative_path = file_path.strip_prefix(base_folder).unwrap().to_str().unwrap();
+        let full_path = format!("models/doodads/{}", relative_path);
+        format!(
+            "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    tags: Some({}),\n),\n",
+            name, name, full_path, TAGS
+        )
+    }).collect();
+
+    // Sort the definitions alphabetically
+    definitions.sort();
+
+    definitions
 }
 
 fn main() {
     let base_folder = "artifacts/game_assets/models/doodads";
     let folder_path = format!("{}/{}", base_folder, SUB_FOLDER);
     let mut file_paths_in_folder = Vec::new();
+
+
+
+    walk_dir(Path::new(&folder_path), "glb", &mut file_paths_in_folder);
+
+    // Sort file paths alphabetically before generating model definitions
+    file_paths_in_folder.sort_by(|a, b| {
+        a.file_stem()
+            .unwrap()
+            .to_str()
+            .unwrap()
+            .cmp(b.file_stem().unwrap().to_str().unwrap())
+    });
+
+    let model_definitions = generate_model_definitions(base_folder, file_paths_in_folder);
+
+    for definition in model_definitions {
+        println!("{}", definition);
+    }
+
+
+    /*
 
     walk_dir(Path::new(&folder_path), "glb", &mut file_paths_in_folder);
 
@@ -40,7 +78,7 @@ fn main() {
 
     for definition in model_definitions {
         println!("{}", definition);
-    }
+    }*/
 }
 
 pub fn walk_dir(folder_path: &Path, ext: &str, file_paths_array: &mut Vec<PathBuf>) {
