@@ -10,8 +10,8 @@ cargo run --bin generate_doodad_manifests
 
 
 
-const SUB_FOLDER :&str = "dark_elven";
-const TAGS :&str = " [\"dark_elven\"   ] ";
+const SUB_FOLDER :&str = "stylized_cave";
+const TAGS :&str = " [\"stylized_cave\"   ] ";
 
 
 
