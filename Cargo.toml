@@ -152,3 +152,7 @@ path = "scripts/generate_doodad_manifests.rs"
 [[bin]]
 name = "upgrade_zone_files"
 path = "scripts/upgrade_zone_files.rs"
+
+[[bin]]
+name = "translate_zone_entities"
+path = "scripts/translate_zone_entities.rs"
