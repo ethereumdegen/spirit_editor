@@ -2,10 +2,13 @@
 
 ## Spirit Editor
 
+
+- fix  terrain w height 0  still showing 
+
 // MODEL ISSUES 
 
 
-- material override is kind of like.. busted now ? 
+- fix removing material override   ? 
 - build city vessara 
 - build the orcish horde cities / encampments  (need tents, palisade walls , etc ) 
 
