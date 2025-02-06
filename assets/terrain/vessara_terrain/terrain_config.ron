@@ -17,7 +17,7 @@ TerrainConfig(
     
      height_folder_path: "terrain/vessara_terrain/height", 
      splat_folder_path: "terrain/vessara_terrain/splat", 
-     diffuse_texture_path: "terrain/vessara_terrain/diffuse/array_texture_lg.tga", 
+     diffuse_texture_path: "terrain/vessara_terrain/diffuse/diffuse_array_texture_lg.tga", 
      normal_texture_path: "terrain/vessara_terrain/diffuse/normal_texture_lg.tga", 
      collider_data_folder_path: "terrain/vessara_terrain/collision",  
       

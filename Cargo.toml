@@ -21,10 +21,10 @@ image = { version = "0.25.1", default-features = false }
 
  
 
- # degen_toon_terrain = {version = "0.15.11", features=["physics"]  }
+  degen_toon_terrain = {version = "0.15.13", features=["physics"]  }
 
 
-  degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
+  # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
  
