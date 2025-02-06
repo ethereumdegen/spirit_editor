@@ -473,22 +473,45 @@ fn editor_tools_ui(
 
                                 BrushType::EyeDropper => {
 
+ 
 
-                                    for idx in 0..4 {
 
-                                         ui.add(
 
-                                                egui::Slider::new(&mut tools_state.layered_splatmap_data.texture_indices[idx], 0..=255)
-                                                    .text(format!("Texture Index {}", idx) )
-                                                    .step_by(1.0)
-                                                    .drag_value_speed(0.1)
+                                    ui.add(
 
-                                                     
-                                            ); 
+                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                            .text("Texture Index A (R_Channel")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
 
-                                    }
+                                            ,
+                                    );
 
-                                     for idx in 0..4 {
+
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                            .text("Texture Index B (G_Channel")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+
+
+                                    ui.add(
+
+                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                            .text("Texture B Strength (B_Channel")
+                                            .step_by(1.0)
+                                            .drag_value_speed(0.1)
+
+                                            ,
+                                    );
+
+
+                                   /*  for idx in 0..4 {
 
                                          ui.add(
 
@@ -500,7 +523,7 @@ fn editor_tools_ui(
                                                      
                                             ); 
 
-                                    } 
+                                    } */
 
 
 

@@ -3,7 +3,7 @@
 ## Spirit Editor
 
 
-- fix  terrain w height 0  still showing 
+- fix  splat eyedropper.. ? 
 
 // MODEL ISSUES 
 
