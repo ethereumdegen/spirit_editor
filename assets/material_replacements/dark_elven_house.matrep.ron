@@ -1,0 +1,28 @@
+(
+
+
+     replacement_set_name: "dark_elven_house",
+
+	 material_replacements : {
+ 
+        "stone_brick" : "DarkElfStoneBrick",
+        "stone_dark" : "DarkElfStoneDark",
+         
+        "roof" : "DarkElfRoof",
+        "dark_wood_trim" : "DarkElfWoodTrim",
+        "wood_trim" : "DarkElfWoodTrim",
+       
+        "glass" : "WindowGlassLight",
+
+        "plaster": "DarkElfPlasterWalls",
+
+        "roof_pieces": "DarkElfRoofPieces",
+
+        "walls_wood": "DarkElfWoodWalls", 
+        "walls_beams": "DarkElfWallsBeams" ,
+
+
+    },
+
+)
+    

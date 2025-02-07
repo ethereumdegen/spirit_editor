@@ -1,0 +1,28 @@
+
+
+
+(
+	
+	 material_name:  "DarkElfRoof",   
+
+	 diffuse_texture: Some("textures/material_overrides/dark_elven/Plane_Maker_Dark_Elven_Roof_A_AlbedoTransparency_sRGB.png"),
+	  normal_texture: Some("textures/material_overrides/dark_elven/Plane_Maker_Dark_Elven_Roof_A_Normal_Raw.png"),
+
+	 roughness: 0.8,
+ 	metallic: Some(0.5),
+     
+
+
+
+
+     diffuse_color_tint: Some( LinearRgba(
+                          red: 0.22,
+                          green: 0.22,
+                          blue:  0.22,
+                          alpha:  1.0,
+                      )  ), 
+
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)

@@ -1,0 +1,16 @@
+(
+	
+	 material_name:  "DarkElfWoodTrim",   
+
+	 diffuse_texture: Some("textures/material_overrides/dark_elven/Wood_Trim_A2.png"),
+	  normal_texture: Some("textures/material_overrides/dark_elven/Wood_Trim_A_Wood_Trim_A_Normal_Raw.png"),
+
+	 roughness: 0.8,
+ 
+    
+
+    
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)

@@ -2311,7 +2311,9 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_terrain"
-version = "0.15.13"
+version = "0.15.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed4a42cc855d4fecf58fdd202d8d7c804f679c3bbac505ce7eb9a7b6f8d46188"
 dependencies = [
  "anyhow",
  "avian3d",

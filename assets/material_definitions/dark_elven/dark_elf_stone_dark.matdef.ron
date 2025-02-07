@@ -1,0 +1,23 @@
+(
+	
+	 material_name:  "DarkElfStoneDark",   
+
+	 diffuse_texture: Some("textures/material_overrides/dark_elven/Plane_Maker_Stone_Dark_A_AlbedoTransparency_sRGB.png"),
+	  normal_texture: Some("textures/material_overrides/dark_elven/Plane_Maker_Stone_Dark_A_Normal_Raw.png"),
+
+	 roughness: 0.8,
+ 
+    
+
+     diffuse_color_tint: Some( LinearRgba(
+                          red: 0.6,
+                          green: 0.6,
+                          blue:  0.6,
+                          alpha:  1.0,
+                      )  ), 
+    
+    
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)

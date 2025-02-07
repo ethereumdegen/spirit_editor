@@ -1,0 +1,26 @@
+
+
+
+(
+	
+	 material_name:  "DarkElfWoodWalls",   
+
+	 diffuse_texture: Some("textures/material_overrides/dark_elven/House Walls A_House_Walls_Wood_Dark_A_AlbedoTransparency.png"),
+	  normal_texture: Some("textures/material_overrides/dark_elven/House Walls A_House_Walls_Wood_Dark_A_Normal.png"),
+
+	 roughness: 0.8,
+ 	 
+
+
+
+     diffuse_color_tint: Some( LinearRgba(
+                          red: 0.42,
+                          green: 0.42,
+                          blue:  0.42,
+                          alpha:  1.0,
+                      )  ), 
+
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)
