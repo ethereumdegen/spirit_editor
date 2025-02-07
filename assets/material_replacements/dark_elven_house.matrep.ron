@@ -5,7 +5,7 @@
 
 	 material_replacements : {
  
-        "stone_brick" : "DarkElfStoneBrick",
+        "stone_bricks" : "DarkElfStoneBrick",
         "stone_dark" : "DarkElfStoneDark",
          
         "roof" : "DarkElfRoof",
@@ -19,7 +19,10 @@
         "roof_pieces": "DarkElfRoofPieces",
 
         "walls_wood": "DarkElfWoodWalls", 
-        "walls_beams": "DarkElfWallsBeams" ,
+        "walls_beams": "DarkElfWallsBeams"  ,
+
+         "window_frame": "DarkElfWallsBeams"  
+
 
 
     },
