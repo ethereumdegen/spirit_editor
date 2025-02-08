@@ -505,10 +505,12 @@ fn handle_brush_events_from_terrain(
             },
             TerrainBrushEvent::EyeDropSplatMap { texture_indices } => {
 
-                editor_tools_state.layered_splatmap_data.texture_indices = texture_indices.clone();
-             //   editor_tools_state.layered_splatmap_data.texture_strengths = texture_strengths.clone(); 
-              
+                editor_tools_state.color.r = texture_indices[0] as u16;
+                 editor_tools_state.color.g = texture_indices[1] as u16;
+                  editor_tools_state.color.b = texture_indices[2] as u16;
 
+             
+                  info!("editor_tools_state {:?}", editor_tools_state.color );
             }
         }
 

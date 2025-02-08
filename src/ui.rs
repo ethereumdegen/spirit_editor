@@ -28,7 +28,7 @@ pub fn editor_ui_plugin(app: &mut App) {
          ;
 }
 
-#[derive(Default, Resource, Clone)]
+#[derive(Default, Resource, Clone, Debug )]
 pub struct LinearPixelColor {
     pub r: u16,
     pub g: u16,
@@ -48,7 +48,7 @@ pub struct EditorToolsState {
 
  
 
-    pub layered_splatmap_data: LayeredSplatMapData   //for splat map ultra 
+ //   pub layered_splatmap_data: LayeredSplatMapData   //for splat map ultra 
 }
 
 
@@ -490,7 +490,7 @@ fn editor_tools_ui(
 
                                     ui.add(
 
-                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                        egui::Slider::new(&mut tools_state.color.g, 0..=255)
                                             .text("Texture Index B (G_Channel")
                                             .step_by(1.0)
                                             .drag_value_speed(0.1)
@@ -502,7 +502,7 @@ fn editor_tools_ui(
 
                                     ui.add(
 
-                                        egui::Slider::new(&mut tools_state.color.r, 0..=255)
+                                        egui::Slider::new(&mut tools_state.color.b, 0..=255)
                                             .text("Texture B Strength (B_Channel")
                                             .step_by(1.0)
                                             .drag_value_speed(0.1)
