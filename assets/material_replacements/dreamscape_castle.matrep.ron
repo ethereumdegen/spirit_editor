@@ -1,0 +1,44 @@
+(
+
+
+     replacement_set_name: "dreamscape_castle",
+
+	 material_replacements : {
+ 
+        "MI_CastleWall_01" : "CastleWall",
+        "MI_CastleTrim_01" : "CastleTrim",
+        "MI_CastleTrim_02" : "CastleTrim",
+
+         "MI_Trim1" : "CastleTrim",
+          "MI_Trim2" : "CastleTrim",
+
+
+ 
+
+           "Ml_FW_Trim_01" : "CastleTrim",
+          "Ml_FW_Trim_02" : "CastleTrim",
+
+          "MI_CastleRoof" : "CastleRoof",
+         "MI_CastleRoof_01" : "CastleRoof",
+
+         "MI_CastleSlabs_01" : "CastleSlabs",
+        
+         "MI_CastleTrim_02" : "CastleTrim",
+
+          "MI_Window_A" : "CastleWindow",
+
+         "MI_CastlePavement_02" : "CastlePavement",
+
+         "MI_Rubble" : "CastleRubble",
+         "MI_Ballista" : "CastleBallista",
+
+         "Tiles" : "CastleTiles",
+
+       "MI_WoodTrim" : "CastleWoodTrim",
+       	"MI_WoodTrim_01" : "CastleWoodTrim",
+        "MI_WoodFloor_01" : "CastleWoodFloor",
+
+    },
+
+)
+    

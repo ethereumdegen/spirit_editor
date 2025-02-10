@@ -87,6 +87,7 @@ bevy_asset_loader = "0.22.0"
  
  
 bevy_contact_projective_decals = {git= " https://github.com/ethereumdegen/bevy_contact_projective_decals "}
+serde_json = "1.0.138"
  
  
 
@@ -143,6 +144,11 @@ path = "src/main.rs"
 [[bin]]
 name = "generate_doodad_manifests"
 path = "scripts/generate_doodad_manifests.rs"
+
+[[bin]]
+name = "modify_doodad_manifest"
+path = "scripts/modify_doodad_manifest.rs"
+
 
 [[bin]]
 name = "upgrade_zone_files"

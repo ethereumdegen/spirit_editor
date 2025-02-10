@@ -1,0 +1,17 @@
+(
+  
+   material_name:  "CastleWoodFloor",   
+
+   diffuse_texture: Some("textures/material_overrides/dreamscape_castle/building/T_TrimFineWood_02_C.png"),
+    normal_texture: Some("textures/material_overrides/dreamscape_castle/building/T_TrimFineWood_02_N.png"),
+
+   roughness: 0.8,
+ 
+    
+ 
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+  
+
+ 
+          
+)
