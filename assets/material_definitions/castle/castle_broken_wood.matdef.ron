@@ -1,0 +1,16 @@
+(
+	
+	 material_name:  "CastleBrokenWood",   
+
+	  diffuse_texture: Some("textures/material_overrides/dreamscape_castle/building/T_BrokenWood_C.png"),
+	  normal_texture: Some("textures/material_overrides/dreamscape_castle/building/T_BrokenWood_N.png"),
+
+	 roughness: 0.8,
+ 
+    
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+  
+
+ 
+          
+)

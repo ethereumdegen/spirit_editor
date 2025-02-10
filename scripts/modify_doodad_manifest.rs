@@ -59,9 +59,10 @@ fn read_ron_file(file_path: &str) -> Result<Value, ron::Error> {
 
 fn write_ron_file(manifest: &DoodadManifest, file_path: &str) -> Result<(), std::io::Error> {
     let pretty = PrettyConfig::new()
-        .depth_limit(2)
-        .separate_tuple_members(true) 
-        .enumerate_arrays(true);
+       // .depth_limit(2)
+       // .separate_tuple_members(true) 
+       // .enumerate_arrays(true)
+       ;
     let serialized = to_string_pretty(manifest, pretty).unwrap();
     fs::write(file_path, serialized)
 }
@@ -75,7 +76,7 @@ fn main() {
       // Iterate over the spawnables and modify each one
     for (_key, spawnable) in manifest.spawnables.iter_mut() {
         // Check if the spawnable is an object and insert a new field
-       spawnable.material_replacement_set = Some( "dreamscape_castle".to_string() );
+        spawnable.material_replacement_set = Some( "dreamscape_castle".to_string() );
 
          
     } 
