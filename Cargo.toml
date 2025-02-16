@@ -23,9 +23,9 @@ image = { version = "0.25.1", default-features = false }
 #  degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
-   #bevy_material_wizard = "0.15.5"
+  bevy_material_wizard = "0.15.8"
 
-  bevy_material_wizard = {path="../bevy_material_wizard"}
+ # bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
  degen_toon_water = "0.15.2" 
@@ -42,7 +42,7 @@ image = { version = "0.25.1", default-features = false }
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
-bevy_magic_fx = "0.15.3"
+bevy_magic_fx = "0.15.5"
 
 
 noise = "0.9"

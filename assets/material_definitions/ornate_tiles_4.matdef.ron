@@ -11,14 +11,14 @@
       emissive_texture: Some("textures/material_overrides/ornate_tiles_4_emissive.png") ,
 
 
-       emissive_color_tint: Some( LinearRgba(
+       emissive_color_tint: Some( LinearRgba((
 
 
       				 red: 1.0,
                     green: 1.0,
                     blue:  1.0,
                     alpha:  1.0,
-     ) ) ,
+     )) ) ,
 
 
 

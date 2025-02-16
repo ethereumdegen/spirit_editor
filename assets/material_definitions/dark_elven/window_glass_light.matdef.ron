@@ -7,12 +7,12 @@
 	 roughness: 0.4,
 	 metallic: Some(1.0), //ok ?
  
-       diffuse_color_tint: Some( LinearRgba(
+       diffuse_color_tint: Some( LinearRgba((
                           red: 1.0,
                           green: 1.0,
                           blue:  1.0,
                           alpha:  1.0,
-                      )  ), 
+                      ))  ), 
 
     
 

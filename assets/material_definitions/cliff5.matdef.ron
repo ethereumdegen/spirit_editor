@@ -16,12 +16,12 @@
          
 
 
-       diffuse_color_tint: Some( LinearRgba(
+       diffuse_color_tint: Some( LinearRgba((
                     red: 0.34,
                     green: 0.62,
                     blue:  0.75,
                     alpha:  1.0,
-                )  ),
+              )  )  ),
 
 
 )
