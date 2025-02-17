@@ -12,7 +12,13 @@ pub fn fixed_space_uv_material_plugin(app: &mut App) {
         .add_plugins(MaterialPlugin::<
             //NEED THIS
             FixedSpaceUvMaterial,
-        >::default());
+        >::default())
+
+           .add_plugins(MaterialPlugin::<
+            //NEED THIS
+         ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialSidesOnly>    ,
+        >::default())
+           ;
 
    
 }

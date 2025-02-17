@@ -13,6 +13,8 @@
         "trim" : "AcademyTrim",
         "exterior" : "AcademyExterior",
 
+         "stone" : "AcademyStone",
+          "wood" : "AcademyWood",
     },
 
 )
