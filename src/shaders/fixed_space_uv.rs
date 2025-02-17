@@ -81,8 +81,9 @@ fn handle_material_override_performed (
 
 
 		 if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
-
+		 		//this is janky but it works ...! 
 	    	cmd.queue( DowngradeToStandardMaterial::< FixedSpaceUvMaterialBase > ::default() );
+	    	cmd.queue( DowngradeToStandardMaterial::< FixedSpaceUvMaterialSidesOnly > ::default() );
 	    }
 
 	}
