@@ -20,6 +20,9 @@
 
 struct RockMagicMaterialUniforms {
    tint_color: vec4<f32>,
+
+   fixed_uv_config_bits: u32, 
+    
 };
 
 @group(2) @binding(20)
@@ -48,6 +51,12 @@ fn fragment(
         } else {
             out.color *= custom_uniforms.tint_color;
         }*/
+        
+
+        let blank_top_bottom = (custom_uniforms.fixed_uv_config_bits & 0x1) != 0;
+ 
+
+
 
         let triplanar_weights = triplanar_mapping_lerp_output ( in.world_normal );
 
@@ -57,7 +66,13 @@ fn fragment(
 
          var uv_A = in.world_position.xy * 0.125;
          var uv_B = in.world_position.zy * 0.125;
+
+         var uv_C = in.world_position.xz * 0.125; 
          var uv_flat = vec2<f32>(0.0,0.0);
+
+         if blank_top_bottom == true {
+            uv_C = uv_flat; 
+         }
 
          let color_A = textureSample(
                 pbr_bindings::base_color_texture,
@@ -70,16 +85,16 @@ fn fragment(
                 uv_B, 
             );
 
-         let flat_color = textureSample(
+         let color_C = textureSample(
                 pbr_bindings::base_color_texture,
                 pbr_bindings::base_color_sampler,
-                uv_flat, 
+                uv_C, 
             );
 
           
           let triplanar_color  =  triplanar_weights.x * color_B
 
-         + triplanar_weights.y * flat_color //this is for the top and bottom ...w
+         + triplanar_weights.y * color_C //this is for the top and bottom ... 
 
          + triplanar_weights.z *  color_A
            ;

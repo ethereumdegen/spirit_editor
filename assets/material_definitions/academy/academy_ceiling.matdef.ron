@@ -1,9 +1,9 @@
 (
 	
-	 material_name:  "AcademyFloor",   
+	 material_name:  "AcademyCeiling",   
 
-	diffuse_texture: Some("textures/material_overrides/stone_2_diffuse.png"),
-	normal_texture: Some("textures/material_overrides/slate_1_normal.png"),
+	diffuse_texture: Some("textures/material_overrides/ornate_tiles_1_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/ornate_tiles_1_normal.png"),
 
 	roughness: 0.9,
    metallic: Some(0.4),

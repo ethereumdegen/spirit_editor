@@ -1,5 +1,6 @@
 
 
+use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialSidesOnly;
 use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
   
 use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
@@ -64,6 +65,16 @@ fn handle_material_override_performed (
 	    	cmd.queue( UpgradeToExtensionMaterial::< FixedSpaceUvMaterialBase > ::default() );
 	    }
 
+
+
+	 }else if material_def.custom_props.contains( "FixedSpaceUvSideShader" ) {  
+
+
+
+	  	if let Some(mut cmd) = commands.get_entity( material_override_entity ) {
+
+	    	cmd.queue( UpgradeToExtensionMaterial::< FixedSpaceUvMaterialSidesOnly > ::default() );
+	    }
 
 
 	}else {

@@ -8,6 +8,7 @@
          			//there are all fixed ?  
          			// use ancienty tex?
         "floor" : "AcademyFloor",
+         "ceiling" : "AcademyCeiling",
         "wall" : "AcademyWall",
         "trim" : "AcademyTrim",
         "exterior" : "AcademyExterior",

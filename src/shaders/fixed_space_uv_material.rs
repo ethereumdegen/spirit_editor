@@ -4,10 +4,7 @@ use bevy::render::render_resource::*;
 
 use bevy::pbr::{ExtendedMaterial, MaterialExtension};
 
-/*  pub(crate) const CHARACTER_MATERIAL_SHADER_HANDLE: Handle<Shader> =
-    Handle::weak_from_u128(7_529_326_912_151_597_124);
-
-*/
+ 
 
 pub fn fixed_space_uv_material_plugin(app: &mut App) {
     app
@@ -17,40 +14,35 @@ pub fn fixed_space_uv_material_plugin(app: &mut App) {
             FixedSpaceUvMaterial,
         >::default());
 
-    /* load_internal_asset!(
-        app,
-        CHARACTER_MATERIAL_SHADER_HANDLE,
-        "shaders/character.wgsl",
-        Shader::from_wgsl
-    );
-    */
+   
 }
 
 pub type FixedSpaceUvMaterial = ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialBase>;
-
-/*
-pub fn build_fixed_space_uv_material(original_material: StandardMaterial) -> FixedSpaceUvMaterial {
-    ExtendedMaterial {
-        base: original_material, //from blender
-        extension: FixedSpaceUvMaterialBase::default(),
-    }
-}*/
-
-//pub type AnimatedMaterialExtension = ExtendedMaterial<StandardMaterial, AnimatedMaterial>;
-//pub type CharacterMaterialBundle = MaterialMeshBundle<CharacterMaterial >;
-
+ 
 #[derive(Clone, ShaderType, Debug)]
 pub struct FixedSpaceUvMaterialUniforms {
     pub tint_color: LinearRgba,
+    pub config_flag_bits: u32, 
 
    
 }
 impl Default for FixedSpaceUvMaterialUniforms {
     fn default() -> Self {
 
+
+         let flags = [
+                (FixedSpaceConfigBits::BlankTopBottom, false),
+              
+            ];
+
+
+          let config_flag_bits = build_config_bits(&flags);
+
+
         
         Self {
             tint_color: Color::WHITE.into(),
+            config_flag_bits, 
              
         }
     }
@@ -67,6 +59,7 @@ pub struct FixedSpaceUvMaterialBase {
 
 }
 
+/*
 impl FixedSpaceUvMaterialBase {
     pub fn set_tint_alpha(&mut self, alpha: f32) {
         self.custom_uniforms.tint_color.alpha = alpha;
@@ -77,35 +70,98 @@ impl FixedSpaceUvMaterialBase {
         self.custom_uniforms.tint_color.green = rgb.green;
         self.custom_uniforms.tint_color.blue = rgb.blue;  
     }
-}
+}*/
 
 impl MaterialExtension for FixedSpaceUvMaterialBase {
     fn fragment_shader() -> ShaderRef {
         // CHARACTER_MATERIAL_SHADER_HANDLE.into()
         "shaders/fixed_space_uv.wgsl".into()
     }
+ 
 
-  /*   fn prepass_fragment_shader() -> ShaderRef {
+
+
+}
+
+// ---- 
+
+
+
+
+#[derive(Asset, AsBindGroup, TypePath, Debug, Clone )]
+pub struct FixedSpaceUvMaterialSidesOnly {
+    // We need to ensure that the bindings of the base material and the extension do not conflict,
+    // so we start from binding slot 100, leaving slots 0-99 for the base material.
+    #[uniform(20)]
+    pub custom_uniforms: FixedSpaceUvMaterialUniforms,
+ 
+}
+
+impl Default for FixedSpaceUvMaterialSidesOnly {
+
+
+
+        fn default() -> Self { 
+
+
+            let flags = [
+                (FixedSpaceConfigBits::BlankTopBottom, true),
+              
+            ];
+
+
+            let config_flag_bits = build_config_bits(&flags);
+
+
+
+
+
+            Self {
+
+                custom_uniforms: FixedSpaceUvMaterialUniforms {
+
+                    config_flag_bits ,
+                    ..default() 
+                }
+            }
+
+         }
+}
+
+
+
+impl MaterialExtension for FixedSpaceUvMaterialSidesOnly {
+    fn fragment_shader() -> ShaderRef {
         // CHARACTER_MATERIAL_SHADER_HANDLE.into()
-        "shaders/character.wgsl".into()
-    }*/
-
-   /* fn deferred_fragment_shader() -> ShaderRef {
-        //  CHARACTER_MATERIAL_SHADER_HANDLE.into()
-        "shaders/character.wgsl".into()
-    }*/
+        "shaders/fixed_space_uv.wgsl".into()
+    }
+}
 
 
-/* fn vertex_shader() -> ShaderRef {
-        // CHARACTER_MATERIAL_SHADER_HANDLE.into()
-        "shaders/character_2.wgsl".into()
+
+
+
+// ----- 
+
+
+// Define an enum for the bit positions
+#[repr(u32)]
+#[derive(Clone,Copy)]
+enum FixedSpaceConfigBits {
+    BlankTopBottom = 0,       // Bit 0
+    //AnimateMaskingTexture = 1,   // Bit 1
+    // Add more bits as needed
+}
+
+// A helper function to construct the bitfield
+fn build_config_bits(flags: &[(FixedSpaceConfigBits, bool)]) -> u32 {
+    let mut config_bits = 0;
+
+    for (bit, enabled) in flags {
+        if *enabled {
+            config_bits |= 1 << *bit as u32;
+        }
     }
 
-    fn prepass_vertex_shader() -> ShaderRef {
-        // CHARACTER_MATERIAL_SHADER_HANDLE.into()
-        "shaders/character_2.wgsl".into()
-    }*/
-
-
-
+    config_bits
 }

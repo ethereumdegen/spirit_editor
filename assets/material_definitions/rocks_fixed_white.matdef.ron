@@ -11,7 +11,7 @@
    emissive_texture: None ,
 
 
-   custom_props:  [ "FixedSpaceUvShader" ],
+   custom_props:  [ "FixedSpaceUvSideShader" ],
 
 
 
