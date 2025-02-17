@@ -5,7 +5,7 @@
   external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
 
    
-    initial_level_to_load: Some( "dungeon_banesera_aruun.level" ),
+  //  initial_level_to_load: Some( "dungeon_banesera_aruun.level" ),
 
   // initial_level_to_load: Some( "fae_world.level" ),
 
@@ -22,7 +22,7 @@
  // initial_level_to_load: Some( "city_vessara.level" ),
 
 
- // initial_level_to_load: Some( "academy_1.level" ),
+  initial_level_to_load: Some( "academy_1.level" ),
 
  //initial_level_to_load: Some( "default_level.level" ),
 

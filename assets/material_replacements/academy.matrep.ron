@@ -1,0 +1,17 @@
+ (
+
+
+     replacement_set_name: "academy",
+
+	 material_replacements : {
+ 
+         			//there are all fixed ?  
+         			// use ancienty tex?
+        "floor" : "AcademyFloor",
+        "wall" : "AcademyWall",
+        "trim" : "AcademyTrim",
+        "exterior" : "AcademyExterior",
+
+    },
+
+)

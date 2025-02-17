@@ -10,8 +10,8 @@ cargo run --bin generate_doodad_manifests
 
 
 
-const SUB_FOLDER :&str = "stylized_cave";
-const TAGS :&str = " [\"stylized_cave\"   ] ";
+const SUB_FOLDER :&str = "academy";
+const TAGS :&str = " [\"academy\"   ] ";
 
 
 
@@ -33,7 +33,7 @@ fn generate_model_definitions(base_folder: &str, file_paths: Vec<PathBuf>) -> Ve
         let relative_path = file_path.strip_prefix(base_folder).unwrap().to_str().unwrap();
         let full_path = format!("models/doodads/{}", relative_path);
         format!(
-            "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    tags: Some({}),\n),\n",
+            "\"{}\": (\n    name: \"{}\",\n    model: GltfModel(\"{}\"),\n    material_replacement_set: Some(\"academy\"),  \n  tags: Some({}),\n),\n",
             name, name, full_path, TAGS
         )
     }).collect();

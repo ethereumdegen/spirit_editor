@@ -1,0 +1,25 @@
+(
+	
+	 material_name:  "AcademyFloor",   
+
+	diffuse_texture: Some("textures/material_overrides/stone_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/slate_1_normal.png"),
+
+	roughness: 0.9,
+   metallic: Some(0.4),
+
+   emissive_texture: None ,
+
+
+   custom_props:  [ "FixedSpaceUvShader" ],
+
+
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+
+
+
+
+
+)
