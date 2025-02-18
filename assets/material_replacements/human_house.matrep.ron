@@ -1,0 +1,21 @@
+ (
+
+
+     replacement_set_name: "human_house",
+
+	 material_replacements : {
+ 
+          "floor" : "HumanHouseFloor",
+         "ceiling" : "HumanHouseCeiling",
+        "wall" : "HumanHouseWall",
+        "trim" : "HumanHouseTrim",
+        "exterior" : "HumanHouseExterior",
+
+
+         "roof" : "HumanHouseRoof",
+
+         "stone" : "HumanHouseStone",
+          "wood" : "HumanHouseWood",
+    },
+
+)

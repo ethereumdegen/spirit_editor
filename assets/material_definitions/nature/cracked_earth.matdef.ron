@@ -1,0 +1,18 @@
+(
+	
+	 material_name:  "CrackedEarth",   
+
+	 diffuse_texture: Some("textures/material_overrides/nature/cracked_earth.tga"),
+	  normal_texture: Some("textures/material_overrides/cliff4_normal.png"),
+
+	 roughness: 0.96,
+  
+
+     	
+   custom_props:  [ "FixedSpaceUvShader" ],
+
+
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)

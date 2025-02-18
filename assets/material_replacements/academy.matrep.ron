@@ -13,6 +13,7 @@
         "trim" : "AcademyTrim",
         "exterior" : "AcademyExterior",
 
+         "roof" : "AcademyRoof",
          "stone" : "AcademyStone",
           "wood" : "AcademyWood",
     },
