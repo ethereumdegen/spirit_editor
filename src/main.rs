@@ -362,13 +362,19 @@ fn setup(
             }
 
 
+
+
+
             if let Some(foliage_scene_name) = &level_config.get_foliage_scene_name() {
         
 
                 let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
+            
+
+                      commands.queue(  LoadFoliageScene( foliage_scenes_folder_path  )  );
+
          
-         
-                commands
+               /* commands
                     .spawn(Transform::default())
                     .insert(Visibility::Inherited)
                     .insert( 
@@ -378,7 +384,7 @@ fn setup(
                         ) //this will be unpacked automagically 
                     ).insert(
                         Name::new( foliage_scene_name.clone() )
-                    ) ; 
+                    ) ; */
 
              }
 

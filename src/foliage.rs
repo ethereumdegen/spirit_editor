@@ -1,5 +1,9 @@
 
 
+use bevy_foliage_tool::foliage_chunk::FoliageDataSource;
+use bevy_foliage_tool::foliage_chunk::FoliageDimensionsData;
+use bevy_foliage_tool::foliage_chunk::FoliageHeightMapData;
+use degen_toon_terrain::chunk::Chunk;
 use bevy_foliage_tool::foliage_layer::FoliageBaseNormalMapU16;
 use crate::doodads::doodad::SpawnDoodadEvent;
  
@@ -142,11 +146,16 @@ fn spawn_foliage_doodads (
 fn propogate_height_data_change_to_foliage(
 
       mut commands:  Commands,
-    foliage_layer_query: Query<(Entity,&FoliageLayer),    
-        With<FoliageBaseHeightMapU16>
-     >, 
+ 
+    foliage_chunk_query: Query< Entity,  With<  FoliageChunk  >   >, 
+
+
+    terrain_chunk_query: Query< (Entity, Chunk) >, 
+
+    transform_query: Query< Transform >,
 
     chunk_height_maps_resource: Res<ChunkHeightMapResource>,
+
 
 ) {
 
@@ -155,39 +164,116 @@ fn propogate_height_data_change_to_foliage(
     }
 
 
-    for (foliage_layer_entity,foliage_layer) in foliage_layer_query.iter(){
 
-            if let Some(mut cmd) = commands.get_entity(foliage_layer_entity){
-                cmd.remove::<FoliageBaseHeightMapU16>();
-            }   
+    // delte all foliage chunks and recreate them 
+
+
+    for (foliage_chunk) in foliage_chunk_query.iter(){
+
+
+        if let Some(mut cmd) = commands.get_entity(foliage_chunk){
+
+            cmd.despawn_recursive(); 
+
+        }
 
 
     }
 
-    
 
+    for (chunk_entity, chunk) in terrain_chunk_query.iter() {
+
+
+        let chunk_id = chunk.chunk_id; 
+
+        let Some(chunk_heightmap_data) = chunk_height_maps_resource.get(chunk_id) else {continue};
+
+
+        let Some(transform) = transform_query.get(chunk_entity)  else {continue};
+
+        let chunk_translation = transform.translation.clone(): 
+
+        commands.spawn(  (
+
+
+                FoliageChunk,
+
+                FoliageHeightMapData ( chunk_heightmap_data )  ,
+
+                FoliageDimensionsData ( IVec2 { x: 128, y: 128 } ),
+ 
+                FoliageDataSource ( chunk_entity.clone() ),
+                
+                Visibility::default(),
+
+                Transform::from_translation(  chunk_translation  )
+
+            )  );
+
+    }
+
+
+
+
+
+
+
+   /* for foliage_chunk_parent_entity  in foliage_chunk_query.iter(){
+
+            if let Some(mut cmd) = commands.get_entity(foliage_chunk_parent_entity){
+                cmd.remove::<FoliageChunkHeightData>();
+            }   
+
+
+    }*/
+ 
 
 }
+ 
+
+
+
 
 /*
 
 To rebuild foliage layer , just remove the old foliageBaseHeightMap ? 
 */
+/*
 fn add_height_maps_to_foliage_layers(  
      mut commands:  Commands,
-    foliage_layer_query: Query<(Entity,&FoliageLayer),    
-        Without<FoliageBaseHeightMapU16>
-     >, 
+  
+     terrain_chunk_query: Query< (Entity, &Chunk ) , Without< FoliageChunkHeightData  >>,
+
+ 
 
     chunk_height_maps_resource: Res<ChunkHeightMapResource>,
-
-   terrain_data_query: Query< (&TerrainData, &TerrainConfig) > ,
+ 
+    //terrain_data_query: Query< (&TerrainData, &TerrainConfig) > ,
     
     //terrain_loading_state: Res<State<TerrainLoadingState>>
 
 ){  
 
-     
+
+
+
+
+    for (chunk_entity, chunk) in terrain_chunk_query.iter(){
+
+
+        commands.spawn(
+
+
+            (
+
+                )
+
+            );
+ 
+
+    }
+*/
+    /*
 
     let Some( (_terrain_data, terrain_config) ) = terrain_data_query.get_single().ok() else {return};
 
@@ -224,7 +310,7 @@ fn add_height_maps_to_foliage_layers(
         ); 
 
 
-    }
+    }*/
  
 
 
@@ -234,7 +320,7 @@ fn add_height_maps_to_foliage_layers(
 
     // chunk_height_maps is a collection of 16 maps, each being 256x256 
     //the output should be one big map, at 1024x1024  
-    
+    /*
     fn get_combined_heightmap_data(
        chunk_height_maps: &HashMap<u32, Vec<Vec<u16>> > ,
 
@@ -264,7 +350,7 @@ fn add_height_maps_to_foliage_layers(
         combined_heightmap
 
     }
- 
+ */
 
 // ------------------
 

@@ -893,8 +893,6 @@ dependencies = [
 [[package]]
 name = "bevy_foliage_tool"
 version = "0.15.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "df32307302631f3bd22321c71a245b4003d66b63058af646ebf36b4500dd874e"
 dependencies = [
  "anyhow",
  "bevy",
@@ -2313,9 +2311,9 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_terrain"
-version = "0.15.16"
+version = "0.15.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a17ad1ae548fa68ecaa266823528b1d492c25a89fe70fa2a69bb582a127ee7ac"
+checksum = "04f681acbe608946119f340cb7e3d6a7fd64b7e927e1c78d192b3f8fe2b6eb8d"
 dependencies = [
  "anyhow",
  "avian3d",
