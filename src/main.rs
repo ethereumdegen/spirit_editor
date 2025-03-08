@@ -40,6 +40,7 @@ mod virtual_link;
 mod material_override_link;
 
 use bevy::winit::WinitWindows;
+use bevy_foliage_tool::foliage_scene::LoadFoliageScene;
 use degen_toon_clouds::DegenToonCloudsPlugin;
 use level_config::LevelConfig;
 use winit::window::Icon;
@@ -371,7 +372,12 @@ fn setup(
                 let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
             
 
-                      commands.queue(  LoadFoliageScene( foliage_scenes_folder_path  )  );
+                      commands.queue(  LoadFoliageScene {
+
+                        path: foliage_scenes_folder_path.to_string(),
+                        name: foliage_scene_name.to_string() ,
+
+                      }  );
 
          
                /* commands

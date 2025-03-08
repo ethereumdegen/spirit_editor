@@ -1,10 +1,11 @@
 
 
+use bevy_foliage_tool::foliage_chunk::FoliageChunk;
 use bevy_foliage_tool::foliage_chunk::FoliageDataSource;
 use bevy_foliage_tool::foliage_chunk::FoliageDimensionsData;
 use bevy_foliage_tool::foliage_chunk::FoliageHeightMapData;
 use degen_toon_terrain::chunk::Chunk;
-use bevy_foliage_tool::foliage_layer::FoliageBaseNormalMapU16;
+ 
 use crate::doodads::doodad::SpawnDoodadEvent;
  
 use bevy_foliage_tool::foliage_proto::FoliageProto;
@@ -15,10 +16,10 @@ use degen_toon_terrain::terrain_config::TerrainConfig;
 use degen_toon_terrain::chunk::ChunkHeightMapResource;
 use bevy::utils::HashMap;
 use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
-use bevy_foliage_tool::foliage_layer;
-use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;
-use bevy_foliage_tool::foliage_layer::FoliageLayer;
-use bevy_foliage_tool::foliage_layer::FoliageLayerNeedsRebuild;
+ 
+//use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;
+//use bevy_foliage_tool::foliage_layer::FoliageLayer;
+//use bevy_foliage_tool::foliage_layer::FoliageLayerNeedsRebuild;
 use degen_toon_terrain::chunk::CachedHeightmapData;
 use degen_toon_terrain::terrain_loading_state;
 use degen_toon_terrain::terrain_loading_state::TerrainLoadingState;
@@ -38,7 +39,7 @@ pub fn foliage_plugin(app:&mut App){
             .add_systems(Update, (
 
 
-                add_height_maps_to_foliage_layers,
+             //   add_height_maps_to_foliage_layers,
                 propogate_height_data_change_to_foliage,
 
                
@@ -150,9 +151,9 @@ fn propogate_height_data_change_to_foliage(
     foliage_chunk_query: Query< Entity,  With<  FoliageChunk  >   >, 
 
 
-    terrain_chunk_query: Query< (Entity, Chunk) >, 
+    terrain_chunk_query: Query< (Entity, &Chunk) >, 
 
-    transform_query: Query< Transform >,
+    transform_query: Query< & Transform >,
 
     chunk_height_maps_resource: Res<ChunkHeightMapResource>,
 
@@ -186,19 +187,19 @@ fn propogate_height_data_change_to_foliage(
 
         let chunk_id = chunk.chunk_id; 
 
-        let Some(chunk_heightmap_data) = chunk_height_maps_resource.get(chunk_id) else {continue};
+        let Some(chunk_heightmap_data) = chunk_height_maps_resource.chunk_height_maps.get(&chunk_id) else {continue};
 
 
-        let Some(transform) = transform_query.get(chunk_entity)  else {continue};
+        let Some(transform) = transform_query.get(chunk_entity) .ok() else {continue};
 
-        let chunk_translation = transform.translation.clone(): 
+        let chunk_translation = transform.translation.clone(); 
 
         commands.spawn(  (
 
 
-                FoliageChunk,
+                FoliageChunk { chunk_id:  chunk_id },
 
-                FoliageHeightMapData ( chunk_heightmap_data )  ,
+                FoliageHeightMapData ( chunk_heightmap_data.to_vec() )  ,
 
                 FoliageDimensionsData ( IVec2 { x: 128, y: 128 } ),
  
@@ -310,13 +311,13 @@ fn add_height_maps_to_foliage_layers(
         ); 
 
 
-    }*/
+    }
  
 
 
 }
  
-    
+    */
 
     // chunk_height_maps is a collection of 16 maps, each being 256x256 
     //the output should be one big map, at 1024x1024  
