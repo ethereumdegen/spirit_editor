@@ -41,7 +41,8 @@ mod material_override_link;
 
 use bevy::winit::WinitWindows;
 use bevy_foliage_tool::foliage_config::FoliageConfig;
-use bevy_foliage_tool::foliage_scene::CreateOrLoadFoliageScene;
+ 
+use bevy_foliage_tool::foliage_config::LoadFoliageConfig;
 use degen_toon_clouds::DegenToonCloudsPlugin;
 use level_config::LevelConfig;
 use winit::window::Icon;
@@ -51,8 +52,7 @@ use winit::window::Icon;
 
 
 use bevy::render::view::ColorGrading;
-//use bevy_toon_shader::{ToonShaderPlugin,ToonShaderSun,ToonShaderMainCamera}; 
-use bevy_foliage_tool::foliage_scene::FoliageSceneData;
+ 
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
  
 
@@ -376,12 +376,12 @@ fn setup(
 
                 let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
             
-
+                        // foliage config files are per-level 
                       commands.queue(   LoadFoliageConfig {
 
                         path: foliage_scenes_folder_path.to_string(),
                         name: foliage_scene_name.to_string() ,
-                   //     config:  loaded_foliage_config
+                  
 
                       }  );
 
