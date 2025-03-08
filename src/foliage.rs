@@ -196,7 +196,7 @@ fn propogate_height_data_change_to_foliage(
 
         commands.spawn(  (
 
-
+                Name::new( format!("Foliage Chunk {}", chunk_id) ),
                 FoliageChunk { chunk_id:  chunk_id },
 
                 FoliageHeightMapData ( chunk_heightmap_data.to_vec() )  ,

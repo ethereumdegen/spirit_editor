@@ -3,7 +3,7 @@ FoliageConfig(
    
 
     boundary_dimensions: (1024, 1024), // IVec2(x, y)
-    chunk_rows: 16, // 16 x 16 .. 64 units each 
+    chunk_rows: 8, // 8 x 8 .. 128 units each 
 
    
     render_distance: Some(200.0),
