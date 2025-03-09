@@ -39,10 +39,14 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+use bevy_foliage_tool::foliage_scene::FoliageScene;
+use bevy_foliage_tool::foliage_types::FoliageTypesManifest;
+use bevy_foliage_tool::foliage_density::FoliageDensityMapsComponent;
+use bevy_foliage_tool::foliage_scene::FoliageRoot;
 use bevy::winit::WinitWindows;
-use bevy_foliage_tool::foliage_config::FoliageConfig;
+//use bevy_foliage_tool::foliage_config::FoliageConfig;
  
-use bevy_foliage_tool::foliage_config::LoadFoliageConfig;
+//use bevy_foliage_tool::foliage_config::LoadFoliageConfig;
 use degen_toon_clouds::DegenToonCloudsPlugin;
 use level_config::LevelConfig;
 use winit::window::Icon;
@@ -251,11 +255,7 @@ fn main() {
  
 
 
-        .add_plugins(BevyFoliageToolPlugin {
-
-         //   foliage_config_path: "assets/foliage/foliage_config.ron".to_string()
-
-        } )
+        .add_plugins(BevyFoliageToolPlugin  )
 
         .add_plugins(BevyFoliageMaterialPlugin)  
         
@@ -376,14 +376,53 @@ fn setup(
 
                 let foliage_scenes_folder_path = "assets/foliage/foliage_scenes/";
             
+
+             let foliage_config_path = format!("{}{}",  &foliage_scenes_folder_path , &foliage_scene_name  );
+
+       
+     
+               let foliage_scene = FoliageScene::load_from_file(&foliage_config_path)
+                    .expect("Could not load foliage config");
+
+                let foliage_types_manifest =
+                    FoliageTypesManifest::load_from_file(&foliage_scene.foliage_types_manifest_path)
+                        .expect("Could not load foliage types manifest");
+
+                let foliage_density_data_path = foliage_scene.foliage_density_data_path.clone(); 
+                let foliage_definitions = foliage_types_manifest.foliage_definitions .clone(); 
+                let foliage_dimensions = foliage_scene.boundary_dimensions .clone(); 
+
+ 
+                let foliage_density_maps_component = 
+                    FoliageDensityMapsComponent::create_or_load( 
+                        foliage_density_data_path, 
+                        foliage_dimensions, 
+                        foliage_definitions
+
+                     ) ;
+ 
+
+
+                  commands.spawn( (
+
+                    FoliageRoot, 
+                    foliage_scene,
+
+                    foliage_types_manifest,
+                    foliage_density_maps_component
+
+                ) );
+                 
+
+
                         // foliage config files are per-level 
-                      commands.queue(   LoadFoliageConfig {
+                   /*   commands.queue(   LoadFoliageConfig {
 
                         path: foliage_scenes_folder_path.to_string(),
                         name: foliage_scene_name.to_string() ,
                   
 
-                      }  );
+                      }  );*/
 
          
                /* commands

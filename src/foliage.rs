@@ -1,5 +1,6 @@
 
 
+use bevy_foliage_tool::foliage_scene::FoliageRoot;
 use bevy_foliage_tool::foliage_chunk::FoliageChunk;
 use bevy_foliage_tool::foliage_chunk::FoliageDataSource;
 use bevy_foliage_tool::foliage_chunk::FoliageDimensionsData;
@@ -147,7 +148,8 @@ fn spawn_foliage_doodads (
 fn propogate_height_data_change_to_foliage(
 
       mut commands:  Commands,
- 
+    
+    foliage_root_query :Query<Entity,With<FoliageRoot>> , 
     foliage_chunk_query: Query< Entity,  With<  FoliageChunk  >   >, 
 
 
@@ -159,6 +161,9 @@ fn propogate_height_data_change_to_foliage(
 
 
 ) {
+
+
+    let Ok(foliage_root_entity) = foliage_root_query.get_single() else { return };
 
      if ! chunk_height_maps_resource.is_changed() {
         return ;
@@ -209,7 +214,7 @@ fn propogate_height_data_change_to_foliage(
 
                 Transform::from_translation(  chunk_translation  )
 
-            )  );
+            )  ).set_parent( foliage_root_entity );
 
     }
 
