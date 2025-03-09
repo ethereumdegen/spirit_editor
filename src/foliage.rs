@@ -205,7 +205,7 @@ fn propogate_height_data_change_to_foliage(
  
                 FoliageDataSource ( chunk_entity.clone() ),
                 
-                Visibility::default(),
+                Visibility::default(), 
 
                 Transform::from_translation(  chunk_translation  )
 
