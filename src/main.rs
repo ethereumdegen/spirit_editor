@@ -125,7 +125,7 @@ use bevy::render::settings::{RenderCreation, WgpuFeatures, WgpuSettings};
 use bevy::render::RenderPlugin;
 use degen_toon_terrain::edit::EditingTool;
 
-use degen_toon_terrain::terrain_material::ToonShaderSun; 
+// use degen_toon_terrain::terrain_material::ToonShaderSun; 
 use degen_toon_terrain::terrain_config::TerrainConfig;
 use degen_toon_terrain::{
     edit::{EditTerrainEvent, TerrainCommandEvent},
@@ -478,7 +478,7 @@ fn setup(
             ..default()
         }   )
     .insert(Sun)
-    .insert( ToonShaderSun )
+   // .insert( ToonShaderSun )
 
     ; 
 

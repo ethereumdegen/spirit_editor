@@ -18,9 +18,9 @@ winit = { version = "0.30", default-features = false }
 image = { version = "0.25.1", default-features = false }
 
 
- degen_toon_terrain = {version = "0.15.17", features=["physics"]  }
+ degen_toon_terrain = {version = "0.15.18", features=["physics"]  }
 
-#  degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
+# degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
   bevy_material_wizard = "0.15.8"
@@ -28,8 +28,8 @@ image = { version = "0.25.1", default-features = false }
  # bevy_material_wizard = {path="../bevy_material_wizard"}
 
 
- degen_toon_water = "0.15.2" 
- # degen_toon_water =  {path="../degen_toon_water"}
+ degen_toon_water = "0.15.3" 
+  #degen_toon_water =  {path="../degen_toon_water"}
 
 
  degen_toon_clouds = "0.15.3" 
@@ -79,8 +79,8 @@ bevy-inspector-egui = "0.28.0"
 bevy_asset_loader = "0.22.0"
 
  
-  bevy_foliage_tool =   "0.15.12"
-  # bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+  bevy_foliage_tool =   "0.15.14"
+   #  bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  

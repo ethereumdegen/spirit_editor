@@ -21,7 +21,7 @@ use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
 //use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;
 //use bevy_foliage_tool::foliage_layer::FoliageLayer;
 //use bevy_foliage_tool::foliage_layer::FoliageLayerNeedsRebuild;
-use degen_toon_terrain::chunk::CachedHeightmapData;
+//use degen_toon_terrain::chunk::CachedHeightmapData;
 use degen_toon_terrain::terrain_loading_state;
 use degen_toon_terrain::terrain_loading_state::TerrainLoadingState;
 use crate::EditorToolsState;
