@@ -154,6 +154,7 @@ pub enum Action {
 
     RotateDoodadYawCW,
     RotateDoodadYawCCW,
+    RotateDoodadRollCW, // good for wall decals 
 
     #[cfg(feature = "default_windows")]
     SetGizmoModeTranslate,
@@ -172,7 +173,8 @@ impl std::fmt::Display for Action {
             Action::DeleteSelectedEntities => write!(f, "Delete Selected Entities"), 
             Action::ClearSelection => write!(f, "Clear Selection"),
             Action::RotateDoodadYawCW => write!(f, "RotateDoodadYawCW"),
-            Action::RotateDoodadYawCCW => write!(f, "RotateDoodadYawCCw"),
+            Action::RotateDoodadYawCCW => write!(f, "RotateDoodadYawCCW"),
+               Action::RotateDoodadRollCW => write!(f, "RotateDoodadRollCW"),
             #[cfg(feature = "default_windows")]
             Action::SetGizmoModeTranslate => write!(f, "Activate translation gizmo"),
             #[cfg(feature = "default_windows")]
@@ -280,7 +282,7 @@ pub fn editor_controls_system(
         &mouse_input,
         &editor,
     ) {
-        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(45.0));
+        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees( Vec3::new(0.0, 45.0, 0.0)   ));
     }
 
     if controls.just_pressed(
@@ -289,7 +291,17 @@ pub fn editor_controls_system(
         &mouse_input,
         &editor,
     ) {
-        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(-45.0));
+        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(  Vec3::new(0.0, -45.0, 0.0)   ));
+    }
+
+
+    if controls.just_pressed(
+        Action::RotateDoodadRollCW,
+        &keyboard_input,
+        &mouse_input,
+        &editor,
+    ) {
+        editor_events.send(EditorEvent::RotateSelectedDoodadByDegrees(   Vec3::new( 0.0 ,0.0,  45.0 )   ));
     }
 
 
@@ -411,10 +423,20 @@ impl EditorControls {
             },
         );
 
-           controls.insert(
+        controls.insert(
             Action::RotateDoodadYawCCW,
             Binding {
                 input: UserInput::Single(Button::Keyboard(KeyCode::KeyK)),
+                conditions: vec![BindingCondition::ListeningForText(false)],
+            },
+        );
+
+
+
+        controls.insert(
+            Action::RotateDoodadRollCW,
+            Binding {
+                input: UserInput::Single(Button::Keyboard(KeyCode::KeyL)),
                 conditions: vec![BindingCondition::ListeningForText(false)],
             },
         );

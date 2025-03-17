@@ -1,7 +1,7 @@
 // pub mod picking;
 
  use crate::debug_settings::DebugSettingsWindow;
-use spirit_edit_core::doodads::doodad::RotateByDegrees;
+use spirit_edit_core::doodads::rotate::RotateByDegrees;
 use spirit_edit_core::prefabs::{PrefabComponent,SavePrefabToFileEvent};
 use spirit_edit_core::zones::SaveZoneToFileEvent;
 use spirit_edit_core::zones::ZoneComponent;
@@ -336,14 +336,14 @@ pub fn listen_for_select_entities_events(
             }
 
 
-             EditorEvent::RotateSelectedDoodadByDegrees(degrees) => {
+             EditorEvent::RotateSelectedDoodadByDegrees( degrees_vec ) => {
                  let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
 
                  
                     for entity in  state.selected.iter() {
                         if let Some(mut cmd) = commands.get_entity( entity ){
-
-                            cmd.insert(RotateByDegrees(degrees.clone () ));
+                            cmd.queue( RotateByDegrees( degrees_vec.clone () )  ) ;  // now an entity command ! 
+                           // cmd.insert(RotateByDegrees( degrees_vec.clone () ));
                         }
                    
                     }

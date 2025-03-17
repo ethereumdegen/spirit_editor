@@ -1,9 +1,18 @@
 (
 	
 	 material_name:  "AcademyExterior",   
+ 
 
-	diffuse_texture: Some("textures/material_overrides/wall2_diffuse.png"),
-	normal_texture: Some("textures/material_overrides/wall2_normal.png"),
+	//diffuse_texture: Some("textures/material_overrides/wall2_diffuse.png"),
+	//normal_texture: Some("textures/material_overrides/wall2_normal.png"),
+
+
+
+	diffuse_texture: Some("textures/material_overrides/stucco_subtle_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/stucco_subtle_normal.png"),
+
+
+
 
 	roughness: 0.9,
    metallic: Some(0.4),

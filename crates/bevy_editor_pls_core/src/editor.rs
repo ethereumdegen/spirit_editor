@@ -16,10 +16,14 @@ pub enum EditorEvent {
     SetSelectedEntities(Option<Vec<Entity>>),
 
 
-    RotateSelectedDoodadByDegrees(f32),
+    RotateSelectedDoodadByDegrees(Vec3),
 
     DeleteSelectedEntities
 }
+
+
+
+
 
 #[derive(Debug)]
 enum ActiveEditorInteraction {
