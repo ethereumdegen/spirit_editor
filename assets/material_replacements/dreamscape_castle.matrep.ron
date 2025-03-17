@@ -8,6 +8,7 @@
         "MI_CastleWall_01" : "CastleWall",
         "MI_CastleTrim_01" : "CastleTrim",
         "MI_CastleTrim_02" : "CastleTrim",
+        "MI_CastleTrim_03" : "CastleTrim",
 
          "MI_Trim1" : "CastleTrim",
           "MI_Trim2" : "CastleTrim",
@@ -21,7 +22,7 @@
 
           "MI_CastleRoof" : "CastleRoof",
          "MI_CastleRoof_01" : "CastleRoof",
-         "MI_Castle_Roof_01" : "CastleRoof",
+        // "MI_Castle_Roof_01" : "CastleRoof",
 
          "MI_CastleSlabs_01" : "CastleSlabs",
         
@@ -29,6 +30,7 @@
 
           "MI_Window_A" : "CastleWindow",
 
+           "MI_CastlePavement_01" : "CastlePavement",
          "MI_CastlePavement_02" : "CastlePavement",
 
          "MI_Rubble" : "CastleRubble",

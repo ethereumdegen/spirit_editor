@@ -12,6 +12,7 @@
    uv_scale_factor: 1.0,  // do this in the material override lib ?
   
 
- 
+   
+  //  custom_props:  [ "FixedSpaceUvShader" ],
           
 )
