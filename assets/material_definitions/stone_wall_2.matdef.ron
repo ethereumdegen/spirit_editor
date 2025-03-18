@@ -5,12 +5,13 @@
 	 diffuse_texture: Some("textures/material_overrides/stone_wall_2_diffuse.png"),
 	  normal_texture: Some("textures/material_overrides/stone_wall_2_normal.png"),
 
-	 roughness: 0.8,
-
-   emissive_texture: None ,
+	 roughness: 0.9,
+		metallic: Some(0.4),
+     emissive_texture: None ,
 
 
     
+   custom_props:  [ "FixedSpaceUvShader" ],
 
    uv_scale_factor: 1.0,  // do this in the material override lib ?
         
