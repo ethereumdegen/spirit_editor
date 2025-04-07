@@ -220,8 +220,8 @@ fn main() {
                         address_mode_v:  AddressMode::Repeat.into(),
                         address_mode_w:  AddressMode::Repeat.into(),
                         mag_filter: FilterMode::Nearest.into(),
-                        min_filter: FilterMode::Linear.into(),
-                        mipmap_filter: FilterMode::Linear.into(),
+                        min_filter: FilterMode::Nearest.into(),
+                        mipmap_filter: FilterMode::Nearest.into(),
                         ..default()
                     }
 

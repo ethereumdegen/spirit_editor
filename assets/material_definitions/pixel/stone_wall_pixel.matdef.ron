@@ -1,0 +1,27 @@
+(
+  
+   material_name:  "StoneWallPixel",   
+
+  diffuse_texture: Some("textures/material_overrides/pixel/stone_pixel_dungeon.png"),
+
+  normal_texture: Some("textures/material_overrides/pixel/stone_pixel_dungeon.png"),
+
+  roughness: 0.9, 
+
+     emissive_texture: None ,
+
+
+
+        uv_scale_factor: 1.0,    
+
+        texture_subset_dimensions: Some(
+
+            (
+             offset: ( 384,  256 ) ,
+              dimensions: (  128 ,  128  ), 
+          base_texture_dimensions:  (1024,1024) ,
+            )
+        ),  
+
+
+)

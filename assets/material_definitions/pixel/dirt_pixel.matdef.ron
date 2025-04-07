@@ -4,11 +4,10 @@
 
 	diffuse_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon.png"),
 
-	normal_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon.png"),
+	normal_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon_normal.png"),
 
-	roughness: 0.8,
-	metallic:Some(0.4),
-
+	
+  roughness: 0.9, 
      emissive_texture: None ,
  
 

@@ -24,7 +24,12 @@
         "CobblesPixel",
          "StonePixel",
 
+         "StoneWallPixel",
+          "StoneWall2Pixel",
+
       "DarkElfStoneDark",
+
+
 
 
       "ToonStone",
