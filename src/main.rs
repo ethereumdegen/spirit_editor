@@ -39,6 +39,9 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+use bevy::image::ImageSamplerDescriptor;
+use bevy::render::render_resource::AddressMode;
+use bevy::render::render_resource::FilterMode;
 use bevy_foliage_tool::foliage_scene::FoliageScene;
 use bevy_foliage_tool::foliage_types::FoliageTypesManifest;
 use bevy_foliage_tool::foliage_density::FoliageDensityMapsComponent;
@@ -209,7 +212,20 @@ fn main() {
                     ..default()
                 })
 
-               .set(ImagePlugin::default_nearest())   // no linear filter ! 
+               .set(ImagePlugin{
+
+                    default_sampler : ImageSamplerDescriptor {
+                        label: None,
+                        address_mode_u:  AddressMode::Repeat.into(),
+                        address_mode_v:  AddressMode::Repeat.into(),
+                        address_mode_w:  AddressMode::Repeat.into(),
+                        mag_filter: FilterMode::Nearest.into(),
+                        min_filter: FilterMode::Linear.into(),
+                        mipmap_filter: FilterMode::Linear.into(),
+                        ..default()
+                    }
+
+               })   // no linear filter ! 
 
 
 
