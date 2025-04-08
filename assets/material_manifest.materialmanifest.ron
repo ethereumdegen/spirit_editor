@@ -18,14 +18,38 @@
       "RocksFixedDark",
 
       "RocksAdamantite",
-      
-       "RocksAdamantitePixel",
+       
        "DirtPixel",
         "CobblesPixel",
-         "StonePixel",
+      
+       "StonePixel",
+       "StonePixelAlt",
 
-         "StoneWallPixel",
-          "StoneWall2Pixel",
+
+        "BrickPixel",
+       "BrickPixelAlt",
+
+       "StoneBrickPixel",
+        "StoneBrick2Pixel",
+         "StoneBrick3Pixel",
+          "StoneBrick4Pixel",
+          "StoneBrick5Pixel",
+          "StoneBrick6Pixel",
+
+       "GravelPixel",
+        "Gravel2Pixel",
+         "Gravel3Pixel",
+
+       "StoneTilePixel",
+        
+
+       "CobbleWallPixel", 
+          "CobbleWall2Pixel", 
+           "CobbleWall3Pixel", 
+
+
+       "DungeonVoidPixel",   
+
 
       "DarkElfStoneDark",
 
@@ -34,7 +58,7 @@
 
 
 
-
+         "SlateDark",
       "ToonStone",
       "StoneWall",
       "StoneWall2",

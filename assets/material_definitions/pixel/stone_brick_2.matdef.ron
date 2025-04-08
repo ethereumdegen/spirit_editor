@@ -1,0 +1,38 @@
+(
+	
+	 material_name:  "StoneBrick2Pixel",   
+
+	diffuse_texture: Some("textures/material_overrides/pixel/szadiart_catacombs.png"),
+
+	//normal_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon_normal.png"),
+
+  	
+      roughness: 0.9, 
+
+     emissive_texture: None ,
+ 
+
+        uv_scale_factor: 1.0,    
+
+        texture_subset_dimensions: Some(
+
+          	(
+          	   offset: ( 32,  288 ) ,
+          	   dimensions: (  32 ,  32  ), 
+ 					base_texture_dimensions:  (1024,640)  
+            )
+
+        ),  
+
+
+         /* diffuse_color_tint: Some( LinearRgba((
+                          red: 0.16,
+                          green: 0.25,
+                          blue:  0.25,
+                          alpha:  1.0,
+                     ) )  ), */
+
+
+
+
+)

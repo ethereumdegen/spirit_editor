@@ -1,6 +1,6 @@
 (
 	
-	 material_name:  "RocksAdamantitePixel",   
+	 material_name:  "BrickPixel",   
 
 	diffuse_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon.png"),
 
@@ -17,7 +17,7 @@
         texture_subset_dimensions: Some(
 
           	(
-          	   offset: ( 256,  112 ) ,
+          	   offset: ( 64,32 ) ,
           	   dimensions: (  32 ,  32  ), 
  					base_texture_dimensions:  (352,272)  
             )
