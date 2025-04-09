@@ -30,6 +30,8 @@ pub struct FixedSpaceUvMaterialUniforms {
     pub tint_color: LinearRgba,
     pub config_flag_bits: u32, 
 
+    pub uv_input_scale : f32 
+
    
 }
 impl Default for FixedSpaceUvMaterialUniforms {
@@ -49,6 +51,7 @@ impl Default for FixedSpaceUvMaterialUniforms {
         Self {
             tint_color: Color::WHITE.into(),
             config_flag_bits, 
+            uv_input_scale: 4.0 //default 
              
         }
     }

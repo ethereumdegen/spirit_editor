@@ -5,7 +5,7 @@
     diffuse_texture: Some("textures/material_overrides/pixel/szadiart_catacombs.png"),
 
 
-	normal_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon_normal.png"),
+	//normal_texture: Some("textures/material_overrides/pixel/overgrown_pixel_dungeon_normal.png"),
 
 	
   roughness: 0.9, 

@@ -22,6 +22,8 @@ struct RockMagicMaterialUniforms {
    tint_color: vec4<f32>,
 
    fixed_uv_config_bits: u32, 
+
+   uv_input_scale: f32 
     
 };
 
@@ -61,18 +63,42 @@ fn fragment(
         let triplanar_weights = triplanar_mapping_lerp_output ( in.world_normal );
 
 
+        //   uv_transform: mat3x3<f32>,
+        let uv_transform = pbr_bindings::material.uv_transform;
+
+
          var color = pbr_bindings::material.base_color;
 
 
-         var uv_A = in.world_position.xy * 0.125;
-         var uv_B = in.world_position.zy * 0.125;
+         var uv_scale_factor =  custom_uniforms.uv_input_scale ; 
+         var uv_scale_factor_inverse = 1.0 / uv_scale_factor; 
 
-         var uv_C = in.world_position.xz * 0.125; 
+
+         var uv_A = in.world_position.xy * uv_scale_factor_inverse;
+         var uv_B = in.world_position.zy * uv_scale_factor_inverse;
+
+         var uv_C = in.world_position.xz * uv_scale_factor_inverse; 
          var uv_flat = vec2<f32>(0.0,0.0);
 
          if blank_top_bottom == true {
             uv_C = uv_flat; 
          }
+
+
+         // ---- 
+             // For uv_A (mapping world XY)
+      uv_A = apply_uv_transform(uv_A , uv_transform);
+      
+      // For uv_B (mapping world ZY)
+      uv_B = apply_uv_transform(uv_B, uv_transform);
+      
+      // For uv_C (mapping world XZ)
+      if !blank_top_bottom {
+          uv_C = apply_uv_transform(uv_C, uv_transform);
+      }
+
+      // -----
+       
 
          let color_A = textureSample(
                 pbr_bindings::base_color_texture,
@@ -180,3 +206,18 @@ fn triplanar_mapping_lerp_output(
     return  weights;
 }
  
+
+ // Helper function to apply UV transform to constrain coordinates to subtile
+fn apply_uv_transform(original_uv: vec2<f32>, transform: mat3x3<f32>) -> vec2<f32> {
+    // Apply the transformation to the UV coordinates
+    // The transform matrix contains scale and translation
+    
+    // First, we need to handle the UV in homogeneous coordinates
+    let uv_homogeneous = vec3<f32>(original_uv.x % 1.0, original_uv.y % 1.0 , 1.0);
+    
+    // Apply the transformation
+    let transformed = transform * uv_homogeneous;
+    
+    // Convert back to 2D coordinates
+    return transformed.xy;
+}
