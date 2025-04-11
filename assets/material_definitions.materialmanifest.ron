@@ -1,0 +1,31 @@
+{
+  "CobbleWallPixel":"materialize_defs/pixel/cobble_wall_pixel.material.toml",
+  "CobbleWall2Pixel":"materialize_defs/pixel/cobble_wall_2_pixel.material.toml",
+  "CobbleWall3Pixel":"materialize_defs/pixel/cobble_wall_3_pixel.material.toml",
+
+
+  "StoneBrickPixel":"materialize_defs/pixel/stone_brick_pixel.material.toml",
+  "StoneBrick2Pixel":"materialize_defs/pixel/stone_brick_2_pixel.material.toml",
+  "StoneBrick3Pixel":"materialize_defs/pixel/stone_brick_3_pixel.material.toml",
+  "StoneBrick4Pixel":"materialize_defs/pixel/stone_brick_4_pixel.material.toml",
+  "StoneBrick5Pixel":"materialize_defs/pixel/stone_brick_5_pixel.material.toml",
+  "StoneBrick6Pixel":"materialize_defs/pixel/stone_brick_6_pixel.material.toml",
+
+  "StoneTilePixel":"materialize_defs/pixel/stone_tile_pixel.material.toml",
+
+  "StonePixel":"materialize_defs/pixel/stone_pixel.material.toml",
+  "StonePixelAlt":"materialize_defs/pixel/stone_pixel_alt.material.toml",
+
+  "DirtPixel":"materialize_defs/pixel/dirt_pixel.material.toml",
+
+  "BrickPixel":"materialize_defs/pixel/brick_pixel.material.toml",
+  "BrickPixelAlt":"materialize_defs/pixel/brick_pixel_alt.material.toml",
+
+   "SlateDark":"materialize_defs/slate_dark.material.toml",
+   "CainosDungeon":"materialize_defs/pixel/cainos_dungeon.material.toml",
+   "CainosDungeonDark":"materialize_defs/pixel/cainos_dungeon_dark.material.toml",
+
+
+
+   "Portal1":"materialize_defs/magicfx/portal_1.material.toml"
+}

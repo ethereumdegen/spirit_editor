@@ -21,7 +21,7 @@ use bevy::gltf::Gltf;
 use bevy_asset_loader::prelude::*; 
 use bevy_asset_loader::loading_state::LoadingStateAppExt;
 use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
-use bevy_magic_fx::{animated_material::{build_animated_material, AnimatedMaterial}, magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}, shader_variant::ShaderVariantManifest};
+use bevy_magic_fx::{  magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}  };
 
 
 /*
@@ -106,16 +106,16 @@ pub fn asset_loading_plugin(app: &mut App) {
 
               .add_loading_state(
                     LoadingState::new(AssetLoadState::ShaderAssetsLoad)
-                        .continue_to_state(AssetLoadState::ShaderVariantsLoad)
+                        .continue_to_state(AssetLoadState::ShadersLoad)
                          
                         
-                          .load_collection::<ShaderVariantAssets>() 
+                        //  .load_collection::<ShaderVariantAssets>() 
                           .load_collection::<MagicFxVariantAssets>()
                            //.load_collection::<AnimatedMaterialAssets>() 
                 )
 
 
-               .add_systems(OnEnter(AssetLoadState::ShaderVariantsLoad), load_shader_variants)
+              // .add_systems(OnEnter(AssetLoadState::ShaderVariantsLoad), load_shader_variants)
               .add_systems(OnEnter(AssetLoadState::ShadersLoad), (
                 
                 populate_prefab_definitions,
@@ -153,7 +153,7 @@ pub enum AssetLoadState {
     DecalAssetsLoad, 
     //GltfAssetsLoad,
     ShaderAssetsLoad,
-    ShaderVariantsLoad,
+    //ShaderVariantsLoad,
     ShadersLoad,
     Complete
 
@@ -161,15 +161,17 @@ pub enum AssetLoadState {
 
 
 
-
+// WHY IS THIS CRASHIGN WHEN LOADING PNG ??? 
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
 
-     #[asset(path = "../artifacts/game_assets/textures/decal_textures", collection(typed, mapped))]
+     #[asset(path = "textures/decal_textures", collection(typed, mapped))]
     pub(crate) decal_textures: HashMap<AssetFileName, Handle<Image>>,
-   
-     #[asset(path = "../artifacts/game_assets/textures/vfx_textures", collection(typed, mapped))]
-    pub(crate) vfx_textures: HashMap<AssetFileName, Handle<Image>>,
+       
+
+       //remove for now !   might want to preload these later idk 
+   //  #[asset(path = "../artifacts/game_assets/textures/vfx_textures", collection(typed, mapped))]
+ //   pub(crate) vfx_textures: HashMap<AssetFileName, Handle<Image>>,
 
 
 }
@@ -226,12 +228,13 @@ pub struct DecalAssets {
 
 }
 
-
+/*
 #[derive(AssetCollection, Resource, Clone)]
 pub(crate) struct ShaderVariantAssets {
     #[asset(path = "../artifacts/game_assets/shader_variants", collection(typed, mapped))]
     pub(crate) variants: HashMap<AssetFileStem, Handle<ShaderVariantManifest>>, //see bevy shader play
 }
+*/ 
 
 
 #[derive(AssetCollection, Resource, Clone)]
@@ -247,7 +250,7 @@ pub(crate) struct MagicFxVariantAssets {
 pub struct BuiltVfxHandleRegistry {
 
     //shader var name -> animated material
-    pub animated_materials_map: HashMap<String, Handle<AnimatedMaterial>>,
+    //pub animated_materials_map: HashMap<String, Handle<AnimatedMaterial>>,
 
 
     pub magic_fx_variants: HashMap<String, MagicFxVariant>  , 
@@ -256,7 +259,7 @@ pub struct BuiltVfxHandleRegistry {
 }
  
 
-
+/*
 fn load_shader_variants( 
     
     mut next_state: ResMut<NextState<AssetLoadState>>,
@@ -328,6 +331,8 @@ fn load_shader_variants(
            
 }
 
+*/
+
 
 fn load_magic_fx( 
     
@@ -337,14 +342,14 @@ fn load_magic_fx(
     //  asset_loading_resource: Res <AssetLoadingResource>,
    // mut animated_materials: ResMut<Assets<AnimatedMaterial>>,
 
-    loaded_textures: Res<TextureAssets>, 
+   // loaded_textures: Res<TextureAssets>, 
      loaded_meshes: Res<MeshAssets>, 
 
    loaded_magic_fx_variants: Res<MagicFxVariantAssets>, 
 
      fx_variant_assets: ResMut<Assets<MagicFxVariantManifest>>,
 
-      animated_materials_assets: Res<Assets<AnimatedMaterial>>,
+  //    animated_materials_assets: Res<Assets<AnimatedMaterial>>,
     mut asset_server: ResMut<AssetServer>,
 
 
@@ -372,7 +377,7 @@ fn load_magic_fx(
                         rebuilt_mesh_handle_map.insert(key.clone().into(), value.clone());
                     }
 
-                    let animated_materials_map = &built_vfx_resource.animated_materials_map;
+                  //  let animated_materials_map = &built_vfx_resource.animated_materials_map;
     
 
                         info!("loading magic fx {:?}", file_stem );
@@ -382,8 +387,8 @@ fn load_magic_fx(
                       
                         &rebuilt_mesh_handle_map,
                       
-                        &animated_materials_map,
-                           &animated_materials_assets,
+                      //  &animated_materials_map,
+                       //    &animated_materials_assets,
                           &mut asset_server 
      
                         

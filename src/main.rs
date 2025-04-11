@@ -232,7 +232,8 @@ fn main() {
 
 
         )   
-       
+        
+        .add_plugins( MagicFxPlugin )  //this adds the materialize plugin.. so it comes first 
 
           // .add_plugins(ToonShaderPlugin)
         .add_plugins(loading::loading_plugin)
@@ -256,7 +257,7 @@ fn main() {
 
 
         .add_plugins(BevyMaterialWizardPlugin{
-            material_defs_folder_path: "assets/material_definitions".to_string(),
+            material_defs_manifest_path: "assets/material_definitions.materialmanifest.ron".to_string(),
             material_replacements_folder_path: "assets/material_replacements".to_string(), 
         }  )
 
@@ -293,7 +294,6 @@ fn main() {
         .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
         
       
-        .add_plugins( MagicFxPlugin )
         .add_plugins(asset_loading_plugin)
 
         //.add_plugins(material_overrides::material_overrides_plugin)

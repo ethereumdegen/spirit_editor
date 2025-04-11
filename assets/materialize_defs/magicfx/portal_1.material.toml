@@ -1,0 +1,18 @@
+type = "MagicFxMaterial"
+
+[material.base]  
+base_color = { LinearRgba = [0.2, 0.3, 0.2, 0.8] }
+emissive= [33.0,0.3,33.0,3.6]   
+double_sided= true
+                       
+
+
+
+[material.extension]
+base_color_texture = "/textures/vfx_textures/fx_fireskill/NoiseElectro01b.png"
+
+[material.extension.custom_uniforms]
+scroll_repeats = [1.0,1.0]
+scroll_speed = [0.8,0.2]
+distortion_amount = 0.07
+distortion_speed = [0.04,0.04]

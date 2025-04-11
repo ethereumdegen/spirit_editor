@@ -1,9 +1,15 @@
 
+/*
+
+
+DEPRECATED !!! Use bevy_material_wizard and  materialize for this now ! 
+
+*/
 
 use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialSidesOnly;
 use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
   
-use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
+//use bevy_material_wizard::material_definition::MaterialDefinitionsMap;
 use bevy::prelude::*; 
 use std::marker::PhantomData;
 

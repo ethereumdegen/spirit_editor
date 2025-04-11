@@ -1,3 +1,4 @@
+use bevy_materialize::MaterializeAppExt;
 use bevy::prelude::*;
 use bevy::reflect::TypePath;
 use bevy::render::render_resource::*;
@@ -18,17 +19,25 @@ pub fn fixed_space_uv_material_plugin(app: &mut App) {
             //NEED THIS
          ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialSidesOnly>    ,
         >::default())
-           ;
+
+
+            .register_generic_material::< FixedSpaceUvMaterial >()
+             .register_generic_material_shorthand::< FixedSpaceUvMaterial >("FixedSpaceUvMaterial")
+
+            
+
+
+        ;
 
    
 }
 
 pub type FixedSpaceUvMaterial = ExtendedMaterial<StandardMaterial, FixedSpaceUvMaterialBase>;
  
-#[derive(Clone, ShaderType, Debug)]
+#[derive(Clone, ShaderType, Debug, Reflect)]
 pub struct FixedSpaceUvMaterialUniforms {
     pub tint_color: LinearRgba,
-    pub config_flag_bits: u32, 
+    pub blank_top_bottom: u32,  //bool !! 
 
     pub uv_input_scale : f32 
 
@@ -38,26 +47,20 @@ impl Default for FixedSpaceUvMaterialUniforms {
     fn default() -> Self {
 
 
-         let flags = [
-                (FixedSpaceConfigBits::BlankTopBottom, false),
-              
-            ];
-
-
-          let config_flag_bits = build_config_bits(&flags);
-
+         
 
         
         Self {
             tint_color: Color::WHITE.into(),
-            config_flag_bits, 
+            blank_top_bottom: 0, 
             uv_input_scale: 4.0 //default 
              
         }
     }
 }
 
-#[derive(Asset, AsBindGroup, TypePath, Debug, Clone, Default)]
+//#[derive(Asset, AsBindGroup, TypePath, Debug, Clone, Default)]
+#[derive(Asset, AsBindGroup, Reflect, Debug, Clone, Default )]
 pub struct FixedSpaceUvMaterialBase {
     // We need to ensure that the bindings of the base material and the extension do not conflict,
     // so we start from binding slot 100, leaving slots 0-99 for the base material.
@@ -113,23 +116,12 @@ impl Default for FixedSpaceUvMaterialSidesOnly {
         fn default() -> Self { 
 
 
-            let flags = [
-                (FixedSpaceConfigBits::BlankTopBottom, true),
-              
-            ];
-
-
-            let config_flag_bits = build_config_bits(&flags);
-
-
-
-
-
+            
             Self {
 
                 custom_uniforms: FixedSpaceUvMaterialUniforms {
 
-                    config_flag_bits ,
+                   
                     ..default() 
                 }
             }
@@ -152,7 +144,7 @@ impl MaterialExtension for FixedSpaceUvMaterialSidesOnly {
 
 // ----- 
 
-
+/*
 // Define an enum for the bit positions
 #[repr(u32)]
 #[derive(Clone,Copy)]
@@ -173,4 +165,4 @@ fn build_config_bits(flags: &[(FixedSpaceConfigBits, bool)]) -> u32 {
     }
 
     config_bits
-}
+}*/
