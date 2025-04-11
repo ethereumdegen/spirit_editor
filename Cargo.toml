@@ -20,7 +20,8 @@ bevy_egui = "0.31.0"
 
 winit = { version = "0.30", default-features = false }
  
-image = { version = "0.25.1", default-features = false }
+ # is this necessary !? 
+# image = { version = "0.25.2", default-features = false }
 
 
  degen_toon_terrain = {version = "0.15.18", features=["physics"]  }
@@ -28,10 +29,10 @@ image = { version = "0.25.1", default-features = false }
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
- #bevy_material_wizard = "0.15.11"
-  bevy_material_wizard = {path="../bevy_material_wizard"}
+ bevy_material_wizard = "0.15.12"
+  #bevy_material_wizard = {path="../bevy_material_wizard"}
 
-  bevy_materialize = "0.4"
+  bevy_materialize = "0.4.2"
 
 
 

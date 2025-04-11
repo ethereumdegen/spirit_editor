@@ -16,7 +16,9 @@ pub fn materials_plugin(app:&mut App){
           app
 
           .register_type::<TextureSubsetDimensions>()   // critical ! 
+
             //.add_systems(Startup, register_foliage_assets)
+            
             .add_systems(Update, (
                 
              	update_materialize_properties
@@ -89,7 +91,7 @@ fn update_materialize_properties(
   
      generic_materials_ext: GenericMaterials, 
 
-     mut standard_materials : ResMut<Assets<StandardMaterial>> ,
+      mut standard_materials : ResMut<Assets< StandardMaterial >> ,
       mut fixed_uv_materials : ResMut<Assets< FixedSpaceUvMaterial >> 
 
  ) {
@@ -122,6 +124,7 @@ fn update_materialize_properties(
  
 
                      let material = &loaded_generic_material.material;
+
                       
                     if let Some(  mat  ) = standard_materials.get_mut(  material.handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);

@@ -140,8 +140,7 @@ use degen_toon_terrain::{
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 
 use bevy::pbr::ShadowFilteringMethod;
- 
-
+  
 use crate::camera::camera_plugin;
 use crate::liquid::liquid_plugin;
 use bevy_clay_tiles; 
@@ -152,6 +151,7 @@ use crate::tools::brush_tools_plugin;
 use crate::commands::update_commands;
 use crate::ui::editor_ui_plugin;
 
+/*
 fn set_window_icon(
     // we have to use `NonSend` here
     windows: NonSend<WinitWindows>,
@@ -159,7 +159,7 @@ fn set_window_icon(
     // here we use the `image` crate to load our icon data from a png file
     // this is not a very bevy-native solution, but it will do
     let (icon_rgba, icon_width, icon_height) = {
-        let image = image::open("assets/images/favicon.png")
+        let image = bevy:: image::open("assets/images/favicon.png")
             .expect("Failed to open icon path")
             .into_rgba8();
         let (width, height) = image.dimensions();
@@ -173,7 +173,7 @@ fn set_window_icon(
         window.set_window_icon(Some(icon.clone()));
     }
 }
-
+*/
 
 
 fn main() {
@@ -232,6 +232,7 @@ fn main() {
 
 
         )   
+     //   .add_plugins(  WindowIconPlugin::new("assets/images/favicon.png") ) 
         
         .add_plugins( MagicFxPlugin )  //this adds the materialize plugin.. so it comes first 
 
@@ -301,7 +302,7 @@ fn main() {
         .add_plugins(brush_tools_plugin)
         .add_plugins(editor_ui_plugin)
         .add_plugins(camera_plugin)
-        .add_systems(Startup, set_window_icon)
+       // .add_systems(Startup, set_window_icon)
 
 
 

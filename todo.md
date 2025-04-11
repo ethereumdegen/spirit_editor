@@ -2,12 +2,7 @@
 
 ## Spirit Editor
 
-
-  - Rewrite material definitions in TOML 
-  - build a material replacement for the portal that will make the portal gltfMaterialName use my magic fx shader !! should be easy now ! 
-
-
-
+ 
 
 - fix  splat eyedropper.. ? 
 
