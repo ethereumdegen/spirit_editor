@@ -1,0 +1,15 @@
+(
+
+
+     replacement_set_name: "dungeon_interior_prop",
+
+	 material_replacements : {
+ 
+        "portal" : "Portal1",
+         "stone" : "StoneBrickPixelFixedUv",
+         
+
+    },
+
+)
+    

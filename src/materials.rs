@@ -1,8 +1,15 @@
+use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
 use bevy_materialize::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
 
+use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
 
+
+/*
+
+sometimes this doesnt always work !? 
+*/
 pub fn materials_plugin(app:&mut App){
 
 
@@ -13,6 +20,7 @@ pub fn materials_plugin(app:&mut App){
             .add_systems(Update, (
                 
              	update_materialize_properties
+
                 ).chain()
                
            )
@@ -77,15 +85,14 @@ Performs post processing on our  materialize materials !! this is critical due t
 */
 fn update_materialize_properties(
 
-
     mut asset_load_events: EventReader< AssetEvent< GenericMaterial > >  ,
   
-     generic_materials_ext: GenericMaterials,
- 
+     generic_materials_ext: GenericMaterials, 
 
-     mut standard_materials : ResMut<Assets<StandardMaterial>> 
+     mut standard_materials : ResMut<Assets<StandardMaterial>> ,
+      mut fixed_uv_materials : ResMut<Assets< FixedSpaceUvMaterial >> 
 
-    ) {
+ ) {
 
  
     for evt in asset_load_events.read() {
@@ -102,7 +109,8 @@ fn update_materialize_properties(
 
                     let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( 1.0 ) ;
 
-                    let tex_subset_dimensions: Result<TextureSubsetDimensions, GenericMaterialError> = loaded_generic_material.get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS);
+                    let tex_subset_dimensions: Result<TextureSubsetDimensions, GenericMaterialError> = loaded_generic_material
+                                    .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS);
     
 
                      let uv_affine_xform = match    tex_subset_dimensions.ok() {
@@ -115,16 +123,17 @@ fn update_materialize_properties(
 
                      let material = &loaded_generic_material.material;
                       
-                    if let Some(  mat) = standard_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                    if let Some(  mat  ) = standard_materials.get_mut(  material.handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
                         mat.uv_transform = uv_affine_xform;
                     } 
 
+
+                    if let Some(  mat  ) = fixed_uv_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                        println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
+                        mat.base.uv_transform = uv_affine_xform;
+                    } 
  
-
-
-
-
             },
             _ =>  {} 
 

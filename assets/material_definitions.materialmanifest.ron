@@ -27,5 +27,13 @@
 
 
 
-   "Portal1":"materialize_defs/magicfx/portal_1.material.toml"
+    "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
+
+    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
+    "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
+
+    "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
 }
+
+
+// handle grass foliage shader w this !? 

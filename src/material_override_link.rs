@@ -62,7 +62,8 @@ for (  entity, custom_props_comp ) in custom_props_query.iter(){
 
 						cmd.try_insert( 
 							MaterialOverrideComponent {
-								material_override: material_name.to_string().clone()
+								material_override: material_name.to_string().clone(),
+								cascade: true , 
 							}
 						 );
 

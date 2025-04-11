@@ -60,7 +60,8 @@ fn add_material_handles(
 
         	cmd.remove::<ClayTileMaterial>();
         	cmd.insert( MaterialOverrideComponent {
-      	      material_override:  material_name.clone()
+      	      material_override:  material_name.clone(),
+      	      cascade: true , 
       		  } );
 
          } );

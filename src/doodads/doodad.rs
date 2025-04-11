@@ -302,7 +302,8 @@ fn attach_models_to_doodads(
                         if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                             cmd.try_insert(
                                 MaterialOverrideWhenSceneReadyComponent {
-                                    material_override: material_override.clone() 
+                                    material_override: material_override.clone() ,
+                                    cascade : true , 
                                 }
 
                             );
