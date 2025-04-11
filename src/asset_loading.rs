@@ -165,7 +165,7 @@ pub enum AssetLoadState {
 #[derive(AssetCollection, Resource)]
 pub struct TextureAssets {
 
-     #[asset(path = "textures/decal_textures", collection(typed, mapped))]
+     #[asset(path = "../artifacts/game_assets/textures/decal_textures", collection(typed, mapped))]
     pub(crate) decal_textures: HashMap<AssetFileName, Handle<Image>>,
        
 
