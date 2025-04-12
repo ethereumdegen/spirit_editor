@@ -10,7 +10,7 @@ use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
 
 sometimes this doesnt always work !? 
 */
-pub fn materials_plugin(app:&mut App){
+pub fn materialize_properties_plugin(app:&mut App){
 
 
           app

@@ -21,7 +21,7 @@ mod tools;
 mod ui;
 mod asset_loading;
 mod liquid;
-mod materials; 
+mod materialize_properties; 
 
 mod level_config;
 
@@ -288,7 +288,7 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-        .add_plugins(materials::materials_plugin   )
+        .add_plugins(materialize_properties::materialize_properties_plugin   )
 
         .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
