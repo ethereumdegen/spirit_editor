@@ -4,8 +4,8 @@ type = "MagicFxMaterial"
 base_color = { LinearRgba = [0.2, 0.3, 0.2, 0.8] }
 emissive= [33.0,0.3,33.0,3.6]   
 double_sided= true
-                       
-
+alpha_mode=  "Blend"                  
+ 
 
 
 [material.extension]
