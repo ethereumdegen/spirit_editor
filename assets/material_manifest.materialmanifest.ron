@@ -2,7 +2,7 @@
     override_materials: [
 
     "Portal1",
-       
+         "StoneBrickPixelFixedUv",
 
       "CaveGround",
       "CaveWall",

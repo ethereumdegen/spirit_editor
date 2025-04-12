@@ -1,9 +1,12 @@
-use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
+
 use bevy_materialize::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
 
-use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
+//use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
+//use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
+
+use crate::shaders::doodad_material::{DoodadMaterial,DoodadMaterialBase};
 
 
 /*
@@ -19,9 +22,12 @@ pub fn materialize_properties_plugin(app:&mut App){
 
             //.add_systems(Startup, register_foliage_assets)
             
-            .add_systems(Update, (
+            .add_systems(PostUpdate, (
                 
-             	update_materialize_properties
+             //	update_materialize_properties,
+                update_materialize_properties_when_applied,
+
+                update_doodad_material, 
 
                 ).chain()
                
@@ -84,32 +90,35 @@ Read custom properties from our materialize toml file and apply them
 
 Performs post processing on our  materialize materials !! this is critical due to how we are using spritesheet textures 
 
-*/
-fn update_materialize_properties(
+*/fn update_materialize_properties_when_applied(
 
-    mut asset_load_events: EventReader< AssetEvent< GenericMaterial > >  ,
-  
+
+    material_entity: Query< (Entity, &GenericMaterial3d ), Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
+
      generic_materials_ext: GenericMaterials, 
 
-      mut standard_materials : ResMut<Assets< StandardMaterial >> ,
-      mut fixed_uv_materials : ResMut<Assets< FixedSpaceUvMaterial >> 
-
- ) {
-
- 
-    for evt in asset_load_events.read() {
-
-        match evt {
-
-            AssetEvent::LoadedWithDependencies { id } => {
-                 //  println!( "LoadedWithDependencies GenericMaterial 1 " );
 
 
-                let Some(loaded_generic_material) =  generic_materials_ext.get( *id ) else {continue};
+     mut standard_materials : ResMut<Assets< StandardMaterial >> ,
+   //   mut fixed_uv_materials : ResMut<Assets< FixedSpaceUvMaterial >> ,  
+       mut doodad_materials : ResMut<Assets< DoodadMaterial >> 
+
+
+   //  mut commands: Commands 
+
     
-                     //  println!( "LoadedWithDependencies GenericMaterial 2" );
+){
+    for (entity, generic_material_3d) in material_entity.iter(){
 
-                    let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( 1.0 ) ;
+
+        let asset_id = generic_material_3d.id() ;
+
+
+         let Some(loaded_generic_material) =  generic_materials_ext.get(  asset_id ) else {continue};
+
+
+
+                  let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( 1.0 ) ;
 
                     let tex_subset_dimensions: Result<TextureSubsetDimensions, GenericMaterialError> = loaded_generic_material
                                     .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS);
@@ -132,20 +141,100 @@ fn update_materialize_properties(
                     } 
 
 
-                    if let Some(  mat  ) = fixed_uv_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                  /*  if let Some(  mat  ) = fixed_uv_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                        println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
+                        mat.base.uv_transform = uv_affine_xform;
+                    } */
+
+
+                    if let Some(  mat  ) = doodad_materials.get_mut(  material.handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
                         mat.base.uv_transform = uv_affine_xform;
                     } 
- 
-            },
-            _ =>  {} 
 
-        }
 
     }
 
 
-     // You can also do materials.get(<asset id>) to get a view.
-  
 
+
+ }
+
+
+// a hack to add the mask image 
+fn update_doodad_material(
+       material_entity: Query<   &GenericMaterial3d , Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
+
+     generic_materials_ext: GenericMaterials, 
+
+     mut commands: Commands, 
+      // world: &mut World,
+
+
+      doodad_materials : Res <Assets< DoodadMaterial >> ,
+
+
+      
+
+
+){
+
+
+     for  generic_material_3d in material_entity.iter(){
+
+
+                let asset_id = generic_material_3d.id() ;
+
+
+                 let Some(loaded_generic_material) =  generic_materials_ext.get(  asset_id ) else {continue};
+
+ 
+
+                     let material = &loaded_generic_material.material;
+
+                 
+
+
+                    if let Some(  _mat  ) = doodad_materials.get (  material.handle.id() .typed_unchecked()) {
+                        
+
+                        commands.queue( BuildMaterialMask( material.handle.id().typed_unchecked() )  );
+                        // mat.extension.build_mask_from_world(  world  )
+                   
+
+                    } 
+
+
+    }
+
+
+
+}
+
+struct BuildMaterialMask( AssetId<DoodadMaterial> ) ;
+
+
+impl Command for BuildMaterialMask {
+
+
+fn apply(self, world: &mut  World) { 
+
+    //remove and re-insert it ! 
+
+
+        let Some(mut doodad_materials ) = world.remove_resource::<Assets<DoodadMaterial>>() else {return};
+
+     //   let Some(mut doodad_materials ) = world.get_resource_mut::<Assets<DoodadMaterial>>() else {return};
+
+
+          if let Some(  mat  ) = doodad_materials.get_mut (  self. 0 ) {
+
+
+               mat.extension.build_mask_from_world(  world  )
+
+
+         } 
+
+         world.insert_resource(   doodad_materials  );
+     }
 }
