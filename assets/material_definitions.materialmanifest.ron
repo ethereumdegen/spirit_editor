@@ -20,6 +20,8 @@
   "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
 
 
+  "MetalMeshWall":"materialize_defs/pixel/metal_mesh_wall.material.toml",
+
 
   "DirtPixel":"materialize_defs/pixel/dirt_pixel.material.toml",
 

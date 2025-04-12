@@ -1,8 +1,11 @@
 (
     override_materials: [
 
-    "Portal1",
+        "Portal1",
          "StoneBrickPixelFixedUv",
+
+
+          "MetalMeshWall",
 
       "CaveGround",
       "CaveWall",
