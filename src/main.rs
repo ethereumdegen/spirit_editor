@@ -39,6 +39,8 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+use bevy_materialize::MaterializePlugin;
+use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
 use bevy::render::render_resource::AddressMode;
 use bevy::render::render_resource::FilterMode;
@@ -232,6 +234,12 @@ fn main() {
 
 
         )   
+
+        .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
+                    .with_simple_loader_settings(None)   //to prevent bug with PNG loading 
+             )
+
+        
      //   .add_plugins(  WindowIconPlugin::new("assets/images/favicon.png") ) 
         
         .add_plugins( MagicFxPlugin )  //this adds the materialize plugin.. so it comes first 
