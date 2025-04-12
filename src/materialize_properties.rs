@@ -1,4 +1,5 @@
 
+use bevy_materialize::GenericMaterialApplied;
 use bevy_materialize::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
@@ -93,7 +94,7 @@ Performs post processing on our  materialize materials !! this is critical due t
 */fn update_materialize_properties_when_applied(
 
 
-    material_entity: Query< (Entity, &GenericMaterial3d ), Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
+    material_entity: Query< (Entity, &GenericMaterial3d ), Or<( Added<GenericMaterial3d> , Changed<GenericMaterialApplied> )>>,
 
      generic_materials_ext: GenericMaterials, 
 
