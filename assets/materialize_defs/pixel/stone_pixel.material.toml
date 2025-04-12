@@ -1,7 +1,7 @@
-type = "StandardMaterial"
+type = "DoodadMaterial"
 
 
-[material]
+[material.base]  
 base_color_texture="/textures/material_overrides/pixel/overgrown_pixel_dungeon.png"
 normal_map_texture="/textures/material_overrides/pixel/overgrown_pixel_dungeon_normal.png"
 perceptual_roughness= 0.9

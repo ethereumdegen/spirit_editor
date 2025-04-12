@@ -1,7 +1,6 @@
-type = "StandardMaterial"
+type = "DoodadMaterial"
 
-
-[material]
+[material.base]  
 base_color_texture="/textures/material_overrides/pixel/szadiart_catacombs.png"
 normal_map_texture="/textures/material_overrides/pixel/szadiart_catacombs_normal.png"
 perceptual_roughness= 0.9
