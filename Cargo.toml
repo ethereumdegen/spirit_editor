@@ -29,10 +29,17 @@ winit = { version = "0.30", default-features = false }
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
- bevy_material_wizard = "0.15.12"
-  #bevy_material_wizard = {path="../bevy_material_wizard"}
+ #bevy_material_wizard = "0.15.12"
+   bevy_material_wizard = {path="../bevy_material_wizard"}
 
-  bevy_materialize = "0.4.2"
+  bevy_materialize = {version="0.4.2", features=[ "toml" ],   default-features = false  }
+
+
+
+
+#bevy_magic_fx = "0.15.8"
+  bevy_magic_fx = {path="../bevy_magic_fx"}
+
 
 
 
@@ -49,8 +56,6 @@ winit = { version = "0.30", default-features = false }
  bevy_clay_tiles = "0.15.1"
  #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
-
-bevy_magic_fx = "0.15.8"
 
 
 noise = "0.9"
