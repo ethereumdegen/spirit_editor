@@ -3,6 +3,8 @@ use crate::decal_manifest::DecalManifest;
 use crate::level_config::LevelConfig;
 use bevy_editor_pls_default_windows::placement::PlacementWindow;
 use bevy_editor_pls_core::Editor;
+use bevy_material_wizard::registered_materials::RegisteredMaterialsMap;
+use bevy_materialize::GenericMaterial;
 
 use crate::utils::copy_dir_recursive;
 use std::path::Path;
@@ -349,7 +351,9 @@ fn load_magic_fx(
 
      fx_variant_assets: ResMut<Assets<MagicFxVariantManifest>>,
 
-  //    animated_materials_assets: Res<Assets<AnimatedMaterial>>,
+     registered_materials_map: Res<RegisteredMaterialsMap> ,
+
+      generic_materials_assets: Res<Assets<GenericMaterial>>,
     mut asset_server: ResMut<AssetServer>,
 
 
@@ -377,7 +381,7 @@ fn load_magic_fx(
                         rebuilt_mesh_handle_map.insert(key.clone().into(), value.clone());
                     }
 
-                  //  let animated_materials_map = &built_vfx_resource.animated_materials_map;
+                    let built_materials_map = & registered_materials_map.0 ;
     
 
                         info!("loading magic fx {:?}", file_stem );
@@ -387,8 +391,8 @@ fn load_magic_fx(
                       
                         &rebuilt_mesh_handle_map,
                       
-                      //  &animated_materials_map,
-                       //    &animated_materials_assets,
+                            &built_materials_map,
+                             &generic_materials_assets,
                           &mut asset_server 
      
                         

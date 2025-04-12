@@ -4,6 +4,11 @@
 
  
 
+ BUG:   doodads have standard and ext material on !!??!? 
+
+
+
+
 - fix  splat eyedropper.. ? 
 
 // MODEL ISSUES 

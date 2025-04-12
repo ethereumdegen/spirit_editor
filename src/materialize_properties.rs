@@ -91,10 +91,13 @@ Read custom properties from our materialize toml file and apply them
 
 Performs post processing on our  materialize materials !! this is critical due to how we are using spritesheet textures 
 
+
+      this is buggy and weird  pretty often.. ? 
+
 */fn update_materialize_properties_when_applied(
 
 
-    material_entity: Query< (Entity, &GenericMaterial3d ), Or<( Added<GenericMaterial3d> , Changed<GenericMaterialApplied> )>>,
+    material_entity: Query< (Entity, &GenericMaterial3d ),   Changed<GenericMaterialApplied>  >,
 
      generic_materials_ext: GenericMaterials, 
 
@@ -164,7 +167,7 @@ Performs post processing on our  materialize materials !! this is critical due t
 
 // a hack to add the mask image 
 fn update_doodad_material(
-       material_entity: Query<   &GenericMaterial3d , Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
+       material_query: Query<   &GenericMaterial3d , Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
 
      generic_materials_ext: GenericMaterials, 
 
@@ -181,7 +184,7 @@ fn update_doodad_material(
 ){
 
 
-     for  generic_material_3d in material_entity.iter(){
+     for  generic_material_3d in material_query.iter(){
 
 
                 let asset_id = generic_material_3d.id() ;

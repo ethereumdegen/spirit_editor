@@ -1,7 +1,7 @@
-type = "StandardMaterial"
+type = "DoodadMaterial"
 
 
-[material]
+[material.base]  
 base_color_texture="/textures/material_overrides/slate_1_diffuse.png"
 normal_map_texture="/textures/material_overrides/slate_1_normal.png"
 perceptual_roughness= 0.9
@@ -9,5 +9,4 @@ base_color={ LinearRgba = [0.15, 0.15, 0.15, 1.0] }
 
 [properties]
 uv_scale_factor= 1.0 
-
-
+ 

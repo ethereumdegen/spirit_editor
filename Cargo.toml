@@ -29,14 +29,14 @@ winit = { version = "0.30", default-features = false }
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
- #bevy_material_wizard = "0.15.12"
-   bevy_material_wizard = {path="../bevy_material_wizard"}
+ bevy_material_wizard = "0.15.13"
+  # bevy_material_wizard = {path="../bevy_material_wizard"}
   bevy_materialize = {  version="0.4.2"    }
 
 
 
- bevy_magic_fx = "0.15.9"
- # bevy_magic_fx = {path="../bevy_magic_fx"}
+# bevy_magic_fx = "0.15.9"
+  bevy_magic_fx = {path="../bevy_magic_fx"}
 
 
 

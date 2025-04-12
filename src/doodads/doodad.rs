@@ -6,7 +6,7 @@
 use spirit_edit_core::zones::zone_file::CustomPropsMap;
 use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
-use crate::render::{CascadedNotShadowCaster, CascadedNotShadowReceiver};
+use crate::render::{CascadedNotShadowCaster, CascadedNotShadowReceiver };
 use spirit_edit_core::prefabs::PrefabToolState;
 use bevy_clay_tiles::clay_tile_block;
 

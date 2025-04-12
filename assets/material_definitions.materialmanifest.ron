@@ -16,6 +16,11 @@
   "StonePixel":"materialize_defs/pixel/stone_pixel.material.toml",
   "StonePixelAlt":"materialize_defs/pixel/stone_pixel_alt.material.toml",
 
+
+  "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
+
+
+
   "DirtPixel":"materialize_defs/pixel/dirt_pixel.material.toml",
 
   "BrickPixel":"materialize_defs/pixel/brick_pixel.material.toml",
@@ -26,13 +31,31 @@
    "CainosDungeonDark":"materialize_defs/pixel/cainos_dungeon_dark.material.toml",
 
 
-
-    "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
+   "RocksAdamantite":"materialize_defs/rocks_adamantite.material.toml",
+ 
 
     "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
     "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
 
-    "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
+    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
+
+    "StoneWall":"materialize_defs/stone_wall.material.toml",
+     "StoneWall2":"materialize_defs/stone_wall_2.material.toml",
+      "StoneWall3":"materialize_defs/stone_wall_3.material.toml",
+
+     "PixelFoliage":"materialize_defs/pixel/pixel_foliage.material.toml",
+
+
+
+      // enchantments ! 
+
+      "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
+  
+
+      "enchant_minor_fire":"materialize_defs/magicfx/fire_minor.material.toml",
+    
+     "fire_medium":"materialize_defs/magicfx/fire_medium.material.toml",
+ 
 }
 
 
