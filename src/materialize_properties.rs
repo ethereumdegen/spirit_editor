@@ -97,7 +97,7 @@ Performs post processing on our  materialize materials !! this is critical due t
 */fn update_materialize_properties_when_applied(
 
 
-    material_entity: Query< (Entity, &GenericMaterial3d ),   Changed<GenericMaterialApplied>  >,
+    material_entity: Query< (Entity, &GenericMaterial3d ),  Or<( Changed<GenericMaterialApplied> , Changed<MeshMaterial3d<DoodadMaterial>> )> >,
 
      generic_materials_ext: GenericMaterials, 
 
@@ -136,9 +136,11 @@ Performs post processing on our  materialize materials !! this is critical due t
                      };
  
 
+
                      let material = &loaded_generic_material.material;
 
-                      
+                    
+
                     if let Some(  mat  ) = standard_materials.get_mut(  material.handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
                         mat.uv_transform = uv_affine_xform;
