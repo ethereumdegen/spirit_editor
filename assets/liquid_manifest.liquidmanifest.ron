@@ -4,26 +4,26 @@
 
       "water" : (
 
-       shallow_color: Some( LinearRgba(
-                   red: 0.35,
-                         green:  0.55,
-                         blue:  0.66,
-                         alpha: 0.8
-        ) ),
+         shallow_color: Some( LinearRgba(
+                     red: 0.35,
+                           green:  0.55,
+                           blue:  0.66,
+                           alpha: 0.8
+          ) ),
 
-        deep_color: Some( LinearRgba(
-                       red: 0.12,
-                         green:  0.45,
-                         blue:  0.63,
-                         alpha: 0.9
-        ) ),
+          deep_color: Some( LinearRgba(
+                         red: 0.12,
+                           green:  0.45,
+                           blue:  0.63,
+                           alpha: 0.9
+          ) ),
 
-           foam_color: Some( LinearRgba(
-                       red: 2.4,
-                         green:  2.4,
-                         blue:  2.4,
-                         alpha: 2.9
-        ) ),
+             foam_color: Some( LinearRgba(
+                         red: 2.4,
+                           green:  2.4,
+                           blue:  2.4,
+                           alpha: 2.9
+          ) ),
 
 
 
@@ -31,48 +31,74 @@
 
       "water_pond" : (
 
-       shallow_color: Some( LinearRgba(
-                   red: 0.35,
-                         green:  0.55,
-                         blue:  0.66,
-                         alpha: 0.6
-        ) ),
+         shallow_color: Some( LinearRgba(
+                     red: 0.35,
+                           green:  0.55,
+                           blue:  0.66,
+                           alpha: 0.6
+          ) ),
 
-        deep_color: Some( LinearRgba(
-                       red: 0.12,
-                         green:  0.45,
-                         blue:  0.63,
-                         alpha: 0.7
-        ) ),
+          deep_color: Some( LinearRgba(
+                         red: 0.12,
+                           green:  0.45,
+                           blue:  0.63,
+                           alpha: 0.7
+          ) ),
 
-        surface_noise_scroll: Some( (0.02,0.02) ),
-        depth_max_distance: Some( 1.0 ) ,
+          surface_noise_scroll: Some( (0.02,0.02) ),
+          depth_max_distance: Some( 1.0 ) ,
 
 
        ),
 
        "water_swamp_green" : (
 
-        shallow_color: Some( LinearRgba(
-                   red: 0.5,
-                         green:  0.6,
-                         blue:  0.5,
-                         alpha: 0.8
-        ) ),
+          shallow_color: Some( LinearRgba(
+                     red: 0.5,
+                           green:  0.6,
+                           blue:  0.5,
+                           alpha: 0.8
+          ) ),
 
-        deep_color: Some( LinearRgba(
-                       red: 0.3,
-                         green:  0.4,
-                         blue:  0.3,
-                         alpha: 0.9
-        ) ),
+          deep_color: Some( LinearRgba(
+                         red: 0.3,
+                           green:  0.4,
+                           blue:  0.3,
+                           alpha: 0.9
+          ) ),
 
-         foam_color: Some( LinearRgba(
-                       red: 0.4,
-                         green:  0.4,
-                         blue:  0.4,
-                         alpha: 0.9
-        ) ),
+           foam_color: Some( LinearRgba(
+                         red: 0.4,
+                           green:  0.4,
+                           blue:  0.4,
+                           alpha: 0.9
+          ) ),
+
+       ),
+
+
+        "water_corrupt_purple" : (
+
+          shallow_color: Some( LinearRgba(
+                        red: 0.17,
+                           green:  0.11,
+                           blue:  0.24,
+                           alpha: 0.5
+          ) ),
+
+          deep_color: Some( LinearRgba(
+                         red: 0.14,
+                           green:  0.08,
+                           blue:  0.18,
+                         alpha: 0.6
+          ) ),
+
+           foam_color: Some( LinearRgba(
+                         red: 0.4,
+                           green:  0.4,
+                           blue:  0.4,
+                           alpha: 0.9
+          ) ),
 
        )
 
