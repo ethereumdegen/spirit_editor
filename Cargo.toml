@@ -24,12 +24,12 @@ winit = { version = "0.30", default-features = false }
 # image = { version = "0.25.2", default-features = false }
 
 
- degen_toon_terrain = {version = "0.15.18", features=["physics"]  }
+ degen_toon_terrain = {version = "0.16.0", features=["physics"]  }
 
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
- bevy_material_wizard = "0.16.0"
+  bevy_material_wizard = "0.16.0"
   # bevy_material_wizard = {path="../bevy_material_wizard"}
   bevy_materialize = {  version="0.5.1"    }
 
@@ -66,7 +66,7 @@ noise = "0.9"
 
  
 
- bevy_common_assets = {version="0.12.0", features= ["ron"]}
+ bevy_common_assets = {version="0.13.0", features= ["ron"]}
  
 
 serde = { version = "1", features = ["derive"] }
@@ -87,10 +87,10 @@ bevy_editor_pls_default_windows = { workspace = true  }
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.28.0"
-bevy_asset_loader = "0.22.0"
+bevy_asset_loader = "0.23.0"
 
  
-  bevy_foliage_tool =   "0.15.14"
+  bevy_foliage_tool =   "0.16.0"
    #  bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
@@ -105,7 +105,7 @@ serde_json = "1.0.138"
 
 [workspace.package]
 version = "0.8.2"
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0" 
 description = "In-App editor tools for bevy apps"
 readme = "README.md"
@@ -124,16 +124,17 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
- spirit_edit_core =  "0.15.11"
+ spirit_edit_core =  "0.16.0"
   # spirit_edit_core = {path="../spirit_edit_core"}
 
 anyhow = "1"
-bevy-inspector-egui = "0.28.0"
+bevy-inspector-egui = "0.31.0"
 
  
 
-egui = "0.29"
-  egui_dock = "0.14"
+egui = "0.31"
+
+ # egui_dock = "0.14"
 # egui-gizmo = "0.16"  # deprecated ? 
 
 #transform-gizmo-bevy= "0.3"
