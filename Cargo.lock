@@ -525,7 +525,7 @@ version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dd64580f4496ed987c6231c6a7d833068914331a9084bf5a3dd9dcbc66fd8a73"
 dependencies = [
- "bevy-inspector-egui-derive",
+ "bevy-inspector-egui-derive 0.28.0",
  "bevy_app 0.15.1",
  "bevy_asset 0.15.1",
  "bevy_color 0.15.2",
@@ -554,10 +554,55 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy-inspector-egui"
+version = "0.31.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4971e763f289921fd4616418628458bec26a6fc13fe4299c0e4066f39d7ceaa2"
+dependencies = [
+ "bevy-inspector-egui-derive 0.31.0",
+ "bevy_app 0.16.0",
+ "bevy_asset 0.16.0",
+ "bevy_color 0.16.1",
+ "bevy_core_pipeline 0.16.0",
+ "bevy_ecs 0.16.0",
+ "bevy_egui 0.34.1",
+ "bevy_image 0.16.0",
+ "bevy_log 0.16.0",
+ "bevy_math 0.16.0",
+ "bevy_pbr 0.16.0",
+ "bevy_platform",
+ "bevy_reflect 0.16.0",
+ "bevy_render 0.16.0",
+ "bevy_state 0.16.0",
+ "bevy_time 0.16.0",
+ "bevy_utils 0.16.0",
+ "bevy_window 0.16.0",
+ "bytemuck",
+ "disqualified",
+ "egui 0.31.1",
+ "fuzzy-matcher",
+ "image",
+ "smallvec",
+ "uuid",
+ "winit",
+]
+
+[[package]]
 name = "bevy-inspector-egui-derive"
 version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3afc67826e0a4347414545e022e748f42550a577a502b26af44e6d03742c9266"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.100",
+]
+
+[[package]]
+name = "bevy-inspector-egui-derive"
+version = "0.31.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2656316165dbe2af6b3acaa763332f5dbdd12f809d59f5bf4304e0642a8005c9"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -778,21 +823,21 @@ dependencies = [
 
 [[package]]
 name = "bevy_asset_loader"
-version = "0.22.0"
+version = "0.23.0-rc.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d806c255faca43ace03fe99889dd322e295a55ed4dd478a5d8ea6efe523158fe"
+checksum = "51086efbc7ba2e5d64d6b9bb8e13ab5ee9edb98f5a8a5ad3803d82d2820b1159"
 dependencies = [
  "anyhow",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy_asset_loader_derive",
  "path-slash",
 ]
 
 [[package]]
 name = "bevy_asset_loader_derive"
-version = "0.22.0"
+version = "0.23.0-rc.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b758b06fa9ec729c925f1fc256b503ca438f1ea345636af362b5fae71f5d8868"
+checksum = "e84b57682d587441c15283918d730960cbc6d82e9563b48714c4992d86c3ddce"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -862,12 +907,12 @@ dependencies = [
 
 [[package]]
 name = "bevy_clay_tiles"
-version = "0.15.1"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0cc825ef6e35e8cfce600b2c0169280595852ea993dedea95fc46227ce1e683"
+checksum = "6e2e3caa96825337811f71e8463d9b1ab434b13c497c2db5e17760c0eea1cc89"
 dependencies = [
  "anyhow",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "futures-lite 1.13.0",
  "geo",
  "image",
@@ -922,7 +967,6 @@ dependencies = [
  "ron",
  "serde",
  "thiserror 1.0.69",
- "toml",
 ]
 
 [[package]]
@@ -1158,7 +1202,7 @@ dependencies = [
  "bevy 0.15.1",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
- "egui 0.29.1",
+ "egui 0.31.1",
  "transform-gizmo-bevy",
 ]
 
@@ -1167,7 +1211,7 @@ name = "bevy_editor_pls_core"
 version = "0.8.2"
 dependencies = [
  "bevy 0.15.1",
- "bevy-inspector-egui",
+ "bevy-inspector-egui 0.31.0",
  "egui_dock",
  "indexmap",
 ]
@@ -1179,7 +1223,7 @@ dependencies = [
  "anyhow",
  "base64 0.21.7",
  "bevy 0.15.1",
- "bevy-inspector-egui",
+ "bevy-inspector-egui 0.31.0",
  "bevy_common_assets 0.12.0",
  "bevy_editor_pls_core",
  "bevy_mod_debugdump",
@@ -1198,7 +1242,7 @@ name = "bevy_editor_pls_ext"
 version = "0.8.2"
 dependencies = [
  "bevy 0.15.1",
- "bevy-inspector-egui",
+ "bevy-inspector-egui 0.31.0",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
  "egui_dock",
@@ -1300,12 +1344,12 @@ dependencies = [
 
 [[package]]
 name = "bevy_foliage_tool"
-version = "0.15.14"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fc1777ff864ed9e0fc5163177656e4b034126c9b1458633dfab506fccd4fba4"
+checksum = "80402db0597f00366d2c4546570ae5d88444b8ad6dcbc9ac6607295550d0ac05"
 dependencies = [
  "anyhow",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bincode",
  "futures-lite 1.13.0",
  "image",
@@ -1765,6 +1809,8 @@ dependencies = [
 [[package]]
 name = "bevy_magic_fx"
 version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03bef87c58070ac22a247a2afd94516e73f13e583578681e618dd6c43ef95be4"
 dependencies = [
  "bevy 0.16.0",
  "bevy_common_assets 0.13.0",
@@ -2160,12 +2206,12 @@ dependencies = [
 
 [[package]]
 name = "bevy_regions"
-version = "0.15.0"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "45af1ee0ea59c2bac5272951945f476ceb8a1cb646e47ae206d973ad3b3ca62f"
+checksum = "3e8a0656536010b6da48b8af1ea4d6de120371028de52bf99ce1f5db63776d56"
 dependencies = [
  "anyhow",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "futures-lite 1.13.0",
  "image",
  "png",
@@ -3512,12 +3558,12 @@ checksum = "e8566979429cf69b49a5c740c60791108e86440e8be149bbea4fe54d2c32d6e2"
 
 [[package]]
 name = "degen_toon_clouds"
-version = "0.15.3"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d93ebea54b58b535f75082f12cd13a9c56778977a3805dfb5aa2259935172cd1"
+checksum = "c1310c66c2c6d3e2482a182df5b70cefb8605d9ef1d89043881c1f44c5dcbd67"
 dependencies = [
- "bevy 0.15.1",
- "bevy_common_assets 0.12.0",
+ "bevy 0.16.0",
+ "bevy_common_assets 0.13.0",
  "ron",
  "serde",
  "serde_json",
@@ -3525,13 +3571,13 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_terrain"
-version = "0.15.18"
+version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85063ab78ad11949bf1a3c67b5987479951626e2f10497d48a1482ed694753fc"
+checksum = "4e879f7b17dc5b3eb989471906c9460c9c4884eee75eb6e2f12ad116069e2dbc"
 dependencies = [
  "anyhow",
  "avian3d",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bincode",
  "futures-lite 1.13.0",
  "half",
@@ -3546,12 +3592,12 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_water"
-version = "0.15.3"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70dce4620ff0ec8a828922d77b502a45edb96f9f18ee39341c5d36500e841df6"
+checksum = "bcaf4fa88e1c8b0e6282bb1640ad0acfb7eaa2c19ab6cca16571057f7d36d0da"
 dependencies = [
- "bevy 0.15.1",
- "bevy_common_assets 0.12.0",
+ "bevy 0.16.0",
+ "bevy_common_assets 0.13.0",
  "ron",
  "serde",
  "serde_json",
@@ -3706,12 +3752,12 @@ dependencies = [
 
 [[package]]
 name = "egui_dock"
-version = "0.14.0"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2fe4e3414481dea5ed59fdfa88f2e00b6ea60fbe758ca7a8636d0dbed93ab9cf"
+checksum = "9ea7536fb0243aea55c1ca123a41a18253e16520d427a7213da584b9e2cb3973"
 dependencies = [
  "duplicate",
- "egui 0.29.1",
+ "egui 0.31.1",
  "paste",
 ]
 
@@ -6837,14 +6883,14 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.15.11"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "248d5a12721d326a60e06989389a40aa9d6a6c38d62088c8ce60022c5b072763"
+checksum = "9ffeda2494ab861388e3b155bcc4003afd446d3f983e6705e3360f73397f6d7b"
 dependencies = [
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy_clay_tiles",
- "bevy_common_assets 0.12.0",
- "bevy_egui 0.31.1",
+ "bevy_common_assets 0.13.0",
+ "bevy_egui 0.34.1",
  "rand",
  "ron",
  "serde",
@@ -6856,10 +6902,10 @@ version = "0.16.0"
 dependencies = [
  "anyhow",
  "bevy 0.16.0",
- "bevy-inspector-egui",
+ "bevy-inspector-egui 0.28.0",
  "bevy_asset_loader",
  "bevy_clay_tiles",
- "bevy_common_assets 0.12.0",
+ "bevy_common_assets 0.13.0",
  "bevy_contact_projective_decals",
  "bevy_editor_pls",
  "bevy_editor_pls_core",

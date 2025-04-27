@@ -24,7 +24,7 @@ winit = { version = "0.30", default-features = false }
 # image = { version = "0.25.2", default-features = false }
 
 
- degen_toon_terrain = {version = "0.16.0", features=["physics"]  }
+ degen_toon_terrain = {version = "0.16.1", features=["physics"]  }
 
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
@@ -87,7 +87,7 @@ bevy_editor_pls_default_windows = { workspace = true  }
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.28.0"
-bevy_asset_loader = "0.23.0"
+bevy_asset_loader = "0.23.0-rc.3"
 
  
   bevy_foliage_tool =   "0.16.0"
@@ -134,7 +134,7 @@ bevy-inspector-egui = "0.31.0"
 
 egui = "0.31"
 
- # egui_dock = "0.14"
+  egui_dock = "0.16"  # ?? 
 # egui-gizmo = "0.16"  # deprecated ? 
 
 #transform-gizmo-bevy= "0.3"
