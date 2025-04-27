@@ -63,7 +63,7 @@ impl Plugin for EditorPlugin {
             app.add_plugins(DefaultInspectorConfigPlugin);
         }
         if !app.is_plugin_added::<EguiPlugin>() {
-            app.add_plugins(EguiPlugin);
+            app.add_plugins(EguiPlugin{ enable_multipass_for_primary_context: false  });
         }
 
         let (window_entity, always_active) = match self.window {

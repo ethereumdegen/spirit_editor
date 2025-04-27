@@ -958,19 +958,6 @@ dependencies = [
 
 [[package]]
 name = "bevy_common_assets"
-version = "0.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3521990269672c442f2bf0fbed0fce9db719e3dd136dd4012a97809464a4389d"
-dependencies = [
- "anyhow",
- "bevy 0.15.1",
- "ron",
- "serde",
- "thiserror 1.0.69",
-]
-
-[[package]]
-name = "bevy_common_assets"
 version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0a18527525acb0a131ecad38eecbd0e578aefb55959304a37ab44b474b67734b"
@@ -1199,7 +1186,7 @@ dependencies = [
 name = "bevy_editor_pls"
 version = "0.8.2"
 dependencies = [
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
  "egui 0.31.1",
@@ -1210,7 +1197,7 @@ dependencies = [
 name = "bevy_editor_pls_core"
 version = "0.8.2"
 dependencies = [
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy-inspector-egui 0.31.0",
  "egui_dock",
  "indexmap",
@@ -1222,11 +1209,10 @@ version = "0.8.2"
 dependencies = [
  "anyhow",
  "base64 0.21.7",
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy-inspector-egui 0.31.0",
- "bevy_common_assets 0.12.0",
+ "bevy_common_assets",
  "bevy_editor_pls_core",
- "bevy_mod_debugdump",
  "indexmap",
  "opener",
  "pretty-type-name",
@@ -1241,7 +1227,7 @@ dependencies = [
 name = "bevy_editor_pls_ext"
 version = "0.8.2"
 dependencies = [
- "bevy 0.15.1",
+ "bevy 0.16.0",
  "bevy-inspector-egui 0.31.0",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
@@ -1813,7 +1799,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "03bef87c58070ac22a247a2afd94516e73f13e583578681e618dd6c43ef95be4"
 dependencies = [
  "bevy 0.16.0",
- "bevy_common_assets 0.13.0",
+ "bevy_common_assets",
  "bevy_materialize",
  "bevy_obj 0.16.0",
  "ron",
@@ -1945,23 +1931,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75e0258423c689f764556e36b5d9eebdbf624b29a1fd5b33cd9f6c42dcc4d5f3"
 dependencies = [
  "glam",
-]
-
-[[package]]
-name = "bevy_mod_debugdump"
-version = "0.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2855a39000ecb45c94f1b44ca14133398b8e6c6a0913d80d932037b7c1c016f5"
-dependencies = [
- "bevy_app 0.15.1",
- "bevy_color 0.15.2",
- "bevy_ecs 0.15.1",
- "bevy_render 0.15.1",
- "bevy_utils 0.15.1",
- "lexopt",
- "once_cell",
- "petgraph 0.6.5",
- "pretty-type-name",
 ]
 
 [[package]]
@@ -3563,7 +3532,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c1310c66c2c6d3e2482a182df5b70cefb8605d9ef1d89043881c1f44c5dcbd67"
 dependencies = [
  "bevy 0.16.0",
- "bevy_common_assets 0.13.0",
+ "bevy_common_assets",
  "ron",
  "serde",
  "serde_json",
@@ -3597,7 +3566,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bcaf4fa88e1c8b0e6282bb1640ad0acfb7eaa2c19ab6cca16571057f7d36d0da"
 dependencies = [
  "bevy 0.16.0",
- "bevy_common_assets 0.13.0",
+ "bevy_common_assets",
  "ron",
  "serde",
  "serde_json",
@@ -4981,12 +4950,6 @@ dependencies = [
  "ogg",
  "tinyvec",
 ]
-
-[[package]]
-name = "lexopt"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "baff4b617f7df3d896f97fe922b64817f6cd9a756bb81d40f8883f2f66dcb401"
 
 [[package]]
 name = "libc"
@@ -6889,7 +6852,7 @@ checksum = "9ffeda2494ab861388e3b155bcc4003afd446d3f983e6705e3360f73397f6d7b"
 dependencies = [
  "bevy 0.16.0",
  "bevy_clay_tiles",
- "bevy_common_assets 0.13.0",
+ "bevy_common_assets",
  "bevy_egui 0.34.1",
  "rand",
  "ron",
@@ -6905,7 +6868,7 @@ dependencies = [
  "bevy-inspector-egui 0.28.0",
  "bevy_asset_loader",
  "bevy_clay_tiles",
- "bevy_common_assets 0.13.0",
+ "bevy_common_assets",
  "bevy_contact_projective_decals",
  "bevy_editor_pls",
  "bevy_editor_pls_core",

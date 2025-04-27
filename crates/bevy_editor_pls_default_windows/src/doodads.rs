@@ -17,7 +17,7 @@ use bevy::prelude::*;
 //use bevy_mod_raycast::immediate::RaycastSettings;
 use rand::Rng;
 
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap; 
 
 
 //use crate::doodads::doodad_manifest::RenderableType;

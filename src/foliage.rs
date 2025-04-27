@@ -15,7 +15,7 @@ use bevy_foliage_tool::foliage_material::FoliageMaterialExtension;
 use degen_toon_terrain::terrain::TerrainData;
 use degen_toon_terrain::terrain_config::TerrainConfig;
 use degen_toon_terrain::chunk::ChunkHeightMapResource;
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap;;
 use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
  
 //use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;

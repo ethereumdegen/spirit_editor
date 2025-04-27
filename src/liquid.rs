@@ -1,5 +1,5 @@
 
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap; 
 use degen_toon_water::DegenToonWaterPlugin;
  
 use degen_toon_water::toonwater_material::{build_toon_water_material,  ToonWaterMaterial};

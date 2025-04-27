@@ -1,5 +1,5 @@
 use bevy::prelude::{App, World};
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap;
 use bevy_inspector_egui::egui;
 use std::any::{Any, TypeId};
 
