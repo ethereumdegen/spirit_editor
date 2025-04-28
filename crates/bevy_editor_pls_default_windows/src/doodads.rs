@@ -1,3 +1,4 @@
+use bevy::ecs::relationship::AncestorIter;
 use spirit_edit_core::doodads::doodad::DoodadComponent;
 use spirit_edit_core::doodads::doodad_manifest::DoodadManifest;
 use spirit_edit_core::doodads::doodad_manifest::DoodadTagMapResource;
@@ -9,7 +10,7 @@ use spirit_edit_core::doodads::picking::PreventEditorSelection;
 use crate::hierarchy::HierarchyWindow;
   
   use bevy::picking::backend::ray::RayMap; 
- 
+  
   
 use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 
@@ -203,7 +204,7 @@ pub fn update_picking_doodads(
 
     unpickable_query: Query<&PreventEditorSelection>,
     doodad_comp_query: Query<&DoodadComponent>,
-    parent_query: Query<&Parent>,
+    parent_query: Query<& ChildOf >,
 ) {
     let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
 

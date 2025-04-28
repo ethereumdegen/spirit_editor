@@ -7311,8 +7311,8 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo"
-version = "0.5.1"
-source = "git+https://github.com/ethereumdegen/transform-gizmo#2e22bc02a80abbcdd945e70d0e71155c30835995"
+version = "0.6.0"
+source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#ab3f776392489a75f08f268824d65ea75f34942f"
 dependencies = [
  "ahash",
  "ecolor 0.29.1",
@@ -7326,26 +7326,25 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo-bevy"
-version = "0.5.1"
-source = "git+https://github.com/ethereumdegen/transform-gizmo#2e22bc02a80abbcdd945e70d0e71155c30835995"
+version = "0.6.0"
+source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#ab3f776392489a75f08f268824d65ea75f34942f"
 dependencies = [
- "bevy 0.15.1",
- "bevy_app 0.15.1",
- "bevy_asset 0.15.1",
- "bevy_core",
- "bevy_core_pipeline 0.15.1",
- "bevy_derive 0.15.1",
- "bevy_ecs 0.15.1",
- "bevy_image 0.15.1",
- "bevy_input 0.15.1",
- "bevy_log 0.15.1",
- "bevy_math 0.15.1",
- "bevy_pbr 0.15.1",
- "bevy_reflect 0.15.1",
- "bevy_render 0.15.1",
- "bevy_transform 0.15.1",
- "bevy_utils 0.15.1",
- "bevy_window 0.15.1",
+ "bevy 0.16.0",
+ "bevy_app 0.16.0",
+ "bevy_asset 0.16.0",
+ "bevy_core_pipeline 0.16.0",
+ "bevy_derive 0.16.0",
+ "bevy_ecs 0.16.0",
+ "bevy_image 0.16.0",
+ "bevy_input 0.16.0",
+ "bevy_log 0.16.0",
+ "bevy_math 0.16.0",
+ "bevy_pbr 0.16.0",
+ "bevy_reflect 0.16.0",
+ "bevy_render 0.16.0",
+ "bevy_transform 0.16.0",
+ "bevy_utils 0.16.0",
+ "bevy_window 0.16.0",
  "bytemuck",
  "transform-gizmo",
  "uuid",

@@ -2,7 +2,7 @@ use bevy::{
     prelude::*,
     render::{render_graph::RenderGraph, Render, RenderApp},
 };
-use bevy_mod_debugdump::{render_graph, schedule_graph};
+ // use bevy_mod_debugdump::{render_graph, schedule_graph};
 use std::{
     io::Write,
     process::{Command, Stdio},
