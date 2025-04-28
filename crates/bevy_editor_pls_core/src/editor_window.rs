@@ -60,11 +60,14 @@ impl EditorWindowContext<'_> {
     pub fn state_mut_many<const N: usize>(
         &mut self,
         ids: [&TypeId; N],
-    ) -> [&mut (dyn Any + Send + Sync + 'static); N] {
+    ) -> [&mut Box<(dyn Any + Send + Sync + 'static)>; N] {
+      
+
+
         self.window_states
             .get_many_mut(ids)
          //   .unwrap()
-            .map(|val| &mut **val)
+            .map(|val|   val .unwrap()   )
     }
     pub fn state_mut_triplet<W1: EditorWindow, W2: EditorWindow, W3: EditorWindow>(
         &mut self,

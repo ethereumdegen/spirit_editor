@@ -7,10 +7,16 @@ use std::marker::PhantomData;
 
 use bevy::prelude::*;
 use bevy::render::camera::CameraUpdateSystem;
-use bevy::transform::TransformSystem;
 use bevy::window::{PrimaryWindow, WindowRef};
+use bevy::transform::TransformSystem;
+
 use bevy_inspector_egui::{
-    bevy_egui::{EguiPlugin, EguiSet},
+    bevy_egui::{
+        EguiPlugin,
+
+        EguiPreUpdateSet, EguiPostUpdateSet, 
+        //  EguiSet
+    },
     DefaultInspectorConfigPlugin,
 };
 use editor::EditorInternalState;
@@ -71,7 +77,9 @@ impl Plugin for EditorPlugin {
                 let entity = app
                     .world_mut()
                     .query_filtered::<Entity, With<PrimaryWindow>>()
-                    .single(&app.world());
+                    .single(&app.world()) .unwrap()    ;
+
+
                 (entity, false)
             }
             WindowRef::Entity(entity) => (entity, true),
@@ -87,7 +95,7 @@ impl Plugin for EditorPlugin {
                     .in_set(EditorSet::UI)
                     .before(TransformSystem::TransformPropagate)
                     .before(CameraUpdateSystem)
-                    .before(EguiSet::ProcessOutput),
+                    .before(EguiPostUpdateSet::ProcessOutput),  // ?? 
             );
     }
 }
