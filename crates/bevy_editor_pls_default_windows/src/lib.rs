@@ -10,7 +10,7 @@ use transform_gizmo_bevy::TransformGizmoPlugin;
 pub mod add;
 pub mod assets;
 pub mod cameras;
- // pub mod debug_settings;
+pub mod debug_settings;
 pub mod diagnostics;
 pub mod gizmos;
 pub mod hierarchy;
