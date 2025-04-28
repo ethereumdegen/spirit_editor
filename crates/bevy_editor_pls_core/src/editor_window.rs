@@ -63,7 +63,7 @@ impl EditorWindowContext<'_> {
     ) -> [&mut (dyn Any + Send + Sync + 'static); N] {
         self.window_states
             .get_many_mut(ids)
-            .unwrap()
+         //   .unwrap()
             .map(|val| &mut **val)
     }
     pub fn state_mut_triplet<W1: EditorWindow, W2: EditorWindow, W3: EditorWindow>(
@@ -73,11 +73,11 @@ impl EditorWindowContext<'_> {
             &TypeId::of::<W1>(),
             &TypeId::of::<W2>(),
             &TypeId::of::<W3>(),
-        ])?;
+        ]);
 
-        let a = a.downcast_mut::<W1::State>()?;
-        let b = b.downcast_mut::<W2::State>()?;
-        let c = c.downcast_mut::<W3::State>()?;
+        let a = a?.downcast_mut::<W1::State>()?;
+        let b = b?.downcast_mut::<W2::State>()?;
+        let c = c?.downcast_mut::<W3::State>()?;
         Some((a, b, c))
     }
 
@@ -88,10 +88,10 @@ impl EditorWindowContext<'_> {
 
         let [a, b] = self
             .window_states
-            .get_many_mut([&TypeId::of::<W1>(), &TypeId::of::<W2>()])?;
+            .get_many_mut([&TypeId::of::<W1>(), &TypeId::of::<W2>()]) ;
 
-        let a = a.downcast_mut::<W1::State>()?;
-        let b = b.downcast_mut::<W2::State>()?;
+        let a = a?.downcast_mut::<W1::State>()?;
+        let b = b?.downcast_mut::<W2::State>()?;
         Some((a, b))
     }
 
