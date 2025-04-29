@@ -2,6 +2,10 @@
 
 ## Spirit Editor
 
+
+
+- switch decal system to the one integrated into 0.16 ?
+- update bevy obj ! 
  
 
  BUG:   doodads have standard and ext material on !!??!? 
