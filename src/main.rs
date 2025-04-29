@@ -214,6 +214,13 @@ fn main() {
                     ..default()
                 })
 
+                 .set(AssetPlugin {
+                     unapproved_path_mode: bevy::asset::UnapprovedPathMode::Allow ,  // for using ./artifacts , for now 
+                    ..default()
+                })
+
+
+
                .set(ImagePlugin{
 
                     default_sampler : ImageSamplerDescriptor {

@@ -911,7 +911,7 @@ dependencies = [
 [[package]]
 name = "bevy_contact_projective_decals"
 version = "0.16.0"
-source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#0b25f9f8dff675130b0788e3cecadaee53e74216"
+source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#22d90a1252fbde684f9711000f1a4f7edfcdec4d"
 dependencies = [
  "bevy",
 ]

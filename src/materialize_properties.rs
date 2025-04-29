@@ -20,6 +20,9 @@ pub fn materialize_properties_plugin(app:&mut App){
           app
 
           .register_type::<TextureSubsetDimensions>()   // critical ! 
+          .register_type::<f32>()
+          .register_material_property(  GenericMaterial::TEXTURE_SUBSET_DIMENSIONS )
+           .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
             //.add_systems(Startup, register_foliage_assets)
             
@@ -43,7 +46,7 @@ pub trait CustomMaterialPropertiesExt {
     const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions");
 
 
-    const UV_SCALE_FACTOR: MaterialProperty<f32> = MaterialProperty::new("uv_scale_Factor" );  //default is 1.0 ? 
+    const UV_SCALE_FACTOR: MaterialProperty<f32> = MaterialProperty::new("uv_scale_factor" );  //default is 1.0 ? 
 }
 impl CustomMaterialPropertiesExt for GenericMaterial {}
 
