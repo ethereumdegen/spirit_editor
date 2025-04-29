@@ -62,7 +62,7 @@ pub fn update_doodad_placement_raycast(
     editor: Res<Editor>,
 
      doodad_placement_component_query: Query<&Transform, With<DoodadPlacementComponent>>,
-       parent_query: Query<&Parent >
+       parent_query: Query<&ChildOf >
 ) {
     //we can tell if we are clicking in viewport
     let egui_ctx = contexts.ctx_mut();
@@ -100,7 +100,7 @@ pub fn update_doodad_placement_raycast(
         true
     };
 
-    let raycast_settings = RayCastSettings {
+    let raycast_settings = MeshRayCastSettings {
         filter: &raycast_filter,
         ..default()
     };

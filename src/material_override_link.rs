@@ -56,7 +56,7 @@ for (  entity, custom_props_comp ) in custom_props_query.iter(){
 
 		if let Some(material_name) =  custom_props_comp.props.get("material_override") {
 				 
-				    if let Some(mut cmd) = commands.get_entity( entity ){
+				    if let Ok(mut cmd) = commands.get_entity( entity ){
 
 						 info!("inserted new material override {}", &material_name);
 

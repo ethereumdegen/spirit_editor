@@ -25,7 +25,7 @@ fn init_camera (
 
     for  camera_entity  in camera_query.iter() {
 
-        if let Some(mut cmd) = commands.get_entity( camera_entity ){
+        if let Ok(mut cmd) = commands.get_entity( camera_entity ){
 
             cmd
           /*  .insert (  EdgeDetection { 

@@ -1,6 +1,6 @@
 
-use bevy_materialize::GenericMaterialApplied;
-use bevy_materialize::GenericMaterialError;
+use bevy_materialize::generic_material::{GenericMaterialApplied, GenericMaterial};
+// use bevy_materialize::generic_material::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
 

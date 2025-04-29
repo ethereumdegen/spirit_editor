@@ -77,7 +77,7 @@ fn spawn_children_for_new_prefabs (
        // let prefab_def_name = prefab_name.to_string(); 
 
 
-       commands.entity(prefab_root_entity).despawn_descendants(); 
+       commands.entity(prefab_root_entity).despawn_related::<Children>(); 
 
 
         if let Some( prefab_def  ) = prefab_definitions.get_prefab_definition_by_name( &prefab_name.to_string()  ) {

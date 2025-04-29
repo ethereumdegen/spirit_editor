@@ -15,7 +15,7 @@ use bevy_foliage_tool::foliage_material::FoliageMaterialExtension;
 use degen_toon_terrain::terrain::TerrainData;
 use degen_toon_terrain::terrain_config::TerrainConfig;
 use degen_toon_terrain::chunk::ChunkHeightMapResource;
-use bevy::platform::collections::hash_map::HashMap;;
+use bevy::platform::collections::hash_map::HashMap; 
 use bevy_foliage_tool::foliage_assets::FoliageAssetsState;
  
 //use bevy_foliage_tool::foliage_layer::FoliageBaseHeightMapU16;
@@ -163,7 +163,7 @@ fn propogate_height_data_change_to_foliage(
 ) {
 
 
-    let Ok(foliage_root_entity) = foliage_root_query.get_single() else { return };
+    let Ok(foliage_root_entity) = foliage_root_query.single() else { return };
 
      if ! chunk_height_maps_resource.is_changed() {
         return ;
@@ -177,9 +177,9 @@ fn propogate_height_data_change_to_foliage(
     for (foliage_chunk) in foliage_chunk_query.iter(){
 
 
-        if let Some(mut cmd) = commands.get_entity(foliage_chunk){
+        if let Ok(mut cmd) = commands.get_entity(foliage_chunk){
 
-            cmd.despawn_recursive(); 
+            cmd.despawn(); 
 
         }
 

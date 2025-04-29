@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use bevy::platform::collections::hash_map::HashMap;;
+use bevy::platform::collections::hash_map::HashMap; 
 
 use bevy::{color::palettes::css::* };
 use spirit_edit_core::zones::zone_file::CustomPropsComponent;
@@ -105,7 +105,7 @@ fn add_unique_name_components (
 			unique_name_registry.0.insert( unique_name.to_string().clone(), entity.clone()) ;
 
 
-			if let Some(mut cmd) = commands.get_entity( entity ){
+			if let Ok(mut cmd) = commands.get_entity( entity ){
 
 				cmd.try_insert( 
 					UniqueNameComponent( unique_name.to_string().clone() )
@@ -189,20 +189,26 @@ struct RefreshVirtualLink;
 impl EntityCommand for RefreshVirtualLink  { 
 
 
-	fn apply(self, script_entity: Entity, world: &mut World) { 
+	// fn apply(self, script_entity: Entity, world: &mut World) { 
+		fn apply(self, world_entity: EntityWorldMut ) { 
 
+			 let script_entity = world_entity.id() ; 
 
+		    let  world = world_entity.into_world_mut();
+
+		//let Some(unique_name_comp) = world_entity.get::<UniqueNameComponent>()  else {return}; 
 		let mut unique_name_query = world.query::<(Entity, &UniqueNameComponent)>();
 
 
-	   if let Some(mut cmd) = world.commands().get_entity( script_entity ){
+		if let Ok(mut cmd) = world.commands().get_entity( script_entity ){
 
-			cmd.remove::<VirtualLinkComponent>();
+			cmd .remove::<VirtualLinkComponent>();
 
 		}
+		
+ 
 
-
-		let Some(custom_props_comp) = world.get::<CustomPropsComponent>(script_entity) else {return};
+		let Some(custom_props_comp) = world.get::<CustomPropsComponent>( script_entity ) else {return};
 		let custom_props = custom_props_comp.props.clone(); 
 
 
@@ -214,7 +220,7 @@ impl EntityCommand for RefreshVirtualLink  {
 
 		if let Some(source_unique_name) =  custom_props.get("source_unique_name") {
 				//use registry? 
-			for (target_entity, unique_name_comp) in unique_name_query.iter(  world  ){
+			for (target_entity, unique_name_comp) in unique_name_query.iter(    world  ){
 
 				if unique_name_comp.0 == source_unique_name.to_string() {
  
@@ -235,12 +241,16 @@ impl EntityCommand for RefreshVirtualLink  {
 
 		if let Some(target_unique_name) =  custom_props.get("target_unique_name") {
 				//use registry? 
-			for (target_entity, unique_name_comp) in unique_name_query.iter(  world  ){
+			for (target_entity, unique_name_comp) in unique_name_query.iter(   world  ){
 
 				if unique_name_comp.0 == target_unique_name.to_string() {
 
- 
-				    if let Some(mut cmd) = world.commands().get_entity( script_entity ){
+ 				
+ 					/*world_entity.insert(  VirtualLinkComponent {
+						        target_entity,
+						        secondary_target_entity,
+						    }   ) ;*/
+				  if let Ok(mut cmd) = world.commands().get_entity( script_entity ){
 
 						cmd.try_insert( 
 							VirtualLinkComponent {
@@ -249,7 +259,7 @@ impl EntityCommand for RefreshVirtualLink  {
 						    } 
 						 );
 
-					}
+					} 
 
 
 					break;
