@@ -1796,7 +1796,7 @@ dependencies = [
  "bevy 0.16.0",
  "bevy_common_assets",
  "bevy_materialize",
- "bevy_obj 0.16.0",
+ "bevy_obj",
  "ron",
  "serde",
  "serde_json",
@@ -1942,17 +1942,6 @@ dependencies = [
  "bevy_utils 0.16.0",
  "disqualified",
  "lexopt",
-]
-
-[[package]]
-name = "bevy_obj"
-version = "0.15.0"
-source = "git+https://github.com/ethereumdegen/bevy_obj#41873d07a955f26e33c4c07ee7cda9a550d60025"
-dependencies = [
- "bevy 0.15.1",
- "serde",
- "thiserror 1.0.69",
- "tobj",
 ]
 
 [[package]]
@@ -6875,7 +6864,7 @@ dependencies = [
  "bevy_magic_fx",
  "bevy_material_wizard",
  "bevy_materialize",
- "bevy_obj 0.15.0",
+ "bevy_obj",
  "bevy_regions",
  "degen_toon_clouds",
  "degen_toon_terrain",

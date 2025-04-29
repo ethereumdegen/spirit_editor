@@ -236,7 +236,7 @@ fn main() {
         )   
 
         .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
-                    .with_simple_loader_settings(None)   //to prevent bug with PNG loading 
+                    .with_simple_loader(None)   //to prevent bug with PNG loading 
              )
 
         

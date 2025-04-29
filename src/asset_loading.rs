@@ -4,7 +4,9 @@ use crate::level_config::LevelConfig;
 use bevy_editor_pls_default_windows::placement::PlacementWindow;
 use bevy_editor_pls_core::Editor;
 use bevy_material_wizard::registered_materials::RegisteredMaterialsMap;
-use bevy_materialize::GenericMaterial;
+use bevy_materialize::generic_material::GenericMaterial;
+
+use bevy::platform::collections::hash_map::HashMap; 
 
 use crate::utils::copy_dir_recursive;
 use std::path::Path;
@@ -22,7 +24,7 @@ use crate::EditorConfig;
 use bevy::gltf::Gltf;
 use bevy_asset_loader::prelude::*; 
 use bevy_asset_loader::loading_state::LoadingStateAppExt;
-use bevy::{asset::{AssetPath, LoadedFolder}, prelude::*, utils::HashMap}; 
+use bevy::{asset::{AssetPath, LoadedFolder}, prelude::* }; 
 use bevy_magic_fx::{  magic_fx_variant::{MagicFxVariant, MagicFxVariantManifest}  };
 
 
