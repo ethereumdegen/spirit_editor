@@ -271,6 +271,8 @@ fn main() {
         
         .add_plugins(clouds::clouds_plugin)
 
+            .add_plugins(materialize_properties::materialize_properties_plugin   )  //must be BEFORE teh material wizard 
+
 
         .add_plugins(BevyMaterialWizardPlugin{
             material_defs_manifest_path: "assets/material_definitions.materialmanifest.ron".to_string(),
@@ -295,8 +297,7 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-        .add_plugins(materialize_properties::materialize_properties_plugin   )
-
+    
         .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
       

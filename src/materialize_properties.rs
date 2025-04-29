@@ -19,8 +19,8 @@ pub fn materialize_properties_plugin(app:&mut App){
 
           app
 
-          .register_type::<TextureSubsetDimensions>()   // critical ! 
-          .register_type::<f32>()
+         // .register_type::<TextureSubsetDimensions>()   // critical ! 
+           .register_type::< f32 >()
           .register_material_property(  GenericMaterial::TEXTURE_SUBSET_DIMENSIONS )
            .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
