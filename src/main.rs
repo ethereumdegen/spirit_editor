@@ -298,7 +298,7 @@ fn main() {
 
         .add_plugins(foliage::foliage_plugin   )
     
-        .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
+       //  .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
       
 

@@ -15,8 +15,7 @@ use crate::AssetLoadState;
  
 use crate::{asset_loading::TextureAssets, utils::StringUtilsExt};
 use bevy::prelude::*; 
-
-use bevy_contact_projective_decals::{DecalMaterialExtension,decal_mesh_quad,DecalMaterial};
+ 
 
 use bevy::pbr::{NotShadowCaster,NotShadowReceiver};
 

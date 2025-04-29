@@ -909,14 +909,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bevy_contact_projective_decals"
-version = "0.16.0"
-source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#22d90a1252fbde684f9711000f1a4f7edfcdec4d"
-dependencies = [
- "bevy",
-]
-
-[[package]]
 name = "bevy_core"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6446,7 +6438,6 @@ dependencies = [
  "bevy_asset_loader",
  "bevy_clay_tiles",
  "bevy_common_assets",
- "bevy_contact_projective_decals",
  "bevy_editor_pls",
  "bevy_editor_pls_core",
  "bevy_editor_pls_default_windows",
