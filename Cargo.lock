@@ -911,7 +911,7 @@ dependencies = [
 [[package]]
 name = "bevy_contact_projective_decals"
 version = "0.16.0"
-source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#3bfb0899e518d33611b9be84f229f7c67ed6686d"
+source = "git+https://github.com/ethereumdegen/bevy_contact_projective_decals#0b25f9f8dff675130b0788e3cecadaee53e74216"
 dependencies = [
  "bevy",
 ]
@@ -2534,7 +2534,7 @@ dependencies = [
  "bitflags 2.9.0",
  "cexpr",
  "clang-sys",
- "itertools 0.11.0",
+ "itertools 0.13.0",
  "log",
  "prettyplease",
  "proc-macro2",
@@ -7592,7 +7592,7 @@ version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
 dependencies = [
- "windows-sys 0.48.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
