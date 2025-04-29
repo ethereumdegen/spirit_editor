@@ -95,7 +95,7 @@ bevy_asset_loader = "0.23.0-rc.3"
  
  
  
-bevy_contact_projective_decals = {git= " https://github.com/ethereumdegen/bevy_contact_projective_decals "}
+bevy_contact_projective_decals = {git= "https://github.com/ethereumdegen/bevy_contact_projective_decals"}
 serde_json = "1.0.138"
  
  

@@ -89,7 +89,7 @@ fn build_decals(
  				.flatten();
 
  
- 		if let Some(mut cmd) = commands.get_entity(decal_entity) {
+ 		if let Ok(mut cmd) = commands.get_entity(decal_entity) {
 
 	        cmd.insert((
 	            //Transform::from_xyz(0.0, 0.0, 0.0).with_scale(Vec3::splat(4.0)),
