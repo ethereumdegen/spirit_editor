@@ -10,7 +10,7 @@ use bevy::prelude::AppExtStates;
 
 use crate::controls::ControlsInteractionState;
 use bevy::{
-    prelude::{Entity, Plugin, Update, IntoSystemConfigs},
+    prelude::{Entity, Plugin, Update, IntoScheduleConfigs},
     window::{MonitorSelection, Window, WindowPosition, WindowRef, WindowResolution},
 };
 
@@ -164,7 +164,7 @@ impl Plugin for EditorPlugin {
                 app.add_editor_window::<CameraWindow>();
             }
 
-            app.add_plugins(bevy::pbr::wireframe::WireframePlugin);
+            app.add_plugins( bevy::pbr::wireframe::WireframePlugin::default() );
 
             app.insert_resource(controls::EditorControls::default_bindings())
                 .add_systems(Update, (

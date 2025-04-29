@@ -1,5 +1,6 @@
 use transform_gizmo_bevy::GizmoMode;
-use bevy::{prelude::*, utils::HashMap};
+use bevy::{prelude::* };
+use bevy::platform::collections::hash_map::HashMap ; 
 use bevy_editor_pls_core::{editor_window::EditorWindow, Editor, EditorEvent};
 
 
