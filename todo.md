@@ -6,6 +6,7 @@
 
 - switch decal system to the one integrated into 0.16 ?
 https://bevyengine.org/examples/3d-rendering/decal/
+ https://bevyengine.org/news/bevy-0-16/#decals 
  
 
  BUG:   doodads have standard and ext material on !!??!? 
