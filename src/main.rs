@@ -39,6 +39,7 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+use crate::shaders::custom_material_processor::CustomMaterialProcessor;
 use bevy_materialize::MaterializePlugin;
 use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
@@ -244,6 +245,7 @@ fn main() {
 
         .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
                     .with_simple_loader(None)   //to prevent bug with PNG loading 
+                    .with_processor( CustomMaterialProcessor  )
              )
 
         
