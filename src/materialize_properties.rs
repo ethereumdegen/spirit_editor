@@ -21,7 +21,7 @@ pub fn materialize_properties_plugin(app:&mut App){
 
          // .register_type::<TextureSubsetDimensions>()   // critical ! 
            .register_type::< f32 >()
-          .register_material_property(  GenericMaterial::TEXTURE_SUBSET_DIMENSIONS )
+         // .register_material_property(  GenericMaterial::TEXTURE_SUBSET_DIMENSIONS )
            .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
             //.add_systems(Startup, register_foliage_assets)
@@ -29,7 +29,7 @@ pub fn materialize_properties_plugin(app:&mut App){
             .add_systems(PostUpdate, (
                 
              //	update_materialize_properties,
-                update_materialize_properties_when_applied,
+               //   update_materialize_properties_when_applied,
 
                 update_doodad_material, 
 
@@ -43,7 +43,7 @@ pub fn materialize_properties_plugin(app:&mut App){
  
 
 pub trait CustomMaterialPropertiesExt {
-    const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions");
+   // const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions");
 
 
     const UV_SCALE_FACTOR: MaterialProperty<f32> = MaterialProperty::new("uv_scale_factor" );  //default is 1.0 ? 
@@ -53,7 +53,7 @@ impl CustomMaterialPropertiesExt for GenericMaterial {}
 
 
 
-
+/*
 #[derive(Clone,Debug,Reflect,Default )]
 pub struct TextureSubsetDimensions {
 
@@ -83,7 +83,7 @@ impl TextureSubsetDimensions {
 
     }
 
-}
+}*/
 
 
 
@@ -97,7 +97,11 @@ Performs post processing on our  materialize materials !! this is critical due t
 
       this is buggy and weird  pretty often.. ? 
 
-*/fn update_materialize_properties_when_applied(
+*/
+
+
+/*
+fn update_materialize_properties_when_applied(
 
 
     material_entity: Query< (Entity, &GenericMaterial3d ),  Or<( Changed<GenericMaterialApplied> , Changed<MeshMaterial3d<DoodadMaterial>> )> >,
@@ -129,8 +133,8 @@ Performs post processing on our  materialize materials !! this is critical due t
 
                   let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( &1.0 ) ;
 
-                    let tex_subset_dimensions: Result<TextureSubsetDimensions, GetPropertyError> = loaded_generic_material
-                                    .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS).cloned();
+                   // let tex_subset_dimensions: Result<TextureSubsetDimensions, GetPropertyError> = loaded_generic_material
+                         //           .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS).cloned();
     
 
                      let uv_affine_xform = match    tex_subset_dimensions.ok() {
@@ -169,7 +173,7 @@ Performs post processing on our  materialize materials !! this is critical due t
 
 
 
- }
+ }*/
 
 
 // a hack to add the mask image 

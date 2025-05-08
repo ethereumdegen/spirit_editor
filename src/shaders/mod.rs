@@ -4,7 +4,7 @@ use bevy::prelude::*;
 //pub mod fixed_space_uv; 
 //pub mod fixed_space_uv_material;
 pub mod doodad_material;
-pub mod custom_material_processor; 
+pub mod material_affine_processor; 
 
 pub fn shaders_plugin(app: &mut App) {
     app
