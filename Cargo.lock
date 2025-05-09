@@ -2526,7 +2526,7 @@ dependencies = [
  "bitflags 2.9.0",
  "cexpr",
  "clang-sys",
- "itertools 0.13.0",
+ "itertools 0.11.0",
  "log",
  "prettyplease",
  "proc-macro2",
@@ -6868,8 +6868,8 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo"
-version = "0.6.0"
-source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#ab3f776392489a75f08f268824d65ea75f34942f"
+version = "0.6.1"
+source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#893ae64570649e7ec25dc65914e2ff78cfc9bc87"
 dependencies = [
  "ahash",
  "ecolor 0.29.1",
@@ -6883,8 +6883,8 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo-bevy"
-version = "0.6.0"
-source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#ab3f776392489a75f08f268824d65ea75f34942f"
+version = "0.6.1"
+source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#893ae64570649e7ec25dc65914e2ff78cfc9bc87"
 dependencies = [
  "bevy",
  "bevy_app 0.16.0",
