@@ -24,8 +24,8 @@ winit = { version = "0.30", default-features = false }
 # image = { version = "0.25.2", default-features = false }
 
 
- #degen_toon_terrain = {version = "0.16.2", features=["physics"]  }
- degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
+ degen_toon_terrain = {version = "0.16.3", features=["physics"]  }
+# degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
   bevy_material_wizard = "0.16.0"
