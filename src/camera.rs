@@ -12,7 +12,10 @@ pub fn camera_plugin(app: &mut App) {
 
         .add_systems(Update, init_camera)
         .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move);
+        .add_systems(Update, update_camera_move)
+        .add_systems(Update, update_camera_frustrum)
+
+        ;
 }
 
 #[derive(Component)]
@@ -125,4 +128,15 @@ fn init_camera (
             transform.translation += up * MOVE_SPEED * boost_multiplier;
         }
     }
+}
+
+
+fn update_camera_frustrum (
+
+        mut camera_query: Query<(&Projection, &mut Transform)>,
+) {
+
+
+
+
 }

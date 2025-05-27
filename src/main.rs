@@ -41,6 +41,7 @@ mod material_override_link;
 
  
 use crate::shaders::material_affine_processor::Affine2Processor;
+use bevy_editor_pls_core::EditorEvent;
 use bevy_materialize::MaterializePlugin;
 use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
@@ -199,7 +200,7 @@ fn main() {
             AssetSourceBuilder::platform_default("artifacts/game_assets", None),
         )
 
-
+    //  .add_event::<EditorEvent>()
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {

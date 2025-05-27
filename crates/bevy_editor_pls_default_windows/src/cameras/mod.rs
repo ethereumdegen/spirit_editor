@@ -109,12 +109,14 @@ impl EditorWindow for CameraWindow {
 
         app.add_systems(PreUpdate, configure_camera_custom);
 
-        app.add_systems(
+    /*    app.add_systems(
             PostUpdate,
             set_main_pass_viewport
                 .after(bevy_editor_pls_core::EditorSet::UI)
                 .before(bevy::render::camera::CameraUpdateSystem),
-        );
+        ) ; */
+
+
     }
 }
 
@@ -224,6 +226,10 @@ fn toggle_editor_cam(
     }
 }
 
+
+
+// apparently we dont have to do this in 0.16 !!! 
+/* 
 fn set_main_pass_viewport(
 
     egui_settings_query: Query<&bevy_inspector_egui::bevy_egui::EguiContextSettings>, // better way to do this ? 
@@ -232,6 +238,9 @@ fn set_main_pass_viewport(
     window: Query<&Window>,
     mut cameras: Query<&mut Camera, With<EditorCamera>>,
 ) {
+
+
+    println!("set viewport 1 ");
     if !editor.is_changed() {
         return;
     };
@@ -253,6 +262,9 @@ fn set_main_pass_viewport(
             
         }
 
+
+         println!("set viewport 2 ");
+
         bevy::render::camera::Viewport {
             physical_position: UVec2::new(viewport_pos.x as u32, viewport_pos.y as u32),
             physical_size: UVec2::new(
@@ -267,3 +279,4 @@ fn set_main_pass_viewport(
         cam.viewport = viewport.clone();
     });
 }
+*/

@@ -5,7 +5,7 @@
 
 
 - the egui UI is improperly shifting the mesh ray cast 
-
+https://github.com/vladbat00/bevy_egui/blob/v0.34.1/examples/side_panel_3d.rs
 
 
 - switch decal system to the one integrated into 0.16 ?

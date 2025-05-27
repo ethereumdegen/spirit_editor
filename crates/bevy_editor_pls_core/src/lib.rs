@@ -69,7 +69,9 @@ impl Plugin for EditorPlugin {
             app.add_plugins(DefaultInspectorConfigPlugin);
         }
         if !app.is_plugin_added::<EguiPlugin>() {
-            app.add_plugins(EguiPlugin{ enable_multipass_for_primary_context: false  });
+           // app .add_plugins(EguiPlugin { enable_multipass_for_primary_context: true }) ;
+       
+             app.add_plugins(EguiPlugin{ enable_multipass_for_primary_context: false  });
         }
 
         let (window_entity, always_active) = match self.window {
@@ -77,7 +79,7 @@ impl Plugin for EditorPlugin {
                 let entity = app
                     .world_mut()
                     .query_filtered::<Entity, With<PrimaryWindow>>()
-                    .single(&app.world()) .unwrap()    ;
+                    .single(&app.world()) .unwrap()  ;
 
 
                 (entity, false)
@@ -95,6 +97,7 @@ impl Plugin for EditorPlugin {
                     .in_set(EditorSet::UI)
                     .before(TransformSystem::TransformPropagate)
                     .before(CameraUpdateSystem)
+
                     .before(EguiPostUpdateSet::ProcessOutput),  // ?? 
             );
     }

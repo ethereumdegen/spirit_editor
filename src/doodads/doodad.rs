@@ -85,6 +85,8 @@ use crate::{
     app
             .init_resource::<DoodadGltfLoadTrackingResource>()
             .add_event::<SpawnDoodadEvent>()
+              .add_event::<PlaceDoodadEvent>()
+              
             .add_observer(   add_doodad_collider_markers )
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
@@ -729,9 +731,9 @@ pub fn update_doodad_placement_preview_model (
    // let selected_doodad_definition = &doodad_tool_resource.selected;
  
 
-    let Some((placement_preview_entity, doodad_placement_comp)) = doodad_placement_component_query.get_single().ok() else {return};
+    let Some((placement_preview_entity, doodad_placement_comp)) = doodad_placement_component_query.single().ok() else {return};
     
-         commands.entity(placement_preview_entity).despawn () ;  //was despawn_descendants 
+         commands.entity(placement_preview_entity).despawn_related::<Children> () ;  //was despawn_descendants 
 
               let Some(doodad_name) =  &doodad_placement_comp.preview_doodad_name else {return};
 
