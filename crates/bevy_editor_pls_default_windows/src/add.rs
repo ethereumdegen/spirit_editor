@@ -192,11 +192,11 @@ impl Default for AddWindowState {
                 world.entity_mut(entity).insert(
 
 
-                    (
+                    ( 
 
                         Camera3d::default(),
-                         OrthographicProjection ::default_3d()
-                    )
+                        Projection::Orthographic( OrthographicProjection::default_3d() )
+                    ) 
 
                     );
 

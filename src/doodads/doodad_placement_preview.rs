@@ -1,6 +1,7 @@
 
 
 
+use bevy::ecs::relationship::DescendantIter;
 use spirit_edit_core::doodads::DoodadToolState;
 use bevy_editor_pls_core::Editor;
 use bevy::gltf::Gltf;
@@ -84,7 +85,7 @@ pub fn update_doodad_placement_preview_position (
       doodad_placement_component_query: Query<Entity, With<DoodadPlacementComponent>>,
     mut doodad_placement_transform_query: Query<&mut Transform, With<DoodadPlacementComponent>>,
 
-      parent_query: Query<&Parent >
+      parent_query: Query<&ChildOf >
 
 ) {
     //we can tell if we are clicking in viewport
@@ -116,14 +117,14 @@ pub fn update_doodad_placement_preview_position (
                 return false;
             }
             match parent_query.get(current_entity).ok() {
-                Some(parent) => current_entity = parent.get(),
+                Some(parent) => current_entity = parent.parent(),
                 None => break,
             }
         }
         true
     };
 
-    let raycast_settings = RayCastSettings {
+    let raycast_settings = MeshRayCastSettings {
         filter: &raycast_filter,
         ..default()
     };
@@ -147,7 +148,7 @@ pub fn update_doodad_placement_preview_position (
            // let custom_props = None; 
 
          
-         	if let Some( mut xform ) = doodad_placement_transform_query.get_single_mut().ok(){
+         	if let Some( mut xform ) = doodad_placement_transform_query.single_mut().ok(){
 
 
          		xform.translation =  hit_coordinates.clone() ;
@@ -231,12 +232,12 @@ fn add_wireframe_to_children(
        doodad_query: Query<   (Entity,  &WireframeMarker) >,
          children_query: Query<&Children>,           
   
-         parent_query: Query<&Parent >
+         parent_query: Query<&ChildOf >
 
     ) {
 
-    let trig_entity = scene_instance_evt_trigger.entity();
-    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
+    let trig_entity = scene_instance_evt_trigger.target();
+    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.parent() ) else {return};
 
   
         if let Some((new_doodad_entity,wireframe_marker)) = doodad_query.get(parent_entity).ok() {
@@ -277,13 +278,13 @@ fn apply_ghostly_material(
 
      mut   standard_material_assets : ResMut<Assets<StandardMaterial>>,
 
-           parent_query: Query<&Parent >
+           parent_query: Query<&ChildOf >
 
 
     ) {
 
-       let trig_entity = scene_instance_evt_trigger.entity();
-        let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
+       let trig_entity = scene_instance_evt_trigger.target();
+        let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.parent() ) else {return};
 
         
         if let Some((new_doodad_entity,_marker )) = doodad_query.get(parent_entity).ok() {

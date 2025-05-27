@@ -93,14 +93,14 @@ impl EditorWindow for GizmoWindow {
     fn app_setup(app: &mut App) {
         let mut materials = app.world_mut().resource_mut::<Assets<StandardMaterial>>();
         let material_light = materials.add(StandardMaterial {
-            base_color: Color::rgba_u8(222, 208, 103, 255),
+            base_color: Color::srgba_u8(222, 208, 103, 255),
             unlit: true,
             fog_enabled: false,
             alpha_mode: AlphaMode::Add,
             ..default()
         });
         let material_camera = materials.add(StandardMaterial {
-            base_color: Color::rgb(1.0, 1.0, 1.0),
+            base_color: Color::srgb(1.0, 1.0, 1.0),
             unlit: true,
             fog_enabled: false,
             alpha_mode: AlphaMode::Multiply,
@@ -235,7 +235,7 @@ fn apply_gizmo_component (
                 continue;
             }
 
-            if let Some(mut cmd) = world.commands().get_entity(*target){
+            if let Ok(mut cmd) = world.commands().get_entity(*target){
                 cmd.remove::<GizmoTarget>();
             }
               
@@ -251,7 +251,7 @@ fn apply_gizmo_component (
 
      
 
-            if let Some(mut cmd) = world.commands().get_entity(selected){
+            if let Ok(mut cmd) = world.commands().get_entity(selected){
                 cmd .insert ( GizmoTarget ::default() ) ;
             }
           

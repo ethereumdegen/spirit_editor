@@ -81,6 +81,7 @@ fn initialize_ambient_lighting(
     commands.insert_resource(AmbientLight {
         color: Color::WHITE,
         brightness: 600.0 ,
+        ..default() 
     });
  
 } 
