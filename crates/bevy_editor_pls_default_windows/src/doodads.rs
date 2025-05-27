@@ -39,7 +39,22 @@ use bevy_common_assets::ron::RonAssetPlugin;
  
 
   
- 
+ pub fn doodads_plugin( app: &mut App ) {
+
+
+    app
+
+    //    .add_observer(  handle_doodad_picking   )
+    .add_systems(Update, update_picking_doodads)
+
+
+
+    ;
+
+
+
+
+ }
 
  
 
@@ -189,6 +204,72 @@ impl EditorWindow for DoodadsWindow {
 
 // --------------------------------------------------------
 
+
+
+// this picks ui window element? oh no 
+/* 
+fn handle_doodad_picking(
+
+    trigger: Trigger<Pointer<Pressed>> ,
+
+     mut event_writer: EventWriter<SelectDoodadEvent>,
+
+    mut editor: ResMut<Editor>,
+
+    unpickable_query: Query<&PreventEditorSelection>,
+    doodad_comp_query: Query<&DoodadComponent>,
+    parent_query: Query<& ChildOf >,
+
+){
+
+    let entity_target = trigger.target();
+
+
+
+      let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
+
+ 
+    //must deselect w right click first
+    if !state.selected.is_empty() {
+        return;
+    }
+
+   
+          //  let hit_point = intersection_data.point; 
+
+            if unpickable_query.get(entity_target).ok().is_some() {
+                println!("This entity is marked as non-selectable");
+                return;
+            }
+
+            let mut top_doodad_comp_parent_entity: Option<Entity> = None;
+            for parent_entity in AncestorIter::new(&parent_query, entity_target) {
+                if unpickable_query.get(parent_entity).ok().is_some() {
+                    println!("This entity is marked as non-selectable");
+                    return;
+                }
+
+                if doodad_comp_query.get(parent_entity).ok().is_some() {
+                    top_doodad_comp_parent_entity = Some(parent_entity);
+                    break;
+                }
+            }
+         //   println!("select doodad   {:?}", hit_point);
+
+            let focus_entity = top_doodad_comp_parent_entity.unwrap_or(entity_target.clone());
+
+            state.selected.select_replace(focus_entity.clone());
+
+            event_writer.write(SelectDoodadEvent {
+                entity: focus_entity.clone(),
+            });
+           
+
+
+
+}
+ */ 
+
  
 pub fn update_picking_doodads(
     mouse_input: Res<ButtonInput<MouseButton>>, //detect mouse click
@@ -223,6 +304,10 @@ pub fn update_picking_doodads(
     }
 
     for (_, cursor_ray) in ray_map.iter() {
+
+          println!(" cursor_ray    {:?}", cursor_ray);
+
+           
         if let Some((intersection_entity, intersection_data)) =
             raycast.cast_ray(*cursor_ray, &default()).first()
         {
@@ -251,7 +336,7 @@ pub fn update_picking_doodads(
 
             state.selected.select_replace(focus_entity.clone());
 
-            event_writer.send(SelectDoodadEvent {
+            event_writer.write(SelectDoodadEvent {
                 entity: focus_entity.clone(),
             });
             //  }

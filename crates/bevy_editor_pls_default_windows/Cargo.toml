@@ -42,8 +42,7 @@ transform-gizmo-bevy.workspace = true
  #bevy_clay_tiles.workspace=true
  
 rand = "0.8"
-
-#bevy_mod_picking = "0.20.0" 
+ 
 
 #bevy_mod_raycast = { version= "0.18.0"    }
 

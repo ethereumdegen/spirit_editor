@@ -1639,7 +1639,7 @@ checksum = "edec18d90e6bab27b5c6131ee03172ece75b7edd0abe4e482a26d6db906ec357"
 dependencies = [
  "bevy_reflect 0.15.1",
  "derive_more",
- "glam",
+ "glam 0.29.3",
  "itertools 0.13.0",
  "rand",
  "rand_distr",
@@ -1656,7 +1656,7 @@ dependencies = [
  "approx",
  "bevy_reflect 0.16.0",
  "derive_more",
- "glam",
+ "glam 0.29.3",
  "itertools 0.14.0",
  "libm",
  "rand",
@@ -1721,7 +1721,7 @@ version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b53f0cf879a0682280937f515ecf00ab2140f7224881d6a621f40093a36a2ef6"
 dependencies = [
- "glam",
+ "glam 0.29.3",
 ]
 
 [[package]]
@@ -1730,7 +1730,7 @@ version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75e0258423c689f764556e36b5d9eebdbf624b29a1fd5b33cd9f6c42dcc4d5f3"
 dependencies = [
- "glam",
+ "glam 0.29.3",
 ]
 
 [[package]]
@@ -1893,7 +1893,7 @@ dependencies = [
  "disqualified",
  "downcast-rs 1.2.1",
  "erased-serde",
- "glam",
+ "glam 0.29.3",
  "serde",
  "smallvec",
  "smol_str",
@@ -1916,7 +1916,7 @@ dependencies = [
  "downcast-rs 2.0.1",
  "erased-serde",
  "foldhash",
- "glam",
+ "glam 0.29.3",
  "petgraph 0.7.1",
  "serde",
  "smallvec",
@@ -3408,7 +3408,7 @@ checksum = "b0a05902cf601ed11d564128448097b98ebe3c6574bd7b6a653a3d56d54aa020"
 dependencies = [
  "const_panic",
  "encase_derive",
- "glam",
+ "glam 0.29.3",
  "thiserror 1.0.69",
 ]
 
@@ -3936,6 +3936,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "glam"
+version = "0.30.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b46b9ca4690308844c644e7c634d68792467260e051c8543e0c7871662b3ba7"
+dependencies = [
+ "mint",
+]
+
+[[package]]
 name = "glob"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4148,7 +4157,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "741ab88b8cc670443da777c3daab02cebf5a3caccfc04e3c052f55c94d1643fe"
 dependencies = [
  "constgebra",
- "glam",
+ "glam 0.29.3",
 ]
 
 [[package]]
@@ -4924,7 +4933,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26aecdf64b707efd1310e3544d709c5c0ac61c13756046aaaba41be5c4f66a3b"
 dependencies = [
  "approx",
- "glam",
+ "glam 0.29.3",
  "matrixmultiply",
  "nalgebra-macros",
  "num-complex",
@@ -6874,25 +6883,26 @@ dependencies = [
 
 [[package]]
 name = "transform-gizmo"
-version = "0.6.1"
-source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#893ae64570649e7ec25dc65914e2ff78cfc9bc87"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1ed25525836e568f1360098b7ca7bbe9feba4a8dc8c6e4e7efe5d9848f91631"
 dependencies = [
  "ahash",
- "ecolor 0.29.1",
- "emath 0.29.1",
+ "ecolor 0.31.1",
+ "emath 0.31.1",
  "enum_dispatch",
  "enumset",
- "epaint 0.29.1",
- "glam",
+ "epaint 0.31.1",
+ "glam 0.30.3",
  "mint",
 ]
 
 [[package]]
 name = "transform-gizmo-bevy"
-version = "0.6.1"
-source = "git+https://github.com/ethereumdegen/transform-gizmo?branch=main#893ae64570649e7ec25dc65914e2ff78cfc9bc87"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9775f65250f9bc18df6eb6e1ec91115a72165b453755ed48faada23582ffe892"
 dependencies = [
- "bevy",
  "bevy_app 0.16.0",
  "bevy_asset 0.16.0",
  "bevy_core_pipeline 0.16.0",
@@ -6903,6 +6913,8 @@ dependencies = [
  "bevy_log 0.16.0",
  "bevy_math 0.16.0",
  "bevy_pbr 0.16.0",
+ "bevy_picking",
+ "bevy_platform",
  "bevy_reflect 0.16.0",
  "bevy_render 0.16.0",
  "bevy_transform 0.16.0",
