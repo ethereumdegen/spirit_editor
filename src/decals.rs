@@ -110,7 +110,7 @@ fn build_decals(
 
                     },
                     extension: ForwardDecalMaterialExt {
-                        depth_fade_factor: 8.0,
+                        depth_fade_factor: 1.0,
                     },
                 })),
 
