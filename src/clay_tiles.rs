@@ -33,7 +33,7 @@ fn remove_invalid_clay_tiles(
 		if !clay_tile_block.is_complete(){
 
 				commands.get_entity(clay_tile_entity).map(
-					|mut cmd| { cmd.despawn_recursive(); }
+					|mut cmd| { cmd.despawn (); }
 				) ;
 		}
  

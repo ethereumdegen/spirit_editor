@@ -14,8 +14,10 @@
 
  //  initial_level_to_load: Some( "vessara_enchanting_shop.level" ),
 
-   
-   initial_level_to_load: Some( "crypt_1.level" ),
+       
+  // initial_level_to_load: Some( "dungeon_grove_cave.level" ),
+
+    initial_level_to_load: Some( "crypt_1.level" ),
 
 
  // initial_level_to_load: Some( "fetid_hole.level" ),

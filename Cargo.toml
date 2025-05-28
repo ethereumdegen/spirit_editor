@@ -50,8 +50,8 @@ winit = { version = "0.30", default-features = false }
  bevy_regions = "0.16.0"
   
    
- bevy_clay_tiles = "0.16.0"
- #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
+ bevy_clay_tiles = "0.16.1"
+ # bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
 
