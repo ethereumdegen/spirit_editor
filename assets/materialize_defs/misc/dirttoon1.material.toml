@@ -1,0 +1,15 @@
+type = "DoodadMaterial"
+
+[material.base]  
+base_color_texture="/textures/material_overrides/stone_diffuse.png"
+normal_map_texture="/textures/material_overrides/stone_normal.png"
+perceptual_roughness=0.8
+metallic=0.4
+base_color={ LinearRgba = [0.26, 0.22, 0.15, 1.0] }
+
+[material.extension]
+
+[material.extension.custom_uniforms]
+
+[properties]
+uv_scale_factor=2.0

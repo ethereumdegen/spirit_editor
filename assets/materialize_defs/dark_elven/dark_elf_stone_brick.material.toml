@@ -1,0 +1,15 @@
+type = "DoodadMaterial"
+
+[material.base]  
+base_color_texture="/textures/material_overrides/dark_elven/Plane_Maker_Stone_Brick_A_AlbedoTransparency_sRGB.png"
+normal_map_texture="/textures/material_overrides/dark_elven/Plane_Maker_Stone_Brick_A_Normal_Raw.png"
+perceptual_roughness=0.8
+base_color = { LinearRgba = [0.4, 0.4, 0.4, 1.0] }
+
+[material.extension]
+
+[material.extension.custom_uniforms]
+use_fixed_world_uv = 1
+
+[properties]
+uv_scale_factor=1.0

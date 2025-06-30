@@ -1,0 +1,14 @@
+type = "DoodadMaterial"
+
+[material.base]  
+base_color_texture="/textures/material_overrides/dark_elven/ruins_foliage.png"
+perceptual_roughness=0.8
+alpha_mode="Blend"
+
+[material.extension]
+
+[material.extension.custom_uniforms]
+use_fixed_world_uv = 1
+
+[properties]
+uv_scale_factor=1.0

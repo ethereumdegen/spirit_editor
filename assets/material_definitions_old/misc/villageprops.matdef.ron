@@ -1,0 +1,19 @@
+(
+	
+	 material_name:  "VillageProps",   
+
+	diffuse_texture: Some("textures/material_overrides/villageprops_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/villageprops_normal.png"),
+
+	roughness: 0.8,
+
+     emissive_texture: None ,
+
+
+
+        uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+
+
+
+)

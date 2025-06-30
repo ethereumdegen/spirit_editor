@@ -1,0 +1,14 @@
+type = "DoodadMaterial"
+
+[material.base]  
+base_color_texture="/textures/material_overrides/marble_diffuse.png"
+normal_map_texture="/textures/material_overrides/marble_normal.png"
+perceptual_roughness=0.8
+metallic=0.4
+
+[material.extension]
+
+[material.extension.custom_uniforms]
+
+[properties]
+uv_scale_factor=0.125

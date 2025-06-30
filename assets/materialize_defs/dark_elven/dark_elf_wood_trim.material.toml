@@ -1,0 +1,14 @@
+type = "DoodadMaterial"
+
+[material.base]  
+base_color_texture="/textures/material_overrides/dark_elven/Wood_Trim_A2.png"
+normal_map_texture="/textures/material_overrides/dark_elven/Wood_Trim_A_Wood_Trim_A_Normal_Raw.png"
+perceptual_roughness=0.8
+
+[material.extension]
+
+[material.extension.custom_uniforms]
+use_fixed_world_uv = 1
+
+[properties]
+uv_scale_factor=1.0

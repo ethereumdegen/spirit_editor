@@ -1,0 +1,25 @@
+(
+	
+	 material_name:  "Slate2",   
+
+	 diffuse_texture: Some("textures/material_overrides/slate_2_diffuse.png"),
+	  normal_texture: Some("textures/material_overrides/slate_2_normal.png"),
+
+	 roughness: 0.8,
+
+     emissive_texture: None ,
+
+
+    	 
+
+
+       diffuse_color_tint: Some( LinearRgba((
+                    red: 0.3,
+                    green: 0.3,
+                    blue:  0.3,
+                    alpha:  1.0,
+               ) )  ),
+
+     uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)

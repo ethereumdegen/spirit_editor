@@ -1,0 +1,32 @@
+(
+	
+	 material_name:  "OrnateTiles4",   
+
+	diffuse_texture: Some("textures/material_overrides/ornate_tiles_4_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/ornate_tiles_4_normal.png"),
+
+	roughness: 0.8,
+	metallic:Some(0.4),
+
+      emissive_texture: Some("textures/material_overrides/ornate_tiles_4_emissive.png") ,
+
+
+       emissive_color_tint: Some( LinearRgba((
+
+
+      				 red: 1.0,
+                    green: 1.0,
+                    blue:  1.0,
+                    alpha:  1.0,
+     )) ) ,
+
+
+
+      uv_scale_factor: 1.0,  
+      
+
+
+
+
+)
+ 

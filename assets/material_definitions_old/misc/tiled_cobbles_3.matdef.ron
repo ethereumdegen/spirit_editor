@@ -1,0 +1,19 @@
+(
+	
+	 material_name:  "TiledCobbles3",   
+
+	diffuse_texture: Some("textures/material_overrides/cobbles3_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/cobbles3_normal.png"),
+
+	roughness: 0.8,
+	metallic:Some(0.4),
+
+     emissive_texture: None ,
+
+
+
+         uv_scale_factor: 0.25, 
+
+
+
+)

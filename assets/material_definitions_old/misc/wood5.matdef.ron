@@ -1,0 +1,17 @@
+(
+	
+	 material_name:  "Wood5",   
+
+	 diffuse_texture: Some("textures/material_overrides/wood5_diffuse.png"),
+	  normal_texture: Some("textures/material_overrides/wood5_normal.png"),
+
+	 roughness: 0.8,
+
+   emissive_texture: None ,
+
+
+   
+
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+)
