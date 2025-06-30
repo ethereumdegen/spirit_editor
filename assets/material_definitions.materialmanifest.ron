@@ -27,15 +27,11 @@
 
   "BrickPixel":"materialize_defs/pixel/brick_pixel.material.toml",
   "BrickPixelAlt":"materialize_defs/pixel/brick_pixel_alt.material.toml",
-
-   "SlateDark":"materialize_defs/slate_dark.material.toml",
+ 
    "CainosDungeon":"materialize_defs/pixel/cainos_dungeon.material.toml",
    "CainosDungeonDark":"materialize_defs/pixel/cainos_dungeon_dark.material.toml",
 
-
-   "RocksAdamantite":"materialize_defs/rocks_adamantite.material.toml",
  
-
     "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
     "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
 

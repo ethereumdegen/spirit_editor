@@ -2,7 +2,7 @@ type = "DoodadMaterial"
 
 [material.base]  
 base_color_texture="/textures/material_overrides/dreamscape_castle/building/T_Roof_Tiles_02_C.png"
-normal_map_texture="/textures/material_overrides/dreamscape_castle/building/T_Roof_Tiles_02_N.png"
+normal_map_texture="/textures/material_overrides/dreamscape_castle/building/T_Roof_Tiles_N.png"
 perceptual_roughness=0.8
 metallic=0.4
 
