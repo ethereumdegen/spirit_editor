@@ -49,6 +49,13 @@
 
 
 
+       "AcademyWall":"materialize_defs/academy/academy_wall.material.toml",
+
+       "AcademyStone":"materialize_defs/academy/academy_stone.material.toml",
+        "AcademyExterior":"materialize_defs/academy/academy_exterior.material.toml",
+
+
+
       // enchantments ! 
 
       "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
