@@ -1,5 +1,6 @@
 
-use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied, GetPropertyError};
+use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied};
+use bevy_materialize::material_property::{ GetPropertyError };
 // use bevy_materialize::generic_material::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;

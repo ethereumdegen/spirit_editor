@@ -28,14 +28,18 @@ winit = { version = "0.30", default-features = false }
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
-  bevy_material_wizard = "0.16.0"
+ # bevy_material_wizard = "0.16.0"
+bevy_material_wizard = {path="../bevy_material_wizard"}
+
   # bevy_material_wizard = {path="../bevy_material_wizard"}
-  bevy_materialize = {  version="0.5.1"    }
+  # bevy_materialize = {  version="0.5.1"    }
+
+  bevy_materialize = { git="https://github.com/ethereumdegen/bevy_materialize", branch="ron", features=["ron","bevy_pbr"] }
 
 
 
- bevy_magic_fx = "0.16.0"
-  #bevy_magic_fx = {path="../bevy_magic_fx"}
+  # bevy_magic_fx = "0.16.0"
+  bevy_magic_fx = {path="../bevy_magic_fx"}
 
 
 

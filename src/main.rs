@@ -40,10 +40,11 @@ mod virtual_link;
 mod material_override_link;
 
  
+use bevy_materialize::prelude::RonMaterialDeserializer;
 use crate::shaders::material_affine_processor::Affine2Processor;
 use bevy_editor_pls_core::EditorEvent;
 use bevy_materialize::MaterializePlugin;
-use bevy_materialize::prelude::TomlMaterialDeserializer;
+//use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
 use bevy::render::render_resource::AddressMode;
 use bevy::render::render_resource::FilterMode;
@@ -248,7 +249,7 @@ fn main() {
 
         // .register_type::< TextureSubsetDimensions >()
 
-        .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
+        .add_plugins( MaterializePlugin::new(RonMaterialDeserializer)
                     .with_simple_loader(None)   //to prevent bug with PNG loading 
                     .with_processor( Affine2Processor  )
              )

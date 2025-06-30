@@ -1,0 +1,24 @@
+(
+	// RON is inconvenient because i can't get the type of `material` here, so having this exterior type field is necessary.
+	type: Some("DoodadMaterial"),
+
+	material: Some(DoodadMaterial(
+
+	base: (
+	  base_color_texture: Some( "/textures/material_overrides/pixel/szadiart_catacombs.png") , 
+	  normal_map_texture: Some( "/textures/material_overrides/pixel/szadiart_catacombs_normal.png" ) , 
+		perceptual_roughness:0.9, 
+
+		uv_transform : Some(  texture_subset_dimensions : ( offset : [64,112], dimensions:  [32, 32], base_texture_dimensions: [1024, 640] ) )  
+	),
+
+	extension: (
+
+	)
+       )),
+
+	properties: Some({
+	 
+		"uv_scale_factor": 1.0
+	})
+)

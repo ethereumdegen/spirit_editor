@@ -1,4 +1,12 @@
 {
+  
+   "CobbleWallPixel":"materialize_defs/pixel/cobble_wall_pixel.material.ron",
+  
+
+
+}
+
+/* {
   "CobbleWallPixel":"materialize_defs/pixel/cobble_wall_pixel.material.toml",
   "CobbleWall2Pixel":"materialize_defs/pixel/cobble_wall_2_pixel.material.toml",
   "CobbleWall3Pixel":"materialize_defs/pixel/cobble_wall_3_pixel.material.toml",
@@ -59,6 +67,6 @@
      "fire_medium":"materialize_defs/magicfx/fire_medium.material.toml",
  
 }
-
+ */
 
 // handle grass foliage shader w this !? 

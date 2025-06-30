@@ -651,7 +651,7 @@ dependencies = [
  "downcast-rs 2.0.1",
  "either",
  "petgraph 0.7.1",
- "ron",
+ "ron 0.8.1",
  "serde",
  "smallvec",
  "thiserror 2.0.12",
@@ -730,7 +730,7 @@ dependencies = [
  "futures-lite 2.5.0",
  "js-sys",
  "parking_lot",
- "ron",
+ "ron 0.8.1",
  "serde",
  "stackfuture",
  "uuid",
@@ -768,7 +768,7 @@ dependencies = [
  "futures-lite 2.5.0",
  "js-sys",
  "parking_lot",
- "ron",
+ "ron 0.8.1",
  "serde",
  "stackfuture",
  "thiserror 2.0.12",
@@ -858,7 +858,7 @@ dependencies = [
  "lyon",
  "png",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -904,7 +904,7 @@ dependencies = [
  "anyhow",
  "bevy",
  "csv",
- "ron",
+ "ron 0.8.1",
  "serde",
  "thiserror 1.0.69",
  "toml",
@@ -1146,7 +1146,7 @@ dependencies = [
  "opener",
  "pretty-type-name",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "spirit_edit_core",
  "transform-gizmo-bevy",
@@ -1271,7 +1271,7 @@ dependencies = [
  "noise",
  "png",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -1595,37 +1595,33 @@ dependencies = [
 [[package]]
 name = "bevy_magic_fx"
 version = "0.16.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "03bef87c58070ac22a247a2afd94516e73f13e583578681e618dd6c43ef95be4"
 dependencies = [
  "bevy",
  "bevy_common_assets",
  "bevy_materialize",
  "bevy_obj",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
 ]
 
 [[package]]
 name = "bevy_material_wizard"
-version = "0.16.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0e12802c9ae06eba2d58ef752f028b65658ab4cb144f8b8088967084aae00fe"
+version = "0.16.1"
 dependencies = [
  "bevy",
  "bevy_materialize",
- "ron",
+ "ron 0.8.1",
  "serde",
 ]
 
 [[package]]
 name = "bevy_materialize"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "670eb69a0dbee3c001f24a752accce10e3a3bb425623b83b92727de9b199ccf4"
+version = "0.7.0"
+source = "git+https://github.com/ethereumdegen/bevy_materialize?branch=ron#7b5431cf14629e580baa99c3783ca455283dd89d"
 dependencies = [
  "bevy",
+ "ron 0.10.1",
  "serde",
  "thiserror 2.0.12",
  "toml",
@@ -1965,7 +1961,7 @@ dependencies = [
  "image",
  "png",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -3170,7 +3166,7 @@ checksum = "c1310c66c2c6d3e2482a182df5b70cefb8605d9ef1d89043881c1f44c5dcbd67"
 dependencies = [
  "bevy",
  "bevy_common_assets",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
 ]
@@ -3190,7 +3186,7 @@ dependencies = [
  "image",
  "png",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
@@ -3204,7 +3200,7 @@ checksum = "bcaf4fa88e1c8b0e6282bb1640ad0acfb7eaa2c19ab6cca16571057f7d36d0da"
 dependencies = [
  "bevy",
  "bevy_common_assets",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
 ]
@@ -6118,6 +6114,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "ron"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "beceb6f7bf81c73e73aeef6dd1356d9a1b2b4909e1f0fc3e59b034f9572d7b7f"
+dependencies = [
+ "base64 0.22.1",
+ "bitflags 2.9.0",
+ "serde",
+ "serde_derive",
+ "unicode-ident",
+]
+
+[[package]]
 name = "roxmltree"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6439,7 +6448,7 @@ dependencies = [
  "bevy_common_assets",
  "bevy_egui 0.34.1",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
 ]
 
@@ -6468,7 +6477,7 @@ dependencies = [
  "degen_toon_water",
  "noise",
  "rand",
- "ron",
+ "ron 0.8.1",
  "serde",
  "serde_json",
  "spirit_edit_core",
