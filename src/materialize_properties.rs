@@ -1,5 +1,5 @@
 
-use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied, GetPropertyError};
+use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied };
 // use bevy_materialize::generic_material::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
@@ -9,33 +9,26 @@ use bevy_materialize::prelude::*;
 
 use crate::shaders::doodad_material::{DoodadMaterial,DoodadMaterialBase};
 
-
-/*
-
-sometimes this doesnt always work !? 
-*/
+ 
 pub fn materialize_properties_plugin(app:&mut App){
 
 
           app
 
-         // .register_type::<TextureSubsetDimensions>()   // critical ! 
+        
            .register_type::< f32 >()
-         // .register_material_property(  GenericMaterial::TEXTURE_SUBSET_DIMENSIONS )
+          
            .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
-            //.add_systems(Startup, register_foliage_assets)
-            
-            .add_systems(PostUpdate, (
+           
+          /*  .add_systems(PostUpdate, (
                 
-             //	update_materialize_properties,
-               //   update_materialize_properties_when_applied,
-
+         
                 update_doodad_material, 
 
                 ).chain()
                
-           )
+           )*/
 
             ;
 }
@@ -177,15 +170,16 @@ fn update_materialize_properties_when_applied(
 
 
 // a hack to add the mask image 
+// can this be done a different way ?? 
+
+/*
 fn update_doodad_material(
        material_query: Query<   &GenericMaterial3d , Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
 
       generic_material_assets: Res<Assets<GenericMaterial>>  , 
+ 
 
-   //  generic_materials_ext: GenericMaterials, 
-
-     mut commands: Commands, 
-      // world: &mut World,
+     mut commands: Commands,  
 
 
       doodad_materials : Res <Assets< DoodadMaterial >> ,
@@ -204,20 +198,15 @@ fn update_doodad_material(
 
 
                  let Some(loaded_generic_material) =  generic_material_assets.get(  asset_id ) else {continue};
-
- 
-
+  
                      let material_handle = &loaded_generic_material.handle;
-
-                 
-
+  
 
                     if let Some(  _mat  ) = doodad_materials.get ( material_handle.id() .typed_unchecked()) {
                         
 
                         commands.queue( BuildMaterialMask( material_handle.id().typed_unchecked() )  );
-                        // mat.extension.build_mask_from_world(  world  )
-                   
+                      
 
                     } 
 
@@ -236,13 +225,11 @@ impl Command for BuildMaterialMask {
 
 fn apply(self, world: &mut  World) { 
 
-    //remove and re-insert it ! 
-
+   
 
         let Some(mut doodad_materials ) = world.remove_resource::<Assets<DoodadMaterial>>() else {return};
 
-     //   let Some(mut doodad_materials ) = world.get_resource_mut::<Assets<DoodadMaterial>>() else {return};
-
+    
 
           if let Some(  mat  ) = doodad_materials.get_mut (  self. 0 ) {
 
@@ -254,4 +241,4 @@ fn apply(self, world: &mut  World) {
 
          world.insert_resource(   doodad_materials  );
      }
-}
+}*/

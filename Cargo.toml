@@ -14,6 +14,10 @@ default-run = "main"
  bevy = { version = "0.16.0" , features = [ "jpeg", "tga","png", "serialize","ktx2","zstd"  ] }
 
 
+iyes_perf_ui =  {git = "https://github.com/IyesGames/iyes_perf_ui", branch="main"}
+
+
+
 
 bevy_egui = "0.34.1"
 
@@ -28,14 +32,14 @@ winit = { version = "0.30", default-features = false }
 # degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
 
 
-  bevy_material_wizard = "0.16.0"
-  # bevy_material_wizard = {path="../bevy_material_wizard"}
-  bevy_materialize = {  version="0.5.1"    }
+ # bevy_material_wizard = "0.16.0"
+   bevy_material_wizard = {path="../bevy_material_wizard"}
+  bevy_materialize = {  version="0.7.0"    }
 
 
 
- bevy_magic_fx = "0.16.0"
-  #bevy_magic_fx = {path="../bevy_magic_fx"}
+ #bevy_magic_fx = "0.16.0"
+   bevy_magic_fx = {path="../bevy_magic_fx"}
 
 
 

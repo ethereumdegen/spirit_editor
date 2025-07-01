@@ -39,6 +39,8 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+mod benchmarking;
+
  
 use crate::shaders::material_affine_processor::Affine2Processor;
 use bevy_editor_pls_core::EditorEvent;
@@ -294,6 +296,8 @@ fn main() {
 
     
         .add_plugins(SpiritEditCorePlugin {})
+
+     //   .add_plugins ( benchmarking::benchmarking_plugin ) 
  
 
 
