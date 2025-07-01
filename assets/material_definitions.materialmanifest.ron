@@ -36,11 +36,7 @@
     "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
 
     "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
-
-    "StoneWall":"materialize_defs/stone_wall.material.toml",
-     "StoneWall2":"materialize_defs/stone_wall_2.material.toml",
-      "StoneWall3":"materialize_defs/stone_wall_3.material.toml",
-
+ 
      "PixelFoliage":"materialize_defs/pixel/pixel_foliage.material.toml",
 
 // -----
@@ -117,7 +113,11 @@
       "MedievalVillageWall2":"materialize_defs/medieval_village/medieval_village_wall2.material.toml",
       "MedievalVillageWallStone":"materialize_defs/medieval_village/medieval_village_wall_stone.material.toml",
 
-      // misc materials  
+
+            // misc materials  
+
+
+
       "Bark1":"materialize_defs/misc/bark1.material.toml",
       "Branch":"materialize_defs/misc/branch.material.toml",
       "Cliff1":"materialize_defs/misc/cliff1.material.toml",
@@ -127,32 +127,42 @@
       "Cliff4":"materialize_defs/misc/cliff4.material.toml",
       "Cliff5":"materialize_defs/misc/cliff5.material.toml",
       "Cliff5Blue":"materialize_defs/misc/cliff5_blue.material.toml",
+
+
+/*
+      //CAUSE HUGE LAG 
       "Cobbles2":"materialize_defs/misc/cobbles_2.material.toml",
       "DirtToon1":"materialize_defs/misc/dirttoon1.material.toml",
       "Fern1":"materialize_defs/misc/fern1.material.toml",
       "Fern2":"materialize_defs/misc/fern2.material.toml",
+*/
+
+
+
+/*
+      //CAUSE HUGE LAG 
       "GrassSimple":"materialize_defs/misc/grass_simple.material.toml",
       "Leaves1":"materialize_defs/misc/leaves1.material.toml",
       "Leaves2":"materialize_defs/misc/leaves2.material.toml",
       "Leaves3":"materialize_defs/misc/leaves3.material.toml",
       "Leaves4":"materialize_defs/misc/leaves4.material.toml",
-      "MushroomFlowers":"materialize_defs/misc/mushroomflowers.material.toml",
+
+      */
+
+
+
+
+
+   // disabled for now 
+    /*
       "OrnateTiles1":"materialize_defs/misc/ornate_tiles_1.material.toml",
       "OrnateTiles2":"materialize_defs/misc/ornate_tiles_2.material.toml",
       "OrnateTiles3":"materialize_defs/misc/ornate_tiles_3.material.toml",
       "OrnateTiles4":"materialize_defs/misc/ornate_tiles_4.material.toml",
       "ProtoChecker":"materialize_defs/misc/proto_checker.material.toml",
-      "Rocks2":"materialize_defs/misc/rocks2.material.toml",
-      "RocksFixedDark":"materialize_defs/misc/rocks_fixed_dark.material.toml",
-      "RocksFixedWhite":"materialize_defs/misc/rocks_fixed_white.material.toml",
-      "RockyEarth":"materialize_defs/misc/rocky_earth.material.toml",
-      "Slate1":"materialize_defs/misc/slate_1.material.toml",
-      "Slate2":"materialize_defs/misc/slate_2.material.toml",
-      "SlateDarkMisc":"materialize_defs/misc/slate_dark.material.toml",
-      "StoneFloor":"materialize_defs/misc/stone_floor.material.toml",
-      "StoneWallMisc":"materialize_defs/misc/stone_wall.material.toml",
-      "StoneWall2Misc":"materialize_defs/misc/stone_wall_2.material.toml",
-      "StoneWall3Misc":"materialize_defs/misc/stone_wall_3.material.toml",
+      
+          
+     
       "TiledBricks1":"materialize_defs/misc/tiled_bricks_1.material.toml",
       "TiledBricks2":"materialize_defs/misc/tiled_bricks_2.material.toml",
       "TiledCobbles1":"materialize_defs/misc/tiled_cobbles_1.material.toml",
@@ -165,18 +175,54 @@
       "TiledStuccoDark":"materialize_defs/misc/tiled_stucco_dark.material.toml",
       "TiledStuccoLight":"materialize_defs/misc/tiled_stucco_light.material.toml",
       "TiledWall1":"materialize_defs/misc/tiled_wall_1.material.toml",
-      "ToonStone":"materialize_defs/misc/toonstone.material.toml",
-      "TreeLeavesFir":"materialize_defs/misc/treeleavesfir.material.toml",
-      "Undergrowth":"materialize_defs/misc/undergrowth.material.toml",
-      "VillageProps":"materialize_defs/misc/villageprops.material.toml",
+   
+      "Willow":"materialize_defs/misc/willow.material.toml",
+
+      "WoodFloor":"materialize_defs/misc/wood_floor.material.toml",
+
+ 
+*/
+    
+
+     "Slate1":"materialize_defs/misc/slate_1.material.toml",
+      "Slate2":"materialize_defs/misc/slate_2.material.toml",
+      "SlateDark":"materialize_defs/misc/slate_dark.material.toml",
+
+      
+    /*
+     "RockyEarth":"materialize_defs/misc/rocky_earth.material.toml",
+     
+      "StoneFloor":"materialize_defs/misc/stone_floor.material.toml",
+      "StoneWall":"materialize_defs/misc/stone_wall.material.toml",
+      "StoneWall2":"materialize_defs/misc/stone_wall_2.material.toml",
+      "StoneWall3":"materialize_defs/misc/stone_wall_3.material.toml",
+
+     "ToonStone":"materialize_defs/misc/toonstone.material.toml",
+    */
+/*
+
       "Wall1":"materialize_defs/misc/wall1.material.toml",
       "Wall1Dark":"materialize_defs/misc/wall1_dark.material.toml",
       "Wall2":"materialize_defs/misc/wall2.material.toml",
-      "Willow":"materialize_defs/misc/willow.material.toml",
-      "Wood1":"materialize_defs/misc/wood1.material.toml",
+
+        "Wood1":"materialize_defs/misc/wood1.material.toml",
       "Wood2":"materialize_defs/misc/wood2.material.toml",
       "Wood5":"materialize_defs/misc/wood5.material.toml",
-      "WoodFloor":"materialize_defs/misc/wood_floor.material.toml",
+*/
+ 
+
+
+      // ---- 
+        "MushroomFlowers":"materialize_defs/misc/mushroomflowers.material.toml",
+
+       "Rocks2":"materialize_defs/misc/rocks2.material.toml",
+      "RocksFixedDark":"materialize_defs/misc/rocks_fixed_dark.material.toml",
+      "RocksFixedWhite":"materialize_defs/misc/rocks_fixed_white.material.toml",
+    
+    "TreeLeavesFir":"materialize_defs/misc/treeleavesfir.material.toml",
+      "Undergrowth":"materialize_defs/misc/undergrowth.material.toml",
+      "VillageProps":"materialize_defs/misc/villageprops.material.toml",
+
 
       // enchantments ! 
 
