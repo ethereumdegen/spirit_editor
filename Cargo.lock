@@ -1598,7 +1598,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_magic_fx"
-version = "0.16.0"
+version = "0.16.1"
 dependencies = [
  "bevy",
  "bevy_common_assets",
