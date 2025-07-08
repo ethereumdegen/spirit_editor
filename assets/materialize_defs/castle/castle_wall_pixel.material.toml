@@ -4,11 +4,11 @@ type = "DoodadMaterial"
 base_color_texture="/textures/material_overrides/pixel/szadiart_catacombs.png"
 normal_map_texture="/textures/material_overrides/pixel/szadiart_catacombs_normal.png"
 perceptual_roughness=0.9
-uv_transform = { uv_scale_factor = 1.0, texture_subset_dimensions = { offset = [0, 288], dimensions = [32, 32], base_texture_dimensions = [1024, 640] } }
+uv_transform = { uv_input_scale = 1.0, texture_subset_dimensions = { offset = [0, 288], dimensions = [32, 32], base_texture_dimensions = [1024, 640] } }
 
 
 [material.extension]
 
 [material.extension.custom_uniforms]
 use_fixed_world_uv = 1
- 
+uv_input_scale= 4.0 

@@ -16,9 +16,9 @@ pub fn materialize_properties_plugin(app:&mut App){
           app
 
         
-           .register_type::< f32 >()
+        //   .register_type::< f32 >()
           
-           .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
+      //     .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
            
           /*  .add_systems(PostUpdate, (
@@ -33,7 +33,7 @@ pub fn materialize_properties_plugin(app:&mut App){
             ;
 }
 
- 
+ /*
 
 pub trait CustomMaterialPropertiesExt {
    // const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions");
@@ -43,7 +43,7 @@ pub trait CustomMaterialPropertiesExt {
 }
 impl CustomMaterialPropertiesExt for GenericMaterial {}
 
-
+*/
 
 
 /*

@@ -10,7 +10,7 @@ double_sided= true
 alpha_mode=   { Mask = 0.2 }
 uv_transform = {  texture_subset_dimensions = { offset = [0,32], dimensions = [32, 32], base_texture_dimensions = [352,272] } }
 
-[properties]
-uv_scale_factor= 1.0 
+[material.extension.custom_uniforms]
+uv_input_scale= 1.0 
 
  

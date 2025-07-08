@@ -24,6 +24,7 @@
 
   "MetalMeshWall":"materialize_defs/pixel/metal_mesh_wall.material.toml",
 
+   "CrackedEarth":"materialize_defs/pixel/dirt_pixel.material.toml",
 
   "DirtPixel":"materialize_defs/pixel/dirt_pixel.material.toml",
 

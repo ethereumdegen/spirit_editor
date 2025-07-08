@@ -53,7 +53,7 @@ impl Default for FixedSpaceUvMaterialUniforms {
         Self {
             tint_color: Color::WHITE.into(),
             blank_top_bottom: 0, 
-            uv_input_scale: 4.0 //default 
+            uv_input_scale: 8.0 //default 
              
         }
     }

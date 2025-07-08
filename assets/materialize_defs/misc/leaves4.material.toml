@@ -11,4 +11,4 @@ base_color={ LinearRgba = [0.2, 0.8, 0.2, 1.0] }
 [material.extension.custom_uniforms]
 
 [properties]
-uv_scale_factor=1.0
+uv_input_scale=1.0

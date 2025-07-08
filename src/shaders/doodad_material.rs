@@ -59,7 +59,7 @@ impl Default for DoodadMaterialUniforms {
             blank_top_bottom: 0, 
 
 
-            uv_input_scale: 4.0 
+            uv_input_scale: 8.0 
                                      // accelerations: Vec4::default(),
         }
     }
