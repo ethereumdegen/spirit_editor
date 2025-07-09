@@ -19,6 +19,9 @@
   "StonePixelAlt":"materialize_defs/pixel/stone_pixel_alt.material.toml",
 
 
+  "PolystyleCastle":"materialize_defs/misc/polystyle_castle.material.toml",
+
+
   "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
 
 
@@ -35,7 +38,8 @@
    "CainosDungeonDark":"materialize_defs/pixel/cainos_dungeon_dark.material.toml",
 
  
-    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
+    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
+    "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
     "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
 
     "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
