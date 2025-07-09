@@ -3189,7 +3189,9 @@ dependencies = [
 
 [[package]]
 name = "degen_toon_terrain"
-version = "0.16.4"
+version = "0.16.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "21435838f8eff56f612b315f1d852a228bc2106e98bb855e6de7d8fcce2de239"
 dependencies = [
  "anyhow",
  "avian3d",
@@ -4197,7 +4199,7 @@ dependencies = [
  "js-sys",
  "log",
  "wasm-bindgen",
- "windows-core 0.57.0",
+ "windows-core 0.58.0",
 ]
 
 [[package]]
