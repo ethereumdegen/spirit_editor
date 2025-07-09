@@ -1,6 +1,9 @@
 
 //use crate::materials::extension_material_link::BuildableUsingWorld;
 //use crate::materials::shaders::cel_mask_texture::get_cel_mask_texture_embedded_path;
+use std::path::Path;
+use crate::AssetSourceId;
+use crate::AssetPath;
 use bevy::asset::embedded_asset;
 use bevy::prelude::*;
 use bevy::reflect::TypePath;
@@ -29,8 +32,8 @@ pub fn doodad_material_plugin(app: &mut App) {
 
         ;
 
-
-    //    embedded_asset!(app, "assets/cel_mask.png");
+     //    embedded_asset!(app, omit_prefix, "files/bevy_pixel_light.png");
+        embedded_asset!(app, "assets/cel_mask.png");
 
 
 }
@@ -107,13 +110,14 @@ impl Default for DoodadMaterialBase {
 
      }
 }
-
-
+ 
 
 pub fn get_cel_mask_texture_embedded_path() -> &'static str {
    // "embedded://spirit_editor/shaders/assets/cel_mask.png"
 
-   "shaders/cel_mask.png"   //cant get embedding to work
+  // "shaders/cel_mask.png"   //cant get embedding to work
+
+       "embedded://spirit_editor/assets/cel_mask.png"
 }
 
 

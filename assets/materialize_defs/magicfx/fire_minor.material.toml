@@ -20,6 +20,6 @@ scroll_repeats = [ 2.0,2.0]
 scroll_speed = [0.25,0.12]
 distortion_amount = 0.02
 distortion_speed = [0.02,0.01]
-uv_input_scale= [4.0,4.0] 
+uv_scale_factor= [4.0,4.0] 
 use_masking_texture=1
 animate_masking_texture=0

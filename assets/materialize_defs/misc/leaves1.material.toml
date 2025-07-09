@@ -8,4 +8,4 @@ metallic=0.4
 [material.extension]
 
 [material.extension.custom_uniforms]
-uv_input_scale= 4.0 
+uv_input_scale= 1.0 

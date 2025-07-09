@@ -6,9 +6,5 @@ normal_map_texture="/textures/material_overrides/rocks2_normal.png"
 perceptual_roughness=0.8
 metallic=0.4
 
-[material.extension]
-
 [material.extension.custom_uniforms]
-
-[properties]
-uv_input_scale=1.0
+uv_input_scale= 1.0 
