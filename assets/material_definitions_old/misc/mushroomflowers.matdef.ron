@@ -1,0 +1,19 @@
+(
+  
+   material_name:  "Flowers1",   
+
+  diffuse_texture: Some("textures/material_overrides/mushroomsflowers_diffuse.png"),
+   normal_texture: Some("textures/material_overrides/mushroomsflowers_normal.png"),
+   
+  roughness: 0.8,
+
+  alpha_mode: AlphaBlend,
+
+    
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+
+
+
+
+)

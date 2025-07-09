@@ -1,6 +1,6 @@
 
-use bevy_materialize::GenericMaterialApplied;
-use bevy_materialize::GenericMaterialError;
+use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied };
+// use bevy_materialize::generic_material::GenericMaterialError;
 use bevy::{math::Affine2, prelude::*};
 use bevy_materialize::prelude::*;
 
@@ -9,48 +9,44 @@ use bevy_materialize::prelude::*;
 
 use crate::shaders::doodad_material::{DoodadMaterial,DoodadMaterialBase};
 
-
-/*
-
-sometimes this doesnt always work !? 
-*/
+ 
 pub fn materialize_properties_plugin(app:&mut App){
 
 
           app
 
-          .register_type::<TextureSubsetDimensions>()   // critical ! 
+        
+        //   .register_type::< f32 >()
+          
+      //     .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
 
-            //.add_systems(Startup, register_foliage_assets)
-            
-            .add_systems(PostUpdate, (
+           
+          /*  .add_systems(PostUpdate, (
                 
-             //	update_materialize_properties,
-                update_materialize_properties_when_applied,
-
+         
                 update_doodad_material, 
 
                 ).chain()
                
-           )
+           )*/
 
             ;
 }
 
- 
+ /*
 
 pub trait CustomMaterialPropertiesExt {
-    const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions", || TextureSubsetDimensions::default());
+   // const TEXTURE_SUBSET_DIMENSIONS: MaterialProperty<TextureSubsetDimensions> = MaterialProperty::new("texture_subset_dimensions");
 
 
-    const UV_SCALE_FACTOR: MaterialProperty<f32> = MaterialProperty::new("uv_scale_Factor", || 1.0 );
+    const UV_SCALE_FACTOR: MaterialProperty<f32> = MaterialProperty::new("uv_scale_factor" );  //default is 1.0 ? 
 }
 impl CustomMaterialPropertiesExt for GenericMaterial {}
 
+*/
 
 
-
-
+/*
 #[derive(Clone,Debug,Reflect,Default )]
 pub struct TextureSubsetDimensions {
 
@@ -80,7 +76,7 @@ impl TextureSubsetDimensions {
 
     }
 
-}
+}*/
 
 
 
@@ -94,12 +90,16 @@ Performs post processing on our  materialize materials !! this is critical due t
 
       this is buggy and weird  pretty often.. ? 
 
-*/fn update_materialize_properties_when_applied(
+*/
+
+
+/*
+fn update_materialize_properties_when_applied(
 
 
     material_entity: Query< (Entity, &GenericMaterial3d ),  Or<( Changed<GenericMaterialApplied> , Changed<MeshMaterial3d<DoodadMaterial>> )> >,
 
-     generic_materials_ext: GenericMaterials, 
+     generic_material_assets: Res<Assets<GenericMaterial>>  , 
 
 
 
@@ -118,30 +118,32 @@ Performs post processing on our  materialize materials !! this is critical due t
         let asset_id = generic_material_3d.id() ;
 
 
-         let Some(loaded_generic_material) =  generic_materials_ext.get(  asset_id ) else {continue};
+
+
+         let Some(loaded_generic_material) =  generic_material_assets.get(   asset_id ) else {continue};
 
 
 
-                  let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( 1.0 ) ;
+                  let uv_scale_factor  = loaded_generic_material.get_property(GenericMaterial::UV_SCALE_FACTOR) .unwrap_or( &1.0 ) ;
 
-                    let tex_subset_dimensions: Result<TextureSubsetDimensions, GenericMaterialError> = loaded_generic_material
-                                    .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS);
+                   // let tex_subset_dimensions: Result<TextureSubsetDimensions, GetPropertyError> = loaded_generic_material
+                         //           .get_property(GenericMaterial::TEXTURE_SUBSET_DIMENSIONS).cloned();
     
 
                      let uv_affine_xform = match    tex_subset_dimensions.ok() {
 
-                        Some( tex_subset_dimensions ) =>  tex_subset_dimensions.to_affine( uv_scale_factor  ), 
-                        None => Affine2::from_scale(Vec2::splat(uv_scale_factor))  
+                        Some( tex_subset_dimensions ) =>  tex_subset_dimensions.to_affine( *uv_scale_factor  ), 
+                        None => Affine2::from_scale(Vec2::splat(*uv_scale_factor))  
 
                      };
  
 
 
-                     let material = &loaded_generic_material.material;
+                     let material_handle = &loaded_generic_material.handle;
 
                     
 
-                    if let Some(  mat  ) = standard_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                    if let Some(  mat  ) = standard_materials.get_mut(  material_handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
                         mat.uv_transform = uv_affine_xform;
                     } 
@@ -153,7 +155,7 @@ Performs post processing on our  materialize materials !! this is critical due t
                     } */
 
 
-                    if let Some(  mat  ) = doodad_materials.get_mut(  material.handle.id() .typed_unchecked()) {
+                    if let Some(  mat  ) = doodad_materials.get_mut(  material_handle.id() .typed_unchecked()) {
                         println!("Successfully updated GenericMaterial uv_transform {:?}" , uv_affine_xform);
                         mat.base.uv_transform = uv_affine_xform;
                     } 
@@ -164,17 +166,20 @@ Performs post processing on our  materialize materials !! this is critical due t
 
 
 
- }
+ }*/
 
 
 // a hack to add the mask image 
+// can this be done a different way ?? 
+
+/*
 fn update_doodad_material(
        material_query: Query<   &GenericMaterial3d , Or<( Added<GenericMaterial3d> , Changed<GenericMaterial3d> )>>,
 
-     generic_materials_ext: GenericMaterials, 
+      generic_material_assets: Res<Assets<GenericMaterial>>  , 
+ 
 
-     mut commands: Commands, 
-      // world: &mut World,
+     mut commands: Commands,  
 
 
       doodad_materials : Res <Assets< DoodadMaterial >> ,
@@ -192,21 +197,16 @@ fn update_doodad_material(
                 let asset_id = generic_material_3d.id() ;
 
 
-                 let Some(loaded_generic_material) =  generic_materials_ext.get(  asset_id ) else {continue};
+                 let Some(loaded_generic_material) =  generic_material_assets.get(  asset_id ) else {continue};
+  
+                     let material_handle = &loaded_generic_material.handle;
+  
 
- 
-
-                     let material = &loaded_generic_material.material;
-
-                 
-
-
-                    if let Some(  _mat  ) = doodad_materials.get (  material.handle.id() .typed_unchecked()) {
+                    if let Some(  _mat  ) = doodad_materials.get ( material_handle.id() .typed_unchecked()) {
                         
 
-                        commands.queue( BuildMaterialMask( material.handle.id().typed_unchecked() )  );
-                        // mat.extension.build_mask_from_world(  world  )
-                   
+                        commands.queue( BuildMaterialMask( material_handle.id().typed_unchecked() )  );
+                      
 
                     } 
 
@@ -225,13 +225,11 @@ impl Command for BuildMaterialMask {
 
 fn apply(self, world: &mut  World) { 
 
-    //remove and re-insert it ! 
-
+   
 
         let Some(mut doodad_materials ) = world.remove_resource::<Assets<DoodadMaterial>>() else {return};
 
-     //   let Some(mut doodad_materials ) = world.get_resource_mut::<Assets<DoodadMaterial>>() else {return};
-
+    
 
           if let Some(  mat  ) = doodad_materials.get_mut (  self. 0 ) {
 
@@ -243,4 +241,4 @@ fn apply(self, world: &mut  World) {
 
          world.insert_resource(   doodad_materials  );
      }
-}
+}*/

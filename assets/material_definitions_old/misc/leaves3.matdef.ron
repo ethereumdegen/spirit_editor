@@ -1,0 +1,24 @@
+(
+  
+   material_name:  "Leaves3",   
+
+  diffuse_texture: Some("textures/material_overrides/leaves3_diffuse.png"),
+   
+  roughness: 0.8,
+
+  alpha_mode: AlphaMask(0.5),
+
+    
+   uv_scale_factor: 1.0,  // do this in the material override lib ?
+        
+
+
+     diffuse_color_tint: Some( LinearRgba((
+                          red: 0.2,
+                          green: 0.8,
+                          blue:  0.2,
+                          alpha:  1.0,
+                    )  )  )
+
+
+)

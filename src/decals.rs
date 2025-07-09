@@ -4,9 +4,10 @@
 use crate::AssetLoadState;
  
 use crate::{asset_loading::TextureAssets, utils::StringUtilsExt};
+use bevy::pbr::decal::{ForwardDecal, ForwardDecalMaterial, ForwardDecalMaterialExt};
 use bevy::prelude::*; 
 
-use bevy_contact_projective_decals::{DecalMaterialExtension,decal_mesh_quad,DecalMaterial};
+ // use bevy_contact_projective_decals::{DecalMaterialExtension,decal_mesh_quad,DecalMaterial};
 
 use bevy::pbr::{NotShadowCaster,NotShadowReceiver};
 
@@ -41,7 +42,9 @@ fn build_decals(
 	decal_query: Query< (Entity, &DecalComponent), Added<DecalComponent> >,
 
 	 mut meshes: ResMut<Assets<Mesh>>,
-	 mut decal_materials: ResMut<Assets< DecalMaterialExtension >>,
+	
+ 	mut decal_standard_materials: ResMut<Assets<ForwardDecalMaterial<StandardMaterial>>>,
+
 
 	 decal_manifest_handles: Res<DecalAssets>, 
 	 decal_manifest_assets: Res<Assets<DecalManifest>>,
@@ -89,29 +92,29 @@ fn build_decals(
  				.flatten();
 
  
- 		if let Some(mut cmd) = commands.get_entity(decal_entity) {
+ 		if let Ok(mut cmd) = commands.get_entity(decal_entity) {
 
 	        cmd.insert((
 	            //Transform::from_xyz(0.0, 0.0, 0.0).with_scale(Vec3::splat(4.0)),
-	            MeshMaterial3d (
+	            
+                 MeshMaterial3d(decal_standard_materials.add(ForwardDecalMaterial {
+                    base: StandardMaterial {
+                        
+                        base_color_texture: diffuse_texture_handle.cloned(),
+                        base_color: base_color.clone().into(),
+                        alpha_mode: AlphaMode::Blend,
+                        unlit: decal_type_data.unlit.clone(),
+                        emissive: emissive_color.into(),
+                        emissive_texture: emissive_texture_handle.cloned(),
+                        ..default()
 
-	                    decal_materials.add(DecalMaterialExtension {
-	                        base: StandardMaterial {
-	                            base_color_texture: diffuse_texture_handle.cloned(),
-	                            base_color:   base_color.clone() .into() ,
-	                            alpha_mode: AlphaMode::Blend,
-	                            unlit: decal_type_data.unlit.clone(), 
-	                            emissive : emissive_color.into(),
-	                            emissive_texture : emissive_texture_handle.cloned() ,
-	                            ..default()
-	                        },
-	                        extension: DecalMaterial {
-	                            depth_fade_factor: 8.0,
-	                        },
-	                    })
+                    },
+                    extension: ForwardDecalMaterialExt {
+                        depth_fade_factor: 1.0,
+                    },
+                })),
 
-	               ),
-	             Mesh3d( meshes.add(decal_mesh_quad(Vec3::Y)) ),
+                 ForwardDecal,
 
 	             //Visibility::default(),
 	             NotShadowCaster, 

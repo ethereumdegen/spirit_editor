@@ -39,6 +39,11 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 
+mod benchmarking;
+
+ 
+use crate::shaders::material_affine_processor::Affine2Processor;
+use bevy_editor_pls_core::EditorEvent;
 use bevy_materialize::MaterializePlugin;
 use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
@@ -197,7 +202,7 @@ fn main() {
             AssetSourceBuilder::platform_default("artifacts/game_assets", None),
         )
 
-
+    //  .add_event::<EditorEvent>()
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {
@@ -213,6 +218,13 @@ fn main() {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
                 })
+
+                 .set(AssetPlugin {
+                     unapproved_path_mode: bevy::asset::UnapprovedPathMode::Allow ,  // for using ./artifacts , for now 
+                    ..default()
+                })
+
+
 
                .set(ImagePlugin{
 
@@ -233,10 +245,14 @@ fn main() {
 
 
 
-        )   
+        )       
+
+
+        // .register_type::< TextureSubsetDimensions >()
 
         .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
-                    .with_simple_loader_settings(None)   //to prevent bug with PNG loading 
+                    .with_simple_loader(None)   //to prevent bug with PNG loading 
+                    .with_processor( Affine2Processor  )
              )
 
         
@@ -264,6 +280,8 @@ fn main() {
         
         .add_plugins(clouds::clouds_plugin)
 
+            .add_plugins(materialize_properties::materialize_properties_plugin   )  //must be BEFORE teh material wizard 
+
 
         .add_plugins(BevyMaterialWizardPlugin{
             material_defs_manifest_path: "assets/material_definitions.materialmanifest.ron".to_string(),
@@ -278,6 +296,8 @@ fn main() {
 
     
         .add_plugins(SpiritEditCorePlugin {})
+
+     //   .add_plugins ( benchmarking::benchmarking_plugin ) 
  
 
 
@@ -288,9 +308,8 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-        .add_plugins(materialize_properties::materialize_properties_plugin   )
-
-        .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
+    
+       //  .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
       
 

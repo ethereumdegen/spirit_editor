@@ -1,0 +1,20 @@
+(
+	
+	 material_name:  "TiledBricks2",   
+
+	diffuse_texture: Some("textures/material_overrides/bricks2_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/bricks2_normal.png"),
+
+	roughness: 0.8,
+	metallic:Some(0.4),
+
+     emissive_texture: None ,
+
+
+
+     uv_scale_factor: 0.25,        
+
+
+
+
+)

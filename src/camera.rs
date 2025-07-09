@@ -12,7 +12,10 @@ pub fn camera_plugin(app: &mut App) {
 
         .add_systems(Update, init_camera)
         .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move);
+        .add_systems(Update, update_camera_move)
+        .add_systems(Update, update_camera_frustrum)
+
+        ;
 }
 
 #[derive(Component)]
@@ -25,7 +28,7 @@ fn init_camera (
 
     for  camera_entity  in camera_query.iter() {
 
-        if let Some(mut cmd) = commands.get_entity( camera_entity ){
+        if let Ok(mut cmd) = commands.get_entity( camera_entity ){
 
             cmd
           /*  .insert (  EdgeDetection { 
@@ -125,4 +128,15 @@ fn init_camera (
             transform.translation += up * MOVE_SPEED * boost_multiplier;
         }
     }
+}
+
+
+fn update_camera_frustrum (
+
+        mut camera_query: Query<(&Projection, &mut Transform)>,
+) {
+
+
+
+
 }

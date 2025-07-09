@@ -181,7 +181,7 @@ pub fn handle_placement_tool_events(
   mut placement_evt_reader: EventReader<PlacementEvent>,
   mut place_doodad_evt_writer: EventWriter<PlaceDoodadEvent>, 
 
-    doodad_query: Query< (Entity, &Name, &DoodadComponent,  Option<&Parent>), With<DoodadComponent>  >,
+    doodad_query: Query< (Entity, &Name, &DoodadComponent,  Option<&ChildOf >), With<DoodadComponent>  >,
 
  global_xform_query: Query<&GlobalTransform>,
  mut local_xform_query: Query<&mut Transform>,

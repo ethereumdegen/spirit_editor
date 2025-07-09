@@ -1,7 +1,7 @@
 use std::any::{Any, TypeId};
 
-use bevy::window::WindowMode;
-use bevy::{prelude::*, utils::HashMap};
+//use bevy::window::WindowMode;
+use bevy::{platform::collections::hash_map::HashMap, prelude::*, window::WindowMode};
 use bevy_inspector_egui::bevy_egui::{egui, EguiContext};
 use egui_dock::{NodeIndex, SurfaceIndex, TabBarStyle, TabIndex};
 use indexmap::IndexMap;

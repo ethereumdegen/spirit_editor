@@ -3,7 +3,7 @@ use bevy::{asset::ReflectAsset, reflect::TypeRegistry};
 use bevy::prelude::*;
  
 
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap; 
 use serde::{Serialize,Deserialize} ;
 
  

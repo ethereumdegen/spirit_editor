@@ -1,0 +1,27 @@
+(
+	
+	 material_name:  "TiledStuccoDark",   
+
+	diffuse_texture: Some("textures/material_overrides/marble_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/marble_normal.png"),
+
+	roughness: 0.8,
+	metallic:Some(0.4),
+
+     emissive_texture: None ,
+
+
+
+     uv_scale_factor: 0.125,   
+
+
+
+     
+          diffuse_color_tint: Some( LinearRgba((
+                          red: 0.15,
+                          green: 0.15,
+                          blue:  0.15,
+                          alpha:  1.0,
+                      ))  )
+
+)

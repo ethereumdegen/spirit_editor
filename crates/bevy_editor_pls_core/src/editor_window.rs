@@ -1,5 +1,5 @@
 use bevy::prelude::{App, World};
-use bevy::utils::HashMap;
+use bevy::platform::collections::hash_map::HashMap;
 use bevy_inspector_egui::egui;
 use std::any::{Any, TypeId};
 
@@ -60,11 +60,14 @@ impl EditorWindowContext<'_> {
     pub fn state_mut_many<const N: usize>(
         &mut self,
         ids: [&TypeId; N],
-    ) -> [&mut (dyn Any + Send + Sync + 'static); N] {
+    ) -> [&mut Box<(dyn Any + Send + Sync + 'static)>; N] {
+      
+
+
         self.window_states
             .get_many_mut(ids)
-            .unwrap()
-            .map(|val| &mut **val)
+         //   .unwrap()
+            .map(|val|   val .unwrap()   )
     }
     pub fn state_mut_triplet<W1: EditorWindow, W2: EditorWindow, W3: EditorWindow>(
         &mut self,
@@ -73,11 +76,11 @@ impl EditorWindowContext<'_> {
             &TypeId::of::<W1>(),
             &TypeId::of::<W2>(),
             &TypeId::of::<W3>(),
-        ])?;
+        ]);
 
-        let a = a.downcast_mut::<W1::State>()?;
-        let b = b.downcast_mut::<W2::State>()?;
-        let c = c.downcast_mut::<W3::State>()?;
+        let a = a?.downcast_mut::<W1::State>()?;
+        let b = b?.downcast_mut::<W2::State>()?;
+        let c = c?.downcast_mut::<W3::State>()?;
         Some((a, b, c))
     }
 
@@ -88,10 +91,10 @@ impl EditorWindowContext<'_> {
 
         let [a, b] = self
             .window_states
-            .get_many_mut([&TypeId::of::<W1>(), &TypeId::of::<W2>()])?;
+            .get_many_mut([&TypeId::of::<W1>(), &TypeId::of::<W2>()]) ;
 
-        let a = a.downcast_mut::<W1::State>()?;
-        let b = b.downcast_mut::<W2::State>()?;
+        let a = a?.downcast_mut::<W1::State>()?;
+        let b = b?.downcast_mut::<W2::State>()?;
         Some((a, b))
     }
 

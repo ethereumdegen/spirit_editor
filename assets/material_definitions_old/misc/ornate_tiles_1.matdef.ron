@@ -1,0 +1,22 @@
+(
+	
+	 material_name:  "OrnateTiles1",   
+
+	diffuse_texture: Some("textures/material_overrides/ornate_tiles_1_diffuse.png"),
+	normal_texture: Some("textures/material_overrides/ornate_tiles_1_normal.png"),
+
+	roughness: 0.8,
+	metallic:Some(0.4),
+
+     emissive_texture: None ,
+
+
+
+      uv_scale_factor: 1.0,  
+      
+
+
+
+
+)
+ 
