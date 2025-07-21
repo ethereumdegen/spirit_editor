@@ -54,14 +54,10 @@
 
 
 // -----
+  
+  //castle ..atlased ! 
 
-
-// these need to be atlased ! 
-
-/* 
-       
- 
-      "CastleBallista":"materialize_defs/castle/castle_ballista.material.toml",
+     "CastleBallista":"materialize_defs/castle/castle_ballista.material.toml",
       "CastleBrokenWall":"materialize_defs/castle/castle_broken_wall.material.toml",
       "CastleBrokenWood":"materialize_defs/castle/castle_broken_wood.material.toml",
       "CastlePavement":"materialize_defs/castle/castle_pavement.material.toml",
@@ -77,6 +73,16 @@
       "CastleWoodFloor":"materialize_defs/castle/castle_wood_floor.material.toml",
       "CastleWoodTrim":"materialize_defs/castle/castle_wood_trim.material.toml",
 
+
+
+// ----
+
+// these need to be atlased ! 
+
+/* 
+       
+ 
+      
       // cave materials
       "CaveGround":"materialize_defs/cave/cave_ground.material.toml",
       "CaveWall":"materialize_defs/cave/cave_wall.material.toml",
