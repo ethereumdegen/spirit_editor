@@ -4,7 +4,12 @@
     //if just getting started, set to None
   external_game_assets_folder: Some("../healing-spirit-game-assets/game-assets"),
 
-      
+          
+
+   // initial_level_to_load: Some( "dungeon_viridian_temple.level" ),
+
+    // initial_level_to_load: Some( "dungeon_broken_elves.level" ),
+
 
      // initial_level_to_load: Some( "house_interior_kieran.level" ),
 
@@ -17,9 +22,9 @@
        
   // initial_level_to_load: Some( "dungeon_grove_cave.level" ),
 
-    initial_level_to_load: Some( "crypt_1.level" ),
+ //   initial_level_to_load: Some( "crypt_1.level" ),
 
- // initial_level_to_load: Some( "world.level" ),
+ initial_level_to_load: Some( "world.level" ),
 
  // initial_level_to_load: Some( "fetid_hole.level" ),
  

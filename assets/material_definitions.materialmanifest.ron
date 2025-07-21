@@ -1,5 +1,11 @@
 // greatly reduce the number of textures ! This should speed up shadows..
 
+// need ALLLLLL of these textures to be atlased !  
+
+
+
+// these are atlased nicely. 
+
 {
   "CobbleWallPixel":"materialize_defs/pixel/cobble_wall_pixel.material.toml",
   "CobbleWall2Pixel":"materialize_defs/pixel/cobble_wall_2_pixel.material.toml",
@@ -19,44 +25,41 @@
   "StonePixelAlt":"materialize_defs/pixel/stone_pixel_alt.material.toml",
 
 
-  "PolystyleCastle":"materialize_defs/misc/polystyle_castle.material.toml",
-
-
   "StoneBrickPixelFixedUv":"materialize_defs/pixel/stone_brick_pixel_fixed_uv.material.toml",
 
 
-  "MetalMeshWall":"materialize_defs/pixel/metal_mesh_wall.material.toml",
-
-   "CrackedEarth":"materialize_defs/pixel/dirt_pixel.material.toml",
 
   "DirtPixel":"materialize_defs/pixel/dirt_pixel.material.toml",
 
   "BrickPixel":"materialize_defs/pixel/brick_pixel.material.toml",
   "BrickPixelAlt":"materialize_defs/pixel/brick_pixel_alt.material.toml",
- 
+  
+
    "CainosDungeon":"materialize_defs/pixel/cainos_dungeon.material.toml",
    "CainosDungeonDark":"materialize_defs/pixel/cainos_dungeon_dark.material.toml",
 
  
-    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
-    "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
+    "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", "Gravel2Pixel":"materialize_defs/pixel/gravel_2_pixel.material.toml",
     "Gravel3Pixel":"materialize_defs/pixel/gravel_3_pixel.material.toml",
 
     "GravelPixel":"materialize_defs/pixel/gravel_pixel.material.toml", 
  
      "PixelFoliage":"materialize_defs/pixel/pixel_foliage.material.toml",
 
+
+
+  "MetalMeshWall":"materialize_defs/pixel/metal_mesh_wall.material.toml",
+
+   "CrackedEarth":"materialize_defs/pixel/dirt_pixel.material.toml",
+
+
 // -----
 
-       "AcademyWall":"materialize_defs/academy/academy_wall.material.toml",
 
-       "AcademyStone":"materialize_defs/academy/academy_stone.material.toml",
-        "AcademyExterior":"materialize_defs/academy/academy_exterior.material.toml",
+// these need to be atlased ! 
 
-          "AcademyCeiling":"materialize_defs/academy/academy_ceiling.material.toml",
-          "AcademyFloor":"materialize_defs/academy/academy_floor.material.toml",
-          "AcademyTrim":"materialize_defs/academy/academy_trim.material.toml",  
-          "AcademyWood":"materialize_defs/academy/academy_wood.material.toml",
+/* 
+       
  
       "CastleBallista":"materialize_defs/castle/castle_ballista.material.toml",
       "CastleBrokenWall":"materialize_defs/castle/castle_broken_wall.material.toml",
@@ -106,9 +109,7 @@
       "HumanHouseWall":"materialize_defs/human_house/human_house_wall.material.toml",
       "HumanHouseWood":"materialize_defs/human_house/human_house_wood.material.toml",
 
-      // items materials
-      "DungeonWeapons":"materialize_defs/items/dungeon_weapons.material.toml",
-
+      
       // medieval village materials
       "MedievalVillageDoorRound":"materialize_defs/medieval_village/medieval_village_door_round.material.toml",
       "MedievalVillageDoorSquare":"materialize_defs/medieval_village/medieval_village_door_square.material.toml",
@@ -120,9 +121,12 @@
       "MedievalVillageWall2":"materialize_defs/medieval_village/medieval_village_wall2.material.toml",
       "MedievalVillageWallStone":"materialize_defs/medieval_village/medieval_village_wall_stone.material.toml",
 
-
+*/
             // misc materials  
 
+
+     
+/*
 
 
       "Bark1":"materialize_defs/misc/bark1.material.toml",
@@ -134,8 +138,7 @@
       "Cliff3":"materialize_defs/misc/cliff3.material.toml",
       "Cliff3Blue":"materialize_defs/misc/cliff3_blue.material.toml",
 
-     
-/*
+
 
    // disabled for now 
 
@@ -162,14 +165,17 @@
 
 
 
-  "StoneWall":"materialize_defs/misc/stone_wall.material.toml",
+
+
+   // disabled for now 
+    /*
+
+      "StoneWall":"materialize_defs/misc/stone_wall.material.toml",
       "StoneWall2":"materialize_defs/misc/stone_wall_2.material.toml",
       "StoneWall3":"materialize_defs/misc/stone_wall_3.material.toml",
 
 
 
-   // disabled for now 
-    /*
       "OrnateTiles1":"materialize_defs/misc/ornate_tiles_1.material.toml",
       "OrnateTiles2":"materialize_defs/misc/ornate_tiles_2.material.toml",
       "OrnateTiles3":"materialize_defs/misc/ornate_tiles_3.material.toml",
@@ -203,11 +209,12 @@
    
 
 */
-  
     
+
         
-      "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
-  
+        /*
+
+        // REPLACE WITH NICE ATLASES ! 
       "Slate1":"materialize_defs/misc/slate_1.material.toml",
       "Slate2":"materialize_defs/misc/slate_2.material.toml",
       "SlateDark":"materialize_defs/misc/slate_dark.material.toml",
@@ -222,20 +229,60 @@
         "Wood1":"materialize_defs/misc/wood1.material.toml",
       "Wood2":"materialize_defs/misc/wood2.material.toml",
       "Wood5":"materialize_defs/misc/wood5.material.toml",
- 
- 
+ */
+    
+
+    // ----
+
+    // academy
 
 
+    "AcademyWall":"materialize_defs/academy/academy_wall.material.toml",
+
+       "AcademyStone":"materialize_defs/academy/academy_stone.material.toml",
+        "AcademyExterior":"materialize_defs/academy/academy_exterior.material.toml",
+
+          "AcademyCeiling":"materialize_defs/academy/academy_ceiling.material.toml",
+          "AcademyFloor":"materialize_defs/academy/academy_floor.material.toml",
+          "AcademyTrim":"materialize_defs/academy/academy_trim.material.toml",  
+          "AcademyWood":"materialize_defs/academy/academy_wood.material.toml",
+          
+
+    // -------
+
+ "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
+ 
       // ---- 
         "MushroomFlowers":"materialize_defs/misc/mushroomflowers.material.toml",
 
         
       "RocksFixedDark":"materialize_defs/misc/rocks_fixed_dark.material.toml",
       "RocksFixedWhite":"materialize_defs/misc/rocks_fixed_white.material.toml",
-    
-    "TreeLeavesFir":"materialize_defs/misc/treeleavesfir.material.toml",
+      
+
+      
+
+      "AncientAtlas":"materialize_defs/ancient/ancient_atlas.material.toml",
+      "DarkFantasyAtlas":"materialize_defs/dark_fantasy/dark_fantasy_atlas.material.toml",
+       "ElvenAtlas":"materialize_defs/elven/elven_atlas.material.toml",
+       "NatureAtlas":"materialize_defs/nature/nature_atlas.material.toml",
+        "DungeonRealmsAtlas":"materialize_defs/dungeon/dungeon_realms_atlas.material.toml",
+
+
+       "TreeLeavesFir":"materialize_defs/misc/treeleavesfir.material.toml",
       "Undergrowth":"materialize_defs/misc/undergrowth.material.toml",
       "VillageProps":"materialize_defs/misc/villageprops.material.toml",
+
+
+        // items materials
+      "DungeonWeapons":"materialize_defs/items/dungeon_weapons.material.toml",
+     // ---
+    
+
+
+        // make an atlas for DOOMED textures 
+     "HologramDoomedFlag":"materialize_defs/hologram/hologram_doomed_flag.material.toml",
+
 
 
       // enchantments ! 
@@ -243,10 +290,15 @@
       "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
   
 
-      "enchant_minor_fire":"materialize_defs/magicfx/fire_minor.material.toml",
+      "enchant_minor_fire":"materialize_defs/enchants/fire_minor.material.toml",
+
+      "enchant_drain" :"materialize_defs/enchants/drain.material.toml",
+
+      "enchant_soul_extraction":"materialize_defs/enchants/drain.material.toml",
+
     
      "fire_medium":"materialize_defs/magicfx/fire_medium.material.toml",
- 
+  
 }
 
 
