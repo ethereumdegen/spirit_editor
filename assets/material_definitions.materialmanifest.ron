@@ -268,6 +268,14 @@
 
     // -----
 
+
+    "DungeonFloorTile1": "materialize_defs/dungeon/dungeon_floor_tile_1.material.toml",
+    "DungeonFloorTile2": "materialize_defs/dungeon/dungeon_floor_tile_2.material.toml",
+    "DungeonFloorTile3": "materialize_defs/dungeon/dungeon_floor_tile_3.material.toml",
+    "DungeonFloorTile4": "materialize_defs/dungeon/dungeon_floor_tile_4.material.toml",
+
+    // ----
+
  "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
  
       // ---- 

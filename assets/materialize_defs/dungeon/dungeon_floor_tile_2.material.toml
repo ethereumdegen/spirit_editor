@@ -2,7 +2,7 @@ type = "DoodadMaterial"
 
 [material.base]  
 base_color_texture="/textures/material_overrides/dungeon/DungeonTilesAtlas.png"
-normal_map_texture="/textures/material_overrides/ancient/DungeonTilesAtlas_N.png"
+normal_map_texture="/textures/material_overrides/dungeon/DungeonTilesAtlas_N.png"
 perceptual_roughness= 0.9 
 uv_transform = {  texture_subset_dimensions = { offset = [1536,0], dimensions = [512, 512], base_texture_dimensions = [2048,2048] } }
 
