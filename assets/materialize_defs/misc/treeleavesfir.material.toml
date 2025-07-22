@@ -1,7 +1,7 @@
 type = "DoodadMaterial"
 
 [material.base]  
-base_color_texture="/textures/material_overrides/treeleavesfir_diffuse.png"
+base_color_texture="/textures/material_overrides/nature/treeleavesfir_diffuse.png"
 perceptual_roughness=0.8
 metallic=0.4
 

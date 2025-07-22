@@ -7,9 +7,9 @@
 	 material_replacements : {
  	
  	//fix me 
-        "bark" : "Bark1",
-        "leaves" : "Leaves2",
-        "branches": "Branches1"
+        "bark" : "BirchBark1",
+        "leaves" : "BirchLeaves2",
+        "branches": "BirchBranches1"
 
 
     },

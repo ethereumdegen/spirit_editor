@@ -5,7 +5,7 @@ base_color_texture="/textures/material_overrides/ancient/AncientFoliageAtlas.png
 perceptual_roughness= 0.9 
 uv_transform = {  texture_subset_dimensions = { offset = [1024,0], dimensions = [512, 512], base_texture_dimensions = [2048,2048] } }
 double_sided= true
-alpha_mode=  "Blend"               
+  alpha_mode=  {Mask = 0.5 }                 
 
 [material.extension.custom_uniforms]
 uv_input_scale= 1.0 

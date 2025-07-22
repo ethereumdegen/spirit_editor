@@ -65,8 +65,8 @@ fn fragment(
 
                   let uv_transform = pbr_bindings::material.uv_transform;
 
-
-                    var color = pbr_bindings::material.base_color;
+                   var original_base_color = pbr_bindings::material.base_color;
+                  //  var color = pbr_bindings::material.base_color;
 
                    
                      var uv_scale_factor =  custom_uniforms.uv_input_scale ; 
@@ -128,7 +128,7 @@ fn fragment(
                  + triplanar_weights.z *  color_A
                    ;
                     
-                    pbr_input.material.base_color =  triplanar_color;
+                    pbr_input.material.base_color = original_base_color * triplanar_color;
 
              }
 

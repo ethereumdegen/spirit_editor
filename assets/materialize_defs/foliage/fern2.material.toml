@@ -1,10 +1,11 @@
 type = "DoodadMaterial"
 
 [material.base]  
-base_color_texture="/textures/material_overrides/leaves3_diffuse.png"
+base_color_texture="/textures/material_overrides/fern1_diffuse.png"
 perceptual_roughness=0.8
 metallic=0.4
-base_color={ LinearRgba = [0.2, 0.8, 0.2, 1.0] }
+double_sided= true
+alpha_mode=  {Mask = 0.5 }        
 
 [material.extension]
 

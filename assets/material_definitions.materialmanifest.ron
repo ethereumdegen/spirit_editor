@@ -135,7 +135,7 @@
 /*
 
 
-      "Bark1":"materialize_defs/misc/bark1.material.toml",
+     
       "Branch":"materialize_defs/misc/branch.material.toml",
 
 
@@ -279,22 +279,35 @@
  "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
  
       // ---- 
-        "MushroomFlowers":"materialize_defs/misc/mushroomflowers.material.toml",
+      
 
         
       "RocksFixedDark":"materialize_defs/misc/rocks_fixed_dark.material.toml",
       "RocksFixedWhite":"materialize_defs/misc/rocks_fixed_white.material.toml",
       
-
-      
+       "BirchBark1":"materialize_defs/foliage/birch_bark_1.material.toml",
+       "BirchLeaves2":"materialize_defs/foliage/birch_leaves_2.material.toml",
+       "BirchBranches1":"materialize_defs/foliage/birch_branches_1.material.toml",
+        
+        "MeadowBark1":"materialize_defs/foliage/meadow_bark_1.material.toml",
+       "MeadowLeaves1":"materialize_defs/foliage/meadow_leaves_1.material.toml",
+       "MeadowBranches1":"materialize_defs/foliage/meadow_branches_1.material.toml",
+        
+         "ToonLeaves1":"materialize_defs/foliage/toon_leaves_1.material.toml",
+         "PineLeaves1":"materialize_defs/foliage/pine_leaves_1.material.toml",
+          "SpruceLeaves1":"materialize_defs/foliage/spruce_leaves_1.material.toml",
+           "PineBark1":"materialize_defs/foliage/pine_bark_1.material.toml",
 
       "AncientAtlas":"materialize_defs/ancient/ancient_atlas.material.toml",
         "AncientFoliageAtlas":"materialize_defs/ancient/ancient_foliage_atlas.material.toml",
 
          "AncientFoliageBark1":"materialize_defs/ancient/ancient_foliage_bark_1.material.toml",
+          "AncientFoliageBark2":"materialize_defs/ancient/ancient_foliage_bark_2.material.toml",
+
          "AncientFoliageBranches1":"materialize_defs/ancient/ancient_foliage_branches_1.material.toml",
 
          "AncientFoliageLeaves1":"materialize_defs/ancient/ancient_foliage_leaves_1.material.toml",
+         "AncientFoliageLeaves2":"materialize_defs/ancient/ancient_foliage_leaves_2.material.toml",
 
            "AncientFoliageIvy1":"materialize_defs/ancient/ancient_foliage_ivy_1.material.toml",
              "AncientFoliageIvy2":"materialize_defs/ancient/ancient_foliage_ivy_2.material.toml",
@@ -303,14 +316,20 @@
 
       "DarkFantasyAtlas":"materialize_defs/dark_fantasy/dark_fantasy_atlas.material.toml",
        "ElvenAtlas":"materialize_defs/elven/elven_atlas.material.toml",
+
+        "ElvenWallsAtlas":"materialize_defs/elven/elven_walls_atlas.material.toml",
+
        "NatureAtlas":"materialize_defs/nature/nature_atlas.material.toml",
         "DungeonRealmsAtlas":"materialize_defs/dungeon/dungeon_realms_atlas.material.toml",
 
 
        "TreeLeavesFir":"materialize_defs/misc/treeleavesfir.material.toml",
+
       "Undergrowth":"materialize_defs/misc/undergrowth.material.toml",
       "VillageProps":"materialize_defs/misc/villageprops.material.toml",
+       "Flowers1":"materialize_defs/foliage/flowers.material.toml",
 
+       //   "MushroomFlowers":"materialize_defs/misc/mushroomflowers.material.toml",
 
         // items materials
       "DungeonWeapons":"materialize_defs/items/dungeon_weapons.material.toml",

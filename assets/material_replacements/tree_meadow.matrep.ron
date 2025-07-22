@@ -1,0 +1,19 @@
+
+(
+
+
+     replacement_set_name: "tree_meadow",
+
+	 material_replacements : {
+ 	
+ 	 
+        "bark" : "MeadowBark1",
+        "leaves" : "MeadowLeaves1",
+        "branches": "MeadowBranches1"
+
+
+    },
+
+)
+   
+ 
