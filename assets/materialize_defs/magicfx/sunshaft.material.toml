@@ -1,0 +1,20 @@
+type = "MagicFxMaterial"
+
+[material.base]  
+base_color = { LinearRgba = [1.0,1.0,0.8,0.3] }
+emissive= [6.0,6.0,5.2,0.3]   
+double_sided= true
+alpha_mode=  "Blend"                  
+
+
+[material.extension]
+base_color_texture = "/textures/vfx_textures/FX_SunBeam.png"
+masking_texture= "/textures/vfx_textures/Noise_Big_02.tga"
+
+[material.extension.custom_uniforms]
+scroll_repeats = [1.0,1.0]
+scroll_speed = [0.0,0.0]
+distortion_amount = 0.04
+distortion_speed = [0.2,0.01]
+use_masking_texture=1
+animate_masking_texture=0

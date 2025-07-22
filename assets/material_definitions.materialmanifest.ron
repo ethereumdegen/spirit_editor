@@ -366,6 +366,7 @@
       // enchantments ! 
 
       "Portal1":"materialize_defs/magicfx/portal_1.material.toml",
+       "Sunshaft":"materialize_defs/magicfx/sunshaft.material.toml",
   
 
       "enchant_minor_fire":"materialize_defs/enchants/fire_minor.material.toml",
