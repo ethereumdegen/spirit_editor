@@ -45,7 +45,10 @@ impl TextureSubsetDimensions {
  
 		         let base_texture_dimensions = self. base_texture_dimensions;
 
-                let scale = Vec2::new(  self.dimensions .x as f32  / base_texture_dimensions.x as f32   ,  
+		         // fixes the errant lines 
+		         let scale_expansion = 0.999; 
+
+                let scale = Vec2::new(  self.dimensions .x as f32 * scale_expansion  / base_texture_dimensions.x as f32 * scale_expansion    ,  
                  self.dimensions .y as f32  / base_texture_dimensions.y as f32  )  * Vec2::splat(uv_scale) ;
 
                 Affine2 {

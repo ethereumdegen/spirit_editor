@@ -221,9 +221,7 @@
         /*
 
         // REPLACE WITH NICE ATLASES ! 
-      "Slate1":"materialize_defs/misc/slate_1.material.toml",
-      "Slate2":"materialize_defs/misc/slate_2.material.toml",
-      "SlateDark":"materialize_defs/misc/slate_dark.material.toml",
+     
       "StoneFloor":"materialize_defs/misc/stone_floor.material.toml",
     
 
@@ -276,8 +274,31 @@
 
     // ----
 
- "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
- 
+      "PolystyleCastle":"materialize_defs/castle/polystyle_castle_atlas.material.toml",
+
+      // ---
+
+      // these are all atlased ! 
+
+     "RocksAdamantite":"materialize_defs/earth/earth_stone_1.material.toml",
+  
+     "StoneWall1":"materialize_defs/earth/stone_wall_1.material.toml",
+
+      "EarthStone2":"materialize_defs/earth/earth_stone_2.material.toml",
+      "EarthStone1":"materialize_defs/earth/earth_stone_1.material.toml",
+      "EarthStone3":"materialize_defs/earth/earth_stone_3.material.toml",
+
+       "DirtCliff":"materialize_defs/earth/earth_cliff_2.material.toml",
+        "SlateCliff":"materialize_defs/earth/slate_cliff.material.toml",
+
+       "StoneCliff1":"materialize_defs/earth/earth_cliff_1.material.toml",
+      "StoneCliff2":"materialize_defs/earth/earth_cliff_2.material.toml",
+      "StoneCliff3":"materialize_defs/earth/earth_cliff_3.material.toml",
+
+       "Slate1":"materialize_defs/earth/slate_1.material.toml",
+      "Slate2":"materialize_defs/earth/slate_2.material.toml",
+      "SlateDark":"materialize_defs/earth/slate_3.material.toml",
+
       // ---- 
       
 

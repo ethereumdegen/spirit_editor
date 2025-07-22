@@ -1,4 +1,4 @@
-atype = "DoodadMaterial"
+type = "DoodadMaterial"
 
 [material.base]  
 base_color_texture="/textures/material_overrides/nature/mushroomsflowers_diffuse.png"
