@@ -1,0 +1,19 @@
+
+(
+
+
+     replacement_set_name: "tree_ancient",
+
+	 material_replacements : {
+ 	
+  
+        "bark" : "AncientFoliageBark1",
+      //  "leaves" : "AncientFoliageLeaves",
+        "branches": "AncientFoliageLeaves1"
+
+
+    },
+
+)
+   
+ 

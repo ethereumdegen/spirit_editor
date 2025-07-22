@@ -281,8 +281,16 @@
       
 
       "AncientAtlas":"materialize_defs/ancient/ancient_atlas.material.toml",
-      "AncientFoliageAtlas":"materialize_defs/ancient/ancient_foliage_atlas.material.toml",
-        "AncientFoliage1":"materialize_defs/ancient/ancient_foliage_1.material.toml",
+        "AncientFoliageAtlas":"materialize_defs/ancient/ancient_foliage_atlas.material.toml",
+
+         "AncientFoliageBark1":"materialize_defs/ancient/ancient_foliage_bark_1.material.toml",
+         "AncientFoliageBranches1":"materialize_defs/ancient/ancient_foliage_branches_1.material.toml",
+
+         "AncientFoliageLeaves1":"materialize_defs/ancient/ancient_foliage_leaves_1.material.toml",
+
+           "AncientFoliageIvy1":"materialize_defs/ancient/ancient_foliage_ivy_1.material.toml",
+             "AncientFoliageIvy2":"materialize_defs/ancient/ancient_foliage_ivy_2.material.toml",
+          "AncientFoliageIvy3":"materialize_defs/ancient/ancient_foliage_ivy_3.material.toml",
 
 
       "DarkFantasyAtlas":"materialize_defs/dark_fantasy/dark_fantasy_atlas.material.toml",
