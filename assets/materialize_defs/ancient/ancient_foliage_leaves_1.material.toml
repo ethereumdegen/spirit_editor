@@ -2,6 +2,7 @@ type = "DoodadMaterial"
 
 [material.base]  
 base_color_texture="/textures/material_overrides/ancient/AncientFoliageAtlas.png" 
+base_color = { LinearRgba = [0.48,0.69,0.44,1.0] }
 perceptual_roughness= 0.9 
 uv_transform = {  texture_subset_dimensions = { offset = [1024,1536], dimensions = [512, 512], base_texture_dimensions = [2048,2048] } }
 double_sided= true

@@ -192,7 +192,9 @@ fn main() {
 
 
     let mut wgpu_settings = WgpuSettings::default();
-    wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
+   // wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;  //what is this for ? 
+
+     
 
     App::new()
 
@@ -218,6 +220,8 @@ fn main() {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
                 })
+
+
 
                  .set(AssetPlugin {
                      unapproved_path_mode: bevy::asset::UnapprovedPathMode::Allow ,  // for using ./artifacts , for now 
