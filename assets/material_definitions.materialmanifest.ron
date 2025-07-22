@@ -248,13 +248,25 @@
        "AcademyStone":"materialize_defs/academy/academy_stone.material.toml",
         "AcademyExterior":"materialize_defs/academy/academy_exterior.material.toml",
 
-          "AcademyCeiling":"materialize_defs/academy/academy_ceiling.material.toml",
-          "AcademyFloor":"materialize_defs/academy/academy_floor.material.toml",
-          "AcademyTrim":"materialize_defs/academy/academy_trim.material.toml",  
-          "AcademyWood":"materialize_defs/academy/academy_wood.material.toml",
-          
+        "AcademyCeiling":"materialize_defs/academy/academy_ceiling.material.toml",
+        "AcademyFloor":"materialize_defs/academy/academy_floor.material.toml",
+        "AcademyTrim":"materialize_defs/academy/academy_trim.material.toml",  
+        "AcademyWood":"materialize_defs/academy/academy_wood.material.toml",
+        
 
     // -------
+
+
+    "AncientFloorTile1" : "materialize_defs/ancient/ancient_floor_tile_1.material.toml",
+   "AncientFloorTile2" : "materialize_defs/ancient/ancient_floor_tile_2.material.toml",
+   "AncientFloorTile3" : "materialize_defs/ancient/ancient_floor_tile_3.material.toml",
+   "AncientFloorTile4" : "materialize_defs/ancient/ancient_floor_tile_4.material.toml",
+
+   "AncientWall1" : "materialize_defs/ancient/ancient_wall_1.material.toml",
+   "AncientWall2" : "materialize_defs/ancient/ancient_wall_2.material.toml",
+   "AncientWall3" : "materialize_defs/ancient/ancient_wall_3.material.toml",
+
+    // -----
 
  "RocksAdamantite":"materialize_defs/misc/rocks_adamantite.material.toml",
  
@@ -269,6 +281,10 @@
       
 
       "AncientAtlas":"materialize_defs/ancient/ancient_atlas.material.toml",
+      "AncientFoliageAtlas":"materialize_defs/ancient/ancient_foliage_atlas.material.toml",
+        "AncientFoliage1":"materialize_defs/ancient/ancient_foliage_1.material.toml",
+
+
       "DarkFantasyAtlas":"materialize_defs/dark_fantasy/dark_fantasy_atlas.material.toml",
        "ElvenAtlas":"materialize_defs/elven/elven_atlas.material.toml",
        "NatureAtlas":"materialize_defs/nature/nature_atlas.material.toml",
