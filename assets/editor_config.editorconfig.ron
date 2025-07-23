@@ -7,9 +7,9 @@
           
  // initial_level_to_load: Some( "editor_showcase.level" ),
 
-    initial_level_to_load: Some( "crypt_1.level" ),
+  //  initial_level_to_load: Some( "crypt_1.level" ),
 
-  // initial_level_to_load: Some( "world.level" ),
+ //  initial_level_to_load: Some( "world.level" ),
    
    // initial_level_to_load: Some( "dungeon_viridian_temple.level" ),
 
@@ -35,7 +35,7 @@
  // initial_level_to_load: Some( "city_vessara.level" ),
 
 
- // initial_level_to_load: Some( "academy_1.level" ),
+ initial_level_to_load: Some( "academy_1.level" ),
 
  //initial_level_to_load: Some( "default_level.level" ),
 

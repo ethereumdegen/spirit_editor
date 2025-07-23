@@ -14,6 +14,5 @@ uv_transform = {  texture_subset_dimensions = { offset = [0,1024], dimensions = 
 
 
 [material.extension.custom_uniforms]
-use_fixed_world_uv = 1
 uv_input_scale= 4.0 
  
