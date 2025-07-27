@@ -151,7 +151,7 @@ fn fragment(
 
                // FIXED: Clamp the lighting output BEFORE calculating average
             // This prevents bright lights from causing values > 1.0
-            out.color = clamp(out.color, vec4<f32>(0.0), vec4<f32>(1.0));
+            out.color = clamp(out.color, vec4<f32>(0.0), vec4<f32>(0.9));
 
 
   
