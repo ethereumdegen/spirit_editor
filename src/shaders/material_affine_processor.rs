@@ -40,7 +40,7 @@ pub struct TextureSubsetDimensions {
 }
 
 impl TextureSubsetDimensions {
-	pub fn to_affine2(&self, uv_scale: f32) -> Affine2 {
+	/*pub fn to_affine2(&self, uv_scale: f32) -> Affine2 {
  
  
 		         let base_texture_dimensions = self. base_texture_dimensions;
@@ -48,18 +48,50 @@ impl TextureSubsetDimensions {
 		         // fixes the errant lines 
 		         let scale_expansion = 0.999; 
 
-                let scale = Vec2::new(  self.dimensions .x as f32 * scale_expansion  / base_texture_dimensions.x as f32 * scale_expansion    ,  
-                 self.dimensions .y as f32  / base_texture_dimensions.y as f32  )  * Vec2::splat(uv_scale) ;
+                let scale = Vec2::new(
+			        (self.dimensions.x as f32 / base_texture_dimensions.x as f32) * scale_expansion,
+			        (self.dimensions.y as f32 / base_texture_dimensions.y as f32) * scale_expansion
+			    ) * Vec2::splat(uv_scale);
 
                 Affine2 {
                     matrix2: Mat2::from_diagonal(scale),
 
-                    translation: Vec2::new(  self.offset .x as f32  / base_texture_dimensions.x as f32  ,  
-                     self.offset .y as f32  / base_texture_dimensions.y as f32   ) 
+                     translation: Vec2::new(
+			            self.offset.x as f32 / base_texture_dimensions.x as f32,
+			            self.offset.y as f32 / base_texture_dimensions.y as f32
+			        )
                 }
 
 
-	}
+	}*/
+
+	  pub fn to_affine2(&self, uv_scale: f32) -> Affine2 {
+        let base_dims = self.base_texture_dimensions.as_vec2();
+        let subset_dims = self.dimensions.as_vec2();
+        let offset = self.offset.as_vec2();
+        
+        // Calculate the scale factors for the subset within the base texture
+        let subset_scale = Vec2::new(
+            subset_dims.x / base_dims.x,
+            subset_dims.y / base_dims.y
+        );
+        
+        // Apply the user-specified UV scale
+        let final_scale = subset_scale * uv_scale;
+        
+        // Calculate normalized offset (0.0 to 1.0 range)
+        let normalized_offset = Vec2::new(
+            offset.x / base_dims.x,
+             offset.y / base_dims.y 
+        );
+        
+          Affine2 {
+	            matrix2: Mat2::from_diagonal(final_scale),
+	            translation: normalized_offset,
+	        }
+	         
+    }
+
 }
 
 #[derive(Clone)]

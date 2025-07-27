@@ -1,4 +1,4 @@
- 
+
  
 #import bevy_pbr::{
     pbr_fragment::pbr_input_from_standard_material,
@@ -149,14 +149,25 @@ fn fragment(
             var out: FragmentOutput;
             out.color = apply_pbr_lighting(pbr_input);  //apply lighting to a white texture to understand just the lighting 
 
+               // FIXED: Clamp the lighting output BEFORE calculating average
+            // This prevents bright lights from causing values > 1.0
+            out.color = clamp(out.color, vec4<f32>(0.0), vec4<f32>(1.0));
+
+
+  
+
 
             let lighting_average  = (out.color.r + out.color.g + out.color.b ) / 3.0 ;
 
-            // Source for cel shading: https://www.youtube.com/watch?v=mnxs6CR6Zrk]
+            let saturated_lighting_average = saturate(lighting_average);
+
+
+              // Source for cel shading: https://www.youtube.com/watch?v=mnxs6CR6Zrk]
             // sample mask at the current fragment's intensity as u to get the cutoff
-            let uv = vec2<f32>(lighting_average, 0.0);
+            let uv = vec2<f32>(saturated_lighting_average, 0.0);
             let quantization = textureSample(mask, mask_sampler, uv);
             out.color = mix(shadow_color, highlight_color, quantization);
+
 
             // apply rim highlights. Inspired by Breath of the Wild: https://www.youtube.com/watch?v=By7qcgaqGI4
             let eye = normalize(view_bindings::view.world_position.xyz - in.world_position.xyz);
@@ -241,14 +252,21 @@ fn triplanar_mapping_lerp_output(
  // Helper function to apply UV transform to constrain coordinates to subtile
 fn apply_uv_transform(original_uv: vec2<f32>, transform: mat3x3<f32>) -> vec2<f32> {
     // Apply the transformation to the UV coordinates
-    // The transform matrix contains scale and translation
+    // The transform matrix contains scale and translation for atlas subset
     
-    // First, we need to handle the UV in homogeneous coordinates
-    let uv_homogeneous = vec3<f32>(original_uv.x % 1.0, original_uv.y % 1.0 , 1.0);
+    // Get the scale and translation from the transform matrix
+    let scale = vec2<f32>(transform[0][0], transform[1][1]);
+    let translation = vec2<f32>(transform[2][0], transform[2][1]);
     
-    // Apply the transformation
-    let transformed = transform * uv_homogeneous;
+    // Apply fractional part to handle tiling, then scale and translate
+    let tiled_uv = fract(original_uv);
+    let transformed_uv = tiled_uv * scale + translation;
     
-    // Convert back to 2D coordinates
-    return transformed.xy;
+    // Clamp to ensure we stay within the atlas subrectangle bounds
+    let min_bounds = translation;
+    let max_bounds = translation + scale;
+    
+    return clamp(transformed_uv, min_bounds, max_bounds);
 }
+
+ 
