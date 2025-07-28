@@ -1,6 +1,7 @@
 
 
-pub mod rendering; 
+pub mod rendering;  
+
 // pub mod shared_depth; 
 
 /*
@@ -18,7 +19,7 @@ use crate::player_control::camera::IngameCamera;*/
 // use radial_gradient_material::{RadialGradientMaterial, radial_gradient_material_plugin};
  
 use bevy_editor_pls_default_windows::cameras::EditorCamera;
-use crate::post_processing::rendering::GraphicsRenderLayer;
+use crate::post_processing::rendering::GraphicsRenderLayer; 
 use std::time::Duration;
 use bevy::{
     core_pipeline::{
@@ -51,8 +52,10 @@ use bevy::{
 const SHADER_ASSET_PATH: &str = "shaders/post_processing.wgsl";
 
 pub(crate) fn post_processing_plugin(app: &mut App) {
-    app.add_plugins(PostProcessPlugin);
-   //  app.add_plugins(shared_depth::SharedDepthRenderPlugin );
+    app.add_plugins(PostProcessPlugin)
+    //    .add_plugins(CustomDepthPlugin)
+    ;
+    // app.add_plugins(shared_depth::SharedDepthRenderPlugin );
 
 
  //   radial_gradient_material_plugin(app);
@@ -62,6 +65,7 @@ pub(crate) fn post_processing_plugin(app: &mut App) {
 
            sync_effects_camera_with_main_camera,
             update_effects_texture,
+           
 
           
            
@@ -314,7 +318,7 @@ fn setup_effects_camera(
         Camera3d::default(),
        // DepthPrepass, 
        // NormalPrepass, 
-       //  SharedDepthCamera { is_main: false },
+         // SharedDepthCamera { is_main: false },
          
         Camera {
             target: RenderTarget::Image(image_handle.clone().into()),
