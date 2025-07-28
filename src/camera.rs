@@ -1,4 +1,5 @@
  
+ 
 use crate::post_processing::PostProcessSettings;
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 use degen_toon_terrain::terrain::TerrainViewer;
@@ -70,6 +71,8 @@ fn init_camera (
        .insert( Bloom  ::OLD_SCHOOL )
        .insert( EditorCamera )
        .insert(PostProcessSettings::default())
+
+    
        
      //  .insert( ToonShaderMainCamera )
          .insert( color_grading ) 
