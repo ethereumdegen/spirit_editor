@@ -3,10 +3,14 @@ use bevy::prelude::*;
 use serde::{Deserialize, Serialize};
 
  
+use bevy::platform::collections::hash_map::HashMap;
 
 
 
-#[derive( Asset, Serialize,Deserialize,Clone,Debug )]
+
+
+
+#[derive( Asset, Serialize,Deserialize,Clone,Debug, Resource  )]
 pub struct EditorConfig {
 	external_game_assets_folder: Option<String>,
 
@@ -53,6 +57,40 @@ impl EditorConfig{
 		return self.initial_level_to_load.clone()
 	}
 
+	pub fn load_from_path(  path: &str   ) -> Option<Self> {
+
+		 
+
+		 // Attempt to read the manifest file
+        let file_content = match std::fs::read_to_string(path) {
+            Ok(content) => content,
+            Err(e) => { 
+
+            	warn!("{:?}", e );
+	            return None 
+	        }
+        };
+        
+        // Parse the RON file
+        let manifest: Self = match ron::from_str(&file_content) {
+            Ok(parsed) => parsed,
+            Err( e ) => {
+
+            	warn!("{:?}", e );
+            	return None
+            },
+        };
+        
+       
+
+
+		Some( manifest  )
+
+
+	}
+
+
+
 
 
 	/*pub fn get_initial_terrain_path_full(&self) -> Option<String> { 
@@ -82,6 +120,20 @@ impl EditorConfig{
  
 }
 
+
+
+pub fn load_editor_config (   world: &mut World  ) {
+
+	let path =  "assets/editor_config.editorconfig.ron" ;
+
+	world.insert_resource(
+
+			EditorConfig::load_from_path( path ) .expect( "unable to load editor config file " ) 
+
+	 );
+
+
+}
 
 
 

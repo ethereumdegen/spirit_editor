@@ -42,6 +42,7 @@ mod material_override_link;
 mod benchmarking;
 
  
+use crate::asset_loading::LevelAssets;
 use crate::shaders::material_affine_processor::Affine2Processor;
 use bevy_editor_pls_core::EditorEvent;
 use bevy_materialize::MaterializePlugin;
@@ -94,8 +95,7 @@ use bevy::{
 };
 
         use spirit_edit_core::SpiritEditCorePlugin;
-use spirit_edit_core::zones::ZoneEvent;
-use crate::asset_loading::EditorConfigAssets;
+use spirit_edit_core::zones::ZoneEvent; 
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
@@ -249,8 +249,18 @@ fn main() {
 
 
 
-        )       
+        )           
 
+
+
+         .add_systems(PreStartup, 
+
+
+           ( editor_config::load_editor_config, 
+            asset_loading:: copy_game_assets_into_artifacts ).chain() 
+
+
+            )
 
         // .register_type::< TextureSubsetDimensions >()
 
@@ -288,8 +298,9 @@ fn main() {
 
 
         .add_plugins(BevyMaterialWizardPlugin{
-            material_defs_manifest_path: "assets/material_definitions.materialmanifest.ron".to_string(),
-            material_replacements_folder_path: "assets/material_replacements".to_string(), 
+            material_defs_folder_prefix: Some("../artifacts/game_assets/".to_string()),  //relative to assets 
+            material_defs_manifest_path: "artifacts/game_assets/manifests/material_definitions.materialmanifest.ron".to_string(),
+            material_replacements_folder_path: "artifacts/game_assets/material_replacements".to_string(), 
         }  )
 
 
@@ -298,7 +309,8 @@ fn main() {
         })
     
 
-    
+        
+         
         .add_plugins(SpiritEditCorePlugin {})
 
      //   .add_plugins ( benchmarking::benchmarking_plugin ) 
@@ -366,8 +378,11 @@ fn setup(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config_handles: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >>,
+   editor_config : Res<EditorConfig >,
+  
+
+
+   level_assets: Res< LevelAssets >,
 
    level_config_assets: Res<Assets<LevelConfig >>,
 
@@ -381,18 +396,12 @@ fn setup(
    // let mut editor_config = None;
 
  
-
-     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
-
-        panic!("Unable to load editor config");
-         
-     };
-
+ 
     
 
     if let Some(level_name) = &editor_config.get_initial_level_name(){
 
-        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+        if let Some(level_config)  = level_assets.levels.get( level_name.as_str() )
 
         .map(|h| level_config_assets.get(h)  )  .flatten() {
 
@@ -577,25 +586,23 @@ fn load_all_zones(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config_handles: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >> ,
+   editor_config : Res<EditorConfig >,
+
+    level_assets : Res<LevelAssets >,
+
+   //editor_config_assets: Res<Assets<EditorConfig >> ,
 
     level_config_assets: Res<Assets<LevelConfig >>,
 
 ){
 
-
-     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
-
-        panic!("Unable to load editor config");
-         
-     };
+ 
 
 
 
        if let Some(level_name) = &editor_config.get_initial_level_name(){
 
-        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+        if let Some(level_config)  = level_assets.levels.get( level_name.as_str() )
 
         .map(|h| level_config_assets.get(h)  )  .flatten() {
 
@@ -603,7 +610,7 @@ fn load_all_zones(
             //initialize zones 
             for zone_name in level_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
          
-              zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
+              zone_event_writer.write(   ZoneEvent::LoadZoneFile(zone_name)  );
          
             }
 

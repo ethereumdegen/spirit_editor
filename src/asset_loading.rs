@@ -62,12 +62,13 @@ pub fn asset_loading_plugin(app: &mut App) {
              .add_loading_state(
                     LoadingState::new(AssetLoadState::Init)
                         .continue_to_state(AssetLoadState::DoodadManifestsLoad)
-                        .load_collection::<EditorConfigAssets>() 
+                        .load_collection::<LevelAssets>() 
 
                           
                 )
 
-              .add_systems(OnExit(AssetLoadState::Init), import_game_assets)
+             
+             // .add_systems(OnExit(AssetLoadState::Init), import_game_assets)
 
               .add_loading_state(
                     LoadingState::new(AssetLoadState::DoodadManifestsLoad)
@@ -181,16 +182,15 @@ pub struct TextureAssets {
 }
 
 #[derive(AssetCollection, Resource)]
-pub struct EditorConfigAssets {
+pub struct  LevelAssets {
    
-     #[asset(path = "editor_config.editorconfig.ron" )]
-    pub(crate) editor_config:   Handle<EditorConfig> ,
+   //  #[asset(path = "editor_config.editorconfig.ron" )]
+   // pub(crate) editor_config:   Handle<EditorConfig> ,
 
      #[asset(path = "levels", collection(typed, mapped))]
     pub(crate) levels:  HashMap<AssetFileStem, Handle<LevelConfig> > ,
 
-    // #[asset(path = "doodad_manifest.doodadmanifest.ron" )]
-    //pub(crate) doodad_manifest:   Handle<DoodadManifest> ,
+    
 }
 
 
@@ -433,14 +433,14 @@ const COPY_DIR_ARRAY: [ [&str; 2]  ; 1] =  [  [
 
   ]];
 
-fn import_game_assets(
+pub fn copy_game_assets_into_artifacts(
 
-    editor_config_res: Res<EditorConfigAssets>,
+    editor_config_res: Res<EditorConfig >,
     editor_config_assets: Res<Assets<EditorConfig>>,
 
 ){
 
-  let editor_config_handle  = &editor_config_res.editor_config;
+  let editor_config  = &editor_config_res;
 
 
   let local_assets_path = "./assets";
@@ -451,18 +451,18 @@ fn import_game_assets(
 
 
 
-   if let Some( editor_config  ) = editor_config_assets.get( editor_config_handle ){
+ //  if let Some( editor_config  ) = editor_config_assets.get( editor_config_handle ){
 
     let default_external_assets_path = "./example_game_assets".to_string();
     let external_assets_folder = editor_config.get_external_game_assets_folder().unwrap_or(   &default_external_assets_path   );
   
 
         // copy all external assets into our artifacts folder 
-      let _copied = copy_dir_recursive( 
+      let copied = copy_dir_recursive( 
          Path::new(&external_assets_folder),
          Path::new(local_artifacts_path)
         );
-
+      info!("copied {:?}" ,  copied );
 
       // copy external assets into our assets folder 
       for copy_dir_props in COPY_DIR_ARRAY {
@@ -473,11 +473,7 @@ fn import_game_assets(
     }
 
     
-
-    }else {
-        panic!("could not copy external game assets in to artifacts ");
-    }
-
+ 
 
 
 
@@ -668,17 +664,17 @@ fn apply_editor_config(
 
 
     mut editor_cx: ResMut<Editor>,
-    editor_config_handles: Res<EditorConfigAssets>,
-    editor_config_assets: Res<Assets<EditorConfig>>, 
+    editor_config : Res<EditorConfig >,
+    
 
 
 ){
 
 
-    let editor_config_handle = &editor_config_handles.editor_config;
-    let Some(editor_config) = editor_config_assets.get(editor_config_handle) else {return} ;
+ //   let editor_config_handle = &editor_config_handles.editor_config;
+    //let Some(editor_config) = editor_config_assets.get(editor_config_handle) else {return} ;
 
-   let Some( mut state ) = editor_cx.window_state_mut::<PlacementWindow>() else {return};
+   let Some(   state ) = editor_cx.window_state_mut::<PlacementWindow>() else {return};
         
 
         if let Some( placement_config ) = editor_config.get_default_placement_settings() {
