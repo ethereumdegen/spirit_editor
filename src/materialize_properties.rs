@@ -1,8 +1,11 @@
 
+use crate::post_processing::rendering::GraphicsRenderLayer;
 use bevy_materialize::generic_material::{GenericMaterial, GenericMaterialApplied };
 // use bevy_materialize::generic_material::GenericMaterialError;
-use bevy::{math::Affine2, prelude::*};
+use bevy::{ prelude::*};
 use bevy_materialize::prelude::*;
+
+use bevy::render::view::RenderLayers; 
 
 //use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterialBase;
 //use crate::shaders::fixed_space_uv_material::FixedSpaceUvMaterial;
@@ -16,23 +19,60 @@ pub fn materialize_properties_plugin(app:&mut App){
           app
 
         
-        //   .register_type::< f32 >()
+          .register_type::< GraphicsRenderLayer >()
           
-      //     .register_material_property(  GenericMaterial::UV_SCALE_FACTOR )
+            .register_material_property(  GenericMaterial::RENDER_LAYER_PROPERTY )
 
-           
-          /*  .add_systems(PostUpdate, (
+            
+          .add_systems(PostUpdate, (
                 
          
-                update_doodad_material, 
+                update_render_layer_from_material_property, 
 
                 ).chain()
                
-           )*/
+           )   
 
             ;
 }
 
+
+pub trait CustomMaterialPropertiesExt {
+    const RENDER_LAYER_PROPERTY: MaterialProperty<GraphicsRenderLayer> = MaterialProperty::new("render_layer");
+}
+impl CustomMaterialPropertiesExt for GenericMaterial {}
+
+
+
+
+ 
+pub fn update_render_layer_from_material_property(
+    mut query: Query<(Entity, &GenericMaterial3d ), Changed<GenericMaterialApplied>>,
+    generic_materials: Res<Assets<GenericMaterial>>,
+    mut commands: Commands,
+) {
+ 
+
+    for (material_entity, generic_material_holder ) in &mut query {
+        let Some(generic_material) = generic_materials.get(&generic_material_holder.0) else { continue };
+        let Ok(render_layer_property) = generic_material.get_property(GenericMaterial::RENDER_LAYER_PROPERTY) else { continue };
+
+         if let Ok(mut cmd) = commands.get_entity(material_entity){
+
+            info!( "insert custom render layer ! " );
+            cmd.insert  ( RenderLayers::layer(  render_layer_property.clone() .into()  ) ) ;
+         }
+    }
+}
+
+
+
+// ----
+
+ 
+
+
+ 
  /*
 
 pub trait CustomMaterialPropertiesExt {

@@ -152,7 +152,7 @@ fn cameras_ui(ui: &mut egui::Ui, world: &mut World) {
 fn configure_camera_custom(
     mut commands: Commands,
 
-    mut cam_query: Query<(Entity, &mut Camera), Without<ActiveEditorCamera>>,
+    mut cam_query: Query<(Entity, &mut Camera), (With<EditorCamera>, Without<ActiveEditorCamera> )  >,
 
     editor: Res<Editor>,
 ) {
@@ -176,7 +176,7 @@ fn configure_camera_custom(
 
     .insert( NotInScene {} )
      .insert( HideInEditor {} ) //hides from hierarchy 
-       .insert( EditorCamera {} )
+      // .insert( EditorCamera {} )
          .insert( EditorCamera3dFree {} )
          .insert( render_layers )
         //    .insert( Ec3d )

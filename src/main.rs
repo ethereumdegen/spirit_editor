@@ -40,8 +40,10 @@ mod virtual_link;
 mod material_override_link;
 
 mod benchmarking;
+mod post_processing; 
 
  
+use bevy_editor_pls_default_windows::cameras::EditorCamera;
 use crate::asset_loading::LevelAssets;
 use crate::shaders::material_affine_processor::Affine2Processor;
 use bevy_editor_pls_core::EditorEvent;
@@ -324,6 +326,7 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
+        .add_plugins( post_processing::post_processing_plugin )
     
        //  .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
@@ -543,38 +546,6 @@ fn setup(
         //efficient for low poly 
    // *msaa = Msaa::Sample4; 
 
-    // camera
-      let mut color_grading = ColorGrading::default();
-
-    color_grading.global.exposure = 1.05;
- 
-
-  
-
-    commands
-        .spawn( ( Camera3d::default()  ,
-
-                 Camera {
-                 hdr: true, // 1. HDR must be enabled on the camera
-                ..default()
-               },
-            Tonemapping::AcesFitted,
-
-            Transform::from_xyz(20.0, 162.5, 20.0)
-                .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
-            
-        ) )
-       .insert( Bloom  ::OLD_SCHOOL )
-       
-     //  .insert( ToonShaderMainCamera )
-         .insert( color_grading ) 
-        .insert(TerrainViewer::default())
-         .insert( FoliageViewer )
-        .insert( DepthPrepass )
-        .insert( NormalPrepass)
-        .insert(Fxaa::default()) 
-          .insert(ShadowFilteringMethod::Hardware2x2)
-       ;
 }
 
  

@@ -171,7 +171,7 @@ impl Default for AddWindowState {
             }),
         );
 
-        state.add(
+      /*  state.add(
             "2D",
             AddItem::new("Orthographic Camera".into(), |world, entity| {
                 world.entity_mut(entity).insert(Camera3d ::default());
@@ -203,7 +203,7 @@ impl Default for AddWindowState {
 
                     
              }),
-        );
+        );*/
 
          state.add(
             "3D",

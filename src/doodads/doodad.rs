@@ -3,6 +3,7 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use crate::camera::DoodadSpawnOrigin;
 use bevy::ecs::relationship::AncestorIter;
 use spirit_edit_core::zones::zone_file::CustomPropsMap;
 use crate::decals::DecalComponent;
@@ -192,7 +193,7 @@ fn attach_models_to_doodads(
    asset_server: Res<AssetServer>,
 
    global_xform_query: Query<&GlobalTransform>,
-   camera_query: Query<Entity, With<Camera3d> >, 
+   camera_query: Query<Entity, With<DoodadSpawnOrigin> >, 
 
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -204,7 +205,13 @@ fn attach_models_to_doodads(
     time: Res<Time>, 
 ) {
 
-    let Some(camera_entity) = camera_query.get_single().ok() else {return};
+    let Some(camera_entity) = camera_query. single().ok() else {
+
+
+        warn!( "NO DOODAD SPAWN ORIGIN " );
+        return
+
+    };
 
     let Some(camera_xform)  = global_xform_query.get(camera_entity).ok() else {return};
     
