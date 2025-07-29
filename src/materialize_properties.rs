@@ -60,7 +60,11 @@ pub fn update_render_layer_from_material_property(
          if let Ok(mut cmd) = commands.get_entity(material_entity){
 
             info!( "insert custom render layer ! " );
-            cmd.insert  ( RenderLayers::layer(  render_layer_property.clone() .into()  ) ) ;
+            cmd.insert  ( 
+
+                RenderLayers::layer(  render_layer_property.clone() .into()
+
+            ) ) ;
          }
     }
 }

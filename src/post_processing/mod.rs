@@ -316,14 +316,14 @@ fn setup_effects_camera(
     commands.spawn((
         EffectsCamera,
         Camera3d::default(),
-       // DepthPrepass, 
-       // NormalPrepass, 
-         // SharedDepthCamera { is_main: false },
+        DepthPrepass, 
+        // NormalPrepass, 
+        // SharedDepthCamera { is_main: false },
          
         Camera {
             target: RenderTarget::Image(image_handle.clone().into()),
             clear_color: ClearColorConfig::Custom(Color::srgba(0.0, 0.0, 0.0, 1.0)), // Clear to black
-             order: 40,  
+            order: 40,  // Render after main camera
             ..default()
         },
         Transform::from_xyz(0.0, 0.0, 10.0).looking_at(Vec3::ZERO, Vec3::Y),
