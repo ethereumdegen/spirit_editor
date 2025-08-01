@@ -38,6 +38,7 @@ mod regions;
 mod utils;
 mod virtual_link;
 mod material_override_link;
+mod physics ; 
 
 mod benchmarking;
 mod post_processing; 
@@ -295,6 +296,7 @@ fn main() {
          .add_plugins(terrain::terrain_plugin) 
         
         .add_plugins(clouds::clouds_plugin)
+        .add_plugins(physics::physics_plugin) 
 
             .add_plugins(materialize_properties::materialize_properties_plugin   )  //must be BEFORE teh material wizard 
 
@@ -326,16 +328,14 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-        .add_plugins( post_processing::post_processing_plugin )
+       .add_plugins( post_processing::post_processing_plugin )
     
        //  .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
       
 
-        .add_plugins(doodads::doodad::doodad_plugin)
-        .add_plugins(doodads::doodad_placement_preview::doodad_placement_plugin  )
-            .add_plugins(doodads::doodad_placement::doodad_placement_plugin)
-        .add_plugins(doodads::prefabs::prefabs_plugin )    
+      
+        .add_plugins(doodads::doodads_plugin )
 
         .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
         .add_plugins(terrain::terrain_loading::terrain_loading_plugin)

@@ -51,33 +51,51 @@ use bevy::{
 
 const SHADER_ASSET_PATH: &str = "shaders/post_processing.wgsl";
 
+
+/*
+Remember the primary  camera needs PostProcessSettings on it ! 
+*/
 pub(crate) fn post_processing_plugin(app: &mut App) {
-    app.add_plugins(PostProcessPlugin)
+    app
+
+     .init_resource::<EffectsTextureHandle>()
+     .add_plugins(ExtractComponentPlugin::<PostProcessSettings>::default())
+     .add_plugins(PostProcessRenderPlugin)
+ 
+
     //    .add_plugins(CustomDepthPlugin)
     ;
-    // app.add_plugins(shared_depth::SharedDepthRenderPlugin );
+  
+
+        // disable for now 
+ /*
+   
 
 
- //   radial_gradient_material_plugin(app);
-    app.add_systems(Startup, setup_effects_camera)
+   app  
+
+    .add_systems(Startup, setup_effects_camera)
        
         .add_systems(Update, (
 
-           sync_effects_camera_with_main_camera,
+                sync_effects_camera_with_main_camera,
             update_effects_texture,
            
 
           
            
         ).chain() );
+
+
+*/
 }
 
-struct PostProcessPlugin;
+struct PostProcessRenderPlugin;
 
-impl Plugin for PostProcessPlugin {
+impl Plugin for PostProcessRenderPlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins(ExtractComponentPlugin::<PostProcessSettings>::default())
-            .init_resource::<EffectsTextureHandle>();
+         
+           
 
         let Some(render_app) = app.get_sub_app_mut(RenderApp) else {
             return;

@@ -93,7 +93,7 @@ pub fn update_doodad_placement_raycast(
                 return false;
             }
             match parent_query.get(current_entity).ok() {
-                Some(parent) => current_entity = parent.get(),
+                Some(parent) => current_entity = parent.parent(),
                 None => break,
             }
         }
@@ -133,7 +133,7 @@ pub fn update_doodad_placement_raycast(
             });*/
 
 
-            event_writer.send(RequestPlaceDoodad { position: hit_coordinates  }) ;
+            event_writer.write(RequestPlaceDoodad { position: hit_coordinates  }) ;
         }
     }
 }

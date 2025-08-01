@@ -10,8 +10,8 @@ cargo run --bin generate_doodad_manifests
 
 
 
-const SUB_FOLDER :&str = "interior_props";
-const TAGS :&str = " [\"interior_props\"   ] ";
+const SUB_FOLDER :&str = "astrofish_village";
+const TAGS :&str = " [\"astrofish_village\"   ] ";
 
 
 
@@ -47,7 +47,9 @@ fn generate_model_definitions(base_folder: &str, file_paths: Vec<PathBuf>) -> Ve
 }
 
 fn main() {
-    let base_folder = "artifacts/game_assets/models/doodads";
+    println!("init");
+
+    let base_folder = "game_assets/models/doodads";
     let folder_path = format!("{}/{}", base_folder, SUB_FOLDER);
     let mut file_paths_in_folder = Vec::new();
 

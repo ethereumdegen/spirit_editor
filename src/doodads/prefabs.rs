@@ -106,7 +106,7 @@ fn spawn_children_for_new_prefabs (
                         let scale = &transform.scale;
                         let rotation_euler = &transform.rotation;
 
-                        place_doodad_evt_writer.send(
+                        place_doodad_evt_writer.write(
                             PlaceDoodadEvent { 
                                 position: position.clone(), 
                                 scale: Some(scale.clone()), 

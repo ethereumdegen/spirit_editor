@@ -4,8 +4,7 @@ version = "0.16.0"
 edition = "2024"
 default-run = "main"
 
-
-
+ 
 
 
 [dependencies]
@@ -26,6 +25,11 @@ winit = { version = "0.30", default-features = false }
  
  # is this necessary !? 
 # image = { version = "0.25.2", default-features = false }
+
+
+avian3d = {version="0.3",  features = [ "serialize" ] }
+ 
+
 
 
  degen_toon_terrain = {version = "0.16.6", features=["physics"]  }

@@ -70,7 +70,9 @@ fn init_camera (
         ) )
        .insert( Bloom  ::OLD_SCHOOL )
        .insert( EditorCamera )
-       .insert(PostProcessSettings::default())
+
+            //removed for now 
+       //.insert(PostProcessSettings::default())
 
     
        

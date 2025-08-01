@@ -16,6 +16,7 @@ pub struct DebugSettingsWindowState {
     pub pause_time: bool,
     pub wireframes: bool,
     pub highlight_selected: bool,
+    pub debug_physics_enabled: bool, 
 
     open_debugdump_status: Option<DebugdumpError>,
 }
@@ -33,6 +34,7 @@ impl Default for DebugSettingsWindowState {
             pause_time: false,
             wireframes: false,
             highlight_selected: true,
+            debug_physics_enabled: false, 
 
             open_debugdump_status: None,
         }
@@ -161,6 +163,19 @@ fn debug_ui_options(
             ui.checkbox(&mut state.highlight_selected, "");
         });
         ui.end_row();
+
+
+         ui.label("Debug Physics");
+        ui.scope(|ui| {
+
+            ui.checkbox(&mut state.debug_physics_enabled, ""); 
+
+
+            
+        });
+        ui.end_row();
+
+
     });
 }
 

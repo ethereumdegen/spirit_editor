@@ -3,6 +3,7 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use crate::doodads::doodad_colliders::ConvertAllChildMeshesToColliders;
 use crate::camera::DoodadSpawnOrigin;
 use bevy::ecs::relationship::AncestorIter;
 use spirit_edit_core::zones::zone_file::CustomPropsMap;
@@ -695,6 +696,9 @@ pub(crate) fn add_doodad_collider_markers(
  }
 
 
+//this is a nice  way to do it ! 
+#[derive(Component)] 
+pub struct CollisionVolumesNode ; 
 
  
 pub(crate) fn hide_doodad_collision_volumes(
@@ -721,23 +725,20 @@ pub(crate) fn hide_doodad_collision_volumes(
                 // If you want to make the node invisible instead of removing it:
                 commands
                     .entity(collision_volumes_root_entity)
-                    .insert(Visibility::Hidden);
+                    .insert( CollisionVolumesNode );
+    
 
-               /* println!(
-                    "found collision volumes root entity for {:?} -- hiding them ",
-                    &doodad_component
-                );*/
+                     commands.trigger_targets(
+                        ConvertAllChildMeshesToColliders { trimesh: false },
+                        collision_volumes_root_entity,
+                    );
 
-
-
-                // If you want to remove the node altogether:
-                // commands.entity(entity).despawn_recursive();
             } 
         }
 
-        commands
+        /*commands
             .entity(new_doodad_entity)
-            .insert(Visibility::Inherited);
+            .insert(Visibility::Inherited);*/
     }
 
      
@@ -987,7 +988,7 @@ pub fn handle_place_doodad_events(
 
 
         let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
-        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; 
 
 
         // -----

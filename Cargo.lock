@@ -6498,6 +6498,7 @@ name = "spirit_editor"
 version = "0.16.0"
 dependencies = [
  "anyhow",
+ "avian3d",
  "bevy",
  "bevy-inspector-egui 0.28.0",
  "bevy_asset_loader",
