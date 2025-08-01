@@ -539,7 +539,7 @@ fn handle_doodad_model_load_failed(
 
                                            Mesh3d(meshes.add(Cuboid::new(1.0, 1.0, 1.0)    ) ),
                                             
-                                            MaterialOverrideComponent{material_override: "MISSING_ASSET".into(), cascade:true }  , 
+                                            MaterialOverrideComponent{material_override: "CHECKER".into(), cascade:true }  , 
 
                                      MeshMaterial3d(materials.add(MISSING_MODEL_CUBE_COLOR)),
                                           Transform::default(),
