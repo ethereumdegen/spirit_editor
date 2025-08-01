@@ -249,7 +249,9 @@ impl<'a> Hierarchy<'a> {
                 false
             }),
         }
-        .show::<Without<HideInEditor>>(ui);
+      //  .show::<Without<HideInEditor>>(ui);
+          .show::<(Without<HideInEditor>, Without<Observer>)>(ui);
+
 
         if let Some(entity) = despawn_recursive {
 

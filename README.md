@@ -127,3 +127,8 @@ Any texture or GLTF assets (in the assets folder) that are in this repo (that ma
 
 
 
+
+
+#### Hotkeys 
+
+F1 - toggle physics collider render 

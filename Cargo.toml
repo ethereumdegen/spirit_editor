@@ -160,15 +160,7 @@ opt-level = 3
 [[bin]]
 name = "main"
 path = "src/main.rs"
-
-[[bin]]
-name = "generate_doodad_manifests"
-path = "scripts/generate_doodad_manifests.rs"
-
-[[bin]]
-name = "modify_doodad_manifest"
-path = "scripts/modify_doodad_manifest.rs"
-
+ 
 
 [[bin]]
 name = "upgrade_zone_files"
