@@ -7,9 +7,9 @@
           
  // initial_level_to_load: Some( "editor_showcase.level" ),
 
-  // initial_level_to_load: Some( "player_shop_basic.level" ),
+   initial_level_to_load: Some( "player_shop_basic.level" ),
 
-     initial_level_to_load: Some( "player_shop_cellar.level" ),
+   //   initial_level_to_load: Some( "player_shop_cellar.level" ),
 
    
 

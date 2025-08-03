@@ -254,6 +254,9 @@ fn attach_models_to_doodads(
 
             material_override =  Some(material_override_from_props.to_string() );
         }
+
+
+     //   let spawnable_components = &doodad_component.definition.spawnable_components; 
          
 
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
