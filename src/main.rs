@@ -293,7 +293,7 @@ fn main() {
 
         .add_plugins(render::rendering_plugin) 
         .add_plugins(shaders::shaders_plugin) 
-         .add_plugins(terrain::terrain_plugin) 
+        
         
         .add_plugins(clouds::clouds_plugin)
         .add_plugins(physics::physics_plugin) 
@@ -336,11 +336,8 @@ fn main() {
 
       
         .add_plugins(doodads::doodads_plugin )
-
-        .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
-        .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
+         .add_plugins(terrain::terrain_plugin) 
         
-      
         .add_plugins(asset_loading_plugin)
 
         //.add_plugins(material_overrides::material_overrides_plugin)

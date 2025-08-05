@@ -14,6 +14,12 @@ pub fn terrain_plugin(app: &mut App){
  
 	app
 	 	.add_plugins( terrain_generation::terrain_generation_plugin )
+
+	 	.add_plugins( terrain_manifest::terrain_manifest_plugin)
+        .add_plugins( terrain_loading::terrain_loading_plugin)
+        
+      
+
 	;
 
 }
