@@ -39,6 +39,7 @@ mod utils;
 mod virtual_link;
 mod material_override_link;
 mod physics ; 
+mod navmesh;
 
 mod benchmarking;
 mod post_processing; 
@@ -73,8 +74,6 @@ use bevy::render::view::ColorGrading;
  
 use bevy_foliage_tool::foliage_viewer::FoliageViewer;
  
-
-
 
 
 
@@ -297,7 +296,8 @@ fn main() {
         
         .add_plugins(clouds::clouds_plugin)
         .add_plugins(physics::physics_plugin) 
-
+         .add_plugins(navmesh::navmesh_plugin) 
+        
             .add_plugins(materialize_properties::materialize_properties_plugin   )  //must be BEFORE teh material wizard 
 
 

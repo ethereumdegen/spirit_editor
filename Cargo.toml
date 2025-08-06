@@ -82,6 +82,8 @@ noise = "0.9"
 serde = { version = "1", features = ["derive"] }
 ron = "0.8.1"
 rand = "0.8"
+bincode = "1.3.3"
+
 spirit_edit_core.workspace=true 
 
  

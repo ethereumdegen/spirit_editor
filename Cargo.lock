@@ -6811,6 +6811,7 @@ dependencies = [
  "bevy_obj",
  "bevy_regions",
  "bevy_rerecast",
+ "bincode 1.3.3",
  "degen_toon_clouds",
  "degen_toon_terrain",
  "degen_toon_water",
