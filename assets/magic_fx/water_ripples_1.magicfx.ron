@@ -1,0 +1,25 @@
+(
+    
+    
+    magic_fx_instances: [
+( 
+
+     shader_variant_name: "WaterRipple",
+	  mesh_name:  "water_ripple.obj", 
+		  start_time_offset: 0.0,
+		  end_time_offset: 1.0,
+		  start_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
+		  end_transform: (translation: (0.0,0.0,0.0), rotation:(0.0,0.0,0.0),scale:(1.0,1.0,1.0)),
+ 
+     fx_style: Standard, 
+    ),
+
+    
+
+    ] ,  
+
+    max_time: None,
+    repeating: false 
+
+
+)

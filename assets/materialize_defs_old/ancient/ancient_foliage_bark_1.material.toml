@@ -1,7 +1,0 @@
-type = "DoodadMaterial"
-
-[material.base]
-base_color = { LinearRgba = [0.18,0.12,0.10,1.0] }
-perceptual_roughness= 0.9 
- 
- 
