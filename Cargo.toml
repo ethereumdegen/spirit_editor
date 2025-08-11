@@ -46,8 +46,8 @@ avian_rerecast = { git = "https://github.com/janhohenheim/rerecast" }
 
 
 
-  #bevy_magic_fx = "0.16.5"
-    bevy_magic_fx = {path="../bevy_magic_fx"}
+  bevy_magic_fx = "0.16.5"
+   # bevy_magic_fx = {path="../bevy_magic_fx"}
 
 
 
