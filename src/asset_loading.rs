@@ -217,7 +217,7 @@ pub struct GltfAssets {
 #[derive(AssetCollection, Resource)]
 pub struct MeshAssets {
    
-     #[asset(path = "../artifacts/game_assets/models/meshes", collection(typed, mapped))]
+     #[asset(path = "../artifacts/game_assets/models/obj", collection(typed, mapped))]
     pub(crate) meshes: HashMap<AssetFileName, Handle<Mesh>>,
 
 
@@ -388,7 +388,43 @@ fn load_magic_fx(
 
                         info!("loading magic fx {:?}", file_stem );
 
-                    if let Some(magic_fx) = MagicFxVariant::from_manifest(
+
+
+
+                   match MagicFxVariant::from_manifest(
+                        magic_fx_variant_manifest,
+                      
+                        &rebuilt_mesh_handle_map,
+                      
+                            &built_materials_map,
+                             &generic_materials_assets,
+                          &mut asset_server 
+     
+                        
+                    ) {
+
+                    Ok( magic_fx) => {
+
+
+                        info!("loaded magic fx {:?}", file_stem );
+
+                        let variant_name = file_stem.clone(); 
+
+                         built_vfx_resource.magic_fx_variants.insert(  variant_name.into(), magic_fx)   ;
+
+
+                    }
+
+                    Err( e ) => {
+
+                          panic!("unable to load  magic fx {:?} {:?}", file_stem, e   );
+                    }
+
+                   }
+
+
+
+                 /*   if let Some(magic_fx) = MagicFxVariant::from_manifest(
                         magic_fx_variant_manifest,
                       
                         &rebuilt_mesh_handle_map,
@@ -409,8 +445,8 @@ fn load_magic_fx(
 
                     }else {
 
-                        warn!("unable to load  magic fx {:?}", file_stem  );
-                    }
+                        panic!("unable to load  magic fx {:?}", file_stem  );
+                    } */
 
 
    }	
