@@ -2,7 +2,7 @@ use spirit_edit_core::doodads::PlaceDoodadEvent;
 use spirit_edit_core::doodads::doodad::DoodadComponent;
 use spirit_edit_core::prefabs::PrefabComponent;
 use spirit_edit_core::zones::zone_file::CustomPropsComponent;
-use spirit_edit_core::zones::zone_file::TransformSimple;
+use spirit_edit_core::zones::zone_file::TransformSimpleRads;
 use spirit_edit_core::placement::PlacementEvent;
 use spirit_edit_core::placement::PlacementResource;
 use std::time::Duration;
@@ -225,7 +225,7 @@ pub fn handle_placement_tool_events(
                   let doodad_xform = global_xform_query.get(entity).map(|x| x.compute_transform()  ).ok().unwrap_or(Transform::default()) ; 
 
 
-                    let simple_xform:TransformSimple = doodad_xform.clone().into();
+                    let simple_xform:TransformSimpleRads = doodad_xform.clone().into();
 
                     place_doodad_evt_writer.send(
                         PlaceDoodadEvent {

@@ -6777,9 +6777,7 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.16.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f3fcb0f00943a34a938abf3cc9c57df2576b9e4c9c1d6bf2ba0c23e9c10b1b0"
+version = "0.16.3"
 dependencies = [
  "bevy",
  "bevy_clay_tiles",
