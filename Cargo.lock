@@ -1638,6 +1638,8 @@ dependencies = [
 [[package]]
 name = "bevy_magic_fx"
 version = "0.16.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0fa79a2c52e93b6162eb2c2f91896eac1cf21a4ac391951394711d681d2284f"
 dependencies = [
  "bevy",
  "bevy_common_assets",
@@ -6775,9 +6777,9 @@ dependencies = [
 
 [[package]]
 name = "spirit_edit_core"
-version = "0.16.0"
+version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9ffeda2494ab861388e3b155bcc4003afd446d3f983e6705e3360f73397f6d7b"
+checksum = "4f3fcb0f00943a34a938abf3cc9c57df2576b9e4c9c1d6bf2ba0c23e9c10b1b0"
 dependencies = [
  "bevy",
  "bevy_clay_tiles",
