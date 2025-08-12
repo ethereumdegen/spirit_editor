@@ -1303,8 +1303,6 @@ dependencies = [
 [[package]]
 name = "bevy_foliage_tool"
 version = "0.16.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a411f4ef6c3619b3e617175163c08a3179e50ff862ae613044d0b14ebd2b8ebc"
 dependencies = [
  "anyhow",
  "bevy",
@@ -6778,6 +6776,8 @@ dependencies = [
 [[package]]
 name = "spirit_edit_core"
 version = "0.16.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4185416e15eed28c8eb68d3d283bc529381d189d4b6e8fa2e1f04a9360e9c387"
 dependencies = [
  "bevy",
  "bevy_clay_tiles",
