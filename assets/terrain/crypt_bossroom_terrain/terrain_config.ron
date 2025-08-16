@@ -1,0 +1,34 @@
+// terrain_config.ron
+TerrainConfig(
+    terrain_dimensions: (256.0, 256.0), // Vec2(x, y)
+    chunk_rows: 2,
+    render_distance: 2000.0,
+    lod_distance: 2000.0,
+    lod_level_offset: 0,
+    collider_lod_level: 0,
+    height_scale: 0.001,
+    
+    use_greedy_mesh: false,  
+     greedy_mesh_colliders: false, 
+      
+    texture_uv_expansion_factor: 16, 
+    texture_image_sections: 32,
+    // Assuming the addition of fields for paths to the height and splat folders
+    
+     
+       // be sure to update these !! 
+    
+    
+      
+
+         height_folder_path: "terrain/crypt_1_terrain/height", 
+     splat_folder_path: "terrain/crypt_1_terrain/splat", 
+     diffuse_texture_path: "terrain/crypt_1_terrain/diffuse/diffuse_array_texture_lg.tga", 
+     secondary_diffuse_texture_path: "terrain/crypt_1_terrain/diffuse/diffuse_secondary_array_texture_lg.tga", 
+     normal_texture_path: "terrain/crypt_1_terrain/diffuse/normal_texture_lg.tga", 
+     blend_height_texture_path: "terrain/crypt_1_terrain/diffuse/blend_height_lg.tga", 
+     collider_data_folder_path: "terrain/crypt_1_terrain/collision",  
+
+
+
+)

@@ -34,6 +34,7 @@ impl Plugin for StandardWindowsPlugin {
              .init_resource::<MaterialNamesResource>()
  
              .add_plugins(TransformGizmoPlugin)
+             .add_plugins(doodads::doodads_plugin )
 
              .add_event::<materials::MaterialEvent>()  // move to core ? 
 
@@ -43,7 +44,7 @@ impl Plugin for StandardWindowsPlugin {
             )
 
             .add_systems(Update, (
-                doodads::update_picking_doodads ,
+             //   doodads::update_picking_doodads ,
                 placement::update_placement_tool_inputs,
                 placement::handle_placement_tool_events,
                 materials::handle_selected_material_events

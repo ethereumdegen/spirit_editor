@@ -2,7 +2,10 @@ use crate::scenes::NotInScene;
 
 use bevy::render::camera::RenderTarget;
 use bevy::render::view::RenderLayers;
-use bevy::utils::HashSet;
+ 
+ use bevy::platform::collections::hash_map::HashMap; 
+ use bevy::platform::collections::hash_set::HashSet; 
+
 use bevy::window::WindowRef;
 use bevy::{prelude::*, render::primitives::Aabb};
 
@@ -17,7 +20,7 @@ use bevy_inspector_egui::egui;
 // use bevy_mod_picking::prelude::PickRaycastSource;
 use transform_gizmo_bevy::GizmoCamera;
 
-use bevy::core_pipeline::bloom::BloomSettings;
+// use bevy::core_pipeline::bloom::BloomSettings;
 
 use crate::hierarchy::{HideInEditor, HierarchyWindow};
 
@@ -95,7 +98,7 @@ impl EditorWindow for CameraWindow {
         cameras_ui(ui, world);
     }
 
-    fn viewport_toolbar_ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
+    fn viewport_toolbar_ui(_world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
         let state = cx.state_mut::<CameraWindow>().unwrap();
 
         ui.checkbox(&mut state.show_ui, "UI");
@@ -106,12 +109,14 @@ impl EditorWindow for CameraWindow {
 
         app.add_systems(PreUpdate, configure_camera_custom);
 
-        app.add_systems(
+    /*    app.add_systems(
             PostUpdate,
             set_main_pass_viewport
                 .after(bevy_editor_pls_core::EditorSet::UI)
                 .before(bevy::render::camera::CameraUpdateSystem),
-        );
+        ) ; */
+
+
     }
 }
 
@@ -147,11 +152,11 @@ fn cameras_ui(ui: &mut egui::Ui, world: &mut World) {
 fn configure_camera_custom(
     mut commands: Commands,
 
-    mut cam_query: Query<(Entity, &mut Camera), Without<ActiveEditorCamera>>,
+    mut cam_query: Query<(Entity, &mut Camera), (With<EditorCamera>, Without<ActiveEditorCamera> )  >,
 
     editor: Res<Editor>,
 ) {
-    let Some((cam_entity, mut camera_config)) = cam_query.get_single_mut().ok() else {
+    let Some((cam_entity, mut camera_config)) = cam_query.single_mut().ok() else {
         return;
     };
 
@@ -171,7 +176,7 @@ fn configure_camera_custom(
 
     .insert( NotInScene {} )
      .insert( HideInEditor {} ) //hides from hierarchy 
-       .insert( EditorCamera {} )
+      // .insert( EditorCamera {} )
          .insert( EditorCamera3dFree {} )
          .insert( render_layers )
         //    .insert( Ec3d )
@@ -221,14 +226,21 @@ fn toggle_editor_cam(
     }
 }
 
+
+
+// apparently we dont have to do this in 0.16 !!! 
+/* 
 fn set_main_pass_viewport(
 
-    egui_settings_query: Query<&bevy_inspector_egui::bevy_egui::EguiSettings>, // better way to do this ? 
+    egui_settings_query: Query<&bevy_inspector_egui::bevy_egui::EguiContextSettings>, // better way to do this ? 
     //egui_settings: Res<bevy_inspector_egui::bevy_egui::EguiSettings>,
     editor: Res<Editor>,
     window: Query<&Window>,
     mut cameras: Query<&mut Camera, With<EditorCamera>>,
 ) {
+
+
+    println!("set viewport 1 ");
     if !editor.is_changed() {
         return;
     };
@@ -237,7 +249,7 @@ fn set_main_pass_viewport(
         return;
     };
 
-    let Ok(egui_settings) = egui_settings_query.get_single() else {return;};
+    let Ok(egui_settings) = egui_settings_query.single() else {return;};
 
     let viewport = editor.active().then(|| {
         let scale_factor = window.scale_factor() * egui_settings.scale_factor;
@@ -249,6 +261,9 @@ fn set_main_pass_viewport(
             warn!("editor viewport size is infinite");
             
         }
+
+
+         println!("set viewport 2 ");
 
         bevy::render::camera::Viewport {
             physical_position: UVec2::new(viewport_pos.x as u32, viewport_pos.y as u32),
@@ -264,3 +279,4 @@ fn set_main_pass_viewport(
         cam.viewport = viewport.clone();
     });
 }
+*/

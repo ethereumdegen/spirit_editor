@@ -77,7 +77,7 @@ fn spawn_children_for_new_prefabs (
        // let prefab_def_name = prefab_name.to_string(); 
 
 
-       commands.entity(prefab_root_entity).despawn_descendants(); 
+       commands.entity(prefab_root_entity).despawn_related::<Children>(); 
 
 
         if let Some( prefab_def  ) = prefab_definitions.get_prefab_definition_by_name( &prefab_name.to_string()  ) {
@@ -105,8 +105,8 @@ fn spawn_children_for_new_prefabs (
                         let position = &transform.translation;
                         let scale = &transform.scale;
                         let rotation_euler = &transform.rotation;
-
-                        place_doodad_evt_writer.send(
+                        
+                        place_doodad_evt_writer.write(
                             PlaceDoodadEvent { 
                                 position: position.clone(), 
                                 scale: Some(scale.clone()), 

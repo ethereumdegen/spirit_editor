@@ -20,6 +20,8 @@
 
        "CrackedEarth",
 
+       "FireVertical",
+
       "RocksFixedWhite",
       "RocksFixedDark",
 
@@ -30,6 +32,8 @@
       
        "StonePixel",
        "StonePixelAlt",
+
+       "MISSING_ASSET",
 
 
         "BrickPixel",
@@ -64,14 +68,13 @@
 
 
 
-         "SlateDark",
+       "SlateDark",
       "ToonStone",
-      "StoneWall",
-      "StoneWall2",
-      "StoneWall3",
-
-      "StoneFloor",
-      "Slate1",
+      "StoneWall1",
+      "EarthStone1",
+      "EarthStone2",
+       "EarthStone3",
+ 
       "WoodFloor",
       "RockyEarthFixed",
 
@@ -80,18 +83,17 @@
       "OrnateTiles3",
       "OrnateTiles4",
 
-      "Cliff1",
-      "Cliff2",
-      "Cliff3",
-      "Cliff3_blue",
-      "Cliff4",
-      "Cliff5",
-      "Cliff5_blue",
+       "SlateCliff",
+
+      "StoneCliff1",
+      "StoneCliff2",
+      "StoneCliff3",
+      
       "Cobbles1",
       "Cobbles2",
       "Cobbles3",
-      "Wood2",
-      "Wood5",
+      
+      "AcademyWood",
 
 
     ]

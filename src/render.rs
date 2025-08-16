@@ -1,3 +1,4 @@
+use bevy::ecs::relationship::DescendantIter;
 use bevy::prelude::*;
 
 use bevy::core_pipeline::core_3d::graph::Node3d ;
@@ -5,7 +6,9 @@ use bevy::core_pipeline::core_3d::graph::Node3d ;
 use bevy::pbr::{NotShadowCaster, NotShadowReceiver};
 use bevy::render::view::NoFrustumCulling;
 
-use bevy::utils::HashSet;
+use bevy::platform::collections::hash_map::HashMap; 
+
+use bevy::platform::collections::hash_set::HashSet; 
 
 use bevy::scene::SceneInstanceReady;
 
@@ -41,7 +44,7 @@ pub struct HeadModelSceneLink(pub HashSet<Entity>); //points at the face and Cas
 struct SceneInstanceLoaded;
 
 pub fn listen_for_scene_loaded(trigger: Trigger<SceneInstanceReady>, mut commands: Commands) {
-    let parent = trigger.entity();
+    let parent = trigger.target();
 
     commands.entity(parent).insert(SceneInstanceLoaded);
 }
@@ -63,7 +66,7 @@ fn apply_cascaded_no_frustrum_culling(
     for entity in scene_instance_loaded_query.iter() {
         if cascaded_query.get(entity).ok().is_some() {
             for child in DescendantIter::new(&children_query, entity) {
-                if let Some(mut cmd) = commands.get_entity(child) {
+                if let Ok(mut cmd) = commands.get_entity(child) {
                     cmd.insert(NoFrustumCulling);
                 }
             }
@@ -87,7 +90,7 @@ fn apply_cascaded_not_shadow_caster(
     for entity in scene_instance_loaded_query.iter() {
         if cascaded_query.get(entity).ok().is_some() {
             for child in DescendantIter::new(&children_query, entity) {
-                if let Some(mut cmd) = commands.get_entity(child) {
+                if let Ok(mut cmd) = commands.get_entity(child) {
                     cmd.insert(NotShadowCaster);
                 }
             }
@@ -111,7 +114,7 @@ fn apply_cascaded_not_shadow_receiver(
     for entity in scene_instance_loaded_query.iter() {
         if cascaded_query.get(entity).ok().is_some() {
             for child in DescendantIter::new(&children_query, entity) {
-                if let Some(mut cmd) = commands.get_entity(child) {
+                if let Ok(mut cmd) = commands.get_entity(child) {
                     cmd.insert(NotShadowReceiver);
                 }
             }

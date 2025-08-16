@@ -4,7 +4,7 @@
     magic_fx_instances: [
 ( 
 
-     shader_variant_name: "sunlight.shadvar",
+     shader_variant_name: "Sunshaft",
 	  mesh_name:  "sunshaft.obj", 
 		  start_time_offset: 0.0,
 		  end_time_offset: 300.0,

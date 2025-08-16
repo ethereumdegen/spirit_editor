@@ -62,7 +62,7 @@ pub fn update_doodad_placement_raycast(
     editor: Res<Editor>,
 
      doodad_placement_component_query: Query<&Transform, With<DoodadPlacementComponent>>,
-       parent_query: Query<&Parent >
+       parent_query: Query<&ChildOf >
 ) {
     //we can tell if we are clicking in viewport
     let egui_ctx = contexts.ctx_mut();
@@ -93,14 +93,14 @@ pub fn update_doodad_placement_raycast(
                 return false;
             }
             match parent_query.get(current_entity).ok() {
-                Some(parent) => current_entity = parent.get(),
+                Some(parent) => current_entity = parent.parent(),
                 None => break,
             }
         }
         true
     };
 
-    let raycast_settings = RayCastSettings {
+    let raycast_settings = MeshRayCastSettings {
         filter: &raycast_filter,
         ..default()
     };
@@ -133,7 +133,7 @@ pub fn update_doodad_placement_raycast(
             });*/
 
 
-            event_writer.send(RequestPlaceDoodad { position: hit_coordinates  }) ;
+            event_writer.write(RequestPlaceDoodad { position: hit_coordinates  }) ;
         }
     }
 }

@@ -1,0 +1,16 @@
+(
+
+
+	initial_terrain_to_load:  Some("crypt_bossroom_terrain"),
+    initial_foliage_scene_to_load: None, 
+
+
+	initial_zones_to_load: Some([
+		"dungeons/crypt_bossroom.zone"
+	]),
+
+
+
+
+
+)

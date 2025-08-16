@@ -38,7 +38,17 @@ mod regions;
 mod utils;
 mod virtual_link;
 mod material_override_link;
+mod physics ; 
+mod navmesh;
 
+mod benchmarking;
+mod post_processing; 
+
+ 
+use bevy_editor_pls_default_windows::cameras::EditorCamera;
+use crate::asset_loading::LevelAssets;
+use crate::shaders::material_affine_processor::Affine2Processor;
+use bevy_editor_pls_core::EditorEvent;
 use bevy_materialize::MaterializePlugin;
 use bevy_materialize::prelude::TomlMaterialDeserializer;
 use bevy::image::ImageSamplerDescriptor;
@@ -67,8 +77,6 @@ use bevy_foliage_tool::foliage_viewer::FoliageViewer;
 
 
 
-
-
 use bevy::tasks::AsyncComputeTaskPool;
 use bevy::tasks::TaskPoolBuilder;
 
@@ -89,8 +97,7 @@ use bevy::{
 };
 
         use spirit_edit_core::SpiritEditCorePlugin;
-use spirit_edit_core::zones::ZoneEvent;
-use crate::asset_loading::EditorConfigAssets;
+use spirit_edit_core::zones::ZoneEvent; 
 use asset_loading::AssetLoadState;
 use bevy::core_pipeline::tonemapping::Tonemapping;
 use bevy_editor_pls_default_windows::lighting::Sun;
@@ -187,7 +194,9 @@ fn main() {
 
 
     let mut wgpu_settings = WgpuSettings::default();
-    wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;
+   // wgpu_settings.features |= WgpuFeatures::POLYGON_MODE_LINE;  //what is this for ? 
+
+     
 
     App::new()
 
@@ -197,7 +206,7 @@ fn main() {
             AssetSourceBuilder::platform_default("artifacts/game_assets", None),
         )
 
-
+    //  .add_event::<EditorEvent>()
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {
@@ -213,6 +222,15 @@ fn main() {
                     render_creation: RenderCreation::Automatic(wgpu_settings),
                     ..default()
                 })
+
+
+
+                 .set(AssetPlugin {
+                     unapproved_path_mode: bevy::asset::UnapprovedPathMode::Allow ,  // for using ./artifacts , for now 
+                    ..default()
+                })
+
+
 
                .set(ImagePlugin{
 
@@ -233,10 +251,24 @@ fn main() {
 
 
 
-        )   
+        )           
+
+
+
+         .add_systems(PreStartup, 
+
+
+           ( editor_config::load_editor_config, 
+            asset_loading:: copy_game_assets_into_artifacts ).chain() 
+
+
+            )
+
+        // .register_type::< TextureSubsetDimensions >()
 
         .add_plugins( MaterializePlugin::new(TomlMaterialDeserializer)
-                    .with_simple_loader_settings(None)   //to prevent bug with PNG loading 
+                    .with_simple_loader(None)   //to prevent bug with PNG loading 
+                    .with_processor( Affine2Processor  )
              )
 
         
@@ -260,14 +292,19 @@ fn main() {
 
         .add_plugins(render::rendering_plugin) 
         .add_plugins(shaders::shaders_plugin) 
-         .add_plugins(terrain::terrain_plugin) 
+        
         
         .add_plugins(clouds::clouds_plugin)
+        .add_plugins(physics::physics_plugin) 
+         .add_plugins(navmesh::navmesh_plugin) 
+        
+            .add_plugins(materialize_properties::materialize_properties_plugin   )  //must be BEFORE teh material wizard 
 
 
         .add_plugins(BevyMaterialWizardPlugin{
-            material_defs_manifest_path: "assets/material_definitions.materialmanifest.ron".to_string(),
-            material_replacements_folder_path: "assets/material_replacements".to_string(), 
+            material_defs_folder_prefix: Some("../artifacts/game_assets/".to_string()),  //relative to assets 
+            material_defs_manifest_path: "artifacts/game_assets/manifests/material_definitions.materialmanifest.ron".to_string(),
+            material_replacements_folder_path: "artifacts/game_assets/material_replacements".to_string(), 
         }  )
 
 
@@ -276,8 +313,11 @@ fn main() {
         })
     
 
-    
+        
+         
         .add_plugins(SpiritEditCorePlugin {})
+
+     //   .add_plugins ( benchmarking::benchmarking_plugin ) 
  
 
 
@@ -288,21 +328,16 @@ fn main() {
         .add_plugins(BevyFoliageProtoPlugin )
 
         .add_plugins(foliage::foliage_plugin   )
-        .add_plugins(materialize_properties::materialize_properties_plugin   )
-
-        .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
+       .add_plugins( post_processing::post_processing_plugin )
+    
+       //  .add_plugins( bevy_contact_projective_decals:: DecalPlugin ) // important! imports the shader 
         .add_plugins(decals::decals_plugin)
       
 
-        .add_plugins(doodads::doodad::doodad_plugin)
-        .add_plugins(doodads::doodad_placement_preview::doodad_placement_plugin  )
-            .add_plugins(doodads::doodad_placement::doodad_placement_plugin)
-        .add_plugins(doodads::prefabs::prefabs_plugin )    
-
-        .add_plugins(terrain::terrain_manifest::terrain_manifest_plugin)
-        .add_plugins(terrain::terrain_loading::terrain_loading_plugin)
-        
       
+        .add_plugins(doodads::doodads_plugin )
+         .add_plugins(terrain::terrain_plugin) 
+        
         .add_plugins(asset_loading_plugin)
 
         //.add_plugins(material_overrides::material_overrides_plugin)
@@ -343,8 +378,11 @@ fn setup(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config_handles: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >>,
+   editor_config : Res<EditorConfig >,
+  
+
+
+   level_assets: Res< LevelAssets >,
 
    level_config_assets: Res<Assets<LevelConfig >>,
 
@@ -358,18 +396,12 @@ fn setup(
    // let mut editor_config = None;
 
  
-
-     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
-
-        panic!("Unable to load editor config");
-         
-     };
-
+ 
     
 
     if let Some(level_name) = &editor_config.get_initial_level_name(){
 
-        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+        if let Some(level_config)  = level_assets.levels.get( level_name.as_str() )
 
         .map(|h| level_config_assets.get(h)  )  .flatten() {
 
@@ -511,38 +543,6 @@ fn setup(
         //efficient for low poly 
    // *msaa = Msaa::Sample4; 
 
-    // camera
-      let mut color_grading = ColorGrading::default();
-
-    color_grading.global.exposure = 1.05;
- 
-
-  
-
-    commands
-        .spawn( ( Camera3d::default()  ,
-
-                 Camera {
-                 hdr: true, // 1. HDR must be enabled on the camera
-                ..default()
-               },
-            Tonemapping::AcesFitted,
-
-            Transform::from_xyz(20.0, 162.5, 20.0)
-                .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
-            
-        ) )
-       .insert( Bloom  ::OLD_SCHOOL )
-       
-     //  .insert( ToonShaderMainCamera )
-         .insert( color_grading ) 
-        .insert(TerrainViewer::default())
-         .insert( FoliageViewer )
-        .insert( DepthPrepass )
-        .insert( NormalPrepass)
-        .insert(Fxaa::default()) 
-          .insert(ShadowFilteringMethod::Hardware2x2)
-       ;
 }
 
  
@@ -554,25 +554,23 @@ fn load_all_zones(
 
    mut zone_event_writer: EventWriter<ZoneEvent>,
 
-   editor_config_handles: Res<EditorConfigAssets>,
-   editor_config_assets: Res<Assets<EditorConfig >> ,
+   editor_config : Res<EditorConfig >,
+
+    level_assets : Res<LevelAssets >,
+
+   //editor_config_assets: Res<Assets<EditorConfig >> ,
 
     level_config_assets: Res<Assets<LevelConfig >>,
 
 ){
 
-
-     let Some(editor_config) = editor_config_assets.get( &editor_config_handles.editor_config   ) else {
-
-        panic!("Unable to load editor config");
-         
-     };
+ 
 
 
 
        if let Some(level_name) = &editor_config.get_initial_level_name(){
 
-        if let Some(level_config)  = editor_config_handles.levels.get( level_name.as_str() )
+        if let Some(level_config)  = level_assets.levels.get( level_name.as_str() )
 
         .map(|h| level_config_assets.get(h)  )  .flatten() {
 
@@ -580,7 +578,7 @@ fn load_all_zones(
             //initialize zones 
             for zone_name in level_config.get_initial_zones_to_load().unwrap_or(Vec::new()) {
          
-              zone_event_writer.send(   ZoneEvent::LoadZoneFile(zone_name)  );
+              zone_event_writer.write(   ZoneEvent::LoadZoneFile(zone_name)  );
          
             }
 

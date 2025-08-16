@@ -1,7 +1,7 @@
 use bevy_material_wizard::material_overrides::MaterialOverrideComponent;
 use bevy::prelude::*;
 
-use bevy::utils::HashMap;
+
 
 use bevy::{color::palettes::css::* };
 //use bevy_material_wizard::material_overrides::MaterialOverrideComponent;
@@ -56,9 +56,9 @@ for (  entity, custom_props_comp ) in custom_props_query.iter(){
 
 		if let Some(material_name) =  custom_props_comp.props.get("material_override") {
 				 
-				    if let Some(mut cmd) = commands.get_entity( entity ){
+				    if let Ok(mut cmd) = commands.get_entity( entity ){
 
-						 info!("inserted new material override {}", &material_name);
+					//	 info!("inserted new material override {}", &material_name);
 
 						cmd.try_insert( 
 							MaterialOverrideComponent {

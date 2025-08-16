@@ -3,6 +3,9 @@
 //use bevy_material_wizard::material_replacements::MaterialReplacementWhenSceneReadyComponent;
 
 
+use crate::doodads::doodad_colliders::ConvertAllChildMeshesToColliders;
+use crate::camera::DoodadSpawnOrigin;
+use bevy::ecs::relationship::AncestorIter;
 use spirit_edit_core::zones::zone_file::CustomPropsMap;
 use crate::decals::DecalComponent;
 use crate::doodads::doodad_placement::RequestPlaceDoodad;
@@ -13,6 +16,7 @@ use bevy_clay_tiles::clay_tile_block;
 
 use spirit_edit_core::gltf_models::AddGltfModelComponent; 
 
+use bevy::asset::AssetLoadFailedEvent; 
 
 use spirit_edit_core::doodads::doodad::RebuildDoodad;
 
@@ -32,8 +36,10 @@ use spirit_edit_core::placement::PlacementToolsState;
 use bevy_egui::EguiContexts;
  
 
+use bevy::platform::collections::hash_set::HashSet; 
 
-use bevy::utils::HashSet; 
+use bevy::platform::collections::hash_map::HashMap; 
+
 use spirit_edit_core::doodads::DoodadToolEvent;
 use spirit_edit_core::placement::PlacementResource;
 use spirit_edit_core::doodads::DoodadProto;
@@ -50,10 +56,10 @@ use crate::AssetLoadState;
  
  
 use crate::asset_loading::BuiltVfxHandleRegistry;
-use bevy::utils::Duration;
+use core::time::Duration;
  
 use bevy::pbr::wireframe::WireframeColor;
-use bevy::{pbr::wireframe::Wireframe, prelude::*, utils::HashMap};
+use bevy::{pbr::wireframe::Wireframe, prelude::* };
 
 
  
@@ -82,6 +88,8 @@ use crate::{
     app
             .init_resource::<DoodadGltfLoadTrackingResource>()
             .add_event::<SpawnDoodadEvent>()
+              .add_event::<PlaceDoodadEvent>()
+              
             .add_observer(   add_doodad_collider_markers )
             .add_systems(Update, (
                 attach_models_to_doodads.run_if(in_state(AssetLoadState::Complete)), 
@@ -103,6 +111,7 @@ use crate::{
                 handle_doodad_tool_events,
                 replace_proto_doodads_with_doodads,
 
+                handle_doodad_model_load_failed, 
                // handle_doodad_scene_ready
 
 
@@ -145,7 +154,7 @@ pub struct RecentlyFailedToLoadModel {
 #[derive(Component, Default)]
 pub struct DoodadColliderMarker {}
 
-const MISSING_MODEL_CUBE_COLOR:Color = Color::rgb(0.9, 0.4, 0.9) ;
+const MISSING_MODEL_CUBE_COLOR:Color = Color::srgb(0.9, 0.4, 0.9) ;
 
  
 
@@ -187,7 +196,7 @@ fn attach_models_to_doodads(
    asset_server: Res<AssetServer>,
 
    global_xform_query: Query<&GlobalTransform>,
-   camera_query: Query<Entity, With<Camera3d> >, 
+   camera_query: Query<Entity, With<DoodadSpawnOrigin> >, 
 
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -199,7 +208,13 @@ fn attach_models_to_doodads(
     time: Res<Time>, 
 ) {
 
-    let Some(camera_entity) = camera_query.get_single().ok() else {return};
+    let Some(camera_entity) = camera_query. single().ok() else {
+
+
+        warn!( "NO DOODAD SPAWN ORIGIN " );
+        return
+
+    };
 
     let Some(camera_xform)  = global_xform_query.get(camera_entity).ok() else {return};
     
@@ -221,9 +236,9 @@ fn attach_models_to_doodads(
 
 
 
-      if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+      if let Ok(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
  
-          cmd.try_insert( PickingBehavior::default() ) ;  //optional
+          cmd.try_insert( Pickable::default() ) ;  //optional
       } 
 
 
@@ -239,6 +254,9 @@ fn attach_models_to_doodads(
 
             material_override =  Some(material_override_from_props.to_string() );
         }
+
+
+     //   let spawnable_components = &doodad_component.definition.spawnable_components; 
          
 
         //handle attaching renderable components based on the renderable type - this lets us see the doodad in the editor
@@ -257,7 +275,7 @@ fn attach_models_to_doodads(
 
                      doodad_load_tracking_resource.doodad_scenes_loading.insert( model_handle.id() );
 
-                    if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                    if let Ok(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                         
                         
                           let scene = cmd.commands()
@@ -299,7 +317,7 @@ fn attach_models_to_doodads(
                          //info!("found mat override  {:?}", material_override );
 
 
-                        if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                        if let Ok(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                             cmd.try_insert(
                                 MaterialOverrideWhenSceneReadyComponent {
                                     material_override: material_override.clone() ,
@@ -313,7 +331,7 @@ fn attach_models_to_doodads(
                         // info!("found   material_replacements  {:?}", material_replacements );
 
                        
-                         if let Some(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
+                         if let Ok(mut cmd ) = commands.get_entity( new_doodad_entity  ) {
                             cmd.try_insert(
                                 MaterialReplacementApplySetWhenSceneReadyComponent  (   material_replacement_set.clone() )
                                    
@@ -476,6 +494,83 @@ fn decrement_doodad_gltf_load_tracker(
  
 }
 
+
+/*
+pub struct AssetLoadFailedEvent<A>
+where
+    A: Asset,
+{
+    pub id: AssetId<A>,
+    pub path: AssetPath<'static>,
+    pub error: AssetLoadError,
+}
+*/
+
+fn handle_doodad_model_load_failed(
+
+       mut commands: Commands,
+         mut asset_load_events: EventReader<AssetLoadFailedEvent<Gltf>>,
+
+            doodad_query: Query<(Entity, &Children), With<DoodadComponent>>,
+       add_gltf_model_query: Query<(Entity, &AddGltfModelComponent) >,
+          mut meshes: ResMut<Assets<Mesh>>,
+         mut materials: ResMut<Assets<StandardMaterial>>,
+         mut doodad_load_tracking_resource: ResMut<DoodadGltfLoadTrackingResource>,
+
+         time: Res<Time>, 
+
+    ) {
+
+
+    for evt in asset_load_events.read() {
+
+        let handle_id = evt.id; 
+
+                 let _removed = 
+                     doodad_load_tracking_resource.doodad_scenes_loading.remove( &handle_id );
+                       
+                       // Find the doodad entity that was trying to load this failed model
+                        for (doodad_entity, children) in doodad_query.iter() {
+                           for child in children.iter() {
+                            if let Ok(( _child_entity, add_gltf_comp)) = 
+                                    add_gltf_model_query.get(child) {
+                                  if add_gltf_comp.0.id() ==  handle_id {
+                                        // Remove the failed model child and spawn a red cube 
+        
+                                     // commands.entity(child_entity).despawn_recursive();
+                                   //   
+                                      let red_cube = commands.spawn((
+
+                                           Mesh3d(meshes.add(Cuboid::new(1.0, 1.0, 1.0)    ) ),
+                                            
+                                            MaterialOverrideComponent{material_override: "CHECKER".into(), cascade:true }  , 
+
+                                     MeshMaterial3d(materials.add(MISSING_MODEL_CUBE_COLOR)),
+                                          Transform::default(),
+                                          Visibility::default(),
+                                      )).id();
+                                       
+                                        commands.entity(doodad_entity).add_child(red_cube);
+                                       
+                                        // Mark as recently failed to prevent repeated attempts
+                                      
+                                  commands.entity(doodad_entity).insert(RecentlyFailedToLoadModel {
+                                    created_at: time.elapsed() 
+
+                                  } );
+                                        
+                                       break;
+                                    }
+                               }
+                           }
+                       }
+
+
+
+  }
+
+}
+
  
 fn remove_recently_failed_to_load(
     mut commands: Commands,
@@ -497,7 +592,7 @@ fn remove_recently_failed_to_load(
 
         if time.elapsed()  >  *failed_at +   Duration::from_secs_f32(1.0) {
 
-            if let Some(mut cmd) = commands.get_entity(doodad_entity){ 
+            if let Ok(mut cmd) = commands.get_entity(doodad_entity){ 
                 cmd.remove::<RecentlyFailedToLoadModel>();
             }
 
@@ -546,15 +641,15 @@ pub(crate) fn add_doodad_collider_markers(
         ),
     > ,
 
-    parent_query: Query< &Parent > , 
+    parent_query: Query< &ChildOf > , 
  //  mut  scene_instance_evt_reader: EventReader<SceneInstanceReady>
 
    
 )   {
   
-   let trig_entity = scene_instance_evt_trigger.entity();
+   let trig_entity = scene_instance_evt_trigger.target();
 
-    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.get() ) else {return};
+    let Some(parent_entity) = parent_query.get(trig_entity).ok().map( |p| p.parent() ) else {return};
 
 
           if let Some((new_doodad_entity, _doodad_component)) = doodad_query.get(parent_entity).ok() {
@@ -604,6 +699,9 @@ pub(crate) fn add_doodad_collider_markers(
  }
 
 
+//this is a nice  way to do it ! 
+#[derive(Component)] 
+pub struct CollisionVolumesNode ; 
 
  
 pub(crate) fn hide_doodad_collision_volumes(
@@ -623,30 +721,27 @@ pub(crate) fn hide_doodad_collision_volumes(
                 //&mut commands,
                 &name_query,
                 &children_query,
-                *child,
+                 child,
                 "collision_volumes",
                 false
             ) {
                 // If you want to make the node invisible instead of removing it:
                 commands
                     .entity(collision_volumes_root_entity)
-                    .insert(Visibility::Hidden);
+                    .insert( CollisionVolumesNode );
+    
 
-               /* println!(
-                    "found collision volumes root entity for {:?} -- hiding them ",
-                    &doodad_component
-                );*/
+                     commands.trigger_targets(
+                        ConvertAllChildMeshesToColliders { trimesh: false },
+                        collision_volumes_root_entity,
+                    );
 
-
-
-                // If you want to remove the node altogether:
-                // commands.entity(entity).despawn_recursive();
             } 
         }
 
-        commands
+        /*commands
             .entity(new_doodad_entity)
-            .insert(Visibility::Inherited);
+            .insert(Visibility::Inherited);*/
     }
 
      
@@ -680,7 +775,7 @@ pub fn find_node_by_name_recursive(
                // commands,
                 &name_query,
                 &children_query,
-                *child,
+                 child,
                 target_name,
                 log_output
             ) {
@@ -726,9 +821,9 @@ pub fn update_doodad_placement_preview_model (
    // let selected_doodad_definition = &doodad_tool_resource.selected;
  
 
-    let Some((placement_preview_entity, doodad_placement_comp)) = doodad_placement_component_query.get_single().ok() else {return};
+    let Some((placement_preview_entity, doodad_placement_comp)) = doodad_placement_component_query.single().ok() else {return};
     
-         commands.entity(placement_preview_entity).despawn_descendants() ;
+         commands.entity(placement_preview_entity).despawn_related::<Children> () ;  //was despawn_descendants 
 
               let Some(doodad_name) =  &doodad_placement_comp.preview_doodad_name else {return};
 
@@ -896,7 +991,7 @@ pub fn handle_place_doodad_events(
 
 
         let parent_global_translation = parent.map( |p| global_xform_query.get(*p).ok()  ).flatten().map(|x| x.translation() ) ; 
-        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; ;
+        let position_relative_to_parent = position - parent_global_translation.unwrap_or_default() ; 
 
 
         // -----
@@ -930,11 +1025,11 @@ pub fn handle_place_doodad_events(
         if *auto_select {
 
             //why are these different.. ? 
-             editor_event_writer.send( 
+             editor_event_writer.write( 
                 EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
              );
 
-            doodad_tool_event_writer.send(
+            doodad_tool_event_writer.write(
                 DoodadToolEvent::SetSelectedDoodad(None) 
             );
         }
@@ -1050,11 +1145,11 @@ pub fn handle_spawn_doodad_events(
         if *auto_select {
 
             //why are these different.. ? 
-             editor_event_writer.send( 
+             editor_event_writer.write( 
                 EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
              );
 
-            doodad_tool_event_writer.send(
+            doodad_tool_event_writer.write(
                 DoodadToolEvent::SetSelectedDoodad(None) 
             );
         }
@@ -1162,11 +1257,11 @@ pub fn handle_place_clay_tile_block_events(
             .id();
 
 
-        editor_event_writer.send( 
+        editor_event_writer.write( 
             EditorEvent::SetSelectedEntities(Some(vec![ doodad_spawned ]))
          );
 
-        doodad_tool_event_writer.send(
+        doodad_tool_event_writer.write(
             DoodadToolEvent::SetSelectedDoodad(None) 
         );
 

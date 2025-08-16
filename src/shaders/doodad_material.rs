@@ -1,6 +1,9 @@
 
 //use crate::materials::extension_material_link::BuildableUsingWorld;
 //use crate::materials::shaders::cel_mask_texture::get_cel_mask_texture_embedded_path;
+use std::path::Path;
+use crate::AssetSourceId;
+use crate::AssetPath;
 use bevy::asset::embedded_asset;
 use bevy::prelude::*;
 use bevy::reflect::TypePath;
@@ -22,15 +25,16 @@ pub fn doodad_material_plugin(app: &mut App) {
         .add_plugins(MaterialPlugin::<DoodadMaterial>::default())
 
 
-        .register_generic_material::< DoodadMaterial >()
-        .register_generic_material_shorthand::< DoodadMaterial >("DoodadMaterial")
+      //  .register_generic_material::< DoodadMaterial >()
+        .register_extended_generic_material::<StandardMaterial, DoodadMaterialBase >("DoodadMaterial" )
+        //.register_generic_material_shorthand::< DoodadMaterial >("DoodadMaterial")
 
 
 
         ;
 
-
-    //    embedded_asset!(app, "assets/cel_mask.png");
+     //    embedded_asset!(app, omit_prefix, "files/bevy_pixel_light.png");
+        embedded_asset!(app, "assets/cel_mask.png");
 
 
 }
@@ -59,7 +63,7 @@ impl Default for DoodadMaterialUniforms {
             blank_top_bottom: 0, 
 
 
-            uv_input_scale: 4.0 
+            uv_input_scale: 8.0 
                                      // accelerations: Vec4::default(),
         }
     }
@@ -87,6 +91,7 @@ pub struct DoodadMaterialBase {
     pub rim_color: LinearRgba,
 }
 
+/*
 impl Default for DoodadMaterialBase {
 
 
@@ -106,14 +111,15 @@ impl Default for DoodadMaterialBase {
         }
 
      }
-}
-
-
+}*/
+ 
 
 pub fn get_cel_mask_texture_embedded_path() -> &'static str {
    // "embedded://spirit_editor/shaders/assets/cel_mask.png"
 
-   "shaders/cel_mask.png"   //cant get embedding to work
+   "shaders/cel_mask.png"   
+
+      // "embedded://spirit_editor/assets/cel_mask.png"
 }
 
 
@@ -131,7 +137,7 @@ impl DoodadMaterialBase {
 
 }
 
-/*
+ 
 impl FromWorld for DoodadMaterialBase {
 
 
@@ -144,11 +150,22 @@ impl FromWorld for DoodadMaterialBase {
                 DoodadMaterialBase::build(mask_image)
 
 
+                /*
+    
+                       Self{ 
+                            custom_uniforms: DoodadMaterialUniforms::default(),
+                            mask: Handle::default(),  //this gets fixed in a system s
 
+                            highlight_color : Srgba::hex("ADBBB7").unwrap().into(), 
+                             shadow_color : Srgba::hex("8E978D").unwrap().into(),
+                             rim_color: Srgba::hex("EEEEEE").unwrap().into() 
+
+
+                        }
+                */
          }
-} */
-
-/*
+}  
+ 
 impl DoodadMaterialBase {
     fn build(mask_image: Handle<Image>) -> Self {
         let highlight_color = Srgba::hex("ADBBB7").unwrap();
@@ -163,7 +180,7 @@ impl DoodadMaterialBase {
             rim_color: rim_color.into(),
         }
     }
-} */
+} 
 
 impl DoodadMaterialBase {
     pub fn set_tint_alpha(&mut self, alpha: f32) {

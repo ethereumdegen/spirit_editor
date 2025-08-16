@@ -1,54 +1,98 @@
  
+ 
+use crate::post_processing::PostProcessSettings;
+use bevy_foliage_tool::foliage_viewer::FoliageViewer;
+use degen_toon_terrain::terrain::TerrainViewer;
+use bevy::core_pipeline::tonemapping::Tonemapping;
+
+use bevy::render::view::ColorGrading;
+
+use bevy_editor_pls_default_windows::cameras::EditorCamera;
 use bevy_editor_pls::controls::ControlsInteractionState;
 use bevy::prelude::*;
 
 use bevy::input::mouse::MouseMotion;
-
+use bevy::core_pipeline::prepass::NormalPrepass;
+use bevy::core_pipeline::prepass::DepthPrepass;
  
+use bevy::core_pipeline::bloom::Bloom ;
+use bevy::pbr::ShadowFilteringMethod;
+
+use bevy::{
+    core_pipeline::{
+        fxaa:: Fxaa, }
+};
+
 
 
 pub fn camera_plugin(app: &mut App) {
     app
 
-        .add_systems(Update, init_camera)
+        .add_systems(Startup, init_camera)
         .add_systems(Update, update_camera_look)
-        .add_systems(Update, update_camera_move);
+        .add_systems(Update, update_camera_move)
+        .add_systems(Update, update_camera_frustrum)
+
+        ;
 }
+
+#[derive(Component)]
+pub struct DoodadSpawnOrigin;
 
 #[derive(Component)]
 struct CameraInitialized;
 
 fn init_camera (
-    mut commands: Commands , 
-    camera_query: Query<Entity, (With<Camera3d>, Without< CameraInitialized> )>
+    mut commands: Commands ,
 ){
 
-    for  camera_entity  in camera_query.iter() {
+    
+    // camera
+      let mut color_grading = ColorGrading::default();
 
-        if let Some(mut cmd) = commands.get_entity( camera_entity ){
+    color_grading.global.exposure = 1.05;
+ 
 
-            cmd
-          /*  .insert (  EdgeDetection { 
-                normal_threshold: 2.2, 
-                steep_angle_threshold: 0.9, 
-                enable_depth: true, 
-               
+  
+
+    commands
+        .spawn( ( Camera3d::default()  ,
+
+                 Camera {
+                 hdr: true, // 1. HDR must be enabled on the camera
                 ..default()
-            }  ) */
-            .insert( CameraInitialized ) 
+               },
+            Tonemapping::AcesFitted,
 
+            Transform::from_xyz(20.0, 162.5, 20.0)
+                .looking_at(Vec3::new(900.0, 0.0, 900.0), Vec3::Y),
+            
+        ) )
+       .insert( Bloom  ::OLD_SCHOOL )
+       .insert( EditorCamera )
 
-            ; 
-        }
+            //removed for now 
+       //.insert(PostProcessSettings::default())
 
-    }
+    
+       
+     //  .insert( ToonShaderMainCamera )
+         .insert( color_grading ) 
+        .insert(TerrainViewer::default())
+         .insert( FoliageViewer )
+         .insert( DoodadSpawnOrigin )
+        .insert( DepthPrepass )
+        .insert( NormalPrepass)
+        .insert(Fxaa::default()) 
+          .insert(ShadowFilteringMethod::Hardware2x2)
+       ;
 
 }
 
   fn update_camera_look(
     mut event_reader: EventReader<MouseMotion>,
     mouse_input: Res<ButtonInput<MouseButton>>,
-    mut query: Query<(&mut Transform, &Camera3d)>,
+    mut query: Query<(&mut Transform, &EditorCamera)>,
 ) {
     const MOUSE_SENSITIVITY: f32 = 2.0;
 
@@ -77,7 +121,7 @@ fn init_camera (
 
   fn update_camera_move(
     keyboard_input: Res<ButtonInput<KeyCode>>,
-    mut query: Query<(&mut Transform, &Camera3d)>,
+    mut query: Query<(&mut Transform, &EditorCamera)>,
 
     controls_interact_state: Res<State<ControlsInteractionState>>
 ) {
@@ -125,4 +169,15 @@ fn init_camera (
             transform.translation += up * MOVE_SPEED * boost_multiplier;
         }
     }
+}
+
+
+fn update_camera_frustrum (
+
+        mut camera_query: Query<(&Projection, &mut Transform)>,
+) {
+
+
+
+
 }

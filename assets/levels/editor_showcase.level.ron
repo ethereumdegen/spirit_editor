@@ -1,0 +1,18 @@
+(
+
+
+	initial_terrain_to_load:  None,
+    initial_foliage_scene_to_load: None, 
+
+
+	initial_zones_to_load: Some([
+	 
+		"editor_showcase.zone"
+
+	]),
+
+
+
+
+
+)

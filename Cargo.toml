@@ -1,21 +1,24 @@
 [package]
 name = "spirit_editor"
-version = "0.15.2"
-edition = "2021"
+version = "0.16.0"
+edition = "2024"
 default-run = "main"
 
-
-
+ 
 
 
 [dependencies]
  
 
- bevy = { version = "0.15.1" , features = [ "jpeg", "tga","png", "serialize","ktx2","zstd"  ] }
+ bevy = { version = "0.16.0" , features = [ "jpeg", "tga","png", "serialize","ktx2","zstd"  ] }
+
+
+iyes_perf_ui =  {git = "https://github.com/IyesGames/iyes_perf_ui", branch="main"}
 
 
 
-bevy_egui = "0.31.0"
+
+bevy_egui = "0.34.1"
 
 
 winit = { version = "0.30", default-features = false }
@@ -24,35 +27,43 @@ winit = { version = "0.30", default-features = false }
 # image = { version = "0.25.2", default-features = false }
 
 
- degen_toon_terrain = {version = "0.15.18", features=["physics"]  }
-
-# degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
-
-
- bevy_material_wizard = "0.15.13"
-  # bevy_material_wizard = {path="../bevy_material_wizard"}
-  bevy_materialize = {  version="0.4.2"    }
+avian3d = {version="0.3.1",  features = [ "serialize" ] }
+ 
+bevy_rerecast = { git = "https://github.com/janhohenheim/rerecast" }
+avian_rerecast = { git = "https://github.com/janhohenheim/rerecast" }
 
 
 
-# bevy_magic_fx = "0.15.9"
-  bevy_magic_fx = {path="../bevy_magic_fx"}
+ degen_toon_terrain = {version = "0.16.6", features=["physics"]  }
+ #degen_toon_terrain =  {path="../degen_toon_terrain", features=["physics"]}
+
+
+   bevy_material_wizard = "0.16.4"
+ # bevy_material_wizard = {path="../bevy_material_wizard"}
+
+  bevy_materialize = {  version="0.7.1"    }
 
 
 
 
- degen_toon_water = "0.15.3" 
+  bevy_magic_fx = "0.16.5"
+   # bevy_magic_fx = {path="../bevy_magic_fx"}
+
+
+
+
+ degen_toon_water = "0.16.0" 
   #degen_toon_water =  {path="../degen_toon_water"}
 
 
- degen_toon_clouds = "0.15.3" 
+ degen_toon_clouds = "0.16.0" 
 
 
- bevy_regions = "0.15.0"
+ bevy_regions = "0.16.0"
   
    
- bevy_clay_tiles = "0.15.1"
- #bevy_clay_tiles =  {path="../bevy_clay_tiles"}
+ bevy_clay_tiles = "0.16.1"
+ # bevy_clay_tiles =  {path="../bevy_clay_tiles"}
  
 
 
@@ -66,12 +77,14 @@ noise = "0.9"
 
  
 
- bevy_common_assets = {version="0.12.0", features= ["ron"]}
+ bevy_common_assets = {version="0.13.0", features= ["ron"]}
  
 
 serde = { version = "1", features = ["derive"] }
 ron = "0.8.1"
 rand = "0.8"
+bincode = "1.3.3"
+
 spirit_edit_core.workspace=true 
 
  
@@ -80,24 +93,24 @@ bevy_editor_pls_core.workspace = true
 bevy_editor_pls_default_windows = { workspace = true  } 
  
   #i want to dclare it like this but it errors 
-  # bevy_obj=  {version = "0.15",  default-features = false , features= ["mesh"] }   
-
-  bevy_obj=  {git="https://github.com/ethereumdegen/bevy_obj" ,  default-features = false , features= ["mesh"] }   
+   bevy_obj=  {version = "0.16",  default-features = false , features= ["mesh"] }    
+  #bevy_obj=  {git="https://github.com/ethereumdegen/bevy_obj" ,  default-features = false , features= ["mesh"] }   
 
 anyhow = "1"
 #bevy_mod_sysfail = "7.0.0"
 bevy-inspector-egui = "0.28.0"
-bevy_asset_loader = "0.22.0"
+bevy_asset_loader = "0.23.0-rc.3"
 
  
-  bevy_foliage_tool =   "0.15.14"
-   #  bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
+  # bevy_foliage_tool =   "0.16.2"
+    bevy_foliage_tool =   {path = "../bevy_foliage_tool"}
 
 # bevy_toon_shader =  { git = "https://github.com/tbillington/bevy_toon_shader"}
  
  
  
-bevy_contact_projective_decals = {git= " https://github.com/ethereumdegen/bevy_contact_projective_decals "}
+#bevy_contact_projective_decals = {git= "https://github.com/ethereumdegen/bevy_contact_projective_decals"}
+
 serde_json = "1.0.138"
  
  
@@ -105,7 +118,7 @@ serde_json = "1.0.138"
 
 [workspace.package]
 version = "0.8.2"
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0" 
 description = "In-App editor tools for bevy apps"
 readme = "README.md"
@@ -124,20 +137,21 @@ bevy_editor_pls = { version = "0.8.2", path = "crates/bevy_editor_pls" }
 bevy_editor_pls_core = { version = "0.8.2", path = "crates/bevy_editor_pls_core" }
 bevy_editor_pls_default_windows = { version = "0.8.2", path = "crates/bevy_editor_pls_default_windows" }  
  
- spirit_edit_core =  "0.15.11"
-  # spirit_edit_core = {path="../spirit_edit_core"}
+   spirit_edit_core =  "0.16.3"
+  #spirit_edit_core = {path="../spirit_edit_core"}
 
 anyhow = "1"
-bevy-inspector-egui = "0.28.0"
+bevy-inspector-egui = "0.31.0"
 
  
 
-egui = "0.29"
-  egui_dock = "0.14"
+egui = "0.31"
+
+  egui_dock = "0.16"  # ?? 
 # egui-gizmo = "0.16"  # deprecated ? 
 
-#transform-gizmo-bevy= "0.3"
-transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo"}
+transform-gizmo-bevy= "0.6"
+#transform-gizmo-bevy= {git= "https://github.com/ethereumdegen/transform-gizmo", branch="main"}
 # transform-gizmo-bevy= {path = "../transform-gizmo/crates/transform-gizmo-bevy"}
 
 
@@ -151,15 +165,7 @@ opt-level = 3
 [[bin]]
 name = "main"
 path = "src/main.rs"
-
-[[bin]]
-name = "generate_doodad_manifests"
-path = "scripts/generate_doodad_manifests.rs"
-
-[[bin]]
-name = "modify_doodad_manifest"
-path = "scripts/modify_doodad_manifest.rs"
-
+ 
 
 [[bin]]
 name = "upgrade_zone_files"

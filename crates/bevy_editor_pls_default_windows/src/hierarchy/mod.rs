@@ -1,6 +1,6 @@
 // pub mod picking;
 
- use crate::debug_settings::DebugSettingsWindow;
+ // use crate::debug_settings::DebugSettingsWindow;
 use spirit_edit_core::doodads::rotate::RotateByDegrees;
 use spirit_edit_core::prefabs::{PrefabComponent,SavePrefabToFileEvent};
 use spirit_edit_core::zones::SaveZoneToFileEvent;
@@ -18,6 +18,8 @@ use bevy_inspector_egui::bevy_inspector::guess_entity_name;
 use bevy_inspector_egui::bevy_inspector::hierarchy::SelectedEntities;
 use bevy_inspector_egui::egui::text::CCursorRange;
 use bevy_inspector_egui::egui::{self, ScrollArea};
+
+use bevy::ecs::relationship::Relationship;
 
  use spirit_edit_core::placement::PlacementEvent;
 
@@ -125,10 +127,15 @@ fn clear_removed_entites(mut editor: ResMut<Editor>, entities: &Entities) {
     }
 }*/
 
+/*
 fn extract_wireframe_for_selected(editor: Extract<Res<Editor>>, mut commands: Commands) {
-    let wireframe_for_selected = editor
+   
+   /* let wireframe_for_selected = editor
         .window_state::<DebugSettingsWindow>()
         .map_or(false, |settings| settings.highlight_selected);
+        */
+
+   
 
     /* if wireframe_for_selected {
         let selected = &editor.window_state::<HierarchyWindow>().unwrap().selected;
@@ -137,6 +144,7 @@ fn extract_wireframe_for_selected(editor: Extract<Res<Editor>>, mut commands: Co
         }
     }*/
 }
+*/ 
 
 #[derive(Default)]
 pub struct HierarchyState {
@@ -241,10 +249,14 @@ impl<'a> Hierarchy<'a> {
                 false
             }),
         }
-        .show::<Without<HideInEditor>>(ui);
+      //  .show::<Without<HideInEditor>>(ui);
+          .show::<(Without<HideInEditor>, Without<Observer>)>(ui);
+
 
         if let Some(entity) = despawn_recursive {
-            bevy::hierarchy::despawn_with_children_recursive(self.world, entity, false);
+
+           let _despawned =   self.world.despawn( entity );  //also despawns children! 
+         //    despawn_with_children_recursive(self.world, entity, false);
         }
         if let Some(entity) = despawn {
             self.world.entity_mut(entity).despawn();
@@ -341,7 +353,7 @@ pub fn listen_for_select_entities_events(
 
                  
                     for entity in  state.selected.iter() {
-                        if let Some(mut cmd) = commands.get_entity( entity ){
+                        if let Ok(mut cmd) = commands.get_entity( entity ){
                             cmd.queue( RotateByDegrees( degrees_vec.clone () )  ) ;  // now an entity command ! 
                            // cmd.insert(RotateByDegrees( degrees_vec.clone () ));
                         }
@@ -357,7 +369,7 @@ pub fn listen_for_select_entities_events(
 
                 //if ui.input(|input| input.key_pressed(egui::Key::Delete)) {
                     for entity in  state.selected.iter() {
-                        if let Some(cmd) = commands.get_entity( entity ){
+                        if let Ok(mut cmd) = commands.get_entity( entity ){
 
                             cmd.despawn_recursive();
                         }

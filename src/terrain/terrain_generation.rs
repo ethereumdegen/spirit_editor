@@ -39,7 +39,7 @@ fn generate_terrain(
 	_trigger: Trigger<GenerateTerrainEvent>,
 
 	terrain_query: Query<(&TerrainData, &TerrainConfig)>,
-	chunk_query: Query<(Entity, &Chunk, & ChunkData, &ChunkSplatDataRaw, &Parent, &Children)>,
+	chunk_query: Query<(Entity, &Chunk, & ChunkData, &ChunkSplatDataRaw, &ChildOf, &Children)>,
 
     mut chunk_height_maps: ResMut<ChunkHeightMapResource>,
 
