@@ -13,9 +13,9 @@
 
    
 
-    //  initial_level_to_load: Some( "crypt_1.level" ),
+     initial_level_to_load: Some( "crypt_1.level" ),
    
-     initial_level_to_load: Some( "crypt_bossroom.level" ),
+   //  initial_level_to_load: Some( "crypt_bossroom.level" ),
    
 
    //  initial_level_to_load: Some( "world.level" ),
